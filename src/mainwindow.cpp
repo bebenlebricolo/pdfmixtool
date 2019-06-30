@@ -35,6 +35,7 @@
 #include "editpdfentrydialog.h"
 
 #define TOOLTIP_STRING "%1 <br /><b>%2<?b>"
+#define ICON "%1/../share/icons/hicolor/48x48/apps/eu.scarpetta.PDFMixTool.png"
 
 QDataStream &operator<<(QDataStream &out, const Multipage &multipage)
 {
@@ -107,32 +108,45 @@ MainWindow::MainWindow(MouseEventFilter *filter, QWidget *parent) :
     m_edit_menu(new QMenu(this))
 {
     // Main winow properties
-    this->setWindowIcon(QIcon(QString("%1/../share/icons/hicolor/48x48/apps/eu.scarpetta.PDFMixTool.png").arg(qApp->applicationDirPath())));
+    this->setWindowIcon(QIcon(QString(ICON).arg(qApp->applicationDirPath())));
     this->setWindowTitle(tr("PDF Mix Tool"));
-    this->restoreGeometry(m_settings->value("main_window_geometry").toByteArray());
+    this->restoreGeometry(
+                m_settings->value("main_window_geometry").toByteArray()
+                );
 
     // Load custom multipage profiles
     qRegisterMetaTypeStreamOperators<Multipage>("Multipage");
     m_settings->beginGroup("custom_maltipage_profiles");
     for (QString key : m_settings->childKeys())
-         m_custom_multipages[key.toInt()] = m_settings->value(key).value<Multipage>();
+         m_custom_multipages[key.toInt()] =
+                 m_settings->value(key).value<Multipage>();
     m_settings->endGroup();
 
-    // Create child and configure widgets
-    MultipageProfilesManager *multipage_profiles_manager = new MultipageProfilesManager(&m_custom_multipages, m_settings, this);
+    // Create other windows
+    MultipageProfilesManager *multipage_profiles_manager =
+            new MultipageProfilesManager(
+                &m_custom_multipages,
+                m_settings,
+                this);
     AboutDialog *about_dialog = new AboutDialog(new AboutDialog(this));
 
+    // Hide progress bar
     m_progress_bar->hide();
 
-    InputPdfFileDelegate *pdfinputfile_delegate = new InputPdfFileDelegate(filter,
-                                                                           m_custom_multipages,
-                                                                           this);
+    // Create delegate for files list
+    InputPdfFileDelegate *pdfinputfile_delegate =
+            new InputPdfFileDelegate(
+                filter,
+                m_custom_multipages,
+                this);
 
+    // Set files list settings
     m_files_list_view->setWordWrap(false);
     m_files_list_view->setSelectionBehavior(QAbstractItemView::SelectItems);
     m_files_list_view->setSelectionMode(QAbstractItemView::ExtendedSelection);
-    m_files_list_view->setEditTriggers(QAbstractItemView::DoubleClicked |
-                                       QAbstractItemView::AnyKeyPressed);
+    m_files_list_view->setEditTriggers(
+                QAbstractItemView::DoubleClicked |
+                QAbstractItemView::AnyKeyPressed);
     m_files_list_view->setModel(m_files_list_model);
     m_files_list_view->setItemDelegate(pdfinputfile_delegate);
     m_files_list_view->setFocusPolicy(Qt::WheelFocus);
@@ -141,41 +155,102 @@ MainWindow::MainWindow(MouseEventFilter *filter, QWidget *parent) :
     m_files_list_view->setTabKeyNavigation(true);
     m_files_list_view->viewport()->installEventFilter(this);
 
+    // Add edit menu actions
     m_edit_menu->addAction(tr("Edit"), this, SLOT(edit_menu_activated()));
     m_edit_menu->addAction(tr("View"), this, SLOT(view_menu_activated()));
 
+    // Create toolbar and add actions
     QToolBar *toolbar = new QToolBar(tr("Main toolbar"), this);
     toolbar->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
     toolbar->setFloatable(false);
     toolbar->setMovable(false);
 
-    QAction *add_file_action = toolbar->addAction(QIcon::fromTheme("list-add"), tr("Add PDF file"), this, SLOT(add_pdf_files()));
-    QAction *move_up_action = toolbar->addAction(QIcon::fromTheme("go-up"), tr("Move up"), this, SLOT(move_up()));
-    QAction *move_down_action = toolbar->addAction(QIcon::fromTheme("go-down"), tr("Move down"), this, SLOT(move_down()));
-    QAction *remove_file_action = toolbar->addAction(QIcon::fromTheme("list-remove"), tr("Remove file"), this, SLOT(remove_pdf_file()));
+    QAction *add_file_action = toolbar->addAction(
+                QIcon::fromTheme("list-add"),
+                tr("Add PDF file"),
+                this,
+                SLOT(add_pdf_files()));
+    QAction *move_up_action = toolbar->addAction(
+                QIcon::fromTheme("go-up"),
+                tr("Move up"),
+                this,
+                SLOT(move_up()));
+    QAction *move_down_action = toolbar->addAction(
+                QIcon::fromTheme("go-down"),
+                tr("Move down"),
+                this,
+                SLOT(move_down()));
+    QAction *remove_file_action = toolbar->addAction(
+                QIcon::fromTheme("list-remove"),
+                tr("Remove file"),
+                this,
+                SLOT(remove_pdf_file()));
 
+    // Set shortcuts for toolbar buttons
     add_file_action->setShortcut(QKeySequence::Open);
     move_up_action->setShortcut(QKeySequence("Ctrl+up"));
     move_down_action->setShortcut(QKeySequence("Ctrl+down"));
     remove_file_action->setShortcut(QKeySequence::Delete);
-    add_file_action->setToolTip(QString(TOOLTIP_STRING).arg(add_file_action->text(), add_file_action->shortcut().toString()));
-    move_up_action->setToolTip(QString(TOOLTIP_STRING).arg(move_up_action->text(), move_up_action->shortcut().toString()));
-    move_down_action->setToolTip(QString(TOOLTIP_STRING).arg(move_down_action->text(), move_down_action->shortcut().toString()));
-    remove_file_action->setToolTip(QString(TOOLTIP_STRING).arg(remove_file_action->text(), remove_file_action->shortcut().toString()));
+    add_file_action->setToolTip(
+                QString(TOOLTIP_STRING)
+                .arg(
+                    add_file_action->text(),
+                    add_file_action->shortcut().toString()));
+    move_up_action->setToolTip(
+                QString(TOOLTIP_STRING)
+                .arg(
+                    move_up_action->text(),
+                    move_up_action->shortcut().toString()));
+    move_down_action->setToolTip(
+                QString(TOOLTIP_STRING)
+                .arg(
+                    move_down_action->text(),
+                    move_down_action->shortcut().toString()));
+    remove_file_action->setToolTip(
+                QString(TOOLTIP_STRING)
+                .arg(
+                    remove_file_action->text(),
+                    remove_file_action->shortcut().toString()));
 
-    QPushButton *main_menu_button = new QPushButton(QIcon::fromTheme("preferences-other"), tr("Menu"));
+    // Create main menu and add actions
+    QPushButton *main_menu_button = new QPushButton(
+                QIcon::fromTheme("preferences-other"),
+                tr("Menu"));
     main_menu_button->setDefault(true);
     QMenu *main_menu = new QMenu(main_menu_button);
-    main_menu->addAction(QIcon::fromTheme("document-properties"), tr("Multipage profiles…"), multipage_profiles_manager, SLOT(show()));
-    main_menu->addAction(QIcon::fromTheme("help-about"), tr("About"), about_dialog, SLOT(show()));
-    main_menu->addAction(QIcon::fromTheme("application-exit"), tr("Exit"), qApp, SLOT(quit()), QKeySequence::Quit);
+    main_menu->addAction(
+                QIcon::fromTheme("document-properties"),
+                tr("Multipage profiles…"),
+                multipage_profiles_manager,
+                SLOT(show()));
+    main_menu->addAction(
+                QIcon::fromTheme("help-about"),
+                tr("About"),
+                about_dialog,
+                SLOT(show()));
+    main_menu->addAction(
+                QIcon::fromTheme("application-exit"),
+                tr("Exit"),
+                qApp,
+                SLOT(quit()),
+                QKeySequence::Quit);
     main_menu_button->setMenu(main_menu);
 
-    QPushButton *generate_pdf_button = new QPushButton(QIcon::fromTheme("document-save-as"), tr("Generate PDF"), this);
-    QAction *generate_pdf_action = new QAction(tr("Generate PDF"), generate_pdf_button);
+    // Create "Generate PDF" button
+    QPushButton *generate_pdf_button = new QPushButton(
+                QIcon::fromTheme("document-save-as"),
+                tr("Generate PDF"),
+                this);
+    QAction *generate_pdf_action = new QAction(
+                tr("Generate PDF"),
+                generate_pdf_button);
     generate_pdf_action->setShortcut(QKeySequence::Save);
     generate_pdf_button->addAction(generate_pdf_action);
-    generate_pdf_button->setToolTip(QString(TOOLTIP_STRING).arg(generate_pdf_button->text(), generate_pdf_action->shortcut().toString()));
+    generate_pdf_button->setToolTip(
+                QString(TOOLTIP_STRING)
+                .arg(
+                    generate_pdf_button->text(),
+                    generate_pdf_action->shortcut().toString()));
 
     // Add widgets to the main window
     QVBoxLayout *v_layout = new QVBoxLayout();
@@ -185,7 +260,9 @@ MainWindow::MainWindow(MouseEventFilter *filter, QWidget *parent) :
 
     QHBoxLayout *layout = new QHBoxLayout();
     layout->addWidget(toolbar);
-    layout->addItem(new QSpacerItem(0, 0, QSizePolicy::Expanding, QSizePolicy::Minimum));
+    layout->addItem(new QSpacerItem(
+                        0, 0,
+                        QSizePolicy::Expanding, QSizePolicy::Minimum));
     layout->addWidget(main_menu_button);
     v_layout->addLayout(layout);
 
@@ -194,15 +271,24 @@ MainWindow::MainWindow(MouseEventFilter *filter, QWidget *parent) :
     layout = new QHBoxLayout();
     layout->addWidget(m_output_page_count);
     layout->addWidget(m_progress_bar, 1);
-    layout->addItem(new QSpacerItem(0, 0, QSizePolicy::Expanding, QSizePolicy::Minimum));
+    layout->addItem(new QSpacerItem(
+                        0, 0,
+                        QSizePolicy::Expanding, QSizePolicy::Minimum));
     layout->addWidget(generate_pdf_button);
     v_layout->addLayout(layout);
 
     // Connect signals to slots
-    connect(m_files_list_view, SIGNAL(pressed(QModelIndex)), this, SLOT(item_mouse_pressed(QModelIndex)));
-    connect(pdfinputfile_delegate, SIGNAL(data_edit()), this, SLOT(update_output_page_count()));
-    connect(generate_pdf_button, SIGNAL(released()), this, SLOT(generate_pdf_button_pressed()));
-    connect(generate_pdf_action, SIGNAL(triggered(bool)), this, SLOT(generate_pdf_button_pressed()));
+    connect(m_files_list_view, SIGNAL(pressed(QModelIndex)),
+            this, SLOT(item_mouse_pressed(QModelIndex)));
+
+    connect(pdfinputfile_delegate, SIGNAL(data_edit()),
+            this, SLOT(update_output_page_count()));
+
+    connect(generate_pdf_button, SIGNAL(released()),
+            this, SLOT(generate_pdf_button_pressed()));
+
+    connect(generate_pdf_action, SIGNAL(triggered(bool)),
+            this, SLOT(generate_pdf_button_pressed()));
 }
 
 void MainWindow::add_pdf_files()
@@ -216,29 +302,35 @@ void MainWindow::add_pdf_files()
     for (int i=0; i<selected.count(); i++)
     {
         // Check if filename is already in the model
-        InputPdfFile * pdf_file = NULL;
+        InputPdfFile * pdf_file = nullptr;
 
         for (int j=0; j<m_files_list_model->rowCount(); j++)
         {
             QStandardItem *item = m_files_list_model->item(j);
-            InputPdfFile *pdf = item->data(PDF_FILE_ROLE).value<InputPdfFile *>();
+            InputPdfFile *pdf =
+                    item->data(PDF_FILE_ROLE).value<InputPdfFile *>();
             if (pdf->filename() == selected.at(i).toStdString())
                 pdf_file = pdf;
         }
 
-        if (pdf_file != NULL)
+        if (pdf_file != nullptr)
             pdf_file = m_pdf_editor->new_input_file(pdf_file);
         else
-            pdf_file = m_pdf_editor->new_input_file(selected.at(i).toStdString());
+            pdf_file =
+                    m_pdf_editor->new_input_file(selected.at(i).toStdString());
 
         QStandardItem *item = new QStandardItem();
-        item->setData(QVariant::fromValue<InputPdfFile *>(pdf_file), PDF_FILE_ROLE);
+        item->setData(
+                    QVariant::fromValue<InputPdfFile *>(pdf_file),
+                    PDF_FILE_ROLE);
         m_files_list_model->setItem(m_files_list_model->rowCount(), item);
     }
 
     if (selected.size() > 0)
     {
-        m_settings->setValue("open_directory", QFileInfo(selected.at(0)).dir().absolutePath());
+        m_settings->setValue(
+                    "open_directory",
+                    QFileInfo(selected.at(0)).dir().absolutePath());
         this->update_output_page_count();
     }
 }
@@ -257,12 +349,16 @@ void MainWindow::move_up()
             QList<QStandardItem *> row = m_files_list_model->takeRow(i);
             m_files_list_model->insertRow(i - 1, row);
 
-            sel.push_back(QItemSelectionRange(m_files_list_model->index(i - 1, 0)));
+            sel.push_back(
+                        QItemSelectionRange(
+                            m_files_list_model->index(i - 1, 0)));
         }
 
         // Restore selection
         m_files_list_view->setCurrentIndex(sel.indexes().first());
-        m_files_list_view->selectionModel()->select(sel, QItemSelectionModel::ClearAndSelect);
+        m_files_list_view->selectionModel()->select(
+                    sel,
+                    QItemSelectionModel::ClearAndSelect);
     }
 }
 
@@ -270,31 +366,41 @@ void MainWindow::move_down()
 {
     QList<int> indexes = this->selected_indexes();
 
-    if (indexes.size() > 0 && indexes.back() < m_files_list_model->rowCount() - 1)
+    if (indexes.size() > 0 &&
+            indexes.back() < m_files_list_model->rowCount() - 1)
     {
         QItemSelection sel;
 
         /* Qt >= 5.6
         // Move items down
-        for (QList<int>::reverse_iterator it = indexes.rbegin(); it != indexes.rend(); ++it)
+        for (
+             QList<int>::reverse_iterator it = indexes.rbegin();
+             it != indexes.rend();
+             ++it)
         {
             QList<QStandardItem *> row = m_files_list_model->takeRow(*it);
             m_files_list_model->insertRow(*it + 1, row);
 
-            sel.push_back(QItemSelectionRange(m_files_list_model->index(*it + 1, 0)));
+            sel.push_back(QItemSelectionRange(
+                              m_files_list_model->index(*it + 1, 0)));
         }*/
 
         for (int i = indexes.size() - 1; i >= 0; --i)
         {
-            QList<QStandardItem *> row = m_files_list_model->takeRow(indexes.at(i));
+            QList<QStandardItem *> row =
+                    m_files_list_model->takeRow(indexes.at(i));
             m_files_list_model->insertRow(indexes.at(i) + 1, row);
 
-            sel.push_back(QItemSelectionRange(m_files_list_model->index(indexes.at(i) + 1, 0)));
+            sel.push_back(
+                        QItemSelectionRange(
+                            m_files_list_model->index(indexes.at(i) + 1, 0)));
         }
 
         // Restore selection
         m_files_list_view->setCurrentIndex(sel.indexes().last());
-        m_files_list_view->selectionModel()->select(sel, QItemSelectionModel::ClearAndSelect);
+        m_files_list_view->selectionModel()->select(
+                    sel,
+                    QItemSelectionModel::ClearAndSelect);
     }
 }
 
@@ -304,7 +410,8 @@ void MainWindow::remove_pdf_file()
 
     for (int i=indexes.count() - 1; i >= 0; i--)
     {
-        delete m_files_list_model->item(indexes[i])->data(PDF_FILE_ROLE).value<InputPdfFile *>();
+        delete m_files_list_model->item(
+                    indexes[i])->data(PDF_FILE_ROLE).value<InputPdfFile *>();
         m_files_list_model->removeRow(indexes[i]);
     }
 
@@ -313,7 +420,8 @@ void MainWindow::remove_pdf_file()
 
 void MainWindow::edit_menu_activated()
 {
-    QModelIndexList indexes = m_files_list_view->selectionModel()->selectedIndexes();
+    QModelIndexList indexes =
+            m_files_list_view->selectionModel()->selectedIndexes();
 
     if (indexes.count() == 1)
         m_files_list_view->edit(indexes.first());
@@ -321,7 +429,10 @@ void MainWindow::edit_menu_activated()
     {
         QList<InputPdfFile *> files;
         for (int i=0; i < indexes.count(); i++)
-            files.push_back(m_files_list_model->itemFromIndex(indexes[i])->data(PDF_FILE_ROLE).value<InputPdfFile *>());
+            files.push_back(
+                        m_files_list_model->
+                        itemFromIndex(indexes[i])->
+                        data(PDF_FILE_ROLE).value<InputPdfFile *>());
 
         EditPdfEntryDialog dialog(m_custom_multipages, files);
         dialog.exec();
@@ -332,13 +443,15 @@ void MainWindow::edit_menu_activated()
 
 void MainWindow::view_menu_activated()
 {
-    QModelIndexList indexes = m_files_list_view->selectionModel()->selectedIndexes();
+    QModelIndexList indexes =
+            m_files_list_view->selectionModel()->selectedIndexes();
     for (int i=0; i < indexes.count(); i++)
     {
         QDesktopServices::openUrl(QString("file://") +
                                   m_files_list_model
                                   ->itemFromIndex(indexes[i])
-                                  ->data(PDF_FILE_ROLE).value<InputPdfFile *>()->filename().c_str()
+                                  ->data(PDF_FILE_ROLE).value<InputPdfFile *>()
+                                  ->filename().c_str()
                                   );
     }
 }
@@ -357,7 +470,10 @@ void MainWindow::update_output_page_count()
     int output_page_count = 0;
     for (int i=0; i<m_files_list_model->rowCount(); i++)
     {
-        InputPdfFile *pdf_file = m_files_list_model->item(i)->data(PDF_FILE_ROLE).value<InputPdfFile *>();
+        InputPdfFile *pdf_file =
+                m_files_list_model->
+                item(i)->
+                data(PDF_FILE_ROLE).value<InputPdfFile *>();
         output_page_count += pdf_file->output_page_count();
     }
 
@@ -380,33 +496,41 @@ void MainWindow::generate_pdf_button_pressed()
 
     for (int i=0; i<m_files_list_model->rowCount(); i++)
     {
-        InputPdfFile *pdf_file = m_files_list_model->item(i)->data(PDF_FILE_ROLE).value<InputPdfFile *>();
+        InputPdfFile *pdf_file =
+                m_files_list_model->
+                item(i)->
+                data(PDF_FILE_ROLE).value<InputPdfFile *>();
 
         if (pdf_file->pages_filter_errors().size() > 0)
         {
             errors = true;
 
             for (
-                 std::vector<IntervalIssue>::const_iterator it = pdf_file->pages_filter_errors().begin();
+                 std::vector<IntervalIssue>::const_iterator it =
+                    pdf_file->pages_filter_errors().begin();
                  it != pdf_file->pages_filter_errors().end();
                  ++it
                  )
             {
                 if ((*it).name == IntervalIssue::error_invalid_char)
                     errors_list +=
-                            tr("<li>Invalid character \"<b>%1</b>\" in pages filter of file \"<b>%2</b>\"</li>")
+                            tr("<li>Invalid character \"<b>%1</b>\" in pages "
+                               "filter of file \"<b>%2</b>\"</li>")
                             .arg(
                                 QString::fromStdString((*it).data),
                                 QString::fromStdString(pdf_file->filename()));
                 else if ((*it).name == IntervalIssue::error_invalid_interval)
                     errors_list +=
-                            tr("<li>Invalid interval \"<b>%1</b>\" in pages filter of file \"<b>%2</b>\"</li>")
+                            tr("<li>Invalid interval \"<b>%1</b>\" in pages "
+                               "filter of file \"<b>%2</b>\"</li>")
                             .arg(
                                 QString::fromStdString((*it).data),
                                 QString::fromStdString(pdf_file->filename()));
                 else if ((*it).name == IntervalIssue::error_page_out_of_range)
                     errors_list +=
-                            tr("<li>Boundaries of interval \"<b>%1</b>\" in pages filter of file \"<b>%2</b>\" are out of allowed interval</li>")
+                            tr("<li>Boundaries of interval \"<b>%1</b>\" in "
+                               "pages filter of file \"<b>%2</b>\" are out of "
+                               "allowed interval</li>")
                             .arg(
                                 QString::fromStdString((*it).data),
                                 QString::fromStdString(pdf_file->filename()));
@@ -418,14 +542,17 @@ void MainWindow::generate_pdf_button_pressed()
             warnings = true;
 
             for (
-                 std::vector<IntervalIssue>::const_iterator it = pdf_file->pages_filter_warnings().begin();
+                 std::vector<IntervalIssue>::const_iterator it =
+                    pdf_file->pages_filter_warnings().begin();
                  it != pdf_file->pages_filter_warnings().end();
                  ++it
                  )
             {
                 if ((*it).name == IntervalIssue::warning_overlapping_interval)
                     warnings_list +=
-                            tr("<li>Interval \"<b>%1</b>\" in pages filter of file \"<b>%2</b>\" is overlapping with another interval</li>")
+                            tr("<li>Interval \"<b>%1</b>\" in pages filter of "
+                               "file \"<b>%2</b>\" is overlapping with another "
+                               "interval</li>")
                             .arg(
                                 QString::fromStdString((*it).data),
                                 QString::fromStdString(pdf_file->filename()));
@@ -435,7 +562,8 @@ void MainWindow::generate_pdf_button_pressed()
 
     if (errors)
     {
-        QString error_message(tr("<p>The PDF generation failed due to the following errors:</p>"));
+        QString error_message(tr("<p>The PDF generation failed due to the "
+                                 "following errors:</p>"));
         error_message += QString("<ul>") + errors_list + QString("</ul>");
         QMessageBox::critical(this,
                               tr("PDF generation error"),
@@ -443,7 +571,8 @@ void MainWindow::generate_pdf_button_pressed()
     }
     else if (warnings)
     {
-        QString warning_message(tr("<p>The following problems were encountered while generating the PDF file:</p>"));
+        QString warning_message(tr("<p>The following problems were encountered "
+                                   "while generating the PDF file:</p>"));
         warning_message += QString("<ul>") + warnings_list + QString("</ul>");
         int ret = QMessageBox::warning(this,
                               "",
@@ -459,13 +588,17 @@ void MainWindow::generate_pdf_button_pressed()
 
 void MainWindow::generate_pdf()
 {
-    QString selected_file = QFileDialog::getSaveFileName(this, tr("Save PDF file"),
-                               m_settings->value("save_directory", "").toString(),
-                               tr("PDF files (*.pdf)"));
+    QString selected_file = QFileDialog::getSaveFileName(
+                this,
+                tr("Save PDF file"),
+                m_settings->value("save_directory", "").toString(),
+                tr("PDF files (*.pdf)"));
 
     if (! selected_file.isNull())
     {
-        m_settings->setValue("save_directory", QFileInfo(selected_file).dir().absolutePath());
+        m_settings->setValue(
+                    "save_directory",
+                    QFileInfo(selected_file).dir().absolutePath());
 
         m_progress_bar->setValue(0);
         m_progress_bar->show();
@@ -475,17 +608,24 @@ void MainWindow::generate_pdf()
         // Write each file to the output file
         for (int i = 0; i < m_files_list_model->rowCount(); i++)
         {
-            InputPdfFile *pdf_file = m_files_list_model->item(i)->data(PDF_FILE_ROLE).value<InputPdfFile *>();
+            InputPdfFile *pdf_file =
+                    m_files_list_model->
+                    item(i)->
+                    data(PDF_FILE_ROLE).value<InputPdfFile *>();
 
             pdf_file->run(output_file);
 
-            m_progress_bar->setValue((i+1)*100/(m_files_list_model->rowCount()+1));
+            m_progress_bar->setValue(
+                        (i + 1) * 100 / (m_files_list_model->rowCount() + 1));
         }
 
         // Update output document's outline
         if (m_files_list_model->rowCount() == 1)
         {
-            InputPdfFile *pdf_file = m_files_list_model->item(0)->data(PDF_FILE_ROLE).value<InputPdfFile *>();
+            InputPdfFile *pdf_file =
+                    m_files_list_model->
+                    item(0)->
+                    data(PDF_FILE_ROLE).value<InputPdfFile *>();
 
             if (pdf_file->output_page_count() != pdf_file->page_count())
                 output_file->clear_outline();
@@ -497,7 +637,9 @@ void MainWindow::generate_pdf()
 
             for (int i = 0; i < m_files_list_model->rowCount(); i++)
             {
-                InputPdfFile *pdf_file = m_files_list_model->item(i)->data(PDF_FILE_ROLE).value<InputPdfFile *>();
+                InputPdfFile *pdf_file = m_files_list_model->
+                        item(i)->
+                        data(PDF_FILE_ROLE).value<InputPdfFile *>();
 
                 output_file->add_outline_item(p, pdf_file->outline_title());
 
@@ -525,8 +667,13 @@ void MainWindow::closeEvent(QCloseEvent *event)
          m_settings->remove(key);
 
     QMap<int, Multipage>::const_iterator it;
-    for (it = m_custom_multipages.constBegin(); it != m_custom_multipages.constEnd(); ++it)
-        m_settings->setValue(QString::number(it.key()), QVariant::fromValue<Multipage>(it.value()));
+    for (
+         it = m_custom_multipages.constBegin();
+         it != m_custom_multipages.constEnd();
+         ++it)
+        m_settings->setValue(
+                    QString::number(it.key()),
+                    QVariant::fromValue<Multipage>(it.value()));
 
     m_settings->endGroup();
 
@@ -544,15 +691,21 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
             if (mouse_event->button() == Qt::RightButton)
             {
                 QList<int> indexes = this->selected_indexes();
-                QModelIndex under_mouse = m_files_list_view->indexAt(mouse_event->pos());
+                QModelIndex under_mouse =
+                        m_files_list_view->indexAt(mouse_event->pos());
 
                 if (!indexes.contains(under_mouse.row()))
                 {
-                    m_files_list_view->selectionModel()->select(under_mouse, QItemSelectionModel::ClearAndSelect);
+                    m_files_list_view->selectionModel()->select(
+                                under_mouse,
+                                QItemSelectionModel::ClearAndSelect);
                     m_files_list_view->setCurrentIndex(under_mouse);
                 }
 
-                m_edit_menu->exec(m_files_list_view->viewport()->mapToGlobal(mouse_event->pos()));
+                m_edit_menu->exec(
+                            m_files_list_view->
+                            viewport()->
+                            mapToGlobal(mouse_event->pos()));
 
                 return true;
             }
@@ -565,7 +718,8 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
 const QList<int> MainWindow::selected_indexes()
 {
     QList<int> indexes;
-    for(const QModelIndex &index : m_files_list_view->selectionModel()->selectedIndexes())
+    for(const QModelIndex &index :
+        m_files_list_view->selectionModel()->selectedIndexes())
        indexes.append(index.row());
 
     qSort(indexes);

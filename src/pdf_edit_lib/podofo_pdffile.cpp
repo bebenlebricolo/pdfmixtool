@@ -114,7 +114,7 @@ PoDoFoInputPdfFile::PoDoFoInputPdfFile(InputPdfFile *pdf_file) :
 
 PoDoFoInputPdfFile::~PoDoFoInputPdfFile()
 {
-    if (m_podofo_file != NULL)
+    if (m_podofo_file != nullptr)
     {
         if (m_podofo_file->ref_count == 1)
         {

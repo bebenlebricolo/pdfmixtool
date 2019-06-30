@@ -27,14 +27,20 @@
 #include "pdf_edit_lib/pdffile.h"
 
 double draw_preview_page(QPainter *painter,
-                       int max_width, int max_height,
-                       double page_width, double page_height,
-                       Multipage::Alignment h_alignment, Multipage::Alignment v_alignment,
-                       const QString &text);
+                         int max_width,
+                         int max_height,
+                         double page_width,
+                         double page_height,
+                         Multipage::Alignment h_alignment,
+                         Multipage::Alignment v_alignment,
+                         const QString &text);
 
-void draw_preview(QPainter *painter, const QRect &rect,
-                  double source_width, double source_height,
-                  int rotation, const Multipage &multipage);
+void draw_preview(QPainter *painter,
+                  const QRect &rect,
+                  double source_width,
+                  double source_height,
+                  int rotation,
+                  const Multipage &multipage);
 
 class InputPdfFileWidget : public QWidget
 {

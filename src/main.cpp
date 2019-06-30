@@ -25,7 +25,7 @@
 int main(int argc, char *argv[])
 {
     // Set application informations
-    QApplication app (argc, argv);
+    QApplication app(argc, argv);
 
     app.setApplicationName("pdfmixtool");
     app.setApplicationDisplayName("PDF Mix Tool");
@@ -38,15 +38,16 @@ int main(int argc, char *argv[])
 #endif
 
     // Set up translations
-    QTranslator qtTranslator;
-    qtTranslator.load("qt_" + QLocale::system().name(),
-            QLibraryInfo::location(QLibraryInfo::TranslationsPath));
-    app.installTranslator(&qtTranslator);
+    QTranslator translator;
 
-    QTranslator appTranslator;
-    if (appTranslator.load(QString("%1/../share/pdfmixtool/translations/pdfmixtool_%2.qm").arg(
-                               qApp->applicationDirPath(),  QLocale::system().name())))
-        app.installTranslator(&appTranslator);
+    bool ok = translator.load(
+                QString("pdfmixtool_%1.qm").arg(QLocale::system().name()),
+                QString("%1/../share/pdfmixtool/translations").arg(
+                    qApp->applicationDirPath()
+                    )
+                );
+
+    if (ok) app.installTranslator(&translator);
 
     // Event filter
     MouseEventFilter *filter = new MouseEventFilter(&app);

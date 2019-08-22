@@ -526,7 +526,7 @@ void MainWindow::generate_pdf_button_pressed()
                        "first page and the last page separated by a dash "
                        "(e.g. \"1-5\");</li>"
                        "<li>single pages and intervals of pages must be "
-                       "separated by spaces, commas or both"
+                       "separated by spaces, commas or both "
                        "(e.g. \"1, 2, 3, 5-10\" or \"1 2 3 5-10\");</li>"
                        "<li>all pages and intervals of pages must be between "
                        "1 and the number of pages of the PDF file;</li>"

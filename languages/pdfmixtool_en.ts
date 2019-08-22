@@ -195,37 +195,37 @@
 <context>
     <name>EditPdfEntryDialog</name>
     <message>
-        <location filename="../src/editpdfentrydialog.cpp" line="33"/>
+        <location filename="../src/editpdfentrydialog.cpp" line="37"/>
         <source>Edit PDF files&apos; properties</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/editpdfentrydialog.cpp" line="36"/>
+        <location filename="../src/editpdfentrydialog.cpp" line="40"/>
         <source>No rotation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/editpdfentrydialog.cpp" line="41"/>
+        <location filename="../src/editpdfentrydialog.cpp" line="45"/>
         <source>Disabled</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/editpdfentrydialog.cpp" line="87"/>
+        <location filename="../src/editpdfentrydialog.cpp" line="99"/>
         <source>OK</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/editpdfentrydialog.cpp" line="90"/>
+        <location filename="../src/editpdfentrydialog.cpp" line="105"/>
         <source>Cancel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/editpdfentrydialog.cpp" line="100"/>
+        <location filename="../src/editpdfentrydialog.cpp" line="112"/>
         <source>Multipage:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/editpdfentrydialog.cpp" line="102"/>
+        <location filename="../src/editpdfentrydialog.cpp" line="114"/>
         <source>Rotation:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -233,26 +233,38 @@
 <context>
     <name>InputPdfFileDelegate</name>
     <message>
-        <location filename="../src/inputpdffiledelegate.cpp" line="97"/>
-        <location filename="../src/inputpdffiledelegate.cpp" line="220"/>
+        <location filename="../src/inputpdffiledelegate.cpp" line="112"/>
+        <location filename="../src/inputpdffiledelegate.cpp" line="247"/>
         <source>portrait</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/inputpdffiledelegate.cpp" line="97"/>
-        <location filename="../src/inputpdffiledelegate.cpp" line="220"/>
+        <location filename="../src/inputpdffiledelegate.cpp" line="112"/>
+        <location filename="../src/inputpdffiledelegate.cpp" line="247"/>
         <source>landscape</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/inputpdffiledelegate.cpp" line="143"/>
-        <location filename="../src/inputpdffiledelegate.cpp" line="201"/>
+        <location filename="../src/inputpdffiledelegate.cpp" line="157"/>
+        <location filename="../src/inputpdffiledelegate.cpp" line="228"/>
         <source>All</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="../src/inputpdffiledelegate.cpp" line="159"/>
+        <location filename="../src/inputpdffiledelegate.cpp" line="230"/>
+        <source>Pages: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/inputpdffiledelegate.cpp" line="164"/>
+        <location filename="../src/inputpdffiledelegate.cpp" line="235"/>
+        <source>Rotation: </source>
+        <translation type="unfinished"></translation>
+    </message>
     <message numerus="yes">
-        <location filename="../src/inputpdffiledelegate.cpp" line="98"/>
-        <location filename="../src/inputpdffiledelegate.cpp" line="221"/>
+        <location filename="../src/inputpdffiledelegate.cpp" line="113"/>
+        <location filename="../src/inputpdffiledelegate.cpp" line="248"/>
         <source>%n page(s)</source>
         <translation>
             <numerusform>%n page</numerusform>
@@ -260,54 +272,42 @@
         </translation>
     </message>
     <message>
-        <location filename="../src/inputpdffiledelegate.cpp" line="145"/>
-        <location filename="../src/inputpdffiledelegate.cpp" line="203"/>
-        <source>Pages:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/inputpdffiledelegate.cpp" line="146"/>
-        <location filename="../src/inputpdffiledelegate.cpp" line="204"/>
+        <location filename="../src/inputpdffiledelegate.cpp" line="160"/>
+        <location filename="../src/inputpdffiledelegate.cpp" line="231"/>
         <source>Multipage:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/inputpdffiledelegate.cpp" line="149"/>
-        <location filename="../src/inputpdffiledelegate.cpp" line="207"/>
+        <location filename="../src/inputpdffiledelegate.cpp" line="163"/>
+        <location filename="../src/inputpdffiledelegate.cpp" line="234"/>
         <source>Disabled</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/inputpdffiledelegate.cpp" line="150"/>
-        <location filename="../src/inputpdffiledelegate.cpp" line="208"/>
-        <source>Rotation:</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>InputPdfFileWidget</name>
     <message>
-        <location filename="../src/inputpdffilewidget.cpp" line="176"/>
+        <location filename="../src/inputpdffilewidget.cpp" line="180"/>
         <source>Disabled</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/inputpdffilewidget.cpp" line="189"/>
+        <location filename="../src/inputpdffilewidget.cpp" line="193"/>
         <source>No rotation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/inputpdffilewidget.cpp" line="195"/>
+        <location filename="../src/inputpdffilewidget.cpp" line="199"/>
         <source>Pages:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/inputpdffilewidget.cpp" line="197"/>
+        <location filename="../src/inputpdffilewidget.cpp" line="201"/>
         <source>Multipage:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/inputpdffilewidget.cpp" line="199"/>
+        <location filename="../src/inputpdffilewidget.cpp" line="203"/>
         <source>Rotation:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -315,130 +315,105 @@
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../src/mainwindow.cpp" line="152"/>
+        <location filename="../src/mainwindow.cpp" line="172"/>
         <source>Add PDF file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="153"/>
+        <location filename="../src/mainwindow.cpp" line="177"/>
         <source>Move up</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="154"/>
+        <location filename="../src/mainwindow.cpp" line="182"/>
         <source>Move down</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="155"/>
+        <location filename="../src/mainwindow.cpp" line="187"/>
         <source>Remove file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="170"/>
+        <location filename="../src/mainwindow.cpp" line="230"/>
         <source>About</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="174"/>
-        <location filename="../src/mainwindow.cpp" line="175"/>
+        <location filename="../src/mainwindow.cpp" line="244"/>
+        <location filename="../src/mainwindow.cpp" line="247"/>
         <source>Generate PDF</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="111"/>
+        <location filename="../src/mainwindow.cpp" line="114"/>
         <source>PDF Mix Tool</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="373"/>
-        <location filename="../src/mainwindow.cpp" line="441"/>
+        <location filename="../src/mainwindow.cpp" line="514"/>
+        <location filename="../src/mainwindow.cpp" line="539"/>
         <source>PDF generation error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="212"/>
+        <location filename="../src/mainwindow.cpp" line="300"/>
         <source>Select one or more PDF files to open</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="144"/>
+        <location filename="../src/mainwindow.cpp" line="161"/>
         <source>Edit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="145"/>
+        <location filename="../src/mainwindow.cpp" line="162"/>
         <source>View</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="147"/>
+        <location filename="../src/mainwindow.cpp" line="165"/>
         <source>Main toolbar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="166"/>
+        <location filename="../src/mainwindow.cpp" line="220"/>
         <source>Menu</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="169"/>
+        <location filename="../src/mainwindow.cpp" line="225"/>
         <source>Multipage profiles…</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="171"/>
+        <location filename="../src/mainwindow.cpp" line="235"/>
         <source>Exit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="214"/>
-        <location filename="../src/mainwindow.cpp" line="464"/>
+        <location filename="../src/mainwindow.cpp" line="302"/>
+        <location filename="../src/mainwindow.cpp" line="548"/>
         <source>PDF files (*.pdf)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="364"/>
+        <location filename="../src/mainwindow.cpp" line="505"/>
         <source>Output pages: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="374"/>
+        <location filename="../src/mainwindow.cpp" line="515"/>
         <source>You must add at least one PDF file.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="397"/>
-        <source>&lt;li&gt;Invalid character &quot;&lt;b&gt;%1&lt;/b&gt;&quot; in pages filter of file &quot;&lt;b&gt;%2&lt;/b&gt;&quot;&lt;/li&gt;</source>
+        <location filename="../src/mainwindow.cpp" line="522"/>
+        <source>&lt;p&gt;Output pages of file &lt;b&gt;%1&lt;/b&gt; are badly formatted. Please make sure you complied with the following rules:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;intervals of pages must be written indicating the first page and the last page separated by a dash (e.g. &quot;1-5&quot;);&lt;/li&gt;&lt;li&gt;single pages and intervals of pages must be separated by spaces, commas or both(e.g. &quot;1, 2, 3, 5-10&quot; or &quot;1 2 3 5-10&quot;);&lt;/li&gt;&lt;li&gt;all pages and intervals of pages must be between 1 and the number of pages of the PDF file;&lt;/li&gt;&lt;li&gt;only numbers, spaces, commas and dashes can be used. All other characters are not allowed.&lt;/li&gt;&lt;/ul&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="403"/>
-        <source>&lt;li&gt;Invalid interval &quot;&lt;b&gt;%1&lt;/b&gt;&quot; in pages filter of file &quot;&lt;b&gt;%2&lt;/b&gt;&quot;&lt;/li&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/mainwindow.cpp" line="409"/>
-        <source>&lt;li&gt;Boundaries of interval &quot;&lt;b&gt;%1&lt;/b&gt;&quot; in pages filter of file &quot;&lt;b&gt;%2&lt;/b&gt;&quot; are out of allowed interval&lt;/li&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/mainwindow.cpp" line="428"/>
-        <source>&lt;li&gt;Interval &quot;&lt;b&gt;%1&lt;/b&gt;&quot; in pages filter of file &quot;&lt;b&gt;%2&lt;/b&gt;&quot; is overlapping with another interval&lt;/li&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/mainwindow.cpp" line="438"/>
-        <source>&lt;p&gt;The PDF generation failed due to the following errors:&lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/mainwindow.cpp" line="446"/>
-        <source>&lt;p&gt;The following problems were encountered while generating the PDF file:&lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/mainwindow.cpp" line="462"/>
+        <location filename="../src/mainwindow.cpp" line="546"/>
         <source>Save PDF file</source>
         <translation type="unfinished"></translation>
     </message>

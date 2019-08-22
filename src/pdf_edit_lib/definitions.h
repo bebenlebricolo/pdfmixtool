@@ -20,8 +20,9 @@
 #define DEFINITIONS_H
 
 #include <string>
-#include <list>
 #include <map>
+#include <iostream>
+#include <vector>
 
 const double inch = 72;
 const double cm = inch / 2.54;
@@ -124,21 +125,25 @@ const Multipage multipage_defaults[] = {
     }
 };
 
-enum class Backend {
-    PoDoFo
+struct FileConf {
+    FileConf() :
+        multipage_enabled(false),
+        multipage(nullptr),
+        rotation(0)
+    {
+
+    }
+    std::string path;
+    std::string ouput_pages;
+    bool multipage_enabled;
+    const Multipage *multipage;
+    int rotation;
 };
 
-struct IntervalIssue {
-    enum Name {
-        error_invalid_interval,
-        error_invalid_char,
-        error_page_out_of_range,
-        warning_overlapping_interval
-    };
+struct Conf {
+    std::string output_path;
 
-    IntervalIssue(Name name, const std::string &data) : name(name), data(data) {}
-    Name name;
-    std::string data;
+    std::vector<FileConf> files;
 };
 
 #endif // DEFINITIONS_H

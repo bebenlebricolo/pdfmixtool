@@ -1,4 +1,4 @@
-/* Copyright (C) 2017-2019 Marco Scarpetta
+/* Copyright (C) 2019 Marco Scarpetta
  *
  * This file is part of PDF Mix Tool.
  *
@@ -16,24 +16,21 @@
  * along with PDF Mix Tool. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef PDFEDITOR_H
-#define PDFEDITOR_H
+#ifndef PDF_WRITER_H
+#define PDF_WRITER_H
 
-#include "podofo_pdffile.h"
+#include <functional>
+#include <vector>
 
-class PdfEditor
-{
-public:
-    PdfEditor(Backend backend=Backend::PoDoFo);
+#include "definitions.h"
 
-    InputPdfFile *new_input_file(const std::string &filename);
+// return true if the input string is valid
+bool parse_output_pages_string(
+        const std::string &str,
+        int n_pages,
+        std::vector<std::pair<int, int>> &intervals,
+        int &output_pages_count);
 
-    InputPdfFile *new_input_file(InputPdfFile *pdf_file);
+void write_pdf(const Conf &conf, std::function<void(int)>& progress);
 
-    OutputPdfFile *new_output_file();
-
-private:
-    Backend m_backend;
-};
-
-#endif // PDFEDITOR_H
+#endif // PDF_WRITER_H

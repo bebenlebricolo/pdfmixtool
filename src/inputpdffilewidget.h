@@ -23,8 +23,20 @@
 #include <QLineEdit>
 #include <QLabel>
 #include <QMouseEvent>
+#include <QStandardItem>
 
-#include "pdf_edit_lib/pdffile.h"
+#include "pdf_edit_lib/definitions.h"
+
+#define FILE_PATH_ROLE Qt::UserRole + 1 // QString
+#define PAGE_WIDTH_ROLE Qt::UserRole + 2 // int
+#define PAGE_HEIGHT_ROLE Qt::UserRole + 3 // int
+#define PAPER_SIZE_ROLE Qt::UserRole + 4 // QString
+#define IS_PORTRAIT_ROLE Qt::UserRole + 5 // bool
+#define N_PAGES_ROLE Qt::UserRole + 6 // int
+#define OUTPUT_PAGES_ROLE Qt::UserRole + 7 // QString
+#define MULTIPAGE_ROLE Qt::UserRole + 8 // int
+#define ROTATION_ROLE Qt::UserRole + 9 // int
+#define OUTPUT_PAGES_COUNT_ROLE Qt::UserRole + 10 // int
 
 double draw_preview_page(QPainter *painter,
                          int max_width,
@@ -46,14 +58,14 @@ class InputPdfFileWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit InputPdfFileWidget(InputPdfFile *pdf_file,
+    explicit InputPdfFileWidget(const QModelIndex &index,
                                 const QMap<int, Multipage> &custom_multipages,
                                 int preview_size,
                                 QWidget *parent = nullptr);
 
-    void set_data_from_pdf_input_file();
+    void set_editor_data(const QModelIndex &index);
 
-    void set_data_to_pdf_input_file();
+    void set_model_data(QStandardItem *item);
 
 signals:
     void focus_out(QWidget *editor) const;
@@ -64,7 +76,8 @@ public slots:
     void update_preview();
 
 private:
-    InputPdfFile *m_pdf_file;
+    double m_page_width;
+    double m_page_height;
     const QMap<int, Multipage> &m_custom_multipages;
     int m_preview_size;
     QLabel *m_preview_label;

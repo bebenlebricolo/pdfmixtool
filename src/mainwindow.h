@@ -27,7 +27,7 @@
 #include <QSettings>
 
 #include "mouseeventfilter.h"
-#include "pdf_edit_lib/pdfeditor.h"
+#include "pdf_edit_lib/definitions.h"
 
 Q_DECLARE_METATYPE(Multipage)
 
@@ -57,11 +57,9 @@ public slots:
 
     void item_mouse_pressed(const QModelIndex &index);
 
-    void update_output_page_count();
+    void update_output_pages_count();
 
     void generate_pdf_button_pressed();
-
-    void generate_pdf();
 
     void closeEvent(QCloseEvent *event);
 
@@ -71,11 +69,11 @@ protected:
 private:
     const QList<int> selected_indexes();
 
-    PdfEditor *m_pdf_editor;
-
     QSettings *m_settings;
 
     QLabel *m_output_page_count;
+    int m_output_pages_error_index;
+
     QProgressBar *m_progress_bar;
 
     QListView *m_files_list_view;

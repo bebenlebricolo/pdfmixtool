@@ -1,6 +1,6 @@
 <h1>Changelog</h1>
 
-<h2>Version 0.3.5</h2>
+<h2>Version 0.4</h2>
 
 <p><strong>Release date:</strong> unreleased</p>
 
@@ -14,10 +14,10 @@
 <li>Add Turkish translation</li>
 </ul>
 
-<h3>Known issues</h3>
+<h3>Changed</h3>
 
 <ul>
-<li>Multipage function sometimes produces PDF files with defects</li>
+<li>Rewrite of core functions using qpdf</li>
 </ul>
 
 <h2>Version 0.3.4</h2>

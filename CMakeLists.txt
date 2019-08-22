@@ -33,14 +33,10 @@ SET (
     src/multipageprofilesmanager.cpp
     src/multipageprofilesmanager.h
     src/pdf_edit_lib/definitions.h
-    src/pdf_edit_lib/pdfeditor.cpp
-    src/pdf_edit_lib/pdfeditor.h
-    src/pdf_edit_lib/pdffile.cpp
-    src/pdf_edit_lib/pdffile.h
-    src/pdf_edit_lib/podofo_pdffile.cpp
-    src/pdf_edit_lib/podofo_pdffile.h
-    src/pdf_edit_lib/podofo_pdftranslator.cpp
-    src/pdf_edit_lib/podofo_pdftranslator.h
+    src/pdf_edit_lib/pdf_info.cpp
+    src/pdf_edit_lib/pdf_info.h
+    src/pdf_edit_lib/pdf_writer.cpp
+    src/pdf_edit_lib/pdf_writer.h
 )
 
 file(GLOB TS_FILES
@@ -48,7 +44,7 @@ file(GLOB TS_FILES
      languages/pdfmixtool_*.ts
 )
 
-qt5_create_translation(QM_FILES src/ ${TS_FILES} OPTIONS -no-obsolete)
+qt5_create_translation(QM_FILES src/ ${TS_FILES})
 
 add_executable (
     pdfmixtool
@@ -59,6 +55,7 @@ add_executable (
 target_link_libraries (
     pdfmixtool
     podofo
+    qpdf
     ${Qt5Widgets_LIBRARIES}
 )
 

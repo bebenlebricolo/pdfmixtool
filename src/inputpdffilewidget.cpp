@@ -153,11 +153,12 @@ void draw_preview(QPainter *painter, const QRect &rect,
     painter->restore();
 }
 
-InputPdfFileWidget::InputPdfFileWidget(InputPdfFile *pdf_file,
-                                       const QMap<int, Multipage> &custom_multipages,
-                                       int preview_size, QWidget *parent) :
+InputPdfFileWidget::InputPdfFileWidget(
+        const QModelIndex &index,
+        const QMap<int, Multipage> &custom_multipages,
+        int preview_size,
+        QWidget *parent) :
     QWidget(parent),
-    m_pdf_file(pdf_file),
     m_custom_multipages(custom_multipages),
     m_preview_size(preview_size),
     m_preview_label(new QLabel(this)),
@@ -165,6 +166,9 @@ InputPdfFileWidget::InputPdfFileWidget(InputPdfFile *pdf_file,
     m_multipage_combobox(new QComboBox(this)),
     m_rotation_combobox(new QComboBox(this))
 {
+    m_page_width = index.data(PAGE_WIDTH_ROLE).toDouble();
+    m_page_height = index.data(PAGE_HEIGHT_ROLE).toDouble();
+
     this->setBackgroundRole(QPalette::AlternateBase);
     this->setAutoFillBackground(true);
 
@@ -204,50 +208,46 @@ InputPdfFileWidget::InputPdfFileWidget(InputPdfFile *pdf_file,
     layout->setColumnStretch(5, 10);
     layout->setColumnStretch(6, 90);
 
-    connect(m_multipage_combobox, SIGNAL(currentIndexChanged(int)), this, SLOT(update_preview()));
-    connect(m_rotation_combobox, SIGNAL(currentIndexChanged(int)), this, SLOT(update_preview()));
+    connect(m_multipage_combobox, SIGNAL(currentIndexChanged(int)),
+            this, SLOT(update_preview()));
+    connect(m_rotation_combobox, SIGNAL(currentIndexChanged(int)),
+            this, SLOT(update_preview()));
 
     update_preview();
 }
 
-void InputPdfFileWidget::set_data_from_pdf_input_file()
+void InputPdfFileWidget::set_editor_data(const QModelIndex &index)
 {
-    m_pages_filter_lineedit->setText(QString::fromStdString(m_pdf_file->pages_filter_string()));
-
-    int i = m_multipage_combobox->findText(QString::fromStdString(m_pdf_file->multipage().name));
-    if (i >= 0)
-        m_multipage_combobox->setCurrentIndex(i);
-    else
-        m_multipage_combobox->setCurrentIndex(0);
-
-    m_rotation_combobox->setCurrentIndex(m_rotation_combobox->findData(m_pdf_file->rotation()));
+    m_pages_filter_lineedit->setText(index.data(OUTPUT_PAGES_ROLE).toString());
+    m_multipage_combobox->setCurrentIndex(index.data(MULTIPAGE_ROLE).toInt());
+    m_rotation_combobox->setCurrentIndex(
+            m_rotation_combobox->findData(index.data(ROTATION_ROLE).toInt()));
 }
 
-void InputPdfFileWidget::set_data_to_pdf_input_file()
+void InputPdfFileWidget::set_model_data(QStandardItem *item)
 {
-    m_pdf_file->set_pages_filter_from_string(m_pages_filter_lineedit->text().toStdString());
+    QString current_output_pages = m_pages_filter_lineedit->text();
+    int current_mp_index = m_multipage_combobox->currentData().toInt();
+    int current_rotation = m_rotation_combobox->currentData().toInt();
 
-    if (m_multipage_combobox->currentData().toInt() < 100)
-        m_pdf_file->set_multipage(multipage_defaults[m_multipage_combobox->currentData().toInt()]);
-    else
-        m_pdf_file->set_multipage(m_custom_multipages[m_multipage_combobox->currentData().toInt()]);
-
-    m_pdf_file->set_rotation(m_rotation_combobox->currentData().toInt());
+    item->setData(current_output_pages, OUTPUT_PAGES_ROLE);
+    item->setData(current_mp_index, MULTIPAGE_ROLE);
+    item->setData(current_rotation, ROTATION_ROLE);
 }
 
 void InputPdfFileWidget::mouse_button_pressed(QMouseEvent *event)
 {
-    QRect multipage_rect = m_multipage_combobox->rect();
-    multipage_rect.setHeight((m_multipage_combobox->count() + 1) * multipage_rect.height());
-    multipage_rect.setTop(
-                multipage_rect.top() - m_multipage_combobox->count() * multipage_rect.height());
+    QRect mp_rect = m_multipage_combobox->rect();
+    mp_rect.setHeight((m_multipage_combobox->count() + 1) * mp_rect.height());
+    mp_rect.setTop(
+                mp_rect.top() - m_multipage_combobox->count() * mp_rect.height());
 
     QRect rotation_rect = m_rotation_combobox->rect();
     rotation_rect.setHeight((m_rotation_combobox->count() + 1) * rotation_rect.height());
     rotation_rect.setTop(rotation_rect.top() - m_rotation_combobox->count() * rotation_rect.height());
 
     if (! this->rect().contains(this->mapFromGlobal(event->globalPos())) &&
-            ! multipage_rect.contains(m_multipage_combobox->mapFromGlobal(event->globalPos())) &&
+            ! mp_rect.contains(m_multipage_combobox->mapFromGlobal(event->globalPos())) &&
             ! rotation_rect.contains(m_rotation_combobox->mapFromGlobal(event->globalPos()))
             )
         emit focus_out(this);
@@ -255,19 +255,21 @@ void InputPdfFileWidget::mouse_button_pressed(QMouseEvent *event)
 
 void InputPdfFileWidget::update_preview()
 {
-    QPixmap pixmap(m_preview_size - layout()->contentsMargins().top() * 2, m_preview_size - layout()->contentsMargins().top() * 2);
+    QPixmap pixmap(m_preview_size - layout()->contentsMargins().top() * 2,
+                   m_preview_size - layout()->contentsMargins().top() * 2);
     QPainter painter(&pixmap);
 
+    Multipage mp;
     if (m_multipage_combobox->currentData().toInt() < 100)
-        draw_preview(&painter, pixmap.rect(),
-                     m_pdf_file->page_width(), m_pdf_file->page_height(),
-                     m_rotation_combobox->currentData().toInt(),
-                     multipage_defaults[m_multipage_combobox->currentData().toInt()]);
+        mp = multipage_defaults[m_multipage_combobox->currentData().toInt()];
     else
-        draw_preview(&painter, pixmap.rect(),
-                     m_pdf_file->page_width(), m_pdf_file->page_height(),
-                     m_rotation_combobox->currentData().toInt(),
-                     m_custom_multipages[m_multipage_combobox->currentData().toInt()]);
+        mp = m_custom_multipages[m_multipage_combobox->currentData().toInt()];
+
+    draw_preview(&painter, pixmap.rect(),
+                 m_page_width, m_page_height,
+                 m_rotation_combobox->currentData().toInt(),
+                 mp);
+
 
     m_preview_label->setPixmap(pixmap);
 }

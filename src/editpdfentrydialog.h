@@ -21,15 +21,17 @@
 
 #include <QDialog>
 #include <QComboBox>
+#include <QStandardItemModel>
 
-#include "pdf_edit_lib/pdfeditor.h"
+#include "pdf_edit_lib/definitions.h"
 
 class EditPdfEntryDialog : public QDialog
 {
     Q_OBJECT
 public:
     EditPdfEntryDialog(const QMap<int, Multipage> &custom_multipages,
-                       const QList<InputPdfFile *> &files,
+                       QStandardItemModel *model,
+                       const QModelIndexList &indexes,
                        QWidget *parent = nullptr);
 
 private slots:
@@ -37,7 +39,8 @@ private slots:
 
 private:
     const QMap<int, Multipage> &m_custom_multipages;
-    const QList<InputPdfFile *> &m_input_pdf_files;
+    QStandardItemModel *m_model;
+    const QModelIndexList &m_indexes;
     QComboBox m_multipage_combobox;
     QComboBox m_rotation_combobox;
 };

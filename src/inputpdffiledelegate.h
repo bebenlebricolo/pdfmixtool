@@ -26,11 +26,6 @@
 
 #include "mouseeventfilter.h"
 #include "inputpdffilewidget.h"
-#include "pdf_edit_lib/pdffile.h"
-
-#define PDF_FILE_ROLE Qt::UserRole
-
-Q_DECLARE_METATYPE(InputPdfFile *)
 
 class InputPdfFileDelegate : public QStyledItemDelegate
 {

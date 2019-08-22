@@ -33,6 +33,8 @@
 #include "aboutdialog.h"
 #include "inputpdffiledelegate.h"
 #include "editpdfentrydialog.h"
+#include "pdf_edit_lib/pdf_info.h"
+#include "pdf_edit_lib/pdf_writer.h"
 
 #define TOOLTIP_STRING "%1 <br /><b>%2<?b>"
 #define ICON "%1/../share/icons/hicolor/48x48/apps/eu.scarpetta.PDFMixTool.png"
@@ -99,9 +101,9 @@ QDataStream &operator>>(QDataStream &in, Multipage &multipage)
 
 MainWindow::MainWindow(MouseEventFilter *filter, QWidget *parent) :
     QMainWindow(parent),
-    m_pdf_editor(new PdfEditor()),
     m_settings(new QSettings(this)),
     m_output_page_count(new QLabel(this)),
+    m_output_pages_error_index(-1),
     m_progress_bar(new QProgressBar(this)),
     m_files_list_view(new QListView(this)),
     m_files_list_model(new QStandardItemModel(this)),
@@ -282,7 +284,7 @@ MainWindow::MainWindow(MouseEventFilter *filter, QWidget *parent) :
             this, SLOT(item_mouse_pressed(QModelIndex)));
 
     connect(pdfinputfile_delegate, SIGNAL(data_edit()),
-            this, SLOT(update_output_page_count()));
+            this, SLOT(update_output_pages_count()));
 
     connect(generate_pdf_button, SIGNAL(released()),
             this, SLOT(generate_pdf_button_pressed()));
@@ -301,29 +303,23 @@ void MainWindow::add_pdf_files()
 
     for (int i=0; i<selected.count(); i++)
     {
-        // Check if filename is already in the model
-        InputPdfFile * pdf_file = nullptr;
-
-        for (int j=0; j<m_files_list_model->rowCount(); j++)
-        {
-            QStandardItem *item = m_files_list_model->item(j);
-            InputPdfFile *pdf =
-                    item->data(PDF_FILE_ROLE).value<InputPdfFile *>();
-            if (pdf->filename() == selected.at(i).toStdString())
-                pdf_file = pdf;
-        }
-
-        if (pdf_file != nullptr)
-            pdf_file = m_pdf_editor->new_input_file(pdf_file);
-        else
-            pdf_file =
-                    m_pdf_editor->new_input_file(selected.at(i).toStdString());
+        PdfInfo pdf_info = PdfInfo(selected.at(i).toStdString());
 
         QStandardItem *item = new QStandardItem();
-        item->setData(
-                    QVariant::fromValue<InputPdfFile *>(pdf_file),
-                    PDF_FILE_ROLE);
-        m_files_list_model->setItem(m_files_list_model->rowCount(), item);
+
+        item->setData(selected.at(i), FILE_PATH_ROLE);
+        item->setData(pdf_info.width(), PAGE_WIDTH_ROLE);
+        item->setData(pdf_info.height(), PAGE_HEIGHT_ROLE);
+        item->setData(QString::fromStdString(pdf_info.paper_size()),
+                      PAPER_SIZE_ROLE);
+        item->setData(pdf_info.is_portrait(), IS_PORTRAIT_ROLE);
+        item->setData(pdf_info.n_pages(), N_PAGES_ROLE);
+
+        item->setData("", OUTPUT_PAGES_ROLE);
+        item->setData(0, MULTIPAGE_ROLE);
+        item->setData(0, ROTATION_ROLE);
+
+        m_files_list_model->appendRow(item);
     }
 
     if (selected.size() > 0)
@@ -331,7 +327,7 @@ void MainWindow::add_pdf_files()
         m_settings->setValue(
                     "open_directory",
                     QFileInfo(selected.at(0)).dir().absolutePath());
-        this->update_output_page_count();
+        this->update_output_pages_count();
     }
 }
 
@@ -409,13 +405,9 @@ void MainWindow::remove_pdf_file()
     QList<int> indexes = this->selected_indexes();
 
     for (int i=indexes.count() - 1; i >= 0; i--)
-    {
-        delete m_files_list_model->item(
-                    indexes[i])->data(PDF_FILE_ROLE).value<InputPdfFile *>();
         m_files_list_model->removeRow(indexes[i]);
-    }
 
-    this->update_output_page_count();
+    this->update_output_pages_count();
 }
 
 void MainWindow::edit_menu_activated()
@@ -427,18 +419,13 @@ void MainWindow::edit_menu_activated()
         m_files_list_view->edit(indexes.first());
     else
     {
-        QList<InputPdfFile *> files;
-        for (int i=0; i < indexes.count(); i++)
-            files.push_back(
-                        m_files_list_model->
-                        itemFromIndex(indexes[i])->
-                        data(PDF_FILE_ROLE).value<InputPdfFile *>());
-
-        EditPdfEntryDialog dialog(m_custom_multipages, files);
+        EditPdfEntryDialog dialog(m_custom_multipages,
+                                  m_files_list_model,
+                                  indexes);
         dialog.exec();
-    }
 
-    this->update_output_page_count();
+        this->update_output_pages_count();
+    }
 }
 
 void MainWindow::view_menu_activated()
@@ -450,8 +437,10 @@ void MainWindow::view_menu_activated()
         QDesktopServices::openUrl(QString("file://") +
                                   m_files_list_model
                                   ->itemFromIndex(indexes[i])
-                                  ->data(PDF_FILE_ROLE).value<InputPdfFile *>()
-                                  ->filename().c_str()
+                                  ->data(FILE_PATH_ROLE)
+                                  .toString()
+                                  .toStdString()
+                                  .c_str()
                                   );
     }
 }
@@ -465,19 +454,55 @@ void MainWindow::item_mouse_pressed(const QModelIndex &index) //eventfilter
     }
 }
 
-void MainWindow::update_output_page_count()
+void MainWindow::update_output_pages_count()
 {
-    int output_page_count = 0;
-    for (int i=0; i<m_files_list_model->rowCount(); i++)
+    int pages_count = 0;
+    bool output_pages_errors = false;
+
+    for (int i = 0; i < m_files_list_model->rowCount(); i++)
     {
-        InputPdfFile *pdf_file =
-                m_files_list_model->
-                item(i)->
-                data(PDF_FILE_ROLE).value<InputPdfFile *>();
-        output_page_count += pdf_file->output_page_count();
+        QStandardItem *item = m_files_list_model->item(i);
+        QString output_pages = item->data(OUTPUT_PAGES_ROLE).toString();
+        int n_pages = item->data(N_PAGES_ROLE).toInt();
+
+        int output_pages_count;
+        std::vector<std::pair<int, int>> intervals;
+        if (parse_output_pages_string(output_pages.toStdString(),
+                                      n_pages,
+                                      intervals,
+                                      output_pages_count))
+        {
+            int mp_index = item->data(MULTIPAGE_ROLE).toInt();
+            if (mp_index > 0)
+            {
+                Multipage mp;
+
+                if (mp_index < 100)
+                    mp = multipage_defaults[mp_index];
+                else
+                    mp = m_custom_multipages[mp_index];
+
+                int subpages = mp.rows * mp.columns;
+
+                if (output_pages_count % subpages > 0)
+                    output_pages_count = output_pages_count / subpages + 1;
+                else
+                    output_pages_count = output_pages_count / subpages;
+            }
+        }
+        else if (!output_pages_errors)
+        {
+            m_output_pages_error_index = i;
+            output_pages_errors = true;
+        }
+
+        pages_count += output_pages_count;
     }
 
-    m_output_page_count->setText(tr("Output pages: %1").arg(output_page_count));
+    if (!output_pages_errors)
+        m_output_pages_error_index = -1;
+
+    m_output_page_count->setText(tr("Output pages: %1").arg(pages_count));
 }
 
 void MainWindow::generate_pdf_button_pressed()
@@ -491,167 +516,78 @@ void MainWindow::generate_pdf_button_pressed()
         return;
     }
 
-    bool errors = false, warnings = false;
-    QString errors_list, warnings_list;
-
-    for (int i=0; i<m_files_list_model->rowCount(); i++)
+    if (m_output_pages_error_index > -1)
     {
-        InputPdfFile *pdf_file =
-                m_files_list_model->
-                item(i)->
-                data(PDF_FILE_ROLE).value<InputPdfFile *>();
-
-        if (pdf_file->pages_filter_errors().size() > 0)
-        {
-            errors = true;
-
-            for (
-                 std::vector<IntervalIssue>::const_iterator it =
-                    pdf_file->pages_filter_errors().begin();
-                 it != pdf_file->pages_filter_errors().end();
-                 ++it
-                 )
-            {
-                if ((*it).name == IntervalIssue::error_invalid_char)
-                    errors_list +=
-                            tr("<li>Invalid character \"<b>%1</b>\" in pages "
-                               "filter of file \"<b>%2</b>\"</li>")
-                            .arg(
-                                QString::fromStdString((*it).data),
-                                QString::fromStdString(pdf_file->filename()));
-                else if ((*it).name == IntervalIssue::error_invalid_interval)
-                    errors_list +=
-                            tr("<li>Invalid interval \"<b>%1</b>\" in pages "
-                               "filter of file \"<b>%2</b>\"</li>")
-                            .arg(
-                                QString::fromStdString((*it).data),
-                                QString::fromStdString(pdf_file->filename()));
-                else if ((*it).name == IntervalIssue::error_page_out_of_range)
-                    errors_list +=
-                            tr("<li>Boundaries of interval \"<b>%1</b>\" in "
-                               "pages filter of file \"<b>%2</b>\" are out of "
-                               "allowed interval</li>")
-                            .arg(
-                                QString::fromStdString((*it).data),
-                                QString::fromStdString(pdf_file->filename()));
-            }
-        }
-
-        if (pdf_file->pages_filter_warnings().size() > 0)
-        {
-            warnings = true;
-
-            for (
-                 std::vector<IntervalIssue>::const_iterator it =
-                    pdf_file->pages_filter_warnings().begin();
-                 it != pdf_file->pages_filter_warnings().end();
-                 ++it
-                 )
-            {
-                if ((*it).name == IntervalIssue::warning_overlapping_interval)
-                    warnings_list +=
-                            tr("<li>Interval \"<b>%1</b>\" in pages filter of "
-                               "file \"<b>%2</b>\" is overlapping with another "
-                               "interval</li>")
-                            .arg(
-                                QString::fromStdString((*it).data),
-                                QString::fromStdString(pdf_file->filename()));
-            }
-        }
-    }
-
-    if (errors)
-    {
-        QString error_message(tr("<p>The PDF generation failed due to the "
-                                 "following errors:</p>"));
-        error_message += QString("<ul>") + errors_list + QString("</ul>");
+        QString error_message(
+                    tr("<p>Output pages of file <b>%1</b> are badly formatted. "
+                       "Please make sure you complied with the following "
+                       "rules:</p><ul>"
+                       "<li>intervals of pages must be written indicating the "
+                       "first page and the last page separated by a dash "
+                       "(e.g. \"1-5\");</li>"
+                       "<li>single pages and intervals of pages must be "
+                       "separated by spaces, commas or both"
+                       "(e.g. \"1, 2, 3, 5-10\" or \"1 2 3 5-10\");</li>"
+                       "<li>all pages and intervals of pages must be between "
+                       "1 and the number of pages of the PDF file;</li>"
+                       "<li>only numbers, spaces, commas and dashes can be "
+                       "used. All other characters are not allowed.</li>"
+                       "</ul>").arg(m_files_list_model
+                                    ->item(m_output_pages_error_index)
+                                    ->data(FILE_PATH_ROLE).toString()));
         QMessageBox::critical(this,
                               tr("PDF generation error"),
                               error_message);
+        return;
     }
-    else if (warnings)
-    {
-        QString warning_message(tr("<p>The following problems were encountered "
-                                   "while generating the PDF file:</p>"));
-        warning_message += QString("<ul>") + warnings_list + QString("</ul>");
-        int ret = QMessageBox::warning(this,
-                              "",
-                              warning_message,
-                             QMessageBox::Cancel | QMessageBox::Ignore,
-                             QMessageBox::Ignore);
-        if (ret == QMessageBox::Ignore)
-            generate_pdf();
-    }
-    else
-        generate_pdf();
-}
 
-void MainWindow::generate_pdf()
-{
     QString selected_file = QFileDialog::getSaveFileName(
                 this,
                 tr("Save PDF file"),
                 m_settings->value("save_directory", "").toString(),
                 tr("PDF files (*.pdf)"));
 
-    if (! selected_file.isNull())
+    if (!selected_file.isNull())
     {
-        m_settings->setValue(
-                    "save_directory",
-                    QFileInfo(selected_file).dir().absolutePath());
+        // Generate configuration
+        Conf conf;
+
+        conf.output_path = selected_file.toStdString();
+
+        for (int i = 0; i < m_files_list_model->rowCount(); i++)
+        {
+            QStandardItem *item = m_files_list_model->item(i);
+            QString file_path = item->data(FILE_PATH_ROLE).toString();
+            QString output_pages = item->data(OUTPUT_PAGES_ROLE).toString();
+            int mp_index = item->data(MULTIPAGE_ROLE).toInt();
+            int rotation = item->data(ROTATION_ROLE).toInt();
+
+            FileConf fileconf;
+            fileconf.path = file_path.toStdString();
+            fileconf.ouput_pages = output_pages.toStdString();
+            if (mp_index > 0)
+            {
+                if (mp_index < 100)
+                    fileconf.multipage = &multipage_defaults[mp_index];
+                else
+                    fileconf.multipage = &m_custom_multipages[mp_index];
+            }
+            fileconf.rotation = rotation;
+
+            conf.files.push_back(fileconf);
+        }
+
+        QProgressBar *pb = m_progress_bar;
+        std::function<void (int)> progress = [pb] (int p)
+        {
+            pb->setValue(p);
+        };
 
         m_progress_bar->setValue(0);
         m_progress_bar->show();
 
-        OutputPdfFile *output_file = m_pdf_editor->new_output_file();
+        write_pdf(conf, progress);
 
-        // Write each file to the output file
-        for (int i = 0; i < m_files_list_model->rowCount(); i++)
-        {
-            InputPdfFile *pdf_file =
-                    m_files_list_model->
-                    item(i)->
-                    data(PDF_FILE_ROLE).value<InputPdfFile *>();
-
-            pdf_file->run(output_file);
-
-            m_progress_bar->setValue(
-                        (i + 1) * 100 / (m_files_list_model->rowCount() + 1));
-        }
-
-        // Update output document's outline
-        if (m_files_list_model->rowCount() == 1)
-        {
-            InputPdfFile *pdf_file =
-                    m_files_list_model->
-                    item(0)->
-                    data(PDF_FILE_ROLE).value<InputPdfFile *>();
-
-            if (pdf_file->output_page_count() != pdf_file->page_count())
-                output_file->clear_outline();
-        }
-        else
-        {
-            output_file->clear_outline();
-            int p = 0;
-
-            for (int i = 0; i < m_files_list_model->rowCount(); i++)
-            {
-                InputPdfFile *pdf_file = m_files_list_model->
-                        item(i)->
-                        data(PDF_FILE_ROLE).value<InputPdfFile *>();
-
-                output_file->add_outline_item(p, pdf_file->outline_title());
-
-                p += pdf_file->output_page_count();
-            }
-        }
-
-        // Save output file on disk
-        output_file->write(selected_file.toStdString());
-        delete output_file;
-
-        m_progress_bar->setValue(100);
         QTimer::singleShot(4000, m_progress_bar, SLOT(hide()));
     }
 }
@@ -722,7 +658,7 @@ const QList<int> MainWindow::selected_indexes()
         m_files_list_view->selectionModel()->selectedIndexes())
        indexes.append(index.row());
 
-    qSort(indexes);
+    std::sort(indexes.begin(), indexes.end());
 
     return indexes;
 }

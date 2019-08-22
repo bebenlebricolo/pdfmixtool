@@ -156,12 +156,12 @@ void InputPdfFileDelegate::paint(
     if (output_pages.size() == 0)
         output_pages = tr("All");
 
-    QString pages = tr("Pages: ") + output_pages;
+    QString pages = tr("Pages:") + ' ' + output_pages;
     QString multipage = tr("Multipage:") + " " + (
                 mp_index > 0 ?
                     QString(" %1").arg(QString::fromStdString(mp.name)) :
                     tr("Disabled"));
-    QString rotation_text = tr("Rotation: ") + QString::number(rotation) + "°";
+    QString rotation_text = tr("Rotation:") + ' ' + QString::number(rotation) + "°";
 
     /*if (pdf_file->pages_filter_errors().size() > 0)
     {
@@ -227,12 +227,12 @@ QSize InputPdfFileDelegate::sizeHint(
     if (output_pages.size() == 0)
         output_pages = tr("All");
 
-    QString pages = tr("Pages: ") + output_pages;
+    QString pages = tr("Pages:") + ' ' + output_pages;
     QString multipage = tr("Multipage:") + " " + (
                 mp_index > 0 ?
                     QString(" %1").arg(QString::fromStdString(mp.name)) :
                     tr("Disabled"));
-    QString rotation_text = tr("Rotation: ") + QString(rotation) + "°";
+    QString rotation_text = tr("Rotation:") + ' ' + QString(rotation) + "°";
 
     int second_row = std::max(
                 fm.boundingRect(pages).width(),

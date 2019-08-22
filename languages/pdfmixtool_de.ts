@@ -250,18 +250,6 @@
         <source>All</source>
         <translation>Alle</translation>
     </message>
-    <message>
-        <location filename="../src/inputpdffiledelegate.cpp" line="159"/>
-        <location filename="../src/inputpdffiledelegate.cpp" line="230"/>
-        <source>Pages: </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/inputpdffiledelegate.cpp" line="164"/>
-        <location filename="../src/inputpdffiledelegate.cpp" line="235"/>
-        <source>Rotation: </source>
-        <translation type="unfinished"></translation>
-    </message>
     <message numerus="yes">
         <location filename="../src/inputpdffiledelegate.cpp" line="113"/>
         <location filename="../src/inputpdffiledelegate.cpp" line="248"/>
@@ -270,6 +258,12 @@
             <numerusform>%n Seite(n)</numerusform>
             <numerusform>%n Seiten</numerusform>
         </translation>
+    </message>
+    <message>
+        <location filename="../src/inputpdffiledelegate.cpp" line="159"/>
+        <location filename="../src/inputpdffiledelegate.cpp" line="230"/>
+        <source>Pages:</source>
+        <translation>Seiten:</translation>
     </message>
     <message>
         <location filename="../src/inputpdffiledelegate.cpp" line="160"/>
@@ -282,6 +276,12 @@
         <location filename="../src/inputpdffiledelegate.cpp" line="234"/>
         <source>Disabled</source>
         <translation>Deaktiviert</translation>
+    </message>
+    <message>
+        <location filename="../src/inputpdffiledelegate.cpp" line="164"/>
+        <location filename="../src/inputpdffiledelegate.cpp" line="235"/>
+        <source>Rotation:</source>
+        <translation>Drehung:</translation>
     </message>
 </context>
 <context>

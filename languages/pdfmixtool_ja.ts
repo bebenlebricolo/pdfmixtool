@@ -250,18 +250,6 @@
         <source>All</source>
         <translation>すべて</translation>
     </message>
-    <message>
-        <location filename="../src/inputpdffiledelegate.cpp" line="159"/>
-        <location filename="../src/inputpdffiledelegate.cpp" line="230"/>
-        <source>Pages: </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/inputpdffiledelegate.cpp" line="164"/>
-        <location filename="../src/inputpdffiledelegate.cpp" line="235"/>
-        <source>Rotation: </source>
-        <translation type="unfinished"></translation>
-    </message>
     <message numerus="yes">
         <location filename="../src/inputpdffiledelegate.cpp" line="113"/>
         <location filename="../src/inputpdffiledelegate.cpp" line="248"/>
@@ -269,6 +257,12 @@
         <translation>
             <numerusform>%nページ</numerusform>
         </translation>
+    </message>
+    <message>
+        <location filename="../src/inputpdffiledelegate.cpp" line="159"/>
+        <location filename="../src/inputpdffiledelegate.cpp" line="230"/>
+        <source>Pages:</source>
+        <translation>ページ:</translation>
     </message>
     <message>
         <location filename="../src/inputpdffiledelegate.cpp" line="160"/>
@@ -281,6 +275,12 @@
         <location filename="../src/inputpdffiledelegate.cpp" line="234"/>
         <source>Disabled</source>
         <translation>無効</translation>
+    </message>
+    <message>
+        <location filename="../src/inputpdffiledelegate.cpp" line="164"/>
+        <location filename="../src/inputpdffiledelegate.cpp" line="235"/>
+        <source>Rotation:</source>
+        <translation>回転:</translation>
     </message>
 </context>
 <context>

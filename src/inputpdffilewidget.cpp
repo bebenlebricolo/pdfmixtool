@@ -164,7 +164,8 @@ InputPdfFileWidget::InputPdfFileWidget(
     m_preview_label(new QLabel(this)),
     m_pages_filter_lineedit(new QLineEdit(this)),
     m_multipage_combobox(new QComboBox(this)),
-    m_rotation_combobox(new QComboBox(this))
+    m_rotation_combobox(new QComboBox(this)),
+    m_outline_entry_lineedit(new QLineEdit(this))
 {
     m_page_width = index.data(PAGE_WIDTH_ROLE).toDouble();
     m_page_height = index.data(PAGE_HEIGHT_ROLE).toDouble();
@@ -202,6 +203,8 @@ InputPdfFileWidget::InputPdfFileWidget(
     layout->addWidget(m_multipage_combobox, 1, 5);
     layout->addWidget(new QLabel(tr("Rotation:"), this), 2, 2);
     layout->addWidget(m_rotation_combobox, 2, 3);
+    layout->addWidget(new QLabel(tr("Outline entry:"), this), 2, 4);
+    layout->addWidget(m_outline_entry_lineedit, 2, 5);
 
     layout->addItem(new QSpacerItem(0, 0), 1, 6);
     layout->setColumnStretch(3, 10);
@@ -222,6 +225,8 @@ void InputPdfFileWidget::set_editor_data(const QModelIndex &index)
     m_multipage_combobox->setCurrentIndex(index.data(MULTIPAGE_ROLE).toInt());
     m_rotation_combobox->setCurrentIndex(
             m_rotation_combobox->findData(index.data(ROTATION_ROLE).toInt()));
+    m_outline_entry_lineedit->setText(
+                index.data(OUTLINE_ENTRY_ROLE).toString());
 }
 
 void InputPdfFileWidget::set_model_data(QStandardItem *item)
@@ -229,10 +234,12 @@ void InputPdfFileWidget::set_model_data(QStandardItem *item)
     QString current_output_pages = m_pages_filter_lineedit->text();
     int current_mp_index = m_multipage_combobox->currentData().toInt();
     int current_rotation = m_rotation_combobox->currentData().toInt();
+    QString current_outline_entry = m_outline_entry_lineedit->text();
 
     item->setData(current_output_pages, OUTPUT_PAGES_ROLE);
     item->setData(current_mp_index, MULTIPAGE_ROLE);
     item->setData(current_rotation, ROTATION_ROLE);
+    item->setData(current_outline_entry, OUTLINE_ENTRY_ROLE);
 }
 
 void InputPdfFileWidget::mouse_button_pressed(QMouseEvent *event)

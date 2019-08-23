@@ -140,6 +140,7 @@ struct FileConf {
     bool multipage_enabled;
     const Multipage *multipage;
     int rotation;
+    std::string outline_entry;
 };
 
 struct Conf {

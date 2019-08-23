@@ -313,6 +313,9 @@ void MainWindow::add_pdf_files()
     for (int i=0; i<selected.count(); i++)
     {
         PdfInfo pdf_info = PdfInfo(selected.at(i).toStdString());
+        QString filename = QUrl(selected.at(i)).fileName();
+        if (filename.endsWith(".pdf", Qt::CaseInsensitive))
+            filename.chop(4);
 
         QStandardItem *item = new QStandardItem();
 
@@ -327,6 +330,7 @@ void MainWindow::add_pdf_files()
         item->setData("", OUTPUT_PAGES_ROLE);
         item->setData(0, MULTIPAGE_ROLE);
         item->setData(0, ROTATION_ROLE);
+        item->setData(filename, OUTLINE_ENTRY_ROLE);
 
         m_files_list_model->appendRow(item);
     }
@@ -570,6 +574,7 @@ void MainWindow::generate_pdf_button_pressed()
             QString output_pages = item->data(OUTPUT_PAGES_ROLE).toString();
             int mp_index = item->data(MULTIPAGE_ROLE).toInt();
             int rotation = item->data(ROTATION_ROLE).toInt();
+            QString outline_entry = item->data(OUTLINE_ENTRY_ROLE).toString();
 
             FileConf fileconf;
             fileconf.path = file_path.toStdString();
@@ -582,6 +587,7 @@ void MainWindow::generate_pdf_button_pressed()
                     fileconf.multipage = &m_custom_multipages[mp_index];
             }
             fileconf.rotation = rotation;
+            fileconf.outline_entry = outline_entry.toStdString();
 
             conf.files.push_back(fileconf);
         }

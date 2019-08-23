@@ -36,7 +36,8 @@
 #define OUTPUT_PAGES_ROLE Qt::UserRole + 7 // QString
 #define MULTIPAGE_ROLE Qt::UserRole + 8 // int
 #define ROTATION_ROLE Qt::UserRole + 9 // int
-#define OUTPUT_PAGES_COUNT_ROLE Qt::UserRole + 10 // int
+#define OUTLINE_ENTRY_ROLE Qt::UserRole + 10 // QString
+#define OUTPUT_PAGES_COUNT_ROLE Qt::UserRole + 11 // int
 
 double draw_preview_page(QPainter *painter,
                          int max_width,
@@ -84,6 +85,7 @@ private:
     QLineEdit *m_pages_filter_lineedit;
     QComboBox *m_multipage_combobox;
     QComboBox *m_rotation_combobox;
+    QLineEdit *m_outline_entry_lineedit;
 };
 
 #endif // INPUTPDFFILEWIDGET_H

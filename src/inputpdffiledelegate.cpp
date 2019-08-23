@@ -47,6 +47,7 @@ void InputPdfFileDelegate::paint(
     QString output_pages = index.data(OUTPUT_PAGES_ROLE).toString();
     int mp_index = index.data(MULTIPAGE_ROLE).toInt();
     int rotation = index.data(ROTATION_ROLE).toInt();
+    QString outline_entry = index.data(OUTLINE_ENTRY_ROLE).toString();
 
     Multipage mp;
     if (mp_index < CUSTOM_MULTIPAGE_INDEX)
@@ -162,6 +163,7 @@ void InputPdfFileDelegate::paint(
                     QString(" %1").arg(QString::fromStdString(mp.name)) :
                     tr("Disabled"));
     QString rotation_text = tr("Rotation:") + ' ' + QString::number(rotation) + "°";
+    QString outline_entry_text = tr("Outline entry:") + ' ' + outline_entry;
 
     /*if (pdf_file->pages_filter_errors().size() > 0)
     {
@@ -184,12 +186,13 @@ void InputPdfFileDelegate::paint(
 
     painter->setPen(text_color);
     painter->drawText(x, y, rotation_text);
-    y += line_height;
 
     y = option.rect.y() + 2 * line_height;
     x += std::max(fm.boundingRect(pages).width(), fm.boundingRect(rotation).width()) + 40;
     painter->drawText(x, y, multipage);
     y += line_height;
+
+    painter->drawText(x, y, outline_entry_text);
 }
 
 QSize InputPdfFileDelegate::sizeHint(

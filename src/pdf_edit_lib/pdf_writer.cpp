@@ -119,15 +119,21 @@ void write_pdf(const Conf &conf, std::function<void (int)>& progress)
     QPDF output_file;
     output_file.emptyPDF();
 
+    std::map<int, const std::string &> outlines;
+    int outline_page = 0;
+
     for (std::vector<FileConf>::size_type i = 0; i < conf.files.size(); i++)
     {
+        if (conf.files.at(i).outline_entry.size() > 0)
+            outlines.insert(std::pair<int, const std::string &>(
+                                outline_page,
+                                conf.files.at(i).outline_entry));
+
         const Multipage *mp = conf.files.at(i).multipage;
 
         QPDF tmp_file;
         tmp_file.emptyPDF();
         tmp_file.setImmediateCopyFrom(true);
-
-        int added_pages = 0;
 
         QPDF input_file;
         input_file.processFile(conf.files.at(i).path.c_str());
@@ -139,6 +145,8 @@ void write_pdf(const Conf &conf, std::function<void (int)>& progress)
                                   input_file.getAllPages().size(),
                                   intervals,
                                   output_pages_count);
+        if (mp == nullptr)
+            outline_page += output_pages_count;
 
         // Add pages to the output file
         std::vector<std::pair<int, int>>::iterator it;
@@ -167,8 +175,6 @@ void write_pdf(const Conf &conf, std::function<void (int)>& progress)
                     QPDFPageDocumentHelper(tmp_file).addPage(page, false);
                 }
             }
-
-            added_pages += it->second - it->first + 1;
         }
 
         // Handle multipage options
@@ -245,13 +251,12 @@ void write_pdf(const Conf &conf, std::function<void (int)>& progress)
                 delta_y = available_height - page_height;
 
             // Create a blank page with podofo
-            PoDoFo::PdfMemDocument *podofo_blank_file =
-                    new PoDoFo::PdfMemDocument();
-            podofo_blank_file->CreatePage(
+            PoDoFo::PdfMemDocument podofo_blank_file;
+            podofo_blank_file.CreatePage(
                         PoDoFo::PdfRect (0.0, 0.0, dest_width, dest_height));
             std::stringstream blank_file_buf;
             PoDoFo::PdfOutputDevice output_device(&blank_file_buf);
-            podofo_blank_file->Write(&output_device);
+            podofo_blank_file.Write(&output_device);
 
             // Load the blank page with QPDF
             QPDF blank_file;
@@ -351,14 +356,37 @@ void write_pdf(const Conf &conf, std::function<void (int)>& progress)
 
                     ++current_page;
                 }
+
+                ++outline_page;
             }
         }
 
         progress(100 * i / (conf.files.size() + 1));
     }
 
-    QPDFWriter writer(output_file, conf.output_path.c_str());
+    QPDFWriter writer(output_file);
+    writer.setOutputMemory();
     writer.write();
+    Buffer *buffer = writer.getBuffer();
+
+    // Add outline with podofo
+    PoDoFo::PdfMemDocument podofo_file;
+
+    const char *buf = reinterpret_cast<const char *>(buffer->getBuffer());
+    podofo_file.LoadFromBuffer(buf, buffer->getSize());
+
+    PoDoFo::PdfOutlineItem *last =
+            podofo_file.GetOutlines(true)->CreateRoot("");
+
+    for (std::pair<int, const std::string &> entry : outlines)
+        last = last->CreateNext(
+                    entry.second,
+                    PoDoFo::PdfDestination(podofo_file.GetPage(entry.first))
+                    );
+
+    podofo_file.Write(conf.output_path.c_str());
+
+    delete buffer;
 
     progress(100);
 

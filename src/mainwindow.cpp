@@ -41,7 +41,9 @@
 
 QDataStream &operator<<(QDataStream &out, const Multipage &multipage)
 {
-    out << multipage.enabled;
+    out << false; // new format
+
+    out << 1; // version
 
     out << multipage.name.c_str();
 
@@ -68,7 +70,14 @@ QDataStream &operator<<(QDataStream &out, const Multipage &multipage)
 
 QDataStream &operator>>(QDataStream &in, Multipage &multipage)
 {
-    in >> multipage.enabled;
+    multipage.enabled = true;
+
+    bool old_format;
+    in >> old_format;
+
+    int version = 0;
+    if (!old_format)
+        in >> version;
 
     char *name;
     in >> name;

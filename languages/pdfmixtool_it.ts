@@ -425,7 +425,7 @@
     <message>
         <location filename="../src/mainwindow.cpp" line="535"/>
         <source>&lt;p&gt;Output pages of file &lt;b&gt;%1&lt;/b&gt; are badly formatted. Please make sure you complied with the following rules:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;intervals of pages must be written indicating the first page and the last page separated by a dash (e.g. &quot;1-5&quot;);&lt;/li&gt;&lt;li&gt;single pages and intervals of pages must be separated by spaces, commas or both (e.g. &quot;1, 2, 3, 5-10&quot; or &quot;1 2 3 5-10&quot;);&lt;/li&gt;&lt;li&gt;all pages and intervals of pages must be between 1 and the number of pages of the PDF file;&lt;/li&gt;&lt;li&gt;only numbers, spaces, commas and dashes can be used. All other characters are not allowed.&lt;/li&gt;&lt;/ul&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;Le pagine di uscita del file &lt;b&gt;%1&lt;/b&gt; sono formattate in modo errato. Assicurati di aver rispettato le seguenti regole:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;gli intervalli di pagine devono essere scritti indicando la prima e l&apos;ultima pagina separate da un trattino (es. &quot;1-5&quot;);&lt;/li&gt;&lt;li&gt;le pagine singole e gli intervalli di pagine devono essere separati da spazi, virgole o entrambi (es. &quot;1, 2, 3, 5-10&quot; o &quot;1 2 3 5-10&quot;);&lt;/li&gt;&lt;li&gt;tutte le pagine e gli intervalli di pagine devono essere compresi tra 1 e il numero di pagine del file PDF;&lt;/li&gt;&lt;li&gt;possono essere usati solo numeri, spazi, virgole e trattini. Tutti gli altri caratteri non sono ammessi.&lt;/li&gt;&lt;/ul&gt;</translation>
     </message>
 </context>
 <context>

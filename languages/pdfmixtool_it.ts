@@ -286,7 +286,7 @@
     <message>
         <location filename="../src/inputpdffiledelegate.cpp" line="166"/>
         <source>Outline entry:</source>
-        <translation type="unfinished"></translation>
+        <translation>Voce nell&apos;indice:</translation>
     </message>
 </context>
 <context>
@@ -319,7 +319,7 @@
     <message>
         <location filename="../src/inputpdffilewidget.cpp" line="206"/>
         <source>Outline entry:</source>
-        <translation type="unfinished"></translation>
+        <translation>Voce nell&apos;indice:</translation>
     </message>
 </context>
 <context>

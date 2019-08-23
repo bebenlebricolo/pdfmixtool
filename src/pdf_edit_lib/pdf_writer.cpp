@@ -375,14 +375,26 @@ void write_pdf(const Conf &conf, std::function<void (int)>& progress)
     const char *buf = reinterpret_cast<const char *>(buffer->getBuffer());
     podofo_file.LoadFromBuffer(buf, buffer->getSize());
 
-    PoDoFo::PdfOutlineItem *last =
-            podofo_file.GetOutlines(true)->CreateRoot("");
-
+    PoDoFo::PdfOutlineItem *item;
+    bool first = true;
     for (std::pair<int, const std::string &> entry : outlines)
-        last = last->CreateNext(
-                    entry.second,
-                    PoDoFo::PdfDestination(podofo_file.GetPage(entry.first))
-                    );
+    {
+        if (first)
+        {
+            item = podofo_file.GetOutlines(true)
+                    ->CreateRoot(entry.second);
+            item->SetDestination(PoDoFo::PdfDestination(
+                                           podofo_file.GetPage(entry.first)));
+            first = false;
+        }
+        else
+        {
+            item = item->CreateNext(
+                        entry.second,
+                        PoDoFo::PdfDestination(podofo_file.GetPage(entry.first))
+                        );
+        }
+    }
 
     podofo_file.Write(conf.output_path.c_str());
 

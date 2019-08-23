@@ -21,19 +21,28 @@
 #include <QBoxLayout>
 #include <QMessageBox>
 
-MultipageProfilesManager::MultipageProfilesManager(QMap<int, Multipage> *custom_multipages,
+MultipageProfilesManager::MultipageProfilesManager(
+        QMap<int, Multipage> *custom_multipages,
         QSettings *app_settings,
         QWidget *parent) :
     QMainWindow(parent),
     m_edit_dialog(new EditMultipageProfileDialog(this)),
     m_custom_multipages(custom_multipages),
     m_settings(app_settings),
-    m_new_profile_button(new QPushButton(QIcon::fromTheme("list-add"), tr("New profile…"), this)),
-    m_delete_profile_button(new QPushButton(QIcon::fromTheme("list-remove"), tr("Delete profile"), this)),
+    m_new_profile_button(new QPushButton(
+                             QIcon::fromTheme("list-add"),
+                             tr("New profile…"),
+                             this)),
+    m_delete_profile_button(new QPushButton(
+                                QIcon::fromTheme("list-remove"),
+                                tr("Delete profile"),
+                                this)),
     m_profiles_view(new QListView(this)),
     m_profiles_model(new QStandardItemModel(this))
 {
-    this->restoreGeometry(m_settings->value("multipage_profiles_manager_geometry").toByteArray());
+    this->restoreGeometry(m_settings
+                          ->value("multipage_profiles_manager_geometry")
+                          .toByteArray());
     this->setWindowTitle(tr("Manage multipage profiles"));
 
     m_profiles_view->setWordWrap(false);
@@ -45,9 +54,12 @@ MultipageProfilesManager::MultipageProfilesManager(QMap<int, Multipage> *custom_
     m_profiles_view->setVerticalScrollMode(QAbstractItemView::ScrollPerPixel);
 
     QMap<int, Multipage>::const_iterator it;
-    for (it = m_custom_multipages->constBegin(); it != m_custom_multipages->constEnd(); ++it)
+    for (it = m_custom_multipages->constBegin();
+         it != m_custom_multipages->constEnd();
+         ++it)
     {
-        QStandardItem *item = new QStandardItem(QString::fromStdString(it.value().name));
+        QStandardItem *item =
+                new QStandardItem(QString::fromStdString(it.value().name));
         item->setData(it.key(), Qt::UserRole);
         m_profiles_model->appendRow(item);
     }
@@ -68,20 +80,25 @@ MultipageProfilesManager::MultipageProfilesManager(QMap<int, Multipage> *custom_
 
     v_layout->addWidget(m_profiles_view);
 
-    connect(m_new_profile_button, SIGNAL(pressed()), this, SLOT(new_profile_button_pressed()));
+    connect(m_new_profile_button, SIGNAL(pressed()),
+            this, SLOT(new_profile_button_pressed()));
 
-    connect(m_delete_profile_button, SIGNAL(pressed()), this, SLOT(delete_profile_button_pressed()));
+    connect(m_delete_profile_button, SIGNAL(pressed()),
+            this, SLOT(delete_profile_button_pressed()));
 
     connect(m_profiles_view, SIGNAL(doubleClicked(QModelIndex)),
             this, SLOT(profile_double_clicked(QModelIndex)));
 
-    connect(m_edit_dialog, SIGNAL(accepted()), this, SLOT(edit_dialog_accepted()));
+    connect(m_edit_dialog, SIGNAL(accepted()),
+            this, SLOT(edit_dialog_accepted()));
 }
 
 bool MultipageProfilesManager::profile_name_exists(const QString &name)
 {
     QMap<int, Multipage>::const_iterator it;
-    for (it = m_custom_multipages->constBegin(); it != m_custom_multipages->constEnd(); ++it)
+    for (it = m_custom_multipages->constBegin();
+         it != m_custom_multipages->constEnd();
+         ++it)
         if (QString::fromStdString(it.value().name) == name)
             return true;
 
@@ -95,9 +112,11 @@ void MultipageProfilesManager::new_profile_button_pressed()
     while (this->profile_name_exists(name))
         name = tr("Custom profile") + QString(" %1").arg(++i);
 
-    i = 100;
+    i = CUSTOM_MULTIPAGE_INDEX;
     QMap<int, Multipage>::const_iterator it;
-    for (it = m_custom_multipages->constBegin(); it != m_custom_multipages->constEnd(); ++it)
+    for (it = m_custom_multipages->constBegin();
+         it != m_custom_multipages->constEnd();
+         ++it)
         if (it.key() == i)
             ++i;
 
@@ -119,15 +138,19 @@ void MultipageProfilesManager::delete_profile_button_pressed()
 {
     if (m_profiles_view->selectionModel()->selectedIndexes().size() > 0)
     {
-        m_custom_multipages->remove(m_profiles_view->selectionModel()->
-                                    selectedIndexes().at(0).data(Qt::UserRole).toInt());
-        m_profiles_model->removeRow(m_profiles_view->selectionModel()->selectedIndexes().at(0).row());
+        m_custom_multipages->remove(
+                    m_profiles_view->selectionModel()->
+                    selectedIndexes().at(0).data(Qt::UserRole).toInt());
+        m_profiles_model->removeRow(m_profiles_view
+                                    ->selectionModel()
+                                    ->selectedIndexes().at(0).row());
     }
 }
 
 void MultipageProfilesManager::profile_double_clicked(const QModelIndex &index)
 {
-    m_edit_dialog->set_multipage(m_custom_multipages->value(index.data(Qt::UserRole).toInt()));
+    m_edit_dialog->set_multipage(
+                m_custom_multipages->value(index.data(Qt::UserRole).toInt()));
     m_edit_dialog->set_index(index.data(Qt::UserRole).toInt());
     m_edit_dialog->show();
 }
@@ -139,14 +162,18 @@ void MultipageProfilesManager::edit_dialog_accepted()
     // Check profile name
     if (multipage.name.size() == 0)
     {
-        QMessageBox::critical(this, tr("Error"), tr("Profile name can not be empty."));
+        QMessageBox::critical(this,
+                              tr("Error"),
+                              tr("Profile name can not be empty."));
         m_edit_dialog->show();
         return;
     }
 
     if (multipage.name == tr("Disabled").toStdString())
     {
-        QMessageBox::critical(this, tr("Error"), tr("Profile name already exists."));
+        QMessageBox::critical(this,
+                              tr("Error"),
+                              tr("Profile name already exists."));
         m_edit_dialog->show();
         return;
     }
@@ -154,16 +181,23 @@ void MultipageProfilesManager::edit_dialog_accepted()
     for (const Multipage &m : multipage_defaults)
         if (multipage.name == m.name)
         {
-            QMessageBox::critical(this, tr("Error"), tr("Profile name already exists."));
+            QMessageBox::critical(this,
+                                  tr("Error"),
+                                  tr("Profile name already exists."));
             m_edit_dialog->show();
             return;
         }
 
     QMap<int, Multipage>::const_iterator it;
-    for (it = m_custom_multipages->constBegin(); it != m_custom_multipages->constEnd(); ++it)
-        if (multipage.name == it.value().name && m_edit_dialog->get_index() != it.key())
+    for (it = m_custom_multipages->constBegin();
+         it != m_custom_multipages->constEnd();
+         ++it)
+        if (multipage.name == it.value().name &&
+                m_edit_dialog->get_index() != it.key())
         {
-            QMessageBox::critical(this, tr("Error"), tr("Profile name already exists."));
+            QMessageBox::critical(this,
+                                  tr("Error"),
+                                  tr("Profile name already exists."));
             m_edit_dialog->show();
             return;
         }
@@ -181,19 +215,23 @@ void MultipageProfilesManager::edit_dialog_accepted()
         }
     }
 
-    QStandardItem *item = new QStandardItem(QString::fromStdString(multipage.name));
+    QStandardItem *item =
+            new QStandardItem(QString::fromStdString(multipage.name));
     item->setData(m_edit_dialog->get_index(), Qt::UserRole);
     m_profiles_model->appendRow(item);
 }
 
 void MultipageProfilesManager::show()
 {
-    this->restoreGeometry(m_settings->value("multipage_profiles_manager_geometry").toByteArray());
+    this->restoreGeometry(m_settings
+                          ->value("multipage_profiles_manager_geometry")
+                          .toByteArray());
     QMainWindow::show();
 }
 
 void MultipageProfilesManager::closeEvent(QCloseEvent *event)
 {
-    m_settings->setValue("multipage_profiles_manager_geometry", this->saveGeometry());
+    m_settings->setValue("multipage_profiles_manager_geometry",
+                         this->saveGeometry());
     QMainWindow::closeEvent(event);
 }

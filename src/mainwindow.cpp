@@ -477,7 +477,7 @@ void MainWindow::update_output_pages_count()
             {
                 Multipage mp;
 
-                if (mp_index < 100)
+                if (mp_index < CUSTOM_MULTIPAGE_INDEX)
                     mp = multipage_defaults[mp_index];
                 else
                     mp = m_custom_multipages[mp_index];
@@ -567,7 +567,7 @@ void MainWindow::generate_pdf_button_pressed()
             fileconf.ouput_pages = output_pages.toStdString();
             if (mp_index > 0)
             {
-                if (mp_index < 100)
+                if (mp_index < CUSTOM_MULTIPAGE_INDEX)
                     fileconf.multipage = &multipage_defaults[mp_index];
                 else
                     fileconf.multipage = &m_custom_multipages[mp_index];

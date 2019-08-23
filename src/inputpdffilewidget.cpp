@@ -260,7 +260,7 @@ void InputPdfFileWidget::update_preview()
     QPainter painter(&pixmap);
 
     Multipage mp;
-    if (m_multipage_combobox->currentData().toInt() < 100)
+    if (m_multipage_combobox->currentData().toInt() < CUSTOM_MULTIPAGE_INDEX)
         mp = multipage_defaults[m_multipage_combobox->currentData().toInt()];
     else
         mp = m_custom_multipages[m_multipage_combobox->currentData().toInt()];

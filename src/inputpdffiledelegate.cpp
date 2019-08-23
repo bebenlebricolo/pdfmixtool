@@ -49,7 +49,7 @@ void InputPdfFileDelegate::paint(
     int rotation = index.data(ROTATION_ROLE).toInt();
 
     Multipage mp;
-    if (mp_index < 100)
+    if (mp_index < CUSTOM_MULTIPAGE_INDEX)
         mp = multipage_defaults[mp_index];
     else
         mp = m_custom_multipages[mp_index];
@@ -208,7 +208,7 @@ QSize InputPdfFileDelegate::sizeHint(
     int rotation = index.data(ROTATION_ROLE).toInt();
 
     Multipage mp;
-    if (mp_index < 100)
+    if (mp_index < CUSTOM_MULTIPAGE_INDEX)
         mp = multipage_defaults[mp_index];
     else
         mp = m_custom_multipages[mp_index];

@@ -125,6 +125,8 @@ const Multipage multipage_defaults[] = {
     }
 };
 
+#define CUSTOM_MULTIPAGE_INDEX 100
+
 struct FileConf {
     FileConf() :
         multipage_enabled(false),

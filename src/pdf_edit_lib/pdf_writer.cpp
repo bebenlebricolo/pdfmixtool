@@ -250,30 +250,20 @@ void write_pdf(const Conf &conf, std::function<void (int)>& progress)
             else if (mp->v_alignment == Multipage::Top)
                 delta_y = available_height - page_height;
 
-            // Create a blank page with podofo
-            PoDoFo::PdfMemDocument podofo_blank_file;
-            podofo_blank_file.CreatePage(
-                        PoDoFo::PdfRect (0.0, 0.0, dest_width, dest_height));
-            std::stringstream blank_file_buf;
-            PoDoFo::PdfOutputDevice output_device(&blank_file_buf);
-            podofo_blank_file.Write(&output_device);
-
-            // Load the blank page with QPDF
-            QPDF blank_file;
-            blank_file.processMemoryFile("blank file",
-                                         blank_file_buf.str().c_str(),
-                                         blank_file_buf.str().size());
-            blank_file.setImmediateCopyFrom(true);
+            std::string page_object_string = "<</Type/Page/MediaBox[0 0 " +
+                    std::to_string(dest_width) + ' ' +
+                    std::to_string(dest_height) +
+                    "]/Resources<</ProcSet[/PDF/Text/ImageB/ImageC/ImageI]>>>>";
 
             // Add pages
             int current_page = 0;
 
             while (current_page < n_pages)
             {
-                QPDFPageDocumentHelper blank_helper(blank_file);
-                QPDFPageObjectHelper blank_page =
-                        blank_helper.getAllPages().at(0);
-                blank_page = blank_page.shallowCopyPage();
+                QPDFObjectHandle blank_page_object = QPDFObjectHandle::parse(
+                            page_object_string,
+                            "blank page");
+                QPDFPageObjectHelper blank_page(blank_page_object);
                 QPDFPageDocumentHelper(output_file).addPage(blank_page, false);
 
                 QPDFPageObjectHelper out_page_helper =

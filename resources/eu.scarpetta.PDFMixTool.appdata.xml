@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Copyright 2018 Marco Scarpetta <marcoscarpetta02@gmail.com> -->
+<!-- Copyright 2018-2019 Marco Scarpetta <marcoscarpetta02@gmail.com> -->
 <component type="desktop-application">
   <id>eu.scarpetta.PDFMixTool</id>
   <metadata_license>FSFAP</metadata_license>
   <project_license>GPL-3.0+</project_license>
+  <name>PDF Mix Tool</name>
+  
+  <summary>Application to split, merge, rotate and mix PDF files</summary>
 
   <description>
     <p>
@@ -43,6 +46,8 @@
   <provides>
     <binary>pdfmixtool</binary>
   </provides>
+  
+  <content_rating type="oars-1.0" />
 
   <releases>
     <release version="0.4" date="2019-08-25" />

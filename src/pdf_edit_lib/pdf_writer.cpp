@@ -250,7 +250,7 @@ void write_pdf(const Conf &conf, std::function<void (int)>& progress)
             else if (mp->v_alignment == Multipage::Top)
                 delta_y = available_height - page_height;
 
-            std::string page_object_string = "<</Type/Page/MediaBox[0 0 " +
+            std::string blank_page_string = "<</Type/Page/MediaBox[0 0 " +
                     std::to_string(dest_width) + ' ' +
                     std::to_string(dest_height) +
                     "]/Resources<</ProcSet[/PDF/Text/ImageB/ImageC/ImageI]>>>>";
@@ -261,7 +261,7 @@ void write_pdf(const Conf &conf, std::function<void (int)>& progress)
             while (current_page < n_pages)
             {
                 QPDFObjectHandle blank_page_object = QPDFObjectHandle::parse(
-                            page_object_string,
+                            blank_page_string,
                             "blank page");
                 QPDFPageObjectHelper blank_page(blank_page_object);
                 QPDFPageDocumentHelper(output_file).addPage(blank_page, false);

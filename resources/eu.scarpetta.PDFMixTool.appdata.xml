@@ -45,6 +45,7 @@
   </provides>
 
   <releases>
+    <release version="0.4" date="2019-08-25" />
     <release version="0.3.4" date="2018-11-09" />
     <release version="0.3.3" date="2018-08-24" />
     <release version="0.3.2" date="2018-06-26" />

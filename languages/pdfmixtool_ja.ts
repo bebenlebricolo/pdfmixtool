@@ -285,7 +285,7 @@
     <message>
         <location filename="../src/inputpdffiledelegate.cpp" line="166"/>
         <source>Outline entry:</source>
-        <translation type="unfinished"></translation>
+        <translation>アウトラインエントリー:</translation>
     </message>
 </context>
 <context>
@@ -318,7 +318,7 @@
     <message>
         <location filename="../src/inputpdffilewidget.cpp" line="206"/>
         <source>Outline entry:</source>
-        <translation type="unfinished"></translation>
+        <translation>アウトラインエントリー:</translation>
     </message>
 </context>
 <context>
@@ -419,7 +419,7 @@
     <message>
         <location filename="../src/mainwindow.cpp" line="535"/>
         <source>&lt;p&gt;Output pages of file &lt;b&gt;%1&lt;/b&gt; are badly formatted. Please make sure you complied with the following rules:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;intervals of pages must be written indicating the first page and the last page separated by a dash (e.g. &quot;1-5&quot;);&lt;/li&gt;&lt;li&gt;single pages and intervals of pages must be separated by spaces, commas or both (e.g. &quot;1, 2, 3, 5-10&quot; or &quot;1 2 3 5-10&quot;);&lt;/li&gt;&lt;li&gt;all pages and intervals of pages must be between 1 and the number of pages of the PDF file;&lt;/li&gt;&lt;li&gt;only numbers, spaces, commas and dashes can be used. All other characters are not allowed.&lt;/li&gt;&lt;/ul&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;ファイルの出力ページ &lt;b&gt;%1&lt;/b&gt; が適切な形式ではありません。次の規則に従っていることを確認してください:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;ページの間隔は、最初のページと最後のページをダッシュで区切って (例えば &quot;1-5&quot; ) 書く必要があります&lt;/li&gt;&lt;li&gt;単一のページとページ間隔は、スペース、カンマ、またはその両方で (例えば &quot;1, 2, 3, 5-10&quot; や &quot;1 2 3 5-10&quot;) 区切る必要があります。&lt;/li&gt;&lt;li&gt;すべてのページとページ間隔は、1 から PDF ファイルのページ数の間でなければなりません。&lt;/li&gt;&lt;li&gt;数字、スペース、カンマ、ダッシュのみ使用できます。他の文字は使用できません&lt;/li&gt;&lt;/ul&gt;</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="559"/>

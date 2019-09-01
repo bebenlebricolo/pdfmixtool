@@ -256,6 +256,7 @@
         <source>%n page(s)</source>
         <translation>
             <numerusform>%n sayfa</numerusform>
+            <numerusform>%n sayfa</numerusform>
         </translation>
     </message>
     <message>
@@ -419,7 +420,7 @@
     <message>
         <location filename="../src/mainwindow.cpp" line="535"/>
         <source>&lt;p&gt;Output pages of file &lt;b&gt;%1&lt;/b&gt; are badly formatted. Please make sure you complied with the following rules:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;intervals of pages must be written indicating the first page and the last page separated by a dash (e.g. &quot;1-5&quot;);&lt;/li&gt;&lt;li&gt;single pages and intervals of pages must be separated by spaces, commas or both (e.g. &quot;1, 2, 3, 5-10&quot; or &quot;1 2 3 5-10&quot;);&lt;/li&gt;&lt;li&gt;all pages and intervals of pages must be between 1 and the number of pages of the PDF file;&lt;/li&gt;&lt;li&gt;only numbers, spaces, commas and dashes can be used. All other characters are not allowed.&lt;/li&gt;&lt;/ul&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;Dosya çıktı sayfaları %&lt;b&gt;%1&lt;/b&gt; kötü biçimlendirilmiş. Lütfen aşağıdaki kurallara uyduğunuzdan emin olun:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;sayfa aralıkları, ilk sayfayı ve son sayfayı bir çizgiyle ayrılmış olarak belirterek yazılmalıdır (örn. &quot;1-5&quot;&lt;/li&gt;); &lt;li&gt;tek sayfalar ve sayfaların aralıkları boşluklar, virgüller veya her ikisi ile ayrılmalıdır (örn. &quot;1, 2, 3, 5-10&quot; veya &quot;1 2 3 5-10&quot;&lt;/li&gt;); &lt;li&gt;tüm sayfalar ve sayfa aralıkları 1 ile PDF dosyasının sayfa sayısı arasında olmalıdır;&lt;/li&gt; &lt;li&gt; sadece sayılar, boşluklar, virgüller ve tireler kullanılabilir. Diğer tüm karakterlere izin verilmiyor.&lt;/li&gt;&lt;/ul&gt;</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="559"/>

@@ -562,12 +562,12 @@ void MainWindow::generate_pdf_button_pressed()
                                   ).toString(),
                 tr("PDF files (*.pdf)"));
 
-    m_settings->setValue(
-                "save_directory",
-                QFileInfo(selected_file).dir().absolutePath());
-
     if (!selected_file.isNull())
     {
+        m_settings->setValue(
+                    "save_directory",
+                    QFileInfo(selected_file).dir().absolutePath());
+
         // Generate configuration
         Conf conf;
 

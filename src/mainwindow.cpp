@@ -557,8 +557,14 @@ void MainWindow::generate_pdf_button_pressed()
     QString selected_file = QFileDialog::getSaveFileName(
                 this,
                 tr("Save PDF file"),
-                m_settings->value("save_directory", "").toString(),
+                m_settings->value("save_directory",
+                                  m_settings->value("open_directory", "")
+                                  ).toString(),
                 tr("PDF files (*.pdf)"));
+
+    m_settings->setValue(
+                "save_directory",
+                QFileInfo(selected_file).dir().absolutePath());
 
     if (!selected_file.isNull())
     {

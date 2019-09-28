@@ -281,7 +281,7 @@
         <location filename="../src/inputpdffiledelegate.cpp" line="165"/>
         <location filename="../src/inputpdffiledelegate.cpp" line="238"/>
         <source>Rotation:</source>
-        <translation>Rotation:</translation>
+        <translation>Rotation :</translation>
     </message>
     <message>
         <location filename="../src/inputpdffiledelegate.cpp" line="166"/>

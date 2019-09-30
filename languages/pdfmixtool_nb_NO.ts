@@ -286,7 +286,7 @@
     <message>
         <location filename="../src/inputpdffiledelegate.cpp" line="166"/>
         <source>Outline entry:</source>
-        <translation type="unfinished"></translation>
+        <translation>Disposisjonsoppføring:</translation>
     </message>
 </context>
 <context>
@@ -319,7 +319,7 @@
     <message>
         <location filename="../src/inputpdffilewidget.cpp" line="206"/>
         <source>Outline entry:</source>
-        <translation type="unfinished"></translation>
+        <translation>Disposisjonsoppføring:</translation>
     </message>
 </context>
 <context>
@@ -425,7 +425,7 @@
     <message>
         <location filename="../src/mainwindow.cpp" line="535"/>
         <source>&lt;p&gt;Output pages of file &lt;b&gt;%1&lt;/b&gt; are badly formatted. Please make sure you complied with the following rules:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;intervals of pages must be written indicating the first page and the last page separated by a dash (e.g. &quot;1-5&quot;);&lt;/li&gt;&lt;li&gt;single pages and intervals of pages must be separated by spaces, commas or both (e.g. &quot;1, 2, 3, 5-10&quot; or &quot;1 2 3 5-10&quot;);&lt;/li&gt;&lt;li&gt;all pages and intervals of pages must be between 1 and the number of pages of the PDF file;&lt;/li&gt;&lt;li&gt;only numbers, spaces, commas and dashes can be used. All other characters are not allowed.&lt;/li&gt;&lt;/ul&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;Utdatasider for filen &lt;b&gt;%1&lt;/b&gt; er formatert feil. Forsikre deg om at du er i overensstemmelse med følgende regler:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;sidebolker må skrives der første side er indikert, og siste side er inndelt med bindestrek (f.eks. &quot;1-5&quot;);&lt;/li&gt;&lt;li&gt;enkeltsider og sidebolker må inndeles av mellomrom, komma, eller begge (f.eks. &quot;1, 2, 3, 5-10&quot; eller &quot;1 2 3 5-10&quot;);&lt;/li&gt;&lt;li&gt;alle sider og sidebolker må være mellom 1 og antallet sider i PDF-filen;&lt;/li&gt;&lt;li&gt;kun nummer, mellomrom, komma og bindestreker kan brukes. Alle andre tegn tillates ikke.&lt;/li&gt;&lt;/ul&gt;</translation>
     </message>
 </context>
 <context>

@@ -286,7 +286,7 @@
     <message>
         <location filename="../src/inputpdffiledelegate.cpp" line="166"/>
         <source>Outline entry:</source>
-        <translation type="unfinished"></translation>
+        <translation>Gliederungseintrag:</translation>
     </message>
 </context>
 <context>
@@ -319,7 +319,7 @@
     <message>
         <location filename="../src/inputpdffilewidget.cpp" line="206"/>
         <source>Outline entry:</source>
-        <translation type="unfinished"></translation>
+        <translation>Gliederungseintrag:</translation>
     </message>
 </context>
 <context>
@@ -420,7 +420,7 @@
     <message>
         <location filename="../src/mainwindow.cpp" line="535"/>
         <source>&lt;p&gt;Output pages of file &lt;b&gt;%1&lt;/b&gt; are badly formatted. Please make sure you complied with the following rules:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;intervals of pages must be written indicating the first page and the last page separated by a dash (e.g. &quot;1-5&quot;);&lt;/li&gt;&lt;li&gt;single pages and intervals of pages must be separated by spaces, commas or both (e.g. &quot;1, 2, 3, 5-10&quot; or &quot;1 2 3 5-10&quot;);&lt;/li&gt;&lt;li&gt;all pages and intervals of pages must be between 1 and the number of pages of the PDF file;&lt;/li&gt;&lt;li&gt;only numbers, spaces, commas and dashes can be used. All other characters are not allowed.&lt;/li&gt;&lt;/ul&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;Ausgabeseiten der Datei &lt;b&gt;%1&lt;/b&gt; sind schlecht formatiert. Bitte stellen Sie sicher, dass Sie die folgenden Regeln eingehalten haben:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Intervalle von Seiten müssen geschrieben werden, wobei die erste Seite und die letzte Seite durch einen Bindestrich getrennt sind (z.B. &quot;1-5&quot;);&lt;/li&gt;&lt;li&gt;Einzelseiten und Intervalle von Seiten müssen durch Leerzeichen, Kommas oder beides getrennt sein (z.B.g. &quot;1, 2, 3, 5-10&quot; oder &quot;1 2 3 5-10&quot;);&lt;/li&gt;&lt;li&gt;alle Seiten und Intervalle von Seiten müssen zwischen 1 und der Seitenzahl der PDF-Datei liegen;&lt;/li&gt;&lt;li&gt;nur Zahlen, Leerzeichen, Kommas und Bindestriche können verwendet werden. Alle anderen Zeichen sind nicht erlaubt.&lt;/li&gt;&lt;/ul&gt;</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="559"/>

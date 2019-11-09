@@ -9,72 +9,72 @@
         <translation>PDF Mix Tool Hakkında</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="43"/>
+        <location filename="../src/aboutdialog.cpp" line="44"/>
         <source>Close</source>
         <translation>Kapat</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="53"/>
+        <location filename="../src/aboutdialog.cpp" line="55"/>
         <source>Version %1</source>
         <translation>Sürüm %1</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="65"/>
+        <location filename="../src/aboutdialog.cpp" line="67"/>
         <source>An application to split, merge, rotate and mix PDF files.</source>
         <translation>PDF dosyalarını bölme, birleştirme, döndürme ve karıştırma yapan bir uygulama.</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="66"/>
+        <location filename="../src/aboutdialog.cpp" line="70"/>
         <source>Website</source>
         <translation>Web sitesi</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="73"/>
+        <location filename="../src/aboutdialog.cpp" line="77"/>
         <source>About</source>
         <translation>Hakkında</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="89"/>
+        <location filename="../src/aboutdialog.cpp" line="94"/>
         <source>Authors</source>
         <translation>Yazarlar</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="91"/>
+        <location filename="../src/aboutdialog.cpp" line="96"/>
         <source>Translators</source>
         <translation>Çevirmenler</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="100"/>
+        <location filename="../src/aboutdialog.cpp" line="105"/>
         <source>Credits</source>
         <translation>Emeği geçenler</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="118"/>
+        <location filename="../src/aboutdialog.cpp" line="129"/>
         <source>License</source>
         <translation>Lisans</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="128"/>
+        <location filename="../src/aboutdialog.cpp" line="142"/>
         <source>Submit a pull request</source>
         <translation>Çekme isteği gönderin</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="129"/>
+        <location filename="../src/aboutdialog.cpp" line="143"/>
         <source>Report a bug</source>
         <translation>Hata bildir</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="130"/>
+        <location filename="../src/aboutdialog.cpp" line="144"/>
         <source>Help translating</source>
         <translation>Çeviri yardımı</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="137"/>
+        <location filename="../src/aboutdialog.cpp" line="151"/>
         <source>Contribute</source>
         <translation>Katkıda bulun</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="153"/>
+        <location filename="../src/aboutdialog.cpp" line="168"/>
         <source>Changelog</source>
         <translation>Değişiklikler</translation>
     </message>
@@ -88,7 +88,7 @@
     </message>
     <message>
         <location filename="../src/editmultipageprofiledialog.cpp" line="60"/>
-        <location filename="../src/editmultipageprofiledialog.cpp" line="158"/>
+        <location filename="../src/editmultipageprofiledialog.cpp" line="162"/>
         <source>Left</source>
         <translation>Sol</translation>
     </message>
@@ -100,19 +100,19 @@
     </message>
     <message>
         <location filename="../src/editmultipageprofiledialog.cpp" line="62"/>
-        <location filename="../src/editmultipageprofiledialog.cpp" line="160"/>
+        <location filename="../src/editmultipageprofiledialog.cpp" line="164"/>
         <source>Right</source>
         <translation>Sağ</translation>
     </message>
     <message>
         <location filename="../src/editmultipageprofiledialog.cpp" line="64"/>
-        <location filename="../src/editmultipageprofiledialog.cpp" line="162"/>
+        <location filename="../src/editmultipageprofiledialog.cpp" line="166"/>
         <source>Top</source>
         <translation>Üst</translation>
     </message>
     <message>
         <location filename="../src/editmultipageprofiledialog.cpp" line="66"/>
-        <location filename="../src/editmultipageprofiledialog.cpp" line="164"/>
+        <location filename="../src/editmultipageprofiledialog.cpp" line="168"/>
         <source>Bottom</source>
         <translation>Alt</translation>
     </message>
@@ -127,67 +127,67 @@
         <translation>Çıktı sayfa boyutu</translation>
     </message>
     <message>
-        <location filename="../src/editmultipageprofiledialog.cpp" line="107"/>
+        <location filename="../src/editmultipageprofiledialog.cpp" line="108"/>
         <source>Standard size:</source>
         <translation>Standart boyut:</translation>
     </message>
     <message>
-        <location filename="../src/editmultipageprofiledialog.cpp" line="110"/>
+        <location filename="../src/editmultipageprofiledialog.cpp" line="111"/>
         <source>Custom size:</source>
         <translation>Özel boyut:</translation>
     </message>
     <message>
-        <location filename="../src/editmultipageprofiledialog.cpp" line="113"/>
+        <location filename="../src/editmultipageprofiledialog.cpp" line="114"/>
         <source>Width:</source>
         <translation>Genişlik:</translation>
     </message>
     <message>
-        <location filename="../src/editmultipageprofiledialog.cpp" line="116"/>
+        <location filename="../src/editmultipageprofiledialog.cpp" line="117"/>
         <source>Height:</source>
         <translation>Yükseklik:</translation>
     </message>
     <message>
-        <location filename="../src/editmultipageprofiledialog.cpp" line="124"/>
+        <location filename="../src/editmultipageprofiledialog.cpp" line="125"/>
         <source>Pages layout</source>
         <translation>Sayfa düzeni</translation>
     </message>
     <message>
-        <location filename="../src/editmultipageprofiledialog.cpp" line="126"/>
+        <location filename="../src/editmultipageprofiledialog.cpp" line="128"/>
         <source>Rows:</source>
         <translation>Satırlar:</translation>
     </message>
     <message>
-        <location filename="../src/editmultipageprofiledialog.cpp" line="129"/>
+        <location filename="../src/editmultipageprofiledialog.cpp" line="131"/>
         <source>Columns:</source>
         <translation>Sütunlar:</translation>
     </message>
     <message>
-        <location filename="../src/editmultipageprofiledialog.cpp" line="132"/>
+        <location filename="../src/editmultipageprofiledialog.cpp" line="134"/>
         <source>Rotation:</source>
         <translation>Döndürme:</translation>
     </message>
     <message>
-        <location filename="../src/editmultipageprofiledialog.cpp" line="135"/>
+        <location filename="../src/editmultipageprofiledialog.cpp" line="137"/>
         <source>Spacing:</source>
         <translation>Aralık:</translation>
     </message>
     <message>
-        <location filename="../src/editmultipageprofiledialog.cpp" line="143"/>
+        <location filename="../src/editmultipageprofiledialog.cpp" line="145"/>
         <source>Pages alignment</source>
         <translation>Sayfa hizalama</translation>
     </message>
     <message>
-        <location filename="../src/editmultipageprofiledialog.cpp" line="145"/>
+        <location filename="../src/editmultipageprofiledialog.cpp" line="148"/>
         <source>Horizontal:</source>
         <translation>Yatay:</translation>
     </message>
     <message>
-        <location filename="../src/editmultipageprofiledialog.cpp" line="148"/>
+        <location filename="../src/editmultipageprofiledialog.cpp" line="151"/>
         <source>Vertical:</source>
         <translation>Dikey:</translation>
     </message>
     <message>
-        <location filename="../src/editmultipageprofiledialog.cpp" line="156"/>
+        <location filename="../src/editmultipageprofiledialog.cpp" line="159"/>
         <source>Margins</source>
         <translation>Kenar boşlukları</translation>
     </message>
@@ -233,57 +233,57 @@
 <context>
     <name>InputPdfFileDelegate</name>
     <message>
-        <location filename="../src/inputpdffiledelegate.cpp" line="113"/>
-        <location filename="../src/inputpdffiledelegate.cpp" line="250"/>
+        <location filename="../src/inputpdffiledelegate.cpp" line="55"/>
+        <location filename="../src/inputpdffiledelegate.cpp" line="193"/>
         <source>portrait</source>
         <translation>dikey</translation>
     </message>
     <message>
-        <location filename="../src/inputpdffiledelegate.cpp" line="113"/>
-        <location filename="../src/inputpdffiledelegate.cpp" line="250"/>
+        <location filename="../src/inputpdffiledelegate.cpp" line="55"/>
+        <location filename="../src/inputpdffiledelegate.cpp" line="193"/>
         <source>landscape</source>
         <translation>yatay</translation>
     </message>
     <message>
-        <location filename="../src/inputpdffiledelegate.cpp" line="158"/>
-        <location filename="../src/inputpdffiledelegate.cpp" line="231"/>
+        <location filename="../src/inputpdffiledelegate.cpp" line="150"/>
+        <location filename="../src/inputpdffiledelegate.cpp" line="213"/>
         <source>All</source>
         <translation>Tüm</translation>
     </message>
     <message numerus="yes">
-        <location filename="../src/inputpdffiledelegate.cpp" line="114"/>
-        <location filename="../src/inputpdffiledelegate.cpp" line="251"/>
+        <location filename="../src/inputpdffiledelegate.cpp" line="119"/>
+        <location filename="../src/inputpdffiledelegate.cpp" line="232"/>
         <source>%n page(s)</source>
         <translation>
             <numerusform>%n sayfa</numerusform>
         </translation>
     </message>
     <message>
-        <location filename="../src/inputpdffiledelegate.cpp" line="160"/>
-        <location filename="../src/inputpdffiledelegate.cpp" line="233"/>
+        <location filename="../src/inputpdffiledelegate.cpp" line="152"/>
+        <location filename="../src/inputpdffiledelegate.cpp" line="215"/>
         <source>Pages:</source>
         <translation>Sayfalar:</translation>
     </message>
     <message>
-        <location filename="../src/inputpdffiledelegate.cpp" line="161"/>
-        <location filename="../src/inputpdffiledelegate.cpp" line="234"/>
+        <location filename="../src/inputpdffiledelegate.cpp" line="153"/>
+        <location filename="../src/inputpdffiledelegate.cpp" line="216"/>
         <source>Multipage:</source>
         <translation>Çoklu sayfa:</translation>
     </message>
     <message>
-        <location filename="../src/inputpdffiledelegate.cpp" line="164"/>
-        <location filename="../src/inputpdffiledelegate.cpp" line="237"/>
+        <location filename="../src/inputpdffiledelegate.cpp" line="156"/>
+        <location filename="../src/inputpdffiledelegate.cpp" line="219"/>
         <source>Disabled</source>
         <translation>Devre dışı</translation>
     </message>
     <message>
-        <location filename="../src/inputpdffiledelegate.cpp" line="165"/>
-        <location filename="../src/inputpdffiledelegate.cpp" line="238"/>
+        <location filename="../src/inputpdffiledelegate.cpp" line="157"/>
+        <location filename="../src/inputpdffiledelegate.cpp" line="220"/>
         <source>Rotation:</source>
         <translation>Döndürme:</translation>
     </message>
     <message>
-        <location filename="../src/inputpdffiledelegate.cpp" line="166"/>
+        <location filename="../src/inputpdffiledelegate.cpp" line="158"/>
         <source>Outline entry:</source>
         <translation>Anahat girişi:</translation>
     </message>
@@ -291,32 +291,32 @@
 <context>
     <name>InputPdfFileWidget</name>
     <message>
-        <location filename="../src/inputpdffilewidget.cpp" line="181"/>
+        <location filename="../src/inputpdffilewidget.cpp" line="207"/>
         <source>Disabled</source>
         <translation>Devre dışı</translation>
     </message>
     <message>
-        <location filename="../src/inputpdffilewidget.cpp" line="194"/>
+        <location filename="../src/inputpdffilewidget.cpp" line="226"/>
         <source>No rotation</source>
         <translation>Döndürme</translation>
     </message>
     <message>
-        <location filename="../src/inputpdffilewidget.cpp" line="200"/>
+        <location filename="../src/inputpdffilewidget.cpp" line="232"/>
         <source>Pages:</source>
         <translation>Sayfalar:</translation>
     </message>
     <message>
-        <location filename="../src/inputpdffilewidget.cpp" line="202"/>
+        <location filename="../src/inputpdffilewidget.cpp" line="234"/>
         <source>Multipage:</source>
         <translation>Çok sayfalı:</translation>
     </message>
     <message>
-        <location filename="../src/inputpdffilewidget.cpp" line="204"/>
+        <location filename="../src/inputpdffilewidget.cpp" line="236"/>
         <source>Rotation:</source>
         <translation>Döndürme:</translation>
     </message>
     <message>
-        <location filename="../src/inputpdffilewidget.cpp" line="206"/>
+        <location filename="../src/inputpdffilewidget.cpp" line="238"/>
         <source>Outline entry:</source>
         <translation>Anahat girişi:</translation>
     </message>

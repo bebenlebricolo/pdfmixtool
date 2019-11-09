@@ -120,7 +120,7 @@ MainWindow::MainWindow(MouseEventFilter *filter, QWidget *parent) :
 {
     // Main winow properties
     this->setWindowIcon(QIcon(QString(ICON).arg(qApp->applicationDirPath())));
-    this->setWindowTitle(tr("PDF Mix Tool"));
+    this->setWindowTitle(qApp->applicationDisplayName());
     this->restoreGeometry(
                 m_settings->value("main_window_geometry").toByteArray()
                 );

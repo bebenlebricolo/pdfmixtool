@@ -351,18 +351,13 @@
         <translation>Generer PDF</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="123"/>
-        <source>PDF Mix Tool</source>
-        <translation>PDF Mix-verktøyet</translation>
-    </message>
-    <message>
         <location filename="../src/mainwindow.cpp" line="309"/>
         <source>Select one or more PDF files to open</source>
         <translation>Velg én eller flere PDF-filer å åpne</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="311"/>
-        <location filename="../src/mainwindow.cpp" line="561"/>
+        <location filename="../src/mainwindow.cpp" line="563"/>
         <source>PDF files (*.pdf)</source>
         <translation></translation>
     </message>

@@ -256,7 +256,6 @@
         <source>%n page(s)</source>
         <translation>
             <numerusform>%n sayfa</numerusform>
-            <numerusform>%n sayfa</numerusform>
         </translation>
     </message>
     <message>
@@ -356,11 +355,6 @@
         <translation>PDF oluştur</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="123"/>
-        <source>PDF Mix Tool</source>
-        <translation>PDF Karışım Aracı</translation>
-    </message>
-    <message>
         <location filename="../src/mainwindow.cpp" line="527"/>
         <location filename="../src/mainwindow.cpp" line="552"/>
         <source>PDF generation error</source>
@@ -403,7 +397,7 @@
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="311"/>
-        <location filename="../src/mainwindow.cpp" line="561"/>
+        <location filename="../src/mainwindow.cpp" line="563"/>
         <source>PDF files (*.pdf)</source>
         <translation>PDF dosyalar (*.pdf)</translation>
     </message>

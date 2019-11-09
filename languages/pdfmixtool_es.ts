@@ -356,11 +356,6 @@
         <translation>Generar PDF</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="123"/>
-        <source>PDF Mix Tool</source>
-        <translation>Herramienta para combinar PDF</translation>
-    </message>
-    <message>
         <location filename="../src/mainwindow.cpp" line="527"/>
         <location filename="../src/mainwindow.cpp" line="552"/>
         <source>PDF generation error</source>
@@ -403,7 +398,7 @@
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="311"/>
-        <location filename="../src/mainwindow.cpp" line="561"/>
+        <location filename="../src/mainwindow.cpp" line="563"/>
         <source>PDF files (*.pdf)</source>
         <translation>Archivos PDF (*.pdf)</translation>
     </message>

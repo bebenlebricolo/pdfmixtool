@@ -31,8 +31,8 @@ double draw_preview_page(QPainter *painter,
 {
     double scale = std::min(max_width / page_width, max_height / page_height);
 
-    int w = page_width * scale;
-    int h = page_height * scale;
+    int w = static_cast<int>(page_width * scale);
+    int h = static_cast<int>(page_height * scale);
     int dx, dy;
 
     switch (h_alignment)
@@ -74,9 +74,11 @@ double draw_preview_page(QPainter *painter,
         font.setPixelSize(h / 5 * 4);
         painter->setFont(font);
 
-        painter->drawText(dx + w / 2 - painter->fontMetrics().boundingRect(text).width() / 2,
-                          dy + h / 2 + font.pixelSize() / 2,
-                          text);
+        int x = dx + w / 2 -
+                painter->fontMetrics().boundingRect(text).width() / 2;
+        int y = dy + h / 2 + font.pixelSize() / 2;
+
+        painter->drawText(x, y, text);
     }
 
     return scale;
@@ -91,7 +93,8 @@ void draw_preview(QPainter *painter, const QRect &rect,
     painter->fillRect(rect, painter->background());
     painter->setPen(QColor(10, 10, 10));
 
-    painter->translate(rect.x() + rect.width() / 2, rect.y() + rect.height() / 2);
+    painter->translate(rect.x() + rect.width() / 2,
+                       rect.y() + rect.height() / 2);
     painter->rotate(rotation);
 
     if (! multipage.enabled)
@@ -101,27 +104,50 @@ void draw_preview(QPainter *painter, const QRect &rect,
                           "1");
     else
     {
-        double scale = draw_preview_page(painter, rect.width() - 4, rect.height() - 4,
-                                         multipage.page_width, multipage.page_height,
-                                         Multipage::Center, Multipage::Center,
+        double scale = draw_preview_page(painter,
+                                         rect.width() - 4,
+                                         rect.height() - 4,
+                                         multipage.page_width,
+                                         multipage.page_height,
+                                         Multipage::Center,
+                                         Multipage::Center,
                                          "");
 
         painter->rotate(multipage.rotation);
 
-        int rows = multipage.rotation == 90 ? multipage.columns : multipage.rows;
-        int columns = multipage.rotation == 90 ? multipage.rows : multipage.columns;
+        int rows, columns, margin_left, margin_right, margin_top, margin_bottom,
+                page_width, page_height;
 
-        int margin_left = (multipage.rotation == 90 ? multipage.margin_top : multipage.margin_left) * scale;
-        int margin_right = (multipage.rotation == 90 ? multipage.margin_bottom : multipage.margin_right) * scale;
-        int margin_top = (multipage.rotation == 90 ? multipage.margin_left : multipage.margin_top) * scale;
-        int margin_bottom = (multipage.rotation == 90 ? multipage. margin_right : multipage.margin_bottom) * scale;
-        int spacing = multipage.spacing * scale;
+        if (multipage.rotation == 90)
+        {
+            rows = multipage.columns;
+            columns = multipage.rows;
+            margin_left = static_cast<int>(multipage.margin_top * scale);
+            margin_right = static_cast<int>(multipage.margin_bottom * scale);
+            margin_top = static_cast<int>(multipage.margin_left  * scale);
+            margin_bottom = static_cast<int>(multipage.margin_right  * scale);
+            page_width = static_cast<int>(multipage.page_height * scale);
+            page_height = static_cast<int>(multipage.page_width * scale);
 
-        int page_width = (multipage.rotation == 90 ? multipage.page_height : multipage.page_width) * scale;
-        int page_height = (multipage.rotation == 90 ? multipage.page_width : multipage.page_height) * scale;
+        }
+        else
+        {
+            rows = multipage.rows;
+            columns = multipage.columns;
+            margin_left = static_cast<int>(multipage.margin_left * scale);
+            margin_right = static_cast<int>(multipage.margin_right * scale);
+            margin_top = static_cast<int>(multipage.margin_top * scale);
+            margin_bottom = static_cast<int>(multipage.margin_bottom * scale);
+            page_width = static_cast<int>(multipage.page_width * scale);
+            page_height = static_cast<int>(multipage.page_height * scale);
+        }
 
-        int subpage_width = (page_width - margin_left - margin_right - (columns - 1) * spacing) / columns;
-        int subpage_height = (page_height - margin_top - margin_bottom - (rows - 1) * spacing) / rows;
+        int spacing = static_cast<int>(multipage.spacing * scale);
+
+        int subpage_width = (page_width - margin_left - margin_right -
+                             (columns - 1) * spacing) / columns;
+        int subpage_height = (page_height - margin_top - margin_bottom -
+                              (rows - 1) * spacing) / rows;
 
         int page_number = 1;
 
@@ -129,20 +155,19 @@ void draw_preview(QPainter *painter, const QRect &rect,
         {
             for (int j = 0; j < columns; j++)
             {
-                painter->translate(
-                            margin_left - page_width / 2 + j * (spacing + subpage_width) + subpage_width / 2,
-                            margin_top - page_height / 2 + i * (spacing + subpage_height) + subpage_height / 2
-                            );
+                int dx = margin_left - page_width / 2 +
+                        j * (spacing + subpage_width) + subpage_width / 2;
+                int dy = margin_top - page_height / 2 +
+                        i * (spacing + subpage_height) + subpage_height / 2;
+
+                painter->translate(dx, dy);
 
                 draw_preview_page(painter, subpage_width, subpage_height,
                                   source_width, source_height,
                                   multipage.h_alignment, multipage.v_alignment,
                                   QString::number(page_number));
 
-                painter->translate(
-                            - (margin_left - page_width / 2 + j * (spacing + subpage_width) + subpage_width / 2),
-                            - (margin_top - page_height / 2 + i * (spacing + subpage_height) + subpage_height / 2)
-                            );
+                painter->translate(-dx, -dy);
 
                 page_number++;
             }
@@ -177,19 +202,26 @@ InputPdfFileWidget::InputPdfFileWidget(
     this->setLayout(layout);
 
     m_pages_filter_lineedit->setClearButtonEnabled(true);
+    m_outline_entry_lineedit->setClearButtonEnabled(true);
 
     m_multipage_combobox->addItem(tr("Disabled"), 0);
     int i = 0;
     for (const Multipage &multipage : multipage_defaults)
     {
         if (i != 0)
-            m_multipage_combobox->addItem(QString::fromStdString(multipage.name), i);
+            m_multipage_combobox->addItem(
+                        QString::fromStdString(multipage.name),
+                        i);
         i++;
     }
 
     QMap<int, Multipage>::const_iterator it;
-    for (it = m_custom_multipages.constBegin(); it != m_custom_multipages.constEnd(); ++it)
-        m_multipage_combobox->addItem(QString::fromStdString(it.value().name), it.key());
+    for (it = m_custom_multipages.constBegin();
+         it != m_custom_multipages.constEnd();
+         ++it)
+        m_multipage_combobox->addItem(
+                    QString::fromStdString(it.value().name),
+                    it.key());
 
     m_rotation_combobox->addItem(tr("No rotation"), 0);
     m_rotation_combobox->addItem("90°", 90);
@@ -246,16 +278,21 @@ void InputPdfFileWidget::mouse_button_pressed(QMouseEvent *event)
 {
     QRect mp_rect = m_multipage_combobox->rect();
     mp_rect.setHeight((m_multipage_combobox->count() + 1) * mp_rect.height());
-    mp_rect.setTop(
-                mp_rect.top() - m_multipage_combobox->count() * mp_rect.height());
+    mp_rect.setTop(mp_rect.top() - m_multipage_combobox->count() *
+                   mp_rect.height());
 
     QRect rotation_rect = m_rotation_combobox->rect();
-    rotation_rect.setHeight((m_rotation_combobox->count() + 1) * rotation_rect.height());
-    rotation_rect.setTop(rotation_rect.top() - m_rotation_combobox->count() * rotation_rect.height());
+    rotation_rect.setHeight((m_rotation_combobox->count() + 1) *
+                            rotation_rect.height());
+    rotation_rect.setTop(rotation_rect.top() - m_rotation_combobox->count() *
+                         rotation_rect.height());
 
-    if (! this->rect().contains(this->mapFromGlobal(event->globalPos())) &&
-            ! mp_rect.contains(m_multipage_combobox->mapFromGlobal(event->globalPos())) &&
-            ! rotation_rect.contains(m_rotation_combobox->mapFromGlobal(event->globalPos()))
+    if (! this->rect().contains(
+                this->mapFromGlobal(event->globalPos())) &&
+            ! mp_rect.contains(
+                m_multipage_combobox->mapFromGlobal(event->globalPos())) &&
+            ! rotation_rect.contains(
+                m_rotation_combobox->mapFromGlobal(event->globalPos()))
             )
         emit focus_out(this);
 }

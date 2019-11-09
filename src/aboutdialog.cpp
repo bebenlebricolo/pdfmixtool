@@ -40,12 +40,14 @@ AboutDialog::AboutDialog(QWidget *parent) :
     central_widget->setLayout(grid_layout);
     this->setCentralWidget(central_widget);
 
-    QPushButton *close_button = new QPushButton(QIcon::fromTheme("window-close"), tr("Close"), this);
+    QPushButton *close_button = new QPushButton(
+                QIcon::fromTheme("window-close"), tr("Close"), this);
     close_button->setAutoDefault(true);
     connect(close_button, SIGNAL(pressed()), this, SLOT(close()));
 
     QLabel *application_icon = new QLabel(this);
-    application_icon->setPixmap(QPixmap(QString("%1/../share/icons/hicolor/128x128/apps/eu.scarpetta.PDFMixTool.png").arg(qApp->applicationDirPath())));
+    application_icon->setPixmap(QPixmap(QString(ICON_PATH).arg
+                                        (qApp->applicationDirPath())));
     application_icon->setAlignment(Qt::AlignCenter);
 
     QLabel *application_name = new QLabel(
@@ -62,8 +64,10 @@ AboutDialog::AboutDialog(QWidget *parent) :
     QLabel *info_label = new QLabel();
     info_label->setWordWrap(true);
     info_label->setText(
-                QString("<p>%1</p>").arg(tr("An application to split, merge, rotate and mix PDF files.")) +
-                QString("<p><a href=\"https://scarpetta.eu/pdfmixtool/\">%1</a></p>").arg(tr("Website")) +
+                QString("<p>%1</p>").arg(tr("An application to split, merge, "
+                                            "rotate and mix PDF files.")) +
+                QString("<p><a href=\"https://scarpetta.eu/pdfmixtool/\">%1"
+                        "</a></p>").arg(tr("Website")) +
                 "<p><small>Copyright © 2017-2019 Marco Scarpetta</small></p>");
     info_label->setTextInteractionFlags(Qt::TextBrowserInteraction);
     info_label->setStyleSheet(style);
@@ -80,16 +84,17 @@ AboutDialog::AboutDialog(QWidget *parent) :
                                  qApp->applicationDirPath()));
     authors.open(QIODevice::ReadOnly | QIODevice::Text);
 
-    QFile translator_credits(QString("%1/../share/pdfmixtool/TRANSLATORS.md").arg(
-                                 qApp->applicationDirPath()));
+    QFile translator_credits(
+                QString("%1/../share/pdfmixtool/TRANSLATORS.md").arg(
+                    qApp->applicationDirPath()));
     translator_credits.open(QIODevice::ReadOnly | QIODevice::Text);
 
     QLabel *credits = new QLabel(this);
     credits->setText(
                 QString("<h2>%1</h2>").arg(tr("Authors")) +
-                QString::fromStdString(authors.readAll().toStdString()) +
+                QString::fromUtf8(authors.readAll()) +
                 QString("<h2>%1</h2>").arg(tr("Translators")) +
-                QString::fromStdString(translator_credits.readAll().toStdString())
+                QString::fromUtf8(translator_credits.readAll())
                 );
     credits->setTextInteractionFlags(Qt::TextBrowserInteraction);
     credits->setStyleSheet(style);
@@ -101,13 +106,19 @@ AboutDialog::AboutDialog(QWidget *parent) :
 
     // Dialog license tab
     QLabel *license = new QLabel();
-    license->setText("<p>PDF Mix Tool is free software: you can redistribute it and/or modify<br>"
-                     "it under the terms of the GNU General Public License as published by<br>"
-                     "the Free Software Foundation, either version 3 of the License, or<br>"
+    license->setText("<p>PDF Mix Tool is free software: you can redistribute "
+                     "it and/or modify<br>"
+                     "it under the terms of the GNU General Public License as "
+                     "published by<br>"
+                     "the Free Software Foundation, either version 3 of the "
+                     "License, or<br>"
                      "(at your option) any later version.</p>"
-                     "<p>PDF Mix Tool is distributed in the hope that it will be useful,<br>"
-                     "but WITHOUT ANY WARRANTY; without even the implied warranty of<br>"
-                     "MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the<br>"
+                     "<p>PDF Mix Tool is distributed in the hope that it will "
+                     "be useful,<br>"
+                     "but WITHOUT ANY WARRANTY; without even the implied "
+                     "warranty of<br>"
+                     "MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. "
+                     "See the<br>"
                      "<a href=\"https://www.gnu.org/licenses/gpl-3.0.en.html\">"
                      "GNU General Public License</a> for more details.</p>");
     license->setTextInteractionFlags(Qt::TextBrowserInteraction);
@@ -121,9 +132,12 @@ AboutDialog::AboutDialog(QWidget *parent) :
     QLabel *contribute = new QLabel();
     contribute->setText(
                 QString("<ul>"
-                        "<li><a href=\"https://gitlab.com/scarpetta/pdfmixtool/merge_requests\">%1</li>"
-                        "<li><a href=\"https://gitlab.com/scarpetta/pdfmixtool/issues\">%2</a></li>"
-                        "<li><a href=\"https://hosted.weblate.org/engage/pdf-mix-tool/\">%3</a></li>"
+                        "<li><a href=\"https://gitlab.com/scarpetta/pdfmixtool/"
+                        "merge_requests\">%1</li>"
+                        "<li><a href=\"https://gitlab.com/scarpetta/pdfmixtool/"
+                        "issues\">%2</a></li>"
+                        "<li><a href=\"https://hosted.weblate.org/engage/"
+                        "pdf-mix-tool/\">%3</a></li>"
                         "</ul>").arg(
                     tr("Submit a pull request"),
                     tr("Report a bug"),
@@ -140,11 +154,12 @@ AboutDialog::AboutDialog(QWidget *parent) :
     scroll_area = new QScrollArea();
     scroll_area->setBackgroundRole(QPalette::Light);
 
-    QFile file(QString("%1/../share/pdfmixtool/CHANGELOG.md").arg(qApp->applicationDirPath()));
+    QFile file(QString("%1/../share/pdfmixtool/CHANGELOG.md").arg(
+                   qApp->applicationDirPath()));
     file.open(QIODevice::ReadOnly | QIODevice::Text);
 
     QLabel *changelog = new QLabel(this);
-    changelog->setText(QString::fromStdString(file.readAll().toStdString()));
+    changelog->setText(QString::fromUtf8(file.readAll()));
     changelog->setTextInteractionFlags(Qt::TextSelectableByMouse);
     changelog->setStyleSheet(style);
 
@@ -157,6 +172,9 @@ AboutDialog::AboutDialog(QWidget *parent) :
 
     grid_layout->addWidget(tab_widget, 2, 1, 1, 4);
 
-    grid_layout->addItem(new QSpacerItem(0, 0, QSizePolicy::Expanding, QSizePolicy::Minimum), 3, 3);
+    grid_layout->addItem(new QSpacerItem(
+                             0, 0,
+                             QSizePolicy::Expanding, QSizePolicy::Minimum),
+                         3, 3);
     grid_layout->addWidget(close_button, 3, 4);
 }

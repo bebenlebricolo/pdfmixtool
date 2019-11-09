@@ -49,6 +49,11 @@ void InputPdfFileDelegate::paint(
     int rotation = index.data(ROTATION_ROLE).toInt();
     QString outline_entry = index.data(OUTLINE_ENTRY_ROLE).toString();
 
+    if (paper_size.size() > 0)
+        paper_size = QString("(%1 %2) ").arg(
+                    paper_size,
+                    is_portrait ? tr("portrait") : tr("landscape"));
+
     Multipage mp;
     if (mp_index < CUSTOM_MULTIPAGE_INDEX)
         mp = multipage_defaults[mp_index];
@@ -59,17 +64,19 @@ void InputPdfFileDelegate::paint(
 
     // Draw border
     QPen pen;
-    pen.setBrush(option.palette.mid());
+
     if (option.state & QStyle::State_MouseOver)
         pen.setBrush(option.palette.highlight());
+    else
+        pen.setBrush(option.palette.mid());
+
     painter->setPen(pen);
 
-    QRect border = option.rect;
-    border.setBottomRight(border.bottomRight() - QPoint(1, 1));
+    QRect border = option.rect - QMargins(0, 0, 1, 1);
     painter->drawRect(border);
 
     // Draw background
-    border.setTopLeft(border.topLeft() + QPoint(1, 1));
+    border -= QMargins(1, 1, 0, 0);
 
     if (option.state & QStyle::State_Selected)
     {
@@ -105,41 +112,26 @@ void InputPdfFileDelegate::paint(
     bold.setBold(true);
 
     // First row minimum width
-    QString file_infos = QString(" − %1 cm x %2 cm%3 − %5").arg(
+    QString file_info = QString(" − %1 cm \u00D7 %2 cm %3− %5").arg(
                 QString::number(page_width),
                 QString::number(page_height),
-                paper_size.size() > 0 ?
-                        QString(" (") + paper_size + " " +
-                        (is_portrait ? tr("portrait") : tr("landscape")) + ")" : " ",
+                paper_size,
                 tr("%n page(s)", "", n_pages)
                 );
 
-    int first_row = fm.boundingRect(file_infos).width();
+    int first_row = fm.boundingRect(file_info).width();
 
     QFileInfo fileinfo(file_path);
     QFontMetrics fmb(bold);
     first_row += fmb.boundingRect(fileinfo.fileName()).width();
 
-    int path_available_width = option.rect.width() - (x - option.rect.x() + first_row + 30);
-    QString path = QDir::separator();
-    QStringList path_split = fileinfo.absolutePath().split(QDir::separator());
-
-    int i = path_split.size() - 1;
-
-    while (i > -1)
-    {
-        if (fm.boundingRect(path_split.at(i) + path).width() > path_available_width)
-            break;
-
-        path.prepend(path_split.at(i));
-        if (i != 0)
-            path.prepend(QDir::separator());
-
-        i--;
-    }
-
-    if (i > -1)
-        path.prepend("…");
+    int path_available_width = option.rect.width() -
+            (x - option.rect.x() + first_row + 30);
+    QString path = fm.elidedText(fileinfo.absolutePath(),
+                                 Qt::ElideLeft,
+                                 path_available_width);
+    if (path.size() != 0)
+        path += QDir::separator();
 
     painter->drawText(x, y, path);
     x += fm.boundingRect(path).width();
@@ -149,7 +141,7 @@ void InputPdfFileDelegate::paint(
     x += fmb.boundingRect(fileinfo.fileName()).width();
 
     painter->setFont(font);
-    painter->drawText(x, y, file_infos);
+    painter->drawText(x, y, file_info);
 
     y += line_height;
     x = option.rect.x() + option.rect.height() + 10 + 30;
@@ -158,28 +150,12 @@ void InputPdfFileDelegate::paint(
         output_pages = tr("All");
 
     QString pages = tr("Pages:") + ' ' + output_pages;
-    QString multipage = tr("Multipage:") + " " + (
+    QString multipage = tr("Multipage:") + ' ' + (
                 mp_index > 0 ?
                     QString(" %1").arg(QString::fromStdString(mp.name)) :
                     tr("Disabled"));
-    QString rotation_text = tr("Rotation:") + ' ' + QString::number(rotation) + "°";
+    QString rotation_text = tr("Rotation:") + QString(" %1°").arg(rotation);
     QString outline_entry_text = tr("Outline entry:") + ' ' + outline_entry;
-
-    /*if (pdf_file->pages_filter_errors().size() > 0)
-    {
-        //painter->setPen(QPen(QColor(190, 20, 20), 2, Qt::DotLine));
-        QRect rect(x - 3, y - font_height + 3, fm.boundingRect(pages).width() + 6, font_height + 5);
-        painter->fillRect(rect, QColor(255,150,150));
-        painter->setPen(option.palette.text().color());
-        painter->drawRect(rect);
-    }
-    else if (pdf_file->pages_filter_warnings().size() > 0)
-    {
-        QRect rect(x - 3, y - font_height + 3, fm.boundingRect(pages).width() + 6, font_height + 5);
-        painter->fillRect(rect, QColor(255,255,150));
-        painter->setPen(option.palette.text().color());
-        painter->drawRect(rect);
-    }*/
 
     painter->drawText(x, y, pages);
     y += line_height;
@@ -188,7 +164,8 @@ void InputPdfFileDelegate::paint(
     painter->drawText(x, y, rotation_text);
 
     y = option.rect.y() + 2 * line_height;
-    x += std::max(fm.boundingRect(pages).width(), fm.boundingRect(rotation).width()) + 40;
+    x += std::max(fm.boundingRect(pages).width(),
+                  fm.boundingRect(rotation).width()) + 40;
     painter->drawText(x, y, multipage);
     y += line_height;
 
@@ -209,6 +186,11 @@ QSize InputPdfFileDelegate::sizeHint(
     QString output_pages = index.data(OUTPUT_PAGES_ROLE).toString();
     int mp_index = index.data(MULTIPAGE_ROLE).toInt();
     int rotation = index.data(ROTATION_ROLE).toInt();
+
+    if (paper_size.size() > 0)
+        paper_size = QString("(%1 %2) ").arg(
+                    paper_size,
+                    is_portrait ? tr("portrait") : tr("landscape"));
 
     Multipage mp;
     if (mp_index < CUSTOM_MULTIPAGE_INDEX)
@@ -231,27 +213,26 @@ QSize InputPdfFileDelegate::sizeHint(
         output_pages = tr("All");
 
     QString pages = tr("Pages:") + ' ' + output_pages;
-    QString multipage = tr("Multipage:") + " " + (
+    QString multipage = tr("Multipage:") + ' ' + (
                 mp_index > 0 ?
                     QString(" %1").arg(QString::fromStdString(mp.name)) :
                     tr("Disabled"));
-    QString rotation_text = tr("Rotation:") + ' ' + QString(rotation) + "°";
+    QString rotation_text = tr("Rotation:") + QString(" %1°").arg(rotation);
 
     int second_row = std::max(
                 fm.boundingRect(pages).width(),
-                fm.boundingRect(rotation).width()) + 40 + fm.boundingRect(multipage).width();
+                fm.boundingRect(rotation).width()) +
+            40 + fm.boundingRect(multipage).width();
 
     // First row minimum width
-    QString file_infos = QString(" − %1 cm x %2 cm%3 − %5").arg(
+    QString file_info = QString(" − %1 cm \u00D7 %2 cm %3− %5").arg(
                 QString::number(page_width),
                 QString::number(page_height),
-                paper_size.size() > 0 ?
-                        QString(" (") + paper_size + " " +
-                        (is_portrait ? tr("portrait") : tr("landscape")) + ")" : " ",
+                paper_size,
                 tr("%n page(s)", "", n_pages)
                 );
 
-    int first_row = fm.boundingRect(file_infos).width();
+    int first_row = fm.boundingRect(file_info).width();
 
     QFileInfo fileinfo(file_path);
     QFont font = option.font;
@@ -277,11 +258,13 @@ QWidget *InputPdfFileDelegate::createEditor(
                 parent);
     connect(m_mouse_event_filter, SIGNAL(mouse_button_pressed(QMouseEvent*)),
             editor, SLOT(mouse_button_pressed(QMouseEvent*)));
-    connect(editor, SIGNAL(focus_out(QWidget*)), this, SLOT(end_editing(QWidget*)));
+    connect(editor, SIGNAL(focus_out(QWidget*)),
+            this, SLOT(end_editing(QWidget*)));
     return editor;
 }
 
-void InputPdfFileDelegate::setEditorData(QWidget *editor, const QModelIndex &index) const
+void InputPdfFileDelegate::setEditorData(QWidget *editor,
+                                         const QModelIndex &index) const
 {
     InputPdfFileWidget *w = static_cast<InputPdfFileWidget *>(editor);
     w->set_editor_data(index);

@@ -21,7 +21,7 @@
 #include <QGridLayout>
 #include <QLabel>
 #include <QPushButton>
-#include <math.h>
+#include <cmath>
 
 EditMultipageProfileDialog::EditMultipageProfileDialog(QWidget *parent) :
     QDialog(parent)
@@ -102,7 +102,8 @@ EditMultipageProfileDialog::EditMultipageProfileDialog(QWidget *parent) :
     separator->setLineWidth(1);
     layout->addWidget(separator, row++, 1, 1, 4);
 
-    layout->addWidget(new QLabel(tr("Output page size"), this), row++, 1, 1, 4, Qt::AlignCenter);
+    layout->addWidget(new QLabel(tr("Output page size"), this),
+                      row++, 1, 1, 4, Qt::AlignCenter);
 
     layout->addWidget(new QLabel(tr("Standard size:"), this), row, 1);
     layout->addWidget(&m_page_size, row++, 2);
@@ -121,7 +122,8 @@ EditMultipageProfileDialog::EditMultipageProfileDialog(QWidget *parent) :
     separator->setLineWidth(1);
     layout->addWidget(separator, row++, 1, 1, 4);
 
-    layout->addWidget(new QLabel(tr("Pages layout"), this), row++, 1, 1, 4, Qt::AlignCenter);
+    layout->addWidget(new QLabel(tr("Pages layout"), this),
+                      row++, 1, 1, 4, Qt::AlignCenter);
 
     layout->addWidget(new QLabel(tr("Rows:"), this), row, 1);
     layout->addWidget(&m_rows, row, 2);
@@ -140,7 +142,8 @@ EditMultipageProfileDialog::EditMultipageProfileDialog(QWidget *parent) :
     separator->setLineWidth(1);
     layout->addWidget(separator, row++, 1, 1, 4);
 
-    layout->addWidget(new QLabel(tr("Pages alignment"), this), row++, 1, 1, 4, Qt::AlignCenter);
+    layout->addWidget(new QLabel(tr("Pages alignment"), this),
+                      row++, 1, 1, 4, Qt::AlignCenter);
 
     layout->addWidget(new QLabel(tr("Horizontal:"), this), row, 1);
     layout->addWidget(&m_h_alignment, row, 2);
@@ -153,7 +156,8 @@ EditMultipageProfileDialog::EditMultipageProfileDialog(QWidget *parent) :
     separator->setLineWidth(1);
     layout->addWidget(separator, row++, 1, 1, 4);
 
-    layout->addWidget(new QLabel(tr("Margins"), this), row++, 1, 1, 4, Qt::AlignCenter);
+    layout->addWidget(new QLabel(tr("Margins"), this),
+                      row++, 1, 1, 4, Qt::AlignCenter);
 
     layout->addWidget(new QLabel(tr("Left") + ":", this), row, 1);
     layout->addWidget(&m_margin_left, row, 2);
@@ -175,10 +179,14 @@ EditMultipageProfileDialog::EditMultipageProfileDialog(QWidget *parent) :
 
     connect(save_button, SIGNAL(pressed()), this, SLOT(accept()));
     connect(cancel_button, SIGNAL(pressed()), this, SLOT(close()));
-    connect(&m_custom_page_size, SIGNAL(toggled(bool)), this, SLOT(custom_page_size_toggled(bool)));
-    connect(&m_page_size, SIGNAL(currentIndexChanged(int)), this, SLOT(page_size_changed(int)));
-    connect(&m_page_width, SIGNAL(valueChanged(double)), this, SLOT(page_width_changed(double)));
-    connect(&m_page_height, SIGNAL(valueChanged(double)), this, SLOT(page_height_changed(double)));
+    connect(&m_custom_page_size, SIGNAL(toggled(bool)),
+            this, SLOT(custom_page_size_toggled(bool)));
+    connect(&m_page_size, SIGNAL(currentIndexChanged(int)),
+            this, SLOT(page_size_changed(int)));
+    connect(&m_page_width, SIGNAL(valueChanged(double)),
+            this, SLOT(page_width_changed(double)));
+    connect(&m_page_height, SIGNAL(valueChanged(double)),
+            this, SLOT(page_height_changed(double)));
 }
 
 void EditMultipageProfileDialog::set_multipage(const Multipage &multipage)
@@ -189,8 +197,10 @@ void EditMultipageProfileDialog::set_multipage(const Multipage &multipage)
     bool custom_size = true;
     for (const PaperSize &size : paper_sizes)
     {
-        if ((int)(std::round(multipage.page_width * 10)) == (int)(std::round(size.width * 10))
-                && (int)(std::round(multipage.page_height * 10)) == (int)(std::round(size.height * 10)))
+        if (std::lround(multipage.page_width * 10) ==
+                std::lround(size.width * 10)
+                && std::lround(multipage.page_height * 10) ==
+                std::lround(size.height * 10))
         {
             m_page_size.setCurrentIndex(i);
             custom_size = false;
@@ -209,8 +219,10 @@ void EditMultipageProfileDialog::set_multipage(const Multipage &multipage)
     m_columns.setValue(multipage.columns);
     m_rotation.setCurrentIndex(m_rotation.findData(multipage.rotation));
     m_spacing.setValue(multipage.spacing);
-    m_h_alignment.setCurrentIndex(m_h_alignment.findData(multipage.h_alignment));
-    m_v_alignment.setCurrentIndex(m_v_alignment.findData(multipage.v_alignment));
+    m_h_alignment.setCurrentIndex(
+                m_h_alignment.findData(multipage.h_alignment));
+    m_v_alignment.setCurrentIndex(
+                m_v_alignment.findData(multipage.v_alignment));
     m_margin_left.setValue(multipage.margin_left);
     m_margin_right.setValue(multipage.margin_right);
     m_margin_top.setValue(multipage.margin_top);

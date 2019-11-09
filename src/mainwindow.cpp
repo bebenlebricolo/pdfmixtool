@@ -37,7 +37,6 @@
 #include "pdf_edit_lib/pdf_writer.h"
 
 #define TOOLTIP_STRING "%1 <br /><b>%2<?b>"
-#define ICON "%1/../share/icons/hicolor/48x48/apps/eu.scarpetta.PDFMixTool.png"
 
 QDataStream &operator<<(QDataStream &out, const Multipage &multipage)
 {
@@ -119,7 +118,8 @@ MainWindow::MainWindow(MouseEventFilter *filter, QWidget *parent) :
     m_edit_menu(new QMenu(this))
 {
     // Main winow properties
-    this->setWindowIcon(QIcon(QString(ICON).arg(qApp->applicationDirPath())));
+    this->setWindowIcon(QIcon(QString(ICON_PATH).arg(
+                                  qApp->applicationDirPath())));
     this->setWindowTitle(qApp->applicationDisplayName());
     this->restoreGeometry(
                 m_settings->value("main_window_geometry").toByteArray()

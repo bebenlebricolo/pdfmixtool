@@ -256,6 +256,7 @@
         <source>%n page(s)</source>
         <translation>
             <numerusform>%n sayfa</numerusform>
+            <numerusform>%n sayfa</numerusform>
         </translation>
     </message>
     <message>

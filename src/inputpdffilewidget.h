@@ -53,6 +53,7 @@ void draw_preview(QPainter *painter,
                   double source_width,
                   double source_height,
                   int rotation,
+                  bool multipage_enabled,
                   const Multipage &multipage);
 
 class InputPdfFileWidget : public QWidget
@@ -79,7 +80,7 @@ public slots:
 private:
     double m_page_width;
     double m_page_height;
-    const QMap<int, Multipage> &m_custom_multipages;
+    const QMap<int, Multipage> &m_multipages;
     int m_preview_size;
     QLabel *m_preview_label;
     QLineEdit *m_pages_filter_lineedit;

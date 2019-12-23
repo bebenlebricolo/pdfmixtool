@@ -30,7 +30,7 @@ EditPdfEntryDialog::EditPdfEntryDialog(
         const QModelIndexList &indexes,
         QWidget *parent) :
     QDialog(parent),
-    m_custom_multipages(custom_multipages),
+    m_multipages(custom_multipages),
     m_model(model),
     m_indexes(indexes)
 {
@@ -42,19 +42,10 @@ EditPdfEntryDialog::EditPdfEntryDialog(
     m_rotation_combobox.addItem("180°", 180);
     m_rotation_combobox.addItem("270°", 270);
 
-    m_multipage_combobox.addItem(tr("Disabled"), 0);
-    int i = 0;
-    for (const Multipage &multipage : multipage_defaults)
-    {
-        if (i != 0)
-            m_multipage_combobox.addItem(
-                        QString::fromStdString(multipage.name),
-                        i);
-        i++;
-    }
+    m_multipage_combobox.addItem(tr("Disabled"), -1);
     QMap<int, Multipage>::const_iterator it;
-    for (it = m_custom_multipages.constBegin();
-         it != m_custom_multipages.constEnd();
+    for (it = m_multipages.constBegin();
+         it != m_multipages.constEnd();
          ++it)
         m_multipage_combobox.addItem(
                     QString::fromStdString(it.value().name),

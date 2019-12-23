@@ -232,7 +232,6 @@ void EditMultipageProfileDialog::set_multipage(const Multipage &multipage)
 Multipage EditMultipageProfileDialog::get_multipage()
 {
     return {
-        true,
         m_name.text().toStdString(),
         m_page_width.value(), m_page_height.value(),
         m_rows.value(), m_columns.value(),

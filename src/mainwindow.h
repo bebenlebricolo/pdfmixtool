@@ -81,7 +81,7 @@ private:
 
     QMenu *m_edit_menu;
 
-    QMap<int, Multipage> m_custom_multipages;
+    QMap<int, Multipage> m_multipages;
 };
 
 #endif // MAINWINDOW_H

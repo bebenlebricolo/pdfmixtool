@@ -40,9 +40,7 @@
 
 QDataStream &operator<<(QDataStream &out, const Multipage &multipage)
 {
-    out << false; // new format
-
-    out << 1; // version
+    out << 0; // version
 
     out << multipage.name.c_str();
 
@@ -69,14 +67,8 @@ QDataStream &operator<<(QDataStream &out, const Multipage &multipage)
 
 QDataStream &operator>>(QDataStream &in, Multipage &multipage)
 {
-    multipage.enabled = true;
-
-    bool old_format;
-    in >> old_format;
-
-    int version = 0;
-    if (!old_format)
-        in >> version;
+    int version;
+    in >> version;
 
     char *name;
     in >> name;
@@ -125,18 +117,34 @@ MainWindow::MainWindow(MouseEventFilter *filter, QWidget *parent) :
                 m_settings->value("main_window_geometry").toByteArray()
                 );
 
+    // Delete profiles of old versions
+    m_settings->beginGroup("custom_maltipage_profiles");
+    m_settings->remove("");
+    m_settings->endGroup();
+
     // Load custom multipage profiles
     qRegisterMetaTypeStreamOperators<Multipage>("Multipage");
-    m_settings->beginGroup("custom_maltipage_profiles");
+    m_settings->beginGroup("maltipage_profiles");
     for (QString key : m_settings->childKeys())
-         m_custom_multipages[key.toInt()] =
+         m_multipages[key.toInt()] =
                  m_settings->value(key).value<Multipage>();
     m_settings->endGroup();
+
+    if (m_multipages.size() == 0)
+    {
+        int i = 0;
+        for (const Multipage &mp : multipage_defaults)
+        {
+            m_multipages[i] = mp;
+            i++;
+        }
+
+    }
 
     // Create other windows
     MultipageProfilesManager *multipage_profiles_manager =
             new MultipageProfilesManager(
-                &m_custom_multipages,
+                &m_multipages,
                 m_settings,
                 this);
     AboutDialog *about_dialog = new AboutDialog(new AboutDialog(this));
@@ -148,7 +156,7 @@ MainWindow::MainWindow(MouseEventFilter *filter, QWidget *parent) :
     InputPdfFileDelegate *pdfinputfile_delegate =
             new InputPdfFileDelegate(
                 filter,
-                m_custom_multipages,
+                m_multipages,
                 this);
 
     // Set files list settings
@@ -295,6 +303,9 @@ MainWindow::MainWindow(MouseEventFilter *filter, QWidget *parent) :
     connect(pdfinputfile_delegate, SIGNAL(data_edit()),
             this, SLOT(update_output_pages_count()));
 
+    connect(multipage_profiles_manager, SIGNAL(close_signal()),
+            this, SLOT(update_output_pages_count()));
+
     connect(generate_pdf_button, SIGNAL(released()),
             this, SLOT(generate_pdf_button_pressed()));
 
@@ -328,7 +339,7 @@ void MainWindow::add_pdf_files()
         item->setData(pdf_info.n_pages(), N_PAGES_ROLE);
 
         item->setData("", OUTPUT_PAGES_ROLE);
-        item->setData(0, MULTIPAGE_ROLE);
+        item->setData(-1, MULTIPAGE_ROLE);
         item->setData(0, ROTATION_ROLE);
         item->setData(filename, OUTLINE_ENTRY_ROLE);
 
@@ -432,7 +443,7 @@ void MainWindow::edit_menu_activated()
         m_files_list_view->edit(indexes.first());
     else
     {
-        EditPdfEntryDialog dialog(m_custom_multipages,
+        EditPdfEntryDialog dialog(m_multipages,
                                   m_files_list_model,
                                   indexes);
         dialog.exec();
@@ -488,19 +499,19 @@ void MainWindow::update_output_pages_count()
             int mp_index = item->data(MULTIPAGE_ROLE).toInt();
             if (mp_index > 0)
             {
-                Multipage mp;
-
-                if (mp_index < CUSTOM_MULTIPAGE_INDEX)
-                    mp = multipage_defaults[mp_index];
+                if (m_multipages.find(mp_index) == m_multipages.end())
+                    item->setData(-1, MULTIPAGE_ROLE);
                 else
-                    mp = m_custom_multipages[mp_index];
+                {
+                    Multipage mp = m_multipages[mp_index];
 
-                int subpages = mp.rows * mp.columns;
+                    int subpages = mp.rows * mp.columns;
 
-                if (output_pages_count % subpages > 0)
-                    output_pages_count = output_pages_count / subpages + 1;
-                else
-                    output_pages_count = output_pages_count / subpages;
+                    if (output_pages_count % subpages > 0)
+                        output_pages_count = output_pages_count / subpages + 1;
+                    else
+                        output_pages_count = output_pages_count / subpages;
+                }
             }
         }
         else if (!output_pages_errors)
@@ -585,12 +596,12 @@ void MainWindow::generate_pdf_button_pressed()
             FileConf fileconf;
             fileconf.path = file_path.toStdString();
             fileconf.ouput_pages = output_pages.toStdString();
-            if (mp_index > 0)
+            if (mp_index < 0)
+                fileconf.multipage_enabled = false;
+            else
             {
-                if (mp_index < CUSTOM_MULTIPAGE_INDEX)
-                    fileconf.multipage = &multipage_defaults[mp_index];
-                else
-                    fileconf.multipage = &m_custom_multipages[mp_index];
+                fileconf.multipage_enabled = true;
+                fileconf.multipage = &m_multipages[mp_index];
             }
             fileconf.rotation = rotation;
             fileconf.outline_entry = outline_entry.toStdString();
@@ -618,15 +629,15 @@ void MainWindow::closeEvent(QCloseEvent *event)
     m_settings->setValue("main_window_geometry", this->saveGeometry());
 
     // Save custom multipage profiles
-    m_settings->beginGroup("custom_maltipage_profiles");
+    m_settings->beginGroup("maltipage_profiles");
 
     for (QString key : m_settings->childKeys())
          m_settings->remove(key);
 
     QMap<int, Multipage>::const_iterator it;
     for (
-         it = m_custom_multipages.constBegin();
-         it != m_custom_multipages.constEnd();
+         it = m_multipages.constBegin();
+         it != m_multipages.constEnd();
          ++it)
         m_settings->setValue(
                     QString::number(it.key()),

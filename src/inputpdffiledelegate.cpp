@@ -28,7 +28,7 @@ InputPdfFileDelegate::InputPdfFileDelegate(
         QWidget *parent) :
     QStyledItemDelegate(parent),
     m_mouse_event_filter(filter),
-    m_custom_multipages(custom_multipages)
+    m_multipages(custom_multipages)
 {
 
 }
@@ -54,11 +54,15 @@ void InputPdfFileDelegate::paint(
                     paper_size,
                     is_portrait ? tr("portrait") : tr("landscape"));
 
+    bool mp_enabled;
     Multipage mp;
-    if (mp_index < CUSTOM_MULTIPAGE_INDEX)
-        mp = multipage_defaults[mp_index];
+    if (mp_index < 0)
+        mp_enabled = false;
     else
-        mp = m_custom_multipages[mp_index];
+    {
+        mp_enabled = true;
+        mp = m_multipages[mp_index];
+    }
 
     QColor text_color = option.palette.text().color();
 
@@ -93,7 +97,8 @@ void InputPdfFileDelegate::paint(
                        option.rect.height() - 4,
                        option.rect.height() - 4),
                  page_width, page_height,
-                 rotation, mp);
+                 rotation,
+                 mp_enabled, mp);
 
     // Draw text
     QFontMetrics fm = painter->fontMetrics();
@@ -193,10 +198,8 @@ QSize InputPdfFileDelegate::sizeHint(
                     is_portrait ? tr("portrait") : tr("landscape"));
 
     Multipage mp;
-    if (mp_index < CUSTOM_MULTIPAGE_INDEX)
-        mp = multipage_defaults[mp_index];
-    else
-        mp = m_custom_multipages[mp_index];
+    if (mp_index >= 0)
+        mp = m_multipages[mp_index];
 
     QFontMetrics fm = option.fontMetrics;
 
@@ -253,7 +256,7 @@ QWidget *InputPdfFileDelegate::createEditor(
 {
     InputPdfFileWidget *editor = new InputPdfFileWidget(
                 index,
-                m_custom_multipages,
+                m_multipages,
                 option.rect.height(),
                 parent);
     connect(m_mouse_event_filter, SIGNAL(mouse_button_pressed(QMouseEvent*)),

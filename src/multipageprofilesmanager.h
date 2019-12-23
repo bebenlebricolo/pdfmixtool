@@ -49,12 +49,15 @@ public slots:
 
     void closeEvent(QCloseEvent *event);
 
+signals:
+    void close_signal();
+
 private:
     bool profile_name_exists(const QString &name);
 
     EditMultipageProfileDialog *m_edit_dialog;
 
-    QMap<int, Multipage> *m_custom_multipages;
+    QMap<int, Multipage> *m_multipages;
     QSettings *m_settings;
 
     QPushButton *m_new_profile_button;

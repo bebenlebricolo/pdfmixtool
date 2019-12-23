@@ -86,7 +86,8 @@ double draw_preview_page(QPainter *painter,
 
 void draw_preview(QPainter *painter, const QRect &rect,
                   double source_width, double source_height,
-                  int rotation, const Multipage &multipage)
+                  int rotation,
+                  bool multipage_enabled, const Multipage &multipage)
 {
     painter->save();
 
@@ -97,7 +98,7 @@ void draw_preview(QPainter *painter, const QRect &rect,
                        rect.y() + rect.height() / 2);
     painter->rotate(rotation);
 
-    if (! multipage.enabled)
+    if (!multipage_enabled)
         draw_preview_page(painter, rect.width() - 4, rect.height() - 4,
                           source_width, source_height,
                           Multipage::Center, Multipage::Center,
@@ -184,7 +185,7 @@ InputPdfFileWidget::InputPdfFileWidget(
         int preview_size,
         QWidget *parent) :
     QWidget(parent),
-    m_custom_multipages(custom_multipages),
+    m_multipages(custom_multipages),
     m_preview_size(preview_size),
     m_preview_label(new QLabel(this)),
     m_pages_filter_lineedit(new QLineEdit(this)),
@@ -204,20 +205,10 @@ InputPdfFileWidget::InputPdfFileWidget(
     m_pages_filter_lineedit->setClearButtonEnabled(true);
     m_outline_entry_lineedit->setClearButtonEnabled(true);
 
-    m_multipage_combobox->addItem(tr("Disabled"), 0);
-    int i = 0;
-    for (const Multipage &multipage : multipage_defaults)
-    {
-        if (i != 0)
-            m_multipage_combobox->addItem(
-                        QString::fromStdString(multipage.name),
-                        i);
-        i++;
-    }
-
+    m_multipage_combobox->addItem(tr("Disabled"), -1);
     QMap<int, Multipage>::const_iterator it;
-    for (it = m_custom_multipages.constBegin();
-         it != m_custom_multipages.constEnd();
+    for (it = m_multipages.constBegin();
+         it != m_multipages.constEnd();
          ++it)
         m_multipage_combobox->addItem(
                     QString::fromStdString(it.value().name),
@@ -254,7 +245,8 @@ InputPdfFileWidget::InputPdfFileWidget(
 void InputPdfFileWidget::set_editor_data(const QModelIndex &index)
 {
     m_pages_filter_lineedit->setText(index.data(OUTPUT_PAGES_ROLE).toString());
-    m_multipage_combobox->setCurrentIndex(index.data(MULTIPAGE_ROLE).toInt());
+    m_multipage_combobox->setCurrentIndex(
+            m_multipage_combobox->findData(index.data(MULTIPAGE_ROLE).toInt()));
     m_rotation_combobox->setCurrentIndex(
             m_rotation_combobox->findData(index.data(ROTATION_ROLE).toInt()));
     m_outline_entry_lineedit->setText(
@@ -303,16 +295,24 @@ void InputPdfFileWidget::update_preview()
                    m_preview_size - layout()->contentsMargins().top() * 2);
     QPainter painter(&pixmap);
 
+    bool ok;
+    int mp_index = m_multipage_combobox->currentData().toInt(&ok);
+    if (!ok)
+        mp_index = -1;
+    bool mp_enabled;
     Multipage mp;
-    if (m_multipage_combobox->currentData().toInt() < CUSTOM_MULTIPAGE_INDEX)
-        mp = multipage_defaults[m_multipage_combobox->currentData().toInt()];
+    if (mp_index < 0)
+        mp_enabled = false;
     else
-        mp = m_custom_multipages[m_multipage_combobox->currentData().toInt()];
+    {
+        mp_enabled = true;
+        mp = m_multipages[mp_index];
+    }
 
     draw_preview(&painter, pixmap.rect(),
                  m_page_width, m_page_height,
                  m_rotation_combobox->currentData().toInt(),
-                 mp);
+                 mp_enabled, mp);
 
 
     m_preview_label->setPixmap(pixmap);

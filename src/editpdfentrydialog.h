@@ -38,7 +38,7 @@ private slots:
     void accepted();
 
 private:
-    const QMap<int, Multipage> &m_custom_multipages;
+    const QMap<int, Multipage> &m_multipages;
     QStandardItemModel *m_model;
     const QModelIndexList &m_indexes;
     QComboBox m_multipage_combobox;

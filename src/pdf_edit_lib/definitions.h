@@ -59,8 +59,6 @@ struct Multipage {
         Center
     };
 
-    bool enabled;
-
     std::string name;
 
     double  page_width;
@@ -84,15 +82,6 @@ struct Multipage {
 
 const Multipage multipage_defaults[] = {
     {
-        false,
-        "",
-        0, 0,
-        0, 0, 0,
-        Multipage::Center, Multipage::Center,
-        0, 0, 0, 0, 0
-    },
-    {
-        true,
         "2x1, A4, 0°",
         21.0, 29.7,
         2, 1, 0,
@@ -100,7 +89,6 @@ const Multipage multipage_defaults[] = {
         1, 1, 1, 1, 1
     },
     {
-        true,
         "2x1, A4, 90°",
         21.0, 29.7,
         2, 1, 90,
@@ -108,7 +96,6 @@ const Multipage multipage_defaults[] = {
         1, 1, 1, 1, 1
     },
     {
-        true,
         "2x2, A4, 0°",
         21.0, 29.7,
         2, 2, 0,
@@ -116,7 +103,6 @@ const Multipage multipage_defaults[] = {
         1, 1, 1, 1, 1
     },
     {
-        true,
         "2x2, A4, 90°",
         21.0, 29.7,
         2, 2, 90,
@@ -124,8 +110,6 @@ const Multipage multipage_defaults[] = {
         1, 1, 1, 1, 1
     }
 };
-
-#define CUSTOM_MULTIPAGE_INDEX 100
 
 struct FileConf {
     FileConf() :

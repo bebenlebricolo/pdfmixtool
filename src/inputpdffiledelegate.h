@@ -61,7 +61,7 @@ public slots:
 
 private:
     MouseEventFilter *m_mouse_event_filter;
-    const QMap<int, Multipage> &m_custom_multipages;
+    const QMap<int, Multipage> &m_multipages;
 };
 
 #endif // INPUTPDFFILEDELEGATE_H

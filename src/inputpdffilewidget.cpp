@@ -182,10 +182,12 @@ void draw_preview(QPainter *painter, const QRect &rect,
 InputPdfFileWidget::InputPdfFileWidget(
         const QModelIndex &index,
         const QMap<int, Multipage> &custom_multipages,
+        MultipageProfilesManager *mp_manager,
         int preview_size,
         QWidget *parent) :
     QWidget(parent),
     m_multipages(custom_multipages),
+    m_mp_manager(mp_manager),
     m_preview_size(preview_size),
     m_preview_label(new QLabel(this)),
     m_pages_filter_lineedit(new QLineEdit(this)),
@@ -213,6 +215,7 @@ InputPdfFileWidget::InputPdfFileWidget(
         m_multipage_combobox->addItem(
                     QString::fromStdString(it.value().name),
                     it.key());
+    m_multipage_combobox->addItem(tr("New custom profile…"), -2);
 
     m_rotation_combobox->addItem(tr("No rotation"), 0);
     m_rotation_combobox->addItem("90°", 90);
@@ -236,6 +239,8 @@ InputPdfFileWidget::InputPdfFileWidget(
 
     connect(m_multipage_combobox, SIGNAL(currentIndexChanged(int)),
             this, SLOT(update_preview()));
+    connect(m_multipage_combobox, SIGNAL(activated(int)),
+            this, SLOT(multipage_activated(int)));
     connect(m_rotation_combobox, SIGNAL(currentIndexChanged(int)),
             this, SLOT(update_preview()));
 
@@ -255,6 +260,7 @@ void InputPdfFileWidget::set_editor_data(const QModelIndex &index)
 
 void InputPdfFileWidget::set_model_data(QStandardItem *item)
 {
+    m_last_item = item;
     QString current_output_pages = m_pages_filter_lineedit->text();
     int current_mp_index = m_multipage_combobox->currentData().toInt();
     int current_rotation = m_rotation_combobox->currentData().toInt();
@@ -316,4 +322,27 @@ void InputPdfFileWidget::update_preview()
 
 
     m_preview_label->setPixmap(pixmap);
+}
+
+void InputPdfFileWidget::multipage_activated(int index)
+{
+    if (index == m_multipage_combobox->count() - 1)
+    {
+        m_multipage_combobox->setCurrentIndex(0);
+        connect(m_mp_manager,
+                &MultipageProfilesManager::profile_created,
+                this,
+                &InputPdfFileWidget::profile_created);
+        m_mp_manager->new_profile_button_pressed();
+    }
+}
+
+void InputPdfFileWidget::profile_created(int index)
+{
+    disconnect(m_mp_manager,
+               &MultipageProfilesManager::profile_created,
+               this,
+               &InputPdfFileWidget::profile_created);
+
+    m_last_item->setData(index, MULTIPAGE_ROLE);
 }

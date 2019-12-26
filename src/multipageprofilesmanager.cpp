@@ -208,6 +208,8 @@ void MultipageProfilesManager::edit_dialog_accepted()
             new QStandardItem(QString::fromStdString(multipage.name));
     item->setData(m_edit_dialog->get_index(), Qt::UserRole);
     m_profiles_model->appendRow(item);
+
+    emit profile_created(m_edit_dialog->get_index());
 }
 
 void MultipageProfilesManager::show()

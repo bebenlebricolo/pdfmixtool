@@ -29,7 +29,6 @@
 #include <QMessageBox>
 #include <QDesktopServices>
 
-#include "multipageprofilesmanager.h"
 #include "aboutdialog.h"
 #include "inputpdffiledelegate.h"
 #include "editpdfentrydialog.h"
@@ -157,6 +156,7 @@ MainWindow::MainWindow(MouseEventFilter *filter, QWidget *parent) :
             new InputPdfFileDelegate(
                 filter,
                 m_multipages,
+                multipage_profiles_manager,
                 this);
 
     // Set files list settings

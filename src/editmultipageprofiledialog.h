@@ -23,6 +23,7 @@
 #include <QLineEdit>
 #include <QComboBox>
 #include <QSpinBox>
+#include <QLabel>
 #include <QDoubleSpinBox>
 #include <QCheckBox>
 
@@ -54,8 +55,11 @@ private slots:
 private:
     int m_index;
     QLineEdit m_name;
+    QLabel m_page_size_label;
     QComboBox m_page_size;
     QCheckBox m_custom_page_size;
+    QLabel m_page_width_label;
+    QLabel m_page_height_label;
     QDoubleSpinBox m_page_width;
     QDoubleSpinBox m_page_height;
     QSpinBox m_rows;

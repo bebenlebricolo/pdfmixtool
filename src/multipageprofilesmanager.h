@@ -26,7 +26,6 @@
 #include <QPushButton>
 
 #include "editmultipageprofiledialog.h"
-#include "inputpdffilewidget.h"
 
 class MultipageProfilesManager : public QMainWindow
 {
@@ -51,6 +50,8 @@ public slots:
 
 signals:
     void close_signal();
+
+    void profile_created(int index);
 
 private:
     bool profile_name_exists(const QString &name);

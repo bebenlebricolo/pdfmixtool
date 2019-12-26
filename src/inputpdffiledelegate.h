@@ -33,6 +33,7 @@ class InputPdfFileDelegate : public QStyledItemDelegate
 public:
     InputPdfFileDelegate(MouseEventFilter *filter,
                          const QMap<int, Multipage> &custom_multipages,
+                         MultipageProfilesManager *mp_manager,
                          QWidget *parent);
 
     virtual void paint(QPainter *painter,
@@ -62,6 +63,7 @@ public slots:
 private:
     MouseEventFilter *m_mouse_event_filter;
     const QMap<int, Multipage> &m_multipages;
+    MultipageProfilesManager *m_mp_manager;
 };
 
 #endif // INPUTPDFFILEDELEGATE_H

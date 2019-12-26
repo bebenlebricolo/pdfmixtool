@@ -36,6 +36,10 @@ EditMultipageProfileDialog::EditMultipageProfileDialog(QWidget *parent) :
         i++;
     }
 
+    m_page_size_label.setText("Standard size:");
+    m_page_width_label.setText("Width:");
+    m_page_height_label.setText("Height:");
+
     m_page_width.setSuffix(" cm");
     m_page_width.setDecimals(1);
     m_page_width.setSingleStep(0.1);
@@ -105,16 +109,16 @@ EditMultipageProfileDialog::EditMultipageProfileDialog(QWidget *parent) :
     layout->addWidget(new QLabel(tr("Output page size"), this),
                       row++, 1, 1, 4, Qt::AlignCenter);
 
-    layout->addWidget(new QLabel(tr("Standard size:"), this), row, 1);
+    layout->addWidget(&m_page_size_label, row, 1);
     layout->addWidget(&m_page_size, row++, 2);
 
     layout->addWidget(new QLabel(tr("Custom size:"), this), row, 2);
     layout->addWidget(&m_custom_page_size, row++, 3);
 
-    layout->addWidget(new QLabel(tr("Width:"), this), row, 1);
+    layout->addWidget(&m_page_width_label, row, 1);
     layout->addWidget(&m_page_width, row, 2);
 
-    layout->addWidget(new QLabel(tr("Height:"), this), row, 3);
+    layout->addWidget(&m_page_height_label, row, 3);
     layout->addWidget(&m_page_height, row++, 4);
 
     separator = new QFrame(this);
@@ -258,14 +262,20 @@ void EditMultipageProfileDialog::custom_page_size_toggled(bool toggled)
 {
     if (toggled)
     {
+        m_page_size_label.setDisabled(true);
         m_page_size.setDisabled(true);
+        m_page_width_label.setDisabled(false);
+        m_page_height_label.setDisabled(false);
         m_page_width.setDisabled(false);
         m_page_height.setDisabled(false);
     }
     else
     {
         this->page_size_changed(m_page_size.currentIndex());
+        m_page_size_label.setDisabled(false);
         m_page_size.setDisabled(false);
+        m_page_width_label.setDisabled(true);
+        m_page_height_label.setDisabled(true);
         m_page_width.setDisabled(true);
         m_page_height.setDisabled(true);
     }

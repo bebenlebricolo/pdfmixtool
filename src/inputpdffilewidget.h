@@ -26,6 +26,7 @@
 #include <QStandardItem>
 
 #include "pdf_edit_lib/definitions.h"
+#include "multipageprofilesmanager.h"
 
 #define FILE_PATH_ROLE Qt::UserRole + 1 // QString
 #define PAGE_WIDTH_ROLE Qt::UserRole + 2 // int
@@ -62,6 +63,7 @@ class InputPdfFileWidget : public QWidget
 public:
     explicit InputPdfFileWidget(const QModelIndex &index,
                                 const QMap<int, Multipage> &custom_multipages,
+                                MultipageProfilesManager *mp_manager,
                                 int preview_size,
                                 QWidget *parent = nullptr);
 
@@ -77,10 +79,16 @@ public slots:
 
     void update_preview();
 
+    void multipage_activated(int index);
+
+    void profile_created(int index);
+
 private:
     double m_page_width;
     double m_page_height;
     const QMap<int, Multipage> &m_multipages;
+    MultipageProfilesManager *m_mp_manager;
+    QStandardItem *m_last_item;
     int m_preview_size;
     QLabel *m_preview_label;
     QLineEdit *m_pages_filter_lineedit;

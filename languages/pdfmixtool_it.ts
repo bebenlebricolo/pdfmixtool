@@ -87,107 +87,92 @@
         <translation>Modifica il profilo multipagina</translation>
     </message>
     <message>
-        <location filename="../src/editmultipageprofiledialog.cpp" line="60"/>
-        <location filename="../src/editmultipageprofiledialog.cpp" line="162"/>
+        <location filename="../src/editmultipageprofiledialog.cpp" line="64"/>
+        <location filename="../src/editmultipageprofiledialog.cpp" line="166"/>
         <source>Left</source>
         <translation>Sinistra</translation>
     </message>
     <message>
-        <location filename="../src/editmultipageprofiledialog.cpp" line="61"/>
         <location filename="../src/editmultipageprofiledialog.cpp" line="65"/>
+        <location filename="../src/editmultipageprofiledialog.cpp" line="69"/>
         <source>Center</source>
         <translation>Centro</translation>
     </message>
     <message>
-        <location filename="../src/editmultipageprofiledialog.cpp" line="62"/>
-        <location filename="../src/editmultipageprofiledialog.cpp" line="164"/>
+        <location filename="../src/editmultipageprofiledialog.cpp" line="66"/>
+        <location filename="../src/editmultipageprofiledialog.cpp" line="168"/>
         <source>Right</source>
         <translation>Destra</translation>
     </message>
     <message>
-        <location filename="../src/editmultipageprofiledialog.cpp" line="64"/>
-        <location filename="../src/editmultipageprofiledialog.cpp" line="166"/>
+        <location filename="../src/editmultipageprofiledialog.cpp" line="68"/>
+        <location filename="../src/editmultipageprofiledialog.cpp" line="170"/>
         <source>Top</source>
         <translation>Superiore</translation>
     </message>
     <message>
-        <location filename="../src/editmultipageprofiledialog.cpp" line="66"/>
-        <location filename="../src/editmultipageprofiledialog.cpp" line="168"/>
+        <location filename="../src/editmultipageprofiledialog.cpp" line="70"/>
+        <location filename="../src/editmultipageprofiledialog.cpp" line="172"/>
         <source>Bottom</source>
         <translation>Inferiore</translation>
     </message>
     <message>
-        <location filename="../src/editmultipageprofiledialog.cpp" line="97"/>
+        <location filename="../src/editmultipageprofiledialog.cpp" line="101"/>
         <source>Name:</source>
         <translation>Nome:</translation>
     </message>
     <message>
-        <location filename="../src/editmultipageprofiledialog.cpp" line="105"/>
+        <location filename="../src/editmultipageprofiledialog.cpp" line="109"/>
         <source>Output page size</source>
         <translation>Dimensione della pagina in uscita</translation>
     </message>
     <message>
-        <location filename="../src/editmultipageprofiledialog.cpp" line="108"/>
-        <source>Standard size:</source>
-        <translation>Dimensione standard:</translation>
-    </message>
-    <message>
-        <location filename="../src/editmultipageprofiledialog.cpp" line="111"/>
+        <location filename="../src/editmultipageprofiledialog.cpp" line="115"/>
         <source>Custom size:</source>
         <translation>Dimensione personalizzata:</translation>
     </message>
     <message>
-        <location filename="../src/editmultipageprofiledialog.cpp" line="114"/>
-        <source>Width:</source>
-        <translation>Larghezza:</translation>
-    </message>
-    <message>
-        <location filename="../src/editmultipageprofiledialog.cpp" line="117"/>
-        <source>Height:</source>
-        <translation>Altezza:</translation>
-    </message>
-    <message>
-        <location filename="../src/editmultipageprofiledialog.cpp" line="125"/>
+        <location filename="../src/editmultipageprofiledialog.cpp" line="129"/>
         <source>Pages layout</source>
         <translation>Disposizione delle pagine</translation>
     </message>
     <message>
-        <location filename="../src/editmultipageprofiledialog.cpp" line="128"/>
+        <location filename="../src/editmultipageprofiledialog.cpp" line="132"/>
         <source>Rows:</source>
         <translation>Righe:</translation>
     </message>
     <message>
-        <location filename="../src/editmultipageprofiledialog.cpp" line="131"/>
+        <location filename="../src/editmultipageprofiledialog.cpp" line="135"/>
         <source>Columns:</source>
         <translation>Colonne:</translation>
     </message>
     <message>
-        <location filename="../src/editmultipageprofiledialog.cpp" line="134"/>
+        <location filename="../src/editmultipageprofiledialog.cpp" line="138"/>
         <source>Rotation:</source>
         <translation>Rotazione:</translation>
     </message>
     <message>
-        <location filename="../src/editmultipageprofiledialog.cpp" line="137"/>
+        <location filename="../src/editmultipageprofiledialog.cpp" line="141"/>
         <source>Spacing:</source>
         <translation>Spaziamento:</translation>
     </message>
     <message>
-        <location filename="../src/editmultipageprofiledialog.cpp" line="145"/>
+        <location filename="../src/editmultipageprofiledialog.cpp" line="149"/>
         <source>Pages alignment</source>
         <translation>Allineamento delle pagine</translation>
     </message>
     <message>
-        <location filename="../src/editmultipageprofiledialog.cpp" line="148"/>
+        <location filename="../src/editmultipageprofiledialog.cpp" line="152"/>
         <source>Horizontal:</source>
         <translation>Orizzontale:</translation>
     </message>
     <message>
-        <location filename="../src/editmultipageprofiledialog.cpp" line="151"/>
+        <location filename="../src/editmultipageprofiledialog.cpp" line="155"/>
         <source>Vertical:</source>
         <translation>Verticale:</translation>
     </message>
     <message>
-        <location filename="../src/editmultipageprofiledialog.cpp" line="159"/>
+        <location filename="../src/editmultipageprofiledialog.cpp" line="163"/>
         <source>Margins</source>
         <translation>Margini</translation>
     </message>
@@ -210,22 +195,22 @@
         <translation>Disabilitato</translation>
     </message>
     <message>
-        <location filename="../src/editpdfentrydialog.cpp" line="99"/>
+        <location filename="../src/editpdfentrydialog.cpp" line="90"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
     <message>
-        <location filename="../src/editpdfentrydialog.cpp" line="105"/>
+        <location filename="../src/editpdfentrydialog.cpp" line="96"/>
         <source>Cancel</source>
         <translation>Annulla</translation>
     </message>
     <message>
-        <location filename="../src/editpdfentrydialog.cpp" line="112"/>
+        <location filename="../src/editpdfentrydialog.cpp" line="103"/>
         <source>Multipage:</source>
         <translation>Multipagina:</translation>
     </message>
     <message>
-        <location filename="../src/editpdfentrydialog.cpp" line="114"/>
+        <location filename="../src/editpdfentrydialog.cpp" line="105"/>
         <source>Rotation:</source>
         <translation>Rotazione:</translation>
     </message>
@@ -233,26 +218,26 @@
 <context>
     <name>InputPdfFileDelegate</name>
     <message>
-        <location filename="../src/inputpdffiledelegate.cpp" line="55"/>
-        <location filename="../src/inputpdffiledelegate.cpp" line="193"/>
+        <location filename="../src/inputpdffiledelegate.cpp" line="57"/>
+        <location filename="../src/inputpdffiledelegate.cpp" line="200"/>
         <source>portrait</source>
         <translation>verticale</translation>
     </message>
     <message>
-        <location filename="../src/inputpdffiledelegate.cpp" line="55"/>
-        <location filename="../src/inputpdffiledelegate.cpp" line="193"/>
+        <location filename="../src/inputpdffiledelegate.cpp" line="57"/>
+        <location filename="../src/inputpdffiledelegate.cpp" line="200"/>
         <source>landscape</source>
         <translation>orizzontale</translation>
     </message>
     <message>
-        <location filename="../src/inputpdffiledelegate.cpp" line="150"/>
-        <location filename="../src/inputpdffiledelegate.cpp" line="213"/>
+        <location filename="../src/inputpdffiledelegate.cpp" line="157"/>
+        <location filename="../src/inputpdffiledelegate.cpp" line="218"/>
         <source>All</source>
         <translation>Tutte</translation>
     </message>
     <message numerus="yes">
-        <location filename="../src/inputpdffiledelegate.cpp" line="119"/>
-        <location filename="../src/inputpdffiledelegate.cpp" line="232"/>
+        <location filename="../src/inputpdffiledelegate.cpp" line="126"/>
+        <location filename="../src/inputpdffiledelegate.cpp" line="237"/>
         <source>%n page(s)</source>
         <translation>
             <numerusform>%n pagina</numerusform>
@@ -260,31 +245,31 @@
         </translation>
     </message>
     <message>
-        <location filename="../src/inputpdffiledelegate.cpp" line="152"/>
-        <location filename="../src/inputpdffiledelegate.cpp" line="215"/>
+        <location filename="../src/inputpdffiledelegate.cpp" line="159"/>
+        <location filename="../src/inputpdffiledelegate.cpp" line="220"/>
         <source>Pages:</source>
         <translation>Pagine:</translation>
     </message>
     <message>
-        <location filename="../src/inputpdffiledelegate.cpp" line="153"/>
-        <location filename="../src/inputpdffiledelegate.cpp" line="216"/>
+        <location filename="../src/inputpdffiledelegate.cpp" line="160"/>
+        <location filename="../src/inputpdffiledelegate.cpp" line="221"/>
         <source>Multipage:</source>
         <translation>Multipagina:</translation>
     </message>
     <message>
-        <location filename="../src/inputpdffiledelegate.cpp" line="156"/>
-        <location filename="../src/inputpdffiledelegate.cpp" line="219"/>
+        <location filename="../src/inputpdffiledelegate.cpp" line="163"/>
+        <location filename="../src/inputpdffiledelegate.cpp" line="224"/>
         <source>Disabled</source>
         <translation>Disabilitato</translation>
     </message>
     <message>
-        <location filename="../src/inputpdffiledelegate.cpp" line="157"/>
-        <location filename="../src/inputpdffiledelegate.cpp" line="220"/>
+        <location filename="../src/inputpdffiledelegate.cpp" line="164"/>
+        <location filename="../src/inputpdffiledelegate.cpp" line="225"/>
         <source>Rotation:</source>
         <translation>Rotazione:</translation>
     </message>
     <message>
-        <location filename="../src/inputpdffiledelegate.cpp" line="158"/>
+        <location filename="../src/inputpdffiledelegate.cpp" line="165"/>
         <source>Outline entry:</source>
         <translation>Voce nell&apos;indice:</translation>
     </message>
@@ -292,32 +277,37 @@
 <context>
     <name>InputPdfFileWidget</name>
     <message>
-        <location filename="../src/inputpdffilewidget.cpp" line="207"/>
+        <location filename="../src/inputpdffilewidget.cpp" line="210"/>
         <source>Disabled</source>
-        <translation>Disabilitato</translation>
+        <translation type="unfinished">Disabilitato</translation>
     </message>
     <message>
-        <location filename="../src/inputpdffilewidget.cpp" line="226"/>
+        <location filename="../src/inputpdffilewidget.cpp" line="218"/>
+        <source>New custom profile…</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/inputpdffilewidget.cpp" line="220"/>
         <source>No rotation</source>
         <translation>Non ruotare</translation>
     </message>
     <message>
-        <location filename="../src/inputpdffilewidget.cpp" line="232"/>
+        <location filename="../src/inputpdffilewidget.cpp" line="226"/>
         <source>Pages:</source>
         <translation>Pagine:</translation>
     </message>
     <message>
-        <location filename="../src/inputpdffilewidget.cpp" line="234"/>
+        <location filename="../src/inputpdffilewidget.cpp" line="228"/>
         <source>Multipage:</source>
         <translation>Multipagina:</translation>
     </message>
     <message>
-        <location filename="../src/inputpdffilewidget.cpp" line="236"/>
+        <location filename="../src/inputpdffilewidget.cpp" line="230"/>
         <source>Rotation:</source>
         <translation>Rotazione:</translation>
     </message>
     <message>
-        <location filename="../src/inputpdffilewidget.cpp" line="238"/>
+        <location filename="../src/inputpdffilewidget.cpp" line="232"/>
         <source>Outline entry:</source>
         <translation>Voce nell&apos;indice:</translation>
     </message>
@@ -325,100 +315,100 @@
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../src/mainwindow.cpp" line="181"/>
+        <location filename="../src/mainwindow.cpp" line="189"/>
         <source>Add PDF file</source>
         <translation>Aggiungi file PDF</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="186"/>
+        <location filename="../src/mainwindow.cpp" line="194"/>
         <source>Move up</source>
         <translation>Sposta su</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="196"/>
+        <location filename="../src/mainwindow.cpp" line="204"/>
         <source>Remove file</source>
         <translation>Rimuovi file</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="239"/>
+        <location filename="../src/mainwindow.cpp" line="247"/>
         <source>About</source>
         <translation>Informazioni</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="253"/>
-        <location filename="../src/mainwindow.cpp" line="256"/>
+        <location filename="../src/mainwindow.cpp" line="261"/>
+        <location filename="../src/mainwindow.cpp" line="264"/>
         <source>Generate PDF</source>
         <translation>Genera PDF</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="309"/>
+        <location filename="../src/mainwindow.cpp" line="320"/>
         <source>Select one or more PDF files to open</source>
         <translation>Seleziona uno o più file PDF da aprire</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="311"/>
-        <location filename="../src/mainwindow.cpp" line="563"/>
+        <location filename="../src/mainwindow.cpp" line="322"/>
+        <location filename="../src/mainwindow.cpp" line="574"/>
         <source>PDF files (*.pdf)</source>
         <translation>File PDF (*.pdf)</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="559"/>
+        <location filename="../src/mainwindow.cpp" line="570"/>
         <source>Save PDF file</source>
         <translation>Salva file PDF</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="518"/>
+        <location filename="../src/mainwindow.cpp" line="529"/>
         <source>Output pages: %1</source>
         <translation>Pagine in uscita: %1</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="527"/>
-        <location filename="../src/mainwindow.cpp" line="552"/>
+        <location filename="../src/mainwindow.cpp" line="538"/>
+        <location filename="../src/mainwindow.cpp" line="563"/>
         <source>PDF generation error</source>
         <translation>Errore nella generazione del file PDF</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="528"/>
+        <location filename="../src/mainwindow.cpp" line="539"/>
         <source>You must add at least one PDF file.</source>
         <translation>Devi aggiungere almeno un file PDF.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="170"/>
+        <location filename="../src/mainwindow.cpp" line="178"/>
         <source>Edit</source>
         <translation>Modifica</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="171"/>
+        <location filename="../src/mainwindow.cpp" line="179"/>
         <source>View</source>
         <translation>Visualizza</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="174"/>
+        <location filename="../src/mainwindow.cpp" line="182"/>
         <source>Main toolbar</source>
         <translation>Barra degli strumenti principale</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="191"/>
+        <location filename="../src/mainwindow.cpp" line="199"/>
         <source>Move down</source>
         <translation>Sposta giù</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="229"/>
+        <location filename="../src/mainwindow.cpp" line="237"/>
         <source>Menu</source>
         <translation>Menu</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="234"/>
+        <location filename="../src/mainwindow.cpp" line="242"/>
         <source>Multipage profiles…</source>
         <translation>Profili multipagina…</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="244"/>
+        <location filename="../src/mainwindow.cpp" line="252"/>
         <source>Exit</source>
         <translation>Esci</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="535"/>
+        <location filename="../src/mainwindow.cpp" line="546"/>
         <source>&lt;p&gt;Output pages of file &lt;b&gt;%1&lt;/b&gt; are badly formatted. Please make sure you complied with the following rules:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;intervals of pages must be written indicating the first page and the last page separated by a dash (e.g. &quot;1-5&quot;);&lt;/li&gt;&lt;li&gt;single pages and intervals of pages must be separated by spaces, commas or both (e.g. &quot;1, 2, 3, 5-10&quot; or &quot;1 2 3 5-10&quot;);&lt;/li&gt;&lt;li&gt;all pages and intervals of pages must be between 1 and the number of pages of the PDF file;&lt;/li&gt;&lt;li&gt;only numbers, spaces, commas and dashes can be used. All other characters are not allowed.&lt;/li&gt;&lt;/ul&gt;</source>
         <translation>&lt;p&gt;Le pagine di uscita del file &lt;b&gt;%1&lt;/b&gt; sono formattate in modo errato. Assicurati di aver rispettato le seguenti regole:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;gli intervalli di pagine devono essere scritti indicando la prima e l&apos;ultima pagina separate da un trattino (es. &quot;1-5&quot;);&lt;/li&gt;&lt;li&gt;le pagine singole e gli intervalli di pagine devono essere separati da spazi, virgole o entrambi (es. &quot;1, 2, 3, 5-10&quot; o &quot;1 2 3 5-10&quot;);&lt;/li&gt;&lt;li&gt;tutte le pagine e gli intervalli di pagine devono essere compresi tra 1 e il numero di pagine del file PDF;&lt;/li&gt;&lt;li&gt;possono essere usati solo numeri, spazi, virgole e trattini. Tutti gli altri caratteri non sono ammessi.&lt;/li&gt;&lt;/ul&gt;</translation>
     </message>
@@ -447,27 +437,25 @@
         <translation>Profilo personalizzato</translation>
     </message>
     <message>
-        <location filename="../src/multipageprofilesmanager.cpp" line="166"/>
-        <location filename="../src/multipageprofilesmanager.cpp" line="175"/>
-        <location filename="../src/multipageprofilesmanager.cpp" line="185"/>
-        <location filename="../src/multipageprofilesmanager.cpp" line="199"/>
+        <location filename="../src/multipageprofilesmanager.cpp" line="165"/>
+        <location filename="../src/multipageprofilesmanager.cpp" line="174"/>
+        <location filename="../src/multipageprofilesmanager.cpp" line="188"/>
         <source>Error</source>
         <translation>Errore</translation>
     </message>
     <message>
-        <location filename="../src/multipageprofilesmanager.cpp" line="167"/>
+        <location filename="../src/multipageprofilesmanager.cpp" line="166"/>
         <source>Profile name can not be empty.</source>
         <translation>Il nome del profilo non può essere vuoto.</translation>
     </message>
     <message>
-        <location filename="../src/multipageprofilesmanager.cpp" line="172"/>
+        <location filename="../src/multipageprofilesmanager.cpp" line="171"/>
         <source>Disabled</source>
         <translation>Disabilitato</translation>
     </message>
     <message>
-        <location filename="../src/multipageprofilesmanager.cpp" line="176"/>
-        <location filename="../src/multipageprofilesmanager.cpp" line="186"/>
-        <location filename="../src/multipageprofilesmanager.cpp" line="200"/>
+        <location filename="../src/multipageprofilesmanager.cpp" line="175"/>
+        <location filename="../src/multipageprofilesmanager.cpp" line="189"/>
         <source>Profile name already exists.</source>
         <translation>Il nome del profilo è già esistente.</translation>
     </message>

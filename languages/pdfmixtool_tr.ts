@@ -241,6 +241,7 @@
         <source>%n page(s)</source>
         <translation>
             <numerusform>%n sayfa</numerusform>
+            <numerusform>%n sayfa</numerusform>
         </translation>
     </message>
     <message>
@@ -278,12 +279,12 @@
     <message>
         <location filename="../src/inputpdffilewidget.cpp" line="210"/>
         <source>Disabled</source>
-        <translation type="unfinished">Devre dışı</translation>
+        <translation>Devre dışı</translation>
     </message>
     <message>
         <location filename="../src/inputpdffilewidget.cpp" line="218"/>
         <source>New custom profile…</source>
-        <translation type="unfinished"></translation>
+        <translation>Yeni özel profil…</translation>
     </message>
     <message>
         <location filename="../src/inputpdffilewidget.cpp" line="220"/>

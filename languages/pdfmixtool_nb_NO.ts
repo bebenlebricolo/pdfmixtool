@@ -284,7 +284,7 @@
     <message>
         <location filename="../src/inputpdffilewidget.cpp" line="218"/>
         <source>New custom profile…</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ny tilpasset profil…</translation>
     </message>
     <message>
         <location filename="../src/inputpdffilewidget.cpp" line="220"/>

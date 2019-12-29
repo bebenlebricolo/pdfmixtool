@@ -25,6 +25,7 @@
 #include <QListView>
 #include <QStandardItemModel>
 #include <QSettings>
+#include <QTabWidget>
 
 #include "mouseeventfilter.h"
 #include "pdf_edit_lib/definitions.h"
@@ -70,6 +71,8 @@ private:
     const QList<int> selected_indexes();
 
     QSettings *m_settings;
+
+    QTabWidget *m_tab_widget;
 
     QLabel *m_output_page_count;
     int m_output_pages_error_index;

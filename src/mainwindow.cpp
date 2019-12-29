@@ -101,6 +101,7 @@ QDataStream &operator>>(QDataStream &in, Multipage &multipage)
 MainWindow::MainWindow(MouseEventFilter *filter, QWidget *parent) :
     QMainWindow(parent),
     m_settings(new QSettings(this)),
+    m_tab_widget(new QTabWidget(this)),
     m_output_page_count(new QLabel(this)),
     m_output_pages_error_index(-1),
     m_progress_bar(new QProgressBar(this)),
@@ -147,6 +148,13 @@ MainWindow::MainWindow(MouseEventFilter *filter, QWidget *parent) :
                 m_settings,
                 this);
     AboutDialog *about_dialog = new AboutDialog(new AboutDialog(this));
+
+    // tab widget
+    QWidget *multiple_mode = new QWidget(this);
+    QWidget *single_mode = new QWidget(this);
+    m_tab_widget->addTab(multiple_mode, tr("Multiple files"));
+    m_tab_widget->addTab(single_mode, tr("Single file"));
+    this->setCentralWidget(m_tab_widget);
 
     // Hide progress bar
     m_progress_bar->hide();
@@ -254,6 +262,7 @@ MainWindow::MainWindow(MouseEventFilter *filter, QWidget *parent) :
                 SLOT(quit()),
                 QKeySequence::Quit);
     main_menu_button->setMenu(main_menu);
+    m_tab_widget->setCornerWidget(main_menu_button);
 
     // Create "Generate PDF" button
     QPushButton *generate_pdf_button = new QPushButton(
@@ -273,21 +282,12 @@ MainWindow::MainWindow(MouseEventFilter *filter, QWidget *parent) :
 
     // Add widgets to the main window
     QVBoxLayout *v_layout = new QVBoxLayout();
-    QWidget *central_widget = new QWidget(this);
-    central_widget->setLayout(v_layout);
-    this->setCentralWidget(central_widget);
+    multiple_mode->setLayout(v_layout);
 
-    QHBoxLayout *layout = new QHBoxLayout();
-    layout->addWidget(toolbar);
-    layout->addItem(new QSpacerItem(
-                        0, 0,
-                        QSizePolicy::Expanding, QSizePolicy::Minimum));
-    layout->addWidget(main_menu_button);
-    v_layout->addLayout(layout);
-
+    v_layout->addWidget(toolbar);
     v_layout->addWidget(m_files_list_view);
 
-    layout = new QHBoxLayout();
+    QHBoxLayout *layout = new QHBoxLayout();
     layout->addWidget(m_output_page_count);
     layout->addWidget(m_progress_bar, 1);
     layout->addItem(new QSpacerItem(

@@ -30,7 +30,6 @@
 #include <QDesktopServices>
 
 #include "aboutdialog.h"
-#include "inputpdffiledelegate.h"
 #include "editpdfentrydialog.h"
 #include "pdf_edit_lib/pdf_info.h"
 #include "pdf_edit_lib/pdf_writer.h"
@@ -102,6 +101,7 @@ MainWindow::MainWindow(MouseEventFilter *filter, QWidget *parent) :
     QMainWindow(parent),
     m_settings(new QSettings(this)),
     m_tab_widget(new QTabWidget(this)),
+    m_alternate_mix(new QCheckBox("Alternate mix", this)),
     m_output_page_count(new QLabel(this)),
     m_output_pages_error_index(-1),
     m_progress_bar(new QProgressBar(this)),
@@ -109,7 +109,7 @@ MainWindow::MainWindow(MouseEventFilter *filter, QWidget *parent) :
     m_files_list_model(new QStandardItemModel(this)),
     m_edit_menu(new QMenu(this))
 {
-    // Main winow properties
+    // Main window properties
     this->setWindowIcon(QIcon(QString(ICON_PATH).arg(
                                   qApp->applicationDirPath())));
     this->setWindowTitle(qApp->applicationDisplayName());
@@ -160,7 +160,7 @@ MainWindow::MainWindow(MouseEventFilter *filter, QWidget *parent) :
     m_progress_bar->hide();
 
     // Create delegate for files list
-    InputPdfFileDelegate *pdfinputfile_delegate =
+    m_delegate =
             new InputPdfFileDelegate(
                 filter,
                 m_multipages,
@@ -175,7 +175,7 @@ MainWindow::MainWindow(MouseEventFilter *filter, QWidget *parent) :
                 QAbstractItemView::DoubleClicked |
                 QAbstractItemView::AnyKeyPressed);
     m_files_list_view->setModel(m_files_list_model);
-    m_files_list_view->setItemDelegate(pdfinputfile_delegate);
+    m_files_list_view->setItemDelegate(m_delegate);
     m_files_list_view->setFocusPolicy(Qt::WheelFocus);
     m_files_list_view->setVerticalScrollMode(QAbstractItemView::ScrollPerPixel);
     m_files_list_view->setSpacing(2);
@@ -286,6 +286,7 @@ MainWindow::MainWindow(MouseEventFilter *filter, QWidget *parent) :
 
     v_layout->addWidget(toolbar);
     v_layout->addWidget(m_files_list_view);
+    v_layout->addWidget(m_alternate_mix);
 
     QHBoxLayout *layout = new QHBoxLayout();
     layout->addWidget(m_output_page_count);
@@ -300,7 +301,10 @@ MainWindow::MainWindow(MouseEventFilter *filter, QWidget *parent) :
     connect(m_files_list_view, SIGNAL(pressed(QModelIndex)),
             this, SLOT(item_mouse_pressed(QModelIndex)));
 
-    connect(pdfinputfile_delegate, SIGNAL(data_edit()),
+    connect(m_alternate_mix, &QCheckBox::toggled,
+            this, &MainWindow::alternate_mix_checked);
+
+    connect(m_delegate, SIGNAL(data_edit()),
             this, SLOT(update_output_pages_count()));
 
     connect(multipage_profiles_manager, SIGNAL(close_signal()),
@@ -478,6 +482,25 @@ void MainWindow::item_mouse_pressed(const QModelIndex &index) //eventfilter
     }
 }
 
+void MainWindow::alternate_mix_checked(bool checked)
+{
+    if (checked)
+    {
+        m_files_list_view->setEditTriggers(QAbstractItemView::NoEditTriggers);
+        m_edit_menu->actions().at(0)->setEnabled(false);
+        m_delegate->set_editor_enabled(false);
+    }
+    else
+    {
+        m_files_list_view->setEditTriggers(
+                    QAbstractItemView::DoubleClicked |
+                    QAbstractItemView::AnyKeyPressed);
+        m_edit_menu->actions().at(0)->setEnabled(true);
+        m_delegate->set_editor_enabled(true);
+    }
+    m_files_list_view->viewport()->repaint();
+}
+
 void MainWindow::update_output_pages_count()
 {
     int pages_count = 0;
@@ -583,6 +606,7 @@ void MainWindow::generate_pdf_button_pressed()
         Conf conf;
 
         conf.output_path = selected_file.toStdString();
+        conf.alternate_mix = m_alternate_mix->isChecked();
 
         for (int i = 0; i < m_files_list_model->rowCount(); i++)
         {

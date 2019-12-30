@@ -131,6 +131,8 @@ struct Conf {
     std::string output_path;
 
     std::vector<FileConf> files;
+
+    bool alternate_mix;
 };
 
 #endif // DEFINITIONS_H

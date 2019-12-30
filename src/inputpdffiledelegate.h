@@ -54,6 +54,8 @@ public:
                               QAbstractItemModel *model,
                               const QModelIndex &index) const;
 
+    void set_editor_enabled(bool enabled);
+
 signals:
     void data_edit() const;
 
@@ -64,6 +66,7 @@ private:
     MouseEventFilter *m_mouse_event_filter;
     const QMap<int, Multipage> &m_multipages;
     MultipageProfilesManager *m_mp_manager;
+    bool m_editing_enabled;
 };
 
 #endif // INPUTPDFFILEDELEGATE_H

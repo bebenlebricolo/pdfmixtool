@@ -26,8 +26,10 @@
 #include <QStandardItemModel>
 #include <QSettings>
 #include <QTabWidget>
+#include <QCheckBox>
 
 #include "mouseeventfilter.h"
+#include "inputpdffiledelegate.h"
 #include "pdf_edit_lib/definitions.h"
 
 Q_DECLARE_METATYPE(Multipage)
@@ -58,6 +60,8 @@ public slots:
 
     void item_mouse_pressed(const QModelIndex &index);
 
+    void alternate_mix_checked(bool checked);
+
     void update_output_pages_count();
 
     void generate_pdf_button_pressed();
@@ -74,6 +78,8 @@ private:
 
     QTabWidget *m_tab_widget;
 
+    QCheckBox *m_alternate_mix;
+
     QLabel *m_output_page_count;
     int m_output_pages_error_index;
 
@@ -81,6 +87,8 @@ private:
 
     QListView *m_files_list_view;
     QStandardItemModel *m_files_list_model;
+    InputPdfFileDelegate *m_delegate;
+
 
     QMenu *m_edit_menu;
 

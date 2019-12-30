@@ -30,7 +30,8 @@ InputPdfFileDelegate::InputPdfFileDelegate(
     QStyledItemDelegate(parent),
     m_mouse_event_filter(filter),
     m_multipages(custom_multipages),
-    m_mp_manager(mp_manager)
+    m_mp_manager(mp_manager),
+    m_editing_enabled(true)
 {
 
 }
@@ -150,33 +151,36 @@ void InputPdfFileDelegate::paint(
     painter->setFont(font);
     painter->drawText(x, y, file_info);
 
-    y += line_height;
-    x = option.rect.x() + option.rect.height() + 10 + 30;
+    if (m_editing_enabled)
+    {
+        y += line_height;
+        x = option.rect.x() + option.rect.height() + 10 + 30;
 
-    if (output_pages.size() == 0)
-        output_pages = tr("All");
+        if (output_pages.size() == 0)
+            output_pages = tr("All");
 
-    QString pages = tr("Pages:") + ' ' + output_pages;
-    QString multipage = tr("Multipage:") + ' ' + (
-                mp_index > 0 ?
-                    QString(" %1").arg(QString::fromStdString(mp.name)) :
-                    tr("Disabled"));
-    QString rotation_text = tr("Rotation:") + QString(" %1°").arg(rotation);
-    QString outline_entry_text = tr("Outline entry:") + ' ' + outline_entry;
+        QString pages = tr("Pages:") + ' ' + output_pages;
+        QString multipage = tr("Multipage:") + ' ' + (
+                    mp_index > 0 ?
+                        QString(" %1").arg(QString::fromStdString(mp.name)) :
+                        tr("Disabled"));
+        QString rotation_text = tr("Rotation:") + QString(" %1°").arg(rotation);
+        QString outline_entry_text = tr("Outline entry:") + ' ' + outline_entry;
 
-    painter->drawText(x, y, pages);
-    y += line_height;
+        painter->drawText(x, y, pages);
+        y += line_height;
 
-    painter->setPen(text_color);
-    painter->drawText(x, y, rotation_text);
+        painter->setPen(text_color);
+        painter->drawText(x, y, rotation_text);
 
-    y = option.rect.y() + 2 * line_height;
-    x += std::max(fm.boundingRect(pages).width(),
-                  fm.boundingRect(rotation).width()) + 40;
-    painter->drawText(x, y, multipage);
-    y += line_height;
+        y = option.rect.y() + 2 * line_height;
+        x += std::max(fm.boundingRect(pages).width(),
+                      fm.boundingRect(rotation).width()) + 40;
+        painter->drawText(x, y, multipage);
+        y += line_height;
 
-    painter->drawText(x, y, outline_entry_text);
+        painter->drawText(x, y, outline_entry_text);
+    }
 }
 
 QSize InputPdfFileDelegate::sizeHint(
@@ -287,6 +291,11 @@ void InputPdfFileDelegate::setModelData(
     w->set_model_data(std_model->itemFromIndex(index));
 
     emit data_edit();
+}
+
+void InputPdfFileDelegate::set_editor_enabled(bool enabled)
+{
+    m_editing_enabled = enabled;
 }
 
 void InputPdfFileDelegate::end_editing(QWidget *editor)

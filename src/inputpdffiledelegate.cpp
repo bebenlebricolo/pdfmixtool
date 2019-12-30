@@ -293,7 +293,7 @@ void InputPdfFileDelegate::setModelData(
     emit data_edit();
 }
 
-void InputPdfFileDelegate::set_editor_enabled(bool enabled)
+void InputPdfFileDelegate::set_editing_enabled(bool enabled)
 {
     m_editing_enabled = enabled;
 }

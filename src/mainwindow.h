@@ -27,6 +27,7 @@
 #include <QSettings>
 #include <QTabWidget>
 #include <QCheckBox>
+#include <QPushButton>
 
 #include "mouseeventfilter.h"
 #include "inputpdffiledelegate.h"
@@ -84,11 +85,11 @@ private:
     int m_output_pages_error_index;
 
     QProgressBar *m_progress_bar;
+    QPushButton *m_generate_pdf_button;
 
     QListView *m_files_list_view;
     QStandardItemModel *m_files_list_model;
     InputPdfFileDelegate *m_delegate;
-
 
     QMenu *m_edit_menu;
 

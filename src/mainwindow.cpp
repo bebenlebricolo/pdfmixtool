@@ -265,19 +265,20 @@ MainWindow::MainWindow(MouseEventFilter *filter, QWidget *parent) :
     m_tab_widget->setCornerWidget(main_menu_button);
 
     // Create "Generate PDF" button
-    QPushButton *generate_pdf_button = new QPushButton(
+    m_generate_pdf_button = new QPushButton(
                 QIcon::fromTheme("document-save-as"),
                 tr("Generate PDF"),
                 this);
+    m_generate_pdf_button->setEnabled(false);
     QAction *generate_pdf_action = new QAction(
                 tr("Generate PDF"),
-                generate_pdf_button);
+                m_generate_pdf_button);
     generate_pdf_action->setShortcut(QKeySequence::Save);
-    generate_pdf_button->addAction(generate_pdf_action);
-    generate_pdf_button->setToolTip(
+    m_generate_pdf_button->addAction(generate_pdf_action);
+    m_generate_pdf_button->setToolTip(
                 QString(TOOLTIP_STRING)
                 .arg(
-                    generate_pdf_button->text(),
+                    m_generate_pdf_button->text(),
                     generate_pdf_action->shortcut().toString()));
 
     // Add widgets to the main window
@@ -294,7 +295,7 @@ MainWindow::MainWindow(MouseEventFilter *filter, QWidget *parent) :
     layout->addItem(new QSpacerItem(
                         0, 0,
                         QSizePolicy::Expanding, QSizePolicy::Minimum));
-    layout->addWidget(generate_pdf_button);
+    layout->addWidget(m_generate_pdf_button);
     v_layout->addLayout(layout);
 
     // Connect signals to slots
@@ -310,7 +311,7 @@ MainWindow::MainWindow(MouseEventFilter *filter, QWidget *parent) :
     connect(multipage_profiles_manager, SIGNAL(close_signal()),
             this, SLOT(update_output_pages_count()));
 
-    connect(generate_pdf_button, SIGNAL(released()),
+    connect(m_generate_pdf_button, SIGNAL(released()),
             this, SLOT(generate_pdf_button_pressed()));
 
     connect(generate_pdf_action, SIGNAL(triggered(bool)),
@@ -356,6 +357,7 @@ void MainWindow::add_pdf_files()
                     "open_directory",
                     QFileInfo(selected.at(0)).dir().absolutePath());
         this->update_output_pages_count();
+        m_generate_pdf_button->setEnabled(true);
     }
 }
 
@@ -436,6 +438,9 @@ void MainWindow::remove_pdf_file()
         m_files_list_model->removeRow(indexes[i]);
 
     this->update_output_pages_count();
+
+    if (m_files_list_model->rowCount() == 0)
+        m_generate_pdf_button->setEnabled(false);
 }
 
 void MainWindow::edit_menu_activated()
@@ -488,7 +493,7 @@ void MainWindow::alternate_mix_checked(bool checked)
     {
         m_files_list_view->setEditTriggers(QAbstractItemView::NoEditTriggers);
         m_edit_menu->actions().at(0)->setEnabled(false);
-        m_delegate->set_editor_enabled(false);
+        m_delegate->set_editing_enabled(false);
     }
     else
     {
@@ -496,7 +501,7 @@ void MainWindow::alternate_mix_checked(bool checked)
                     QAbstractItemView::DoubleClicked |
                     QAbstractItemView::AnyKeyPressed);
         m_edit_menu->actions().at(0)->setEnabled(true);
-        m_delegate->set_editor_enabled(true);
+        m_delegate->set_editing_enabled(true);
     }
     m_files_list_view->viewport()->repaint();
 }
@@ -554,15 +559,6 @@ void MainWindow::update_output_pages_count()
 
 void MainWindow::generate_pdf_button_pressed()
 {
-    // Check if there is at least one input file
-    if (m_files_list_model->rowCount() == 0)
-    {
-        QMessageBox::critical(this,
-                              tr("PDF generation error"),
-                              tr("You must add at least one PDF file."));
-        return;
-    }
-
     if (m_output_pages_error_index > -1)
     {
         QString error_message(

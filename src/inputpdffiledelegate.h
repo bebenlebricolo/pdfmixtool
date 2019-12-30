@@ -54,7 +54,7 @@ public:
                               QAbstractItemModel *model,
                               const QModelIndex &index) const;
 
-    void set_editor_enabled(bool enabled);
+    void set_editing_enabled(bool enabled);
 
 signals:
     void data_edit() const;

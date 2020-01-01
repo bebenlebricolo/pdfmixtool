@@ -141,8 +141,11 @@ void write_pdf(const Conf &conf, std::function<void (int)>& progress)
             {
                 if (i < input_files[j]->getAllPages().size())
                 {
+                    int index = conf.files.at(j).reverse_order ?
+                                input_files[j]->getAllPages().size() - 1 - i :
+                                i;
                     QPDFPageObjectHelper page =
-                            input_files[j]->getAllPages().at(i);
+                            input_files[j]->getAllPages().at(index);
                     page = page.shallowCopyPage();
                     QPDFPageDocumentHelper(output_file).addPage(page, false);
                 }

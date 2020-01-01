@@ -20,12 +20,15 @@
 #define INPUTPDFFILEDELEGATE_H
 
 #include <QStyledItemDelegate>
-#include <QComboBox>
-#include <QLabel>
-#include <QLineEdit>
 
 #include "mouseeventfilter.h"
 #include "inputpdffilewidget.h"
+
+QWidget *build_widget(const QMap<int, Multipage> &multipages,
+                      const QModelIndex &index,
+                      int width,
+                      int height,
+                      bool alternate_mix);
 
 class InputPdfFileDelegate : public QStyledItemDelegate
 {
@@ -54,7 +57,7 @@ public:
                               QAbstractItemModel *model,
                               const QModelIndex &index) const;
 
-    void set_editing_enabled(bool enabled);
+    void set_alternate_mix(bool enabled);
 
 signals:
     void data_edit() const;
@@ -66,7 +69,7 @@ private:
     MouseEventFilter *m_mouse_event_filter;
     const QMap<int, Multipage> &m_multipages;
     MultipageProfilesManager *m_mp_manager;
-    bool m_editing_enabled;
+    bool m_alternate_mix;
 };
 
 #endif // INPUTPDFFILEDELEGATE_H

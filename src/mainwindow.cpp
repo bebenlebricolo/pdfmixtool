@@ -24,7 +24,6 @@
 #include <QVBoxLayout>
 #include <QMenu>
 #include <QToolBar>
-#include <QPushButton>
 #include <QFileDialog>
 #include <QMessageBox>
 #include <QDesktopServices>
@@ -347,6 +346,7 @@ void MainWindow::add_pdf_files()
         item->setData(-1, MULTIPAGE_ROLE);
         item->setData(0, ROTATION_ROLE);
         item->setData(filename, OUTLINE_ENTRY_ROLE);
+        item->setData(false, REVERSE_ORDER_ROLE);
 
         m_files_list_model->appendRow(item);
     }
@@ -448,7 +448,7 @@ void MainWindow::edit_menu_activated()
     QModelIndexList indexes =
             m_files_list_view->selectionModel()->selectedIndexes();
 
-    if (indexes.count() == 1)
+    if (indexes.count() == 1 || m_alternate_mix->isChecked())
         m_files_list_view->edit(indexes.first());
     else
     {
@@ -489,20 +489,8 @@ void MainWindow::item_mouse_pressed(const QModelIndex &index) //eventfilter
 
 void MainWindow::alternate_mix_checked(bool checked)
 {
-    if (checked)
-    {
-        m_files_list_view->setEditTriggers(QAbstractItemView::NoEditTriggers);
-        m_edit_menu->actions().at(0)->setEnabled(false);
-        m_delegate->set_editing_enabled(false);
-    }
-    else
-    {
-        m_files_list_view->setEditTriggers(
-                    QAbstractItemView::DoubleClicked |
-                    QAbstractItemView::AnyKeyPressed);
-        m_edit_menu->actions().at(0)->setEnabled(true);
-        m_delegate->set_editing_enabled(true);
-    }
+    m_delegate->set_alternate_mix(checked);
+    m_files_list_model->layoutChanged();
     m_files_list_view->viewport()->repaint();
 }
 
@@ -612,6 +600,7 @@ void MainWindow::generate_pdf_button_pressed()
             int mp_index = item->data(MULTIPAGE_ROLE).toInt();
             int rotation = item->data(ROTATION_ROLE).toInt();
             QString outline_entry = item->data(OUTLINE_ENTRY_ROLE).toString();
+            bool reverse_order = item->data(REVERSE_ORDER_ROLE).toBool();
 
             FileConf fileconf;
             fileconf.path = file_path.toStdString();
@@ -625,6 +614,7 @@ void MainWindow::generate_pdf_button_pressed()
             }
             fileconf.rotation = rotation;
             fileconf.outline_entry = outline_entry.toStdString();
+            fileconf.reverse_order = reverse_order;
 
             conf.files.push_back(fileconf);
         }

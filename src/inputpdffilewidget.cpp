@@ -184,16 +184,14 @@ InputPdfFileWidget::InputPdfFileWidget(
         const QMap<int, Multipage> &custom_multipages,
         MultipageProfilesManager *mp_manager,
         int preview_size,
+        bool alternate_mix,
         QWidget *parent) :
     QWidget(parent),
     m_multipages(custom_multipages),
     m_mp_manager(mp_manager),
+    m_alternate_mix(alternate_mix),
     m_preview_size(preview_size),
-    m_preview_label(new QLabel(this)),
-    m_pages_filter_lineedit(new QLineEdit(this)),
-    m_multipage_combobox(new QComboBox(this)),
-    m_rotation_combobox(new QComboBox(this)),
-    m_outline_entry_lineedit(new QLineEdit(this))
+    m_preview_label(new QLabel(this))
 {
     m_page_width = index.data(PAGE_WIDTH_ROLE).toDouble();
     m_page_height = index.data(PAGE_HEIGHT_ROLE).toDouble();
@@ -204,95 +202,142 @@ InputPdfFileWidget::InputPdfFileWidget(
     QGridLayout *layout = new QGridLayout();
     this->setLayout(layout);
 
-    m_pages_filter_lineedit->setClearButtonEnabled(true);
-    m_outline_entry_lineedit->setClearButtonEnabled(true);
+    layout->addWidget(m_preview_label, 1, 1, 2, 1);
 
-    m_multipage_combobox->addItem(tr("Disabled"), -1);
-    QMap<int, Multipage>::const_iterator it;
-    for (it = m_multipages.constBegin();
-         it != m_multipages.constEnd();
-         ++it)
-        m_multipage_combobox->addItem(
-                    QString::fromStdString(it.value().name),
-                    it.key());
-    m_multipage_combobox->addItem(tr("New custom profile…"), -2);
+    if (alternate_mix)
+    {
+        m_reverse_order_checkbox = new QCheckBox(this);
 
-    m_rotation_combobox->addItem(tr("No rotation"), 0);
-    m_rotation_combobox->addItem("90°", 90);
-    m_rotation_combobox->addItem("180°", 180);
-    m_rotation_combobox->addItem("270°", 270);
+        layout->addWidget(new QLabel(tr("Reverse page order:"), this), 1, 2);
+        layout->addWidget(m_reverse_order_checkbox, 1, 3);
+        layout->setColumnStretch(3, 1);
+    }
+    else
+    {
+        m_pages_filter_lineedit = new QLineEdit(this);
+        m_multipage_combobox = new QComboBox(this);
+        m_rotation_combobox = new QComboBox(this);
+        m_outline_entry_lineedit = new QLineEdit(this);
 
-    layout->addWidget(m_preview_label, 1, 1, 3, 1);
-    layout->addWidget(new QLabel(tr("Pages:"), this), 1, 2);
-    layout->addWidget(m_pages_filter_lineedit, 1, 3);
-    layout->addWidget(new QLabel(tr("Multipage:"), this), 1, 4);
-    layout->addWidget(m_multipage_combobox, 1, 5);
-    layout->addWidget(new QLabel(tr("Rotation:"), this), 2, 2);
-    layout->addWidget(m_rotation_combobox, 2, 3);
-    layout->addWidget(new QLabel(tr("Outline entry:"), this), 2, 4);
-    layout->addWidget(m_outline_entry_lineedit, 2, 5);
+        m_pages_filter_lineedit->setClearButtonEnabled(true);
+        m_outline_entry_lineedit->setClearButtonEnabled(true);
 
-    layout->addItem(new QSpacerItem(0, 0), 1, 6);
-    layout->setColumnStretch(3, 10);
-    layout->setColumnStretch(5, 10);
-    layout->setColumnStretch(6, 90);
+        m_multipage_combobox->addItem(tr("Disabled"), -1);
+        QMap<int, Multipage>::const_iterator it;
+        for (it = m_multipages.constBegin();
+             it != m_multipages.constEnd();
+             ++it)
+            m_multipage_combobox->addItem(
+                        QString::fromStdString(it.value().name),
+                        it.key());
+        m_multipage_combobox->addItem(tr("New custom profile…"), -2);
 
-    connect(m_multipage_combobox, SIGNAL(currentIndexChanged(int)),
-            this, SLOT(update_preview()));
-    connect(m_multipage_combobox, SIGNAL(activated(int)),
-            this, SLOT(multipage_activated(int)));
-    connect(m_rotation_combobox, SIGNAL(currentIndexChanged(int)),
-            this, SLOT(update_preview()));
+        m_rotation_combobox->addItem(tr("No rotation"), 0);
+        m_rotation_combobox->addItem("90°", 90);
+        m_rotation_combobox->addItem("180°", 180);
+        m_rotation_combobox->addItem("270°", 270);
+
+        layout->addWidget(new QLabel(tr("Pages:"), this), 1, 2);
+        layout->addWidget(m_pages_filter_lineedit, 1, 3);
+        layout->addWidget(new QLabel(tr("Multipage:"), this), 1, 4);
+        layout->addWidget(m_multipage_combobox, 1, 5);
+        layout->addWidget(new QLabel(tr("Rotation:"), this), 2, 2);
+        layout->addWidget(m_rotation_combobox, 2, 3);
+        layout->addWidget(new QLabel(tr("Outline entry:"), this), 2, 4);
+        layout->addWidget(m_outline_entry_lineedit, 2, 5);
+
+        layout->addItem(new QSpacerItem(0, 0), 1, 6);
+        layout->setColumnStretch(3, 10);
+        layout->setColumnStretch(5, 10);
+        layout->setColumnStretch(6, 90);
+
+        connect(m_multipage_combobox, SIGNAL(currentIndexChanged(int)),
+                this, SLOT(update_preview()));
+        connect(m_multipage_combobox, SIGNAL(activated(int)),
+                this, SLOT(multipage_activated(int)));
+        connect(m_rotation_combobox, SIGNAL(currentIndexChanged(int)),
+                this, SLOT(update_preview()));
+    }
 
     update_preview();
 }
 
 void InputPdfFileWidget::set_editor_data(const QModelIndex &index)
 {
-    m_pages_filter_lineedit->setText(index.data(OUTPUT_PAGES_ROLE).toString());
-    m_multipage_combobox->setCurrentIndex(
-            m_multipage_combobox->findData(index.data(MULTIPAGE_ROLE).toInt()));
-    m_rotation_combobox->setCurrentIndex(
-            m_rotation_combobox->findData(index.data(ROTATION_ROLE).toInt()));
-    m_outline_entry_lineedit->setText(
-                index.data(OUTLINE_ENTRY_ROLE).toString());
+    if (m_alternate_mix)
+    {
+        m_reverse_order_checkbox->setChecked(
+                    index.data(REVERSE_ORDER_ROLE).toBool());
+    }
+    else
+    {
+        m_pages_filter_lineedit->setText(
+                    index.data(OUTPUT_PAGES_ROLE).toString());
+        m_multipage_combobox->setCurrentIndex(
+                m_multipage_combobox->findData(
+                        index.data(MULTIPAGE_ROLE).toInt()));
+        m_rotation_combobox->setCurrentIndex(
+                m_rotation_combobox->findData(
+                        index.data(ROTATION_ROLE).toInt()));
+        m_outline_entry_lineedit->setText(
+                    index.data(OUTLINE_ENTRY_ROLE).toString());
+    }
 }
 
 void InputPdfFileWidget::set_model_data(QStandardItem *item)
 {
-    m_last_item = item;
-    QString current_output_pages = m_pages_filter_lineedit->text();
-    int current_mp_index = m_multipage_combobox->currentData().toInt();
-    int current_rotation = m_rotation_combobox->currentData().toInt();
-    QString current_outline_entry = m_outline_entry_lineedit->text();
+    if (m_alternate_mix)
+    {
+        item->setData(m_reverse_order_checkbox->isChecked(),
+                      REVERSE_ORDER_ROLE);
+    }
+    else
+    {
+        m_last_item = item;
+        QString current_output_pages = m_pages_filter_lineedit->text();
+        int current_mp_index = m_multipage_combobox->currentData().toInt();
+        int current_rotation = m_rotation_combobox->currentData().toInt();
+        QString current_outline_entry = m_outline_entry_lineedit->text();
 
-    item->setData(current_output_pages, OUTPUT_PAGES_ROLE);
-    item->setData(current_mp_index, MULTIPAGE_ROLE);
-    item->setData(current_rotation, ROTATION_ROLE);
-    item->setData(current_outline_entry, OUTLINE_ENTRY_ROLE);
+        item->setData(current_output_pages, OUTPUT_PAGES_ROLE);
+        item->setData(current_mp_index, MULTIPAGE_ROLE);
+        item->setData(current_rotation, ROTATION_ROLE);
+        item->setData(current_outline_entry, OUTLINE_ENTRY_ROLE);
+    }
 }
 
 void InputPdfFileWidget::mouse_button_pressed(QMouseEvent *event)
 {
-    QRect mp_rect = m_multipage_combobox->rect();
-    mp_rect.setHeight((m_multipage_combobox->count() + 1) * mp_rect.height());
-    mp_rect.setTop(mp_rect.top() - m_multipage_combobox->count() *
-                   mp_rect.height());
+    if (m_alternate_mix)
+    {
+        if (! this->rect().contains(
+                    this->mapFromGlobal(event->globalPos())))
+            emit focus_out(this);
+    }
+    else
+    {
+        QRect mp_rect = m_multipage_combobox->rect();
+        mp_rect.setHeight((m_multipage_combobox->count() + 1) *
+                          mp_rect.height());
+        mp_rect.setTop(mp_rect.top() - m_multipage_combobox->count() *
+                       mp_rect.height());
 
-    QRect rotation_rect = m_rotation_combobox->rect();
-    rotation_rect.setHeight((m_rotation_combobox->count() + 1) *
-                            rotation_rect.height());
-    rotation_rect.setTop(rotation_rect.top() - m_rotation_combobox->count() *
-                         rotation_rect.height());
+        QRect rotation_rect = m_rotation_combobox->rect();
+        rotation_rect.setHeight((m_rotation_combobox->count() + 1) *
+                                rotation_rect.height());
+        rotation_rect.setTop(rotation_rect.top() -
+                             m_rotation_combobox->count() *
+                             rotation_rect.height());
 
-    if (! this->rect().contains(
-                this->mapFromGlobal(event->globalPos())) &&
-            ! mp_rect.contains(
-                m_multipage_combobox->mapFromGlobal(event->globalPos())) &&
-            ! rotation_rect.contains(
-                m_rotation_combobox->mapFromGlobal(event->globalPos()))
-            )
-        emit focus_out(this);
+        if (! this->rect().contains(
+                    this->mapFromGlobal(event->globalPos())) &&
+                ! mp_rect.contains(
+                    m_multipage_combobox->mapFromGlobal(event->globalPos())) &&
+                ! rotation_rect.contains(
+                    m_rotation_combobox->mapFromGlobal(event->globalPos()))
+                )
+            emit focus_out(this);
+    }
 }
 
 void InputPdfFileWidget::update_preview()
@@ -301,25 +346,34 @@ void InputPdfFileWidget::update_preview()
                    m_preview_size - layout()->contentsMargins().top() * 2);
     QPainter painter(&pixmap);
 
-    bool ok;
-    int mp_index = m_multipage_combobox->currentData().toInt(&ok);
-    if (!ok)
-        mp_index = -1;
-    bool mp_enabled;
-    Multipage mp;
-    if (mp_index < 0)
-        mp_enabled = false;
+    if (m_alternate_mix)
+    {
+        draw_preview(&painter, pixmap.rect(),
+                     m_page_width, m_page_height,
+                     0,
+                     false, Multipage());
+    }
     else
     {
-        mp_enabled = true;
-        mp = m_multipages[mp_index];
+        bool ok;
+        int mp_index = m_multipage_combobox->currentData().toInt(&ok);
+        if (!ok)
+            mp_index = -1;
+        bool mp_enabled;
+        Multipage mp;
+        if (mp_index < 0)
+            mp_enabled = false;
+        else
+        {
+            mp_enabled = true;
+            mp = m_multipages[mp_index];
+        }
+
+        draw_preview(&painter, pixmap.rect(),
+                     m_page_width, m_page_height,
+                     m_rotation_combobox->currentData().toInt(),
+                     mp_enabled, mp);
     }
-
-    draw_preview(&painter, pixmap.rect(),
-                 m_page_width, m_page_height,
-                 m_rotation_combobox->currentData().toInt(),
-                 mp_enabled, mp);
-
 
     m_preview_label->setPixmap(pixmap);
 }

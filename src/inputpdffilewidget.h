@@ -38,7 +38,7 @@
 #define MULTIPAGE_ROLE Qt::UserRole + 8 // int
 #define ROTATION_ROLE Qt::UserRole + 9 // int
 #define OUTLINE_ENTRY_ROLE Qt::UserRole + 10 // QString
-#define OUTPUT_PAGES_COUNT_ROLE Qt::UserRole + 11 // int
+#define REVERSE_ORDER_ROLE Qt::UserRole + 11 // bool
 
 double draw_preview_page(QPainter *painter,
                          int max_width,
@@ -65,6 +65,7 @@ public:
                                 const QMap<int, Multipage> &custom_multipages,
                                 MultipageProfilesManager *mp_manager,
                                 int preview_size,
+                                bool alternate_mix,
                                 QWidget *parent = nullptr);
 
     void set_editor_data(const QModelIndex &index);
@@ -88,6 +89,7 @@ private:
     double m_page_height;
     const QMap<int, Multipage> &m_multipages;
     MultipageProfilesManager *m_mp_manager;
+    bool m_alternate_mix;
     QStandardItem *m_last_item;
     int m_preview_size;
     QLabel *m_preview_label;
@@ -95,6 +97,7 @@ private:
     QComboBox *m_multipage_combobox;
     QComboBox *m_rotation_combobox;
     QLineEdit *m_outline_entry_lineedit;
+    QCheckBox *m_reverse_order_checkbox;
 };
 
 #endif // INPUTPDFFILEWIDGET_H

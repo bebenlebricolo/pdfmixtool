@@ -1,4 +1,4 @@
-/* Copyright (C) 2017-2019 Marco Scarpetta
+/* Copyright (C) 2017-2020 Marco Scarpetta
  *
  * This file is part of PDF Mix Tool.
  *
@@ -24,12 +24,6 @@
 #include "mouseeventfilter.h"
 #include "inputpdffilewidget.h"
 
-QWidget *build_widget(const QMap<int, Multipage> &multipages,
-                      const QModelIndex &index,
-                      int width,
-                      int height,
-                      bool alternate_mix);
-
 class InputPdfFileDelegate : public QStyledItemDelegate
 {
     Q_OBJECT
@@ -38,6 +32,10 @@ public:
                          const QMap<int, Multipage> &custom_multipages,
                          MultipageProfilesManager *mp_manager,
                          QWidget *parent);
+
+    QWidget *build_widget(const QModelIndex &index,
+                          int width,
+                          int height) const;
 
     virtual void paint(QPainter *painter,
                        const QStyleOptionViewItem &option,

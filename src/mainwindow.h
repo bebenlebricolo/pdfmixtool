@@ -1,4 +1,4 @@
-/* Copyright (C) 2017-2019 Marco Scarpetta
+/* Copyright (C) 2017-2020 Marco Scarpetta
  *
  * This file is part of PDF Mix Tool.
  *
@@ -32,11 +32,6 @@
 #include "mouseeventfilter.h"
 #include "inputpdffiledelegate.h"
 #include "pdf_edit_lib/definitions.h"
-
-Q_DECLARE_METATYPE(Multipage)
-
-QDataStream &operator<<(QDataStream &out, const Multipage &maltipage);
-QDataStream &operator>>(QDataStream &in, Multipage &maltipage);
 
 class MainWindow : public QMainWindow
 {

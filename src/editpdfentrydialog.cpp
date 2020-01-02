@@ -1,4 +1,4 @@
-/* Copyright (C) 2017-2019 Marco Scarpetta
+/* Copyright (C) 2017-2020 Marco Scarpetta
  *
  * This file is part of PDF Mix Tool.
  *
@@ -17,12 +17,14 @@
  */
 
 #include "editpdfentrydialog.h"
-#include "inputpdffiledelegate.h"
 
 #include <QGridLayout>
 #include <QLabel>
 #include <QPushButton>
 #include <math.h>
+
+#include "gui_utils.h"
+#include "inputpdffiledelegate.h"
 
 EditPdfEntryDialog::EditPdfEntryDialog(
         const QMap<int, Multipage> &custom_multipages,

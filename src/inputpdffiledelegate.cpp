@@ -1,4 +1,4 @@
-/* Copyright (C) 2017-2019 Marco Scarpetta
+/* Copyright (C) 2017-2020 Marco Scarpetta
  *
  * This file is part of PDF Mix Tool.
  *
@@ -25,11 +25,26 @@
 #include <QGridLayout>
 #include <QCoreApplication>
 
-QWidget *build_widget(const QMap<int, Multipage> &multipages,
-                      const QModelIndex &index,
-                      int width,
-                      int height,
-                      bool alternate_mix)
+#include "gui_utils.h"
+
+InputPdfFileDelegate::InputPdfFileDelegate(
+        MouseEventFilter *filter,
+        const QMap<int, Multipage> &custom_multipages,
+        MultipageProfilesManager *mp_manager,
+        QWidget *parent) :
+    QStyledItemDelegate(parent),
+    m_mouse_event_filter(filter),
+    m_multipages(custom_multipages),
+    m_mp_manager(mp_manager),
+    m_alternate_mix(false)
+{
+
+}
+
+QWidget *InputPdfFileDelegate::build_widget(
+        const QModelIndex &index,
+        int width,
+        int height) const
 {
     QWidget *main_widget = new QWidget();
     main_widget->setLayout(new QHBoxLayout());
@@ -75,7 +90,7 @@ QWidget *build_widget(const QMap<int, Multipage> &multipages,
 
     main_widget->layout()->addWidget(widget);
 
-    if (alternate_mix)
+    if (m_alternate_mix)
     {
         bool reverse_order = index.data(REVERSE_ORDER_ROLE).toBool();
 
@@ -128,7 +143,7 @@ QWidget *build_widget(const QMap<int, Multipage> &multipages,
         else
         {
             mp_enabled = true;
-            mp = multipages[mp_index];
+            mp = m_multipages[mp_index];
         }
 
         QString pages = QCoreApplication::translate(
@@ -191,20 +206,6 @@ QWidget *build_widget(const QMap<int, Multipage> &multipages,
     return main_widget;
 }
 
-InputPdfFileDelegate::InputPdfFileDelegate(
-        MouseEventFilter *filter,
-        const QMap<int, Multipage> &custom_multipages,
-        MultipageProfilesManager *mp_manager,
-        QWidget *parent) :
-    QStyledItemDelegate(parent),
-    m_mouse_event_filter(filter),
-    m_multipages(custom_multipages),
-    m_mp_manager(mp_manager),
-    m_alternate_mix(false)
-{
-
-}
-
 void InputPdfFileDelegate::paint(
         QPainter *painter,
         const QStyleOptionViewItem &option,
@@ -231,11 +232,9 @@ void InputPdfFileDelegate::paint(
     else if (option.state & QStyle::State_MouseOver)
         painter->fillRect(border, option.palette.midlight());
 
-    QWidget *widget = build_widget(m_multipages,
-                                   index,
-                                   option.rect.width(),
-                                   option.rect.height(),
-                                   m_alternate_mix);
+    QWidget *widget = this->build_widget(index,
+                                         option.rect.width(),
+                                         option.rect.height());
     if (option.state & QStyle::State_Selected)
         widget->setBackgroundRole(QPalette::Highlight);
 
@@ -256,8 +255,7 @@ QSize InputPdfFileDelegate::sizeHint(
         ) const
 {
     Q_UNUSED(option)
-    QWidget *widget = build_widget(
-                m_multipages, index, 0, 0, m_alternate_mix);
+    QWidget *widget = this->build_widget(index, 0, 0);
     QSize hint = widget->sizeHint();
     hint.setWidth(hint.width() + hint.height());
     delete widget;

@@ -1,4 +1,4 @@
-/* Copyright (C) 2017-2019 Marco Scarpetta
+/* Copyright (C) 2017-2020 Marco Scarpetta
  *
  * This file is part of PDF Mix Tool.
  *
@@ -32,69 +32,9 @@
 #include "editpdfentrydialog.h"
 #include "pdf_edit_lib/pdf_info.h"
 #include "pdf_edit_lib/pdf_writer.h"
+#include "gui_utils.h"
 
 #define TOOLTIP_STRING "%1 <br /><b>%2<?b>"
-
-QDataStream &operator<<(QDataStream &out, const Multipage &multipage)
-{
-    out << 0; // version
-
-    out << multipage.name.c_str();
-
-    out << multipage.page_width;
-    out << multipage.page_height;
-
-    out << multipage.rows;
-    out << multipage.columns;
-
-    out << multipage.rotation;
-
-    out << multipage.h_alignment;
-    out << multipage.v_alignment;
-
-    out << multipage.margin_left;
-    out << multipage.margin_right;
-    out << multipage.margin_top;
-    out << multipage.margin_bottom;
-
-    out << multipage.spacing;
-
-    return out;
-}
-
-QDataStream &operator>>(QDataStream &in, Multipage &multipage)
-{
-    int version;
-    in >> version;
-
-    char *name;
-    in >> name;
-    multipage.name = name;
-
-    in >> multipage.page_width;
-    in >> multipage.page_height;
-
-    in >> multipage.rows;
-    in >> multipage.columns;
-
-    in >> multipage.rotation;
-
-    int h_alignment;
-    int v_alignment;
-    in >> h_alignment;
-    multipage.h_alignment = static_cast<Multipage::Alignment>(h_alignment);
-    in >> v_alignment;
-    multipage.v_alignment = static_cast<Multipage::Alignment>(v_alignment);
-
-    in >> multipage.margin_left;
-    in >> multipage.margin_right;
-    in >> multipage.margin_top;
-    in >> multipage.margin_bottom;
-
-    in >> multipage.spacing;
-
-    return in;
-}
 
 MainWindow::MainWindow(MouseEventFilter *filter, QWidget *parent) :
     QMainWindow(parent),

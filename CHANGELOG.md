@@ -1,5 +1,22 @@
 <h1>Changelog</h1>
 
+<h2>Version 0.5</h2>
+
+<p><strong>Release date:</strong> unreleased</p>
+
+<h3>Added</h3>
+
+<ul>
+<li>New "Single file" mode with the following operations:</li>
+<ul>
+<li>test</li>
+</ul>
+<li>Add alternate mix merge feature</li>
+<li>Better multipage profiles management</li>
+<li>Add Croatian translation</li>
+<li>Add Czech translation</li>
+</ul>
+
 <h2>Version 0.4</h2>
 
 <p><strong>Release date:</strong> 2019-08-25</p>

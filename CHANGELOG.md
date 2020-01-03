@@ -8,9 +8,15 @@
 
 <ul>
 <li>New "Single file" mode with the following operations:</li>
+<li>
 <ul>
-<li>test</li>
+<li>Resize pages</li>
+<li>Add empty pages</li>
+<li>Delete pages</li>
+<li>Extract pages</li>
+<li>Booklet</li>
 </ul>
+</li>
 <li>Add alternate mix merge feature</li>
 <li>Better multipage profiles management</li>
 <li>Add Croatian translation</li>

@@ -7,8 +7,7 @@
 <h3>Added</h3>
 
 <ul>
-<li>New "Single file" mode with the following operations:</li>
-<li>
+<li>New "Single file" mode with the following operations:
 <ul>
 <li>Resize pages</li>
 <li>Add empty pages</li>

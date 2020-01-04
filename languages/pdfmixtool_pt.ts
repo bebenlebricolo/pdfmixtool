@@ -279,12 +279,12 @@
     <message>
         <location filename="../src/inputpdffilewidget.cpp" line="210"/>
         <source>Disabled</source>
-        <translation type="unfinished">Desativado</translation>
+        <translation>Desativado</translation>
     </message>
     <message>
         <location filename="../src/inputpdffilewidget.cpp" line="218"/>
         <source>New custom profile…</source>
-        <translation type="unfinished"></translation>
+        <translation>Novo perfil personalizado…</translation>
     </message>
     <message>
         <location filename="../src/inputpdffilewidget.cpp" line="220"/>

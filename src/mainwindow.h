@@ -32,6 +32,7 @@
 #include "mouseeventfilter.h"
 #include "inputpdffiledelegate.h"
 #include "pdf_edit_lib/definitions.h"
+#include "pdfinfolabel.h"
 
 class MainWindow : public QMainWindow
 {
@@ -42,6 +43,7 @@ public:
 signals:
 
 public slots:
+    // multiple files
     void add_pdf_files();
 
     void move_up();
@@ -62,6 +64,12 @@ public slots:
 
     void generate_pdf_button_pressed();
 
+    // single file
+    void open_file_pressed();
+
+    void update_opened_file_label(const QString &filename);
+
+    // close event
     void closeEvent(QCloseEvent *event);
 
 protected:
@@ -87,6 +95,9 @@ private:
     InputPdfFileDelegate *m_delegate;
 
     QMenu *m_edit_menu;
+
+    QWidget *m_operations_widget;
+    PdfInfoLabel *m_opened_file_label;
 
     QMap<int, Multipage> m_multipages;
 };

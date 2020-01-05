@@ -27,6 +27,8 @@
 #include <QFileDialog>
 #include <QMessageBox>
 #include <QDesktopServices>
+#include <QStackedWidget>
+#include <QListWidget>
 
 #include "aboutdialog.h"
 #include "editpdfentrydialog.h"
@@ -98,6 +100,32 @@ MainWindow::MainWindow(MouseEventFilter *filter, QWidget *parent) :
     // Hide progress bar
     m_progress_bar->hide();
 
+    // Create main menu and add actions
+    QPushButton *main_menu_button = new QPushButton(
+                QIcon::fromTheme("preferences-other"),
+                tr("Menu"));
+    main_menu_button->setDefault(true);
+    QMenu *main_menu = new QMenu(main_menu_button);
+    main_menu->addAction(
+                QIcon::fromTheme("document-properties"),
+                tr("Multipage profiles…"),
+                multipage_profiles_manager,
+                SLOT(show()));
+    main_menu->addAction(
+                QIcon::fromTheme("help-about"),
+                tr("About"),
+                about_dialog,
+                SLOT(show()));
+    main_menu->addAction(
+                QIcon::fromTheme("application-exit"),
+                tr("Exit"),
+                qApp,
+                SLOT(quit()),
+                QKeySequence::Quit);
+    main_menu_button->setMenu(main_menu);
+    m_tab_widget->setCornerWidget(main_menu_button);
+
+    /// Multiple files mode
     // Create delegate for files list
     m_delegate =
             new InputPdfFileDelegate(
@@ -178,31 +206,6 @@ MainWindow::MainWindow(MouseEventFilter *filter, QWidget *parent) :
                     remove_file_action->text(),
                     remove_file_action->shortcut().toString()));
 
-    // Create main menu and add actions
-    QPushButton *main_menu_button = new QPushButton(
-                QIcon::fromTheme("preferences-other"),
-                tr("Menu"));
-    main_menu_button->setDefault(true);
-    QMenu *main_menu = new QMenu(main_menu_button);
-    main_menu->addAction(
-                QIcon::fromTheme("document-properties"),
-                tr("Multipage profiles…"),
-                multipage_profiles_manager,
-                SLOT(show()));
-    main_menu->addAction(
-                QIcon::fromTheme("help-about"),
-                tr("About"),
-                about_dialog,
-                SLOT(show()));
-    main_menu->addAction(
-                QIcon::fromTheme("application-exit"),
-                tr("Exit"),
-                qApp,
-                SLOT(quit()),
-                QKeySequence::Quit);
-    main_menu_button->setMenu(main_menu);
-    m_tab_widget->setCornerWidget(main_menu_button);
-
     // Create "Generate PDF" button
     m_generate_pdf_button = new QPushButton(
                 QIcon::fromTheme("document-save-as"),
@@ -228,16 +231,64 @@ MainWindow::MainWindow(MouseEventFilter *filter, QWidget *parent) :
     v_layout->addWidget(m_files_list_view);
     v_layout->addWidget(m_alternate_mix);
 
-    QHBoxLayout *layout = new QHBoxLayout();
-    layout->addWidget(m_output_page_count);
-    layout->addWidget(m_progress_bar, 1);
-    layout->addItem(new QSpacerItem(
+    QHBoxLayout *h_layout = new QHBoxLayout();
+    h_layout->addWidget(m_output_page_count);
+    h_layout->addWidget(m_progress_bar, 1);
+    h_layout->addItem(new QSpacerItem(
                         0, 0,
                         QSizePolicy::Expanding, QSizePolicy::Minimum));
-    layout->addWidget(m_generate_pdf_button);
-    v_layout->addLayout(layout);
+    h_layout->addWidget(m_generate_pdf_button);
+    v_layout->addLayout(h_layout);
 
-    // Connect signals to slots
+    /// Single PDF file mode
+    // opened PDF file line
+    v_layout = new QVBoxLayout();
+    single_mode->setLayout(v_layout);
+    h_layout = new QHBoxLayout();
+    v_layout->addLayout(h_layout);
+
+    QPushButton *open_button = new QPushButton(tr("Open PDF file…"), this);
+    open_button->setShortcut(QKeySequence::Open);
+    h_layout->addWidget(open_button);
+
+    m_opened_file_label = new PdfInfoLabel(this);
+    h_layout->addWidget(m_opened_file_label);
+    h_layout->setStretch(1, 1);
+
+    // operations UI
+    m_operations_widget = new QWidget(this);
+    h_layout = new QHBoxLayout();
+    m_operations_widget->setLayout(h_layout);
+    v_layout->addWidget(m_operations_widget);
+    QListWidget *operations_list = new QListWidget(this);
+    QStackedWidget *operations = new QStackedWidget(this);
+
+    operations_list->addItem(tr("Booklet"));
+    QWidget *booklet_page = new QWidget(this);
+    operations->addWidget(booklet_page);
+
+    operations_list->addItem(tr("Add empty pages"));
+    QWidget *empty_page = new QWidget(this);
+    operations->addWidget(empty_page);
+
+    operations_list->addItem(tr("Delete pages"));
+    QWidget *delete_page = new QWidget(this);
+    operations->addWidget(delete_page);
+
+    operations_list->addItem(tr("Extract pages"));
+    QWidget *extract_page = new QWidget(this);
+    operations->addWidget(extract_page);
+
+    operations_list->addItem(tr("Resize pages"));
+    QWidget *resize_page = new QWidget(this);
+    operations->addWidget(resize_page);
+
+    h_layout->addWidget(operations_list);
+    h_layout->addWidget(operations);
+    h_layout->setStretch(1, 1);
+    m_operations_widget->setEnabled(false);
+
+    /// Connect signals to slots
     connect(m_files_list_view, SIGNAL(pressed(QModelIndex)),
             this, SLOT(item_mouse_pressed(QModelIndex)));
 
@@ -255,6 +306,12 @@ MainWindow::MainWindow(MouseEventFilter *filter, QWidget *parent) :
 
     connect(generate_pdf_action, SIGNAL(triggered(bool)),
             this, SLOT(generate_pdf_button_pressed()));
+
+    connect(operations_list, &QListWidget::currentRowChanged,
+            operations, &QStackedWidget::setCurrentIndex);
+
+    connect(open_button, &QPushButton::pressed,
+            this, &MainWindow::open_file_pressed);
 }
 
 void MainWindow::add_pdf_files()
@@ -572,6 +629,32 @@ void MainWindow::generate_pdf_button_pressed()
 
         QTimer::singleShot(4000, m_progress_bar, SLOT(hide()));
     }
+}
+
+void MainWindow::open_file_pressed()
+{
+    QString filename = QFileDialog::getOpenFileName(
+                this,
+                tr("Select a PDF file"),
+                m_settings->value("open_directory", "").toString(),
+                tr("PDF files (*.pdf)"));
+
+    if (!filename.isNull())
+    {
+        m_settings->setValue(
+                    "open_directory",
+                    QFileInfo(filename).dir().absolutePath());
+        this->update_opened_file_label(filename);
+    }
+}
+
+void MainWindow::update_opened_file_label(const QString &filename)
+{
+    m_operations_widget->setEnabled(true);
+
+    PdfInfo pdfinfo(filename.toStdString());
+
+    m_opened_file_label->set_pdf_info(pdfinfo);
 }
 
 void MainWindow::closeEvent(QCloseEvent *event)

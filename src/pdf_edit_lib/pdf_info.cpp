@@ -22,9 +22,11 @@
 #include "pdf_info.h"
 #include "definitions.h"
 
-PdfInfo::PdfInfo(const std::string &path)
+PdfInfo::PdfInfo(const std::string &filename)
 {
-    qpdf.processFile(path.c_str());
+    m_filename = filename;
+
+    qpdf.processFile(filename.c_str());
 
     std::vector<QPDFPageObjectHelper> pages =
             QPDFPageDocumentHelper(qpdf).getAllPages();
@@ -73,27 +75,32 @@ PdfInfo::PdfInfo(const std::string &path)
     }
 }
 
-double PdfInfo::width()
+const std::string &PdfInfo::filename() const
+{
+    return m_filename;
+}
+
+double PdfInfo::width() const
 {
     return m_page_width;
 }
 
-double PdfInfo::height()
+double PdfInfo::height() const
 {
     return  m_page_height;
 }
 
-const std::string &PdfInfo::paper_size()
+const std::string &PdfInfo::paper_size() const
 {
     return m_paper_size;
 }
 
-bool PdfInfo::is_portrait()
+bool PdfInfo::is_portrait() const
 {
     return m_is_portrait;
 }
 
-int PdfInfo::n_pages()
+int PdfInfo::n_pages() const
 {
     return m_n_pages;
 }

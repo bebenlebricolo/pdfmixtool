@@ -16,41 +16,36 @@
  * along with PDF Mix Tool. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef PDF_INFO_H
-#define PDF_INFO_H
+#ifndef PDFINFOLABEL_H
+#define PDFINFOLABEL_H
 
-#include <string>
-#include <qpdf/QUtil.hh>
-#include <qpdf/QPDFPageDocumentHelper.hh>
-#include <qpdf/QPDFWriter.hh>
-#include <qpdf/QPDFPageLabelDocumentHelper.hh>
-#include <qpdf/QPDFAcroFormDocumentHelper.hh>
+#include <QLabel>
 
-class PdfInfo
+#include "pdf_edit_lib/pdf_info.h"
+
+class PdfInfoLabel : public QLabel
 {
+    Q_OBJECT
 public:
-    PdfInfo(const std::string &filename);
+    PdfInfoLabel(QWidget *parent=nullptr);
 
-    const std::string &filename() const;
+    void set_pdf_info(const PdfInfo &pdfinfo);
 
-    double width() const;
+    void set_pdf_info(const QString &filename,
+                      double page_width,
+                      double page_height,
+                      QString paper_size,
+                      bool is_portrait,
+                      int n_pages);
 
-    double height() const;
-
-    const std::string &paper_size() const;
-
-    bool is_portrait() const;
-
-    int n_pages() const;
-
-    QPDF qpdf;
+protected:
+    virtual void paintEvent(QPaintEvent *event);
 
 private:
-    std::string m_filename;
-    double m_page_width, m_page_height;
-    int m_n_pages;
-    std::string m_paper_size;
-    bool m_is_portrait;
+    QString m_path;
+    QString m_filename;
+    QString m_info;
+    int m_minimum_width;
 };
 
-#endif // PDF_INFO_H
+#endif // PDFINFOLABEL_H

@@ -26,6 +26,7 @@
 #include <QCoreApplication>
 
 #include "gui_utils.h"
+#include "pdfinfolabel.h"
 
 InputPdfFileDelegate::InputPdfFileDelegate(
         MouseEventFilter *filter,
@@ -62,29 +63,13 @@ QWidget *InputPdfFileDelegate::build_widget(
     bool is_portrait = index.data(IS_PORTRAIT_ROLE).toBool();
     int n_pages = index.data(N_PAGES_ROLE).toInt();
 
-    if (paper_size.size() > 0)
-        paper_size = QString("(%1 %2) ").arg(
-                    paper_size,
-                    is_portrait ?
-                        QCoreApplication::translate("InputPdfFileDelegate",
-                                                    "portrait") :
-                        QCoreApplication::translate("InputPdfFileDelegate",
-                                                    "landscape"));
-
-    QFileInfo fileinfo(file_path);
-    QString path = fileinfo.absolutePath();
-    if (path.size() != 0)
-        path += QDir::separator();
-
-    QString file_info = "<b>" + fileinfo.fileName() + "</b>" +
-            QString(" − %1 cm \u00D7 %2 cm %3− %5").arg(
-                QString::number(page_width),
-                QString::number(page_height),
-                paper_size,
-                QCoreApplication::translate("InputPdfFileDelegate",
-                                            "%n page(s)", "", n_pages));
-
-    QLabel *file_info_label = new QLabel(file_info, widget);
+    PdfInfoLabel *file_info_label = new PdfInfoLabel(widget);
+    file_info_label->set_pdf_info(file_path,
+                                  page_width,
+                                  page_height,
+                                  paper_size,
+                                  is_portrait,
+                                  n_pages);
 
     grid_layout->addWidget(file_info_label, 0, 1, 1, 3);
 
@@ -109,12 +94,6 @@ QWidget *InputPdfFileDelegate::build_widget(
 
         if (height > 0)
         {
-            int path_width = width - height - \
-                    file_info_label->sizeHint().width() - 50;
-            QFontMetrics fm(widget->font());
-            path = fm.elidedText(path, Qt::ElideLeft, path_width);
-            file_info_label->setText(path + file_info_label->text());
-
             QPixmap preview(height - 4, height - 4);
             QPainter painter(&preview);
             draw_preview(&painter,
@@ -178,12 +157,6 @@ QWidget *InputPdfFileDelegate::build_widget(
 
         if (height > 0)
         {
-            int path_width = width - height - \
-                    file_info_label->sizeHint().width() - 50;
-            QFontMetrics fm(widget->font());
-            path = fm.elidedText(path, Qt::ElideLeft, path_width);
-            file_info_label->setText(path + file_info_label->text());
-
             QPixmap preview(height - 4, height - 4);
             QPainter painter(&preview);
             draw_preview(&painter,

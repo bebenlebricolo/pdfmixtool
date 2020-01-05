@@ -34,6 +34,8 @@ SET (
     src/mouseeventfilter.h
     src/multipageprofilesmanager.cpp
     src/multipageprofilesmanager.h
+    src/pdfinfolabel.cpp
+    src/pdfinfolabel.h
     src/pdf_edit_lib/definitions.h
     src/pdf_edit_lib/pdf_info.cpp
     src/pdf_edit_lib/pdf_info.h

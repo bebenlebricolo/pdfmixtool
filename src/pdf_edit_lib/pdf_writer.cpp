@@ -425,7 +425,7 @@ void write_pdf(const Conf &conf, std::function<void (int)>& progress)
             item = podofo_file.GetOutlines(true)
                     ->CreateRoot(entry.second);
             item->SetDestination(PoDoFo::PdfDestination(
-                                           podofo_file.GetPage(entry.first)));
+                                     podofo_file.GetPage(entry.first)));
             first = false;
         }
         else
@@ -440,6 +440,153 @@ void write_pdf(const Conf &conf, std::function<void (int)>& progress)
     podofo_file.Write(conf.output_path.c_str());
 
     delete buffer;
+
+    progress(100);
+
+    std::locale::global(old_locale);
+}
+
+void write_booklet_pdf(
+        const std::string &input_filename,
+        const std::string &output_filename,
+        bool right_side_binding,
+        std::function<void (int)>& progress)
+{
+    std::locale old_locale = std::locale::global(std::locale::classic());
+
+    QPDF output_file;
+    output_file.emptyPDF();
+
+    QPDF input_file;
+    input_file.processFile(input_filename.c_str());
+    input_file.setImmediateCopyFrom(true);
+
+    std::vector<QPDFPageObjectHelper> pages =
+            QPDFPageDocumentHelper(input_file).getAllPages();
+
+    // Get rotation of the first page
+    long long page_rotation = 0;
+    if (pages.at(0).getAttribute("/Rotate", true).isInteger())
+        page_rotation = pages.at(0).getAttribute("/Rotate", true).getIntValue();
+
+    // Get size of the first page (in points)
+    double page_width, page_height;
+
+    QPDFObjectHandle::Rectangle rect =
+            pages.at(0).getAttribute("/MediaBox", true).getArrayAsRectangle();
+
+    if (page_rotation % 180 == 90)
+    {
+        page_width = std::abs(rect.lly - rect.ury);
+        page_height = std::abs(rect.llx - rect.urx);
+    }
+    else
+    {
+        page_width = std::abs(rect.llx - rect.urx);
+        page_height = std::abs(rect.lly - rect.ury);
+    }
+
+    // define blank page string
+    std::string blank_page_string = "<</Type/Page/MediaBox[0 0 " +
+            std::to_string(page_width * 2) + ' ' +
+            std::to_string(page_height) +
+            "]/Resources<</ProcSet[/PDF/Text/ImageB/ImageC/ImageI]>>>>";
+
+    // compute vector of indices of pages in the output file
+    int num_pages = pages.size() % 4 == 0 ? pages.size() :
+                                            (pages.size() / 4 + 1) * 4;
+
+    int i = 0;
+    int j = num_pages - 1;
+
+    bool is_right_page = !right_side_binding;
+
+    while (j > i)
+    {
+        QPDFObjectHandle blank_page_object = QPDFObjectHandle::parse(
+                    blank_page_string,
+                    "blank page");
+        QPDFPageObjectHelper blank_page(blank_page_object);
+        QPDFPageDocumentHelper(output_file).addPage(blank_page, false);
+
+        QPDFPageObjectHelper out_page_helper =
+                QPDFPageDocumentHelper(output_file)
+                .getAllPages().back();
+
+        std::vector<int> couple;
+        couple.push_back(i);
+        couple.push_back(j);
+
+        for (int current_page : couple)
+        {
+            if (current_page >= pages.size())
+            {
+                is_right_page = !is_right_page;
+                continue;
+            }
+
+            // Get form xobject for input page
+            QPDFPageObjectHelper in_page_helper =
+                    QPDFPageDocumentHelper(input_file)
+                    .getAllPages().at(current_page);
+
+            QPDFObjectHandle page_xobject =
+                    output_file.copyForeignObject(
+                        in_page_helper.getFormXObjectForPage());
+
+            // Find a unique resource name for the new form XObject
+            QPDFObjectHandle resources = out_page_helper
+                    .getAttribute("/Resources", true);
+
+            int min_suffix = current_page + 1;
+            std::string name = resources.getUniqueResourceName(
+                        "/Fx", min_suffix);
+
+            double x = is_right_page ? page_width : 0;
+
+            std::string content = out_page_helper.placeFormXObject(
+                        page_xobject,
+                        name,
+                        QPDFObjectHandle::Rectangle(
+                            x, 0,
+                            x + page_width, page_height),
+                        false);
+
+            if (! content.empty())
+            {
+                // Append the content to the page's content.
+                // Surround the original content with q...Q to the
+                // new content from the page's original content.
+
+                resources.mergeResources(
+                            QPDFObjectHandle::parse(
+                                "<< /XObject << >> >>"));
+                resources.getKey("/XObject")
+                        .replaceKey(name, page_xobject);
+                out_page_helper.addPageContents(
+                            QPDFObjectHandle::newStream(
+                                &output_file, "q\n"),
+                            true);
+                out_page_helper.addPageContents(
+                            QPDFObjectHandle::newStream(
+                                &output_file, "\nQ\n" + content),
+                            false);
+            }
+
+            is_right_page = !is_right_page;
+        }
+
+        is_right_page = !is_right_page; // revert last one
+
+        progress(i / (num_pages / 2) * 100);
+
+        i++;
+        j--;
+    }
+
+    // write pdf
+    QPDFWriter writer(output_file, output_filename.c_str());
+    writer.write();
 
     progress(100);
 

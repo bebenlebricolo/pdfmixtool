@@ -43,6 +43,8 @@ public:
 signals:
 
 public slots:
+    void current_tab_changed(int index);
+
     // multiple files
     void add_pdf_files();
 
@@ -69,6 +71,8 @@ public slots:
 
     void update_opened_file_label(const QString &filename);
 
+    void generate_booklet_pressed();
+
     // close event
     void closeEvent(QCloseEvent *event);
 
@@ -81,6 +85,7 @@ private:
     QSettings *m_settings;
 
     QTabWidget *m_tab_widget;
+    QStatusBar *m_status_bar;
 
     QCheckBox *m_alternate_mix;
 
@@ -97,7 +102,13 @@ private:
     QMenu *m_edit_menu;
 
     QWidget *m_operations_widget;
+    PdfInfo m_opened_pdf_info;
     PdfInfoLabel *m_opened_file_label;
+
+    QComboBox m_booklet_binding;
+
+    QComboBox m_rotation;
+    QComboBox m_multipage;
 
     QMap<int, Multipage> m_multipages;
 };

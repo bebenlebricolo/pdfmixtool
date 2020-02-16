@@ -33,4 +33,9 @@ bool parse_output_pages_string(
 
 void write_pdf(const Conf &conf, std::function<void(int)>& progress);
 
+void write_booklet_pdf(const std::string &input_filename,
+                       const std::string &output_filename,
+                       bool right_side_binding,
+                       std::function<void (int)>& progress);
+
 #endif // PDF_WRITER_H

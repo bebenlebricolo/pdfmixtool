@@ -22,6 +22,7 @@
 #include <QTimer>
 #include <QHBoxLayout>
 #include <QVBoxLayout>
+#include <QFormLayout>
 #include <QMenu>
 #include <QToolBar>
 #include <QFileDialog>
@@ -29,6 +30,7 @@
 #include <QDesktopServices>
 #include <QStackedWidget>
 #include <QListWidget>
+#include <QStatusBar>
 
 #include "aboutdialog.h"
 #include "editpdfentrydialog.h"
@@ -91,11 +93,21 @@ MainWindow::MainWindow(MouseEventFilter *filter, QWidget *parent) :
     AboutDialog *about_dialog = new AboutDialog(new AboutDialog(this));
 
     // tab widget
+    QVBoxLayout *main_layout = new QVBoxLayout();
     QWidget *multiple_mode = new QWidget(this);
     QWidget *single_mode = new QWidget(this);
     m_tab_widget->addTab(multiple_mode, tr("Multiple files"));
     m_tab_widget->addTab(single_mode, tr("Single file"));
-    this->setCentralWidget(m_tab_widget);
+    main_layout->addWidget(m_tab_widget);
+
+    QStatusBar *m_status_bar = new QStatusBar(this);
+    m_status_bar->addWidget(m_output_page_count);
+    m_status_bar->addWidget(m_progress_bar, 1);
+    main_layout->addWidget(m_status_bar);
+
+    QWidget *central_widget = new QWidget(this);
+    this->setCentralWidget(central_widget);
+    central_widget->setLayout(main_layout);
 
     // Hide progress bar
     m_progress_bar->hide();
@@ -229,14 +241,11 @@ MainWindow::MainWindow(MouseEventFilter *filter, QWidget *parent) :
 
     v_layout->addWidget(toolbar);
     v_layout->addWidget(m_files_list_view);
-    v_layout->addWidget(m_alternate_mix);
-
     QHBoxLayout *h_layout = new QHBoxLayout();
-    h_layout->addWidget(m_output_page_count);
-    h_layout->addWidget(m_progress_bar, 1);
+    h_layout->addWidget(m_alternate_mix);
     h_layout->addItem(new QSpacerItem(
-                        0, 0,
-                        QSizePolicy::Expanding, QSizePolicy::Minimum));
+                          0, 0,
+                          QSizePolicy::Expanding, QSizePolicy::Minimum));
     h_layout->addWidget(m_generate_pdf_button);
     v_layout->addLayout(h_layout);
 
@@ -267,6 +276,10 @@ MainWindow::MainWindow(MouseEventFilter *filter, QWidget *parent) :
     QWidget *booklet_page = new QWidget(this);
     operations->addWidget(booklet_page);
 
+    operations_list->addItem(tr("Rotation/multipage"));
+    QWidget *rot_multi_page = new QWidget(this);
+    operations->addWidget(rot_multi_page);
+
     operations_list->addItem(tr("Add empty pages"));
     QWidget *empty_page = new QWidget(this);
     operations->addWidget(empty_page);
@@ -287,8 +300,53 @@ MainWindow::MainWindow(MouseEventFilter *filter, QWidget *parent) :
     h_layout->addWidget(operations);
     h_layout->setStretch(1, 1);
     m_operations_widget->setEnabled(false);
+    operations_list->setCurrentRow(0);
+
+    // booklet page
+    v_layout = new QVBoxLayout();
+    QFormLayout *form_layout = new QFormLayout();
+    h_layout = new QHBoxLayout();
+    v_layout->addLayout(form_layout, 1);
+    v_layout->addLayout(h_layout);
+    booklet_page->setLayout(v_layout);
+
+    m_booklet_binding.addItem("Left");
+    m_booklet_binding.addItem("Right");
+    form_layout->addRow(tr("Binding:"), &m_booklet_binding);
+
+    h_layout->addItem(new QSpacerItem(0, 0,
+                                      QSizePolicy::Expanding,
+                                      QSizePolicy::Expanding));
+    QPushButton *button = new QPushButton(tr("Generate booklet"), this);
+    connect(button, &QPushButton::pressed,
+            this, &MainWindow::generate_booklet_pressed);
+    h_layout->addWidget(button);
+
+    // rotate/multipage page
+    form_layout = new QFormLayout();
+    rot_multi_page->setLayout(form_layout);
+
+    m_rotation.addItem(tr("No rotation"), 0);
+    m_rotation.addItem("90°", 90);
+    m_rotation.addItem("180°", 180);
+    m_rotation.addItem("270°", 270);
+    form_layout->addRow(tr("Rotation:"), &m_rotation);
+
+    m_multipage.addItem(tr("Disabled"), -1);
+    QMap<int, Multipage>::const_iterator it;
+    for (it = m_multipages.constBegin();
+         it != m_multipages.constEnd();
+         ++it)
+        m_multipage.addItem(
+                    QString::fromStdString(it.value().name),
+                    it.key());
+    m_multipage.addItem(tr("New custom profile…"), -2);
+    form_layout->addRow(tr("Multipage:"), &m_multipage);
 
     /// Connect signals to slots
+    connect(m_tab_widget, &QTabWidget::currentChanged,
+            this, &MainWindow::current_tab_changed);
+
     connect(m_files_list_view, SIGNAL(pressed(QModelIndex)),
             this, SLOT(item_mouse_pressed(QModelIndex)));
 
@@ -312,6 +370,14 @@ MainWindow::MainWindow(MouseEventFilter *filter, QWidget *parent) :
 
     connect(open_button, &QPushButton::pressed,
             this, &MainWindow::open_file_pressed);
+}
+
+void MainWindow::current_tab_changed(int index)
+{
+    if (index == 0)
+        update_output_pages_count();
+    else
+        m_output_page_count->hide();
 }
 
 void MainWindow::add_pdf_files()
@@ -493,6 +559,12 @@ void MainWindow::alternate_mix_checked(bool checked)
 
 void MainWindow::update_output_pages_count()
 {
+    if (m_files_list_model->rowCount() == 0)
+    {
+        m_output_page_count->hide();
+        return;
+    }
+
     int pages_count = 0;
     bool output_pages_errors = false;
 
@@ -540,6 +612,7 @@ void MainWindow::update_output_pages_count()
         m_output_pages_error_index = -1;
 
     m_output_page_count->setText(tr("Output pages: %1").arg(pages_count));
+    m_output_page_count->show();
 }
 
 void MainWindow::generate_pdf_button_pressed()
@@ -628,6 +701,10 @@ void MainWindow::generate_pdf_button_pressed()
         write_pdf(conf, progress);
 
         QTimer::singleShot(4000, m_progress_bar, SLOT(hide()));
+
+        if (selected_file ==
+                QString::fromStdString(m_opened_pdf_info.filename()))
+            update_opened_file_label(selected_file);
     }
 }
 
@@ -652,9 +729,43 @@ void MainWindow::update_opened_file_label(const QString &filename)
 {
     m_operations_widget->setEnabled(true);
 
-    PdfInfo pdfinfo(filename.toStdString());
+    m_opened_pdf_info = PdfInfo(filename.toStdString());
 
-    m_opened_file_label->set_pdf_info(pdfinfo);
+    m_opened_file_label->set_pdf_info(m_opened_pdf_info);
+}
+
+void MainWindow::generate_booklet_pressed()
+{
+    QString selected_file = QFileDialog::getSaveFileName(
+                this,
+                tr("Save booklet PDF file"),
+                m_settings->value("save_directory",
+                                  m_settings->value("open_directory", "")
+                                  ).toString(),
+                tr("PDF files (*.pdf)"));
+
+    if (!selected_file.isNull())
+    {
+        QProgressBar *pb = m_progress_bar;
+        std::function<void (int)> progress = [pb] (int p)
+        {
+            pb->setValue(p);
+        };
+
+        m_progress_bar->setValue(0);
+        m_progress_bar->show();
+
+        write_booklet_pdf(m_opened_pdf_info.filename(),
+                          selected_file.toStdString(),
+                          m_booklet_binding.currentIndex(),
+                          progress);
+
+        QTimer::singleShot(4000, m_progress_bar, SLOT(hide()));
+
+        if (selected_file ==
+                QString::fromStdString(m_opened_pdf_info.filename()))
+            update_opened_file_label(selected_file);
+    }
 }
 
 void MainWindow::closeEvent(QCloseEvent *event)

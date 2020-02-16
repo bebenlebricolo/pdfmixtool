@@ -22,6 +22,17 @@
 #include "pdf_info.h"
 #include "definitions.h"
 
+PdfInfo::PdfInfo() :
+    m_filename(""),
+    m_page_width(0),
+    m_page_height(0),
+    m_n_pages(0),
+    m_paper_size(""),
+    m_is_portrait(true)
+{
+
+}
+
 PdfInfo::PdfInfo(const std::string &filename)
 {
     m_filename = filename;

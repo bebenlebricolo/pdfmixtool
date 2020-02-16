@@ -29,6 +29,8 @@
 class PdfInfo
 {
 public:
+    PdfInfo();
+
     PdfInfo(const std::string &filename);
 
     const std::string &filename() const;

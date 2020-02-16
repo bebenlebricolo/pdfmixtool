@@ -37,9 +37,9 @@
 
 Q_DECLARE_METATYPE(Multipage)
 
-QDataStream &operator<<(QDataStream &out, const Multipage &maltipage);
+QDataStream &operator<<(QDataStream &out, const Multipage &multipage);
 
-QDataStream &operator>>(QDataStream &in, Multipage &maltipage);
+QDataStream &operator>>(QDataStream &in, Multipage &multipage);
 
 double draw_preview_page(QPainter *painter,
                          int max_width,

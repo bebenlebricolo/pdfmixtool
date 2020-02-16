@@ -85,7 +85,7 @@ MainWindow::MainWindow(MouseEventFilter *filter, QWidget *parent) :
     }
 
     // Create other windows
-    MultipageProfilesManager *multipage_profiles_manager =
+    m_multipage_profiles_manager =
             new MultipageProfilesManager(
                 &m_multipages,
                 m_settings,
@@ -121,7 +121,7 @@ MainWindow::MainWindow(MouseEventFilter *filter, QWidget *parent) :
     main_menu->addAction(
                 QIcon::fromTheme("document-properties"),
                 tr("Multipage profiles…"),
-                multipage_profiles_manager,
+                m_multipage_profiles_manager,
                 SLOT(show()));
     main_menu->addAction(
                 QIcon::fromTheme("help-about"),
@@ -143,7 +143,7 @@ MainWindow::MainWindow(MouseEventFilter *filter, QWidget *parent) :
             new InputPdfFileDelegate(
                 filter,
                 m_multipages,
-                multipage_profiles_manager,
+                m_multipage_profiles_manager,
                 this);
 
     // Set files list settings
@@ -258,6 +258,11 @@ MainWindow::MainWindow(MouseEventFilter *filter, QWidget *parent) :
 
     QPushButton *open_button = new QPushButton(tr("Open PDF file…"), this);
     open_button->setShortcut(QKeySequence::Open);
+    open_button->setToolTip(
+                QString(TOOLTIP_STRING)
+                .arg(
+                    open_button->text(),
+                    open_button->shortcut().toString()));
     h_layout->addWidget(open_button);
 
     m_opened_file_label = new PdfInfoLabel(this);
@@ -316,20 +321,36 @@ MainWindow::MainWindow(MouseEventFilter *filter, QWidget *parent) :
 
     h_layout->addItem(new QSpacerItem(0, 0,
                                       QSizePolicy::Expanding,
-                                      QSizePolicy::Expanding));
+                                      QSizePolicy::Minimum));
     QPushButton *button = new QPushButton(tr("Generate booklet"), this);
+    button->setShortcut(QKeySequence::Save);
+    button->setToolTip(
+                QString(TOOLTIP_STRING)
+                .arg(
+                    button->text(),
+                    button->shortcut().toString()));
     connect(button, &QPushButton::pressed,
             this, &MainWindow::generate_booklet_pressed);
     h_layout->addWidget(button);
 
-    // rotate/multipage page
+    // rotation/multipage page
+    v_layout = new QVBoxLayout();
     form_layout = new QFormLayout();
-    rot_multi_page->setLayout(form_layout);
+    h_layout = new QHBoxLayout();
+    v_layout->addLayout(form_layout);
+    v_layout->addWidget(&m_preview_image, 1, Qt::AlignCenter);
+    v_layout->addLayout(h_layout);
+    rot_multi_page->setLayout(v_layout);
+
+    m_preview_image.setMinimumSize(200, 200);
 
     m_rotation.addItem(tr("No rotation"), 0);
     m_rotation.addItem("90°", 90);
     m_rotation.addItem("180°", 180);
     m_rotation.addItem("270°", 270);
+    connect(&m_rotation,
+            SIGNAL(currentIndexChanged(int)),
+            SLOT(update_preview_image()));
     form_layout->addRow(tr("Rotation:"), &m_rotation);
 
     m_multipage.addItem(tr("Disabled"), -1);
@@ -341,7 +362,45 @@ MainWindow::MainWindow(MouseEventFilter *filter, QWidget *parent) :
                     QString::fromStdString(it.value().name),
                     it.key());
     m_multipage.addItem(tr("New custom profile…"), -2);
+    connect(&m_multipage,
+            SIGNAL(currentIndexChanged(int)),
+            SLOT(update_preview_image()));
+    connect(&m_multipage, SIGNAL(activated(int)),
+            SLOT(multipage_activated(int)));
     form_layout->addRow(tr("Multipage:"), &m_multipage);
+
+    h_layout->addItem(new QSpacerItem(0, 0,
+                                      QSizePolicy::Expanding,
+                                      QSizePolicy::Minimum));
+
+    QPushButton *save_button = new QPushButton(
+                QIcon::fromTheme("document-save"),
+                tr("Save"),
+                this);
+    save_button->setShortcut(QKeySequence::Save);
+    save_button->setToolTip(
+                QString(TOOLTIP_STRING)
+                .arg(
+                    save_button->text(),
+                    save_button->shortcut().toString()));
+    connect(save_button, &QPushButton::pressed,
+            [=]() {save_button_pressed(0);});
+
+    QPushButton *save_as_button = new QPushButton(
+                QIcon::fromTheme("document-save-as"),
+                tr("Save as…"),
+                this);
+    save_as_button->setShortcut(QKeySequence::SaveAs);
+    save_as_button->setToolTip(
+                QString(TOOLTIP_STRING)
+                .arg(
+                    save_as_button->text(),
+                    save_as_button->shortcut().toString()));
+    connect(save_as_button, &QPushButton::pressed,
+            [=]() {save_as_button_pressed(0);});
+
+    h_layout->addWidget(save_button);
+    h_layout->addWidget(save_as_button);
 
     /// Connect signals to slots
     connect(m_tab_widget, &QTabWidget::currentChanged,
@@ -356,7 +415,7 @@ MainWindow::MainWindow(MouseEventFilter *filter, QWidget *parent) :
     connect(m_delegate, SIGNAL(data_edit()),
             this, SLOT(update_output_pages_count()));
 
-    connect(multipage_profiles_manager, SIGNAL(close_signal()),
+    connect(m_multipage_profiles_manager, SIGNAL(close_signal()),
             this, SLOT(update_output_pages_count()));
 
     connect(m_generate_pdf_button, SIGNAL(released()),
@@ -732,6 +791,72 @@ void MainWindow::update_opened_file_label(const QString &filename)
     m_opened_pdf_info = PdfInfo(filename.toStdString());
 
     m_opened_file_label->set_pdf_info(m_opened_pdf_info);
+
+    this->update_preview_image();
+}
+
+void MainWindow::update_preview_image()
+{
+    int size = m_preview_image.minimumWidth();
+
+    QPixmap pixmap(size, size);
+    QPainter painter(&pixmap);
+
+    if (m_opened_pdf_info.filename().empty())
+    {
+        painter.fillRect(0, 0, size, size, Qt::white);
+    }
+    else
+    {
+        int rotation = m_rotation.currentData().toInt();
+        int mp_index = m_multipage.currentData().toInt();
+        Multipage mp;
+        if (mp_index >= 0)
+            mp = m_multipages[mp_index];
+
+        draw_preview(&painter,
+                     QRect(0, 0, size, size),
+                     m_opened_pdf_info.width(),
+                     m_opened_pdf_info.height(),
+                     rotation,
+                     mp_index >= 0,
+                     mp);
+    }
+
+    m_preview_image.setPixmap(pixmap);
+}
+
+void MainWindow::multipage_activated(int index)
+{
+    if (index == m_multipage.count() - 1)
+    {
+        m_multipage.setCurrentIndex(0);
+        connect(m_multipage_profiles_manager,
+                &MultipageProfilesManager::profile_created,
+                this,
+                &MainWindow::profile_created);
+        m_multipage_profiles_manager->new_profile_button_pressed();
+    }
+}
+
+void MainWindow::profile_created(int index)
+{
+    disconnect(m_multipage_profiles_manager,
+               &MultipageProfilesManager::profile_created,
+               this,
+               &MainWindow::profile_created);
+
+    m_multipage.clear();
+    m_multipage.addItem(tr("Disabled"), -1);
+    QMap<int, Multipage>::const_iterator it;
+    for (it = m_multipages.constBegin();
+         it != m_multipages.constEnd();
+         ++it)
+        m_multipage.addItem(
+                    QString::fromStdString(it.value().name),
+                    it.key());
+    m_multipage.addItem(tr("New custom profile…"), -2);
+    m_multipage.setCurrentIndex(index + 1);
 }
 
 void MainWindow::generate_booklet_pressed()
@@ -766,6 +891,90 @@ void MainWindow::generate_booklet_pressed()
                 QString::fromStdString(m_opened_pdf_info.filename()))
             update_opened_file_label(selected_file);
     }
+}
+
+void MainWindow::save_button_pressed(int from_page)
+{
+    QString filename =
+            QFileInfo(QString::fromStdString(
+                    m_opened_pdf_info.filename())).fileName();
+
+    if (QMessageBox::warning(
+                this,
+                tr("Overwrite File?"),
+                tr("A file called «%1» already exists. "
+                   "Do you want to overwrite it?")
+                .arg(filename),
+                QMessageBox::Yes | QMessageBox::No,
+                QMessageBox::No
+                ) == QMessageBox::Yes)
+    {
+        do_save(from_page,
+                QString::fromStdString(m_opened_pdf_info.filename()));
+    }
+}
+
+void MainWindow::save_as_button_pressed(int from_page)
+{
+    QString selected_file = QFileDialog::getSaveFileName(
+                this,
+                tr("Save PDF file"),
+                m_settings->value("save_directory",
+                                  m_settings->value("open_directory", "")
+                                  ).toString(),
+                tr("PDF files (*.pdf)"));
+
+    if (!selected_file.isNull())
+    {
+        do_save(from_page, selected_file);
+    }
+}
+
+void MainWindow::do_save(int from_page, const QString &filename)
+{
+    Conf conf;
+
+    switch (from_page) {
+    case 0:
+        conf.output_path = filename.toStdString();
+        conf.alternate_mix = false;
+
+        FileConf fileconf;
+        fileconf.path = m_opened_pdf_info.filename();
+        fileconf.ouput_pages = "";
+        int mp_index = m_multipage.currentData().toInt();
+        if (mp_index < 0)
+            fileconf.multipage_enabled = false;
+        else
+        {
+            fileconf.multipage_enabled = true;
+            fileconf.multipage = &m_multipages[mp_index];
+        }
+        fileconf.rotation = m_rotation.currentData().toInt();
+        fileconf.outline_entry = "";
+        fileconf.reverse_order = false;
+
+        conf.files.push_back(fileconf);
+
+        break;
+    }
+
+    QProgressBar *pb = m_progress_bar;
+    std::function<void (int)> progress = [pb] (int p)
+    {
+        pb->setValue(p);
+    };
+
+    m_progress_bar->setValue(0);
+    m_progress_bar->show();
+
+    write_pdf(conf, progress);
+
+    QTimer::singleShot(4000, m_progress_bar, SLOT(hide()));
+
+    if (filename ==
+            QString::fromStdString(m_opened_pdf_info.filename()))
+        update_opened_file_label(filename);
 }
 
 void MainWindow::closeEvent(QCloseEvent *event)

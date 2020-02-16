@@ -71,7 +71,19 @@ public slots:
 
     void update_opened_file_label(const QString &filename);
 
+    void update_preview_image();
+
+    void multipage_activated(int index);
+
+    void profile_created(int index);
+
     void generate_booklet_pressed();
+
+    void save_button_pressed(int from_page);
+
+    void save_as_button_pressed(int from_page);
+
+    void do_save(int from_page, const QString &filename);
 
     // close event
     void closeEvent(QCloseEvent *event);
@@ -109,8 +121,10 @@ private:
 
     QComboBox m_rotation;
     QComboBox m_multipage;
+    QLabel m_preview_image;
 
     QMap<int, Multipage> m_multipages;
+    MultipageProfilesManager *m_multipage_profiles_manager;
 };
 
 #endif // MAINWINDOW_H

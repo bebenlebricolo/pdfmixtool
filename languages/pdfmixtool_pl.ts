@@ -6,17 +6,17 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="33"/>
         <source>About PDF Mix Tool</source>
-        <translation type="unfinished"></translation>
+        <translation>Informacje o PDF Mix Tool</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="44"/>
         <source>Close</source>
-        <translation type="unfinished"></translation>
+        <translation>Zamknij</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="55"/>
         <source>Version %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Wersja %1</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="67"/>
@@ -26,7 +26,7 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="70"/>
         <source>Website</source>
-        <translation type="unfinished"></translation>
+        <translation>Strona internetowa</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="77"/>
@@ -36,12 +36,12 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="94"/>
         <source>Authors</source>
-        <translation type="unfinished"></translation>
+        <translation>Autorzy</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="96"/>
         <source>Translators</source>
-        <translation type="unfinished"></translation>
+        <translation>Tłumaczenia</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="105"/>
@@ -51,7 +51,7 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="129"/>
         <source>License</source>
-        <translation type="unfinished"></translation>
+        <translation>Licencja</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="142"/>

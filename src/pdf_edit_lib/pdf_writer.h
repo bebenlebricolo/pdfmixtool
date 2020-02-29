@@ -38,4 +38,13 @@ void write_booklet_pdf(const std::string &input_filename,
                        bool right_side_binding,
                        std::function<void (int)>& progress);
 
+void write_add_empty_pages(const std::string &input_filename,
+                           const std::string &output_filename,
+                           int count,
+                           double page_width,
+                           double page_height,
+                           int location,
+                           bool after,
+                           std::function<void (int)>& progress);
+
 #endif // PDF_WRITER_H

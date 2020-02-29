@@ -31,6 +31,7 @@
 #include <QStackedWidget>
 #include <QListWidget>
 #include <QStatusBar>
+#include <QRadioButton>
 
 #include "aboutdialog.h"
 #include "editpdfentrydialog.h"
@@ -398,6 +399,115 @@ MainWindow::MainWindow(MouseEventFilter *filter, QWidget *parent) :
                     save_as_button->shortcut().toString()));
     connect(save_as_button, &QPushButton::pressed,
             [=]() {save_as_button_pressed(0);});
+
+    h_layout->addWidget(save_button);
+    h_layout->addWidget(save_as_button);
+
+    // add empty pages
+    v_layout = new QVBoxLayout();
+    QGridLayout *grid_layout = new QGridLayout();
+    h_layout = new QHBoxLayout();
+    v_layout->addLayout(grid_layout);
+    v_layout->addItem(new QSpacerItem(0, 0,
+                                      QSizePolicy::Minimum,
+                                      QSizePolicy::Expanding));
+    v_layout->addLayout(h_layout);
+    empty_page->setLayout(v_layout);
+
+    grid_layout->addWidget(new QLabel(tr("Count:"), this), 0, 0);
+    grid_layout->addWidget(&m_count, 0, 1);
+    m_count.setRange(1, 1000);
+
+    grid_layout->addWidget(new QLabel("<b>" + tr("Page size") + "</b>", this),
+                           1, 0, 1, 4);
+
+    m_page_size.addButton(new QRadioButton(tr("Same as document"), this), 0);
+    grid_layout->addWidget(m_page_size.button(0), 2, 0);
+
+    m_page_size.addButton(new QRadioButton(tr("Custom:"), this), 1);
+    grid_layout->addWidget(m_page_size.button(1), 3, 0);
+
+    m_page_width.setSuffix(" cm");
+    m_page_width.setDecimals(1);
+    m_page_width.setSingleStep(0.1);
+    m_page_width.setMinimum(1.0);
+    m_page_width.setMaximum(1000.0);
+    m_page_width.setValue(21.0);
+
+    m_page_height.setSuffix(" cm");
+    m_page_height.setDecimals(1);
+    m_page_height.setSingleStep(0.1);
+    m_page_height.setMinimum(1.0);
+    m_page_height.setMaximum(1000.0);
+    m_page_height.setValue(29.7);
+
+    grid_layout->addWidget(&m_page_width, 3, 1);
+    grid_layout->addWidget(new QLabel("×", this), 3, 2, Qt::AlignCenter);
+    grid_layout->setColumnStretch(0, 1);
+    grid_layout->setColumnStretch(1, 1);
+    grid_layout->setColumnStretch(2, 0);
+    grid_layout->setColumnStretch(3, 1);
+    grid_layout->addWidget(&m_page_height, 3, 3);
+
+    m_page_size.addButton(new QRadioButton(tr("Standard:"), this), 2);
+    grid_layout->addWidget(m_page_size.button(2), 4, 0, 1, 2);
+    int i = 0;
+    for (PaperSize size : paper_sizes)
+    {
+        m_standard_page_size.addItem(QString::fromStdString(size.name), i);
+        i++;
+    }
+    grid_layout->addWidget(&m_standard_page_size, 4, 1, 1, 3);
+    m_orientation.addButton(new QRadioButton(tr("Portrait"), this), 0);
+    grid_layout->addWidget(m_orientation.button(0), 5, 1);
+    m_orientation.addButton(new QRadioButton(tr("Landscape"), this), 1);
+    grid_layout->addWidget(m_orientation.button(1), 5, 3);
+
+    grid_layout->addWidget(new QLabel("<b>" + tr("Location") + "</b>", this),
+                           6, 0, 1, 4);
+
+    m_before_after.addButton(new QRadioButton(tr("Before"), this), 0);
+    grid_layout->addWidget(m_before_after.button(0), 7, 0);
+    m_before_after.addButton(new QRadioButton(tr("After"), this), 1);
+    grid_layout->addWidget(m_before_after.button(1), 7, 1);
+
+    grid_layout->addWidget(new QLabel(tr("Page:"), this), 8, 0);
+    grid_layout->addWidget(&m_page, 8, 1);
+    m_page.setRange(1, 1000);
+
+    m_page_size.button(0)->setChecked(true);
+    m_orientation.button(0)->setChecked(true);
+    m_before_after.button(0)->setChecked(true);
+
+    h_layout->addItem(new QSpacerItem(0, 0,
+                                      QSizePolicy::Expanding,
+                                      QSizePolicy::Minimum));
+
+    save_button = new QPushButton(
+                QIcon::fromTheme("document-save"),
+                tr("Save"),
+                this);
+    save_button->setShortcut(QKeySequence::Save);
+    save_button->setToolTip(
+                QString(TOOLTIP_STRING)
+                .arg(
+                    save_button->text(),
+                    save_button->shortcut().toString()));
+    connect(save_button, &QPushButton::pressed,
+            [=]() {save_button_pressed(1);});
+
+    save_as_button = new QPushButton(
+                QIcon::fromTheme("document-save-as"),
+                tr("Save as…"),
+                this);
+    save_as_button->setShortcut(QKeySequence::SaveAs);
+    save_as_button->setToolTip(
+                QString(TOOLTIP_STRING)
+                .arg(
+                    save_as_button->text(),
+                    save_as_button->shortcut().toString()));
+    connect(save_as_button, &QPushButton::pressed,
+            [=]() {save_as_button_pressed(1);});
 
     h_layout->addWidget(save_button);
     h_layout->addWidget(save_as_button);
@@ -793,6 +903,8 @@ void MainWindow::update_opened_file_label(const QString &filename)
     m_opened_file_label->set_pdf_info(m_opened_pdf_info);
 
     this->update_preview_image();
+
+    m_page.setRange(1, m_opened_pdf_info.n_pages());
 }
 
 void MainWindow::update_preview_image()
@@ -932,10 +1044,19 @@ void MainWindow::save_as_button_pressed(int from_page)
 
 void MainWindow::do_save(int from_page, const QString &filename)
 {
-    Conf conf;
+    QProgressBar *pb = m_progress_bar;
+    std::function<void (int)> progress = [pb] (int p)
+    {
+        pb->setValue(p);
+    };
+
+    m_progress_bar->setValue(0);
+    m_progress_bar->show();
 
     switch (from_page) {
-    case 0:
+    case 0: {
+        Conf conf;
+
         conf.output_path = filename.toStdString();
         conf.alternate_mix = false;
 
@@ -956,19 +1077,58 @@ void MainWindow::do_save(int from_page, const QString &filename)
 
         conf.files.push_back(fileconf);
 
+        write_pdf(conf, progress);
+
         break;
     }
+    case 1: {
+        int count = m_count.value();
 
-    QProgressBar *pb = m_progress_bar;
-    std::function<void (int)> progress = [pb] (int p)
-    {
-        pb->setValue(p);
-    };
+        double page_width, page_height;
+        switch (m_page_size.checkedId()) {
+        case 0: {
+            page_width = m_opened_pdf_info.width();
+            page_height = m_opened_pdf_info.height();
+            break;
+        }
+        case 1: {
+            page_width = m_page_width.value();
+            page_height = m_page_height.value();
+            break;
+        }
+        case 2: {
+            PaperSize size = paper_sizes[
+                    m_standard_page_size.currentData().toUInt()];
 
-    m_progress_bar->setValue(0);
-    m_progress_bar->show();
+            if (m_orientation.checkedId() == 0)
+            {
+                page_width = size.width;
+                page_height = size.height;
+            }
+            else
+            {
+                page_width = size.height;
+                page_height = size.width;
+            }
+            break;
+        }
+        }
 
-    write_pdf(conf, progress);
+        int location = m_page.value();
+        bool after = m_before_after.checkedId();
+
+        write_add_empty_pages(m_opened_pdf_info.filename(),
+                              filename.toStdString(),
+                              count,
+                              page_width,
+                              page_height,
+                              location,
+                              after,
+                              progress);
+
+        break;
+    }
+    }
 
     QTimer::singleShot(4000, m_progress_bar, SLOT(hide()));
 

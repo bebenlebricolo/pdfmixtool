@@ -1,4 +1,4 @@
-cmake_minimum_required (VERSION 3.1)
+cmake_minimum_required (VERSION 3.6)
 
 project (PDFMixTool)
 
@@ -48,7 +48,10 @@ file(GLOB TS_FILES
      languages/pdfmixtool_*.ts
 )
 
+list(FILTER TS_FILES EXCLUDE REGEX ".*languages/pdfmixtool_en.ts$")
+
 qt5_create_translation(QM_FILES ${SRCS} ${TS_FILES} OPTIONS -no-obsolete)
+qt5_create_translation(QM_FILES ${SRCS} "languages/pdfmixtool_en.ts" OPTIONS -pluralonly -no-obsolete)
 
 add_executable (
     pdfmixtool

@@ -28,6 +28,7 @@
 #include <QTabWidget>
 #include <QCheckBox>
 #include <QPushButton>
+#include <QButtonGroup>
 
 #include "mouseeventfilter.h"
 #include "inputpdffiledelegate.h"
@@ -122,6 +123,15 @@ private:
     QComboBox m_rotation;
     QComboBox m_multipage;
     QLabel m_preview_image;
+
+    QSpinBox m_count;
+    QButtonGroup m_page_size;
+    QDoubleSpinBox m_page_width;
+    QDoubleSpinBox m_page_height;
+    QComboBox m_standard_page_size;
+    QButtonGroup m_orientation;
+    QButtonGroup m_before_after;
+    QSpinBox m_page;
 
     QMap<int, Multipage> m_multipages;
     MultipageProfilesManager *m_multipage_profiles_manager;

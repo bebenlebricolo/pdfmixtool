@@ -592,3 +592,67 @@ void write_booklet_pdf(
 
     std::locale::global(old_locale);
 }
+
+void write_add_empty_pages(const std::string &input_filename,
+                           const std::string &output_filename,
+                           int count,
+                           double page_width,
+                           double page_height,
+                           int location,
+                           bool after,
+                           std::function<void (int)>& progress)
+{
+    std::locale old_locale = std::locale::global(std::locale::classic());
+
+    QPDF output_file;
+    output_file.emptyPDF();
+
+    QPDF input_file;
+    input_file.processFile(input_filename.c_str());
+    input_file.setImmediateCopyFrom(true);
+
+    // Add pages to the output file
+    std::string blank_page_string = "<</Type/Page/MediaBox[0 0 " +
+            std::to_string(page_width * cm) + ' ' +
+            std::to_string(page_height * cm) +
+            "]/Resources<</ProcSet[/PDF/Text/ImageB/ImageC/ImageI]>>>>";
+
+    std::vector<QPDFPageObjectHelper> const &pages =
+            QPDFPageDocumentHelper(input_file).getAllPages();
+
+    for (unsigned int i = 0; i < pages.size(); i++)
+    {
+        QPDFPageObjectHelper page = pages.at(i);
+        page = page.shallowCopyPage();
+
+        if (i == location - 1)
+        {
+            if (after)
+                QPDFPageDocumentHelper(output_file).addPage(page, false);
+
+            for (int j = 0; j < count; j++)
+            {
+                QPDFObjectHandle blank_page_object = QPDFObjectHandle::parse(
+                            blank_page_string,
+                            "blank page");
+                QPDFPageObjectHelper blank_page(blank_page_object);
+                QPDFPageDocumentHelper(output_file).addPage(blank_page, false);
+            }
+
+            if (!after)
+                QPDFPageDocumentHelper(output_file).addPage(page, false);
+        }
+        else
+            QPDFPageDocumentHelper(output_file).addPage(page, false);
+
+        progress(i / pages.size() * 100);
+    }
+
+    // write pdf
+    QPDFWriter writer(output_file, output_filename.c_str());
+    writer.write();
+
+    progress(100);
+
+    std::locale::global(old_locale);
+}

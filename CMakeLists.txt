@@ -48,15 +48,14 @@ file(GLOB TS_FILES
      languages/pdfmixtool_*.ts
 )
 
-list(FILTER TS_FILES EXCLUDE REGEX ".*languages/pdfmixtool_en.ts$")
-
-qt5_create_translation(QM_FILES ${SRCS} ${TS_FILES} OPTIONS -no-obsolete)
-qt5_create_translation(QM_FILES ${SRCS} "languages/pdfmixtool_en.ts" OPTIONS -pluralonly -no-obsolete)
+qt5_create_translation(QM_FILES src/ ${TS_FILES})
+qt5_add_translation(EN_QM_FILE resources/pdfmixtool_en.ts)
 
 add_executable (
     pdfmixtool
     ${SRCS}
     ${QM_FILES}
+    ${EN_QM_FILE}
 )
 
 target_link_libraries (
@@ -75,6 +74,7 @@ install(FILES resources/icon_64.png DESTINATION share/icons/hicolor/64x64/apps R
 install(FILES resources/icon_128.png DESTINATION share/icons/hicolor/128x128/apps RENAME eu.scarpetta.PDFMixTool.png)
 install(FILES resources/icon_256.png DESTINATION share/icons/hicolor/256x256/apps RENAME eu.scarpetta.PDFMixTool.png)
 install(FILES ${QM_FILES} DESTINATION share/pdfmixtool/translations)
+install(FILES ${EN_QM_FILE} DESTINATION share/pdfmixtool/translations)
 install(FILES CHANGELOG.md DESTINATION share/pdfmixtool)
 install(FILES AUTHORS.md DESTINATION share/pdfmixtool)
 install(FILES TRANSLATORS.md DESTINATION share/pdfmixtool)

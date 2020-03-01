@@ -31,8 +31,8 @@ Booklet::Booklet(QWidget *parent) : QWidget(parent)
     v_layout->addLayout(h_layout);
     this->setLayout(v_layout);
 
-    booklet_binding.addItem("Left");
-    booklet_binding.addItem("Right");
+    booklet_binding.addItem(tr("Left"));
+    booklet_binding.addItem(tr("Right"));
     form_layout->addRow(tr("Binding:"), &booklet_binding);
 
     h_layout->addItem(new QSpacerItem(0, 0,

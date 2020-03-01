@@ -182,7 +182,7 @@ EditMultipageProfileDialog::EditMultipageProfileDialog(QWidget *parent) :
     layout->addWidget(save_button, row, 4);
 
     connect(save_button, SIGNAL(pressed()), this, SLOT(accept()));
-    connect(cancel_button, SIGNAL(pressed()), this, SLOT(close()));
+    connect(cancel_button, SIGNAL(pressed()), this, SLOT(reject()));
     connect(&m_custom_page_size, SIGNAL(toggled(bool)),
             this, SLOT(custom_page_size_toggled(bool)));
     connect(&m_page_size, SIGNAL(currentIndexChanged(int)),

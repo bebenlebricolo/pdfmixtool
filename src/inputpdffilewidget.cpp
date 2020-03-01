@@ -36,7 +36,8 @@ InputPdfFileWidget::InputPdfFileWidget(
     m_mp_manager(mp_manager),
     m_alternate_mix(alternate_mix),
     m_preview_size(preview_size),
-    m_preview_label(new QLabel(this))
+    m_preview_label(new QLabel(this)),
+    m_new_profile_triggered(false)
 {
     m_page_width = index.data(PAGE_WIDTH_ROLE).toDouble();
     m_page_height = index.data(PAGE_HEIGHT_ROLE).toDouble();
@@ -100,6 +101,10 @@ InputPdfFileWidget::InputPdfFileWidget(
                 this, SLOT(update_preview()));
         connect(m_multipage_combobox, SIGNAL(activated(int)),
                 this, SLOT(multipage_activated(int)));
+        connect(m_mp_manager,
+                &MultipageProfilesManager::profile_created,
+                this,
+                &InputPdfFileWidget::profile_created);
         connect(m_rotation_combobox, SIGNAL(currentIndexChanged(int)),
                 this, SLOT(update_preview()));
     }
@@ -228,20 +233,18 @@ void InputPdfFileWidget::multipage_activated(int index)
     if (index == m_multipage_combobox->count() - 1)
     {
         m_multipage_combobox->setCurrentIndex(0);
-        connect(m_mp_manager,
-                &MultipageProfilesManager::profile_created,
-                this,
-                &InputPdfFileWidget::profile_created);
+        m_new_profile_triggered = true;
         m_mp_manager->new_profile_button_pressed();
     }
 }
 
 void InputPdfFileWidget::profile_created(int index)
 {
-    disconnect(m_mp_manager,
-               &MultipageProfilesManager::profile_created,
-               this,
-               &InputPdfFileWidget::profile_created);
+    if (m_new_profile_triggered)
+    {
+        m_new_profile_triggered = false;
 
-    m_last_item->setData(index, MULTIPAGE_ROLE);
+        if (index != -1)
+            m_last_item->setData(index, MULTIPAGE_ROLE);
+    }
 }

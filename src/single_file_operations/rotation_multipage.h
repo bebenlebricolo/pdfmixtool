@@ -50,6 +50,9 @@ signals:
     void save_button_pressed();
     void save_as_button_pressed();
 
+private:
+    bool m_new_profile_triggered;
+
 };
 
 #endif // ROTATEMULTIPAGE_H

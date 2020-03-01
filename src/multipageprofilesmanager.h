@@ -43,6 +43,8 @@ public slots:
 
     void edit_dialog_accepted();
 
+    void edit_dialog_closed();
+
     void show();
 
     void closeEvent(QCloseEvent *event);

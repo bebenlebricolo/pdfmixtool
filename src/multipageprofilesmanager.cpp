@@ -80,17 +80,20 @@ MultipageProfilesManager::MultipageProfilesManager(
 
     v_layout->addWidget(m_profiles_view);
 
-    connect(m_new_profile_button, SIGNAL(pressed()),
-            this, SLOT(new_profile_button_pressed()));
+    connect(m_new_profile_button, &QPushButton::pressed,
+            this, &MultipageProfilesManager::new_profile_button_pressed);
 
-    connect(m_delete_profile_button, SIGNAL(pressed()),
-            this, SLOT(delete_profile_button_pressed()));
+    connect(m_delete_profile_button, &QPushButton::pressed,
+            this, &MultipageProfilesManager::delete_profile_button_pressed);
 
-    connect(m_profiles_view, SIGNAL(doubleClicked(QModelIndex)),
-            this, SLOT(profile_double_clicked(QModelIndex)));
+    connect(m_profiles_view, &QListView::doubleClicked,
+            this, &MultipageProfilesManager::profile_double_clicked);
 
-    connect(m_edit_dialog, SIGNAL(accepted()),
-            this, SLOT(edit_dialog_accepted()));
+    connect(m_edit_dialog, &QDialog::accepted,
+            this, &MultipageProfilesManager::edit_dialog_accepted);
+
+    connect(m_edit_dialog, &QDialog::rejected,
+            this, &MultipageProfilesManager::edit_dialog_closed);
 }
 
 bool MultipageProfilesManager::profile_name_exists(const QString &name)
@@ -158,7 +161,7 @@ void MultipageProfilesManager::edit_dialog_accepted()
 {
     Multipage multipage = m_edit_dialog->get_multipage();
 
-    // Check profile name
+    // Check for errors in the profile name
     if (multipage.name.size() == 0)
     {
         QMessageBox::critical(this,
@@ -191,9 +194,10 @@ void MultipageProfilesManager::edit_dialog_accepted()
             return;
         }
 
+    // Add/update the multipage profile
     multipages.insert(m_edit_dialog->get_index(), multipage);
 
-    // Update model
+    // Update mulipage profile name if it's already in the list
     for (int i = 0; i < m_profiles_model->rowCount(); i++)
     {
         QStandardItem *item = m_profiles_model->item(i);
@@ -204,12 +208,19 @@ void MultipageProfilesManager::edit_dialog_accepted()
         }
     }
 
+    // Otherwise add the multipage profile to the list
     QStandardItem *item =
             new QStandardItem(QString::fromStdString(multipage.name));
     item->setData(m_edit_dialog->get_index(), Qt::UserRole);
     m_profiles_model->appendRow(item);
 
+    // Inform other objects that a new multipage profile was created
     emit profile_created(m_edit_dialog->get_index());
+}
+
+void MultipageProfilesManager::edit_dialog_closed()
+{
+    emit profile_created(-1);
 }
 
 void MultipageProfilesManager::show()

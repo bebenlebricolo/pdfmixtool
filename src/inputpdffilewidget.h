@@ -68,6 +68,7 @@ private:
     QComboBox *m_rotation_combobox;
     QLineEdit *m_outline_entry_lineedit;
     QCheckBox *m_reverse_order_checkbox;
+    bool m_new_profile_triggered;
 };
 
 #endif // INPUTPDFFILEWIDGET_H

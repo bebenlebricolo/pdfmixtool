@@ -26,6 +26,8 @@
 
 RotationMultipage::RotationMultipage(QWidget *parent) : QWidget(parent)
 {
+    m_new_profile_triggered = false;
+
     QVBoxLayout *v_layout = new QVBoxLayout();
     QFormLayout *form_layout = new QFormLayout();
     QHBoxLayout *h_layout = new QHBoxLayout();
@@ -152,21 +154,30 @@ void RotationMultipage::multipage_activated(int index)
     if (index == multipage.count() - 1)
     {
         multipage.setCurrentIndex(0);
+        m_new_profile_triggered = true;
         emit trigger_new_profile();
     }
 }
 
 void RotationMultipage::profile_created(int index)
 {
-    multipage.clear();
-    multipage.addItem(tr("Disabled"), -1);
-    QMap<int, Multipage>::const_iterator it;
-    for (it = multipages.constBegin();
-         it != multipages.constEnd();
-         ++it)
-        multipage.addItem(
-                    QString::fromStdString(it.value().name),
-                    it.key());
-    multipage.addItem(tr("New custom profile…"), -2);
-    multipage.setCurrentIndex(index + 1);
+    if (m_new_profile_triggered)
+    {
+        m_new_profile_triggered = false;
+
+        if (index != -1)
+        {
+            multipage.clear();
+            multipage.addItem(tr("Disabled"), -1);
+            QMap<int, Multipage>::const_iterator it;
+            for (it = multipages.constBegin();
+                 it != multipages.constEnd();
+                 ++it)
+                multipage.addItem(
+                            QString::fromStdString(it.value().name),
+                            it.key());
+            multipage.addItem(tr("New custom profile…"), -2);
+            multipage.setCurrentIndex(index + 1);
+        }
+    }
 }

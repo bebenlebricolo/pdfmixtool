@@ -1,4 +1,4 @@
-/* Copyright (C) 2017-2020 Marco Scarpetta
+/* Copyright (C) 2020 Marco Scarpetta
  *
  * This file is part of PDF Mix Tool.
  *
@@ -16,31 +16,40 @@
  * along with PDF Mix Tool. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef EDITPDFENTRYDIALOG_H
-#define EDITPDFENTRYDIALOG_H
+#ifndef ROTATEMULTIPAGE_H
+#define ROTATEMULTIPAGE_H
 
-#include <QDialog>
+#include <QWidget>
 #include <QComboBox>
-#include <QStandardItemModel>
+#include <QLabel>
 
-#include "pdf_edit_lib/definitions.h"
+#include "../pdf_edit_lib/pdf_info.h"
 
-class EditPdfEntryDialog : public QDialog
+class RotationMultipage : public QWidget
 {
     Q_OBJECT
 public:
-    EditPdfEntryDialog(QStandardItemModel *model,
-                       const QModelIndexList &indexes,
-                       QWidget *parent = nullptr);
+    explicit RotationMultipage(QWidget *parent = nullptr);
 
-private slots:
-    void accepted();
+    QComboBox rotation;
+    QComboBox multipage;
+    QLabel preview_image;
+    PdfInfo opened_pdf_info;
 
-private:
-    QStandardItemModel *m_model;
-    const QModelIndexList &m_indexes;
-    QComboBox m_multipage_combobox;
-    QComboBox m_rotation_combobox;
+public slots:
+    void update_multipage_profiles();
+
+    void update_preview_image();
+
+    void multipage_activated(int index);
+
+    void profile_created(int index);
+
+signals:
+    void trigger_new_profile();
+    void save_button_pressed();
+    void save_as_button_pressed();
+
 };
 
-#endif // EDITPDFENTRYDIALOG_H
+#endif // ROTATEMULTIPAGE_H

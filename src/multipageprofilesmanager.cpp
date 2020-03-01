@@ -21,13 +21,13 @@
 #include <QBoxLayout>
 #include <QMessageBox>
 
+#include "gui_utils.h"
+
 MultipageProfilesManager::MultipageProfilesManager(
-        QMap<int, Multipage> *custom_multipages,
         QSettings *app_settings,
         QWidget *parent) :
     QMainWindow(parent),
     m_edit_dialog(new EditMultipageProfileDialog(this)),
-    m_multipages(custom_multipages),
     m_settings(app_settings),
     m_new_profile_button(new QPushButton(
                              QIcon::fromTheme("list-add"),
@@ -54,8 +54,8 @@ MultipageProfilesManager::MultipageProfilesManager(
     m_profiles_view->setVerticalScrollMode(QAbstractItemView::ScrollPerPixel);
 
     QMap<int, Multipage>::const_iterator it;
-    for (it = m_multipages->constBegin();
-         it != m_multipages->constEnd();
+    for (it = multipages.constBegin();
+         it != multipages.constEnd();
          ++it)
     {
         QStandardItem *item =
@@ -96,8 +96,8 @@ MultipageProfilesManager::MultipageProfilesManager(
 bool MultipageProfilesManager::profile_name_exists(const QString &name)
 {
     QMap<int, Multipage>::const_iterator it;
-    for (it = m_multipages->constBegin();
-         it != m_multipages->constEnd();
+    for (it = multipages.constBegin();
+         it != multipages.constEnd();
          ++it)
         if (QString::fromStdString(it.value().name) == name)
             return true;
@@ -114,8 +114,8 @@ void MultipageProfilesManager::new_profile_button_pressed()
 
     i = 0;
     QMap<int, Multipage>::const_iterator it;
-    for (it = m_multipages->constBegin();
-         it != m_multipages->constEnd();
+    for (it = multipages.constBegin();
+         it != multipages.constEnd();
          ++it)
         if (it.key() == i)
             ++i;
@@ -137,7 +137,7 @@ void MultipageProfilesManager::delete_profile_button_pressed()
 {
     if (m_profiles_view->selectionModel()->selectedIndexes().size() > 0)
     {
-        m_multipages->remove(
+        multipages.remove(
                     m_profiles_view->selectionModel()->
                     selectedIndexes().at(0).data(Qt::UserRole).toInt());
         m_profiles_model->removeRow(m_profiles_view
@@ -149,7 +149,7 @@ void MultipageProfilesManager::delete_profile_button_pressed()
 void MultipageProfilesManager::profile_double_clicked(const QModelIndex &index)
 {
     m_edit_dialog->set_multipage(
-                m_multipages->value(index.data(Qt::UserRole).toInt()));
+                multipages.value(index.data(Qt::UserRole).toInt()));
     m_edit_dialog->set_index(index.data(Qt::UserRole).toInt());
     m_edit_dialog->show();
 }
@@ -178,8 +178,8 @@ void MultipageProfilesManager::edit_dialog_accepted()
     }
 
     QMap<int, Multipage>::const_iterator it;
-    for (it = m_multipages->constBegin();
-         it != m_multipages->constEnd();
+    for (it = multipages.constBegin();
+         it != multipages.constEnd();
          ++it)
         if (multipage.name == it.value().name &&
                 m_edit_dialog->get_index() != it.key())
@@ -191,7 +191,7 @@ void MultipageProfilesManager::edit_dialog_accepted()
             return;
         }
 
-    m_multipages->insert(m_edit_dialog->get_index(), multipage);
+    multipages.insert(m_edit_dialog->get_index(), multipage);
 
     // Update model
     for (int i = 0; i < m_profiles_model->rowCount(); i++)

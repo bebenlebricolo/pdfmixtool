@@ -1,4 +1,4 @@
-/* Copyright (C) 2017-2020 Marco Scarpetta
+/* Copyright (C) 2020 Marco Scarpetta
  *
  * This file is part of PDF Mix Tool.
  *
@@ -16,31 +16,23 @@
  * along with PDF Mix Tool. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef EDITPDFENTRYDIALOG_H
-#define EDITPDFENTRYDIALOG_H
+#ifndef BOOKLET_H
+#define BOOKLET_H
 
-#include <QDialog>
+#include <QWidget>
 #include <QComboBox>
-#include <QStandardItemModel>
 
-#include "pdf_edit_lib/definitions.h"
-
-class EditPdfEntryDialog : public QDialog
+class Booklet : public QWidget
 {
     Q_OBJECT
 public:
-    EditPdfEntryDialog(QStandardItemModel *model,
-                       const QModelIndexList &indexes,
-                       QWidget *parent = nullptr);
+    explicit Booklet(QWidget *parent = nullptr);
 
-private slots:
-    void accepted();
+    QComboBox booklet_binding;
 
-private:
-    QStandardItemModel *m_model;
-    const QModelIndexList &m_indexes;
-    QComboBox m_multipage_combobox;
-    QComboBox m_rotation_combobox;
+signals:
+    void generate_booklet_pressed();
+
 };
 
-#endif // EDITPDFENTRYDIALOG_H
+#endif // BOOKLET_H

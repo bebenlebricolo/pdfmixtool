@@ -35,6 +35,10 @@
 #include "pdf_edit_lib/definitions.h"
 #include "pdfinfolabel.h"
 
+#include "single_file_operations/booklet.h"
+#include "single_file_operations/rotation_multipage.h"
+#include "single_file_operations/add_empty_pages.h"
+
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -71,12 +75,6 @@ public slots:
     void open_file_pressed();
 
     void update_opened_file_label(const QString &filename);
-
-    void update_preview_image();
-
-    void multipage_activated(int index);
-
-    void profile_created(int index);
 
     void generate_booklet_pressed();
 
@@ -118,22 +116,10 @@ private:
     PdfInfo m_opened_pdf_info;
     PdfInfoLabel *m_opened_file_label;
 
-    QComboBox m_booklet_binding;
+    Booklet m_booklet_page;
+    RotationMultipage m_rot_multi_page;
+    AddEmptyPages m_add_empty_pages_page;
 
-    QComboBox m_rotation;
-    QComboBox m_multipage;
-    QLabel m_preview_image;
-
-    QSpinBox m_count;
-    QButtonGroup m_page_size;
-    QDoubleSpinBox m_page_width;
-    QDoubleSpinBox m_page_height;
-    QComboBox m_standard_page_size;
-    QButtonGroup m_orientation;
-    QButtonGroup m_before_after;
-    QSpinBox m_page;
-
-    QMap<int, Multipage> m_multipages;
     MultipageProfilesManager *m_multipage_profiles_manager;
 };
 

@@ -30,12 +30,10 @@
 
 InputPdfFileDelegate::InputPdfFileDelegate(
         MouseEventFilter *filter,
-        const QMap<int, Multipage> &custom_multipages,
         MultipageProfilesManager *mp_manager,
         QWidget *parent) :
     QStyledItemDelegate(parent),
     m_mouse_event_filter(filter),
-    m_multipages(custom_multipages),
     m_mp_manager(mp_manager),
     m_alternate_mix(false)
 {
@@ -122,7 +120,7 @@ QWidget *InputPdfFileDelegate::build_widget(
         else
         {
             mp_enabled = true;
-            mp = m_multipages[mp_index];
+            mp = multipages[mp_index];
         }
 
         QString pages = QCoreApplication::translate(
@@ -243,7 +241,7 @@ QWidget *InputPdfFileDelegate::createEditor(
 {
     InputPdfFileWidget *editor = new InputPdfFileWidget(
                 index,
-                m_multipages,
+                multipages,
                 m_mp_manager,
                 option.rect.height(),
                 m_alternate_mix,

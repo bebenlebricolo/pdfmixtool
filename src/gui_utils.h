@@ -20,8 +20,11 @@
 #define GUI_UTILS_H
 
 #include <QPainter>
+#include <QMap>
 
 #include "pdf_edit_lib/definitions.h"
+
+#define TOOLTIP_STRING "%1 <br /><b>%2<?b>"
 
 #define FILE_PATH_ROLE Qt::UserRole + 1 // QString
 #define PAGE_WIDTH_ROLE Qt::UserRole + 2 // int
@@ -57,5 +60,7 @@ void draw_preview(QPainter *painter,
                   int rotation,
                   bool multipage_enabled,
                   const Multipage &multipage);
+
+extern QMap<int, Multipage> multipages;
 
 #endif // GUI_UTILS_H

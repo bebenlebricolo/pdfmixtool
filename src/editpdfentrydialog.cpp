@@ -27,12 +27,10 @@
 #include "inputpdffiledelegate.h"
 
 EditPdfEntryDialog::EditPdfEntryDialog(
-        const QMap<int, Multipage> &custom_multipages,
         QStandardItemModel *model,
         const QModelIndexList &indexes,
         QWidget *parent) :
     QDialog(parent),
-    m_multipages(custom_multipages),
     m_model(model),
     m_indexes(indexes)
 {
@@ -46,8 +44,8 @@ EditPdfEntryDialog::EditPdfEntryDialog(
 
     m_multipage_combobox.addItem(tr("Disabled"), -1);
     QMap<int, Multipage>::const_iterator it;
-    for (it = m_multipages.constBegin();
-         it != m_multipages.constEnd();
+    for (it = multipages.constBegin();
+         it != multipages.constEnd();
          ++it)
         m_multipage_combobox.addItem(
                     QString::fromStdString(it.value().name),

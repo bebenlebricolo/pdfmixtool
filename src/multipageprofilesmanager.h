@@ -31,8 +31,7 @@ class MultipageProfilesManager : public QMainWindow
 {
     Q_OBJECT
 public:
-    explicit MultipageProfilesManager(QMap<int, Multipage> *custom_multipages,
-                                      QSettings *app_settings,
+    explicit MultipageProfilesManager(QSettings *app_settings,
                                       QWidget *parent = nullptr);
 
 public slots:
@@ -58,7 +57,6 @@ private:
 
     EditMultipageProfileDialog *m_edit_dialog;
 
-    QMap<int, Multipage> *m_multipages;
     QSettings *m_settings;
 
     QPushButton *m_new_profile_button;

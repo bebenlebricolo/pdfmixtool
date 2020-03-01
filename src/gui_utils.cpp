@@ -235,3 +235,5 @@ void draw_preview(QPainter *painter, const QRect &rect,
 
     painter->restore();
 }
+
+QMap<int, Multipage> multipages = QMap<int, Multipage>();

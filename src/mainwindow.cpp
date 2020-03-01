@@ -39,8 +39,6 @@
 #include "pdf_edit_lib/pdf_writer.h"
 #include "gui_utils.h"
 
-#define TOOLTIP_STRING "%1 <br /><b>%2<?b>"
-
 MainWindow::MainWindow(MouseEventFilter *filter, QWidget *parent) :
     QMainWindow(parent),
     m_settings(new QSettings(this)),
@@ -70,16 +68,16 @@ MainWindow::MainWindow(MouseEventFilter *filter, QWidget *parent) :
     qRegisterMetaTypeStreamOperators<Multipage>("Multipage");
     m_settings->beginGroup("maltipage_profiles");
     for (QString key : m_settings->childKeys())
-         m_multipages[key.toInt()] =
+         multipages[key.toInt()] =
                  m_settings->value(key).value<Multipage>();
     m_settings->endGroup();
 
-    if (m_multipages.size() == 0)
+    if (multipages.size() == 0)
     {
         int i = 0;
         for (const Multipage &mp : multipage_defaults)
         {
-            m_multipages[i] = mp;
+            multipages[i] = mp;
             i++;
         }
 
@@ -88,7 +86,6 @@ MainWindow::MainWindow(MouseEventFilter *filter, QWidget *parent) :
     // Create other windows
     m_multipage_profiles_manager =
             new MultipageProfilesManager(
-                &m_multipages,
                 m_settings,
                 this);
     AboutDialog *about_dialog = new AboutDialog(new AboutDialog(this));
@@ -143,7 +140,6 @@ MainWindow::MainWindow(MouseEventFilter *filter, QWidget *parent) :
     m_delegate =
             new InputPdfFileDelegate(
                 filter,
-                m_multipages,
                 m_multipage_profiles_manager,
                 this);
 
@@ -250,269 +246,7 @@ MainWindow::MainWindow(MouseEventFilter *filter, QWidget *parent) :
     h_layout->addWidget(m_generate_pdf_button);
     v_layout->addLayout(h_layout);
 
-    /// Single PDF file mode
-    // opened PDF file line
-    v_layout = new QVBoxLayout();
-    single_mode->setLayout(v_layout);
-    h_layout = new QHBoxLayout();
-    v_layout->addLayout(h_layout);
-
-    QPushButton *open_button = new QPushButton(tr("Open PDF file…"), this);
-    open_button->setShortcut(QKeySequence::Open);
-    open_button->setToolTip(
-                QString(TOOLTIP_STRING)
-                .arg(
-                    open_button->text(),
-                    open_button->shortcut().toString()));
-    h_layout->addWidget(open_button);
-
-    m_opened_file_label = new PdfInfoLabel(this);
-    h_layout->addWidget(m_opened_file_label);
-    h_layout->setStretch(1, 1);
-
-    // operations UI
-    m_operations_widget = new QWidget(this);
-    h_layout = new QHBoxLayout();
-    m_operations_widget->setLayout(h_layout);
-    v_layout->addWidget(m_operations_widget);
-    QListWidget *operations_list = new QListWidget(this);
-    QStackedWidget *operations = new QStackedWidget(this);
-
-    operations_list->addItem(tr("Booklet"));
-    QWidget *booklet_page = new QWidget(this);
-    operations->addWidget(booklet_page);
-
-    operations_list->addItem(tr("Rotation/multipage"));
-    QWidget *rot_multi_page = new QWidget(this);
-    operations->addWidget(rot_multi_page);
-
-    operations_list->addItem(tr("Add empty pages"));
-    QWidget *empty_page = new QWidget(this);
-    operations->addWidget(empty_page);
-
-    operations_list->addItem(tr("Delete pages"));
-    QWidget *delete_page = new QWidget(this);
-    operations->addWidget(delete_page);
-
-    operations_list->addItem(tr("Extract pages"));
-    QWidget *extract_page = new QWidget(this);
-    operations->addWidget(extract_page);
-
-    operations_list->addItem(tr("Resize pages"));
-    QWidget *resize_page = new QWidget(this);
-    operations->addWidget(resize_page);
-
-    h_layout->addWidget(operations_list);
-    h_layout->addWidget(operations);
-    h_layout->setStretch(1, 1);
-    m_operations_widget->setEnabled(false);
-    operations_list->setCurrentRow(0);
-
-    // booklet page
-    v_layout = new QVBoxLayout();
-    QFormLayout *form_layout = new QFormLayout();
-    h_layout = new QHBoxLayout();
-    v_layout->addLayout(form_layout, 1);
-    v_layout->addLayout(h_layout);
-    booklet_page->setLayout(v_layout);
-
-    m_booklet_binding.addItem("Left");
-    m_booklet_binding.addItem("Right");
-    form_layout->addRow(tr("Binding:"), &m_booklet_binding);
-
-    h_layout->addItem(new QSpacerItem(0, 0,
-                                      QSizePolicy::Expanding,
-                                      QSizePolicy::Minimum));
-    QPushButton *button = new QPushButton(tr("Generate booklet"), this);
-    button->setShortcut(QKeySequence::Save);
-    button->setToolTip(
-                QString(TOOLTIP_STRING)
-                .arg(
-                    button->text(),
-                    button->shortcut().toString()));
-    connect(button, &QPushButton::pressed,
-            this, &MainWindow::generate_booklet_pressed);
-    h_layout->addWidget(button);
-
-    // rotation/multipage page
-    v_layout = new QVBoxLayout();
-    form_layout = new QFormLayout();
-    h_layout = new QHBoxLayout();
-    v_layout->addLayout(form_layout);
-    v_layout->addWidget(&m_preview_image, 1, Qt::AlignCenter);
-    v_layout->addLayout(h_layout);
-    rot_multi_page->setLayout(v_layout);
-
-    m_preview_image.setMinimumSize(200, 200);
-
-    m_rotation.addItem(tr("No rotation"), 0);
-    m_rotation.addItem("90°", 90);
-    m_rotation.addItem("180°", 180);
-    m_rotation.addItem("270°", 270);
-    connect(&m_rotation,
-            SIGNAL(currentIndexChanged(int)),
-            SLOT(update_preview_image()));
-    form_layout->addRow(tr("Rotation:"), &m_rotation);
-
-    m_multipage.addItem(tr("Disabled"), -1);
-    QMap<int, Multipage>::const_iterator it;
-    for (it = m_multipages.constBegin();
-         it != m_multipages.constEnd();
-         ++it)
-        m_multipage.addItem(
-                    QString::fromStdString(it.value().name),
-                    it.key());
-    m_multipage.addItem(tr("New custom profile…"), -2);
-    connect(&m_multipage,
-            SIGNAL(currentIndexChanged(int)),
-            SLOT(update_preview_image()));
-    connect(&m_multipage, SIGNAL(activated(int)),
-            SLOT(multipage_activated(int)));
-    form_layout->addRow(tr("Multipage:"), &m_multipage);
-
-    h_layout->addItem(new QSpacerItem(0, 0,
-                                      QSizePolicy::Expanding,
-                                      QSizePolicy::Minimum));
-
-    QPushButton *save_button = new QPushButton(
-                QIcon::fromTheme("document-save"),
-                tr("Save"),
-                this);
-    save_button->setShortcut(QKeySequence::Save);
-    save_button->setToolTip(
-                QString(TOOLTIP_STRING)
-                .arg(
-                    save_button->text(),
-                    save_button->shortcut().toString()));
-    connect(save_button, &QPushButton::pressed,
-            [=]() {save_button_pressed(0);});
-
-    QPushButton *save_as_button = new QPushButton(
-                QIcon::fromTheme("document-save-as"),
-                tr("Save as…"),
-                this);
-    save_as_button->setShortcut(QKeySequence::SaveAs);
-    save_as_button->setToolTip(
-                QString(TOOLTIP_STRING)
-                .arg(
-                    save_as_button->text(),
-                    save_as_button->shortcut().toString()));
-    connect(save_as_button, &QPushButton::pressed,
-            [=]() {save_as_button_pressed(0);});
-
-    h_layout->addWidget(save_button);
-    h_layout->addWidget(save_as_button);
-
-    // add empty pages
-    v_layout = new QVBoxLayout();
-    QGridLayout *grid_layout = new QGridLayout();
-    h_layout = new QHBoxLayout();
-    v_layout->addLayout(grid_layout);
-    v_layout->addItem(new QSpacerItem(0, 0,
-                                      QSizePolicy::Minimum,
-                                      QSizePolicy::Expanding));
-    v_layout->addLayout(h_layout);
-    empty_page->setLayout(v_layout);
-
-    grid_layout->addWidget(new QLabel(tr("Count:"), this), 0, 0);
-    grid_layout->addWidget(&m_count, 0, 1);
-    m_count.setRange(1, 1000);
-
-    grid_layout->addWidget(new QLabel("<b>" + tr("Page size") + "</b>", this),
-                           1, 0, 1, 4);
-
-    m_page_size.addButton(new QRadioButton(tr("Same as document"), this), 0);
-    grid_layout->addWidget(m_page_size.button(0), 2, 0);
-
-    m_page_size.addButton(new QRadioButton(tr("Custom:"), this), 1);
-    grid_layout->addWidget(m_page_size.button(1), 3, 0);
-
-    m_page_width.setSuffix(" cm");
-    m_page_width.setDecimals(1);
-    m_page_width.setSingleStep(0.1);
-    m_page_width.setMinimum(1.0);
-    m_page_width.setMaximum(1000.0);
-    m_page_width.setValue(21.0);
-
-    m_page_height.setSuffix(" cm");
-    m_page_height.setDecimals(1);
-    m_page_height.setSingleStep(0.1);
-    m_page_height.setMinimum(1.0);
-    m_page_height.setMaximum(1000.0);
-    m_page_height.setValue(29.7);
-
-    grid_layout->addWidget(&m_page_width, 3, 1);
-    grid_layout->addWidget(new QLabel("×", this), 3, 2, Qt::AlignCenter);
-    grid_layout->setColumnStretch(0, 1);
-    grid_layout->setColumnStretch(1, 1);
-    grid_layout->setColumnStretch(2, 0);
-    grid_layout->setColumnStretch(3, 1);
-    grid_layout->addWidget(&m_page_height, 3, 3);
-
-    m_page_size.addButton(new QRadioButton(tr("Standard:"), this), 2);
-    grid_layout->addWidget(m_page_size.button(2), 4, 0, 1, 2);
-    int i = 0;
-    for (PaperSize size : paper_sizes)
-    {
-        m_standard_page_size.addItem(QString::fromStdString(size.name), i);
-        i++;
-    }
-    grid_layout->addWidget(&m_standard_page_size, 4, 1, 1, 3);
-    m_orientation.addButton(new QRadioButton(tr("Portrait"), this), 0);
-    grid_layout->addWidget(m_orientation.button(0), 5, 1);
-    m_orientation.addButton(new QRadioButton(tr("Landscape"), this), 1);
-    grid_layout->addWidget(m_orientation.button(1), 5, 3);
-
-    grid_layout->addWidget(new QLabel("<b>" + tr("Location") + "</b>", this),
-                           6, 0, 1, 4);
-
-    m_before_after.addButton(new QRadioButton(tr("Before"), this), 0);
-    grid_layout->addWidget(m_before_after.button(0), 7, 0);
-    m_before_after.addButton(new QRadioButton(tr("After"), this), 1);
-    grid_layout->addWidget(m_before_after.button(1), 7, 1);
-
-    grid_layout->addWidget(new QLabel(tr("Page:"), this), 8, 0);
-    grid_layout->addWidget(&m_page, 8, 1);
-    m_page.setRange(1, 1000);
-
-    m_page_size.button(0)->setChecked(true);
-    m_orientation.button(0)->setChecked(true);
-    m_before_after.button(0)->setChecked(true);
-
-    h_layout->addItem(new QSpacerItem(0, 0,
-                                      QSizePolicy::Expanding,
-                                      QSizePolicy::Minimum));
-
-    save_button = new QPushButton(
-                QIcon::fromTheme("document-save"),
-                tr("Save"),
-                this);
-    save_button->setShortcut(QKeySequence::Save);
-    save_button->setToolTip(
-                QString(TOOLTIP_STRING)
-                .arg(
-                    save_button->text(),
-                    save_button->shortcut().toString()));
-    connect(save_button, &QPushButton::pressed,
-            [=]() {save_button_pressed(1);});
-
-    save_as_button = new QPushButton(
-                QIcon::fromTheme("document-save-as"),
-                tr("Save as…"),
-                this);
-    save_as_button->setShortcut(QKeySequence::SaveAs);
-    save_as_button->setToolTip(
-                QString(TOOLTIP_STRING)
-                .arg(
-                    save_as_button->text(),
-                    save_as_button->shortcut().toString()));
-    connect(save_as_button, &QPushButton::pressed,
-            [=]() {save_as_button_pressed(1);});
-
-    h_layout->addWidget(save_button);
-    h_layout->addWidget(save_as_button);
-
-    /// Connect signals to slots
+    // Connect signals to slots
     connect(m_tab_widget, &QTabWidget::currentChanged,
             this, &MainWindow::current_tab_changed);
 
@@ -534,11 +268,91 @@ MainWindow::MainWindow(MouseEventFilter *filter, QWidget *parent) :
     connect(generate_pdf_action, SIGNAL(triggered(bool)),
             this, SLOT(generate_pdf_button_pressed()));
 
-    connect(operations_list, &QListWidget::currentRowChanged,
-            operations, &QStackedWidget::setCurrentIndex);
+    /// Single PDF file mode
+    // opened PDF file line
+    v_layout = new QVBoxLayout();
+    single_mode->setLayout(v_layout);
+    h_layout = new QHBoxLayout();
+    v_layout->addLayout(h_layout);
+
+    QPushButton *open_button = new QPushButton(tr("Open PDF file…"), this);
+    open_button->setShortcut(QKeySequence::Open);
+    open_button->setToolTip(
+                QString(TOOLTIP_STRING)
+                .arg(
+                    open_button->text(),
+                    open_button->shortcut().toString()));
+    h_layout->addWidget(open_button);
 
     connect(open_button, &QPushButton::pressed,
             this, &MainWindow::open_file_pressed);
+
+    m_opened_file_label = new PdfInfoLabel(this);
+    h_layout->addWidget(m_opened_file_label);
+    h_layout->setStretch(1, 1);
+
+    // operations UI
+    m_operations_widget = new QWidget(this);
+    h_layout = new QHBoxLayout();
+    m_operations_widget->setLayout(h_layout);
+    v_layout->addWidget(m_operations_widget);
+    QListWidget *operations_list = new QListWidget(this);
+    QStackedWidget *operations = new QStackedWidget(this);
+
+    operations_list->addItem(tr("Booklet"));
+    operations->addWidget(&m_booklet_page);
+    connect(&m_booklet_page, &Booklet::generate_booklet_pressed,
+            this, &MainWindow::generate_booklet_pressed);
+
+    operations_list->addItem(tr("Rotation/multipage"));
+    operations->addWidget(&m_rot_multi_page);
+    m_rot_multi_page.update_multipage_profiles();
+    connect(m_multipage_profiles_manager,
+            &MultipageProfilesManager::close_signal,
+            &m_rot_multi_page,
+            &RotationMultipage::update_multipage_profiles);
+    connect(&m_rot_multi_page,
+            &RotationMultipage::trigger_new_profile,
+            m_multipage_profiles_manager,
+            &MultipageProfilesManager::new_profile_button_pressed);
+    connect(m_multipage_profiles_manager,
+            &MultipageProfilesManager::profile_created,
+            &m_rot_multi_page,
+            &RotationMultipage::profile_created);
+    connect(&m_rot_multi_page,
+            &RotationMultipage::save_button_pressed,
+            [=]() {save_button_pressed(0);});
+    connect(&m_rot_multi_page,
+            &RotationMultipage::save_as_button_pressed,
+            [=]() {save_as_button_pressed(0);});
+
+    operations_list->addItem(tr("Add empty pages"));
+    operations->addWidget(&m_add_empty_pages_page);
+    connect(&m_add_empty_pages_page, &AddEmptyPages::save_button_pressed,
+            [=]() {save_button_pressed(1);});
+    connect(&m_add_empty_pages_page, &AddEmptyPages::save_as_button_pressed,
+            [=]() {save_as_button_pressed(1);});
+
+    operations_list->addItem(tr("Delete pages"));
+    QWidget *delete_page = new QWidget(this);
+    operations->addWidget(delete_page);
+
+    operations_list->addItem(tr("Extract pages"));
+    QWidget *extract_page = new QWidget(this);
+    operations->addWidget(extract_page);
+
+    operations_list->addItem(tr("Resize pages"));
+    QWidget *resize_page = new QWidget(this);
+    operations->addWidget(resize_page);
+
+    h_layout->addWidget(operations_list);
+    h_layout->addWidget(operations);
+    h_layout->setStretch(1, 1);
+    m_operations_widget->setEnabled(false);
+    operations_list->setCurrentRow(0);
+
+    connect(operations_list, &QListWidget::currentRowChanged,
+            operations, &QStackedWidget::setCurrentIndex);
 }
 
 void MainWindow::current_tab_changed(int index)
@@ -684,8 +498,7 @@ void MainWindow::edit_menu_activated()
         m_files_list_view->edit(indexes.first());
     else
     {
-        EditPdfEntryDialog dialog(m_multipages,
-                                  m_files_list_model,
+        EditPdfEntryDialog dialog(m_files_list_model,
                                   indexes);
         dialog.exec();
 
@@ -753,11 +566,11 @@ void MainWindow::update_output_pages_count()
             int mp_index = item->data(MULTIPAGE_ROLE).toInt();
             if (mp_index > 0)
             {
-                if (m_multipages.find(mp_index) == m_multipages.end())
+                if (multipages.find(mp_index) == multipages.end())
                     item->setData(-1, MULTIPAGE_ROLE);
                 else
                 {
-                    Multipage mp = m_multipages[mp_index];
+                    Multipage mp = multipages[mp_index];
 
                     int subpages = mp.rows * mp.columns;
 
@@ -849,7 +662,7 @@ void MainWindow::generate_pdf_button_pressed()
             else
             {
                 fileconf.multipage_enabled = true;
-                fileconf.multipage = &m_multipages[mp_index];
+                fileconf.multipage = &multipages[mp_index];
             }
             fileconf.rotation = rotation;
             fileconf.outline_entry = outline_entry.toStdString();
@@ -902,73 +715,10 @@ void MainWindow::update_opened_file_label(const QString &filename)
 
     m_opened_file_label->set_pdf_info(m_opened_pdf_info);
 
-    this->update_preview_image();
+    m_rot_multi_page.opened_pdf_info = m_opened_pdf_info;
+    m_rot_multi_page.update_preview_image();
 
-    m_page.setRange(1, m_opened_pdf_info.n_pages());
-}
-
-void MainWindow::update_preview_image()
-{
-    int size = m_preview_image.minimumWidth();
-
-    QPixmap pixmap(size, size);
-    QPainter painter(&pixmap);
-
-    if (m_opened_pdf_info.filename().empty())
-    {
-        painter.fillRect(0, 0, size, size, Qt::white);
-    }
-    else
-    {
-        int rotation = m_rotation.currentData().toInt();
-        int mp_index = m_multipage.currentData().toInt();
-        Multipage mp;
-        if (mp_index >= 0)
-            mp = m_multipages[mp_index];
-
-        draw_preview(&painter,
-                     QRect(0, 0, size, size),
-                     m_opened_pdf_info.width(),
-                     m_opened_pdf_info.height(),
-                     rotation,
-                     mp_index >= 0,
-                     mp);
-    }
-
-    m_preview_image.setPixmap(pixmap);
-}
-
-void MainWindow::multipage_activated(int index)
-{
-    if (index == m_multipage.count() - 1)
-    {
-        m_multipage.setCurrentIndex(0);
-        connect(m_multipage_profiles_manager,
-                &MultipageProfilesManager::profile_created,
-                this,
-                &MainWindow::profile_created);
-        m_multipage_profiles_manager->new_profile_button_pressed();
-    }
-}
-
-void MainWindow::profile_created(int index)
-{
-    disconnect(m_multipage_profiles_manager,
-               &MultipageProfilesManager::profile_created,
-               this,
-               &MainWindow::profile_created);
-
-    m_multipage.clear();
-    m_multipage.addItem(tr("Disabled"), -1);
-    QMap<int, Multipage>::const_iterator it;
-    for (it = m_multipages.constBegin();
-         it != m_multipages.constEnd();
-         ++it)
-        m_multipage.addItem(
-                    QString::fromStdString(it.value().name),
-                    it.key());
-    m_multipage.addItem(tr("New custom profile…"), -2);
-    m_multipage.setCurrentIndex(index + 1);
+    m_add_empty_pages_page.page.setRange(1, m_opened_pdf_info.n_pages());
 }
 
 void MainWindow::generate_booklet_pressed()
@@ -994,7 +744,7 @@ void MainWindow::generate_booklet_pressed()
 
         write_booklet_pdf(m_opened_pdf_info.filename(),
                           selected_file.toStdString(),
-                          m_booklet_binding.currentIndex(),
+                          m_booklet_page.booklet_binding.currentIndex(),
                           progress);
 
         QTimer::singleShot(4000, m_progress_bar, SLOT(hide()));
@@ -1063,15 +813,15 @@ void MainWindow::do_save(int from_page, const QString &filename)
         FileConf fileconf;
         fileconf.path = m_opened_pdf_info.filename();
         fileconf.ouput_pages = "";
-        int mp_index = m_multipage.currentData().toInt();
+        int mp_index = m_rot_multi_page.multipage.currentData().toInt();
         if (mp_index < 0)
             fileconf.multipage_enabled = false;
         else
         {
             fileconf.multipage_enabled = true;
-            fileconf.multipage = &m_multipages[mp_index];
+            fileconf.multipage = &multipages[mp_index];
         }
-        fileconf.rotation = m_rotation.currentData().toInt();
+        fileconf.rotation = m_rot_multi_page.rotation.currentData().toInt();
         fileconf.outline_entry = "";
         fileconf.reverse_order = false;
 
@@ -1082,25 +832,26 @@ void MainWindow::do_save(int from_page, const QString &filename)
         break;
     }
     case 1: {
-        int count = m_count.value();
+        int count = m_add_empty_pages_page.count.value();
 
         double page_width, page_height;
-        switch (m_page_size.checkedId()) {
+        switch (m_add_empty_pages_page.page_size.checkedId()) {
         case 0: {
             page_width = m_opened_pdf_info.width();
             page_height = m_opened_pdf_info.height();
             break;
         }
         case 1: {
-            page_width = m_page_width.value();
-            page_height = m_page_height.value();
+            page_width = m_add_empty_pages_page.page_width.value();
+            page_height = m_add_empty_pages_page.page_height.value();
             break;
         }
         case 2: {
             PaperSize size = paper_sizes[
-                    m_standard_page_size.currentData().toUInt()];
+                    m_add_empty_pages_page
+                    .standard_page_size.currentData().toUInt()];
 
-            if (m_orientation.checkedId() == 0)
+            if (m_add_empty_pages_page.orientation.checkedId() == 0)
             {
                 page_width = size.width;
                 page_height = size.height;
@@ -1114,8 +865,8 @@ void MainWindow::do_save(int from_page, const QString &filename)
         }
         }
 
-        int location = m_page.value();
-        bool after = m_before_after.checkedId();
+        int location = m_add_empty_pages_page.page.value();
+        bool after = m_add_empty_pages_page.before_after.checkedId();
 
         write_add_empty_pages(m_opened_pdf_info.filename(),
                               filename.toStdString(),
@@ -1149,8 +900,8 @@ void MainWindow::closeEvent(QCloseEvent *event)
 
     QMap<int, Multipage>::const_iterator it;
     for (
-         it = m_multipages.constBegin();
-         it != m_multipages.constEnd();
+         it = multipages.constBegin();
+         it != multipages.constEnd();
          ++it)
         m_settings->setValue(
                     QString::number(it.key()),

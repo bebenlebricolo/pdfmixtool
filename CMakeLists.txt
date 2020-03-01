@@ -45,6 +45,8 @@ SET (
     src/single_file_operations/add_empty_pages.h
     src/single_file_operations/booklet.cpp
     src/single_file_operations/booklet.h
+    src/single_file_operations/delete_pages.cpp
+    src/single_file_operations/delete_pages.h
     src/single_file_operations/rotation_multipage.cpp
     src/single_file_operations/rotation_multipage.h
 )

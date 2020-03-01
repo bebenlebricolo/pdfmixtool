@@ -38,6 +38,7 @@
 #include "single_file_operations/booklet.h"
 #include "single_file_operations/rotation_multipage.h"
 #include "single_file_operations/add_empty_pages.h"
+#include "single_file_operations/delete_pages.h"
 
 class MainWindow : public QMainWindow
 {
@@ -119,6 +120,7 @@ private:
     Booklet m_booklet_page;
     RotationMultipage m_rot_multi_page;
     AddEmptyPages m_add_empty_pages_page;
+    DeletePages m_delete_pages_page;
 
     MultipageProfilesManager *m_multipage_profiles_manager;
 };

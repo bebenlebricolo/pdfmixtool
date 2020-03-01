@@ -64,6 +64,11 @@ bool parse_output_pages_string(
         {
             std::string page_number = str.substr(cursor, interval_end - cursor);
             int num = std::stoi(page_number);
+
+            // Syntax error
+            if (num < 1 || num > n_pages)
+                return false;
+
             intervals.push_back(std::pair<int, int>(num, num));
             output_pages_count++;
 
@@ -83,26 +88,22 @@ bool parse_output_pages_string(
                     // Syntax error: more '-' in one interval
                     str.find_first_of('-', second_number_start) < interval_end
                     )
-            {
                 return false;
-            }
-            else
-            {
-                int from = std::stoi(
-                            str.substr(cursor, first_number_end - cursor));
-                int to = std::stoi(
-                            str.substr(second_number_start, interval_end));
-                if (from > to || from < 1 || to > n_pages)
-                    return false;
-                else
-                {
-                    intervals.push_back(std::pair<int, int>(from, to));
-                    output_pages_count += to - from + 1;
 
-                    cursor = str.find_first_not_of(" ,-", interval_end);
-                    interval_end = str.find_first_of(" ,", cursor);
-                }
-            }
+            int from = std::stoi(
+                        str.substr(cursor, first_number_end - cursor));
+            int to = std::stoi(
+                        str.substr(second_number_start, interval_end));
+
+            // Syntax error
+            if (from > to || from < 1 || to > n_pages)
+                return false;
+
+            intervals.push_back(std::pair<int, int>(from, to));
+            output_pages_count += to - from + 1;
+
+            cursor = str.find_first_not_of(" ,-", interval_end);
+            interval_end = str.find_first_of(" ,", cursor);
         }
     }
 

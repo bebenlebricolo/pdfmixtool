@@ -334,8 +334,11 @@ MainWindow::MainWindow(MouseEventFilter *filter, QWidget *parent) :
             [=]() {save_as_button_pressed(1);});
 
     operations_list->addItem(tr("Delete pages"));
-    QWidget *delete_page = new QWidget(this);
-    operations->addWidget(delete_page);
+    operations->addWidget(&m_delete_pages_page);
+    connect(&m_delete_pages_page, &DeletePages::save_button_pressed,
+            [=]() {save_button_pressed(2);});
+    connect(&m_delete_pages_page, &DeletePages::save_as_button_pressed,
+            [=]() {save_as_button_pressed(2);});
 
     operations_list->addItem(tr("Extract pages"));
     QWidget *extract_page = new QWidget(this);
@@ -719,6 +722,8 @@ void MainWindow::update_opened_file_label(const QString &filename)
     m_rot_multi_page.update_preview_image();
 
     m_add_empty_pages_page.page.setRange(1, m_opened_pdf_info.n_pages());
+
+    m_delete_pages_page.set_num_pages(m_opened_pdf_info.n_pages());
 }
 
 void MainWindow::generate_booklet_pressed()
@@ -876,6 +881,27 @@ void MainWindow::do_save(int from_page, const QString &filename)
                               location,
                               after,
                               progress);
+
+        break;
+    }
+    case 2: {
+        Conf conf;
+
+        conf.output_path = filename.toStdString();
+        conf.alternate_mix = false;
+
+        FileConf fileconf;
+        fileconf.path = m_opened_pdf_info.filename();
+        fileconf.ouput_pages =
+                m_delete_pages_page.get_selection().toStdString();
+        fileconf.multipage_enabled = false;
+        fileconf.rotation = 0;
+        fileconf.outline_entry = "";
+        fileconf.reverse_order = false;
+
+        conf.files.push_back(fileconf);
+
+        write_pdf(conf, progress);
 
         break;
     }

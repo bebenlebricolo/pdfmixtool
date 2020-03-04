@@ -26,7 +26,7 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="70"/>
         <source>Website</source>
-        <translation>WEB stranica</translation>
+        <translation>Web-stranica</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="77"/>
@@ -41,7 +41,7 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="96"/>
         <source>Translators</source>
-        <translation>Prevoditelji</translation>
+        <translation>Prevodioci</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="105"/>
@@ -66,7 +66,7 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="144"/>
         <source>Help translating</source>
-        <translation>Pomozi prevoditi</translation>
+        <translation>Pomogni prevoditi</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="151"/>
@@ -84,67 +84,67 @@
     <message>
         <location filename="../src/single_file_operations/add_empty_pages.cpp" line="40"/>
         <source>Count:</source>
-        <translation type="unfinished"></translation>
+        <translation>Broj:</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/add_empty_pages.cpp" line="44"/>
         <source>Page size</source>
-        <translation type="unfinished"></translation>
+        <translation>Veličina stranice</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/add_empty_pages.cpp" line="47"/>
         <source>Same as document</source>
-        <translation type="unfinished"></translation>
+        <translation>Ista kao i dokument</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/add_empty_pages.cpp" line="50"/>
         <source>Custom:</source>
-        <translation type="unfinished"></translation>
+        <translation>Prilagođeno:</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/add_empty_pages.cpp" line="75"/>
         <source>Standard:</source>
-        <translation type="unfinished"></translation>
+        <translation>Standardno:</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/add_empty_pages.cpp" line="84"/>
         <source>Portrait</source>
-        <translation type="unfinished"></translation>
+        <translation>Uspravno</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/add_empty_pages.cpp" line="86"/>
         <source>Landscape</source>
-        <translation type="unfinished"></translation>
+        <translation>Polegnuto</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/add_empty_pages.cpp" line="89"/>
         <source>Location</source>
-        <translation type="unfinished"></translation>
+        <translation>Položaj</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/add_empty_pages.cpp" line="92"/>
         <source>Before</source>
-        <translation type="unfinished"></translation>
+        <translation>Ispred</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/add_empty_pages.cpp" line="94"/>
         <source>After</source>
-        <translation type="unfinished"></translation>
+        <translation>Iza</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/add_empty_pages.cpp" line="97"/>
         <source>Page:</source>
-        <translation type="unfinished"></translation>
+        <translation>Stranica:</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/add_empty_pages.cpp" line="111"/>
         <source>Save</source>
-        <translation type="unfinished"></translation>
+        <translation>Spremi</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/add_empty_pages.cpp" line="122"/>
         <source>Save as…</source>
-        <translation type="unfinished"></translation>
+        <translation>Spremi kao …</translation>
     </message>
 </context>
 <context>
@@ -162,12 +162,12 @@
     <message>
         <location filename="../src/single_file_operations/booklet.cpp" line="36"/>
         <source>Binding:</source>
-        <translation type="unfinished"></translation>
+        <translation>Uvez:</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/booklet.cpp" line="41"/>
         <source>Generate booklet</source>
-        <translation type="unfinished"></translation>
+        <translation>Izradi knjižicu</translation>
     </message>
 </context>
 <context>
@@ -316,17 +316,17 @@
     <message>
         <location filename="../src/inputpdffiledelegate.cpp" line="80"/>
         <source>Page order:</source>
-        <translation type="unfinished"></translation>
+        <translation>Redoslijed stranica:</translation>
     </message>
     <message>
         <location filename="../src/inputpdffiledelegate.cpp" line="83"/>
         <source>reverse</source>
-        <translation type="unfinished"></translation>
+        <translation>obrnuti</translation>
     </message>
     <message>
         <location filename="../src/inputpdffiledelegate.cpp" line="85"/>
         <source>forward</source>
-        <translation type="unfinished"></translation>
+        <translation>normalni</translation>
     </message>
     <message>
         <location filename="../src/inputpdffiledelegate.cpp" line="126"/>
@@ -359,7 +359,7 @@
     <message>
         <location filename="../src/inputpdffilewidget.cpp" line="57"/>
         <source>Reverse page order:</source>
-        <translation type="unfinished"></translation>
+        <translation>Obrnut redoslijed stranica:</translation>
     </message>
     <message>
         <location filename="../src/inputpdffilewidget.cpp" line="71"/>
@@ -463,12 +463,12 @@
     <message>
         <location filename="../src/mainwindow.cpp" line="97"/>
         <source>Multiple files</source>
-        <translation type="unfinished"></translation>
+        <translation>Višestruke datoteke</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="98"/>
         <source>Single file</source>
-        <translation type="unfinished"></translation>
+        <translation>Pojedinačna datoteka</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="121"/>
@@ -483,37 +483,37 @@
     <message>
         <location filename="../src/mainwindow.cpp" line="278"/>
         <source>Open PDF file…</source>
-        <translation type="unfinished"></translation>
+        <translation>Otvori PDF datoteku …</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="302"/>
         <source>Booklet</source>
-        <translation type="unfinished"></translation>
+        <translation>Knjižica</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="307"/>
         <source>Rotation/multipage</source>
-        <translation type="unfinished"></translation>
+        <translation>Okretanje/višestranično</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="329"/>
         <source>Add empty pages</source>
-        <translation type="unfinished"></translation>
+        <translation>Dodaj prazne stranice</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="336"/>
         <source>Delete pages</source>
-        <translation type="unfinished"></translation>
+        <translation>Ukloni stranice</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="340"/>
         <source>Extract pages</source>
-        <translation type="unfinished"></translation>
+        <translation>Izdvoji stranice</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="344"/>
         <source>Resize pages</source>
-        <translation type="unfinished"></translation>
+        <translation>Promijeni veličinu stranica</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="372"/>
@@ -532,22 +532,22 @@
     <message>
         <location filename="../src/mainwindow.cpp" line="697"/>
         <source>Select a PDF file</source>
-        <translation type="unfinished"></translation>
+        <translation>Odaberi PDF datoteku</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="728"/>
         <source>Save booklet PDF file</source>
-        <translation type="unfinished"></translation>
+        <translation>Spremi PDF datoteku knjižice</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="766"/>
         <source>Overwrite File?</source>
-        <translation type="unfinished"></translation>
+        <translation>Prepisati datoteku?</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="767"/>
         <source>A file called «%1» already exists. Do you want to overwrite it?</source>
-        <translation type="unfinished"></translation>
+        <translation>Datoteka s imenom „%1” već postoji. Stvarno je želiš prepisati?</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="605"/>
@@ -582,7 +582,7 @@
         <location filename="../src/multipageprofilesmanager.cpp" line="114"/>
         <location filename="../src/multipageprofilesmanager.cpp" line="116"/>
         <source>Custom profile</source>
-        <translation>Prilagođen profil</translation>
+        <translation>Prilagođeni profil</translation>
     </message>
     <message>
         <location filename="../src/multipageprofilesmanager.cpp" line="168"/>
@@ -664,12 +664,12 @@
     <message>
         <location filename="../src/single_file_operations/rotation_multipage.cpp" line="72"/>
         <source>Save</source>
-        <translation type="unfinished"></translation>
+        <translation>Spremi</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/rotation_multipage.cpp" line="85"/>
         <source>Save as…</source>
-        <translation type="unfinished"></translation>
+        <translation>Spremi kao …</translation>
     </message>
 </context>
 </TS>

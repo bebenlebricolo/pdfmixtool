@@ -84,67 +84,67 @@
     <message>
         <location filename="../src/single_file_operations/add_empty_pages.cpp" line="40"/>
         <source>Count:</source>
-        <translation type="unfinished"></translation>
+        <translation>数:</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/add_empty_pages.cpp" line="44"/>
         <source>Page size</source>
-        <translation type="unfinished"></translation>
+        <translation>ページサイズ</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/add_empty_pages.cpp" line="47"/>
         <source>Same as document</source>
-        <translation type="unfinished"></translation>
+        <translation>ドキュメントと同じ</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/add_empty_pages.cpp" line="50"/>
         <source>Custom:</source>
-        <translation type="unfinished"></translation>
+        <translation>カスタム:</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/add_empty_pages.cpp" line="75"/>
         <source>Standard:</source>
-        <translation type="unfinished"></translation>
+        <translation>標準:</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/add_empty_pages.cpp" line="84"/>
         <source>Portrait</source>
-        <translation type="unfinished"></translation>
+        <translation>縦向き</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/add_empty_pages.cpp" line="86"/>
         <source>Landscape</source>
-        <translation type="unfinished"></translation>
+        <translation>横向き</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/add_empty_pages.cpp" line="89"/>
         <source>Location</source>
-        <translation type="unfinished"></translation>
+        <translation>位置</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/add_empty_pages.cpp" line="92"/>
         <source>Before</source>
-        <translation type="unfinished"></translation>
+        <translation>前</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/add_empty_pages.cpp" line="94"/>
         <source>After</source>
-        <translation type="unfinished"></translation>
+        <translation>後</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/add_empty_pages.cpp" line="97"/>
         <source>Page:</source>
-        <translation type="unfinished"></translation>
+        <translation>ページ:</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/add_empty_pages.cpp" line="111"/>
         <source>Save</source>
-        <translation type="unfinished"></translation>
+        <translation>保存</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/add_empty_pages.cpp" line="122"/>
         <source>Save as…</source>
-        <translation type="unfinished"></translation>
+        <translation>名前を付けて保存…</translation>
     </message>
 </context>
 <context>
@@ -152,22 +152,22 @@
     <message>
         <location filename="../src/single_file_operations/booklet.cpp" line="34"/>
         <source>Left</source>
-        <translation type="unfinished">左</translation>
+        <translation>左</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/booklet.cpp" line="35"/>
         <source>Right</source>
-        <translation type="unfinished">右</translation>
+        <translation>右</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/booklet.cpp" line="36"/>
         <source>Binding:</source>
-        <translation type="unfinished"></translation>
+        <translation>装丁:</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/booklet.cpp" line="41"/>
         <source>Generate booklet</source>
-        <translation type="unfinished"></translation>
+        <translation>ブックレットを生成</translation>
     </message>
 </context>
 <context>
@@ -175,7 +175,7 @@
     <message>
         <location filename="../src/editmultipageprofiledialog.cpp" line="29"/>
         <source>Edit multipage profile</source>
-        <translation>マルチページプロファイルの編集</translation>
+        <translation>マルチページプロファイルを編集</translation>
     </message>
     <message>
         <location filename="../src/editmultipageprofiledialog.cpp" line="64"/>
@@ -273,7 +273,7 @@
     <message>
         <location filename="../src/editpdfentrydialog.cpp" line="37"/>
         <source>Edit PDF files&apos; properties</source>
-        <translation>PDF ファイルのプロパティの編集</translation>
+        <translation>PDF ファイルのプロパティを編集</translation>
     </message>
     <message>
         <location filename="../src/editpdfentrydialog.cpp" line="40"/>
@@ -316,17 +316,17 @@
     <message>
         <location filename="../src/inputpdffiledelegate.cpp" line="80"/>
         <source>Page order:</source>
-        <translation type="unfinished"></translation>
+        <translation>ページの順序:</translation>
     </message>
     <message>
         <location filename="../src/inputpdffiledelegate.cpp" line="83"/>
         <source>reverse</source>
-        <translation type="unfinished"></translation>
+        <translation>逆順</translation>
     </message>
     <message>
         <location filename="../src/inputpdffiledelegate.cpp" line="85"/>
         <source>forward</source>
-        <translation type="unfinished"></translation>
+        <translation>通常</translation>
     </message>
     <message>
         <location filename="../src/inputpdffiledelegate.cpp" line="126"/>
@@ -359,7 +359,7 @@
     <message>
         <location filename="../src/inputpdffilewidget.cpp" line="57"/>
         <source>Reverse page order:</source>
-        <translation type="unfinished"></translation>
+        <translation>ページ順序を反転:</translation>
     </message>
     <message>
         <location filename="../src/inputpdffilewidget.cpp" line="71"/>
@@ -402,7 +402,7 @@
     <message>
         <location filename="../src/mainwindow.cpp" line="173"/>
         <source>Add PDF file</source>
-        <translation>PDF を追加</translation>
+        <translation>PDF ファイルを追加</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="178"/>
@@ -438,7 +438,7 @@
     <message>
         <location filename="../src/mainwindow.cpp" line="370"/>
         <source>Select one or more PDF files to open</source>
-        <translation>開く PDF ファイルを1つまたは複数選択してください</translation>
+        <translation>開く PDF ファイルを一つまたは複数選択してください</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="162"/>
@@ -463,12 +463,12 @@
     <message>
         <location filename="../src/mainwindow.cpp" line="97"/>
         <source>Multiple files</source>
-        <translation type="unfinished"></translation>
+        <translation>複数のファイル</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="98"/>
         <source>Single file</source>
-        <translation type="unfinished"></translation>
+        <translation>単一のファイル</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="121"/>
@@ -483,37 +483,37 @@
     <message>
         <location filename="../src/mainwindow.cpp" line="278"/>
         <source>Open PDF file…</source>
-        <translation type="unfinished"></translation>
+        <translation>PDF ファイルを開く…</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="302"/>
         <source>Booklet</source>
-        <translation type="unfinished"></translation>
+        <translation>ブックレット</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="307"/>
         <source>Rotation/multipage</source>
-        <translation type="unfinished"></translation>
+        <translation>回転/複数ページ</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="329"/>
         <source>Add empty pages</source>
-        <translation type="unfinished"></translation>
+        <translation>空のページを追加</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="336"/>
         <source>Delete pages</source>
-        <translation type="unfinished"></translation>
+        <translation>ページを削除</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="340"/>
         <source>Extract pages</source>
-        <translation type="unfinished"></translation>
+        <translation>ページを抽出</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="344"/>
         <source>Resize pages</source>
-        <translation type="unfinished"></translation>
+        <translation>ページのサイズを変更</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="372"/>
@@ -532,22 +532,22 @@
     <message>
         <location filename="../src/mainwindow.cpp" line="697"/>
         <source>Select a PDF file</source>
-        <translation type="unfinished"></translation>
+        <translation>PDF ファイルを選択</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="728"/>
         <source>Save booklet PDF file</source>
-        <translation type="unfinished"></translation>
+        <translation>ブックレット PDF ファイルを保存</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="766"/>
         <source>Overwrite File?</source>
-        <translation type="unfinished"></translation>
+        <translation>ファイルを上書きしますか？</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="767"/>
         <source>A file called «%1» already exists. Do you want to overwrite it?</source>
-        <translation type="unfinished"></translation>
+        <translation>ファイル «%1» はすでに存在します。上書きしますか？</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="605"/>
@@ -558,7 +558,7 @@
         <location filename="../src/mainwindow.cpp" line="629"/>
         <location filename="../src/mainwindow.cpp" line="783"/>
         <source>Save PDF file</source>
-        <translation>PDF ファイルの保存</translation>
+        <translation>PDF ファイルを保存</translation>
     </message>
 </context>
 <context>
@@ -613,17 +613,17 @@
     <message>
         <location filename="../src/pdfinfolabel.cpp" line="52"/>
         <source>portrait</source>
-        <translation type="unfinished">縦向き</translation>
+        <translation>縦向き</translation>
     </message>
     <message>
         <location filename="../src/pdfinfolabel.cpp" line="53"/>
         <source>landscape</source>
-        <translation type="unfinished">横向き</translation>
+        <translation>横向き</translation>
     </message>
     <message numerus="yes">
         <location filename="../src/pdfinfolabel.cpp" line="63"/>
         <source>%n page(s)</source>
-        <translation type="unfinished">
+        <translation>
             <numerusform>%nページ</numerusform>
         </translation>
     </message>
@@ -633,41 +633,41 @@
     <message>
         <location filename="../src/single_file_operations/rotation_multipage.cpp" line="41"/>
         <source>No rotation</source>
-        <translation type="unfinished">回転なし</translation>
+        <translation>回転なし</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/rotation_multipage.cpp" line="48"/>
         <source>Rotation:</source>
-        <translation type="unfinished">回転:</translation>
+        <translation>回転:</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/rotation_multipage.cpp" line="50"/>
         <location filename="../src/single_file_operations/rotation_multipage.cpp" line="105"/>
         <location filename="../src/single_file_operations/rotation_multipage.cpp" line="171"/>
         <source>Disabled</source>
-        <translation type="unfinished">無効</translation>
+        <translation>無効</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/rotation_multipage.cpp" line="58"/>
         <location filename="../src/single_file_operations/rotation_multipage.cpp" line="117"/>
         <location filename="../src/single_file_operations/rotation_multipage.cpp" line="179"/>
         <source>New custom profile…</source>
-        <translation type="unfinished">新しいカスタムプロファイル…</translation>
+        <translation>新しいカスタムプロファイル…</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/rotation_multipage.cpp" line="64"/>
         <source>Multipage:</source>
-        <translation type="unfinished">マルチページ:</translation>
+        <translation>マルチページ:</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/rotation_multipage.cpp" line="72"/>
         <source>Save</source>
-        <translation type="unfinished"></translation>
+        <translation>保存</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/rotation_multipage.cpp" line="85"/>
         <source>Save as…</source>
-        <translation type="unfinished"></translation>
+        <translation>名前を付けて保存…</translation>
     </message>
 </context>
 </TS>

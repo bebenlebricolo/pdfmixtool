@@ -84,67 +84,67 @@
     <message>
         <location filename="../src/single_file_operations/add_empty_pages.cpp" line="40"/>
         <source>Count:</source>
-        <translation type="unfinished"></translation>
+        <translation>Sayı:</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/add_empty_pages.cpp" line="44"/>
         <source>Page size</source>
-        <translation type="unfinished"></translation>
+        <translation>Sayfa boyutu</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/add_empty_pages.cpp" line="47"/>
         <source>Same as document</source>
-        <translation type="unfinished"></translation>
+        <translation>Belge kadar</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/add_empty_pages.cpp" line="50"/>
         <source>Custom:</source>
-        <translation type="unfinished"></translation>
+        <translation>Özel:</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/add_empty_pages.cpp" line="75"/>
         <source>Standard:</source>
-        <translation type="unfinished"></translation>
+        <translation>Standart:</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/add_empty_pages.cpp" line="84"/>
         <source>Portrait</source>
-        <translation type="unfinished"></translation>
+        <translation>Dikey</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/add_empty_pages.cpp" line="86"/>
         <source>Landscape</source>
-        <translation type="unfinished"></translation>
+        <translation>Yatay</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/add_empty_pages.cpp" line="89"/>
         <source>Location</source>
-        <translation type="unfinished"></translation>
+        <translation>Konum</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/add_empty_pages.cpp" line="92"/>
         <source>Before</source>
-        <translation type="unfinished"></translation>
+        <translation>Önce</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/add_empty_pages.cpp" line="94"/>
         <source>After</source>
-        <translation type="unfinished"></translation>
+        <translation>Sonra</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/add_empty_pages.cpp" line="97"/>
         <source>Page:</source>
-        <translation type="unfinished"></translation>
+        <translation>Sayfa:</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/add_empty_pages.cpp" line="111"/>
         <source>Save</source>
-        <translation type="unfinished"></translation>
+        <translation>Kaydet</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/add_empty_pages.cpp" line="122"/>
         <source>Save as…</source>
-        <translation type="unfinished"></translation>
+        <translation>Farklı kaydet…</translation>
     </message>
 </context>
 <context>
@@ -152,22 +152,22 @@
     <message>
         <location filename="../src/single_file_operations/booklet.cpp" line="34"/>
         <source>Left</source>
-        <translation type="unfinished">Sol</translation>
+        <translation>Sol</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/booklet.cpp" line="35"/>
         <source>Right</source>
-        <translation type="unfinished">Sağ</translation>
+        <translation>Sağ</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/booklet.cpp" line="36"/>
         <source>Binding:</source>
-        <translation type="unfinished"></translation>
+        <translation>Cilt:</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/booklet.cpp" line="41"/>
         <source>Generate booklet</source>
-        <translation type="unfinished"></translation>
+        <translation>Kitapçık oluştur</translation>
     </message>
 </context>
 <context>
@@ -288,7 +288,7 @@
     <message>
         <location filename="../src/editpdfentrydialog.cpp" line="90"/>
         <source>OK</source>
-        <translation>TAMAM</translation>
+        <translation>Tamam</translation>
     </message>
     <message>
         <location filename="../src/editpdfentrydialog.cpp" line="96"/>
@@ -316,17 +316,17 @@
     <message>
         <location filename="../src/inputpdffiledelegate.cpp" line="80"/>
         <source>Page order:</source>
-        <translation type="unfinished"></translation>
+        <translation>Sayfa sıralaması:</translation>
     </message>
     <message>
         <location filename="../src/inputpdffiledelegate.cpp" line="83"/>
         <source>reverse</source>
-        <translation type="unfinished"></translation>
+        <translation>ters</translation>
     </message>
     <message>
         <location filename="../src/inputpdffiledelegate.cpp" line="85"/>
         <source>forward</source>
-        <translation type="unfinished"></translation>
+        <translation>ileri</translation>
     </message>
     <message>
         <location filename="../src/inputpdffiledelegate.cpp" line="126"/>
@@ -359,7 +359,7 @@
     <message>
         <location filename="../src/inputpdffilewidget.cpp" line="57"/>
         <source>Reverse page order:</source>
-        <translation type="unfinished"></translation>
+        <translation>Sayfa sıralamasını ters çevir:</translation>
     </message>
     <message>
         <location filename="../src/inputpdffilewidget.cpp" line="71"/>
@@ -407,7 +407,7 @@
     <message>
         <location filename="../src/mainwindow.cpp" line="178"/>
         <source>Move up</source>
-        <translation>Yukarı Taşı</translation>
+        <translation>Yukarı taşı</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="183"/>
@@ -417,7 +417,7 @@
     <message>
         <location filename="../src/mainwindow.cpp" line="188"/>
         <source>Remove file</source>
-        <translation>Dosyayı Kaldır</translation>
+        <translation>Dosyayı kaldır</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="126"/>
@@ -463,12 +463,12 @@
     <message>
         <location filename="../src/mainwindow.cpp" line="97"/>
         <source>Multiple files</source>
-        <translation type="unfinished"></translation>
+        <translation>Çoklu dosya</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="98"/>
         <source>Single file</source>
-        <translation type="unfinished"></translation>
+        <translation>Tek dosya</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="121"/>
@@ -483,37 +483,37 @@
     <message>
         <location filename="../src/mainwindow.cpp" line="278"/>
         <source>Open PDF file…</source>
-        <translation type="unfinished"></translation>
+        <translation>PDF dosya aç…</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="302"/>
         <source>Booklet</source>
-        <translation type="unfinished"></translation>
+        <translation>Kitapçık</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="307"/>
         <source>Rotation/multipage</source>
-        <translation type="unfinished"></translation>
+        <translation>Döndürme/çok sayfalı</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="329"/>
         <source>Add empty pages</source>
-        <translation type="unfinished"></translation>
+        <translation>Boş sayfa ekle</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="336"/>
         <source>Delete pages</source>
-        <translation type="unfinished"></translation>
+        <translation>Sayfa sil</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="340"/>
         <source>Extract pages</source>
-        <translation type="unfinished"></translation>
+        <translation>Sayfa çıkar</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="344"/>
         <source>Resize pages</source>
-        <translation type="unfinished"></translation>
+        <translation>Sayfaları yeniden boyutlandır</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="372"/>
@@ -532,22 +532,22 @@
     <message>
         <location filename="../src/mainwindow.cpp" line="697"/>
         <source>Select a PDF file</source>
-        <translation type="unfinished"></translation>
+        <translation>PDF dosyası seç</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="728"/>
         <source>Save booklet PDF file</source>
-        <translation type="unfinished"></translation>
+        <translation>Kitapçık PDF dosyasını kaydet</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="766"/>
         <source>Overwrite File?</source>
-        <translation type="unfinished"></translation>
+        <translation>Dosyanın üzerine yazılsın mı?</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="767"/>
         <source>A file called «%1» already exists. Do you want to overwrite it?</source>
-        <translation type="unfinished"></translation>
+        <translation>«%1» adında bir dosya zaten var. Üzerine yazmak istiyor musunuz?</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="605"/>
@@ -613,17 +613,18 @@
     <message>
         <location filename="../src/pdfinfolabel.cpp" line="52"/>
         <source>portrait</source>
-        <translation type="unfinished">dikey</translation>
+        <translation>dikey</translation>
     </message>
     <message>
         <location filename="../src/pdfinfolabel.cpp" line="53"/>
         <source>landscape</source>
-        <translation type="unfinished">yatay</translation>
+        <translation>yatay</translation>
     </message>
     <message numerus="yes">
         <location filename="../src/pdfinfolabel.cpp" line="63"/>
         <source>%n page(s)</source>
-        <translation type="unfinished">
+        <translation>
+            <numerusform>%n sayfa</numerusform>
             <numerusform>%n sayfa</numerusform>
         </translation>
     </message>
@@ -633,41 +634,41 @@
     <message>
         <location filename="../src/single_file_operations/rotation_multipage.cpp" line="41"/>
         <source>No rotation</source>
-        <translation type="unfinished">Döndürme</translation>
+        <translation>Döndürme yok</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/rotation_multipage.cpp" line="48"/>
         <source>Rotation:</source>
-        <translation type="unfinished">Döndürme:</translation>
+        <translation>Döndürme:</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/rotation_multipage.cpp" line="50"/>
         <location filename="../src/single_file_operations/rotation_multipage.cpp" line="105"/>
         <location filename="../src/single_file_operations/rotation_multipage.cpp" line="171"/>
         <source>Disabled</source>
-        <translation type="unfinished">Devre dışı</translation>
+        <translation>Devre dışı</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/rotation_multipage.cpp" line="58"/>
         <location filename="../src/single_file_operations/rotation_multipage.cpp" line="117"/>
         <location filename="../src/single_file_operations/rotation_multipage.cpp" line="179"/>
         <source>New custom profile…</source>
-        <translation type="unfinished">Yeni özel profil…</translation>
+        <translation>Yeni özel profil…</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/rotation_multipage.cpp" line="64"/>
         <source>Multipage:</source>
-        <translation type="unfinished"></translation>
+        <translation>Çoklu sayfa:</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/rotation_multipage.cpp" line="72"/>
         <source>Save</source>
-        <translation type="unfinished"></translation>
+        <translation>Kaydet</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/rotation_multipage.cpp" line="85"/>
         <source>Save as…</source>
-        <translation type="unfinished"></translation>
+        <translation>Farklı kaydet…</translation>
     </message>
 </context>
 </TS>

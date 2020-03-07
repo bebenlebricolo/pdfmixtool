@@ -16,15 +16,16 @@
  * along with PDF Mix Tool. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "rotation_multipage.h"
+#include "edit_page_layout.h"
 
 #include <QBoxLayout>
 #include <QFormLayout>
 #include <QPushButton>
+#include <cmath>
 
 #include "../gui_utils.h"
 
-RotationMultipage::RotationMultipage(QWidget *parent) : QWidget(parent)
+EditPageLayout::EditPageLayout(QWidget *parent) : QWidget(parent)
 {
     m_new_profile_triggered = false;
 
@@ -32,7 +33,14 @@ RotationMultipage::RotationMultipage(QWidget *parent) : QWidget(parent)
     QFormLayout *form_layout = new QFormLayout();
     QHBoxLayout *h_layout = new QHBoxLayout();
     v_layout->addLayout(form_layout);
-    v_layout->addWidget(&preview_image, 1, Qt::AlignCenter);
+    v_layout->addItem(new QSpacerItem(0, 0,
+                                      QSizePolicy::Expanding,
+                                      QSizePolicy::Expanding));
+    v_layout->addWidget(&preview_image, 0, Qt::AlignCenter);
+    v_layout->addWidget(&paper_size_label, 0, Qt::AlignCenter);
+    v_layout->addItem(new QSpacerItem(0, 0,
+                                      QSizePolicy::Expanding,
+                                      QSizePolicy::Expanding));
     v_layout->addLayout(h_layout);
     this->setLayout(v_layout);
 
@@ -63,6 +71,14 @@ RotationMultipage::RotationMultipage(QWidget *parent) : QWidget(parent)
             SLOT(multipage_activated(int)));
     form_layout->addRow(tr("Multipage:"), &multipage);
 
+    scale.setRange(1, 1000);
+    scale.setValue(100);
+    scale.setSuffix("%");
+    connect(&scale,
+            SIGNAL(valueChanged(int)),
+            SLOT(update_preview_image()));
+    form_layout->addRow(tr("Scale page:"), &scale);
+
     h_layout->addItem(new QSpacerItem(0, 0,
                                       QSizePolicy::Expanding,
                                       QSizePolicy::Minimum));
@@ -78,7 +94,7 @@ RotationMultipage::RotationMultipage(QWidget *parent) : QWidget(parent)
                     save_button->text(),
                     save_button->shortcut().toString()));
     connect(save_button, &QPushButton::pressed,
-            this, &RotationMultipage::save_button_pressed);
+            this, &EditPageLayout::save_button_pressed);
 
     QPushButton *save_as_button = new QPushButton(
                 QIcon::fromTheme("document-save-as"),
@@ -91,13 +107,13 @@ RotationMultipage::RotationMultipage(QWidget *parent) : QWidget(parent)
                     save_as_button->text(),
                     save_as_button->shortcut().toString()));
     connect(save_as_button, &QPushButton::pressed,
-            this, &RotationMultipage::save_as_button_pressed);
+            this, &EditPageLayout::save_as_button_pressed);
 
     h_layout->addWidget(save_button);
     h_layout->addWidget(save_as_button);
 }
 
-void RotationMultipage::update_multipage_profiles()
+void EditPageLayout::update_multipage_profiles()
 {
     int current_data = multipage.currentData().toInt();
     int current_index = 0;
@@ -118,7 +134,7 @@ void RotationMultipage::update_multipage_profiles()
     multipage.setCurrentIndex(current_index);
 }
 
-void RotationMultipage::update_preview_image()
+void EditPageLayout::update_preview_image()
 {
     int size = preview_image.minimumWidth();
 
@@ -131,11 +147,18 @@ void RotationMultipage::update_preview_image()
     }
     else
     {
+        double page_width = opened_pdf_info.width();
+        double page_height = opened_pdf_info.height();
+
         int rotation_value = rotation.currentData().toInt();
         int mp_index = multipage.currentData().toInt();
         Multipage mp;
         if (mp_index >= 0)
+        {
             mp = multipages[mp_index];
+            page_width = mp.page_width;
+            page_height = mp.page_height;
+        }
 
         draw_preview(&painter,
                      QRect(0, 0, size, size),
@@ -144,12 +167,26 @@ void RotationMultipage::update_preview_image()
                      rotation_value,
                      mp_index >= 0,
                      mp);
+
+        if (rotation_value == 90 || rotation_value == 270)
+        {
+            double tmp = page_width;
+            page_width = page_height;
+            page_height = tmp;
+        }
+
+        page_width = std::round(page_width * scale.value() / 10) / 10;
+        page_height = std::round(page_height * scale.value() / 10) / 10;
+
+        QString text = QString::number(page_width) +
+                QString(" cm \u00D7 %1 cm").arg(page_height);
+        paper_size_label.setText(text);
     }
 
     preview_image.setPixmap(pixmap);
 }
 
-void RotationMultipage::multipage_activated(int index)
+void EditPageLayout::multipage_activated(int index)
 {
     if (index == multipage.count() - 1)
     {
@@ -159,7 +196,7 @@ void RotationMultipage::multipage_activated(int index)
     }
 }
 
-void RotationMultipage::profile_created(int index)
+void EditPageLayout::profile_created(int index)
 {
     if (m_new_profile_triggered)
     {

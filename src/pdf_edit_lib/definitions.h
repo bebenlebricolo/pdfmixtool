@@ -115,7 +115,8 @@ struct FileConf {
     FileConf() :
         multipage_enabled(false),
         multipage(nullptr),
-        rotation(0)
+        rotation(0),
+        scale(100)
     {
 
     }
@@ -126,6 +127,7 @@ struct FileConf {
     int rotation;
     std::string outline_entry;
     bool reverse_order;
+    int scale;
 };
 
 struct Conf {

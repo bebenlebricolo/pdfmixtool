@@ -22,18 +22,21 @@
 #include <QWidget>
 #include <QComboBox>
 #include <QLabel>
+#include <QSpinBox>
 
 #include "../pdf_edit_lib/pdf_info.h"
 
-class RotationMultipage : public QWidget
+class EditPageLayout : public QWidget
 {
     Q_OBJECT
 public:
-    explicit RotationMultipage(QWidget *parent = nullptr);
+    explicit EditPageLayout(QWidget *parent = nullptr);
 
     QComboBox rotation;
     QComboBox multipage;
+    QSpinBox scale;
     QLabel preview_image;
+    QLabel paper_size_label;
     PdfInfo opened_pdf_info;
 
 public slots:

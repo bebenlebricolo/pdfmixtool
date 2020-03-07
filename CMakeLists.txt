@@ -47,8 +47,10 @@ SET (
     src/single_file_operations/booklet.h
     src/single_file_operations/delete_pages.cpp
     src/single_file_operations/delete_pages.h
-    src/single_file_operations/rotation_multipage.cpp
-    src/single_file_operations/rotation_multipage.h
+    src/single_file_operations/extract_pages.cpp
+    src/single_file_operations/extract_pages.h
+    src/single_file_operations/edit_page_layout.cpp
+    src/single_file_operations/edit_page_layout.h
 )
 
 file(GLOB TS_FILES

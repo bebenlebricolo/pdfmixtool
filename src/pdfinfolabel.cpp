@@ -56,7 +56,7 @@ void PdfInfoLabel::set_pdf_info(const QString &filename,
 
     m_path = fileinfo.absolutePath();
     m_filename = fileinfo.fileName();
-    m_info = QString(" − %1 cm \u00D7 %2 cm %3− %5").arg(
+    m_info = QString(" − %1 cm \u00D7 %2 cm %3− %4").arg(
                 QString::number(page_width),
                 QString::number(page_height),
                 paper_size,

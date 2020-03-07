@@ -300,53 +300,48 @@ MainWindow::MainWindow(MouseEventFilter *filter, QWidget *parent) :
     QStackedWidget *operations = new QStackedWidget(this);
 
     operations_list->addItem(tr("Booklet"));
-    operations->addWidget(&m_booklet_page);
-    connect(&m_booklet_page, &Booklet::generate_booklet_pressed,
+    operations->addWidget(&m_booklet_tab);
+    connect(&m_booklet_tab, &Booklet::generate_booklet_pressed,
             this, &MainWindow::generate_booklet_pressed);
 
-    operations_list->addItem(tr("Rotation/multipage"));
-    operations->addWidget(&m_rot_multi_page);
-    m_rot_multi_page.update_multipage_profiles();
+    operations_list->addItem(tr("Edit page layout"));
+    operations->addWidget(&m_edit_page_layout_tab);
+    m_edit_page_layout_tab.update_multipage_profiles();
     connect(m_multipage_profiles_manager,
             &MultipageProfilesManager::close_signal,
-            &m_rot_multi_page,
-            &RotationMultipage::update_multipage_profiles);
-    connect(&m_rot_multi_page,
-            &RotationMultipage::trigger_new_profile,
+            &m_edit_page_layout_tab,
+            &EditPageLayout::update_multipage_profiles);
+    connect(&m_edit_page_layout_tab,
+            &EditPageLayout::trigger_new_profile,
             m_multipage_profiles_manager,
             &MultipageProfilesManager::new_profile_button_pressed);
     connect(m_multipage_profiles_manager,
             &MultipageProfilesManager::profile_created,
-            &m_rot_multi_page,
-            &RotationMultipage::profile_created);
-    connect(&m_rot_multi_page,
-            &RotationMultipage::save_button_pressed,
+            &m_edit_page_layout_tab,
+            &EditPageLayout::profile_created);
+    connect(&m_edit_page_layout_tab,
+            &EditPageLayout::save_button_pressed,
             [=]() {save_button_pressed(0);});
-    connect(&m_rot_multi_page,
-            &RotationMultipage::save_as_button_pressed,
+    connect(&m_edit_page_layout_tab,
+            &EditPageLayout::save_as_button_pressed,
             [=]() {save_as_button_pressed(0);});
 
     operations_list->addItem(tr("Add empty pages"));
-    operations->addWidget(&m_add_empty_pages_page);
-    connect(&m_add_empty_pages_page, &AddEmptyPages::save_button_pressed,
+    operations->addWidget(&m_add_empty_pages_tab);
+    connect(&m_add_empty_pages_tab, &AddEmptyPages::save_button_pressed,
             [=]() {save_button_pressed(1);});
-    connect(&m_add_empty_pages_page, &AddEmptyPages::save_as_button_pressed,
+    connect(&m_add_empty_pages_tab, &AddEmptyPages::save_as_button_pressed,
             [=]() {save_as_button_pressed(1);});
 
     operations_list->addItem(tr("Delete pages"));
-    operations->addWidget(&m_delete_pages_page);
-    connect(&m_delete_pages_page, &DeletePages::save_button_pressed,
+    operations->addWidget(&m_delete_pages_tab);
+    connect(&m_delete_pages_tab, &DeletePages::save_button_pressed,
             [=]() {save_button_pressed(2);});
-    connect(&m_delete_pages_page, &DeletePages::save_as_button_pressed,
+    connect(&m_delete_pages_tab, &DeletePages::save_as_button_pressed,
             [=]() {save_as_button_pressed(2);});
 
     operations_list->addItem(tr("Extract pages"));
-    QWidget *extract_page = new QWidget(this);
-    operations->addWidget(extract_page);
-
-    operations_list->addItem(tr("Resize pages"));
-    QWidget *resize_page = new QWidget(this);
-    operations->addWidget(resize_page);
+    operations->addWidget(&m_extract_pages_tab);
 
     h_layout->addWidget(operations_list);
     h_layout->addWidget(operations);
@@ -718,12 +713,12 @@ void MainWindow::update_opened_file_label(const QString &filename)
 
     m_opened_file_label->set_pdf_info(m_opened_pdf_info);
 
-    m_rot_multi_page.opened_pdf_info = m_opened_pdf_info;
-    m_rot_multi_page.update_preview_image();
+    m_edit_page_layout_tab.opened_pdf_info = m_opened_pdf_info;
+    m_edit_page_layout_tab.update_preview_image();
 
-    m_add_empty_pages_page.page.setRange(1, m_opened_pdf_info.n_pages());
+    m_add_empty_pages_tab.page.setRange(1, m_opened_pdf_info.n_pages());
 
-    m_delete_pages_page.set_num_pages(m_opened_pdf_info.n_pages());
+    m_delete_pages_tab.set_num_pages(m_opened_pdf_info.n_pages());
 }
 
 void MainWindow::generate_booklet_pressed()
@@ -749,7 +744,7 @@ void MainWindow::generate_booklet_pressed()
 
         write_booklet_pdf(m_opened_pdf_info.filename(),
                           selected_file.toStdString(),
-                          m_booklet_page.booklet_binding.currentIndex(),
+                          m_booklet_tab.booklet_binding.currentIndex(),
                           progress);
 
         QTimer::singleShot(4000, m_progress_bar, SLOT(hide()));
@@ -818,7 +813,7 @@ void MainWindow::do_save(int from_page, const QString &filename)
         FileConf fileconf;
         fileconf.path = m_opened_pdf_info.filename();
         fileconf.ouput_pages = "";
-        int mp_index = m_rot_multi_page.multipage.currentData().toInt();
+        int mp_index = m_edit_page_layout_tab.multipage.currentData().toInt();
         if (mp_index < 0)
             fileconf.multipage_enabled = false;
         else
@@ -826,7 +821,9 @@ void MainWindow::do_save(int from_page, const QString &filename)
             fileconf.multipage_enabled = true;
             fileconf.multipage = &multipages[mp_index];
         }
-        fileconf.rotation = m_rot_multi_page.rotation.currentData().toInt();
+        fileconf.rotation =
+                m_edit_page_layout_tab.rotation.currentData().toInt();
+        fileconf.scale = m_edit_page_layout_tab.scale.value();
         fileconf.outline_entry = "";
         fileconf.reverse_order = false;
 
@@ -837,26 +834,26 @@ void MainWindow::do_save(int from_page, const QString &filename)
         break;
     }
     case 1: {
-        int count = m_add_empty_pages_page.count.value();
+        int count = m_add_empty_pages_tab.count.value();
 
         double page_width, page_height;
-        switch (m_add_empty_pages_page.page_size.checkedId()) {
+        switch (m_add_empty_pages_tab.page_size.checkedId()) {
         case 0: {
             page_width = m_opened_pdf_info.width();
             page_height = m_opened_pdf_info.height();
             break;
         }
         case 1: {
-            page_width = m_add_empty_pages_page.page_width.value();
-            page_height = m_add_empty_pages_page.page_height.value();
+            page_width = m_add_empty_pages_tab.page_width.value();
+            page_height = m_add_empty_pages_tab.page_height.value();
             break;
         }
         case 2: {
             PaperSize size = paper_sizes[
-                    m_add_empty_pages_page
+                    m_add_empty_pages_tab
                     .standard_page_size.currentData().toUInt()];
 
-            if (m_add_empty_pages_page.orientation.checkedId() == 0)
+            if (m_add_empty_pages_tab.orientation.checkedId() == 0)
             {
                 page_width = size.width;
                 page_height = size.height;
@@ -870,8 +867,8 @@ void MainWindow::do_save(int from_page, const QString &filename)
         }
         }
 
-        int location = m_add_empty_pages_page.page.value();
-        bool after = m_add_empty_pages_page.before_after.checkedId();
+        int location = m_add_empty_pages_tab.page.value();
+        bool after = m_add_empty_pages_tab.before_after.checkedId();
 
         write_add_empty_pages(m_opened_pdf_info.filename(),
                               filename.toStdString(),
@@ -885,6 +882,7 @@ void MainWindow::do_save(int from_page, const QString &filename)
         break;
     }
     case 2: {
+        // FIXME this should be much more efficient
         Conf conf;
 
         conf.output_path = filename.toStdString();
@@ -893,7 +891,7 @@ void MainWindow::do_save(int from_page, const QString &filename)
         FileConf fileconf;
         fileconf.path = m_opened_pdf_info.filename();
         fileconf.ouput_pages =
-                m_delete_pages_page.get_selection().toStdString();
+                m_delete_pages_tab.get_selection().toStdString();
         fileconf.multipage_enabled = false;
         fileconf.rotation = 0;
         fileconf.outline_entry = "";

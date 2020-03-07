@@ -36,9 +36,10 @@
 #include "pdfinfolabel.h"
 
 #include "single_file_operations/booklet.h"
-#include "single_file_operations/rotation_multipage.h"
+#include "single_file_operations/edit_page_layout.h"
 #include "single_file_operations/add_empty_pages.h"
 #include "single_file_operations/delete_pages.h"
+#include "single_file_operations/extract_pages.h"
 
 class MainWindow : public QMainWindow
 {
@@ -117,10 +118,11 @@ private:
     PdfInfo m_opened_pdf_info;
     PdfInfoLabel *m_opened_file_label;
 
-    Booklet m_booklet_page;
-    RotationMultipage m_rot_multi_page;
-    AddEmptyPages m_add_empty_pages_page;
-    DeletePages m_delete_pages_page;
+    Booklet m_booklet_tab;
+    EditPageLayout m_edit_page_layout_tab;
+    AddEmptyPages m_add_empty_pages_tab;
+    DeletePages m_delete_pages_tab;
+    ExtractPages m_extract_pages_tab;
 
     MultipageProfilesManager *m_multipage_profiles_manager;
 };

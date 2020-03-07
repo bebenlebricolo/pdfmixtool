@@ -403,6 +403,110 @@ void write_pdf(const Conf &conf, std::function<void (int)>& progress)
             }
         }
 
+        // scale pages
+        if (conf.files.at(i).scale != 100)
+        {
+            std::vector<QPDFPageObjectHelper> pages =
+                    QPDFPageDocumentHelper(output_file).getAllPages();
+
+            // Get rotation of the first page
+            long long page_rotation = 0;
+            if (pages.at(0).getAttribute("/Rotate", true).isInteger())
+                page_rotation = pages.at(0).getAttribute("/Rotate", true)
+                        .getIntValue();
+
+            // Get size of the first page
+            double page_width;
+            double page_height;
+
+            QPDFObjectHandle::Rectangle rect = pages.at(0)
+                    .getAttribute("/MediaBox", true).getArrayAsRectangle();
+
+            if (page_rotation % 180 == 90)
+            {
+                page_width = std::abs(rect.lly - rect.ury);
+                page_height = std::abs(rect.llx - rect.urx);
+            }
+            else
+            {
+                page_height = std::abs(rect.lly - rect.ury);
+                page_width = std::abs(rect.llx - rect.urx);
+            }
+
+            page_width = page_width * conf.files.at(i).scale / 100;
+            page_height = page_height * conf.files.at(i).scale / 100;
+
+            std::string blank_page_string = "<</Type/Page/MediaBox[0 0 " +
+                    std::to_string(page_width) + ' ' +
+                    std::to_string(page_height) +
+                    "]/Resources<</ProcSet[/PDF/Text/ImageB/ImageC/ImageI]>>>>";
+
+            // Push back scaled pages
+            size_t num_pages = pages.size();
+            for (unsigned int j = 0; j < num_pages; j++)
+            {
+                QPDFObjectHandle blank_page_object = QPDFObjectHandle::parse(
+                            blank_page_string,
+                            "blank page");
+                QPDFPageObjectHelper blank_page(blank_page_object);
+                QPDFPageDocumentHelper(output_file).addPage(blank_page, false);
+
+                QPDFPageObjectHelper out_page_helper =
+                        QPDFPageDocumentHelper(output_file)
+                        .getAllPages().back();
+
+                // Get form xobject for input page
+                QPDFPageObjectHelper in_page_helper =
+                        QPDFPageDocumentHelper(output_file).getAllPages().at(j);
+
+                QPDFObjectHandle page_xobject =
+                            in_page_helper.getFormXObjectForPage();
+
+                // Find a unique resource name for the new form XObject
+                QPDFObjectHandle resources = out_page_helper
+                        .getAttribute("/Resources", true);
+
+                int min_suffix = num_pages + j + 1;
+                std::string name = resources.getUniqueResourceName(
+                            "/Fx", min_suffix);
+
+                std::string content = out_page_helper.placeFormXObject(
+                            page_xobject,
+                            name,
+                            QPDFObjectHandle::Rectangle(
+                                0, 0,
+                                page_width, page_height),
+                            false);
+
+                if (! content.empty())
+                {
+                    // Append the content to the page's content.
+                    // Surround the original content with q...Q to the
+                    // new content from the page's original content.
+
+                    resources.mergeResources(
+                                QPDFObjectHandle::parse(
+                                    "<< /XObject << >> >>"));
+                    resources.getKey("/XObject")
+                            .replaceKey(name, page_xobject);
+                    out_page_helper.addPageContents(
+                                QPDFObjectHandle::newStream(
+                                    &output_file, "q\n"),
+                                true);
+                    out_page_helper.addPageContents(
+                                QPDFObjectHandle::newStream(
+                                    &output_file, "\nQ\n" + content),
+                                false);
+                }
+            }
+
+            // Delete original-scale pages
+            for (unsigned int j = 0; j < num_pages; j++)
+                QPDFPageDocumentHelper(output_file).removePage(
+                            QPDFPageDocumentHelper(output_file)
+                            .getAllPages().at(0));
+        }
+
         progress(100 * i / (conf.files.size() + 1));
     }
 

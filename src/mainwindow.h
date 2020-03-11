@@ -86,6 +86,10 @@ public slots:
 
     void do_save(int from_page, const QString &filename);
 
+    void extract_individual_button_pressed();
+
+    void extract_single_button_pressed();
+
     // close event
     void closeEvent(QCloseEvent *event);
 

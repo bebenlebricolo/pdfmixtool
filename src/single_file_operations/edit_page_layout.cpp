@@ -71,7 +71,7 @@ EditPageLayout::EditPageLayout(QWidget *parent) : QWidget(parent)
             SLOT(multipage_activated(int)));
     form_layout->addRow(tr("Multipage:"), &multipage);
 
-    scale.setRange(1, 1000);
+    scale.setRange(1, 100);
     scale.setValue(100);
     scale.setSuffix("%");
     connect(&scale,

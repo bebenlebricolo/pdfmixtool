@@ -342,6 +342,14 @@ MainWindow::MainWindow(MouseEventFilter *filter, QWidget *parent) :
 
     operations_list->addItem(tr("Extract pages"));
     operations->addWidget(&m_extract_pages_tab);
+    connect(&m_extract_pages_tab,
+            &ExtractPages::extract_individual_button_pressed,
+            this,
+            &MainWindow::extract_individual_button_pressed);
+    connect(&m_extract_pages_tab,
+            &ExtractPages::extract_single_button_pressed,
+            this,
+            &MainWindow::extract_single_button_pressed);
 
     h_layout->addWidget(operations_list);
     h_layout->addWidget(operations);
@@ -719,6 +727,8 @@ void MainWindow::update_opened_file_label(const QString &filename)
     m_add_empty_pages_tab.page.setRange(1, m_opened_pdf_info.n_pages());
 
     m_delete_pages_tab.set_num_pages(m_opened_pdf_info.n_pages());
+
+    m_extract_pages_tab.set_pdf_info(m_opened_pdf_info);
 }
 
 void MainWindow::generate_booklet_pressed()
@@ -910,6 +920,116 @@ void MainWindow::do_save(int from_page, const QString &filename)
     if (filename ==
             QString::fromStdString(m_opened_pdf_info.filename()))
         update_opened_file_label(filename);
+}
+
+void MainWindow::extract_individual_button_pressed()
+{
+    QString dir_name = QFileDialog::getExistingDirectory(
+                this,
+                tr("Select save directory"),
+                m_settings->value("save_directory",
+                                  m_settings->value("open_directory", "")
+                                  ).toString(),
+                QFileDialog::ShowDirsOnly
+                | QFileDialog::DontResolveSymlinks);
+
+    if (!dir_name.isNull())
+    {   
+        QProgressBar *pb = m_progress_bar;
+        std::function<void (int)> progress = [pb] (int p)
+        {
+            pb->setValue(p);
+        };
+
+        m_progress_bar->setValue(0);
+        m_progress_bar->show();
+
+        QDir dir(dir_name);
+        QString base_name = m_extract_pages_tab.get_base_name();
+
+        int output_pages_count;
+        std::vector<std::pair<int, int>> intervals;
+        parse_output_pages_string(
+                    m_extract_pages_tab.get_selection().toStdString(),
+                    m_opened_pdf_info.n_pages(),
+                    intervals,
+                    output_pages_count);
+
+        std::vector<std::pair<int, int>>::iterator it;
+        for (it = intervals.begin(); it != intervals.end(); ++it)
+        {
+            for (int i = it->first; i <= it->second; i++)
+            {
+                QString filename = base_name + QString("_%1.pdf").arg(i);
+
+                Conf conf;
+
+                conf.output_path = dir.filePath(filename).toStdString();
+                conf.alternate_mix = false;
+
+                FileConf fileconf;
+                fileconf.path = m_opened_pdf_info.filename();
+                fileconf.ouput_pages = std::to_string(i);
+                fileconf.multipage_enabled = false;
+                fileconf.rotation = 0;
+                fileconf.outline_entry = "";
+                fileconf.reverse_order = false;
+
+                conf.files.push_back(fileconf);
+
+                write_pdf(conf, progress);
+            }
+        }
+
+        QTimer::singleShot(4000, m_progress_bar, SLOT(hide()));
+    }
+}
+
+void MainWindow::extract_single_button_pressed()
+{
+    QString selected_file = QFileDialog::getSaveFileName(
+                this,
+                tr("Extract to single PDF"),
+                m_settings->value("save_directory",
+                                  m_settings->value("open_directory", "")
+                                  ).toString(),
+                tr("PDF files (*.pdf)"));
+
+    if (!selected_file.isNull())
+    {
+        QProgressBar *pb = m_progress_bar;
+        std::function<void (int)> progress = [pb] (int p)
+        {
+            pb->setValue(p);
+        };
+
+        m_progress_bar->setValue(0);
+        m_progress_bar->show();
+
+        Conf conf;
+
+        conf.output_path = selected_file.toStdString();
+        conf.alternate_mix = false;
+
+        FileConf fileconf;
+        fileconf.path = m_opened_pdf_info.filename();
+        fileconf.ouput_pages =
+                m_extract_pages_tab.get_selection().toStdString();
+        fileconf.multipage_enabled = false;
+        fileconf.rotation = 0;
+        fileconf.outline_entry = "";
+        fileconf.reverse_order = false;
+
+        conf.files.push_back(fileconf);
+
+        write_pdf(conf, progress);
+
+        QTimer::singleShot(4000, m_progress_bar, SLOT(hide()));
+
+        if (selected_file ==
+                QString::fromStdString(m_opened_pdf_info.filename()))
+            update_opened_file_label(selected_file);
+    }
 }
 
 void MainWindow::closeEvent(QCloseEvent *event)

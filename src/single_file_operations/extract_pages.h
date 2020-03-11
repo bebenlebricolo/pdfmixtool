@@ -20,6 +20,10 @@
 #define EXTRACTPAGES_H
 
 #include <QWidget>
+#include <QButtonGroup>
+#include <QLineEdit>
+
+#include "../pdf_edit_lib/pdf_info.h"
 
 class ExtractPages : public QWidget
 {
@@ -27,8 +31,24 @@ class ExtractPages : public QWidget
 public:
     explicit ExtractPages(QWidget *parent = nullptr);
 
-signals:
+    void set_pdf_info(const PdfInfo &pdf_info);
 
+    QString get_selection();
+
+    QString get_base_name();
+
+signals:
+    void extract_individual_button_pressed();
+    void extract_single_button_pressed();
+
+private:
+    QButtonGroup m_extraction_type;
+    QLineEdit m_selection;
+    QLineEdit m_base_name;
+
+    PdfInfo m_pdf_info;
+
+    bool check_selection();
 };
 
 #endif // EXTRACTPAGES_H

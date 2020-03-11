@@ -119,13 +119,13 @@ QString DeletePages::get_selection()
         }
         break;
     }
-    case 1:{
+    case 1: {
         for (int i = 1; i <= m_num_pages; i++)
             if (i % 2 == 1)
                 s += QString::number(i) + ",";
         break;
     }
-    case 2:{
+    case 2: {
         for (int i = 1; i <= m_num_pages; i++)
             if (i % 2 == 0)
                 s += QString::number(i) + ",";

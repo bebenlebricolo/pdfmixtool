@@ -175,27 +175,27 @@
     <message>
         <location filename="../src/single_file_operations/delete_pages.cpp" line="41"/>
         <source>Delete pages:</source>
-        <translation type="unfinished"></translation>
+        <translation>Pagina&apos;s verwijderen:</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/delete_pages.cpp" line="43"/>
         <source>Delete even pages</source>
-        <translation type="unfinished"></translation>
+        <translation>Even pagina&apos;s verwijderen</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/delete_pages.cpp" line="45"/>
         <source>Delete odd pages</source>
-        <translation type="unfinished"></translation>
+        <translation>Oneven pagina&apos;s verwijderen</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/delete_pages.cpp" line="61"/>
         <source>Save</source>
-        <translation type="unfinished">Opslaan</translation>
+        <translation>Opslaan</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/delete_pages.cpp" line="72"/>
         <source>Save as…</source>
-        <translation type="unfinished">Opslaan als…</translation>
+        <translation>Opslaan als…</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/delete_pages.cpp" line="153"/>
@@ -205,7 +205,7 @@
     <message>
         <location filename="../src/single_file_operations/delete_pages.cpp" line="168"/>
         <source>Error</source>
-        <translation type="unfinished">Fout</translation>
+        <translation>Fout</translation>
     </message>
 </context>
 <context>
@@ -311,46 +311,46 @@
     <message>
         <location filename="../src/single_file_operations/edit_page_layout.cpp" line="49"/>
         <source>No rotation</source>
-        <translation type="unfinished">Niet gedraaid</translation>
+        <translation>Niet gedraaid</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/edit_page_layout.cpp" line="56"/>
         <source>Rotation:</source>
-        <translation type="unfinished">Draaien:</translation>
+        <translation>Draaien:</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/edit_page_layout.cpp" line="58"/>
         <location filename="../src/single_file_operations/edit_page_layout.cpp" line="121"/>
         <location filename="../src/single_file_operations/edit_page_layout.cpp" line="208"/>
         <source>Disabled</source>
-        <translation type="unfinished">Uitgeschakeld</translation>
+        <translation>Uitgeschakeld</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/edit_page_layout.cpp" line="66"/>
         <location filename="../src/single_file_operations/edit_page_layout.cpp" line="133"/>
         <location filename="../src/single_file_operations/edit_page_layout.cpp" line="216"/>
         <source>New custom profile…</source>
-        <translation type="unfinished">Nieuw aangepast profiel…</translation>
+        <translation>Nieuw aangepast profiel…</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/edit_page_layout.cpp" line="72"/>
         <source>Multipage:</source>
-        <translation type="unfinished">Meerdere pagina&apos;s:</translation>
+        <translation>Meerdere pagina&apos;s:</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/edit_page_layout.cpp" line="80"/>
         <source>Scale page:</source>
-        <translation type="unfinished"></translation>
+        <translation>Pagina-afmetingen:</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/edit_page_layout.cpp" line="88"/>
         <source>Save</source>
-        <translation type="unfinished">Opslaan</translation>
+        <translation>Opslaan</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/edit_page_layout.cpp" line="101"/>
         <source>Save as…</source>
-        <translation type="unfinished">Opslaan als…</translation>
+        <translation>Opslaan als…</translation>
     </message>
 </context>
 <context>
@@ -396,37 +396,37 @@
     <message>
         <location filename="../src/single_file_operations/extract_pages.cpp" line="44"/>
         <source>Extract pages:</source>
-        <translation type="unfinished"></translation>
+        <translation>Pagina&apos;s extraheren:</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/extract_pages.cpp" line="47"/>
         <source>Extract all pages</source>
-        <translation type="unfinished"></translation>
+        <translation>Alle pagina&apos;s extraheren</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/extract_pages.cpp" line="50"/>
         <source>Extract even pages</source>
-        <translation type="unfinished"></translation>
+        <translation>Even pagina&apos;s extraheren</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/extract_pages.cpp" line="53"/>
         <source>Extract odd pages</source>
-        <translation type="unfinished"></translation>
+        <translation>Oneven pagina&apos;s extraheren</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/extract_pages.cpp" line="60"/>
         <source>Output PDF base name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Standaard PDF-naam:</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/extract_pages.cpp" line="73"/>
         <source>Extract to individual PDF files</source>
-        <translation type="unfinished"></translation>
+        <translation>Extraheren naar losse PDF-bestanden</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/extract_pages.cpp" line="77"/>
         <source>Extract to single PDF</source>
-        <translation type="unfinished"></translation>
+        <translation>Extraheren naar één PDF-bestand</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/extract_pages.cpp" line="145"/>
@@ -436,7 +436,7 @@
     <message>
         <location filename="../src/single_file_operations/extract_pages.cpp" line="160"/>
         <source>Error</source>
-        <translation type="unfinished">Fout</translation>
+        <translation>Fout</translation>
     </message>
 </context>
 <context>
@@ -566,7 +566,7 @@
     <message>
         <location filename="../src/mainwindow.cpp" line="307"/>
         <source>Edit page layout</source>
-        <translation type="unfinished"></translation>
+        <translation>Pagina-indeling aanpassen</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="628"/>
@@ -631,12 +631,12 @@
     <message>
         <location filename="../src/mainwindow.cpp" line="929"/>
         <source>Select save directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Opslagmap selecteren</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="992"/>
         <source>Extract to single PDF</source>
-        <translation type="unfinished"></translation>
+        <translation>Extraheren naar één PDF-bestand</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="329"/>

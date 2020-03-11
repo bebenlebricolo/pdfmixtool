@@ -171,6 +171,44 @@
     </message>
 </context>
 <context>
+    <name>DeletePages</name>
+    <message>
+        <location filename="../src/single_file_operations/delete_pages.cpp" line="41"/>
+        <source>Delete pages:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/single_file_operations/delete_pages.cpp" line="43"/>
+        <source>Delete even pages</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/single_file_operations/delete_pages.cpp" line="45"/>
+        <source>Delete odd pages</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/single_file_operations/delete_pages.cpp" line="61"/>
+        <source>Save</source>
+        <translation type="unfinished">保存</translation>
+    </message>
+    <message>
+        <location filename="../src/single_file_operations/delete_pages.cpp" line="72"/>
+        <source>Save as…</source>
+        <translation type="unfinished">名前を付けて保存…</translation>
+    </message>
+    <message>
+        <location filename="../src/single_file_operations/delete_pages.cpp" line="153"/>
+        <source>&lt;p&gt;Pages to be deleted are badly formatted. Please make sure you complied with the following rules:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;intervals of pages must be written indicating the first page and the last page separated by a dash (e.g. &quot;1-5&quot;);&lt;/li&gt;&lt;li&gt;single pages and intervals of pages must be separated by spaces, commas or both (e.g. &quot;1, 2, 3, 5-10&quot; or &quot;1 2 3 5-10&quot;);&lt;/li&gt;&lt;li&gt;all pages and intervals of pages must be between 1 and the number of pages of the PDF file;&lt;/li&gt;&lt;li&gt;only numbers, spaces, commas and dashes can be used. All other characters are not allowed.&lt;/li&gt;&lt;/ul&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/single_file_operations/delete_pages.cpp" line="168"/>
+        <source>Error</source>
+        <translation type="unfinished">エラー</translation>
+    </message>
+</context>
+<context>
     <name>EditMultipageProfileDialog</name>
     <message>
         <location filename="../src/editmultipageprofiledialog.cpp" line="29"/>
@@ -269,6 +307,53 @@
     </message>
 </context>
 <context>
+    <name>EditPageLayout</name>
+    <message>
+        <location filename="../src/single_file_operations/edit_page_layout.cpp" line="49"/>
+        <source>No rotation</source>
+        <translation type="unfinished">回転なし</translation>
+    </message>
+    <message>
+        <location filename="../src/single_file_operations/edit_page_layout.cpp" line="56"/>
+        <source>Rotation:</source>
+        <translation type="unfinished">回転:</translation>
+    </message>
+    <message>
+        <location filename="../src/single_file_operations/edit_page_layout.cpp" line="58"/>
+        <location filename="../src/single_file_operations/edit_page_layout.cpp" line="121"/>
+        <location filename="../src/single_file_operations/edit_page_layout.cpp" line="208"/>
+        <source>Disabled</source>
+        <translation type="unfinished">無効</translation>
+    </message>
+    <message>
+        <location filename="../src/single_file_operations/edit_page_layout.cpp" line="66"/>
+        <location filename="../src/single_file_operations/edit_page_layout.cpp" line="133"/>
+        <location filename="../src/single_file_operations/edit_page_layout.cpp" line="216"/>
+        <source>New custom profile…</source>
+        <translation type="unfinished">新しいカスタムプロファイル…</translation>
+    </message>
+    <message>
+        <location filename="../src/single_file_operations/edit_page_layout.cpp" line="72"/>
+        <source>Multipage:</source>
+        <translation type="unfinished">マルチページ:</translation>
+    </message>
+    <message>
+        <location filename="../src/single_file_operations/edit_page_layout.cpp" line="80"/>
+        <source>Scale page:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/single_file_operations/edit_page_layout.cpp" line="88"/>
+        <source>Save</source>
+        <translation type="unfinished">保存</translation>
+    </message>
+    <message>
+        <location filename="../src/single_file_operations/edit_page_layout.cpp" line="101"/>
+        <source>Save as…</source>
+        <translation type="unfinished">名前を付けて保存…</translation>
+    </message>
+</context>
+<context>
     <name>EditPdfEntryDialog</name>
     <message>
         <location filename="../src/editpdfentrydialog.cpp" line="37"/>
@@ -304,6 +389,54 @@
         <location filename="../src/editpdfentrydialog.cpp" line="105"/>
         <source>Rotation:</source>
         <translation>回転:</translation>
+    </message>
+</context>
+<context>
+    <name>ExtractPages</name>
+    <message>
+        <location filename="../src/single_file_operations/extract_pages.cpp" line="44"/>
+        <source>Extract pages:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/single_file_operations/extract_pages.cpp" line="47"/>
+        <source>Extract all pages</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/single_file_operations/extract_pages.cpp" line="50"/>
+        <source>Extract even pages</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/single_file_operations/extract_pages.cpp" line="53"/>
+        <source>Extract odd pages</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/single_file_operations/extract_pages.cpp" line="60"/>
+        <source>Output PDF base name:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/single_file_operations/extract_pages.cpp" line="73"/>
+        <source>Extract to individual PDF files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/single_file_operations/extract_pages.cpp" line="77"/>
+        <source>Extract to single PDF</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/single_file_operations/extract_pages.cpp" line="145"/>
+        <source>&lt;p&gt;Pages to be extracted are badly formatted. Please make sure you complied with the following rules:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;intervals of pages must be written indicating the first page and the last page separated by a dash (e.g. &quot;1-5&quot;);&lt;/li&gt;&lt;li&gt;single pages and intervals of pages must be separated by spaces, commas or both (e.g. &quot;1, 2, 3, 5-10&quot; or &quot;1 2 3 5-10&quot;);&lt;/li&gt;&lt;li&gt;all pages and intervals of pages must be between 1 and the number of pages of the PDF file;&lt;/li&gt;&lt;li&gt;only numbers, spaces, commas and dashes can be used. All other characters are not allowed.&lt;/li&gt;&lt;/ul&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/single_file_operations/extract_pages.cpp" line="160"/>
+        <source>Error</source>
+        <translation type="unfinished">エラー</translation>
     </message>
 </context>
 <context>
@@ -431,12 +564,17 @@
         <translation>PDF を生成</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="622"/>
+        <location filename="../src/mainwindow.cpp" line="307"/>
+        <source>Edit page layout</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="628"/>
         <source>PDF generation error</source>
         <translation>PDF 生成エラー</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="370"/>
+        <location filename="../src/mainwindow.cpp" line="376"/>
         <source>Select one or more PDF files to open</source>
         <translation>開く PDF ファイルを一つまたは複数選択してください</translation>
     </message>
@@ -491,9 +629,14 @@
         <translation>ブックレット</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="307"/>
-        <source>Rotation/multipage</source>
-        <translation>回転/複数ページ</translation>
+        <location filename="../src/mainwindow.cpp" line="929"/>
+        <source>Select save directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="992"/>
+        <source>Extract to single PDF</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="329"/>
@@ -506,57 +649,53 @@
         <translation>ページを削除</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="340"/>
+        <location filename="../src/mainwindow.cpp" line="343"/>
         <source>Extract pages</source>
         <translation>ページを抽出</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="344"/>
-        <source>Resize pages</source>
-        <translation>ページのサイズを変更</translation>
-    </message>
-    <message>
-        <location filename="../src/mainwindow.cpp" line="372"/>
-        <location filename="../src/mainwindow.cpp" line="633"/>
-        <location filename="../src/mainwindow.cpp" line="699"/>
-        <location filename="../src/mainwindow.cpp" line="732"/>
-        <location filename="../src/mainwindow.cpp" line="787"/>
+        <location filename="../src/mainwindow.cpp" line="378"/>
+        <location filename="../src/mainwindow.cpp" line="639"/>
+        <location filename="../src/mainwindow.cpp" line="705"/>
+        <location filename="../src/mainwindow.cpp" line="742"/>
+        <location filename="../src/mainwindow.cpp" line="797"/>
+        <location filename="../src/mainwindow.cpp" line="996"/>
         <source>PDF files (*.pdf)</source>
         <translation>PDF ファイル (*.pdf)</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="596"/>
+        <location filename="../src/mainwindow.cpp" line="602"/>
         <source>Output pages: %1</source>
         <translation>出力ページ: %1</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="697"/>
+        <location filename="../src/mainwindow.cpp" line="703"/>
         <source>Select a PDF file</source>
         <translation>PDF ファイルを選択</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="728"/>
+        <location filename="../src/mainwindow.cpp" line="738"/>
         <source>Save booklet PDF file</source>
         <translation>ブックレット PDF ファイルを保存</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="766"/>
+        <location filename="../src/mainwindow.cpp" line="776"/>
         <source>Overwrite File?</source>
         <translation>ファイルを上書きしますか？</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="767"/>
+        <location filename="../src/mainwindow.cpp" line="777"/>
         <source>A file called «%1» already exists. Do you want to overwrite it?</source>
         <translation>ファイル «%1» はすでに存在します。上書きしますか？</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="605"/>
+        <location filename="../src/mainwindow.cpp" line="611"/>
         <source>&lt;p&gt;Output pages of file &lt;b&gt;%1&lt;/b&gt; are badly formatted. Please make sure you complied with the following rules:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;intervals of pages must be written indicating the first page and the last page separated by a dash (e.g. &quot;1-5&quot;);&lt;/li&gt;&lt;li&gt;single pages and intervals of pages must be separated by spaces, commas or both (e.g. &quot;1, 2, 3, 5-10&quot; or &quot;1 2 3 5-10&quot;);&lt;/li&gt;&lt;li&gt;all pages and intervals of pages must be between 1 and the number of pages of the PDF file;&lt;/li&gt;&lt;li&gt;only numbers, spaces, commas and dashes can be used. All other characters are not allowed.&lt;/li&gt;&lt;/ul&gt;</source>
         <translation>&lt;p&gt;ファイルの出力ページ &lt;b&gt;%1&lt;/b&gt; が適切な形式ではありません。次の規則に従っていることを確認してください:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;ページの間隔は、最初のページと最後のページをダッシュで区切って (例えば &quot;1-5&quot; ) 書く必要があります&lt;/li&gt;&lt;li&gt;単一のページとページ間隔は、スペース、カンマ、またはその両方で (例えば &quot;1, 2, 3, 5-10&quot; や &quot;1 2 3 5-10&quot;) 区切る必要があります。&lt;/li&gt;&lt;li&gt;すべてのページとページ間隔は、1 から PDF ファイルのページ数の間でなければなりません。&lt;/li&gt;&lt;li&gt;数字、スペース、カンマ、ダッシュのみ使用できます。他の文字は使用できません&lt;/li&gt;&lt;/ul&gt;</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="629"/>
-        <location filename="../src/mainwindow.cpp" line="783"/>
+        <location filename="../src/mainwindow.cpp" line="635"/>
+        <location filename="../src/mainwindow.cpp" line="793"/>
         <source>Save PDF file</source>
         <translation>PDF ファイルを保存</translation>
     </message>
@@ -626,48 +765,6 @@
         <translation>
             <numerusform>%nページ</numerusform>
         </translation>
-    </message>
-</context>
-<context>
-    <name>RotationMultipage</name>
-    <message>
-        <location filename="../src/single_file_operations/rotation_multipage.cpp" line="41"/>
-        <source>No rotation</source>
-        <translation>回転なし</translation>
-    </message>
-    <message>
-        <location filename="../src/single_file_operations/rotation_multipage.cpp" line="48"/>
-        <source>Rotation:</source>
-        <translation>回転:</translation>
-    </message>
-    <message>
-        <location filename="../src/single_file_operations/rotation_multipage.cpp" line="50"/>
-        <location filename="../src/single_file_operations/rotation_multipage.cpp" line="105"/>
-        <location filename="../src/single_file_operations/rotation_multipage.cpp" line="171"/>
-        <source>Disabled</source>
-        <translation>無効</translation>
-    </message>
-    <message>
-        <location filename="../src/single_file_operations/rotation_multipage.cpp" line="58"/>
-        <location filename="../src/single_file_operations/rotation_multipage.cpp" line="117"/>
-        <location filename="../src/single_file_operations/rotation_multipage.cpp" line="179"/>
-        <source>New custom profile…</source>
-        <translation>新しいカスタムプロファイル…</translation>
-    </message>
-    <message>
-        <location filename="../src/single_file_operations/rotation_multipage.cpp" line="64"/>
-        <source>Multipage:</source>
-        <translation>マルチページ:</translation>
-    </message>
-    <message>
-        <location filename="../src/single_file_operations/rotation_multipage.cpp" line="72"/>
-        <source>Save</source>
-        <translation>保存</translation>
-    </message>
-    <message>
-        <location filename="../src/single_file_operations/rotation_multipage.cpp" line="85"/>
-        <source>Save as…</source>
-        <translation>名前を付けて保存…</translation>
     </message>
 </context>
 </TS>

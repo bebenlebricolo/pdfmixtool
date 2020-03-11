@@ -171,6 +171,44 @@
     </message>
 </context>
 <context>
+    <name>DeletePages</name>
+    <message>
+        <location filename="../src/single_file_operations/delete_pages.cpp" line="41"/>
+        <source>Delete pages:</source>
+        <translation>Cancella le pagine:</translation>
+    </message>
+    <message>
+        <location filename="../src/single_file_operations/delete_pages.cpp" line="43"/>
+        <source>Delete even pages</source>
+        <translation>Cancella le pagine pari</translation>
+    </message>
+    <message>
+        <location filename="../src/single_file_operations/delete_pages.cpp" line="45"/>
+        <source>Delete odd pages</source>
+        <translation>Cancella le pagine dispari</translation>
+    </message>
+    <message>
+        <location filename="../src/single_file_operations/delete_pages.cpp" line="61"/>
+        <source>Save</source>
+        <translation>Salva</translation>
+    </message>
+    <message>
+        <location filename="../src/single_file_operations/delete_pages.cpp" line="72"/>
+        <source>Save as…</source>
+        <translation>Salva come…</translation>
+    </message>
+    <message>
+        <location filename="../src/single_file_operations/delete_pages.cpp" line="153"/>
+        <source>&lt;p&gt;Pages to be deleted are badly formatted. Please make sure you complied with the following rules:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;intervals of pages must be written indicating the first page and the last page separated by a dash (e.g. &quot;1-5&quot;);&lt;/li&gt;&lt;li&gt;single pages and intervals of pages must be separated by spaces, commas or both (e.g. &quot;1, 2, 3, 5-10&quot; or &quot;1 2 3 5-10&quot;);&lt;/li&gt;&lt;li&gt;all pages and intervals of pages must be between 1 and the number of pages of the PDF file;&lt;/li&gt;&lt;li&gt;only numbers, spaces, commas and dashes can be used. All other characters are not allowed.&lt;/li&gt;&lt;/ul&gt;</source>
+        <translation>&lt;p&gt;Le pagine da cancellare sono formattate in modo errato. Assicurati di aver rispettato le seguenti regole:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;gli intervalli di pagine devono essere scritti indicando la prima e l&apos;ultima pagina separate da un trattino (es. &quot;1-5&quot;);&lt;/li&gt;&lt;li&gt;le pagine singole e gli intervalli di pagine devono essere separati da spazi, virgole o entrambi (es. &quot;1, 2, 3, 5-10&quot; o &quot;1 2 3 5-10&quot;);&lt;/li&gt;&lt;li&gt;tutte le pagine e gli intervalli di pagine devono essere compresi tra 1 e il numero di pagine del file PDF;&lt;/li&gt;&lt;li&gt;possono essere usati solo numeri, spazi, virgole e trattini. Tutti gli altri caratteri non sono ammessi.&lt;/li&gt;&lt;/ul&gt;</translation>
+    </message>
+    <message>
+        <location filename="../src/single_file_operations/delete_pages.cpp" line="168"/>
+        <source>Error</source>
+        <translation>Errore</translation>
+    </message>
+</context>
+<context>
     <name>EditMultipageProfileDialog</name>
     <message>
         <location filename="../src/editmultipageprofiledialog.cpp" line="29"/>
@@ -269,6 +307,53 @@
     </message>
 </context>
 <context>
+    <name>EditPageLayout</name>
+    <message>
+        <location filename="../src/single_file_operations/edit_page_layout.cpp" line="49"/>
+        <source>No rotation</source>
+        <translation>Non ruotare</translation>
+    </message>
+    <message>
+        <location filename="../src/single_file_operations/edit_page_layout.cpp" line="56"/>
+        <source>Rotation:</source>
+        <translation>Rotazione:</translation>
+    </message>
+    <message>
+        <location filename="../src/single_file_operations/edit_page_layout.cpp" line="58"/>
+        <location filename="../src/single_file_operations/edit_page_layout.cpp" line="121"/>
+        <location filename="../src/single_file_operations/edit_page_layout.cpp" line="208"/>
+        <source>Disabled</source>
+        <translation>Disabilitato</translation>
+    </message>
+    <message>
+        <location filename="../src/single_file_operations/edit_page_layout.cpp" line="66"/>
+        <location filename="../src/single_file_operations/edit_page_layout.cpp" line="133"/>
+        <location filename="../src/single_file_operations/edit_page_layout.cpp" line="216"/>
+        <source>New custom profile…</source>
+        <translation>Nuovo profilo personalizzato…</translation>
+    </message>
+    <message>
+        <location filename="../src/single_file_operations/edit_page_layout.cpp" line="72"/>
+        <source>Multipage:</source>
+        <translation>Multipagina:</translation>
+    </message>
+    <message>
+        <location filename="../src/single_file_operations/edit_page_layout.cpp" line="80"/>
+        <source>Scale page:</source>
+        <translation>Scala pagina:</translation>
+    </message>
+    <message>
+        <location filename="../src/single_file_operations/edit_page_layout.cpp" line="88"/>
+        <source>Save</source>
+        <translation>Salva</translation>
+    </message>
+    <message>
+        <location filename="../src/single_file_operations/edit_page_layout.cpp" line="101"/>
+        <source>Save as…</source>
+        <translation>Salva come…</translation>
+    </message>
+</context>
+<context>
     <name>EditPdfEntryDialog</name>
     <message>
         <location filename="../src/editpdfentrydialog.cpp" line="37"/>
@@ -304,6 +389,54 @@
         <location filename="../src/editpdfentrydialog.cpp" line="105"/>
         <source>Rotation:</source>
         <translation>Rotazione:</translation>
+    </message>
+</context>
+<context>
+    <name>ExtractPages</name>
+    <message>
+        <location filename="../src/single_file_operations/extract_pages.cpp" line="44"/>
+        <source>Extract pages:</source>
+        <translation>Estrai le pagine:</translation>
+    </message>
+    <message>
+        <location filename="../src/single_file_operations/extract_pages.cpp" line="47"/>
+        <source>Extract all pages</source>
+        <translation>Estrai tutte le pagine</translation>
+    </message>
+    <message>
+        <location filename="../src/single_file_operations/extract_pages.cpp" line="50"/>
+        <source>Extract even pages</source>
+        <translation>Estrai le pagine pari</translation>
+    </message>
+    <message>
+        <location filename="../src/single_file_operations/extract_pages.cpp" line="53"/>
+        <source>Extract odd pages</source>
+        <translation>Estrai le pagine dispari</translation>
+    </message>
+    <message>
+        <location filename="../src/single_file_operations/extract_pages.cpp" line="60"/>
+        <source>Output PDF base name:</source>
+        <translation>Nome di base del PDF di uscita:</translation>
+    </message>
+    <message>
+        <location filename="../src/single_file_operations/extract_pages.cpp" line="73"/>
+        <source>Extract to individual PDF files</source>
+        <translation>Estrai in file PDF singoli</translation>
+    </message>
+    <message>
+        <location filename="../src/single_file_operations/extract_pages.cpp" line="77"/>
+        <source>Extract to single PDF</source>
+        <translation>Estrai in un unico file PDF</translation>
+    </message>
+    <message>
+        <location filename="../src/single_file_operations/extract_pages.cpp" line="145"/>
+        <source>&lt;p&gt;Pages to be extracted are badly formatted. Please make sure you complied with the following rules:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;intervals of pages must be written indicating the first page and the last page separated by a dash (e.g. &quot;1-5&quot;);&lt;/li&gt;&lt;li&gt;single pages and intervals of pages must be separated by spaces, commas or both (e.g. &quot;1, 2, 3, 5-10&quot; or &quot;1 2 3 5-10&quot;);&lt;/li&gt;&lt;li&gt;all pages and intervals of pages must be between 1 and the number of pages of the PDF file;&lt;/li&gt;&lt;li&gt;only numbers, spaces, commas and dashes can be used. All other characters are not allowed.&lt;/li&gt;&lt;/ul&gt;</source>
+        <translation>&lt;p&gt;Le pagine da estrarre sono formattate in modo errato. Assicurati di aver rispettato le seguenti regole:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;gli intervalli di pagine devono essere scritti indicando la prima e l&apos;ultima pagina separate da un trattino (es. &quot;1-5&quot;);&lt;/li&gt;&lt;li&gt;le pagine singole e gli intervalli di pagine devono essere separati da spazi, virgole o entrambi (es. &quot;1, 2, 3, 5-10&quot; o &quot;1 2 3 5-10&quot;);&lt;/li&gt;&lt;li&gt;tutte le pagine e gli intervalli di pagine devono essere compresi tra 1 e il numero di pagine del file PDF;&lt;/li&gt;&lt;li&gt;possono essere usati solo numeri, spazi, virgole e trattini. Tutti gli altri caratteri non sono ammessi.&lt;/li&gt;&lt;/ul&gt;</translation>
+    </message>
+    <message>
+        <location filename="../src/single_file_operations/extract_pages.cpp" line="160"/>
+        <source>Error</source>
+        <translation>Errore</translation>
     </message>
 </context>
 <context>
@@ -446,11 +579,6 @@
         <translation>Fascicolo</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="307"/>
-        <source>Rotation/multipage</source>
-        <translation>Rotazione/multipagina</translation>
-    </message>
-    <message>
         <location filename="../src/mainwindow.cpp" line="329"/>
         <source>Add empty pages</source>
         <translation>Aggiungi pagine vuote</translation>
@@ -461,62 +589,68 @@
         <translation>Cancella pagine</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="340"/>
+        <location filename="../src/mainwindow.cpp" line="343"/>
         <source>Extract pages</source>
         <translation>Estrai pagine</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="344"/>
-        <source>Resize pages</source>
-        <translation>Ridimensiona le pagine</translation>
-    </message>
-    <message>
-        <location filename="../src/mainwindow.cpp" line="370"/>
+        <location filename="../src/mainwindow.cpp" line="376"/>
         <source>Select one or more PDF files to open</source>
         <translation>Seleziona uno o più file PDF da aprire</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="372"/>
-        <location filename="../src/mainwindow.cpp" line="633"/>
-        <location filename="../src/mainwindow.cpp" line="699"/>
-        <location filename="../src/mainwindow.cpp" line="732"/>
-        <location filename="../src/mainwindow.cpp" line="787"/>
+        <location filename="../src/mainwindow.cpp" line="378"/>
+        <location filename="../src/mainwindow.cpp" line="639"/>
+        <location filename="../src/mainwindow.cpp" line="705"/>
+        <location filename="../src/mainwindow.cpp" line="742"/>
+        <location filename="../src/mainwindow.cpp" line="797"/>
+        <location filename="../src/mainwindow.cpp" line="996"/>
         <source>PDF files (*.pdf)</source>
         <translation>File PDF (*.pdf)</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="629"/>
-        <location filename="../src/mainwindow.cpp" line="783"/>
+        <location filename="../src/mainwindow.cpp" line="635"/>
+        <location filename="../src/mainwindow.cpp" line="793"/>
         <source>Save PDF file</source>
         <translation>Salva file PDF</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="697"/>
+        <location filename="../src/mainwindow.cpp" line="703"/>
         <source>Select a PDF file</source>
         <translation>Seleziona un file PDF</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="728"/>
+        <location filename="../src/mainwindow.cpp" line="738"/>
         <source>Save booklet PDF file</source>
         <translation>Salva il file PDF del fascicolo</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="766"/>
+        <location filename="../src/mainwindow.cpp" line="776"/>
         <source>Overwrite File?</source>
         <translation>Sovrascrivere il File?</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="767"/>
+        <location filename="../src/mainwindow.cpp" line="777"/>
         <source>A file called «%1» already exists. Do you want to overwrite it?</source>
         <translation>Esiste già un file chiamato «%1». Vuoi sovrascriverlo?</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="596"/>
+        <location filename="../src/mainwindow.cpp" line="929"/>
+        <source>Select save directory</source>
+        <translation>Seleziona la directory di salvataggio</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="992"/>
+        <source>Extract to single PDF</source>
+        <translation>Estrai in un unico file PDF</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="602"/>
         <source>Output pages: %1</source>
         <translation>Pagine in uscita: %1</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="622"/>
+        <location filename="../src/mainwindow.cpp" line="628"/>
         <source>PDF generation error</source>
         <translation>Errore nella generazione del file PDF</translation>
     </message>
@@ -556,7 +690,12 @@
         <translation>Esci</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="605"/>
+        <location filename="../src/mainwindow.cpp" line="307"/>
+        <source>Edit page layout</source>
+        <translation>Modifica il layout delle pagine</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="611"/>
         <source>&lt;p&gt;Output pages of file &lt;b&gt;%1&lt;/b&gt; are badly formatted. Please make sure you complied with the following rules:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;intervals of pages must be written indicating the first page and the last page separated by a dash (e.g. &quot;1-5&quot;);&lt;/li&gt;&lt;li&gt;single pages and intervals of pages must be separated by spaces, commas or both (e.g. &quot;1, 2, 3, 5-10&quot; or &quot;1 2 3 5-10&quot;);&lt;/li&gt;&lt;li&gt;all pages and intervals of pages must be between 1 and the number of pages of the PDF file;&lt;/li&gt;&lt;li&gt;only numbers, spaces, commas and dashes can be used. All other characters are not allowed.&lt;/li&gt;&lt;/ul&gt;</source>
         <translation>&lt;p&gt;Le pagine di uscita del file &lt;b&gt;%1&lt;/b&gt; sono formattate in modo errato. Assicurati di aver rispettato le seguenti regole:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;gli intervalli di pagine devono essere scritti indicando la prima e l&apos;ultima pagina separate da un trattino (es. &quot;1-5&quot;);&lt;/li&gt;&lt;li&gt;le pagine singole e gli intervalli di pagine devono essere separati da spazi, virgole o entrambi (es. &quot;1, 2, 3, 5-10&quot; o &quot;1 2 3 5-10&quot;);&lt;/li&gt;&lt;li&gt;tutte le pagine e gli intervalli di pagine devono essere compresi tra 1 e il numero di pagine del file PDF;&lt;/li&gt;&lt;li&gt;possono essere usati solo numeri, spazi, virgole e trattini. Tutti gli altri caratteri non sono ammessi.&lt;/li&gt;&lt;/ul&gt;</translation>
     </message>
@@ -627,48 +766,6 @@
             <numerusform>%n pagina</numerusform>
             <numerusform>%n pagine</numerusform>
         </translation>
-    </message>
-</context>
-<context>
-    <name>RotationMultipage</name>
-    <message>
-        <location filename="../src/single_file_operations/rotation_multipage.cpp" line="41"/>
-        <source>No rotation</source>
-        <translation>Non ruotare</translation>
-    </message>
-    <message>
-        <location filename="../src/single_file_operations/rotation_multipage.cpp" line="48"/>
-        <source>Rotation:</source>
-        <translation>Rotazione:</translation>
-    </message>
-    <message>
-        <location filename="../src/single_file_operations/rotation_multipage.cpp" line="50"/>
-        <location filename="../src/single_file_operations/rotation_multipage.cpp" line="105"/>
-        <location filename="../src/single_file_operations/rotation_multipage.cpp" line="171"/>
-        <source>Disabled</source>
-        <translation>Disabilitato</translation>
-    </message>
-    <message>
-        <location filename="../src/single_file_operations/rotation_multipage.cpp" line="58"/>
-        <location filename="../src/single_file_operations/rotation_multipage.cpp" line="117"/>
-        <location filename="../src/single_file_operations/rotation_multipage.cpp" line="179"/>
-        <source>New custom profile…</source>
-        <translation>Nuovo profilo personalizzato…</translation>
-    </message>
-    <message>
-        <location filename="../src/single_file_operations/rotation_multipage.cpp" line="64"/>
-        <source>Multipage:</source>
-        <translation>Multipagina:</translation>
-    </message>
-    <message>
-        <location filename="../src/single_file_operations/rotation_multipage.cpp" line="72"/>
-        <source>Save</source>
-        <translation>Salva</translation>
-    </message>
-    <message>
-        <location filename="../src/single_file_operations/rotation_multipage.cpp" line="85"/>
-        <source>Save as…</source>
-        <translation>Salva come…</translation>
     </message>
 </context>
 </TS>

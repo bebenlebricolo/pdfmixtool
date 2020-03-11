@@ -24,6 +24,10 @@
       <image>https://scarpetta.gitlab.io/pdfmixtool/merge_4_files.png</image>
     </screenshot>
     <screenshot>
+      <caption>Extract pages</caption>
+      <image>https://gitlab.com/scarpetta/pdfmixtool/uploads/b316a56152eabc9fc6dfdc41fbf78305/image.png</image>
+    </screenshot>
+    <screenshot>
       <caption>Multipage feature</caption>
       <image>https://scarpetta.gitlab.io/pdfmixtool/multipage.png</image>
     </screenshot>
@@ -50,6 +54,7 @@
   <content_rating type="oars-1.0" />
 
   <releases>
+    <release version="0.5 beta" date="2020-03-11" />
     <release version="0.4" date="2019-08-25" />
     <release version="0.3.4" date="2018-11-09" />
     <release version="0.3.3" date="2018-08-24" />

@@ -311,7 +311,7 @@
     <message>
         <location filename="../src/single_file_operations/edit_page_layout.cpp" line="49"/>
         <source>No rotation</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Döndürme</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/edit_page_layout.cpp" line="56"/>

@@ -771,19 +771,29 @@ void MainWindow::save_button_pressed(int from_page)
             QFileInfo(QString::fromStdString(
                     m_opened_pdf_info.filename())).fileName();
 
-    if (QMessageBox::warning(
-                this,
-                tr("Overwrite File?"),
-                tr("A file called «%1» already exists. "
-                   "Do you want to overwrite it?")
-                .arg(filename),
-                QMessageBox::Yes | QMessageBox::No,
-                QMessageBox::No
-                ) == QMessageBox::Yes)
+    if (m_settings->value("show_overwrite_warning", true).toBool())
     {
-        do_save(from_page,
-                QString::fromStdString(m_opened_pdf_info.filename()));
+        QMessageBox warning(QMessageBox::Warning,
+                            tr("Overwrite File?"),
+                            tr("A file called «%1» already exists. "
+                               "Do you want to overwrite it?")
+                            .arg(filename),
+                            QMessageBox::Yes | QMessageBox::No);
+        warning.setDefaultButton(QMessageBox::No);
+
+        warning.setCheckBox(new QCheckBox("Always overwrite"));
+
+        int button = warning.exec();
+
+        if (warning.checkBox()->isChecked())
+            m_settings->setValue("show_overwrite_warning", false);
+
+        if (button == QMessageBox::No)
+            return;
     }
+
+    do_save(from_page,
+            QString::fromStdString(m_opened_pdf_info.filename()));
 }
 
 void MainWindow::save_as_button_pressed(int from_page)

@@ -781,7 +781,7 @@ void MainWindow::save_button_pressed(int from_page)
                             QMessageBox::Yes | QMessageBox::No);
         warning.setDefaultButton(QMessageBox::No);
 
-        warning.setCheckBox(new QCheckBox("Always overwrite"));
+        warning.setCheckBox(new QCheckBox(tr("Always overwrite")));
 
         int button = warning.exec();
 

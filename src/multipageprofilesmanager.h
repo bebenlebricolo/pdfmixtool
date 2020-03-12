@@ -37,6 +37,8 @@ public:
 public slots:
     void new_profile_button_pressed();
 
+    void edit_profile_button_pressed();
+
     void delete_profile_button_pressed();
 
     void profile_double_clicked(const QModelIndex &index);

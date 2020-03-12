@@ -74,7 +74,15 @@ MultipageProfilesManager::MultipageProfilesManager(
 
     QHBoxLayout *layout = new QHBoxLayout();
     layout->addWidget(m_new_profile_button);
+    QPushButton *edit_profile_button = new QPushButton(
+                QIcon::fromTheme("document-properties"),
+                tr("Edit profile"),
+                this);
+    layout->addWidget(edit_profile_button);
     layout->addWidget(m_delete_profile_button);
+    layout->addItem(new QSpacerItem(0, 0,
+                                    QSizePolicy::Expanding,
+                                    QSizePolicy::Minimum));
 
     v_layout->addLayout(layout);
 
@@ -82,6 +90,9 @@ MultipageProfilesManager::MultipageProfilesManager(
 
     connect(m_new_profile_button, &QPushButton::pressed,
             this, &MultipageProfilesManager::new_profile_button_pressed);
+
+    connect(edit_profile_button, &QPushButton::pressed,
+            this, &MultipageProfilesManager::edit_profile_button_pressed);
 
     connect(m_delete_profile_button, &QPushButton::pressed,
             this, &MultipageProfilesManager::delete_profile_button_pressed);
@@ -134,6 +145,13 @@ void MultipageProfilesManager::new_profile_button_pressed()
     m_edit_dialog->set_multipage(multipage);
     m_edit_dialog->set_index(i);
     m_edit_dialog->show();
+}
+
+void MultipageProfilesManager::edit_profile_button_pressed()
+{
+    if (m_profiles_view->selectionModel()->selectedIndexes().size() > 0)
+        profile_double_clicked(m_profiles_view->selectionModel()->
+                               selectedIndexes().at(0));
 }
 
 void MultipageProfilesManager::delete_profile_button_pressed()

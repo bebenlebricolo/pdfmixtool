@@ -629,12 +629,17 @@
         <translation>ブックレット</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="929"/>
+        <location filename="../src/mainwindow.cpp" line="784"/>
+        <source>Always overwrite</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="939"/>
         <source>Select save directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="992"/>
+        <location filename="../src/mainwindow.cpp" line="1002"/>
         <source>Extract to single PDF</source>
         <translation type="unfinished"></translation>
     </message>
@@ -658,8 +663,8 @@
         <location filename="../src/mainwindow.cpp" line="639"/>
         <location filename="../src/mainwindow.cpp" line="705"/>
         <location filename="../src/mainwindow.cpp" line="742"/>
-        <location filename="../src/mainwindow.cpp" line="797"/>
-        <location filename="../src/mainwindow.cpp" line="996"/>
+        <location filename="../src/mainwindow.cpp" line="807"/>
+        <location filename="../src/mainwindow.cpp" line="1006"/>
         <source>PDF files (*.pdf)</source>
         <translation>PDF ファイル (*.pdf)</translation>
     </message>
@@ -679,12 +684,12 @@
         <translation>ブックレット PDF ファイルを保存</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="776"/>
+        <location filename="../src/mainwindow.cpp" line="777"/>
         <source>Overwrite File?</source>
         <translation>ファイルを上書きしますか？</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="777"/>
+        <location filename="../src/mainwindow.cpp" line="778"/>
         <source>A file called «%1» already exists. Do you want to overwrite it?</source>
         <translation>ファイル «%1» はすでに存在します。上書きしますか？</translation>
     </message>
@@ -695,7 +700,7 @@
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="635"/>
-        <location filename="../src/mainwindow.cpp" line="793"/>
+        <location filename="../src/mainwindow.cpp" line="803"/>
         <source>Save PDF file</source>
         <translation>PDF ファイルを保存</translation>
     </message>
@@ -718,31 +723,36 @@
         <translation>マルチページプロファイルの管理</translation>
     </message>
     <message>
-        <location filename="../src/multipageprofilesmanager.cpp" line="114"/>
-        <location filename="../src/multipageprofilesmanager.cpp" line="116"/>
+        <location filename="../src/multipageprofilesmanager.cpp" line="79"/>
+        <source>Edit profile</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/multipageprofilesmanager.cpp" line="125"/>
+        <location filename="../src/multipageprofilesmanager.cpp" line="127"/>
         <source>Custom profile</source>
         <translation>カスタムプロファイル</translation>
     </message>
     <message>
-        <location filename="../src/multipageprofilesmanager.cpp" line="168"/>
-        <location filename="../src/multipageprofilesmanager.cpp" line="177"/>
-        <location filename="../src/multipageprofilesmanager.cpp" line="191"/>
+        <location filename="../src/multipageprofilesmanager.cpp" line="186"/>
+        <location filename="../src/multipageprofilesmanager.cpp" line="195"/>
+        <location filename="../src/multipageprofilesmanager.cpp" line="209"/>
         <source>Error</source>
         <translation>エラー</translation>
     </message>
     <message>
-        <location filename="../src/multipageprofilesmanager.cpp" line="169"/>
+        <location filename="../src/multipageprofilesmanager.cpp" line="187"/>
         <source>Profile name can not be empty.</source>
         <translation>プロファイル名は空にできません。</translation>
     </message>
     <message>
-        <location filename="../src/multipageprofilesmanager.cpp" line="174"/>
+        <location filename="../src/multipageprofilesmanager.cpp" line="192"/>
         <source>Disabled</source>
         <translation>無効</translation>
     </message>
     <message>
-        <location filename="../src/multipageprofilesmanager.cpp" line="178"/>
-        <location filename="../src/multipageprofilesmanager.cpp" line="192"/>
+        <location filename="../src/multipageprofilesmanager.cpp" line="196"/>
+        <location filename="../src/multipageprofilesmanager.cpp" line="210"/>
         <source>Profile name already exists.</source>
         <translation>プロファイル名はすでに存在します。</translation>
     </message>

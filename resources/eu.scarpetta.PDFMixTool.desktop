@@ -7,5 +7,6 @@ Icon=eu.scarpetta.PDFMixTool
 Terminal=false
 Type=Application
 StartupNotify=true
+StartupWMClass=pdfmixtool
 Categories=Office
 Keywords=pdf;

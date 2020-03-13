@@ -27,7 +27,7 @@ int main(int argc, char *argv[])
     // Set application informations
     QApplication app(argc, argv);
 
-    app.setApplicationName("eu.scarpetta.PDFMixTool");
+    app.setApplicationName("pdfmixtool");
     app.setApplicationDisplayName("PDF Mix Tool");
     app.setOrganizationDomain("scarpetta.eu");
     app.setOrganizationName("PDFMixTool");

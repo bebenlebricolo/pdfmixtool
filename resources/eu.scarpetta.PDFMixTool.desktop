@@ -1,7 +1,7 @@
 [Desktop Entry]
 Version=1.0
 Name=PDF Mix Tool
-Comment=Application to split, merge, rotate and mix PDF files
+Comment=Perform common editing operations on PDF files
 Exec=pdfmixtool
 Icon=eu.scarpetta.PDFMixTool
 Terminal=false

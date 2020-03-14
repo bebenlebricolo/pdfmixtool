@@ -1,18 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Copyright 2018-2019 Marco Scarpetta <marcoscarpetta02@gmail.com> -->
+<!-- Copyright 2018-2020 Marco Scarpetta <marcoscarpetta02@gmail.com> -->
 <component type="desktop-application">
   <id>eu.scarpetta.PDFMixTool</id>
   <metadata_license>FSFAP</metadata_license>
   <project_license>GPL-3.0+</project_license>
   <name>PDF Mix Tool</name>
   
-  <summary>Application to split, merge, rotate and mix PDF files</summary>
+  <summary>An application to perform common editing operations on PDF files</summary>
 
   <description>
     <p>
-      PDF Mix Tool is a simple and lightweight application that allows you
-      to split, merge, rotate and mix PDF files. Since version 0.3 it can
-      also combine more pages of a document into one.
+       PDF Mix Tool is a simple and lightweight application that allows you to
+       perform common editing operations on PDF files.
+    </p>
+    <p>Base operations it can perform are the following:</p>
+    <ul>
+      <li>Merge two or more files specifying a page set for each of them</li>
+      <li>Rotate pages</li>
+      <li>Composite more pages onto a single one (N-up)</li>
+      <li>Combinations of all of the above</li>
+    </ul>
+    <p>
+      Besides, it can also mix files alternating their pages, generate booklets,
+      add white pages to a PDF file, delete pages from a PDF file, extract pages
+      from a PDF file. 
     </p>
   </description>
 
@@ -20,32 +31,26 @@
 
   <screenshots>
     <screenshot type="default">
-      <caption>Merge 4 PDF files</caption>
-      <image>https://scarpetta.gitlab.io/pdfmixtool/merge_4_files.png</image>
+      <caption>Merge 3 PDF files</caption>
+      <image>https://scarpetta.gitlab.io/pdfmixtool/merge_files.png</image>
     </screenshot>
     <screenshot>
-      <caption>Extract pages</caption>
-      <image>https://gitlab.com/scarpetta/pdfmixtool/uploads/b316a56152eabc9fc6dfdc41fbf78305/image.png</image>
+      <caption>Extract pages from a file</caption>
+      <image>https://scarpetta.gitlab.io/pdfmixtool/extract_pages.png</image>
     </screenshot>
     <screenshot>
-      <caption>Multipage feature</caption>
-      <image>https://scarpetta.gitlab.io/pdfmixtool/multipage.png</image>
+      <caption>Page composition (N-up)</caption>
+      <image>https://scarpetta.gitlab.io/pdfmixtool/nup.png</image>
     </screenshot>
     <screenshot>
-      <caption>Rotate a PDF file</caption>
-      <image>https://scarpetta.gitlab.io/pdfmixtool/rotate_file.png</image>
-    </screenshot>
-    <screenshot>
-      <caption>Mix 3 PDF files</caption>
-      <image>https://scarpetta.gitlab.io/pdfmixtool/mix_3_files.png</image>
-    </screenshot>
-    <screenshot>
-      <caption>Extract the first 20 pages from a PDF file</caption>
-      <image>https://scarpetta.gitlab.io/pdfmixtool/split_file.png</image>
+      <caption>Alternate mix of PDF file</caption>
+      <image>https://scarpetta.gitlab.io/pdfmixtool/alternate_mix.png</image>
     </screenshot>
   </screenshots>
 
   <url type="homepage">https://scarpetta.eu/pdfmixtool</url>
+  <url type="contact">mailto:marcoscarpetta02@gmail.com</url>
+  <developer_name>Marco Scarpetta</developer_name>
 
   <provides>
     <binary>pdfmixtool</binary>
@@ -54,7 +59,26 @@
   <content_rating type="oars-1.0" />
 
   <releases>
-    <release version="0.5 beta" date="2020-03-11" />
+    <release version="0.5" date="2020-03-14">
+      <description>
+        <p>"Single file" mode was added with the following operations:</p>
+        <ul>
+          <li>Booklet</li>
+          <li>Edit page layout</li>
+          <li>Add empty pages</li>
+          <li>Delete pages</li>
+          <li>Extract pages</li>
+        </ul>
+        <p>Other changes:</p>
+        <ul>
+          <li>Add alternate mix merge feature</li>
+          <li>Better multipage profiles management</li>
+          <li>Add Croatian translation</li>
+          <li>Add Czech translation</li>
+          <li>Add Polish translation</li>
+        </ul>
+      </description>
+    </release>
     <release version="0.4" date="2019-08-25" />
     <release version="0.3.4" date="2018-11-09" />
     <release version="0.3.3" date="2018-08-24" />

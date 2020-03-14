@@ -23,7 +23,7 @@
     <p>
       Besides, it can also mix files alternating their pages, generate booklets,
       add white pages to a PDF file, delete pages from a PDF file, extract pages
-      from a PDF file. 
+      from a PDF file.
     </p>
   </description>
 
@@ -49,7 +49,6 @@
   </screenshots>
 
   <url type="homepage">https://scarpetta.eu/pdfmixtool</url>
-  <url type="contact">mailto:marcoscarpetta02@gmail.com</url>
   <developer_name>Marco Scarpetta</developer_name>
 
   <provides>

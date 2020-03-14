@@ -68,8 +68,8 @@ MainWindow::MainWindow(MouseEventFilter *filter, QWidget *parent) :
     qRegisterMetaTypeStreamOperators<Multipage>("Multipage");
     m_settings->beginGroup("maltipage_profiles");
     for (QString key : m_settings->childKeys())
-         multipages[key.toInt()] =
-                 m_settings->value(key).value<Multipage>();
+        multipages[key.toInt()] =
+                m_settings->value(key).value<Multipage>();
     m_settings->endGroup();
 
     if (multipages.size() == 0)
@@ -372,10 +372,10 @@ void MainWindow::current_tab_changed(int index)
 void MainWindow::add_pdf_files()
 {
     QStringList selected = QFileDialog::getOpenFileNames(
-                            this,
-                            tr("Select one or more PDF files to open"),
-                            m_settings->value("open_directory", "").toString(),
-                            tr("PDF files (*.pdf)"));
+                this,
+                tr("Select one or more PDF files to open"),
+                m_settings->value("open_directory", "").toString(),
+                tr("PDF files (*.pdf)"));
 
     for (int i=0; i<selected.count(); i++)
     {
@@ -405,9 +405,13 @@ void MainWindow::add_pdf_files()
 
     if (selected.size() > 0)
     {
-        m_settings->setValue(
-                    "open_directory",
-                    QFileInfo(selected.at(0)).dir().absolutePath());
+        if (selected.at(0).startsWith("/run/"))
+            // file paths are not real in flatpak
+            m_settings->setValue("open_directory", "");
+        else
+            m_settings->setValue(
+                        "open_directory",
+                        QFileInfo(selected.at(0)).dir().absolutePath());
         this->update_output_pages_count();
         m_generate_pdf_button->setEnabled(true);
     }
@@ -640,9 +644,13 @@ void MainWindow::generate_pdf_button_pressed()
 
     if (!selected_file.isNull())
     {
-        m_settings->setValue(
-                    "save_directory",
-                    QFileInfo(selected_file).dir().absolutePath());
+        if (selected_file.startsWith("/run/"))
+            // file paths are not real in flatpak
+            m_settings->setValue("save_directory", "");
+        else
+            m_settings->setValue(
+                        "save_directory",
+                        QFileInfo(selected_file).dir().absolutePath());
 
         // Generate configuration
         Conf conf;
@@ -706,9 +714,13 @@ void MainWindow::open_file_pressed()
 
     if (!filename.isNull())
     {
-        m_settings->setValue(
-                    "open_directory",
-                    QFileInfo(filename).dir().absolutePath());
+        if (filename.startsWith("/run/"))
+            // file paths are not real in flatpak
+            m_settings->setValue("open_directory", "");
+        else
+            m_settings->setValue(
+                        "open_directory",
+                        QFileInfo(filename).dir().absolutePath());
         this->update_opened_file_label(filename);
     }
 }
@@ -743,6 +755,14 @@ void MainWindow::generate_booklet_pressed()
 
     if (!selected_file.isNull())
     {
+        if (selected_file.startsWith("/run/"))
+            // file paths are not real in flatpak
+            m_settings->setValue("save_directory", "");
+        else
+            m_settings->setValue(
+                        "save_directory",
+                        QFileInfo(selected_file).dir().absolutePath());
+
         QProgressBar *pb = m_progress_bar;
         std::function<void (int)> progress = [pb] (int p)
         {
@@ -769,7 +789,7 @@ void MainWindow::save_button_pressed(int from_page)
 {
     QString filename =
             QFileInfo(QString::fromStdString(
-                    m_opened_pdf_info.filename())).fileName();
+                          m_opened_pdf_info.filename())).fileName();
 
     if (m_settings->value("show_overwrite_warning", true).toBool())
     {
@@ -808,6 +828,14 @@ void MainWindow::save_as_button_pressed(int from_page)
 
     if (!selected_file.isNull())
     {
+        if (selected_file.startsWith("/run/"))
+            // file paths are not real in flatpak
+            m_settings->setValue("save_directory", "");
+        else
+            m_settings->setValue(
+                        "save_directory",
+                        QFileInfo(selected_file).dir().absolutePath());
+
         do_save(from_page, selected_file);
     }
 }
@@ -944,7 +972,15 @@ void MainWindow::extract_individual_button_pressed()
                 | QFileDialog::DontResolveSymlinks);
 
     if (!dir_name.isNull())
-    {   
+    {
+        if (dir_name.startsWith("/run/"))
+            // file paths are not real in flatpak
+            m_settings->setValue("save_directory", "");
+        else
+            m_settings->setValue(
+                        "save_directory",
+                        QFileInfo(dir_name).dir().absolutePath());
+
         QProgressBar *pb = m_progress_bar;
         std::function<void (int)> progress = [pb] (int p)
         {
@@ -1007,6 +1043,14 @@ void MainWindow::extract_single_button_pressed()
 
     if (!selected_file.isNull())
     {
+        if (selected_file.startsWith("/run/"))
+            // file paths are not real in flatpak
+            m_settings->setValue("save_directory", "");
+        else
+            m_settings->setValue(
+                        "save_directory",
+                        QFileInfo(selected_file).dir().absolutePath());
+
         QProgressBar *pb = m_progress_bar;
         std::function<void (int)> progress = [pb] (int p)
         {
@@ -1050,7 +1094,7 @@ void MainWindow::closeEvent(QCloseEvent *event)
     m_settings->beginGroup("maltipage_profiles");
 
     for (QString key : m_settings->childKeys())
-         m_settings->remove(key);
+        m_settings->remove(key);
 
     QMap<int, Multipage>::const_iterator it;
     for (
@@ -1106,7 +1150,7 @@ const QList<int> MainWindow::selected_indexes()
     QList<int> indexes;
     for(const QModelIndex &index :
         m_files_list_view->selectionModel()->selectedIndexes())
-       indexes.append(index.row());
+        indexes.append(index.row());
 
     std::sort(indexes.begin(), indexes.end());
 

@@ -631,7 +631,7 @@
     <message>
         <location filename="../src/mainwindow.cpp" line="784"/>
         <source>Always overwrite</source>
-        <translation type="unfinished"></translation>
+        <translation>Altijd overschrijven</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="939"/>
@@ -725,7 +725,7 @@
     <message>
         <location filename="../src/multipageprofilesmanager.cpp" line="79"/>
         <source>Edit profile</source>
-        <translation type="unfinished"></translation>
+        <translation>Profiel aanpassen</translation>
     </message>
     <message>
         <location filename="../src/multipageprofilesmanager.cpp" line="125"/>

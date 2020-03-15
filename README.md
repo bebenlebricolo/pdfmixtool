@@ -1,4 +1,4 @@
-# ![PDF Mix Tool logo](https://scarpetta.gitlab.io/pdfmixtool/icon_128.png) PDF Mix Tool
+# ![PDF Mix Tool logo](https://scarpetta.gitlab.io/pdfmixtool/icon.svg) PDF Mix Tool
 
 <a href="https://build.snapcraft.io/user/marcoscarpetta/pdfmixtool">
 <img src="https://build.snapcraft.io/badge/marcoscarpetta/pdfmixtool.svg" alt="Snap status" /></a>

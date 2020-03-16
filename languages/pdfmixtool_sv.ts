@@ -6,77 +6,77 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="33"/>
         <source>About PDF Mix Tool</source>
-        <translation type="unfinished"></translation>
+        <translation>Om PDF Mix Tool</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="44"/>
         <source>Close</source>
-        <translation type="unfinished"></translation>
+        <translation>Stäng</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="55"/>
         <source>Version %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Version %1</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="67"/>
         <source>An application to split, merge, rotate and mix PDF files.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ett program för att dela upp, sammanfoga, rotera och blanda PDF-filer.</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="77"/>
         <source>About</source>
-        <translation type="unfinished"></translation>
+        <translation>Om</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="94"/>
         <source>Authors</source>
-        <translation type="unfinished"></translation>
+        <translation>Utvecklare</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="96"/>
         <source>Translators</source>
-        <translation type="unfinished"></translation>
+        <translation>Översättare</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="105"/>
         <source>Credits</source>
-        <translation type="unfinished"></translation>
+        <translation>Tack</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="129"/>
         <source>License</source>
-        <translation type="unfinished"></translation>
+        <translation>Licens</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="142"/>
         <source>Submit a pull request</source>
-        <translation type="unfinished"></translation>
+        <translation>Skicka en &quot;pull request&quot;</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="143"/>
         <source>Report a bug</source>
-        <translation type="unfinished"></translation>
+        <translation>Rapportera ett fel</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="144"/>
         <source>Help translating</source>
-        <translation type="unfinished"></translation>
+        <translation>Hjälp till med översättning</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="151"/>
         <source>Contribute</source>
-        <translation type="unfinished"></translation>
+        <translation>Bidra</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="168"/>
         <source>Changelog</source>
-        <translation type="unfinished"></translation>
+        <translation>Ändringslogg</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="70"/>
         <source>Website</source>
-        <translation type="unfinished"></translation>
+        <translation>Webbplats</translation>
     </message>
 </context>
 <context>
@@ -84,67 +84,67 @@
     <message>
         <location filename="../src/single_file_operations/add_empty_pages.cpp" line="40"/>
         <source>Count:</source>
-        <translation type="unfinished"></translation>
+        <translation>Antal:</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/add_empty_pages.cpp" line="44"/>
         <source>Page size</source>
-        <translation type="unfinished"></translation>
+        <translation>Sidstorlek</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/add_empty_pages.cpp" line="47"/>
         <source>Same as document</source>
-        <translation type="unfinished"></translation>
+        <translation>Samma som dokumentet</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/add_empty_pages.cpp" line="50"/>
         <source>Custom:</source>
-        <translation type="unfinished"></translation>
+        <translation>Anpassa:</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/add_empty_pages.cpp" line="75"/>
         <source>Standard:</source>
-        <translation type="unfinished"></translation>
+        <translation>Standard:</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/add_empty_pages.cpp" line="84"/>
         <source>Portrait</source>
-        <translation type="unfinished"></translation>
+        <translation>Stående</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/add_empty_pages.cpp" line="86"/>
         <source>Landscape</source>
-        <translation type="unfinished"></translation>
+        <translation>Liggande</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/add_empty_pages.cpp" line="89"/>
         <source>Location</source>
-        <translation type="unfinished"></translation>
+        <translation>Placering</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/add_empty_pages.cpp" line="92"/>
         <source>Before</source>
-        <translation type="unfinished"></translation>
+        <translation>Före</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/add_empty_pages.cpp" line="94"/>
         <source>After</source>
-        <translation type="unfinished"></translation>
+        <translation>Efter</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/add_empty_pages.cpp" line="97"/>
         <source>Page:</source>
-        <translation type="unfinished"></translation>
+        <translation>Sidan:</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/add_empty_pages.cpp" line="111"/>
         <source>Save</source>
-        <translation type="unfinished"></translation>
+        <translation>Spara</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/add_empty_pages.cpp" line="122"/>
         <source>Save as…</source>
-        <translation type="unfinished"></translation>
+        <translation>Spara som…</translation>
     </message>
 </context>
 <context>
@@ -152,22 +152,22 @@
     <message>
         <location filename="../src/single_file_operations/booklet.cpp" line="34"/>
         <source>Left</source>
-        <translation type="unfinished"></translation>
+        <translation>Vänster</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/booklet.cpp" line="35"/>
         <source>Right</source>
-        <translation type="unfinished"></translation>
+        <translation>Höger</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/booklet.cpp" line="36"/>
         <source>Binding:</source>
-        <translation type="unfinished"></translation>
+        <translation>Bindning:</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/booklet.cpp" line="41"/>
         <source>Generate booklet</source>
-        <translation type="unfinished"></translation>
+        <translation>Generera häfte</translation>
     </message>
 </context>
 <context>
@@ -175,37 +175,37 @@
     <message>
         <location filename="../src/single_file_operations/delete_pages.cpp" line="41"/>
         <source>Delete pages:</source>
-        <translation type="unfinished"></translation>
+        <translation>Ta bort sidorna:</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/delete_pages.cpp" line="43"/>
         <source>Delete even pages</source>
-        <translation type="unfinished"></translation>
+        <translation>Ta bort jämna sidor</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/delete_pages.cpp" line="45"/>
         <source>Delete odd pages</source>
-        <translation type="unfinished"></translation>
+        <translation>Ta bort udda sidor</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/delete_pages.cpp" line="61"/>
         <source>Save</source>
-        <translation type="unfinished"></translation>
+        <translation>Spara</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/delete_pages.cpp" line="72"/>
         <source>Save as…</source>
-        <translation type="unfinished"></translation>
+        <translation>Spara som…</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/delete_pages.cpp" line="153"/>
         <source>&lt;p&gt;Pages to be deleted are badly formatted. Please make sure you complied with the following rules:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;intervals of pages must be written indicating the first page and the last page separated by a dash (e.g. &quot;1-5&quot;);&lt;/li&gt;&lt;li&gt;single pages and intervals of pages must be separated by spaces, commas or both (e.g. &quot;1, 2, 3, 5-10&quot; or &quot;1 2 3 5-10&quot;);&lt;/li&gt;&lt;li&gt;all pages and intervals of pages must be between 1 and the number of pages of the PDF file;&lt;/li&gt;&lt;li&gt;only numbers, spaces, commas and dashes can be used. All other characters are not allowed.&lt;/li&gt;&lt;/ul&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;Sidor som skall tas bort är dåligt formaterade. Tillse att du följer följande regler:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Sidintervall måste anges som den första och den sista sidan, separerade med bindestreck (t.ex. 1-5).&lt;/li&gt;&lt;li&gt;Enskilda sidor och intervall måste avgränsas med blanksteg, kommatecken eller både och (t.ex. &quot;1, 2, 3, 5-10&quot; eller &quot;1 2 3 5-10&quot;).&lt;/li&gt;&lt;li&gt;Alla sidor och intervall måste vara mellan 1 och antalet sidor i hela PDF-filen.&lt;/li&gt;&lt;li&gt;Endast siffror, blanksteg, kommatecken och bindestreck kan användas, inga andra tecken är tillåtna.&lt;/li&gt;&lt;/ul&gt;</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/delete_pages.cpp" line="168"/>
         <source>Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Fel</translation>
     </message>
 </context>
 <context>
@@ -213,97 +213,97 @@
     <message>
         <location filename="../src/editmultipageprofiledialog.cpp" line="29"/>
         <source>Edit multipage profile</source>
-        <translation type="unfinished"></translation>
+        <translation>Redigera flersidorsprofil</translation>
     </message>
     <message>
         <location filename="../src/editmultipageprofiledialog.cpp" line="64"/>
         <location filename="../src/editmultipageprofiledialog.cpp" line="166"/>
         <source>Left</source>
-        <translation type="unfinished"></translation>
+        <translation>Vänster</translation>
     </message>
     <message>
         <location filename="../src/editmultipageprofiledialog.cpp" line="65"/>
         <location filename="../src/editmultipageprofiledialog.cpp" line="69"/>
         <source>Center</source>
-        <translation type="unfinished"></translation>
+        <translation>Centrum</translation>
     </message>
     <message>
         <location filename="../src/editmultipageprofiledialog.cpp" line="66"/>
         <location filename="../src/editmultipageprofiledialog.cpp" line="168"/>
         <source>Right</source>
-        <translation type="unfinished"></translation>
+        <translation>Höger</translation>
     </message>
     <message>
         <location filename="../src/editmultipageprofiledialog.cpp" line="68"/>
         <location filename="../src/editmultipageprofiledialog.cpp" line="170"/>
         <source>Top</source>
-        <translation type="unfinished"></translation>
+        <translation>Överkant</translation>
     </message>
     <message>
         <location filename="../src/editmultipageprofiledialog.cpp" line="70"/>
         <location filename="../src/editmultipageprofiledialog.cpp" line="172"/>
         <source>Bottom</source>
-        <translation type="unfinished"></translation>
+        <translation>Underkant</translation>
     </message>
     <message>
         <location filename="../src/editmultipageprofiledialog.cpp" line="101"/>
         <source>Name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Namn:</translation>
     </message>
     <message>
         <location filename="../src/editmultipageprofiledialog.cpp" line="109"/>
         <source>Output page size</source>
-        <translation type="unfinished"></translation>
+        <translation>Sidstorlek utdata</translation>
     </message>
     <message>
         <location filename="../src/editmultipageprofiledialog.cpp" line="115"/>
         <source>Custom size:</source>
-        <translation type="unfinished"></translation>
+        <translation>Anpassad storlek:</translation>
     </message>
     <message>
         <location filename="../src/editmultipageprofiledialog.cpp" line="129"/>
         <source>Pages layout</source>
-        <translation type="unfinished"></translation>
+        <translation>Sidlayout</translation>
     </message>
     <message>
         <location filename="../src/editmultipageprofiledialog.cpp" line="132"/>
         <source>Rows:</source>
-        <translation type="unfinished"></translation>
+        <translation>Rader:</translation>
     </message>
     <message>
         <location filename="../src/editmultipageprofiledialog.cpp" line="135"/>
         <source>Columns:</source>
-        <translation type="unfinished"></translation>
+        <translation>Kolumner:</translation>
     </message>
     <message>
         <location filename="../src/editmultipageprofiledialog.cpp" line="138"/>
         <source>Rotation:</source>
-        <translation type="unfinished"></translation>
+        <translation>Rotation:</translation>
     </message>
     <message>
         <location filename="../src/editmultipageprofiledialog.cpp" line="141"/>
         <source>Spacing:</source>
-        <translation type="unfinished"></translation>
+        <translation>Mellanrum:</translation>
     </message>
     <message>
         <location filename="../src/editmultipageprofiledialog.cpp" line="149"/>
         <source>Pages alignment</source>
-        <translation type="unfinished"></translation>
+        <translation>Sidjustering</translation>
     </message>
     <message>
         <location filename="../src/editmultipageprofiledialog.cpp" line="152"/>
         <source>Horizontal:</source>
-        <translation type="unfinished"></translation>
+        <translation>Horisontellt:</translation>
     </message>
     <message>
         <location filename="../src/editmultipageprofiledialog.cpp" line="155"/>
         <source>Vertical:</source>
-        <translation type="unfinished"></translation>
+        <translation>Vertikalt:</translation>
     </message>
     <message>
         <location filename="../src/editmultipageprofiledialog.cpp" line="163"/>
         <source>Margins</source>
-        <translation type="unfinished"></translation>
+        <translation>Marginaler</translation>
     </message>
 </context>
 <context>
@@ -311,46 +311,46 @@
     <message>
         <location filename="../src/single_file_operations/edit_page_layout.cpp" line="49"/>
         <source>No rotation</source>
-        <translation type="unfinished"></translation>
+        <translation>Ingen rotation</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/edit_page_layout.cpp" line="56"/>
         <source>Rotation:</source>
-        <translation type="unfinished"></translation>
+        <translation>Rotation:</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/edit_page_layout.cpp" line="58"/>
         <location filename="../src/single_file_operations/edit_page_layout.cpp" line="121"/>
         <location filename="../src/single_file_operations/edit_page_layout.cpp" line="208"/>
         <source>Disabled</source>
-        <translation type="unfinished"></translation>
+        <translation>Inaktiverat</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/edit_page_layout.cpp" line="66"/>
         <location filename="../src/single_file_operations/edit_page_layout.cpp" line="133"/>
         <location filename="../src/single_file_operations/edit_page_layout.cpp" line="216"/>
         <source>New custom profile…</source>
-        <translation type="unfinished"></translation>
+        <translation>Ny anpassad profil…</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/edit_page_layout.cpp" line="72"/>
         <source>Multipage:</source>
-        <translation type="unfinished"></translation>
+        <translation>Flersidig:</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/edit_page_layout.cpp" line="80"/>
         <source>Scale page:</source>
-        <translation type="unfinished"></translation>
+        <translation>Skala sida:</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/edit_page_layout.cpp" line="88"/>
         <source>Save</source>
-        <translation type="unfinished"></translation>
+        <translation>Spara</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/edit_page_layout.cpp" line="101"/>
         <source>Save as…</source>
-        <translation type="unfinished"></translation>
+        <translation>Spara som…</translation>
     </message>
 </context>
 <context>
@@ -358,37 +358,37 @@
     <message>
         <location filename="../src/editpdfentrydialog.cpp" line="37"/>
         <source>Edit PDF files&apos; properties</source>
-        <translation type="unfinished"></translation>
+        <translation>Redigera PDF-filsegenskaper</translation>
     </message>
     <message>
         <location filename="../src/editpdfentrydialog.cpp" line="40"/>
         <source>No rotation</source>
-        <translation type="unfinished"></translation>
+        <translation>Ingen rotation</translation>
     </message>
     <message>
         <location filename="../src/editpdfentrydialog.cpp" line="45"/>
         <source>Disabled</source>
-        <translation type="unfinished"></translation>
+        <translation>Inaktiverat</translation>
     </message>
     <message>
         <location filename="../src/editpdfentrydialog.cpp" line="90"/>
         <source>OK</source>
-        <translation type="unfinished"></translation>
+        <translation>OK</translation>
     </message>
     <message>
         <location filename="../src/editpdfentrydialog.cpp" line="96"/>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>Avbryt</translation>
     </message>
     <message>
         <location filename="../src/editpdfentrydialog.cpp" line="103"/>
         <source>Multipage:</source>
-        <translation type="unfinished"></translation>
+        <translation>Flersidig:</translation>
     </message>
     <message>
         <location filename="../src/editpdfentrydialog.cpp" line="105"/>
         <source>Rotation:</source>
-        <translation type="unfinished"></translation>
+        <translation>Rotation:</translation>
     </message>
 </context>
 <context>
@@ -396,47 +396,47 @@
     <message>
         <location filename="../src/single_file_operations/extract_pages.cpp" line="44"/>
         <source>Extract pages:</source>
-        <translation type="unfinished"></translation>
+        <translation>Extrahera sidorna:</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/extract_pages.cpp" line="47"/>
         <source>Extract all pages</source>
-        <translation type="unfinished"></translation>
+        <translation>Extrahera alla sidor</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/extract_pages.cpp" line="50"/>
         <source>Extract even pages</source>
-        <translation type="unfinished"></translation>
+        <translation>Extrahera jämna sidor</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/extract_pages.cpp" line="53"/>
         <source>Extract odd pages</source>
-        <translation type="unfinished"></translation>
+        <translation>Extrahera udda sidor</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/extract_pages.cpp" line="60"/>
         <source>Output PDF base name:</source>
-        <translation type="unfinished"></translation>
+        <translation>PDF-basnamn för utdata:</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/extract_pages.cpp" line="73"/>
         <source>Extract to individual PDF files</source>
-        <translation type="unfinished"></translation>
+        <translation>Extrahera till individuella PDF-filer</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/extract_pages.cpp" line="77"/>
         <source>Extract to single PDF</source>
-        <translation type="unfinished"></translation>
+        <translation>Extrahera till enskild PDF</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/extract_pages.cpp" line="145"/>
         <source>&lt;p&gt;Pages to be extracted are badly formatted. Please make sure you complied with the following rules:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;intervals of pages must be written indicating the first page and the last page separated by a dash (e.g. &quot;1-5&quot;);&lt;/li&gt;&lt;li&gt;single pages and intervals of pages must be separated by spaces, commas or both (e.g. &quot;1, 2, 3, 5-10&quot; or &quot;1 2 3 5-10&quot;);&lt;/li&gt;&lt;li&gt;all pages and intervals of pages must be between 1 and the number of pages of the PDF file;&lt;/li&gt;&lt;li&gt;only numbers, spaces, commas and dashes can be used. All other characters are not allowed.&lt;/li&gt;&lt;/ul&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;Sidor som skall extraheras är dåligt formaterade. Tillse att du följer följande regler:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Sidintervall måste anges som den första och den sista sidan, separerade med bindestreck (t.ex. 1-5).&lt;/li&gt;&lt;li&gt;Enskilda sidor och intervall måste avgränsas med blanksteg, kommatecken eller både och (t.ex. &quot;1, 2, 3, 5-10&quot; eller &quot;1 2 3 5-10&quot;).&lt;/li&gt;&lt;li&gt;Alla sidor och intervall måste vara mellan 1 och antalet sidor i hela PDF-filen.&lt;/li&gt;&lt;li&gt;Endast siffror, blanksteg, kommatecken och bindestreck kan användas, inga andra tecken är tillåtna.&lt;/li&gt;&lt;/ul&gt;</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/extract_pages.cpp" line="160"/>
         <source>Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Fel</translation>
     </message>
 </context>
 <context>
@@ -444,47 +444,47 @@
     <message>
         <location filename="../src/inputpdffiledelegate.cpp" line="113"/>
         <source>All</source>
-        <translation type="unfinished"></translation>
+        <translation>Alla</translation>
     </message>
     <message>
         <location filename="../src/inputpdffiledelegate.cpp" line="80"/>
         <source>Page order:</source>
-        <translation type="unfinished"></translation>
+        <translation>Sidordning:</translation>
     </message>
     <message>
         <location filename="../src/inputpdffiledelegate.cpp" line="83"/>
         <source>reverse</source>
-        <translation type="unfinished"></translation>
+        <translation>omvänt</translation>
     </message>
     <message>
         <location filename="../src/inputpdffiledelegate.cpp" line="85"/>
         <source>forward</source>
-        <translation type="unfinished"></translation>
+        <translation>framåt</translation>
     </message>
     <message>
         <location filename="../src/inputpdffiledelegate.cpp" line="126"/>
         <source>Pages:</source>
-        <translation type="unfinished"></translation>
+        <translation>Sidor:</translation>
     </message>
     <message>
         <location filename="../src/inputpdffiledelegate.cpp" line="129"/>
         <source>Multipage:</source>
-        <translation type="unfinished"></translation>
+        <translation>Flersidig:</translation>
     </message>
     <message>
         <location filename="../src/inputpdffiledelegate.cpp" line="134"/>
         <source>Disabled</source>
-        <translation type="unfinished"></translation>
+        <translation>Inaktiverat</translation>
     </message>
     <message>
         <location filename="../src/inputpdffiledelegate.cpp" line="137"/>
         <source>Rotation:</source>
-        <translation type="unfinished"></translation>
+        <translation>Rotation:</translation>
     </message>
     <message>
         <location filename="../src/inputpdffiledelegate.cpp" line="140"/>
         <source>Outline entry:</source>
-        <translation type="unfinished"></translation>
+        <translation>Dispositionspost:</translation>
     </message>
 </context>
 <context>
@@ -492,42 +492,42 @@
     <message>
         <location filename="../src/inputpdffilewidget.cpp" line="57"/>
         <source>Reverse page order:</source>
-        <translation type="unfinished"></translation>
+        <translation>Omvänd sidordning:</translation>
     </message>
     <message>
         <location filename="../src/inputpdffilewidget.cpp" line="71"/>
         <source>Disabled</source>
-        <translation type="unfinished"></translation>
+        <translation>Inaktiverat</translation>
     </message>
     <message>
         <location filename="../src/inputpdffilewidget.cpp" line="79"/>
         <source>New custom profile…</source>
-        <translation type="unfinished"></translation>
+        <translation>Ny anpassad profil…</translation>
     </message>
     <message>
         <location filename="../src/inputpdffilewidget.cpp" line="81"/>
         <source>No rotation</source>
-        <translation type="unfinished"></translation>
+        <translation>Ingen rotation</translation>
     </message>
     <message>
         <location filename="../src/inputpdffilewidget.cpp" line="86"/>
         <source>Pages:</source>
-        <translation type="unfinished"></translation>
+        <translation>Sidor:</translation>
     </message>
     <message>
         <location filename="../src/inputpdffilewidget.cpp" line="88"/>
         <source>Multipage:</source>
-        <translation type="unfinished"></translation>
+        <translation>Flersidig:</translation>
     </message>
     <message>
         <location filename="../src/inputpdffilewidget.cpp" line="90"/>
         <source>Rotation:</source>
-        <translation type="unfinished"></translation>
+        <translation>Rotation:</translation>
     </message>
     <message>
         <location filename="../src/inputpdffilewidget.cpp" line="92"/>
         <source>Outline entry:</source>
-        <translation type="unfinished"></translation>
+        <translation>Dispositionspost:</translation>
     </message>
 </context>
 <context>
@@ -535,68 +535,68 @@
     <message>
         <location filename="../src/mainwindow.cpp" line="173"/>
         <source>Add PDF file</source>
-        <translation type="unfinished"></translation>
+        <translation>Lägg till PDF-fil</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="178"/>
         <source>Move up</source>
-        <translation type="unfinished"></translation>
+        <translation>Flytta upp</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="188"/>
         <source>Remove file</source>
-        <translation type="unfinished"></translation>
+        <translation>Ta bort fil</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="126"/>
         <source>About</source>
-        <translation type="unfinished"></translation>
+        <translation>Om</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="97"/>
         <source>Multiple files</source>
-        <translation type="unfinished"></translation>
+        <translation>Flera filer</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="98"/>
         <source>Single file</source>
-        <translation type="unfinished"></translation>
+        <translation>En fil</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="221"/>
         <location filename="../src/mainwindow.cpp" line="225"/>
         <source>Generate PDF</source>
-        <translation type="unfinished"></translation>
+        <translation>Skapa PDF</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="278"/>
         <source>Open PDF file…</source>
-        <translation type="unfinished"></translation>
+        <translation>Öppna PDF-fil…</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="302"/>
         <source>Booklet</source>
-        <translation type="unfinished"></translation>
+        <translation>Häfte</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="329"/>
         <source>Add empty pages</source>
-        <translation type="unfinished"></translation>
+        <translation>Lägg till tomma sidor</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="336"/>
         <source>Delete pages</source>
-        <translation type="unfinished"></translation>
+        <translation>Ta bort sidor</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="343"/>
         <source>Extract pages</source>
-        <translation type="unfinished"></translation>
+        <translation>Extrahera sidor</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="376"/>
         <source>Select one or more PDF files to open</source>
-        <translation type="unfinished"></translation>
+        <translation>Välj en eller fler PDF-filer att öppna</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="378"/>
@@ -606,103 +606,103 @@
         <location filename="../src/mainwindow.cpp" line="807"/>
         <location filename="../src/mainwindow.cpp" line="1006"/>
         <source>PDF files (*.pdf)</source>
-        <translation type="unfinished"></translation>
+        <translation>PDF-filer (*.pdf)</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="635"/>
         <location filename="../src/mainwindow.cpp" line="803"/>
         <source>Save PDF file</source>
-        <translation type="unfinished"></translation>
+        <translation>Spara PDF-fil</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="703"/>
         <source>Select a PDF file</source>
-        <translation type="unfinished"></translation>
+        <translation>Välj en PDF-fil</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="738"/>
         <source>Save booklet PDF file</source>
-        <translation type="unfinished"></translation>
+        <translation>Spara PDF-filshäfte</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="777"/>
         <source>Overwrite File?</source>
-        <translation type="unfinished"></translation>
+        <translation>Vill du skriva över filen?</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="778"/>
         <source>A file called «%1» already exists. Do you want to overwrite it?</source>
-        <translation type="unfinished"></translation>
+        <translation>En fil kallad &quot;%1&quot; finns redan. Vill du skriva över den?</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="784"/>
         <source>Always overwrite</source>
-        <translation type="unfinished"></translation>
+        <translation>Skriv alltid över</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="939"/>
         <source>Select save directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Välj mapp för att spara</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="1002"/>
         <source>Extract to single PDF</source>
-        <translation type="unfinished"></translation>
+        <translation>Extrahera till en PDF</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="602"/>
         <source>Output pages: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Utdatasidor: %1</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="628"/>
         <source>PDF generation error</source>
-        <translation type="unfinished"></translation>
+        <translation>PDF-fel</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="162"/>
         <source>Edit</source>
-        <translation type="unfinished"></translation>
+        <translation>Redigera</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="163"/>
         <source>View</source>
-        <translation type="unfinished"></translation>
+        <translation>Visa</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="166"/>
         <source>Main toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation>Verktygsfält</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="183"/>
         <source>Move down</source>
-        <translation type="unfinished"></translation>
+        <translation>Flytta ner</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="116"/>
         <source>Menu</source>
-        <translation type="unfinished"></translation>
+        <translation>Meny</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="121"/>
         <source>Multipage profiles…</source>
-        <translation type="unfinished"></translation>
+        <translation>Flersidesprofil…</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="131"/>
         <source>Exit</source>
-        <translation type="unfinished"></translation>
+        <translation>Avsluta</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="307"/>
         <source>Edit page layout</source>
-        <translation type="unfinished"></translation>
+        <translation>Redigera sidlayout</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="611"/>
         <source>&lt;p&gt;Output pages of file &lt;b&gt;%1&lt;/b&gt; are badly formatted. Please make sure you complied with the following rules:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;intervals of pages must be written indicating the first page and the last page separated by a dash (e.g. &quot;1-5&quot;);&lt;/li&gt;&lt;li&gt;single pages and intervals of pages must be separated by spaces, commas or both (e.g. &quot;1, 2, 3, 5-10&quot; or &quot;1 2 3 5-10&quot;);&lt;/li&gt;&lt;li&gt;all pages and intervals of pages must be between 1 and the number of pages of the PDF file;&lt;/li&gt;&lt;li&gt;only numbers, spaces, commas and dashes can be used. All other characters are not allowed.&lt;/li&gt;&lt;/ul&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;Utdatasidor från filen &quot;&lt;b&gt;%1&lt;/b&gt;&quot; är dåligt formaterade. Tillse att du följer följande regler:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Sidintervall måste anges som den första och den sista sidan, separerade med bindestreck (t.ex. 1-5).&lt;/li&gt;&lt;li&gt;Enskilda sidor och intervall måste avgränsas med blanksteg, kommatecken eller både och (t.ex. &quot;1, 2, 3, 5-10&quot; eller &quot;1 2 3 5-10&quot;).&lt;/li&gt;&lt;li&gt;Alla sidor och intervall måste vara mellan 1 och antalet sidor i hela PDF-filen.&lt;/li&gt;&lt;li&gt;Endast siffror, blanksteg, kommatecken och bindestreck kan användas, inga andra tecken är tillåtna.&lt;/li&gt;&lt;/ul&gt;</translation>
     </message>
 </context>
 <context>
@@ -710,51 +710,51 @@
     <message>
         <location filename="../src/multipageprofilesmanager.cpp" line="34"/>
         <source>New profile…</source>
-        <translation type="unfinished"></translation>
+        <translation>Ny profil…</translation>
     </message>
     <message>
         <location filename="../src/multipageprofilesmanager.cpp" line="38"/>
         <source>Delete profile</source>
-        <translation type="unfinished"></translation>
+        <translation>Ta bort profil</translation>
     </message>
     <message>
         <location filename="../src/multipageprofilesmanager.cpp" line="46"/>
         <source>Manage multipage profiles</source>
-        <translation type="unfinished"></translation>
+        <translation>Hantera flersidesprofiler</translation>
     </message>
     <message>
         <location filename="../src/multipageprofilesmanager.cpp" line="79"/>
         <source>Edit profile</source>
-        <translation type="unfinished"></translation>
+        <translation>Redigera profil</translation>
     </message>
     <message>
         <location filename="../src/multipageprofilesmanager.cpp" line="125"/>
         <location filename="../src/multipageprofilesmanager.cpp" line="127"/>
         <source>Custom profile</source>
-        <translation type="unfinished"></translation>
+        <translation>Anpassad profil</translation>
     </message>
     <message>
         <location filename="../src/multipageprofilesmanager.cpp" line="186"/>
         <location filename="../src/multipageprofilesmanager.cpp" line="195"/>
         <location filename="../src/multipageprofilesmanager.cpp" line="209"/>
         <source>Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Fel</translation>
     </message>
     <message>
         <location filename="../src/multipageprofilesmanager.cpp" line="187"/>
         <source>Profile name can not be empty.</source>
-        <translation type="unfinished"></translation>
+        <translation>Profilnamnet kan inte utelämnas.</translation>
     </message>
     <message>
         <location filename="../src/multipageprofilesmanager.cpp" line="192"/>
         <source>Disabled</source>
-        <translation type="unfinished"></translation>
+        <translation>Inaktiverat</translation>
     </message>
     <message>
         <location filename="../src/multipageprofilesmanager.cpp" line="196"/>
         <location filename="../src/multipageprofilesmanager.cpp" line="210"/>
         <source>Profile name already exists.</source>
-        <translation type="unfinished"></translation>
+        <translation>Profilnamnet finns redan.</translation>
     </message>
 </context>
 <context>
@@ -762,19 +762,19 @@
     <message>
         <location filename="../src/pdfinfolabel.cpp" line="52"/>
         <source>portrait</source>
-        <translation type="unfinished"></translation>
+        <translation>stående</translation>
     </message>
     <message>
         <location filename="../src/pdfinfolabel.cpp" line="53"/>
         <source>landscape</source>
-        <translation type="unfinished"></translation>
+        <translation>liggande</translation>
     </message>
     <message numerus="yes">
         <location filename="../src/pdfinfolabel.cpp" line="63"/>
         <source>%n page(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n sida</numerusform>
+            <numerusform>%n sidor</numerusform>
         </translation>
     </message>
 </context>

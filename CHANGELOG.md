@@ -1,5 +1,15 @@
 <h1>Changelog</h1>
 
+<h2>Version 0.6</h2>
+
+<p><strong>Release date:</strong> unreleased</p>
+
+<h3>Added</h3>
+
+<ul>
+    <li>Add Swedish translation</li>
+</ul>
+
 <h2>Version 0.5</h2>
 
 <p><strong>Release date:</strong> 2020-03-14</p>

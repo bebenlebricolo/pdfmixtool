@@ -64,8 +64,9 @@ AboutDialog::AboutDialog(QWidget *parent) :
     QLabel *info_label = new QLabel();
     info_label->setWordWrap(true);
     info_label->setText(
-                QString("<p>%1</p>").arg(tr("An application to split, merge, "
-                                            "rotate and mix PDF files.")) +
+                QString("<p>%1</p>").arg(
+                    tr("An application to perform common editing operations on "
+                       "PDF files.")) +
                 QString("<p><a href=\"https://scarpetta.eu/pdfmixtool/\">%1"
                         "</a></p>").arg(tr("Website")) +
                 "<p><small>Copyright © 2017-2020 Marco Scarpetta</small></p>");

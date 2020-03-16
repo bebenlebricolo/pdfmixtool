@@ -76,6 +76,11 @@
     <li><a href="https://gitlab.com/xoan">Xoán Sampaíño</a></li>
 </ul>
 
+<h3>Swedish</h3>
+<ul>
+    <li><a href="mailto:eson@svenskasprakfiler.se">Åke Engelbrektson</a></li>
+</ul>
+
 <h3>Turkish</h3>
 <ul>
     <li><a href="mailto:makcan@gmail.com">Mesut Akcan</a></li>

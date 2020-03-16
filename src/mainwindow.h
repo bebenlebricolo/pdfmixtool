@@ -119,6 +119,7 @@ private:
     QMenu *m_edit_menu;
 
     QWidget *m_operations_widget;
+    QPushButton *m_view_opened_pdf_button;
     PdfInfo m_opened_pdf_info;
     PdfInfoLabel *m_opened_file_label;
 

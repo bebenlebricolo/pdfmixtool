@@ -291,6 +291,16 @@ MainWindow::MainWindow(MouseEventFilter *filter, QWidget *parent) :
     h_layout->addWidget(m_opened_file_label);
     h_layout->setStretch(1, 1);
 
+    m_view_opened_pdf_button = new QPushButton(
+                QIcon::fromTheme("document-print-preview"), "", this);
+    m_view_opened_pdf_button->setToolTip("View opened PDF file");
+    h_layout->addWidget(m_view_opened_pdf_button);
+    m_view_opened_pdf_button->setEnabled(false);
+    connect(m_view_opened_pdf_button, &QPushButton::pressed,
+            [=]() {
+        QDesktopServices::openUrl(QString("file://") +
+                                  m_opened_pdf_info.filename().c_str());});
+
     // operations UI
     m_operations_widget = new QWidget(this);
     h_layout = new QHBoxLayout();
@@ -721,7 +731,9 @@ void MainWindow::open_file_pressed()
             m_settings->setValue(
                         "open_directory",
                         QFileInfo(filename).dir().absolutePath());
+
         this->update_opened_file_label(filename);
+        m_view_opened_pdf_button->setEnabled(true);
     }
 }
 

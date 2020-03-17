@@ -1,8 +1,9 @@
 [Desktop Entry]
 Version=1.0
+MimeType=application/pdf;application/x-gzpdf;application/x-bzpdf;application/x-wwf;
 Name=PDF Mix Tool
 Comment=Perform common editing operations on PDF files
-Exec=pdfmixtool
+Exec=pdfmixtool %U
 Icon=eu.scarpetta.PDFMixTool
 Terminal=false
 Type=Application

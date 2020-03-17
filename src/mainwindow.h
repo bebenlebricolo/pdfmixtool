@@ -47,13 +47,15 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(MouseEventFilter *filter, QWidget *parent = nullptr);
 
+    void set_input_files(const QStringList &files);
+
 signals:
 
 public slots:
     void current_tab_changed(int index);
 
     // multiple files
-    void add_pdf_files();
+    void add_pdf_files(const QStringList &files);
 
     void move_up();
 

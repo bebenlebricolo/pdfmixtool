@@ -57,5 +57,21 @@ int main(int argc, char *argv[])
     MainWindow *main_window = new MainWindow(filter);
     main_window->show();
 
+    // parse input arguments
+    if (argc > 1)
+    {
+        QStringList files;
+
+        for (int i = 1; i < argc; i++)
+        {
+            QString filename(argv[i]);
+
+            if (filename.endsWith(".pdf"))
+                files.push_back(filename);
+        }
+
+        main_window->set_input_files(files);
+    }
+
     return app.exec();
 }

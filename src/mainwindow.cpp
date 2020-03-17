@@ -172,7 +172,14 @@ MainWindow::MainWindow(MouseEventFilter *filter, QWidget *parent) :
                 QIcon::fromTheme("list-add"),
                 tr("Add PDF file"),
                 this,
-                SLOT(add_pdf_files()));
+                [=]() {
+        QStringList files = QFileDialog::getOpenFileNames(
+                    this,
+                    tr("Select one or more PDF files to open"),
+                    m_settings->value("open_directory", "").toString(),
+                    tr("PDF files (*.pdf)"));
+        add_pdf_files(files);
+    });
     QAction *move_up_action = toolbar->addAction(
                 QIcon::fromTheme("go-up"),
                 tr("Move up"),
@@ -371,6 +378,31 @@ MainWindow::MainWindow(MouseEventFilter *filter, QWidget *parent) :
             operations, &QStackedWidget::setCurrentIndex);
 }
 
+void MainWindow::set_input_files(const QStringList &files)
+{
+    if (files.size() == 0)
+        return;
+
+    if (files[0].startsWith("/run/"))
+        // file paths are not real in flatpak
+        m_settings->setValue("open_directory", "");
+    else
+        m_settings->setValue(
+                    "open_directory",
+                    QFileInfo(files[0]).dir().absolutePath());
+
+    if (files.size() == 1)
+    {
+        m_tab_widget->setCurrentIndex(1);
+        this->update_opened_file_label(files[0]);
+        m_view_opened_pdf_button->setEnabled(true);
+    }
+    else
+    {
+        this->add_pdf_files(files);
+    }
+}
+
 void MainWindow::current_tab_changed(int index)
 {
     if (index == 0)
@@ -379,24 +411,18 @@ void MainWindow::current_tab_changed(int index)
         m_output_page_count->hide();
 }
 
-void MainWindow::add_pdf_files()
+void MainWindow::add_pdf_files(const QStringList &files)
 {
-    QStringList selected = QFileDialog::getOpenFileNames(
-                this,
-                tr("Select one or more PDF files to open"),
-                m_settings->value("open_directory", "").toString(),
-                tr("PDF files (*.pdf)"));
-
-    for (int i=0; i<selected.count(); i++)
+    for (int i=0; i<files.count(); i++)
     {
-        PdfInfo pdf_info = PdfInfo(selected.at(i).toStdString());
-        QString filename = QUrl(selected.at(i)).fileName();
+        PdfInfo pdf_info = PdfInfo(files.at(i).toStdString());
+        QString filename = QUrl(files.at(i)).fileName();
         if (filename.endsWith(".pdf", Qt::CaseInsensitive))
             filename.chop(4);
 
         QStandardItem *item = new QStandardItem();
 
-        item->setData(selected.at(i), FILE_PATH_ROLE);
+        item->setData(files.at(i), FILE_PATH_ROLE);
         item->setData(pdf_info.width(), PAGE_WIDTH_ROLE);
         item->setData(pdf_info.height(), PAGE_HEIGHT_ROLE);
         item->setData(QString::fromStdString(pdf_info.paper_size()),
@@ -413,15 +439,15 @@ void MainWindow::add_pdf_files()
         m_files_list_model->appendRow(item);
     }
 
-    if (selected.size() > 0)
+    if (files.size() > 0)
     {
-        if (selected.at(0).startsWith("/run/"))
+        if (files.at(0).startsWith("/run/"))
             // file paths are not real in flatpak
             m_settings->setValue("open_directory", "");
         else
             m_settings->setValue(
                         "open_directory",
-                        QFileInfo(selected.at(0)).dir().absolutePath());
+                        QFileInfo(files.at(0)).dir().absolutePath());
         this->update_output_pages_count();
         m_generate_pdf_button->setEnabled(true);
     }

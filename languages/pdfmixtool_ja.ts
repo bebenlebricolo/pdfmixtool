@@ -175,37 +175,37 @@
     <message>
         <location filename="../src/single_file_operations/delete_pages.cpp" line="41"/>
         <source>Delete pages:</source>
-        <translation type="unfinished"></translation>
+        <translation>ページを削除:</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/delete_pages.cpp" line="43"/>
         <source>Delete even pages</source>
-        <translation type="unfinished"></translation>
+        <translation>偶数ページを削除</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/delete_pages.cpp" line="45"/>
         <source>Delete odd pages</source>
-        <translation type="unfinished"></translation>
+        <translation>奇数ページを削除</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/delete_pages.cpp" line="61"/>
         <source>Save</source>
-        <translation type="unfinished">保存</translation>
+        <translation>保存</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/delete_pages.cpp" line="72"/>
         <source>Save as…</source>
-        <translation type="unfinished">名前を付けて保存…</translation>
+        <translation>名前を付けて保存…</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/delete_pages.cpp" line="153"/>
         <source>&lt;p&gt;Pages to be deleted are badly formatted. Please make sure you complied with the following rules:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;intervals of pages must be written indicating the first page and the last page separated by a dash (e.g. &quot;1-5&quot;);&lt;/li&gt;&lt;li&gt;single pages and intervals of pages must be separated by spaces, commas or both (e.g. &quot;1, 2, 3, 5-10&quot; or &quot;1 2 3 5-10&quot;);&lt;/li&gt;&lt;li&gt;all pages and intervals of pages must be between 1 and the number of pages of the PDF file;&lt;/li&gt;&lt;li&gt;only numbers, spaces, commas and dashes can be used. All other characters are not allowed.&lt;/li&gt;&lt;/ul&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;削除するページが適切な形式ではありません。次の規則に従っていることを確認してください:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;ページの間隔は、最初のページと最後のページをダッシュで区切って (例えば &quot;1-5&quot; ) 書く必要があります&lt;/li&gt;&lt;li&gt;単一のページとページ間隔は、スペース、カンマ、またはその両方で (例えば &quot;1, 2, 3, 5-10&quot; や &quot;1 2 3 5-10&quot;) 区切る必要があります。&lt;/li&gt;&lt;li&gt;すべてのページとページ間隔は、1 から PDF ファイルのページ数の間でなければなりません。&lt;/li&gt;&lt;li&gt;数字、スペース、カンマ、ダッシュのみ使用できます。他の文字は使用できません&lt;/li&gt;&lt;/ul&gt;</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/delete_pages.cpp" line="168"/>
         <source>Error</source>
-        <translation type="unfinished">エラー</translation>
+        <translation>エラー</translation>
     </message>
 </context>
 <context>
@@ -311,46 +311,46 @@
     <message>
         <location filename="../src/single_file_operations/edit_page_layout.cpp" line="49"/>
         <source>No rotation</source>
-        <translation type="unfinished">回転なし</translation>
+        <translation>回転なし</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/edit_page_layout.cpp" line="56"/>
         <source>Rotation:</source>
-        <translation type="unfinished">回転:</translation>
+        <translation>回転:</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/edit_page_layout.cpp" line="58"/>
         <location filename="../src/single_file_operations/edit_page_layout.cpp" line="121"/>
         <location filename="../src/single_file_operations/edit_page_layout.cpp" line="208"/>
         <source>Disabled</source>
-        <translation type="unfinished">無効</translation>
+        <translation>無効</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/edit_page_layout.cpp" line="66"/>
         <location filename="../src/single_file_operations/edit_page_layout.cpp" line="133"/>
         <location filename="../src/single_file_operations/edit_page_layout.cpp" line="216"/>
         <source>New custom profile…</source>
-        <translation type="unfinished">新しいカスタムプロファイル…</translation>
+        <translation>新しいカスタムプロファイル…</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/edit_page_layout.cpp" line="72"/>
         <source>Multipage:</source>
-        <translation type="unfinished">マルチページ:</translation>
+        <translation>マルチページ:</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/edit_page_layout.cpp" line="80"/>
         <source>Scale page:</source>
-        <translation type="unfinished"></translation>
+        <translation>ページの倍率:</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/edit_page_layout.cpp" line="88"/>
         <source>Save</source>
-        <translation type="unfinished">保存</translation>
+        <translation>保存</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/edit_page_layout.cpp" line="101"/>
         <source>Save as…</source>
-        <translation type="unfinished">名前を付けて保存…</translation>
+        <translation>名前を付けて保存…</translation>
     </message>
 </context>
 <context>
@@ -396,47 +396,47 @@
     <message>
         <location filename="../src/single_file_operations/extract_pages.cpp" line="44"/>
         <source>Extract pages:</source>
-        <translation type="unfinished"></translation>
+        <translation>ページを抽出:</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/extract_pages.cpp" line="47"/>
         <source>Extract all pages</source>
-        <translation type="unfinished"></translation>
+        <translation>すべてのページを抽出</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/extract_pages.cpp" line="50"/>
         <source>Extract even pages</source>
-        <translation type="unfinished"></translation>
+        <translation>偶数ページを抽出</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/extract_pages.cpp" line="53"/>
         <source>Extract odd pages</source>
-        <translation type="unfinished"></translation>
+        <translation>奇数ページを抽出</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/extract_pages.cpp" line="60"/>
         <source>Output PDF base name:</source>
-        <translation type="unfinished"></translation>
+        <translation>出力する PDF の基本名:</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/extract_pages.cpp" line="73"/>
         <source>Extract to individual PDF files</source>
-        <translation type="unfinished"></translation>
+        <translation>個別の PDF ファイルに抽出</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/extract_pages.cpp" line="77"/>
         <source>Extract to single PDF</source>
-        <translation type="unfinished"></translation>
+        <translation>単一の PDF に抽出</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/extract_pages.cpp" line="145"/>
         <source>&lt;p&gt;Pages to be extracted are badly formatted. Please make sure you complied with the following rules:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;intervals of pages must be written indicating the first page and the last page separated by a dash (e.g. &quot;1-5&quot;);&lt;/li&gt;&lt;li&gt;single pages and intervals of pages must be separated by spaces, commas or both (e.g. &quot;1, 2, 3, 5-10&quot; or &quot;1 2 3 5-10&quot;);&lt;/li&gt;&lt;li&gt;all pages and intervals of pages must be between 1 and the number of pages of the PDF file;&lt;/li&gt;&lt;li&gt;only numbers, spaces, commas and dashes can be used. All other characters are not allowed.&lt;/li&gt;&lt;/ul&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;抽出するページが適切な形式ではありません。次の規則に従っていることを確認してください:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;ページの間隔は、最初のページと最後のページをダッシュで区切って (例えば &quot;1-5&quot; ) 書く必要があります&lt;/li&gt;&lt;li&gt;単一のページとページ間隔は、スペース、カンマ、またはその両方で (例えば &quot;1, 2, 3, 5-10&quot; や &quot;1 2 3 5-10&quot;) 区切る必要があります。&lt;/li&gt;&lt;li&gt;すべてのページとページ間隔は、1 から PDF ファイルのページ数の間でなければなりません。&lt;/li&gt;&lt;li&gt;数字、スペース、カンマ、ダッシュのみ使用できます。他の文字は使用できません&lt;/li&gt;&lt;/ul&gt;</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/extract_pages.cpp" line="160"/>
         <source>Error</source>
-        <translation type="unfinished">エラー</translation>
+        <translation>エラー</translation>
     </message>
 </context>
 <context>
@@ -566,7 +566,7 @@
     <message>
         <location filename="../src/mainwindow.cpp" line="307"/>
         <source>Edit page layout</source>
-        <translation type="unfinished"></translation>
+        <translation>ページレイアウトを編集</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="628"/>
@@ -631,17 +631,17 @@
     <message>
         <location filename="../src/mainwindow.cpp" line="784"/>
         <source>Always overwrite</source>
-        <translation type="unfinished"></translation>
+        <translation>常に上書き</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="939"/>
         <source>Select save directory</source>
-        <translation type="unfinished"></translation>
+        <translation>保存ディレクトリを選択</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="1002"/>
         <source>Extract to single PDF</source>
-        <translation type="unfinished"></translation>
+        <translation>単一の PDF に抽出</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="329"/>
@@ -725,7 +725,7 @@
     <message>
         <location filename="../src/multipageprofilesmanager.cpp" line="79"/>
         <source>Edit profile</source>
-        <translation type="unfinished"></translation>
+        <translation>プロファイルを編集</translation>
     </message>
     <message>
         <location filename="../src/multipageprofilesmanager.cpp" line="125"/>

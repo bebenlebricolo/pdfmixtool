@@ -19,32 +19,25 @@
 #ifndef ROTATEMULTIPAGE_H
 #define ROTATEMULTIPAGE_H
 
-#include <QWidget>
 #include <QComboBox>
 #include <QLabel>
 #include <QSpinBox>
 
+#include "abstract_operation.h"
 #include "../pdf_edit_lib/pdf_info.h"
 
-class EditPageLayout : public QWidget
+class EditPageLayout : public AbstractOperation
 {
     Q_OBJECT
 public:
-    explicit EditPageLayout(QWidget *parent = nullptr);
-
-    QComboBox rotation;
-    QComboBox multipage;
-    QSpinBox scale;
-    QLabel preview_image;
-    QLabel paper_size_label;
-    PdfInfo opened_pdf_info;
+    explicit EditPageLayout(const PdfInfo &pdf_info,
+                            QProgressBar *progress_bar,
+                            QWidget *parent = nullptr);
 
 public slots:
+    void pdf_info_changed();
+
     void update_multipage_profiles();
-
-    void update_preview_image();
-
-    void multipage_activated(int index);
 
     void profile_created(int index);
 
@@ -53,7 +46,19 @@ signals:
     void save_button_pressed();
     void save_as_button_pressed();
 
+private slots:
+    void update_preview_image();
+
+    void multipage_activated(int index);
+
 private:
+    void save();
+
+    QComboBox m_rotation;
+    QComboBox m_multipage;
+    QSpinBox m_scale;
+    QLabel m_preview_image;
+    QLabel m_paper_size_label;
     bool m_new_profile_triggered;
 
 };

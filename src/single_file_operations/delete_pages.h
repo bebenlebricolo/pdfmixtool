@@ -19,31 +19,26 @@
 #ifndef DELETEPAGES_H
 #define DELETEPAGES_H
 
-#include <QWidget>
 #include <QButtonGroup>
 #include <QLineEdit>
 
-class DeletePages : public QWidget
+#include "abstract_operation.h"
+
+class DeletePages : public AbstractOperation
 {
     Q_OBJECT
 public:
-    explicit DeletePages(QWidget *parent = nullptr);
-
-    void set_num_pages(int num_pages);
-
-    QString get_selection();
-
-signals:
-    void save_button_pressed();
-    void save_as_button_pressed();
+    explicit DeletePages(const PdfInfo &pdf_info,
+                         QProgressBar *progress_bar,
+                         QWidget *parent = nullptr);
 
 private:
     QButtonGroup m_selection_type;
     QLineEdit m_selection;
-    int m_num_pages;
 
     bool check_selection();
 
+    void save();
 };
 
 #endif // DELETEPAGES_H

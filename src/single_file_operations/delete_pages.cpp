@@ -26,8 +26,13 @@
 #include "../gui_utils.h"
 #include "../pdf_edit_lib/pdf_writer.h"
 
-DeletePages::DeletePages(QWidget *parent) : QWidget(parent)
+DeletePages::DeletePages(const PdfInfo &pdf_info,
+                         QProgressBar *progress_bar,
+                         QWidget *parent) :
+    AbstractOperation(pdf_info, progress_bar, parent)
 {
+    m_name = tr("Delete pages");
+
     QVBoxLayout *v_layout = new QVBoxLayout();
     QGridLayout *grid_layout = new QGridLayout();
     QHBoxLayout *h_layout = new QHBoxLayout();
@@ -38,11 +43,14 @@ DeletePages::DeletePages(QWidget *parent) : QWidget(parent)
     v_layout->addLayout(h_layout);
     this->setLayout(v_layout);
 
-    m_selection_type.addButton(new QRadioButton(tr("Delete pages:"), this), 0);
+    m_selection_type.addButton(new QRadioButton(tr("Delete pages:"), this),
+                               0);
     grid_layout->addWidget(m_selection_type.button(0), 0, 0);
-    m_selection_type.addButton(new QRadioButton(tr("Delete even pages"), this), 1);
+    m_selection_type.addButton(new QRadioButton(tr("Delete even pages"), this),
+                               1);
     grid_layout->addWidget(m_selection_type.button(1), 1, 0);
-    m_selection_type.addButton(new QRadioButton(tr("Delete odd pages"), this), 2);
+    m_selection_type.addButton(new QRadioButton(tr("Delete odd pages"), this),
+                               2);
     grid_layout->addWidget(m_selection_type.button(2), 2, 0);
     m_selection_type.button(0)->setChecked(true);
 
@@ -82,58 +90,13 @@ DeletePages::DeletePages(QWidget *parent) : QWidget(parent)
     h_layout->addWidget(save_as_button);
 
     connect(save_button, &QPushButton::pressed,
-            [=]() {if (check_selection()) save_button_pressed();});
+            [=]() {
+        if (check_selection() && show_overwrite_dialog())
+            save();});
     connect(save_as_button, &QPushButton::pressed,
-            [=]() {if (check_selection()) save_as_button_pressed();});
-}
-
-void DeletePages::set_num_pages(int num_pages)
-{
-    m_num_pages = num_pages;
-}
-
-QString DeletePages::get_selection()
-{
-    QString s;
-
-    switch (m_selection_type.checkedId()) {
-    case 0: {
-        int output_pages_count;
-        std::vector<std::pair<int, int>> intervals;
-
-        parse_output_pages_string(m_selection.text().toStdString(),
-                                  m_num_pages,
-                                  intervals,
-                                  output_pages_count);
-
-        for (int i = 1; i <= m_num_pages; i++)
-        {
-            std::vector<std::pair<int, int>>::iterator it;
-            for (it = intervals.begin(); it != intervals.end(); ++it)
-                if (i >= it->first && i <= it->second)
-                    goto cnt;
-
-            s += QString::number(i) + ",";
-
-            cnt:;
-        }
-        break;
-    }
-    case 1: {
-        for (int i = 1; i <= m_num_pages; i++)
-            if (i % 2 == 1)
-                s += QString::number(i) + ",";
-        break;
-    }
-    case 2: {
-        for (int i = 1; i <= m_num_pages; i++)
-            if (i % 2 == 0)
-                s += QString::number(i) + ",";
-        break;
-    }
-    }
-
-    return s;
+            [=]() {
+        if (check_selection() && show_save_as_dialog())
+                save();});
 }
 
 bool DeletePages::check_selection()
@@ -145,7 +108,7 @@ bool DeletePages::check_selection()
     std::vector<std::pair<int, int>> intervals;
     if (m_selection.text().toStdString().empty() ||
             !parse_output_pages_string(m_selection.text().toStdString(),
-                                       m_num_pages,
+                                       m_pdf_info->n_pages(),
                                        intervals,
                                        output_pages_count))
     {
@@ -172,4 +135,73 @@ bool DeletePages::check_selection()
     }
 
     return true;
+}
+
+void DeletePages::save()
+{
+    emit write_started();
+
+    QString s;
+
+    switch (m_selection_type.checkedId()) {
+    case 0: {
+        int output_pages_count;
+        std::vector<std::pair<int, int>> intervals;
+
+        parse_output_pages_string(m_selection.text().toStdString(),
+                                  m_pdf_info->n_pages(),
+                                  intervals,
+                                  output_pages_count);
+
+        for (int i = 1; i <= m_pdf_info->n_pages(); i++)
+        {
+            std::vector<std::pair<int, int>>::iterator it;
+            for (it = intervals.begin(); it != intervals.end(); ++it)
+                if (i >= it->first && i <= it->second)
+                    goto cnt;
+
+            s += QString::number(i) + ",";
+
+            cnt:;
+        }
+        break;
+    }
+    case 1: {
+        for (int i = 1; i <= m_pdf_info->n_pages(); i++)
+            if (i % 2 == 1)
+                s += QString::number(i) + ",";
+        break;
+    }
+    case 2: {
+        for (int i = 1; i <= m_pdf_info->n_pages(); i++)
+            if (i % 2 == 0)
+                s += QString::number(i) + ",";
+        break;
+    }
+    }
+
+    // FIXME this should be much more efficient
+    Conf conf;
+
+    conf.output_path = m_save_filename.toStdString();
+    conf.alternate_mix = false;
+
+    FileConf fileconf;
+    fileconf.path = m_pdf_info->filename();
+    fileconf.ouput_pages = s.toStdString();
+    fileconf.multipage_enabled = false;
+    fileconf.rotation = 0;
+    fileconf.outline_entry = "";
+    fileconf.reverse_order = false;
+
+    conf.files.push_back(fileconf);
+
+    QProgressBar *pb = m_progress_bar;
+    std::function<void (int)> progress = [pb] (int p)
+    {
+        pb->setValue(p);
+    };
+
+    write_pdf(conf, progress);
+    emit write_finished(m_save_filename);
 }

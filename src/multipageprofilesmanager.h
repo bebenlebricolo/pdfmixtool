@@ -31,8 +31,7 @@ class MultipageProfilesManager : public QMainWindow
 {
     Q_OBJECT
 public:
-    explicit MultipageProfilesManager(QSettings *app_settings,
-                                      QWidget *parent = nullptr);
+    explicit MultipageProfilesManager(QWidget *parent = nullptr);
 
 public slots:
     void new_profile_button_pressed();
@@ -60,8 +59,6 @@ private:
     bool profile_name_exists(const QString &name);
 
     EditMultipageProfileDialog *m_edit_dialog;
-
-    QSettings *m_settings;
 
     QPushButton *m_new_profile_button;
     QPushButton *m_delete_profile_button;

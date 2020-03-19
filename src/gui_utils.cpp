@@ -236,4 +236,5 @@ void draw_preview(QPainter *painter, const QRect &rect,
     painter->restore();
 }
 
+QSettings *settings = new QSettings("PDFMixTool", "pdfmixtool");
 QMap<int, Multipage> multipages = QMap<int, Multipage>();

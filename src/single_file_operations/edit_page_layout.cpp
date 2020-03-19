@@ -24,9 +24,15 @@
 #include <cmath>
 
 #include "../gui_utils.h"
+#include "../pdf_edit_lib/pdf_writer.h"
 
-EditPageLayout::EditPageLayout(QWidget *parent) : QWidget(parent)
+EditPageLayout::EditPageLayout(const PdfInfo &pdf_info,
+                               QProgressBar *progress_bar,
+                               QWidget *parent) :
+          AbstractOperation(pdf_info, progress_bar, parent)
 {
+    m_name = tr("Edit page layout");
+
     m_new_profile_triggered = false;
 
     QVBoxLayout *v_layout = new QVBoxLayout();
@@ -36,48 +42,48 @@ EditPageLayout::EditPageLayout(QWidget *parent) : QWidget(parent)
     v_layout->addItem(new QSpacerItem(0, 0,
                                       QSizePolicy::Expanding,
                                       QSizePolicy::Expanding));
-    v_layout->addWidget(&preview_image, 0, Qt::AlignCenter);
-    v_layout->addWidget(&paper_size_label, 0, Qt::AlignCenter);
+    v_layout->addWidget(&m_preview_image, 0, Qt::AlignCenter);
+    v_layout->addWidget(&m_paper_size_label, 0, Qt::AlignCenter);
     v_layout->addItem(new QSpacerItem(0, 0,
                                       QSizePolicy::Expanding,
                                       QSizePolicy::Expanding));
     v_layout->addLayout(h_layout);
     this->setLayout(v_layout);
 
-    preview_image.setMinimumSize(200, 200);
+    m_preview_image.setMinimumSize(200, 200);
 
-    rotation.addItem(tr("No rotation"), 0);
-    rotation.addItem("90°", 90);
-    rotation.addItem("180°", 180);
-    rotation.addItem("270°", 270);
-    connect(&rotation,
+    m_rotation.addItem(tr("No rotation"), 0);
+    m_rotation.addItem("90°", 90);
+    m_rotation.addItem("180°", 180);
+    m_rotation.addItem("270°", 270);
+    connect(&m_rotation,
             SIGNAL(currentIndexChanged(int)),
             SLOT(update_preview_image()));
-    form_layout->addRow(tr("Rotation:"), &rotation);
+    form_layout->addRow(tr("Rotation:"), &m_rotation);
 
-    multipage.addItem(tr("Disabled"), -1);
+    m_multipage.addItem(tr("Disabled"), -1);
     QMap<int, Multipage>::const_iterator it;
     for (it = multipages.constBegin();
          it != multipages.constEnd();
          ++it)
-        multipage.addItem(
+        m_multipage.addItem(
                     QString::fromStdString(it.value().name),
                     it.key());
-    multipage.addItem(tr("New custom profile…"), -2);
-    connect(&multipage,
+    m_multipage.addItem(tr("New custom profile…"), -2);
+    connect(&m_multipage,
             SIGNAL(currentIndexChanged(int)),
             SLOT(update_preview_image()));
-    connect(&multipage, SIGNAL(activated(int)),
+    connect(&m_multipage, SIGNAL(activated(int)),
             SLOT(multipage_activated(int)));
-    form_layout->addRow(tr("Multipage:"), &multipage);
+    form_layout->addRow(tr("Multipage:"), &m_multipage);
 
-    scale.setRange(1, 100);
-    scale.setValue(100);
-    scale.setSuffix("%");
-    connect(&scale,
+    m_scale.setRange(1, 100);
+    m_scale.setValue(100);
+    m_scale.setSuffix("%");
+    connect(&m_scale,
             SIGNAL(valueChanged(int)),
             SLOT(update_preview_image()));
-    form_layout->addRow(tr("Scale page:"), &scale);
+    form_layout->addRow(tr("Scale page:"), &m_scale);
 
     h_layout->addItem(new QSpacerItem(0, 0,
                                       QSizePolicy::Expanding,
@@ -93,8 +99,6 @@ EditPageLayout::EditPageLayout(QWidget *parent) : QWidget(parent)
                 .arg(
                     save_button->text(),
                     save_button->shortcut().toString()));
-    connect(save_button, &QPushButton::pressed,
-            this, &EditPageLayout::save_button_pressed);
 
     QPushButton *save_as_button = new QPushButton(
                 QIcon::fromTheme("document-save-as"),
@@ -106,52 +110,62 @@ EditPageLayout::EditPageLayout(QWidget *parent) : QWidget(parent)
                 .arg(
                     save_as_button->text(),
                     save_as_button->shortcut().toString()));
-    connect(save_as_button, &QPushButton::pressed,
-            this, &EditPageLayout::save_as_button_pressed);
 
     h_layout->addWidget(save_button);
     h_layout->addWidget(save_as_button);
+
+    connect(save_button, &QPushButton::pressed,
+            [=]() {if (show_overwrite_dialog()) save();});
+    connect(save_as_button, &QPushButton::pressed,
+            [=]() {if (show_save_as_dialog()) save();});
+}
+
+void EditPageLayout::pdf_info_changed()
+{
+    AbstractOperation::pdf_info_changed();
+
+    update_preview_image();
 }
 
 void EditPageLayout::update_multipage_profiles()
 {
-    int current_data = multipage.currentData().toInt();
+    int current_data = m_multipage.currentData().toInt();
     int current_index = 0;
-    multipage.clear();
-    multipage.addItem(tr("Disabled"), -1);
+    m_multipage.clear();
+    m_multipage.addItem(tr("Disabled"), -1);
     QMap<int, Multipage>::const_iterator it;
     for (it = multipages.constBegin();
          it != multipages.constEnd();
          ++it)
     {
-        multipage.addItem(
+        m_multipage.addItem(
                     QString::fromStdString(it.value().name),
                     it.key());
         if (it.key() == current_data)
-            current_index = multipage.count() - 1;
+            current_index = m_multipage.count() - 1;
     }
-    multipage.addItem(tr("New custom profile…"), -2);
-    multipage.setCurrentIndex(current_index);
+    m_multipage.addItem(tr("New custom profile…"), -2);
+    m_multipage.setCurrentIndex(current_index);
 }
 
 void EditPageLayout::update_preview_image()
 {
-    int size = preview_image.minimumWidth();
+    int size = m_preview_image.minimumWidth();
 
     QPixmap pixmap(size, size);
     QPainter painter(&pixmap);
 
-    if (opened_pdf_info.filename().empty())
+    if (m_pdf_info->filename().empty())
     {
         painter.fillRect(0, 0, size, size, Qt::white);
     }
     else
     {
-        double page_width = opened_pdf_info.width();
-        double page_height = opened_pdf_info.height();
+        double page_width = m_pdf_info->width();
+        double page_height = m_pdf_info->height();
 
-        int rotation_value = rotation.currentData().toInt();
-        int mp_index = multipage.currentData().toInt();
+        int rotation_value = m_rotation.currentData().toInt();
+        int mp_index = m_multipage.currentData().toInt();
         Multipage mp;
         if (mp_index >= 0)
         {
@@ -162,8 +176,8 @@ void EditPageLayout::update_preview_image()
 
         draw_preview(&painter,
                      QRect(0, 0, size, size),
-                     opened_pdf_info.width(),
-                     opened_pdf_info.height(),
+                     m_pdf_info->width(),
+                     m_pdf_info->height(),
                      rotation_value,
                      mp_index >= 0,
                      mp);
@@ -175,22 +189,22 @@ void EditPageLayout::update_preview_image()
             page_height = tmp;
         }
 
-        page_width = std::round(page_width * scale.value() / 10) / 10;
-        page_height = std::round(page_height * scale.value() / 10) / 10;
+        page_width = std::round(page_width * m_scale.value() / 10) / 10;
+        page_height = std::round(page_height * m_scale.value() / 10) / 10;
 
         QString text = QString::number(page_width) +
                 QString(" cm \u00D7 %1 cm").arg(page_height);
-        paper_size_label.setText(text);
+        m_paper_size_label.setText(text);
     }
 
-    preview_image.setPixmap(pixmap);
+    m_preview_image.setPixmap(pixmap);
 }
 
 void EditPageLayout::multipage_activated(int index)
 {
-    if (index == multipage.count() - 1)
+    if (index == m_multipage.count() - 1)
     {
-        multipage.setCurrentIndex(0);
+        m_multipage.setCurrentIndex(0);
         m_new_profile_triggered = true;
         emit trigger_new_profile();
     }
@@ -204,17 +218,54 @@ void EditPageLayout::profile_created(int index)
 
         if (index != -1)
         {
-            multipage.clear();
-            multipage.addItem(tr("Disabled"), -1);
+            m_multipage.clear();
+            m_multipage.addItem(tr("Disabled"), -1);
             QMap<int, Multipage>::const_iterator it;
             for (it = multipages.constBegin();
                  it != multipages.constEnd();
                  ++it)
-                multipage.addItem(
+                m_multipage.addItem(
                             QString::fromStdString(it.value().name),
                             it.key());
-            multipage.addItem(tr("New custom profile…"), -2);
-            multipage.setCurrentIndex(index + 1);
+            m_multipage.addItem(tr("New custom profile…"), -2);
+            m_multipage.setCurrentIndex(index + 1);
         }
     }
+}
+
+void EditPageLayout::save()
+{
+    emit write_started();
+    Conf conf;
+
+    conf.output_path = m_save_filename.toStdString();
+    conf.alternate_mix = false;
+
+    FileConf fileconf;
+    fileconf.path = m_pdf_info->filename();
+    fileconf.ouput_pages = "";
+    int mp_index = m_multipage.currentData().toInt();
+    if (mp_index < 0)
+        fileconf.multipage_enabled = false;
+    else
+    {
+        fileconf.multipage_enabled = true;
+        fileconf.multipage = &multipages[mp_index];
+    }
+    fileconf.rotation = m_rotation.currentData().toInt();
+    fileconf.scale = m_scale.value();
+    fileconf.outline_entry = "";
+    fileconf.reverse_order = false;
+
+    conf.files.push_back(fileconf);
+
+    QProgressBar *pb = m_progress_bar;
+    std::function<void (int)> progress = [pb] (int p)
+    {
+        pb->setValue(p);
+    };
+
+    write_pdf(conf, progress);
+
+    emit write_finished(m_save_filename);
 }

@@ -80,17 +80,9 @@ public slots:
 
     void update_opened_file_label(const QString &filename);
 
-    void generate_booklet_pressed();
+    void write_started();
 
-    void save_button_pressed(int from_page);
-
-    void save_as_button_pressed(int from_page);
-
-    void do_save(int from_page, const QString &filename);
-
-    void extract_individual_button_pressed();
-
-    void extract_single_button_pressed();
+    void write_finished(const QString &filename);
 
     // close event
     void closeEvent(QCloseEvent *event);
@@ -101,8 +93,6 @@ protected:
 private:
     const QList<int> selected_indexes();
 
-    QSettings *m_settings;
-
     QTabWidget *m_tab_widget;
     QStatusBar *m_status_bar;
 
@@ -112,6 +102,7 @@ private:
     int m_output_pages_error_index;
 
     QProgressBar *m_progress_bar;
+    QLabel m_saved_file;
     QPushButton *m_generate_pdf_button;
 
     QListView *m_files_list_view;
@@ -124,12 +115,7 @@ private:
     QPushButton *m_view_opened_pdf_button;
     PdfInfo m_opened_pdf_info;
     PdfInfoLabel *m_opened_file_label;
-
-    Booklet m_booklet_tab;
-    EditPageLayout m_edit_page_layout_tab;
-    AddEmptyPages m_add_empty_pages_tab;
-    DeletePages m_delete_pages_tab;
-    ExtractPages m_extract_pages_tab;
+    QVector<AbstractOperation *> m_operations;
 
     MultipageProfilesManager *m_multipage_profiles_manager;
 };

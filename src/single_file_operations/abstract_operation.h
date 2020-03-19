@@ -16,41 +16,40 @@
  * along with PDF Mix Tool. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef ADDEMPTYPAGES_H
-#define ADDEMPTYPAGES_H
+#ifndef ABSTRACTOPERATION_H
+#define ABSTRACTOPERATION_H
 
-#include <QSpinBox>
-#include <QButtonGroup>
-#include <QComboBox>
+#include <QWidget>
+#include <QProgressBar>
 
-#include "abstract_operation.h"
+#include "../pdf_edit_lib/pdf_info.h"
 
-class AddEmptyPages : public AbstractOperation
+class AbstractOperation : public QWidget
 {
     Q_OBJECT
 public:
-    explicit AddEmptyPages(const PdfInfo &pdf_info,
-                           QProgressBar *progress_bar,
-                           QWidget *parent = nullptr);
+    explicit AbstractOperation(const PdfInfo &pdf_info,
+                               QProgressBar *progress_bar,
+                               QWidget *parent = nullptr);
+
+    const QString &name();
 
 public slots:
-    void pdf_info_changed();
+    virtual void pdf_info_changed();
 
 signals:
-    void save_button_pressed();
-    void save_as_button_pressed();
+    void write_started();
+    void write_finished(const QString &filename);
 
-private:
-    void save();
+protected:
+    QString m_name;
 
-    QSpinBox m_count;
-    QButtonGroup m_page_size;
-    QDoubleSpinBox m_page_width;
-    QDoubleSpinBox m_page_height;
-    QComboBox m_standard_page_size;
-    QButtonGroup m_orientation;
-    QButtonGroup m_before_after;
-    QSpinBox m_page;
+    QString m_save_filename;
+    bool show_overwrite_dialog();
+    bool show_save_as_dialog();
+
+    PdfInfo const *m_pdf_info;
+    QProgressBar *m_progress_bar;
 };
 
-#endif // ADDEMPTYPAGES_H
+#endif // ABSTRACTOPERATION_H

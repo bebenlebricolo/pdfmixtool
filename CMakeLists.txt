@@ -41,6 +41,8 @@ SET (
     src/pdf_edit_lib/pdf_info.h
     src/pdf_edit_lib/pdf_writer.cpp
     src/pdf_edit_lib/pdf_writer.h
+    src/single_file_operations/abstract_operation.cpp
+    src/single_file_operations/abstract_operation.h
     src/single_file_operations/add_empty_pages.cpp
     src/single_file_operations/add_empty_pages.h
     src/single_file_operations/booklet.cpp

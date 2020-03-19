@@ -19,20 +19,22 @@
 #ifndef BOOKLET_H
 #define BOOKLET_H
 
-#include <QWidget>
 #include <QComboBox>
 
-class Booklet : public QWidget
+#include "abstract_operation.h"
+
+class Booklet : public AbstractOperation
 {
     Q_OBJECT
 public:
-    explicit Booklet(QWidget *parent = nullptr);
+    explicit Booklet(const PdfInfo &pdf_info,
+                     QProgressBar *progress_bar,
+                     QWidget *parent = nullptr);
 
-    QComboBox booklet_binding;
+private:
+    void generate_booklet();
 
-signals:
-    void generate_booklet_pressed();
-
+    QComboBox m_booklet_binding;
 };
 
 #endif // BOOKLET_H

@@ -17,13 +17,21 @@
  */
 
 #include "booklet.h"
-#include "../gui_utils.h"
 
 #include <QFormLayout>
 #include <QPushButton>
+#include <QFileDialog>
 
-Booklet::Booklet(QWidget *parent) : QWidget(parent)
+#include "../gui_utils.h"
+#include "../pdf_edit_lib/pdf_writer.h"
+
+Booklet::Booklet(const PdfInfo &pdf_info,
+                 QProgressBar *progress_bar,
+                 QWidget *parent) :
+AbstractOperation(pdf_info, progress_bar, parent)
 {
+    m_name = tr("Booklet");
+
     QVBoxLayout *v_layout = new QVBoxLayout();
     QFormLayout *form_layout = new QFormLayout();
     QHBoxLayout *h_layout = new QHBoxLayout();
@@ -31,9 +39,9 @@ Booklet::Booklet(QWidget *parent) : QWidget(parent)
     v_layout->addLayout(h_layout);
     this->setLayout(v_layout);
 
-    booklet_binding.addItem(tr("Left"));
-    booklet_binding.addItem(tr("Right"));
-    form_layout->addRow(tr("Binding:"), &booklet_binding);
+    m_booklet_binding.addItem(tr("Left"));
+    m_booklet_binding.addItem(tr("Right"));
+    form_layout->addRow(tr("Binding:"), &m_booklet_binding);
 
     h_layout->addItem(new QSpacerItem(0, 0,
                                       QSizePolicy::Expanding,
@@ -46,6 +54,46 @@ Booklet::Booklet(QWidget *parent) : QWidget(parent)
                     button->text(),
                     button->shortcut().toString()));
     connect(button, &QPushButton::pressed,
-            this, &Booklet::generate_booklet_pressed);
+            this, &Booklet::generate_booklet);
     h_layout->addWidget(button);
+}
+
+void Booklet::generate_booklet()
+{
+    QString m_save_filename = QFileDialog::getSaveFileName(
+                this,
+                tr("Save booklet PDF file"),
+                settings->value("save_directory",
+                                  settings->value("open_directory", "")
+                                  ).toString(),
+                tr("PDF files (*.pdf)"));
+
+    if (!m_save_filename.isNull())
+    {
+        emit write_started();
+
+        if (m_save_filename.startsWith("/run/"))
+            // file paths are not real in flatpak
+            settings->setValue("save_directory", "");
+        else
+            settings->setValue(
+                        "save_directory",
+                        QFileInfo(m_save_filename).dir().absolutePath());
+
+        QProgressBar *pb = m_progress_bar;
+        std::function<void (int)> progress = [pb] (int p)
+        {
+            pb->setValue(p);
+        };
+
+        m_progress_bar->setValue(0);
+        m_progress_bar->show();
+
+        write_booklet_pdf(m_pdf_info->filename(),
+                          m_save_filename.toStdString(),
+                          m_booklet_binding.currentIndex(),
+                          progress);
+
+        emit write_finished(m_save_filename);
+    }
 }

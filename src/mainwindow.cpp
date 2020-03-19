@@ -19,7 +19,6 @@
 #include "mainwindow.h"
 
 #include <QApplication>
-#include <QTimer>
 #include <QHBoxLayout>
 #include <QVBoxLayout>
 #include <QFormLayout>
@@ -32,6 +31,7 @@
 #include <QListWidget>
 #include <QStatusBar>
 #include <QRadioButton>
+#include <QTimer>
 
 #include "aboutdialog.h"
 #include "editpdfentrydialog.h"
@@ -41,7 +41,6 @@
 
 MainWindow::MainWindow(MouseEventFilter *filter, QWidget *parent) :
     QMainWindow(parent),
-    m_settings(new QSettings(this)),
     m_tab_widget(new QTabWidget(this)),
     m_alternate_mix(new QCheckBox("Alternate mix", this)),
     m_output_page_count(new QLabel(this)),
@@ -56,21 +55,21 @@ MainWindow::MainWindow(MouseEventFilter *filter, QWidget *parent) :
                                   qApp->applicationDirPath())));
     this->setWindowTitle(qApp->applicationDisplayName());
     this->restoreGeometry(
-                m_settings->value("main_window_geometry").toByteArray()
+                settings->value("main_window_geometry").toByteArray()
                 );
 
     // Delete profiles of old versions
-    m_settings->beginGroup("custom_maltipage_profiles");
-    m_settings->remove("");
-    m_settings->endGroup();
+    settings->beginGroup("custom_maltipage_profiles");
+    settings->remove("");
+    settings->endGroup();
 
     // Load custom multipage profiles
     qRegisterMetaTypeStreamOperators<Multipage>("Multipage");
-    m_settings->beginGroup("maltipage_profiles");
-    for (QString key : m_settings->childKeys())
+    settings->beginGroup("maltipage_profiles");
+    for (QString key : settings->childKeys())
         multipages[key.toInt()] =
-                m_settings->value(key).value<Multipage>();
-    m_settings->endGroup();
+                settings->value(key).value<Multipage>();
+    settings->endGroup();
 
     if (multipages.size() == 0)
     {
@@ -84,10 +83,7 @@ MainWindow::MainWindow(MouseEventFilter *filter, QWidget *parent) :
     }
 
     // Create other windows
-    m_multipage_profiles_manager =
-            new MultipageProfilesManager(
-                m_settings,
-                this);
+    m_multipage_profiles_manager = new MultipageProfilesManager(this);
     AboutDialog *about_dialog = new AboutDialog(new AboutDialog(this));
 
     // tab widget
@@ -100,15 +96,19 @@ MainWindow::MainWindow(MouseEventFilter *filter, QWidget *parent) :
 
     QStatusBar *m_status_bar = new QStatusBar(this);
     m_status_bar->addWidget(m_output_page_count);
-    m_status_bar->addWidget(m_progress_bar, 1);
+    m_status_bar->addWidget(m_progress_bar, 100);
+    m_status_bar->addWidget(new QWidget(this), 1);
+    m_status_bar->addWidget(&m_saved_file);
     main_layout->addWidget(m_status_bar);
 
     QWidget *central_widget = new QWidget(this);
     this->setCentralWidget(central_widget);
     central_widget->setLayout(main_layout);
 
-    // Hide progress bar
+    // Hide progress bar and saved file label
     m_progress_bar->hide();
+    m_saved_file.hide();
+    m_saved_file.setOpenExternalLinks(true);
 
     // Create main menu and add actions
     QPushButton *main_menu_button = new QPushButton(
@@ -176,7 +176,7 @@ MainWindow::MainWindow(MouseEventFilter *filter, QWidget *parent) :
         QStringList files = QFileDialog::getOpenFileNames(
                     this,
                     tr("Select one or more PDF files to open"),
-                    m_settings->value("open_directory", "").toString(),
+                    settings->value("open_directory", "").toString(),
                     tr("PDF files (*.pdf)"));
         add_pdf_files(files);
     });
@@ -314,68 +314,51 @@ MainWindow::MainWindow(MouseEventFilter *filter, QWidget *parent) :
     m_operations_widget->setLayout(h_layout);
     v_layout->addWidget(m_operations_widget);
     QListWidget *operations_list = new QListWidget(this);
-    QStackedWidget *operations = new QStackedWidget(this);
+    QStackedWidget *operations_widget = new QStackedWidget(this);
 
-    operations_list->addItem(tr("Booklet"));
-    operations->addWidget(&m_booklet_tab);
-    connect(&m_booklet_tab, &Booklet::generate_booklet_pressed,
-            this, &MainWindow::generate_booklet_pressed);
-
-    operations_list->addItem(tr("Edit page layout"));
-    operations->addWidget(&m_edit_page_layout_tab);
-    m_edit_page_layout_tab.update_multipage_profiles();
+    m_operations.push_back(new Booklet(m_opened_pdf_info,
+                                       m_progress_bar, this));
+    EditPageLayout *edit_page_layout = new EditPageLayout(m_opened_pdf_info,
+                                                          m_progress_bar, this);
+    edit_page_layout->update_multipage_profiles();
     connect(m_multipage_profiles_manager,
             &MultipageProfilesManager::close_signal,
-            &m_edit_page_layout_tab,
+            edit_page_layout,
             &EditPageLayout::update_multipage_profiles);
-    connect(&m_edit_page_layout_tab,
+    connect(edit_page_layout,
             &EditPageLayout::trigger_new_profile,
             m_multipage_profiles_manager,
             &MultipageProfilesManager::new_profile_button_pressed);
     connect(m_multipage_profiles_manager,
             &MultipageProfilesManager::profile_created,
-            &m_edit_page_layout_tab,
+            edit_page_layout,
             &EditPageLayout::profile_created);
-    connect(&m_edit_page_layout_tab,
-            &EditPageLayout::save_button_pressed,
-            [=]() {save_button_pressed(0);});
-    connect(&m_edit_page_layout_tab,
-            &EditPageLayout::save_as_button_pressed,
-            [=]() {save_as_button_pressed(0);});
+    m_operations.push_back(edit_page_layout);
+    m_operations.push_back(new AddEmptyPages(m_opened_pdf_info,
+                                             m_progress_bar, this));
+    m_operations.push_back(new DeletePages(m_opened_pdf_info,
+                                           m_progress_bar, this));
+    m_operations.push_back(new ExtractPages(m_opened_pdf_info,
+                                           m_progress_bar, this));
 
-    operations_list->addItem(tr("Add empty pages"));
-    operations->addWidget(&m_add_empty_pages_tab);
-    connect(&m_add_empty_pages_tab, &AddEmptyPages::save_button_pressed,
-            [=]() {save_button_pressed(1);});
-    connect(&m_add_empty_pages_tab, &AddEmptyPages::save_as_button_pressed,
-            [=]() {save_as_button_pressed(1);});
-
-    operations_list->addItem(tr("Delete pages"));
-    operations->addWidget(&m_delete_pages_tab);
-    connect(&m_delete_pages_tab, &DeletePages::save_button_pressed,
-            [=]() {save_button_pressed(2);});
-    connect(&m_delete_pages_tab, &DeletePages::save_as_button_pressed,
-            [=]() {save_as_button_pressed(2);});
-
-    operations_list->addItem(tr("Extract pages"));
-    operations->addWidget(&m_extract_pages_tab);
-    connect(&m_extract_pages_tab,
-            &ExtractPages::extract_individual_button_pressed,
-            this,
-            &MainWindow::extract_individual_button_pressed);
-    connect(&m_extract_pages_tab,
-            &ExtractPages::extract_single_button_pressed,
-            this,
-            &MainWindow::extract_single_button_pressed);
+    for (AbstractOperation *operation : m_operations)
+    {
+        operations_list->addItem(operation->name());
+        operations_widget->addWidget(operation);
+        connect(operation, &AbstractOperation::write_started,
+                this, &MainWindow::write_started);
+        connect(operation, &AbstractOperation::write_finished,
+                this, &MainWindow::write_finished);
+    }
 
     h_layout->addWidget(operations_list);
-    h_layout->addWidget(operations);
+    h_layout->addWidget(operations_widget);
     h_layout->setStretch(1, 1);
     m_operations_widget->setEnabled(false);
     operations_list->setCurrentRow(0);
 
     connect(operations_list, &QListWidget::currentRowChanged,
-            operations, &QStackedWidget::setCurrentIndex);
+            operations_widget, &QStackedWidget::setCurrentIndex);
 }
 
 void MainWindow::set_input_files(const QStringList &files)
@@ -385,9 +368,9 @@ void MainWindow::set_input_files(const QStringList &files)
 
     if (files[0].startsWith("/run/"))
         // file paths are not real in flatpak
-        m_settings->setValue("open_directory", "");
+        settings->setValue("open_directory", "");
     else
-        m_settings->setValue(
+        settings->setValue(
                     "open_directory",
                     QFileInfo(files[0]).dir().absolutePath());
 
@@ -443,9 +426,9 @@ void MainWindow::add_pdf_files(const QStringList &files)
     {
         if (files.at(0).startsWith("/run/"))
             // file paths are not real in flatpak
-            m_settings->setValue("open_directory", "");
+            settings->setValue("open_directory", "");
         else
-            m_settings->setValue(
+            settings->setValue(
                         "open_directory",
                         QFileInfo(files.at(0)).dir().absolutePath());
         this->update_output_pages_count();
@@ -583,6 +566,7 @@ void MainWindow::alternate_mix_checked(bool checked)
     m_delegate->set_alternate_mix(checked);
     m_files_list_model->layoutChanged();
     m_files_list_view->viewport()->repaint();
+    update_output_pages_count();
 }
 
 void MainWindow::update_output_pages_count()
@@ -594,50 +578,64 @@ void MainWindow::update_output_pages_count()
     }
 
     int pages_count = 0;
-    bool output_pages_errors = false;
 
-    for (int i = 0; i < m_files_list_model->rowCount(); i++)
+    if (m_alternate_mix->isChecked())
     {
-        QStandardItem *item = m_files_list_model->item(i);
-        QString output_pages = item->data(OUTPUT_PAGES_ROLE).toString();
-        int n_pages = item->data(N_PAGES_ROLE).toInt();
-
-        int output_pages_count;
-        std::vector<std::pair<int, int>> intervals;
-        if (parse_output_pages_string(output_pages.toStdString(),
-                                      n_pages,
-                                      intervals,
-                                      output_pages_count))
+        for (int i = 0; i < m_files_list_model->rowCount(); i++)
         {
-            int mp_index = item->data(MULTIPAGE_ROLE).toInt();
-            if (mp_index > 0)
+            QStandardItem *item = m_files_list_model->item(i);
+            pages_count += item->data(N_PAGES_ROLE).toInt();
+        }
+
+    }
+    else
+    {
+        bool output_pages_errors = false;
+
+        for (int i = 0; i < m_files_list_model->rowCount(); i++)
+        {
+            QStandardItem *item = m_files_list_model->item(i);
+            QString output_pages = item->data(OUTPUT_PAGES_ROLE).toString();
+            int n_pages = item->data(N_PAGES_ROLE).toInt();
+
+            int output_pages_count;
+            std::vector<std::pair<int, int>> intervals;
+            if (parse_output_pages_string(output_pages.toStdString(),
+                                          n_pages,
+                                          intervals,
+                                          output_pages_count))
             {
-                if (multipages.find(mp_index) == multipages.end())
-                    item->setData(-1, MULTIPAGE_ROLE);
-                else
+                int mp_index = item->data(MULTIPAGE_ROLE).toInt();
+                if (mp_index > 0)
                 {
-                    Multipage mp = multipages[mp_index];
-
-                    int subpages = mp.rows * mp.columns;
-
-                    if (output_pages_count % subpages > 0)
-                        output_pages_count = output_pages_count / subpages + 1;
+                    if (multipages.find(mp_index) == multipages.end())
+                        item->setData(-1, MULTIPAGE_ROLE);
                     else
-                        output_pages_count = output_pages_count / subpages;
+                    {
+                        Multipage mp = multipages[mp_index];
+
+                        int subpages = mp.rows * mp.columns;
+
+                        if (output_pages_count % subpages > 0)
+                            output_pages_count = output_pages_count / subpages
+                                    + 1;
+                        else
+                            output_pages_count = output_pages_count / subpages;
+                    }
                 }
             }
-        }
-        else if (!output_pages_errors)
-        {
-            m_output_pages_error_index = i;
-            output_pages_errors = true;
+            else if (!output_pages_errors)
+            {
+                m_output_pages_error_index = i;
+                output_pages_errors = true;
+            }
+
+            pages_count += output_pages_count;
         }
 
-        pages_count += output_pages_count;
+        if (!output_pages_errors)
+            m_output_pages_error_index = -1;
     }
-
-    if (!output_pages_errors)
-        m_output_pages_error_index = -1;
 
     m_output_page_count->setText(tr("Output pages: %1").arg(pages_count));
     m_output_page_count->show();
@@ -673,18 +671,20 @@ void MainWindow::generate_pdf_button_pressed()
     QString selected_file = QFileDialog::getSaveFileName(
                 this,
                 tr("Save PDF file"),
-                m_settings->value("save_directory",
-                                  m_settings->value("open_directory", "")
+                settings->value("save_directory",
+                                  settings->value("open_directory", "")
                                   ).toString(),
                 tr("PDF files (*.pdf)"));
 
     if (!selected_file.isNull())
     {
+        write_started();
+
         if (selected_file.startsWith("/run/"))
             // file paths are not real in flatpak
-            m_settings->setValue("save_directory", "");
+            settings->setValue("save_directory", "");
         else
-            m_settings->setValue(
+            settings->setValue(
                         "save_directory",
                         QFileInfo(selected_file).dir().absolutePath());
 
@@ -727,16 +727,9 @@ void MainWindow::generate_pdf_button_pressed()
             pb->setValue(p);
         };
 
-        m_progress_bar->setValue(0);
-        m_progress_bar->show();
-
         write_pdf(conf, progress);
 
-        QTimer::singleShot(4000, m_progress_bar, SLOT(hide()));
-
-        if (selected_file ==
-                QString::fromStdString(m_opened_pdf_info.filename()))
-            update_opened_file_label(selected_file);
+        write_finished(selected_file);
     }
 }
 
@@ -745,16 +738,16 @@ void MainWindow::open_file_pressed()
     QString filename = QFileDialog::getOpenFileName(
                 this,
                 tr("Select a PDF file"),
-                m_settings->value("open_directory", "").toString(),
+                settings->value("open_directory", "").toString(),
                 tr("PDF files (*.pdf)"));
 
     if (!filename.isNull())
     {
         if (filename.startsWith("/run/"))
             // file paths are not real in flatpak
-            m_settings->setValue("open_directory", "");
+            settings->setValue("open_directory", "");
         else
-            m_settings->setValue(
+            settings->setValue(
                         "open_directory",
                         QFileInfo(filename).dir().absolutePath());
 
@@ -771,379 +764,62 @@ void MainWindow::update_opened_file_label(const QString &filename)
 
     m_opened_file_label->set_pdf_info(m_opened_pdf_info);
 
-    m_edit_page_layout_tab.opened_pdf_info = m_opened_pdf_info;
-    m_edit_page_layout_tab.update_preview_image();
-
-    m_add_empty_pages_tab.page.setRange(1, m_opened_pdf_info.n_pages());
-
-    m_delete_pages_tab.set_num_pages(m_opened_pdf_info.n_pages());
-
-    m_extract_pages_tab.set_pdf_info(m_opened_pdf_info);
+    for (AbstractOperation *operation : m_operations)
+        operation->pdf_info_changed();
 }
 
-void MainWindow::generate_booklet_pressed()
+void MainWindow::write_started()
 {
-    QString selected_file = QFileDialog::getSaveFileName(
-                this,
-                tr("Save booklet PDF file"),
-                m_settings->value("save_directory",
-                                  m_settings->value("open_directory", "")
-                                  ).toString(),
-                tr("PDF files (*.pdf)"));
-
-    if (!selected_file.isNull())
-    {
-        if (selected_file.startsWith("/run/"))
-            // file paths are not real in flatpak
-            m_settings->setValue("save_directory", "");
-        else
-            m_settings->setValue(
-                        "save_directory",
-                        QFileInfo(selected_file).dir().absolutePath());
-
-        QProgressBar *pb = m_progress_bar;
-        std::function<void (int)> progress = [pb] (int p)
-        {
-            pb->setValue(p);
-        };
-
-        m_progress_bar->setValue(0);
-        m_progress_bar->show();
-
-        write_booklet_pdf(m_opened_pdf_info.filename(),
-                          selected_file.toStdString(),
-                          m_booklet_tab.booklet_binding.currentIndex(),
-                          progress);
-
-        QTimer::singleShot(4000, m_progress_bar, SLOT(hide()));
-
-        if (selected_file ==
-                QString::fromStdString(m_opened_pdf_info.filename()))
-            update_opened_file_label(selected_file);
-    }
-}
-
-void MainWindow::save_button_pressed(int from_page)
-{
-    QString filename =
-            QFileInfo(QString::fromStdString(
-                          m_opened_pdf_info.filename())).fileName();
-
-    if (m_settings->value("show_overwrite_warning", true).toBool())
-    {
-        QMessageBox warning(QMessageBox::Warning,
-                            tr("Overwrite File?"),
-                            tr("A file called «%1» already exists. "
-                               "Do you want to overwrite it?")
-                            .arg(filename),
-                            QMessageBox::Yes | QMessageBox::No);
-        warning.setDefaultButton(QMessageBox::No);
-
-        warning.setCheckBox(new QCheckBox(tr("Always overwrite")));
-
-        int button = warning.exec();
-
-        if (warning.checkBox()->isChecked())
-            m_settings->setValue("show_overwrite_warning", false);
-
-        if (button == QMessageBox::No)
-            return;
-    }
-
-    do_save(from_page,
-            QString::fromStdString(m_opened_pdf_info.filename()));
-}
-
-void MainWindow::save_as_button_pressed(int from_page)
-{
-    QString selected_file = QFileDialog::getSaveFileName(
-                this,
-                tr("Save PDF file"),
-                m_settings->value("save_directory",
-                                  m_settings->value("open_directory", "")
-                                  ).toString(),
-                tr("PDF files (*.pdf)"));
-
-    if (!selected_file.isNull())
-    {
-        if (selected_file.startsWith("/run/"))
-            // file paths are not real in flatpak
-            m_settings->setValue("save_directory", "");
-        else
-            m_settings->setValue(
-                        "save_directory",
-                        QFileInfo(selected_file).dir().absolutePath());
-
-        do_save(from_page, selected_file);
-    }
-}
-
-void MainWindow::do_save(int from_page, const QString &filename)
-{
-    QProgressBar *pb = m_progress_bar;
-    std::function<void (int)> progress = [pb] (int p)
-    {
-        pb->setValue(p);
-    };
-
     m_progress_bar->setValue(0);
     m_progress_bar->show();
+}
 
-    switch (from_page) {
-    case 0: {
-        Conf conf;
-
-        conf.output_path = filename.toStdString();
-        conf.alternate_mix = false;
-
-        FileConf fileconf;
-        fileconf.path = m_opened_pdf_info.filename();
-        fileconf.ouput_pages = "";
-        int mp_index = m_edit_page_layout_tab.multipage.currentData().toInt();
-        if (mp_index < 0)
-            fileconf.multipage_enabled = false;
-        else
-        {
-            fileconf.multipage_enabled = true;
-            fileconf.multipage = &multipages[mp_index];
-        }
-        fileconf.rotation =
-                m_edit_page_layout_tab.rotation.currentData().toInt();
-        fileconf.scale = m_edit_page_layout_tab.scale.value();
-        fileconf.outline_entry = "";
-        fileconf.reverse_order = false;
-
-        conf.files.push_back(fileconf);
-
-        write_pdf(conf, progress);
-
-        break;
-    }
-    case 1: {
-        int count = m_add_empty_pages_tab.count.value();
-
-        double page_width, page_height;
-        switch (m_add_empty_pages_tab.page_size.checkedId()) {
-        case 0: {
-            page_width = m_opened_pdf_info.width();
-            page_height = m_opened_pdf_info.height();
-            break;
-        }
-        case 1: {
-            page_width = m_add_empty_pages_tab.page_width.value();
-            page_height = m_add_empty_pages_tab.page_height.value();
-            break;
-        }
-        case 2: {
-            PaperSize size = paper_sizes[
-                    m_add_empty_pages_tab
-                    .standard_page_size.currentData().toUInt()];
-
-            if (m_add_empty_pages_tab.orientation.checkedId() == 0)
-            {
-                page_width = size.width;
-                page_height = size.height;
-            }
-            else
-            {
-                page_width = size.height;
-                page_height = size.width;
-            }
-            break;
-        }
-        }
-
-        int location = m_add_empty_pages_tab.page.value();
-        bool after = m_add_empty_pages_tab.before_after.checkedId();
-
-        write_add_empty_pages(m_opened_pdf_info.filename(),
-                              filename.toStdString(),
-                              count,
-                              page_width,
-                              page_height,
-                              location,
-                              after,
-                              progress);
-
-        break;
-    }
-    case 2: {
-        // FIXME this should be much more efficient
-        Conf conf;
-
-        conf.output_path = filename.toStdString();
-        conf.alternate_mix = false;
-
-        FileConf fileconf;
-        fileconf.path = m_opened_pdf_info.filename();
-        fileconf.ouput_pages =
-                m_delete_pages_tab.get_selection().toStdString();
-        fileconf.multipage_enabled = false;
-        fileconf.rotation = 0;
-        fileconf.outline_entry = "";
-        fileconf.reverse_order = false;
-
-        conf.files.push_back(fileconf);
-
-        write_pdf(conf, progress);
-
-        break;
-    }
-    }
-
-    QTimer::singleShot(4000, m_progress_bar, SLOT(hide()));
-
-    if (filename ==
-            QString::fromStdString(m_opened_pdf_info.filename()))
+void MainWindow::write_finished(const QString &filename)
+{
+    if (filename == QString::fromStdString(m_opened_pdf_info.filename()))
         update_opened_file_label(filename);
-}
 
-void MainWindow::extract_individual_button_pressed()
-{
-    QString dir_name = QFileDialog::getExistingDirectory(
-                this,
-                tr("Select save directory"),
-                m_settings->value("save_directory",
-                                  m_settings->value("open_directory", "")
-                                  ).toString(),
-                QFileDialog::ShowDirsOnly
-                | QFileDialog::DontResolveSymlinks);
+    QTimer::singleShot(2000, m_progress_bar, SLOT(hide()));
 
-    if (!dir_name.isNull())
+    QFileInfo info(filename);
+    if (info.isDir())
     {
-        if (dir_name.startsWith("/run/"))
-            // file paths are not real in flatpak
-            m_settings->setValue("save_directory", "");
-        else
-            m_settings->setValue(
-                        "save_directory",
-                        QFileInfo(dir_name).dir().absolutePath());
-
-        QProgressBar *pb = m_progress_bar;
-        std::function<void (int)> progress = [pb] (int p)
-        {
-            pb->setValue(p);
-        };
-
-        m_progress_bar->setValue(0);
-        m_progress_bar->show();
-
-        QDir dir(dir_name);
-        QString base_name = m_extract_pages_tab.get_base_name();
-
-        int output_pages_count;
-        std::vector<std::pair<int, int>> intervals;
-        parse_output_pages_string(
-                    m_extract_pages_tab.get_selection().toStdString(),
-                    m_opened_pdf_info.n_pages(),
-                    intervals,
-                    output_pages_count);
-
-        std::vector<std::pair<int, int>>::iterator it;
-        for (it = intervals.begin(); it != intervals.end(); ++it)
-        {
-            for (int i = it->first; i <= it->second; i++)
-            {
-                QString filename = base_name + QString("_%1.pdf").arg(i);
-
-                Conf conf;
-
-                conf.output_path = dir.filePath(filename).toStdString();
-                conf.alternate_mix = false;
-
-                FileConf fileconf;
-                fileconf.path = m_opened_pdf_info.filename();
-                fileconf.ouput_pages = std::to_string(i);
-                fileconf.multipage_enabled = false;
-                fileconf.rotation = 0;
-                fileconf.outline_entry = "";
-                fileconf.reverse_order = false;
-
-                conf.files.push_back(fileconf);
-
-                write_pdf(conf, progress);
-            }
-        }
-
-        QTimer::singleShot(4000, m_progress_bar, SLOT(hide()));
+        QString file_link = QString("<a href=\"file://%1\">%2</a>").arg(
+                    filename, info.fileName());
+        m_saved_file.setText(tr("Files saved in %1.").arg(file_link));
     }
-}
-
-void MainWindow::extract_single_button_pressed()
-{
-    QString selected_file = QFileDialog::getSaveFileName(
-                this,
-                tr("Extract to single PDF"),
-                m_settings->value("save_directory",
-                                  m_settings->value("open_directory", "")
-                                  ).toString(),
-                tr("PDF files (*.pdf)"));
-
-    if (!selected_file.isNull())
+    else
     {
-        if (selected_file.startsWith("/run/"))
-            // file paths are not real in flatpak
-            m_settings->setValue("save_directory", "");
-        else
-            m_settings->setValue(
-                        "save_directory",
-                        QFileInfo(selected_file).dir().absolutePath());
-
-        QProgressBar *pb = m_progress_bar;
-        std::function<void (int)> progress = [pb] (int p)
-        {
-            pb->setValue(p);
-        };
-
-        m_progress_bar->setValue(0);
-        m_progress_bar->show();
-
-        Conf conf;
-
-        conf.output_path = selected_file.toStdString();
-        conf.alternate_mix = false;
-
-        FileConf fileconf;
-        fileconf.path = m_opened_pdf_info.filename();
-        fileconf.ouput_pages =
-                m_extract_pages_tab.get_selection().toStdString();
-        fileconf.multipage_enabled = false;
-        fileconf.rotation = 0;
-        fileconf.outline_entry = "";
-        fileconf.reverse_order = false;
-
-        conf.files.push_back(fileconf);
-
-        write_pdf(conf, progress);
-
-        QTimer::singleShot(4000, m_progress_bar, SLOT(hide()));
-
-        if (selected_file ==
-                QString::fromStdString(m_opened_pdf_info.filename()))
-            update_opened_file_label(selected_file);
+        QString file_link = QString("<a href=\"file://%1\">%2</a>").arg(
+                    filename, info.fileName());
+        m_saved_file.setText(tr("File %1 saved.").arg(file_link));
     }
+
+    m_saved_file.show();
+
+    QTimer::singleShot(6000, &m_saved_file, SLOT(hide()));
 }
 
 void MainWindow::closeEvent(QCloseEvent *event)
 {
-    m_settings->setValue("main_window_geometry", this->saveGeometry());
+    settings->setValue("main_window_geometry", this->saveGeometry());
 
     // Save custom multipage profiles
-    m_settings->beginGroup("maltipage_profiles");
+    settings->beginGroup("maltipage_profiles");
 
-    for (QString key : m_settings->childKeys())
-        m_settings->remove(key);
+    for (QString key : settings->childKeys())
+        settings->remove(key);
 
     QMap<int, Multipage>::const_iterator it;
     for (
          it = multipages.constBegin();
          it != multipages.constEnd();
          ++it)
-        m_settings->setValue(
+        settings->setValue(
                     QString::number(it.key()),
                     QVariant::fromValue<Multipage>(it.value()));
 
-    m_settings->endGroup();
+    settings->endGroup();
 
     QMainWindow::closeEvent(event);
 }

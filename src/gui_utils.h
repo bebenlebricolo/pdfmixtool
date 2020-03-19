@@ -21,6 +21,7 @@
 
 #include <QPainter>
 #include <QMap>
+#include <QSettings>
 
 #include "pdf_edit_lib/definitions.h"
 
@@ -61,6 +62,7 @@ void draw_preview(QPainter *painter,
                   bool multipage_enabled,
                   const Multipage &multipage);
 
+extern QSettings *settings;
 extern QMap<int, Multipage> multipages;
 
 #endif // GUI_UTILS_H

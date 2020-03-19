@@ -24,12 +24,18 @@
 #include <QMessageBox>
 #include <QLabel>
 #include <QFileInfo>
+#include <QFileDialog>
 
 #include "../gui_utils.h"
 #include "../pdf_edit_lib/pdf_writer.h"
 
-ExtractPages::ExtractPages(QWidget *parent) : QWidget(parent)
+ExtractPages::ExtractPages(const PdfInfo &pdf_info,
+                           QProgressBar *progress_bar,
+                           QWidget *parent) :
+      AbstractOperation(pdf_info, progress_bar, parent)
 {
+    m_name = tr("Extract pages");
+
     QVBoxLayout *v_layout = new QVBoxLayout();
     QGridLayout *grid_layout = new QGridLayout();
     QHBoxLayout *h_layout = new QHBoxLayout();
@@ -80,52 +86,18 @@ ExtractPages::ExtractPages(QWidget *parent) : QWidget(parent)
     h_layout->addWidget(extract_single_button);
 
     connect(extract_individual_button, &QPushButton::pressed,
-            [=]() {if (check_selection())
-            extract_individual_button_pressed();});
+            [=]() {if (check_selection()) extract_to_individual();});
     connect(extract_single_button, &QPushButton::pressed,
-            [=]() {if (check_selection()) extract_single_button_pressed();});
+            [=]() {if (check_selection()) extract_to_single();});
 }
 
-void ExtractPages::set_pdf_info(const PdfInfo &pdf_info)
+void ExtractPages::pdf_info_changed()
 {
-    m_pdf_info = pdf_info;
+    AbstractOperation::pdf_info_changed();
 
-    QFileInfo file_info(QString::fromStdString(pdf_info.filename()));
+    QFileInfo file_info(QString::fromStdString(m_pdf_info->filename()));
 
     m_base_name.setText(file_info.completeBaseName());
-}
-
-QString ExtractPages::get_selection()
-{
-    QString s;
-
-    switch (m_extraction_type.checkedId()) {
-    case 0: {
-        return m_selection.text();
-    }
-    case 1: {
-        return "";
-    }
-    case 2: {
-        for (int i = 1; i <= m_pdf_info.n_pages(); i++)
-            if (i % 2 == 0)
-                s += QString::number(i) + ",";
-        break;
-    }
-    case 3: {
-        for (int i = 1; i <= m_pdf_info.n_pages(); i++)
-            if (i % 2 == 1)
-                s += QString::number(i) + ",";
-        break;
-    }
-    }
-
-    return s;
-}
-
-QString ExtractPages::get_base_name()
-{
-    return m_base_name.text();
 }
 
 bool ExtractPages::check_selection()
@@ -137,7 +109,7 @@ bool ExtractPages::check_selection()
     std::vector<std::pair<int, int>> intervals;
     if (m_selection.text().toStdString().empty() ||
             !parse_output_pages_string(m_selection.text().toStdString(),
-                                       m_pdf_info.n_pages(),
+                                       m_pdf_info->n_pages(),
                                        intervals,
                                        output_pages_count))
     {
@@ -164,4 +136,157 @@ bool ExtractPages::check_selection()
     }
 
     return true;
+}
+
+QString ExtractPages::get_selection()
+{
+    QString s;
+
+    switch (m_extraction_type.checkedId()) {
+    case 0: {
+        return m_selection.text();
+    }
+    case 1: {
+        return "";
+    }
+    case 2: {
+        for (int i = 1; i <= m_pdf_info->n_pages(); i++)
+            if (i % 2 == 0)
+                s += QString::number(i) + ",";
+        break;
+    }
+    case 3: {
+        for (int i = 1; i <= m_pdf_info->n_pages(); i++)
+            if (i % 2 == 1)
+                s += QString::number(i) + ",";
+        break;
+    }
+    }
+
+    return s;
+}
+
+void ExtractPages::extract_to_individual()
+{
+    QString dir_name = QFileDialog::getExistingDirectory(
+                this,
+                tr("Select save directory"),
+                settings->value("save_directory",
+                                  settings->value("open_directory", "")
+                                  ).toString(),
+                QFileDialog::ShowDirsOnly
+                | QFileDialog::DontResolveSymlinks);
+
+    if (!dir_name.isNull())
+    {
+        emit write_started();
+
+        if (dir_name.startsWith("/run/"))
+            // file paths are not real in flatpak
+            settings->setValue("save_directory", "");
+        else
+            settings->setValue(
+                        "save_directory",
+                        QFileInfo(dir_name).dir().absolutePath());
+
+        QProgressBar *pb = m_progress_bar;
+        std::function<void (int)> progress = [pb] (int p)
+        {
+            pb->setValue(p);
+        };
+
+        m_progress_bar->setValue(0);
+        m_progress_bar->show();
+
+        QDir dir(dir_name);
+        QString base_name = m_base_name.text();
+
+        int output_pages_count;
+        std::vector<std::pair<int, int>> intervals;
+        parse_output_pages_string(
+                    get_selection().toStdString(),
+                    m_pdf_info->n_pages(),
+                    intervals,
+                    output_pages_count);
+
+        std::vector<std::pair<int, int>>::iterator it;
+        for (it = intervals.begin(); it != intervals.end(); ++it)
+        {
+            for (int i = it->first; i <= it->second; i++)
+            {
+                QString filename = base_name + QString("_%1.pdf").arg(i);
+
+                Conf conf;
+
+                conf.output_path = dir.filePath(filename).toStdString();
+                conf.alternate_mix = false;
+
+                FileConf fileconf;
+                fileconf.path = m_pdf_info->filename();
+                fileconf.ouput_pages = std::to_string(i);
+                fileconf.multipage_enabled = false;
+                fileconf.rotation = 0;
+                fileconf.outline_entry = "";
+                fileconf.reverse_order = false;
+
+                conf.files.push_back(fileconf);
+
+                write_pdf(conf, progress);
+            }
+        }
+
+        emit write_finished(dir_name);
+    }
+}
+
+void ExtractPages::extract_to_single()
+{
+    m_save_filename = QFileDialog::getSaveFileName(
+                this,
+                tr("Extract to single PDF"),
+                settings->value("save_directory",
+                                  settings->value("open_directory", "")
+                                  ).toString(),
+                tr("PDF files (*.pdf)"));
+
+    if (!m_save_filename.isNull())
+    {
+        emit write_started();
+
+        if (m_save_filename.startsWith("/run/"))
+            // file paths are not real in flatpak
+            settings->setValue("save_directory", "");
+        else
+            settings->setValue(
+                        "save_directory",
+                        QFileInfo(m_save_filename).dir().absolutePath());
+
+        QProgressBar *pb = m_progress_bar;
+        std::function<void (int)> progress = [pb] (int p)
+        {
+            pb->setValue(p);
+        };
+
+        m_progress_bar->setValue(0);
+        m_progress_bar->show();
+
+        Conf conf;
+
+        conf.output_path = m_save_filename.toStdString();
+        conf.alternate_mix = false;
+
+        FileConf fileconf;
+        fileconf.path = m_pdf_info->filename();
+        fileconf.ouput_pages = get_selection().toStdString();
+        fileconf.multipage_enabled = false;
+        fileconf.rotation = 0;
+        fileconf.outline_entry = "";
+        fileconf.reverse_order = false;
+
+        conf.files.push_back(fileconf);
+
+        write_pdf(conf, progress);
+
+        emit write_finished(m_save_filename);
+    }
 }

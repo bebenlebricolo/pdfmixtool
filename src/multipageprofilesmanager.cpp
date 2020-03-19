@@ -23,12 +23,9 @@
 
 #include "gui_utils.h"
 
-MultipageProfilesManager::MultipageProfilesManager(
-        QSettings *app_settings,
-        QWidget *parent) :
+MultipageProfilesManager::MultipageProfilesManager(QWidget *parent) :
     QMainWindow(parent),
     m_edit_dialog(new EditMultipageProfileDialog(this)),
-    m_settings(app_settings),
     m_new_profile_button(new QPushButton(
                              QIcon::fromTheme("list-add"),
                              tr("New profile…"),
@@ -40,7 +37,7 @@ MultipageProfilesManager::MultipageProfilesManager(
     m_profiles_view(new QListView(this)),
     m_profiles_model(new QStandardItemModel(this))
 {
-    this->restoreGeometry(m_settings
+    this->restoreGeometry(settings
                           ->value("multipage_profiles_manager_geometry")
                           .toByteArray());
     this->setWindowTitle(tr("Manage multipage profiles"));
@@ -243,7 +240,7 @@ void MultipageProfilesManager::edit_dialog_closed()
 
 void MultipageProfilesManager::show()
 {
-    this->restoreGeometry(m_settings
+    this->restoreGeometry(settings
                           ->value("multipage_profiles_manager_geometry")
                           .toByteArray());
     QMainWindow::show();
@@ -251,7 +248,7 @@ void MultipageProfilesManager::show()
 
 void MultipageProfilesManager::closeEvent(QCloseEvent *event)
 {
-    m_settings->setValue("multipage_profiles_manager_geometry",
+    settings->setValue("multipage_profiles_manager_geometry",
                          this->saveGeometry());
 
     emit(close_signal());

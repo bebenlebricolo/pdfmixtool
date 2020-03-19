@@ -19,36 +19,35 @@
 #ifndef EXTRACTPAGES_H
 #define EXTRACTPAGES_H
 
-#include <QWidget>
 #include <QButtonGroup>
 #include <QLineEdit>
 
+#include "abstract_operation.h"
 #include "../pdf_edit_lib/pdf_info.h"
 
-class ExtractPages : public QWidget
+class ExtractPages : public AbstractOperation
 {
     Q_OBJECT
 public:
-    explicit ExtractPages(QWidget *parent = nullptr);
+    explicit ExtractPages(const PdfInfo &pdf_info,
+                          QProgressBar *progress_bar,
+                          QWidget *parent = nullptr);
 
-    void set_pdf_info(const PdfInfo &pdf_info);
-
-    QString get_selection();
-
-    QString get_base_name();
-
-signals:
-    void extract_individual_button_pressed();
-    void extract_single_button_pressed();
+public slots:
+    void pdf_info_changed();
 
 private:
     QButtonGroup m_extraction_type;
     QLineEdit m_selection;
     QLineEdit m_base_name;
 
-    PdfInfo m_pdf_info;
-
     bool check_selection();
+
+    QString get_selection();
+
+    void extract_to_individual();
+
+    void extract_to_single();
 };
 
 #endif // EXTRACTPAGES_H

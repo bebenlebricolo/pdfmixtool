@@ -84,67 +84,67 @@
     <message>
         <location filename="../src/single_file_operations/add_empty_pages.cpp" line="40"/>
         <source>Count:</source>
-        <translation type="unfinished"></translation>
+        <translation>Contagem:</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/add_empty_pages.cpp" line="44"/>
         <source>Page size</source>
-        <translation type="unfinished"></translation>
+        <translation>Tamanho da página</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/add_empty_pages.cpp" line="47"/>
         <source>Same as document</source>
-        <translation type="unfinished"></translation>
+        <translation>Igual ao do documento</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/add_empty_pages.cpp" line="50"/>
         <source>Custom:</source>
-        <translation type="unfinished"></translation>
+        <translation>Personalizado:</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/add_empty_pages.cpp" line="75"/>
         <source>Standard:</source>
-        <translation type="unfinished"></translation>
+        <translation>Padrão:</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/add_empty_pages.cpp" line="84"/>
         <source>Portrait</source>
-        <translation type="unfinished"></translation>
+        <translation>Vertical</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/add_empty_pages.cpp" line="86"/>
         <source>Landscape</source>
-        <translation type="unfinished"></translation>
+        <translation>Horizontal</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/add_empty_pages.cpp" line="89"/>
         <source>Location</source>
-        <translation type="unfinished"></translation>
+        <translation>Localização</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/add_empty_pages.cpp" line="92"/>
         <source>Before</source>
-        <translation type="unfinished"></translation>
+        <translation>Antes</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/add_empty_pages.cpp" line="94"/>
         <source>After</source>
-        <translation type="unfinished"></translation>
+        <translation>Depois</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/add_empty_pages.cpp" line="97"/>
         <source>Page:</source>
-        <translation type="unfinished"></translation>
+        <translation>Página:</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/add_empty_pages.cpp" line="111"/>
         <source>Save</source>
-        <translation type="unfinished"></translation>
+        <translation>Guardar</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/add_empty_pages.cpp" line="122"/>
         <source>Save as…</source>
-        <translation type="unfinished"></translation>
+        <translation>Guardar como…</translation>
     </message>
 </context>
 <context>
@@ -152,22 +152,22 @@
     <message>
         <location filename="../src/single_file_operations/booklet.cpp" line="34"/>
         <source>Left</source>
-        <translation type="unfinished">Esquerda</translation>
+        <translation>Esquerda</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/booklet.cpp" line="35"/>
         <source>Right</source>
-        <translation type="unfinished">Direita</translation>
+        <translation>Direita</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/booklet.cpp" line="36"/>
         <source>Binding:</source>
-        <translation type="unfinished"></translation>
+        <translation>Associação:</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/booklet.cpp" line="41"/>
         <source>Generate booklet</source>
-        <translation type="unfinished"></translation>
+        <translation>Gerar livro</translation>
     </message>
 </context>
 <context>
@@ -175,27 +175,27 @@
     <message>
         <location filename="../src/single_file_operations/delete_pages.cpp" line="41"/>
         <source>Delete pages:</source>
-        <translation type="unfinished"></translation>
+        <translation>Apagar páginas:</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/delete_pages.cpp" line="43"/>
         <source>Delete even pages</source>
-        <translation type="unfinished"></translation>
+        <translation>Apagar páginas pares</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/delete_pages.cpp" line="45"/>
         <source>Delete odd pages</source>
-        <translation type="unfinished"></translation>
+        <translation>Apagar páginas ímpares</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/delete_pages.cpp" line="61"/>
         <source>Save</source>
-        <translation type="unfinished"></translation>
+        <translation>Guardar</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/delete_pages.cpp" line="72"/>
         <source>Save as…</source>
-        <translation type="unfinished"></translation>
+        <translation>Guardar como…</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/delete_pages.cpp" line="153"/>
@@ -205,7 +205,7 @@
     <message>
         <location filename="../src/single_file_operations/delete_pages.cpp" line="168"/>
         <source>Error</source>
-        <translation type="unfinished">Erro</translation>
+        <translation>Erro</translation>
     </message>
 </context>
 <context>
@@ -311,46 +311,46 @@
     <message>
         <location filename="../src/single_file_operations/edit_page_layout.cpp" line="49"/>
         <source>No rotation</source>
-        <translation type="unfinished">Sem rotação</translation>
+        <translation>Sem rotação</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/edit_page_layout.cpp" line="56"/>
         <source>Rotation:</source>
-        <translation type="unfinished">Rotação:</translation>
+        <translation>Rotação:</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/edit_page_layout.cpp" line="58"/>
         <location filename="../src/single_file_operations/edit_page_layout.cpp" line="121"/>
         <location filename="../src/single_file_operations/edit_page_layout.cpp" line="208"/>
         <source>Disabled</source>
-        <translation type="unfinished">Desativado</translation>
+        <translation>Desativado</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/edit_page_layout.cpp" line="66"/>
         <location filename="../src/single_file_operations/edit_page_layout.cpp" line="133"/>
         <location filename="../src/single_file_operations/edit_page_layout.cpp" line="216"/>
         <source>New custom profile…</source>
-        <translation type="unfinished">Novo perfil personalizado…</translation>
+        <translation>Novo perfil personalizado…</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/edit_page_layout.cpp" line="72"/>
         <source>Multipage:</source>
-        <translation type="unfinished"></translation>
+        <translation>Multi-página:</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/edit_page_layout.cpp" line="80"/>
         <source>Scale page:</source>
-        <translation type="unfinished"></translation>
+        <translation>Escala:</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/edit_page_layout.cpp" line="88"/>
         <source>Save</source>
-        <translation type="unfinished"></translation>
+        <translation>Guardar</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/edit_page_layout.cpp" line="101"/>
         <source>Save as…</source>
-        <translation type="unfinished"></translation>
+        <translation>Guardar como…</translation>
     </message>
 </context>
 <context>
@@ -383,7 +383,7 @@
     <message>
         <location filename="../src/editpdfentrydialog.cpp" line="103"/>
         <source>Multipage:</source>
-        <translation>Páginas múltiplas:</translation>
+        <translation>Multi-página:</translation>
     </message>
     <message>
         <location filename="../src/editpdfentrydialog.cpp" line="105"/>
@@ -396,37 +396,37 @@
     <message>
         <location filename="../src/single_file_operations/extract_pages.cpp" line="44"/>
         <source>Extract pages:</source>
-        <translation type="unfinished"></translation>
+        <translation>Extrair páginas:</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/extract_pages.cpp" line="47"/>
         <source>Extract all pages</source>
-        <translation type="unfinished"></translation>
+        <translation>Extrair todas as páginas</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/extract_pages.cpp" line="50"/>
         <source>Extract even pages</source>
-        <translation type="unfinished"></translation>
+        <translation>Extrair páginas pares</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/extract_pages.cpp" line="53"/>
         <source>Extract odd pages</source>
-        <translation type="unfinished"></translation>
+        <translation>Extrair páginas ímpares</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/extract_pages.cpp" line="60"/>
         <source>Output PDF base name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nome do PDF de destino:</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/extract_pages.cpp" line="73"/>
         <source>Extract to individual PDF files</source>
-        <translation type="unfinished"></translation>
+        <translation>Extrair para ficheiros distintos</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/extract_pages.cpp" line="77"/>
         <source>Extract to single PDF</source>
-        <translation type="unfinished"></translation>
+        <translation>Extrair para um ficheiro</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/extract_pages.cpp" line="145"/>
@@ -436,7 +436,7 @@
     <message>
         <location filename="../src/single_file_operations/extract_pages.cpp" line="160"/>
         <source>Error</source>
-        <translation type="unfinished">Erro</translation>
+        <translation>Erro</translation>
     </message>
 </context>
 <context>
@@ -449,17 +449,17 @@
     <message>
         <location filename="../src/inputpdffiledelegate.cpp" line="80"/>
         <source>Page order:</source>
-        <translation type="unfinished"></translation>
+        <translation>Ordem das páginas:</translation>
     </message>
     <message>
         <location filename="../src/inputpdffiledelegate.cpp" line="83"/>
         <source>reverse</source>
-        <translation type="unfinished"></translation>
+        <translation>inversa</translation>
     </message>
     <message>
         <location filename="../src/inputpdffiledelegate.cpp" line="85"/>
         <source>forward</source>
-        <translation type="unfinished"></translation>
+        <translation>normal</translation>
     </message>
     <message>
         <location filename="../src/inputpdffiledelegate.cpp" line="126"/>
@@ -469,7 +469,7 @@
     <message>
         <location filename="../src/inputpdffiledelegate.cpp" line="129"/>
         <source>Multipage:</source>
-        <translation>Múltiplas páginas:</translation>
+        <translation>Multi-página:</translation>
     </message>
     <message>
         <location filename="../src/inputpdffiledelegate.cpp" line="134"/>
@@ -492,7 +492,7 @@
     <message>
         <location filename="../src/inputpdffilewidget.cpp" line="57"/>
         <source>Reverse page order:</source>
-        <translation type="unfinished"></translation>
+        <translation>Ordem inversa de páginas:</translation>
     </message>
     <message>
         <location filename="../src/inputpdffilewidget.cpp" line="71"/>
@@ -517,7 +517,7 @@
     <message>
         <location filename="../src/inputpdffilewidget.cpp" line="88"/>
         <source>Multipage:</source>
-        <translation>Múltiplas páginas:</translation>
+        <translation>Multi-página:</translation>
     </message>
     <message>
         <location filename="../src/inputpdffilewidget.cpp" line="90"/>
@@ -566,7 +566,7 @@
     <message>
         <location filename="../src/mainwindow.cpp" line="307"/>
         <source>Edit page layout</source>
-        <translation type="unfinished"></translation>
+        <translation>Editar esquema das páginas</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="628"/>
@@ -586,7 +586,7 @@
     <message>
         <location filename="../src/mainwindow.cpp" line="163"/>
         <source>View</source>
-        <translation>Vista</translation>
+        <translation>Ver</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="166"/>
@@ -601,12 +601,12 @@
     <message>
         <location filename="../src/mainwindow.cpp" line="97"/>
         <source>Multiple files</source>
-        <translation type="unfinished"></translation>
+        <translation>Vários ficheiros</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="98"/>
         <source>Single file</source>
-        <translation type="unfinished"></translation>
+        <translation>Um ficheiro</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="121"/>
@@ -621,42 +621,42 @@
     <message>
         <location filename="../src/mainwindow.cpp" line="278"/>
         <source>Open PDF file…</source>
-        <translation type="unfinished"></translation>
+        <translation>Abrir PDF…</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="302"/>
         <source>Booklet</source>
-        <translation type="unfinished"></translation>
+        <translation>Livro</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="784"/>
         <source>Always overwrite</source>
-        <translation type="unfinished"></translation>
+        <translation>Substituir sempre</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="939"/>
         <source>Select save directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Diretório para gravação</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="1002"/>
         <source>Extract to single PDF</source>
-        <translation type="unfinished"></translation>
+        <translation>Extrair para um ficheiro</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="329"/>
         <source>Add empty pages</source>
-        <translation type="unfinished"></translation>
+        <translation>Adicionar páginas vazias</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="336"/>
         <source>Delete pages</source>
-        <translation type="unfinished"></translation>
+        <translation>Apagar páginas</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="343"/>
         <source>Extract pages</source>
-        <translation type="unfinished"></translation>
+        <translation>Extrair páginas</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="378"/>
@@ -676,17 +676,17 @@
     <message>
         <location filename="../src/mainwindow.cpp" line="703"/>
         <source>Select a PDF file</source>
-        <translation type="unfinished"></translation>
+        <translation>Selecione um PDF</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="738"/>
         <source>Save booklet PDF file</source>
-        <translation type="unfinished"></translation>
+        <translation>Guardar PDF como livro</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="777"/>
         <source>Overwrite File?</source>
-        <translation type="unfinished"></translation>
+        <translation>Substituir?</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="778"/>
@@ -725,7 +725,7 @@
     <message>
         <location filename="../src/multipageprofilesmanager.cpp" line="79"/>
         <source>Edit profile</source>
-        <translation type="unfinished"></translation>
+        <translation>Editar perfil</translation>
     </message>
     <message>
         <location filename="../src/multipageprofilesmanager.cpp" line="125"/>
@@ -762,17 +762,17 @@
     <message>
         <location filename="../src/pdfinfolabel.cpp" line="52"/>
         <source>portrait</source>
-        <translation type="unfinished">vertical</translation>
+        <translation>vertical</translation>
     </message>
     <message>
         <location filename="../src/pdfinfolabel.cpp" line="53"/>
         <source>landscape</source>
-        <translation type="unfinished">horizontal</translation>
+        <translation>horizontal</translation>
     </message>
     <message numerus="yes">
         <location filename="../src/pdfinfolabel.cpp" line="63"/>
         <source>%n page(s)</source>
-        <translation type="unfinished">
+        <translation>
             <numerusform>%n página</numerusform>
             <numerusform>%n páginas</numerusform>
         </translation>

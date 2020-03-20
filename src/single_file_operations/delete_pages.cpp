@@ -141,7 +141,9 @@ void DeletePages::save()
 {
     emit write_started();
 
-    QString s;
+    std::vector<bool> pages;
+    for (int i = 0; i < m_pdf_info->n_pages(); i++)
+        pages.push_back(false);
 
     switch (m_selection_type.checkedId()) {
     case 0: {
@@ -153,48 +155,23 @@ void DeletePages::save()
                                   intervals,
                                   output_pages_count);
 
-        for (int i = 1; i <= m_pdf_info->n_pages(); i++)
-        {
-            std::vector<std::pair<int, int>>::iterator it;
-            for (it = intervals.begin(); it != intervals.end(); ++it)
-                if (i >= it->first && i <= it->second)
-                    goto cnt;
-
-            s += QString::number(i) + ",";
-
-            cnt:;
-        }
+        std::vector<std::pair<int, int>>::iterator it;
+        for (it = intervals.begin(); it != intervals.end(); ++it)
+            for (int i = it->first - 1; i < it->second; i++)
+                pages[i] = true;
         break;
     }
     case 1: {
-        for (int i = 1; i <= m_pdf_info->n_pages(); i++)
-            if (i % 2 == 1)
-                s += QString::number(i) + ",";
+        for (int i = 1; i < m_pdf_info->n_pages(); i += 2)
+            pages[i] = true;
         break;
     }
     case 2: {
-        for (int i = 1; i <= m_pdf_info->n_pages(); i++)
-            if (i % 2 == 0)
-                s += QString::number(i) + ",";
+        for (int i = 0; i < m_pdf_info->n_pages(); i += 2)
+            pages[i] = true;
         break;
     }
     }
-
-    // FIXME this should be much more efficient
-    Conf conf;
-
-    conf.output_path = m_save_filename.toStdString();
-    conf.alternate_mix = false;
-
-    FileConf fileconf;
-    fileconf.path = m_pdf_info->filename();
-    fileconf.ouput_pages = s.toStdString();
-    fileconf.multipage_enabled = false;
-    fileconf.rotation = 0;
-    fileconf.outline_entry = "";
-    fileconf.reverse_order = false;
-
-    conf.files.push_back(fileconf);
 
     QProgressBar *pb = m_progress_bar;
     std::function<void (int)> progress = [pb] (int p)
@@ -202,6 +179,10 @@ void DeletePages::save()
         pb->setValue(p);
     };
 
-    write_pdf(conf, progress);
+    write_delete_pages(m_pdf_info->filename(),
+                       m_save_filename.toStdString(),
+                       pages,
+                       progress);
+
     emit write_finished(m_save_filename);
 }

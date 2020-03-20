@@ -18,6 +18,7 @@
 
 #include <cmath>
 #include <cstdio>
+#include <fstream>
 #include <iostream>
 #include <sstream>
 #include <locale>
@@ -704,17 +705,13 @@ void write_add_empty_pages(const std::string &input_filename,
                            double page_width,
                            double page_height,
                            int location,
-                           bool after,
+                           bool before,
                            std::function<void (int)>& progress)
 {
     std::locale old_locale = std::locale::global(std::locale::classic());
 
-    QPDF output_file;
-    output_file.emptyPDF();
-
     QPDF input_file;
     input_file.processFile(input_filename.c_str());
-    input_file.setImmediateCopyFrom(true);
 
     // Add pages to the output file
     std::string blank_page_string = "<</Type/Page/MediaBox[0 0 " +
@@ -722,40 +719,75 @@ void write_add_empty_pages(const std::string &input_filename,
             std::to_string(page_height * cm) +
             "]/Resources<</ProcSet[/PDF/Text/ImageB/ImageC/ImageI]>>>>";
 
-    std::vector<QPDFPageObjectHelper> const &pages =
+    QPDFPageObjectHelper page =
+            QPDFPageDocumentHelper(input_file).getAllPages().at(location - 1);
+
+    for (int i = 0; i < count; i++)
+    {
+        QPDFObjectHandle blank_page_object = QPDFObjectHandle::parse(
+                    blank_page_string,
+                    "blank page");
+        QPDFPageObjectHelper blank_page(blank_page_object);
+        QPDFPageDocumentHelper(input_file).addPageAt(blank_page,
+                                                     before,
+                                                     page);
+
+        progress(i / count * 100);
+    }
+
+    // write pdf
+    QPDFWriter writer(input_file);
+    writer.setOutputMemory();
+    writer.write();
+    Buffer *buffer = writer.getBuffer();
+
+    const char *buf = reinterpret_cast<const char *>(buffer->getBuffer());
+
+    std::ofstream output_file;
+    output_file.open(output_filename);
+    output_file.write(buf, buffer->getSize());
+    output_file.close();
+    delete buffer;
+
+    progress(100);
+
+    std::locale::global(old_locale);
+}
+
+void write_delete_pages(const std::string &input_filename,
+                        const std::string &output_filename,
+                        const std::vector<bool> &pages,
+                        std::function<void (int)>& progress)
+{
+    std::locale old_locale = std::locale::global(std::locale::classic());
+
+    QPDF input_file;
+    input_file.processFile(input_filename.c_str());
+
+    std::vector<QPDFPageObjectHelper> starting_pages =
             QPDFPageDocumentHelper(input_file).getAllPages();
 
     for (unsigned int i = 0; i < pages.size(); i++)
     {
-        QPDFPageObjectHelper page = pages.at(i);
-        page = page.shallowCopyPage();
-
-        if (i == location - 1)
-        {
-            if (after)
-                QPDFPageDocumentHelper(output_file).addPage(page, false);
-
-            for (int j = 0; j < count; j++)
-            {
-                QPDFObjectHandle blank_page_object = QPDFObjectHandle::parse(
-                            blank_page_string,
-                            "blank page");
-                QPDFPageObjectHelper blank_page(blank_page_object);
-                QPDFPageDocumentHelper(output_file).addPage(blank_page, false);
-            }
-
-            if (!after)
-                QPDFPageDocumentHelper(output_file).addPage(page, false);
-        }
-        else
-            QPDFPageDocumentHelper(output_file).addPage(page, false);
+        if (pages[i])
+            QPDFPageDocumentHelper(input_file).removePage(starting_pages.at(i));
 
         progress(i / pages.size() * 100);
     }
 
     // write pdf
-    QPDFWriter writer(output_file, output_filename.c_str());
+    QPDFWriter writer(input_file);
+    writer.setOutputMemory();
     writer.write();
+    Buffer *buffer = writer.getBuffer();
+
+    const char *buf = reinterpret_cast<const char *>(buffer->getBuffer());
+
+    std::ofstream output_file;
+    output_file.open(output_filename);
+    output_file.write(buf, buffer->getSize());
+    output_file.close();
+    delete buffer;
 
     progress(100);
 

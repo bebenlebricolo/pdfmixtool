@@ -187,7 +187,7 @@ void AddEmptyPages::save()
     }
 
     int location = m_page.value();
-    bool after = m_before_after.checkedId();
+    bool before = !m_before_after.checkedId();
 
     QProgressBar *pb = m_progress_bar;
     std::function<void (int)> progress = [pb] (int p)
@@ -201,7 +201,7 @@ void AddEmptyPages::save()
                           page_width,
                           page_height,
                           location,
-                          after,
+                          before,
                           progress);
 
     emit write_finished(m_save_filename);

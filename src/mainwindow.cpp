@@ -55,8 +55,7 @@ MainWindow::MainWindow(MouseEventFilter *filter, QWidget *parent) :
                                   qApp->applicationDirPath())));
     this->setWindowTitle(qApp->applicationDisplayName());
     this->restoreGeometry(
-                settings->value("main_window_geometry").toByteArray()
-                );
+                settings->value("main_window_geometry").toByteArray());
 
     // Delete profiles of old versions
     settings->beginGroup("custom_maltipage_profiles");

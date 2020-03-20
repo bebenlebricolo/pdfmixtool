@@ -44,7 +44,12 @@ void write_add_empty_pages(const std::string &input_filename,
                            double page_width,
                            double page_height,
                            int location,
-                           bool after,
+                           bool before,
                            std::function<void (int)>& progress);
+
+void write_delete_pages(const std::string &input_filename,
+                        const std::string &output_filename,
+                        const std::vector<bool> &pages,
+                        std::function<void (int)>& progress);
 
 #endif // PDF_WRITER_H

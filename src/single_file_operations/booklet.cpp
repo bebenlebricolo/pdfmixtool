@@ -46,7 +46,8 @@ AbstractOperation(pdf_info, progress_bar, parent)
     h_layout->addItem(new QSpacerItem(0, 0,
                                       QSizePolicy::Expanding,
                                       QSizePolicy::Minimum));
-    QPushButton *button = new QPushButton(tr("Generate booklet"), this);
+    QPushButton *button = new QPushButton(QIcon::fromTheme("document-save-as"),
+                                          tr("Generate booklet"), this);
     button->setShortcut(QKeySequence::Save);
     button->setToolTip(
                 QString(TOOLTIP_STRING)

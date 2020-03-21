@@ -36,15 +36,10 @@ ExtractPages::ExtractPages(const PdfInfo &pdf_info,
 {
     m_name = tr("Extract pages");
 
-    QVBoxLayout *v_layout = new QVBoxLayout();
     QGridLayout *grid_layout = new QGridLayout();
-    QHBoxLayout *h_layout = new QHBoxLayout();
-    v_layout->addLayout(grid_layout);
-    v_layout->addItem(new QSpacerItem(0, 0,
-                                      QSizePolicy::Minimum,
-                                      QSizePolicy::Expanding));
-    v_layout->addLayout(h_layout);
-    this->setLayout(v_layout);
+    grid_layout->setColumnStretch(0, 0);
+    grid_layout->setColumnStretch(1, 1);
+    this->setLayout(grid_layout);
 
     m_extraction_type.addButton(
                 new QRadioButton(tr("Extract pages:"), this), 0);
@@ -63,32 +58,50 @@ ExtractPages::ExtractPages(const PdfInfo &pdf_info,
     grid_layout->addWidget(&m_selection, 0, 1);
     m_selection.setClearButtonEnabled(true);
 
+    grid_layout->addItem(new QSpacerItem(0, 0,
+                                         QSizePolicy::Minimum,
+                                         QSizePolicy::Expanding), 4, 0, 1, 2);
+
+    QLabel *label = new QLabel("<b>" +
+                               tr("Extract to individual PDF files") +
+                               "</b>", this);
+    grid_layout->addWidget(label, 5, 0, 1, 2);
+
     grid_layout->addWidget(new QLabel(tr("Output PDF base name:"), this),
-                           4, 0);
-    grid_layout->addWidget(&m_base_name, 4, 1);
+                           6, 0);
+    grid_layout->addWidget(&m_base_name, 6, 1);
     m_selection.setClearButtonEnabled(true);
 
-    grid_layout->setColumnStretch(0, 0);
-    grid_layout->setColumnStretch(1, 1);
+    QPushButton *extract_individual_button = new QPushButton(
+                QIcon::fromTheme("document-save-as"),
+                tr("Extract…"),
+                this);
+    connect(extract_individual_button, &QPushButton::pressed,
+            [=]() {if (check_selection()) extract_to_individual();});
 
+    QHBoxLayout *h_layout = new QHBoxLayout();
     h_layout->addItem(new QSpacerItem(0, 0,
                                       QSizePolicy::Expanding,
                                       QSizePolicy::Minimum));
+    h_layout->addWidget(extract_individual_button);
+    grid_layout->addLayout(h_layout, 7, 0, 1, 2);
 
-    QPushButton *extract_individual_button = new QPushButton(
-                tr("Extract to individual PDF files"),
-                this);
+    label = new QLabel("<b>" + tr("Extract to single PDF") + "</b>", this);
+    grid_layout->addWidget(label, 8, 0, 1, 2);
 
     QPushButton *extract_single_button = new QPushButton(
-                tr("Extract to single PDF"),
+                QIcon::fromTheme("document-save-as"),
+                tr("Extract…"),
                 this);
-    h_layout->addWidget(extract_individual_button);
-    h_layout->addWidget(extract_single_button);
-
-    connect(extract_individual_button, &QPushButton::pressed,
-            [=]() {if (check_selection()) extract_to_individual();});
     connect(extract_single_button, &QPushButton::pressed,
             [=]() {if (check_selection()) extract_to_single();});
+
+    h_layout = new QHBoxLayout();
+    h_layout->addItem(new QSpacerItem(0, 0,
+                                      QSizePolicy::Expanding,
+                                      QSizePolicy::Minimum));
+    h_layout->addWidget(extract_single_button);
+    grid_layout->addLayout(h_layout, 9, 0, 1, 2);
 }
 
 void ExtractPages::pdf_info_changed()

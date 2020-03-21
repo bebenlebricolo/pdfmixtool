@@ -32,6 +32,7 @@
 #include <QStatusBar>
 #include <QRadioButton>
 #include <QTimer>
+#include <QScrollBar>
 
 #include "aboutdialog.h"
 #include "editpdfentrydialog.h"
@@ -281,7 +282,8 @@ MainWindow::MainWindow(MouseEventFilter *filter, QWidget *parent) :
     h_layout = new QHBoxLayout();
     v_layout->addLayout(h_layout);
 
-    QPushButton *open_button = new QPushButton(tr("Open PDF file…"), this);
+    QPushButton *open_button = new QPushButton(
+                QIcon::fromTheme("document-open"), tr("Open PDF file…"), this);
     open_button->setShortcut(QKeySequence::Open);
     open_button->setToolTip(
                 QString(TOOLTIP_STRING)
@@ -308,10 +310,7 @@ MainWindow::MainWindow(MouseEventFilter *filter, QWidget *parent) :
                                   m_opened_pdf_info.filename().c_str());});
 
     // operations UI
-    m_operations_widget = new QWidget(this);
-    h_layout = new QHBoxLayout();
-    m_operations_widget->setLayout(h_layout);
-    v_layout->addWidget(m_operations_widget);
+    v_layout->addWidget(&m_operations_splitter);
     QListWidget *operations_list = new QListWidget(this);
     QStackedWidget *operations_widget = new QStackedWidget(this);
 
@@ -350,10 +349,22 @@ MainWindow::MainWindow(MouseEventFilter *filter, QWidget *parent) :
                 this, &MainWindow::write_finished);
     }
 
-    h_layout->addWidget(operations_list);
-    h_layout->addWidget(operations_widget);
-    h_layout->setStretch(1, 1);
-    m_operations_widget->setEnabled(false);
+    m_operations_splitter.addWidget(operations_list);
+    m_operations_splitter.addWidget(operations_widget);
+    m_operations_splitter.setOrientation(Qt::Horizontal);
+    m_operations_splitter.setEnabled(false);
+    m_operations_splitter.setChildrenCollapsible(false);
+    m_operations_splitter.setHandleWidth(10);
+
+    if (settings->contains("operations_list_width") &&
+            settings->contains("operations_widget_width"))
+    {
+        QList<int> sizes;
+        sizes.push_back(settings->value("operations_list_width").toInt());
+        sizes.push_back(settings->value("operations_widget_width").toInt());
+        m_operations_splitter.setSizes(sizes);
+    }
+
     operations_list->setCurrentRow(0);
 
     connect(operations_list, &QListWidget::currentRowChanged,
@@ -757,7 +768,7 @@ void MainWindow::open_file_pressed()
 
 void MainWindow::update_opened_file_label(const QString &filename)
 {
-    m_operations_widget->setEnabled(true);
+    m_operations_splitter.setEnabled(true);
 
     m_opened_pdf_info = PdfInfo(filename.toStdString());
 
@@ -819,6 +830,10 @@ void MainWindow::closeEvent(QCloseEvent *event)
                     QVariant::fromValue<Multipage>(it.value()));
 
     settings->endGroup();
+
+    QList<int> sizes = m_operations_splitter.sizes();
+    settings->setValue("operations_list_width", sizes[0]);
+    settings->setValue("operations_widget_width", sizes[1]);
 
     QMainWindow::closeEvent(event);
 }

@@ -32,7 +32,6 @@
 #include <QStatusBar>
 #include <QRadioButton>
 #include <QTimer>
-#include <QScrollBar>
 
 #include "aboutdialog.h"
 #include "editpdfentrydialog.h"

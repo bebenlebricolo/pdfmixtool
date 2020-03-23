@@ -32,7 +32,13 @@ AbstractOperation::AbstractOperation(const PdfInfo &pdf_info,
     m_pdf_info(&pdf_info),
     m_progress_bar(progress_bar)
 {
-
+    m_save_button.setIcon(QIcon::fromTheme("document-save"));
+    m_save_button.setText(tr("Save"));
+    m_save_button.setShortcut(QKeySequence::Save);
+    m_save_button.setToolTip(
+                QString(TOOLTIP_STRING).arg(
+                    m_save_button.text(),
+                    m_save_button.shortcut().toString()));
 }
 
 const QString &AbstractOperation::name()
@@ -42,7 +48,8 @@ const QString &AbstractOperation::name()
 
 void AbstractOperation::pdf_info_changed()
 {
-
+    QFileInfo info(QString::fromStdString(m_pdf_info->filename()));
+    m_save_button.setEnabled(info.isWritable());
 }
 
 bool AbstractOperation::show_overwrite_dialog()

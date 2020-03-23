@@ -89,17 +89,6 @@ EditPageLayout::EditPageLayout(const PdfInfo &pdf_info,
                                       QSizePolicy::Expanding,
                                       QSizePolicy::Minimum));
 
-    QPushButton *save_button = new QPushButton(
-                QIcon::fromTheme("document-save"),
-                tr("Save"),
-                this);
-    save_button->setShortcut(QKeySequence::Save);
-    save_button->setToolTip(
-                QString(TOOLTIP_STRING)
-                .arg(
-                    save_button->text(),
-                    save_button->shortcut().toString()));
-
     QPushButton *save_as_button = new QPushButton(
                 QIcon::fromTheme("document-save-as"),
                 tr("Save as…"),
@@ -111,10 +100,10 @@ EditPageLayout::EditPageLayout(const PdfInfo &pdf_info,
                     save_as_button->text(),
                     save_as_button->shortcut().toString()));
 
-    h_layout->addWidget(save_button);
+    h_layout->addWidget(&m_save_button);
     h_layout->addWidget(save_as_button);
 
-    connect(save_button, &QPushButton::pressed,
+    connect(&m_save_button, &QPushButton::pressed,
             [=]() {if (show_overwrite_dialog()) save();});
     connect(save_as_button, &QPushButton::pressed,
             [=]() {if (show_save_as_dialog()) save();});

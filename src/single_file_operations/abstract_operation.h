@@ -21,6 +21,7 @@
 
 #include <QWidget>
 #include <QProgressBar>
+#include <QPushButton>
 
 #include "../pdf_edit_lib/pdf_info.h"
 
@@ -44,12 +45,14 @@ signals:
 protected:
     QString m_name;
 
+    QPushButton m_save_button;
     QString m_save_filename;
     bool show_overwrite_dialog();
     bool show_save_as_dialog();
 
     PdfInfo const *m_pdf_info;
     QProgressBar *m_progress_bar;
+
 };
 
 #endif // ABSTRACTOPERATION_H

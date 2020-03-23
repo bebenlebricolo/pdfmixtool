@@ -67,8 +67,8 @@ ExtractPages::ExtractPages(const PdfInfo &pdf_info,
                                "</b>", this);
     grid_layout->addWidget(label, 5, 0, 1, 2);
 
-    grid_layout->addWidget(new QLabel(tr("Output PDF base name:"), this),
-                           6, 0);
+    QLabel *base_name_label = new QLabel(tr("Output PDF base name:"), this);
+    grid_layout->addWidget(base_name_label, 6, 0);
     grid_layout->addWidget(&m_base_name, 6, 1);
     m_selection.setClearButtonEnabled(true);
 
@@ -85,6 +85,13 @@ ExtractPages::ExtractPages(const PdfInfo &pdf_info,
                                       QSizePolicy::Minimum));
     h_layout->addWidget(extract_individual_button);
     grid_layout->addLayout(h_layout, 7, 0, 1, 2);
+
+#ifdef FLATPAK_BUILD
+    base_name_label->setEnabled(false);
+    m_base_name.setEnabled(false);
+    label->setEnabled(false);
+    extract_individual_button->setEnabled(false);
+#endif
 
     label = new QLabel("<b>" + tr("Extract to single PDF") + "</b>", this);
     grid_layout->addWidget(label, 8, 0, 1, 2);
@@ -194,13 +201,13 @@ void ExtractPages::extract_to_individual()
     {
         emit write_started();
 
-        if (dir_name.startsWith("/run/"))
-            // file paths are not real in flatpak
-            settings->setValue("save_directory", "");
-        else
-            settings->setValue(
-                        "save_directory",
-                        QFileInfo(dir_name).dir().absolutePath());
+#ifdef FLATPAK_BUILD
+        settings->setValue("save_directory", "");
+#else
+        settings->setValue(
+                    "save_directory",
+                    QFileInfo(dir_name).dir().absolutePath());
+#endif
 
         QProgressBar *pb = m_progress_bar;
         std::function<void (int)> progress = [pb] (int p)
@@ -266,13 +273,13 @@ void ExtractPages::extract_to_single()
     {
         emit write_started();
 
-        if (m_save_filename.startsWith("/run/"))
-            // file paths are not real in flatpak
-            settings->setValue("save_directory", "");
-        else
-            settings->setValue(
-                        "save_directory",
-                        QFileInfo(m_save_filename).dir().absolutePath());
+#ifdef FLATPAK_BUILD
+        settings->setValue("save_directory", "");
+#else
+        settings->setValue(
+                    "save_directory",
+                    QFileInfo(m_save_filename).dir().absolutePath());
+#endif
 
         QProgressBar *pb = m_progress_bar;
         std::function<void (int)> progress = [pb] (int p)

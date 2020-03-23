@@ -73,13 +73,13 @@ void Booklet::generate_booklet()
     {
         emit write_started();
 
-        if (m_save_filename.startsWith("/run/"))
-            // file paths are not real in flatpak
-            settings->setValue("save_directory", "");
-        else
-            settings->setValue(
-                        "save_directory",
-                        QFileInfo(m_save_filename).dir().absolutePath());
+#ifdef FLATPAK_BUILD
+        settings->setValue("save_directory", "");
+#else
+        settings->setValue(
+                    "save_directory",
+                    QFileInfo(m_save_filename).dir().absolutePath());
+#endif
 
         QProgressBar *pb = m_progress_bar;
         std::function<void (int)> progress = [pb] (int p)

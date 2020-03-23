@@ -80,12 +80,11 @@ void PdfInfoLabel::paintEvent(QPaintEvent *event)
     int available_path_width = painter.device()->width() - m_minimum_width - 20;
 
     QString path;
-    if (!m_path.startsWith("/run/")) // file paths are not real in flatpak
-    {
-        path = fm.elidedText(m_path, Qt::ElideLeft, available_path_width);
-        if (!path.isEmpty())
-            path += QDir::separator();
-    }
+#ifndef FLATPAK_BUILD
+    path = fm.elidedText(m_path, Qt::ElideLeft, available_path_width);
+#endif
+    if (!path.isEmpty())
+        path += QDir::separator();
 
     painter.drawText(this->contentsMargins().left(),
                      this->contentsMargins().top() + y,

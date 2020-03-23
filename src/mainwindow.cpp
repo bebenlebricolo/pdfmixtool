@@ -375,13 +375,13 @@ void MainWindow::set_input_files(const QStringList &files)
     if (files.size() == 0)
         return;
 
-    if (files[0].startsWith("/run/"))
-        // file paths are not real in flatpak
-        settings->setValue("open_directory", "");
-    else
-        settings->setValue(
-                    "open_directory",
-                    QFileInfo(files[0]).dir().absolutePath());
+#ifdef FLATPAK_BUILD
+    settings->setValue("open_directory", "");
+#else
+    settings->setValue(
+                "open_directory",
+                QFileInfo(files[0]).dir().absolutePath());
+#endif
 
     if (files.size() == 1)
     {
@@ -433,13 +433,14 @@ void MainWindow::add_pdf_files(const QStringList &files)
 
     if (files.size() > 0)
     {
-        if (files.at(0).startsWith("/run/"))
-            // file paths are not real in flatpak
-            settings->setValue("open_directory", "");
-        else
-            settings->setValue(
-                        "open_directory",
-                        QFileInfo(files.at(0)).dir().absolutePath());
+#ifdef FLATPAK_BUILD
+        settings->setValue("open_directory", "");
+#else
+        settings->setValue(
+                    "open_directory",
+                    QFileInfo(files.at(0)).dir().absolutePath());
+#endif
+
         this->update_output_pages_count();
         m_generate_pdf_button->setEnabled(true);
     }
@@ -689,13 +690,13 @@ void MainWindow::generate_pdf_button_pressed()
     {
         write_started();
 
-        if (selected_file.startsWith("/run/"))
-            // file paths are not real in flatpak
-            settings->setValue("save_directory", "");
-        else
-            settings->setValue(
-                        "save_directory",
-                        QFileInfo(selected_file).dir().absolutePath());
+#ifdef FLATPAK_BUILD
+        settings->setValue("save_directory", "");
+#else
+        settings->setValue(
+                    "save_directory",
+                    QFileInfo(selected_file).dir().absolutePath());
+#endif
 
         // Generate configuration
         Conf conf;
@@ -752,13 +753,13 @@ void MainWindow::open_file_pressed()
 
     if (!filename.isNull())
     {
-        if (filename.startsWith("/run/"))
-            // file paths are not real in flatpak
-            settings->setValue("open_directory", "");
-        else
-            settings->setValue(
-                        "open_directory",
-                        QFileInfo(filename).dir().absolutePath());
+#ifdef FLATPAK_BUILD
+        settings->setValue("open_directory", "");
+#else
+        settings->setValue(
+                    "open_directory",
+                    QFileInfo(filename).dir().absolutePath());
+#endif
 
         this->update_opened_file_label(filename);
         m_view_opened_pdf_button->setEnabled(true);
@@ -790,6 +791,7 @@ void MainWindow::write_finished(const QString &filename)
 
     QTimer::singleShot(2000, m_progress_bar, SLOT(hide()));
 
+#ifndef FLATPAK_BUILD
     QFileInfo info(filename);
     if (info.isDir())
     {
@@ -807,6 +809,7 @@ void MainWindow::write_finished(const QString &filename)
     m_saved_file.show();
 
     QTimer::singleShot(6000, &m_saved_file, SLOT(hide()));
+#endif
 }
 
 void MainWindow::closeEvent(QCloseEvent *event)

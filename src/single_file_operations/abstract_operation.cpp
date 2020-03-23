@@ -96,16 +96,17 @@ bool AbstractOperation::show_save_as_dialog()
     {
         m_save_filename = selected_file;
 
-        if (selected_file.startsWith("/run/"))
-            // file paths are not real in flatpak
-            settings->setValue("save_directory", "");
-        else
-            settings->setValue(
-                        "save_directory",
-                        QFileInfo(selected_file).dir().absolutePath());
+#ifdef FLATPAK_BUILD
+        settings->setValue("save_directory", "");
+#else
+        settings->setValue(
+                    "save_directory",
+                    QFileInfo(selected_file).dir().absolutePath());
+#endif
 
         return true;
     }
+
 
     return false;
 }

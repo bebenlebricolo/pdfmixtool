@@ -7,13 +7,19 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
+option(FLATPAK_BUILD "Whether this is a build for flatpak" OFF)
+
+if (FLATPAK_BUILD)
+    add_compile_definitions(FLATPAK_BUILD)
+endif ()
+
 if(CMAKE_COMPILER_IS_GNUCC OR CMAKE_COMPILER_IS_GNUCXX)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -pedantic")
 endif()
 
 find_package (Qt5 REQUIRED COMPONENTS Widgets LinguistTools)
 
-SET (
+set (
     SRCS
     src/main.cpp
     src/aboutdialog.cpp
@@ -60,8 +66,7 @@ file(GLOB TS_FILES
      languages/pdfmixtool_*.ts
 )
 
-qt5_create_translation(QM_FILES src/ ${TS_FILES})
-qt5_add_translation(EN_QM_FILE resources/pdfmixtool_en.ts)
+qt5_add_translation(QM_FILES ${TS_FILES} resources/pdfmixtool_en.ts)
 
 add_executable (
     pdfmixtool
@@ -78,7 +83,11 @@ target_link_libraries (
 )
 
 install(TARGETS pdfmixtool RUNTIME DESTINATION bin)
+if (FLATPAK_BUILD)
+install(FILES resources/eu.scarpetta.PDFMixTool.flatpak.desktop DESTINATION share/applications RENAME eu.scarpetta.PDFMixTool.desktop)
+else()
 install(FILES resources/eu.scarpetta.PDFMixTool.desktop DESTINATION share/applications)
+endif()
 install(FILES resources/eu.scarpetta.PDFMixTool.appdata.xml DESTINATION share/metainfo)
 install(FILES resources/icon.svg DESTINATION share/icons/hicolor/scalable/apps RENAME eu.scarpetta.PDFMixTool.svg)
 install(FILES resources/icon_48.png DESTINATION share/icons/hicolor/48x48/apps RENAME eu.scarpetta.PDFMixTool.png)
@@ -86,7 +95,6 @@ install(FILES resources/icon_64.png DESTINATION share/icons/hicolor/64x64/apps R
 install(FILES resources/icon_128.png DESTINATION share/icons/hicolor/128x128/apps RENAME eu.scarpetta.PDFMixTool.png)
 install(FILES resources/icon_256.png DESTINATION share/icons/hicolor/256x256/apps RENAME eu.scarpetta.PDFMixTool.png)
 install(FILES ${QM_FILES} DESTINATION share/pdfmixtool/translations)
-install(FILES ${EN_QM_FILE} DESTINATION share/pdfmixtool/translations)
 install(FILES CHANGELOG.md DESTINATION share/pdfmixtool)
 install(FILES AUTHORS.md DESTINATION share/pdfmixtool)
 install(FILES TRANSLATORS.md DESTINATION share/pdfmixtool)

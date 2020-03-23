@@ -55,13 +55,14 @@
 
 <h3>Portuguese</h3>
 <ul>
-    <li><a href="mailto:smarquespt@gmail.com">Sérgio Marques</a></li>
+    <li><a href="mailto:so.boston.android@gmail.com">Sergio Marques</a></li>
     <li><a href="mailto:ssantos@web.de">ssantos</a></li>
 </ul>
 
 <h3>Portuguese (Brazil)</h3>
 <ul>
     <li>Fúlvio Alves</li>
+    <li><a href="mailto:barbaratostes@gmail.com">Barbara Tostes</a></li>
 </ul>
 
 <h3>Russian</h3>

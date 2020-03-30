@@ -200,7 +200,7 @@
     <message>
         <location filename="../src/single_file_operations/delete_pages.cpp" line="153"/>
         <source>&lt;p&gt;Pages to be deleted are badly formatted. Please make sure you complied with the following rules:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;intervals of pages must be written indicating the first page and the last page separated by a dash (e.g. &quot;1-5&quot;);&lt;/li&gt;&lt;li&gt;single pages and intervals of pages must be separated by spaces, commas or both (e.g. &quot;1, 2, 3, 5-10&quot; or &quot;1 2 3 5-10&quot;);&lt;/li&gt;&lt;li&gt;all pages and intervals of pages must be between 1 and the number of pages of the PDF file;&lt;/li&gt;&lt;li&gt;only numbers, spaces, commas and dashes can be used. All other characters are not allowed.&lt;/li&gt;&lt;/ul&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;De te verwijderen pagina&apos;s zijn slecht opgemaakt. Controleer of je de volgende regels in acht hebt genomen:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;paginareeksen moeten de eerste en laatste pagina aangeven, gescheiden met een streepje (bijv. &apos;1-5&apos;);&lt;/li&gt;&lt;li&gt;losse pagina&apos;s en reeksen moeten spatie- of kommagscheiden zijn, of beide (bijv. &apos;1, 2, 3, 5-10&apos; of &apos;1 2 3 5-10&apos;);&lt;/li&gt;&lt;li&gt;alle pagina&apos;s reeksen moeten liggen tussen 1 en het totaal aantal pagina&apos;s van het PDF-bestand;&lt;/li&gt;&lt;li&gt;alleen cijfers, spaties, komma&apos;s en streepjes zijn toegestaan; alle andere tekens niet.&lt;/li&gt;&lt;/ul&gt;</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/delete_pages.cpp" line="168"/>
@@ -431,7 +431,7 @@
     <message>
         <location filename="../src/single_file_operations/extract_pages.cpp" line="145"/>
         <source>&lt;p&gt;Pages to be extracted are badly formatted. Please make sure you complied with the following rules:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;intervals of pages must be written indicating the first page and the last page separated by a dash (e.g. &quot;1-5&quot;);&lt;/li&gt;&lt;li&gt;single pages and intervals of pages must be separated by spaces, commas or both (e.g. &quot;1, 2, 3, 5-10&quot; or &quot;1 2 3 5-10&quot;);&lt;/li&gt;&lt;li&gt;all pages and intervals of pages must be between 1 and the number of pages of the PDF file;&lt;/li&gt;&lt;li&gt;only numbers, spaces, commas and dashes can be used. All other characters are not allowed.&lt;/li&gt;&lt;/ul&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;De te extraheren pagina&apos;s zijn slecht opgemaakt. Controleer of je de volgende regels in acht hebt genomen:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;paginareeksen moeten de eerste en laatste pagina aangeven, gescheiden met een streepje (bijv. &apos;1-5&apos;);&lt;/li&gt;&lt;li&gt;losse pagina&apos;s en reeksen moeten spatie- of kommagscheiden zijn, of beide (bijv. &apos;1, 2, 3, 5-10&apos; of &apos;1 2 3 5-10&apos;);&lt;/li&gt;&lt;li&gt;alle pagina&apos;s reeksen moeten liggen tussen 1 en het totaal aantal pagina&apos;s van het PDF-bestand;&lt;/li&gt;&lt;li&gt;alleen cijfers, spaties, komma&apos;s en streepjes zijn toegestaan; alle andere tekens niet.&lt;/li&gt;&lt;/ul&gt;</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/extract_pages.cpp" line="160"/>

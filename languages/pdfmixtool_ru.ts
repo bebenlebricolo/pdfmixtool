@@ -134,17 +134,17 @@
     <message>
         <location filename="../src/single_file_operations/add_empty_pages.cpp" line="97"/>
         <source>Page:</source>
-        <translation type="unfinished"></translation>
+        <translation>Страница:</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/add_empty_pages.cpp" line="111"/>
         <source>Save</source>
-        <translation type="unfinished"></translation>
+        <translation>Сохранить</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/add_empty_pages.cpp" line="122"/>
         <source>Save as…</source>
-        <translation type="unfinished"></translation>
+        <translation>Сохранить как...</translation>
     </message>
 </context>
 <context>

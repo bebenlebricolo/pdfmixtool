@@ -175,37 +175,37 @@
     <message>
         <location filename="../src/single_file_operations/delete_pages.cpp" line="41"/>
         <source>Delete pages:</source>
-        <translation type="unfinished"></translation>
+        <translation>Izbriši stranice:</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/delete_pages.cpp" line="43"/>
         <source>Delete even pages</source>
-        <translation type="unfinished"></translation>
+        <translation>Izbriši parne stranice</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/delete_pages.cpp" line="45"/>
         <source>Delete odd pages</source>
-        <translation type="unfinished"></translation>
+        <translation>Izbriši neparne stranice</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/delete_pages.cpp" line="61"/>
         <source>Save</source>
-        <translation type="unfinished">Spremi</translation>
+        <translation>Spremi</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/delete_pages.cpp" line="72"/>
         <source>Save as…</source>
-        <translation type="unfinished">Spremi kao …</translation>
+        <translation>Spremi kao …</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/delete_pages.cpp" line="153"/>
         <source>&lt;p&gt;Pages to be deleted are badly formatted. Please make sure you complied with the following rules:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;intervals of pages must be written indicating the first page and the last page separated by a dash (e.g. &quot;1-5&quot;);&lt;/li&gt;&lt;li&gt;single pages and intervals of pages must be separated by spaces, commas or both (e.g. &quot;1, 2, 3, 5-10&quot; or &quot;1 2 3 5-10&quot;);&lt;/li&gt;&lt;li&gt;all pages and intervals of pages must be between 1 and the number of pages of the PDF file;&lt;/li&gt;&lt;li&gt;only numbers, spaces, commas and dashes can be used. All other characters are not allowed.&lt;/li&gt;&lt;/ul&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;Stranice koje se brišu su loše formatirane. Obavezno se pridržavaj sljedećih pravila:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;intervali stranica moraju biti napisani tako da označavaju prvu stranicu i zadnju stranicu odvojene crticom (npr. „1-5”);&lt;/li&gt;&lt;li&gt;pojedinačne stranice i intervali stranica moraju biti odvojeni razmacima, zarezima ili s oba znaka (npr. „1, 2, 3, 5-10” ili „1 2 3 5-10”);&lt;/li&gt;&lt;li&gt;sve stranice i intervali stranica moraju biti između 1 i ukupnog broja stranica PDF datoteke;&lt;/li&gt;&lt;li&gt;smiju se koristiti samo brojke, razmaci, zarezi i crtice. Drugi znakovi se ne smiju koristiti.&lt;/li&gt;&lt;/ul&gt;</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/delete_pages.cpp" line="168"/>
         <source>Error</source>
-        <translation type="unfinished">Greška</translation>
+        <translation>Greška</translation>
     </message>
 </context>
 <context>
@@ -311,46 +311,46 @@
     <message>
         <location filename="../src/single_file_operations/edit_page_layout.cpp" line="49"/>
         <source>No rotation</source>
-        <translation type="unfinished">Bez okretanja</translation>
+        <translation>Bez okretanja</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/edit_page_layout.cpp" line="56"/>
         <source>Rotation:</source>
-        <translation type="unfinished">Okretanje:</translation>
+        <translation>Okretanje:</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/edit_page_layout.cpp" line="58"/>
         <location filename="../src/single_file_operations/edit_page_layout.cpp" line="121"/>
         <location filename="../src/single_file_operations/edit_page_layout.cpp" line="208"/>
         <source>Disabled</source>
-        <translation type="unfinished">Deaktivirano</translation>
+        <translation>Deaktivirano</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/edit_page_layout.cpp" line="66"/>
         <location filename="../src/single_file_operations/edit_page_layout.cpp" line="133"/>
         <location filename="../src/single_file_operations/edit_page_layout.cpp" line="216"/>
         <source>New custom profile…</source>
-        <translation type="unfinished">Novi prilagođeni profil …</translation>
+        <translation>Novi prilagođeni profil …</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/edit_page_layout.cpp" line="72"/>
         <source>Multipage:</source>
-        <translation type="unfinished">Višestranično:</translation>
+        <translation>Višestranično:</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/edit_page_layout.cpp" line="80"/>
         <source>Scale page:</source>
-        <translation type="unfinished"></translation>
+        <translation>Skaliraj stranicu:</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/edit_page_layout.cpp" line="88"/>
         <source>Save</source>
-        <translation type="unfinished">Spremi</translation>
+        <translation>Spremi</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/edit_page_layout.cpp" line="101"/>
         <source>Save as…</source>
-        <translation type="unfinished">Spremi kao …</translation>
+        <translation>Spremi kao …</translation>
     </message>
 </context>
 <context>
@@ -396,47 +396,47 @@
     <message>
         <location filename="../src/single_file_operations/extract_pages.cpp" line="44"/>
         <source>Extract pages:</source>
-        <translation type="unfinished"></translation>
+        <translation>Izdvoji stranice:</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/extract_pages.cpp" line="47"/>
         <source>Extract all pages</source>
-        <translation type="unfinished"></translation>
+        <translation>Izdvoji sve stranice</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/extract_pages.cpp" line="50"/>
         <source>Extract even pages</source>
-        <translation type="unfinished"></translation>
+        <translation>Izdvoji parne stranice</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/extract_pages.cpp" line="53"/>
         <source>Extract odd pages</source>
-        <translation type="unfinished"></translation>
+        <translation>Izdvoji neparne stranice</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/extract_pages.cpp" line="60"/>
         <source>Output PDF base name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Osnovno ime PDF rezultata:</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/extract_pages.cpp" line="73"/>
         <source>Extract to individual PDF files</source>
-        <translation type="unfinished"></translation>
+        <translation>Izdvoji u pojedinačne PDF datoteke</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/extract_pages.cpp" line="77"/>
         <source>Extract to single PDF</source>
-        <translation type="unfinished"></translation>
+        <translation>Izdvoji u pojedinačni PDF</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/extract_pages.cpp" line="145"/>
         <source>&lt;p&gt;Pages to be extracted are badly formatted. Please make sure you complied with the following rules:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;intervals of pages must be written indicating the first page and the last page separated by a dash (e.g. &quot;1-5&quot;);&lt;/li&gt;&lt;li&gt;single pages and intervals of pages must be separated by spaces, commas or both (e.g. &quot;1, 2, 3, 5-10&quot; or &quot;1 2 3 5-10&quot;);&lt;/li&gt;&lt;li&gt;all pages and intervals of pages must be between 1 and the number of pages of the PDF file;&lt;/li&gt;&lt;li&gt;only numbers, spaces, commas and dashes can be used. All other characters are not allowed.&lt;/li&gt;&lt;/ul&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;Stranice koje se izdvajaju su loše formatirane. Obavezno se pridržavaj sljedećih pravila:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;intervali stranica moraju biti napisani tako da označavaju prvu stranicu i zadnju stranicu odvojene crticom (npr. „1-5”);&lt;/li&gt;&lt;li&gt;pojedinačne stranice i intervali stranica moraju biti odvojeni razmacima, zarezima ili s oba znaka (npr. „1, 2, 3, 5-10” ili „1 2 3 5-10”);&lt;/li&gt;&lt;li&gt;sve stranice i intervali stranica moraju biti između 1 i ukupnog broja stranica PDF datoteke;&lt;/li&gt;&lt;li&gt;smiju se koristiti samo brojke, razmaci, zarezi i crtice. Drugi znakovi se ne smiju koristiti.&lt;/li&gt;&lt;/ul&gt;</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/extract_pages.cpp" line="160"/>
         <source>Error</source>
-        <translation type="unfinished">Greška</translation>
+        <translation>Greška</translation>
     </message>
 </context>
 <context>
@@ -566,7 +566,7 @@
     <message>
         <location filename="../src/mainwindow.cpp" line="307"/>
         <source>Edit page layout</source>
-        <translation type="unfinished"></translation>
+        <translation>Uredi prijelom stranice</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="628"/>
@@ -631,17 +631,17 @@
     <message>
         <location filename="../src/mainwindow.cpp" line="784"/>
         <source>Always overwrite</source>
-        <translation type="unfinished"></translation>
+        <translation>Uvijek prepiši</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="939"/>
         <source>Select save directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Odaberi mapu za spremanje</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="1002"/>
         <source>Extract to single PDF</source>
-        <translation type="unfinished"></translation>
+        <translation>Izdvoji u pojedinačni PDF</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="329"/>
@@ -725,7 +725,7 @@
     <message>
         <location filename="../src/multipageprofilesmanager.cpp" line="79"/>
         <source>Edit profile</source>
-        <translation type="unfinished"></translation>
+        <translation>Uredi profil</translation>
     </message>
     <message>
         <location filename="../src/multipageprofilesmanager.cpp" line="125"/>

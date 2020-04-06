@@ -175,7 +175,7 @@
     <message>
         <location filename="../src/single_file_operations/delete_pages.cpp" line="41"/>
         <source>Delete pages:</source>
-        <translation type="unfinished"></translation>
+        <translation>Удалить страницы:</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/delete_pages.cpp" line="43"/>

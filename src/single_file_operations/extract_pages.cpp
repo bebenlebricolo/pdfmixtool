@@ -239,7 +239,6 @@ void ExtractPages::extract_to_individual()
                 Conf conf;
 
                 conf.output_path = dir.filePath(filename).toStdString();
-                conf.alternate_mix = false;
 
                 FileConf fileconf;
                 fileconf.path = m_pdf_info->filename();
@@ -247,7 +246,6 @@ void ExtractPages::extract_to_individual()
                 fileconf.multipage_enabled = false;
                 fileconf.rotation = 0;
                 fileconf.outline_entry = "";
-                fileconf.reverse_order = false;
 
                 conf.files.push_back(fileconf);
 
@@ -293,7 +291,6 @@ void ExtractPages::extract_to_single()
         Conf conf;
 
         conf.output_path = m_save_filename.toStdString();
-        conf.alternate_mix = false;
 
         FileConf fileconf;
         fileconf.path = m_pdf_info->filename();
@@ -301,7 +298,6 @@ void ExtractPages::extract_to_single()
         fileconf.multipage_enabled = false;
         fileconf.rotation = 0;
         fileconf.outline_entry = "";
-        fileconf.reverse_order = false;
 
         conf.files.push_back(fileconf);
 

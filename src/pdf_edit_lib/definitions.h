@@ -126,7 +126,6 @@ struct FileConf {
     const Multipage *multipage;
     int rotation;
     std::string outline_entry;
-    bool reverse_order;
     int scale;
 };
 

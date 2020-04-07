@@ -228,7 +228,6 @@ void EditPageLayout::save()
     Conf conf;
 
     conf.output_path = m_save_filename.toStdString();
-    conf.alternate_mix = false;
 
     FileConf fileconf;
     fileconf.path = m_pdf_info->filename();
@@ -244,7 +243,6 @@ void EditPageLayout::save()
     fileconf.rotation = m_rotation.currentData().toInt();
     fileconf.scale = m_scale.value();
     fileconf.outline_entry = "";
-    fileconf.reverse_order = false;
 
     conf.files.push_back(fileconf);
 

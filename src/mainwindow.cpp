@@ -698,46 +698,68 @@ void MainWindow::generate_pdf_button_pressed()
                     QFileInfo(selected_file).dir().absolutePath());
 #endif
 
-        // Generate configuration
-        Conf conf;
-
-        conf.output_path = selected_file.toStdString();
-        conf.alternate_mix = m_alternate_mix->isChecked();
-
-        for (int i = 0; i < m_files_list_model->rowCount(); i++)
-        {
-            QStandardItem *item = m_files_list_model->item(i);
-            QString file_path = item->data(FILE_PATH_ROLE).toString();
-            QString output_pages = item->data(OUTPUT_PAGES_ROLE).toString();
-            int mp_index = item->data(MULTIPAGE_ROLE).toInt();
-            int rotation = item->data(ROTATION_ROLE).toInt();
-            QString outline_entry = item->data(OUTLINE_ENTRY_ROLE).toString();
-            bool reverse_order = item->data(REVERSE_ORDER_ROLE).toBool();
-
-            FileConf fileconf;
-            fileconf.path = file_path.toStdString();
-            fileconf.ouput_pages = output_pages.toStdString();
-            if (mp_index < 0)
-                fileconf.multipage_enabled = false;
-            else
-            {
-                fileconf.multipage_enabled = true;
-                fileconf.multipage = &multipages[mp_index];
-            }
-            fileconf.rotation = rotation;
-            fileconf.outline_entry = outline_entry.toStdString();
-            fileconf.reverse_order = reverse_order;
-
-            conf.files.push_back(fileconf);
-        }
-
         QProgressBar *pb = m_progress_bar;
         std::function<void (int)> progress = [pb] (int p)
         {
             pb->setValue(p);
         };
 
-        write_pdf(conf, progress);
+        // alternate mix
+        if (m_alternate_mix->isChecked())
+        {
+            std::vector<std::string> input_filenames;
+            std::vector<bool> reverse_order;
+
+            for (int i = 0; i < m_files_list_model->rowCount(); i++)
+            {
+                QStandardItem *item = m_files_list_model->item(i);
+                QString file_path = item->data(FILE_PATH_ROLE).toString();
+
+                input_filenames.push_back(file_path.toStdString());
+                reverse_order.push_back(
+                            item->data(REVERSE_ORDER_ROLE).toBool());
+            }
+
+            write_alternate_mix(input_filenames,
+                                selected_file.toStdString(),
+                                reverse_order,
+                                progress);
+        }
+        // standard mode
+        else
+        {
+            Conf conf;
+
+            conf.output_path = selected_file.toStdString();
+
+            for (int i = 0; i < m_files_list_model->rowCount(); i++)
+            {
+                QStandardItem *item = m_files_list_model->item(i);
+                QString file_path = item->data(FILE_PATH_ROLE).toString();
+                QString output_pages = item->data(OUTPUT_PAGES_ROLE).toString();
+                int mp_index = item->data(MULTIPAGE_ROLE).toInt();
+                int rotation = item->data(ROTATION_ROLE).toInt();
+                QString outline = item->data(OUTLINE_ENTRY_ROLE).toString();
+                bool reverse_order = item->data(REVERSE_ORDER_ROLE).toBool();
+
+                FileConf fileconf;
+                fileconf.path = file_path.toStdString();
+                fileconf.ouput_pages = output_pages.toStdString();
+                if (mp_index < 0)
+                    fileconf.multipage_enabled = false;
+                else
+                {
+                    fileconf.multipage_enabled = true;
+                    fileconf.multipage = &multipages[mp_index];
+                }
+                fileconf.rotation = rotation;
+                fileconf.outline_entry = outline.toStdString();
+
+                conf.files.push_back(fileconf);
+            }
+
+            write_pdf(conf, progress);
+        }
 
         write_finished(selected_file);
     }

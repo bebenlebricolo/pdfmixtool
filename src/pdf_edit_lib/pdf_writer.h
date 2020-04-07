@@ -31,12 +31,17 @@ bool parse_output_pages_string(
         std::vector<std::pair<int, int>> &intervals,
         int &output_pages_count);
 
-void write_pdf(const Conf &conf, std::function<void(int)>& progress);
+void write_pdf(const Conf &conf, std::function<void(int)> &progress);
+
+void write_alternate_mix(const std::vector<std::string> &input_filenames,
+                         const std::string &output_filename,
+                         const std::vector<bool> &reverse_order,
+                         std::function<void (int)> &progress);
 
 void write_booklet_pdf(const std::string &input_filename,
                        const std::string &output_filename,
                        bool right_side_binding,
-                       std::function<void (int)>& progress);
+                       std::function<void (int)> &progress);
 
 void write_add_empty_pages(const std::string &input_filename,
                            const std::string &output_filename,
@@ -45,11 +50,11 @@ void write_add_empty_pages(const std::string &input_filename,
                            double page_height,
                            int location,
                            bool before,
-                           std::function<void (int)>& progress);
+                           std::function<void (int)> &progress);
 
 void write_delete_pages(const std::string &input_filename,
                         const std::string &output_filename,
                         const std::vector<bool> &pages,
-                        std::function<void (int)>& progress);
+                        std::function<void (int)> &progress);
 
 #endif // PDF_WRITER_H

@@ -114,63 +114,12 @@ bool parse_output_pages_string(
     return true;
 }
 
-void write_pdf(const Conf &conf, std::function<void (int)>& progress)
+void write_pdf(const Conf &conf, std::function<void (int)> &progress)
 {
     std::locale old_locale = std::locale::global(std::locale::classic());
 
     QPDF output_file;
     output_file.emptyPDF();
-
-    if (conf.alternate_mix)
-    {
-        std::vector<QPDF *> input_files;
-        size_t max_n_pages = 0;
-
-        // load input files
-        for (std::vector<FileConf>::size_type i = 0; i < conf.files.size(); i++)
-        {
-            QPDF *input_file = new QPDF();
-            input_file->processFile(conf.files.at(i).path.c_str());
-            input_files.push_back(input_file);
-            max_n_pages = std::max(max_n_pages,
-                                   input_files[i]->getAllPages().size());
-        }
-
-        // alternatively add pages
-        for (size_t i = 0; i < max_n_pages; ++i)
-        {
-            for (size_t j = 0; j < input_files.size(); ++j)
-            {
-                if (i < input_files[j]->getAllPages().size())
-                {
-                    int index = conf.files.at(j).reverse_order ?
-                                input_files[j]->getAllPages().size() - 1 - i :
-                                i;
-                    QPDFPageObjectHelper page =
-                            input_files[j]->getAllPages().at(index);
-                    page = page.shallowCopyPage();
-                    QPDFPageDocumentHelper(output_file).addPage(page, false);
-                }
-            }
-
-            progress(100 * i / (max_n_pages + 1));
-        }
-
-        // save output file
-        QPDFWriter writer(output_file);
-        writer.setOutputFilename(conf.output_path.c_str());
-        writer.write();
-
-        progress(100);
-
-        // delete input files objects
-        for(QPDF *input_file : input_files)
-            delete input_file;
-
-        std::locale::global(old_locale);
-
-        return;
-    }
 
     std::map<int, const std::string &> outlines;
     int outline_page = 0;
@@ -552,11 +501,68 @@ void write_pdf(const Conf &conf, std::function<void (int)>& progress)
     std::locale::global(old_locale);
 }
 
+void write_alternate_mix(const std::vector<std::string> &input_filenames,
+                         const std::string &output_filename,
+                         const std::vector<bool> &reverse_order,
+                         std::function<void (int)> &progress)
+{
+    std::locale old_locale = std::locale::global(std::locale::classic());
+
+    QPDF output_file;
+    output_file.emptyPDF();
+
+    std::vector<QPDF *> input_files;
+    size_t max_n_pages = 0;
+
+    // load input files
+    for (size_t i = 0; i < input_filenames.size(); i++)
+    {
+        QPDF *input_file = new QPDF();
+        input_file->processFile(input_filenames.at(i).c_str());
+        input_files.push_back(input_file);
+        max_n_pages = std::max(max_n_pages,
+                               input_files[i]->getAllPages().size());
+    }
+
+    // alternatively add pages
+    for (size_t i = 0; i < max_n_pages; ++i)
+    {
+        for (size_t j = 0; j < input_files.size(); ++j)
+        {
+            if (i < input_files[j]->getAllPages().size())
+            {
+                int index = reverse_order[j] ?
+                            input_files[j]->getAllPages().size() - 1 - i :
+                            i;
+                QPDFPageObjectHelper page =
+                        input_files[j]->getAllPages().at(index);
+                page = page.shallowCopyPage();
+                QPDFPageDocumentHelper(output_file).addPage(page, false);
+            }
+        }
+
+        progress(100 * i / (max_n_pages + 1));
+    }
+
+    // save output file
+    QPDFWriter writer(output_file);
+    writer.setOutputFilename(output_filename.c_str());
+    writer.write();
+
+    progress(100);
+
+    // delete input files objects
+    for(QPDF *input_file : input_files)
+        delete input_file;
+
+    std::locale::global(old_locale);
+}
+
 void write_booklet_pdf(
         const std::string &input_filename,
         const std::string &output_filename,
         bool right_side_binding,
-        std::function<void (int)>& progress)
+        std::function<void (int)> &progress)
 {
     std::locale old_locale = std::locale::global(std::locale::classic());
 
@@ -706,7 +712,7 @@ void write_add_empty_pages(const std::string &input_filename,
                            double page_height,
                            int location,
                            bool before,
-                           std::function<void (int)>& progress)
+                           std::function<void (int)> &progress)
 {
     std::locale old_locale = std::locale::global(std::locale::classic());
 
@@ -757,7 +763,7 @@ void write_add_empty_pages(const std::string &input_filename,
 void write_delete_pages(const std::string &input_filename,
                         const std::string &output_filename,
                         const std::vector<bool> &pages,
-                        std::function<void (int)>& progress)
+                        std::function<void (int)> &progress)
 {
     std::locale old_locale = std::locale::global(std::locale::classic());
 

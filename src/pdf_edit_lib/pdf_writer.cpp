@@ -477,7 +477,7 @@ void write_pdf(const Conf &conf, std::function<void (int)>& progress)
                             QPDFObjectHandle::Rectangle(
                                 0, 0,
                                 page_width, page_height),
-                            false);
+                            false, true, true);
 
                 if (! content.empty())
                 {

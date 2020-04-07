@@ -77,7 +77,7 @@ EditPageLayout::EditPageLayout(const PdfInfo &pdf_info,
             SLOT(multipage_activated(int)));
     form_layout->addRow(tr("Multipage:"), &m_multipage);
 
-    m_scale.setRange(1, 100);
+    m_scale.setRange(1, 1000);
     m_scale.setValue(100);
     m_scale.setSuffix("%");
     connect(&m_scale,

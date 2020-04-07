@@ -68,6 +68,7 @@
 <h3>Russian</h3>
 <ul>
     <li><a href="mailto:abomze@mail.ru">Adolph Bomze</a></li>
+    <li><a href="mailto:denis.a.shilin@gmail.com">Denis Shilin</a></li>
 </ul>
 
 <h3>Spanish</h3>

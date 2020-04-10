@@ -200,7 +200,7 @@
     <message>
         <location filename="../src/single_file_operations/delete_pages.cpp" line="153"/>
         <source>&lt;p&gt;Pages to be deleted are badly formatted. Please make sure you complied with the following rules:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;intervals of pages must be written indicating the first page and the last page separated by a dash (e.g. &quot;1-5&quot;);&lt;/li&gt;&lt;li&gt;single pages and intervals of pages must be separated by spaces, commas or both (e.g. &quot;1, 2, 3, 5-10&quot; or &quot;1 2 3 5-10&quot;);&lt;/li&gt;&lt;li&gt;all pages and intervals of pages must be between 1 and the number of pages of the PDF file;&lt;/li&gt;&lt;li&gt;only numbers, spaces, commas and dashes can be used. All other characters are not allowed.&lt;/li&gt;&lt;/ul&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;Falsche Formatierung bezüglich der zu löschenden Seiten. Bitte stelle die folgenden Regeln sicher: &lt;/p&gt;&lt;ul&gt;&lt;li&gt;Intervalle von Seiten müssen mit einem Bindestrich zwischen der ersten und letzten Seite geschrieben werden (z.B. &quot;1-5&quot;);&lt;/li&gt;&lt;li&gt;Einzelne Seiten und Intervalle von Seiten müssen mit Leerzeichen, Kommas, oder beidem separiert werden (z.B. &quot;1, 2, 3, 5-10&quot; oder &quot;1 2 3 5-10&quot;);&lt;/li&gt;&lt;li&gt;alle Seiten und Intervalle von Seiten müssen sich zwischen 1 und der Anzahl der Seiten in der PDF-Datei bewegen;&lt;/li&gt;&lt;li&gt;nur Zahlen, Leerzeichen, Kommas und Bindestriche dürfen benutzt werden. Alle anderen Zeichen sind nicht erlaubt.&lt;/li&gt;&lt;/ul&gt;</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/delete_pages.cpp" line="168"/>
@@ -416,7 +416,7 @@
     <message>
         <location filename="../src/single_file_operations/extract_pages.cpp" line="60"/>
         <source>Output PDF base name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Basisname des Ausgabe-PDFs:</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/extract_pages.cpp" line="73"/>
@@ -431,7 +431,7 @@
     <message>
         <location filename="../src/single_file_operations/extract_pages.cpp" line="145"/>
         <source>&lt;p&gt;Pages to be extracted are badly formatted. Please make sure you complied with the following rules:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;intervals of pages must be written indicating the first page and the last page separated by a dash (e.g. &quot;1-5&quot;);&lt;/li&gt;&lt;li&gt;single pages and intervals of pages must be separated by spaces, commas or both (e.g. &quot;1, 2, 3, 5-10&quot; or &quot;1 2 3 5-10&quot;);&lt;/li&gt;&lt;li&gt;all pages and intervals of pages must be between 1 and the number of pages of the PDF file;&lt;/li&gt;&lt;li&gt;only numbers, spaces, commas and dashes can be used. All other characters are not allowed.&lt;/li&gt;&lt;/ul&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;Falsche Formatierung bezüglich der zu extrahierenden Seiten. Bitte stelle die folgenden Regeln sicher: &lt;/p&gt;&lt;ul&gt;&lt;li&gt;Intervalle von Seiten müssen mit einem Bindestrich zwischen der ersten und letzten Seite geschrieben werden (z.B. &quot;1-5&quot;);&lt;/li&gt;&lt;li&gt;Einzelne Seiten und Intervalle von Seiten müssen mit Leerzeichen, Kommas, oder beidem separiert werden (z.B. &quot;1, 2, 3, 5-10&quot; oder &quot;1 2 3 5-10&quot;);&lt;/li&gt;&lt;li&gt;alle Seiten und Intervalle von Seiten müssen sich zwischen 1 und der Anzahl der Seiten in der PDF-Datei bewegen;&lt;/li&gt;&lt;li&gt;nur Zahlen, Leerzeichen, Kommas und Bindestriche dürfen benutzt werden. Alle anderen Zeichen sind nicht erlaubt.&lt;/li&gt;&lt;/ul&gt;</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/extract_pages.cpp" line="160"/>

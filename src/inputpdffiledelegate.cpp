@@ -129,7 +129,7 @@ QWidget *InputPdfFileDelegate::build_widget(
         QString multipage = QCoreApplication::translate(
                     "InputPdfFileDelegate",
                     "Multipage:") + ' ' + (
-                    mp_index > 0 ?
+                    mp_index >= 0 ?
                         QString(" %1").arg(QString::fromStdString(mp.name)) :
                         QCoreApplication::translate(
                             "InputPdfFileDelegate",

@@ -32,6 +32,9 @@
 #include <QStatusBar>
 #include <QRadioButton>
 #include <QTimer>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QJsonArray>
 
 #include "aboutdialog.h"
 #include "editpdfentrydialog.h"
@@ -221,6 +224,17 @@ MainWindow::MainWindow(MouseEventFilter *filter, QWidget *parent) :
                     remove_file_action->text(),
                     remove_file_action->shortcut().toString()));
 
+    // load/save files list buttons
+    QPushButton *load_files_list_button = new QPushButton(
+                QIcon::fromTheme("document-open"),
+                tr("Load files list"),
+                this);
+    m_save_files_list_button = new QPushButton(
+                QIcon::fromTheme("document-save-as"),
+                tr("Save files list"),
+                this);
+    m_save_files_list_button->setEnabled(false);
+
     // Create "Generate PDF" button
     m_generate_pdf_button = new QPushButton(
                 QIcon::fromTheme("document-save-as"),
@@ -249,6 +263,13 @@ MainWindow::MainWindow(MouseEventFilter *filter, QWidget *parent) :
     h_layout->addItem(new QSpacerItem(
                           0, 0,
                           QSizePolicy::Expanding, QSizePolicy::Minimum));
+#ifndef FLATPAK_BUILD
+    h_layout->addWidget(load_files_list_button);
+    h_layout->addWidget(m_save_files_list_button);
+    h_layout->addItem(new QSpacerItem(
+                          0, 0,
+                          QSizePolicy::Expanding, QSizePolicy::Minimum));
+#endif
     h_layout->addWidget(m_generate_pdf_button);
     v_layout->addLayout(h_layout);
 
@@ -267,6 +288,12 @@ MainWindow::MainWindow(MouseEventFilter *filter, QWidget *parent) :
 
     connect(m_multipage_profiles_manager, SIGNAL(close_signal()),
             this, SLOT(update_output_pages_count()));
+
+    connect(load_files_list_button, SIGNAL(released()),
+            this, SLOT(load_files_list_pressed()));
+
+    connect(m_save_files_list_button, SIGNAL(released()),
+            this, SLOT(save_files_list_pressed()));
 
     connect(m_generate_pdf_button, SIGNAL(released()),
             this, SLOT(generate_pdf_button_pressed()));
@@ -370,6 +397,134 @@ MainWindow::MainWindow(MouseEventFilter *filter, QWidget *parent) :
             operations_widget, &QStackedWidget::setCurrentIndex);
 }
 
+bool MainWindow::load_json_files_list(const QString &filename)
+{
+    QFile json;
+    json.setFileName(filename);
+    json.open(QIODevice::ReadOnly);
+    QJsonDocument doc = QJsonDocument::fromJson(json.readAll());
+    json.close();
+
+    if (doc.isNull() || doc.isArray())
+        return false;
+
+    QJsonObject data = doc.object();
+    QJsonValue version = data.value("version");
+    if (version.isUndefined() || version.toInt() != 1)
+        return false;
+
+    QJsonValue alternate_mix = data.value("alternate_mix");
+    if (alternate_mix.isUndefined())
+        return false;
+    m_alternate_mix->setChecked(alternate_mix.toBool());
+
+    QJsonValue files = data.value("files");
+    if (!files.isArray())
+        return false;
+
+    m_files_list_model->clear();
+
+    for (QJsonValue file : files.toArray())
+    {
+        if (!file.isObject())
+            return false;
+
+        QJsonObject file_obj = file.toObject();
+
+        try
+        {
+            add_pdf_files(QStringList(file_obj.value("path").toString()));
+        }
+        catch(...)
+        {
+            return false;
+        }
+
+        QStandardItem *item = m_files_list_model->item(
+                    m_files_list_model->rowCount() - 1);
+        item->setData(file_obj.value("pages").toString(), OUTPUT_PAGES_ROLE);
+
+        int mp_index = file_obj.value("multipage").toInt(-1);
+        if (mp_index >= multipages.size())
+            mp_index = -1;
+        item->setData(mp_index, MULTIPAGE_ROLE);
+
+        item->setData(file_obj.value("rotation").toInt(), ROTATION_ROLE);
+        item->setData(file_obj.value("outline").toString(), OUTLINE_ENTRY_ROLE);
+        item->setData(file_obj.value("reverse").toBool(), REVERSE_ORDER_ROLE);
+    }
+
+    return true;
+}
+
+void MainWindow::load_files_list_pressed()
+{
+    QString filename = QFileDialog::getOpenFileName(
+                this,
+                tr("Select the json file containing the files list"),
+                settings->value("open_directory", "").toString(),
+                tr("JSON files (*.json)"));
+
+    if (!filename.isNull())
+        if (!load_json_files_list(filename))
+            QMessageBox::critical(
+                        this,
+                        tr("Error while reading the JSON file!"),
+                        tr("An error occurred while reading the JSON file!"));
+}
+
+void MainWindow::save_files_list_pressed()
+{
+    QString filename = QFileDialog::getSaveFileName(
+                this,
+                tr("Select a JSON file"),
+                settings->value("save_directory",
+                                settings->value("open_directory", "")
+                                ).toString(),
+                tr("JSON files (*.json)"));
+
+    if (!filename.isNull())
+    {
+        QJsonObject data;
+        data.insert("version", 1);
+        data.insert("alternate_mix", m_alternate_mix->isChecked());
+
+        QJsonArray files;
+        for (int i = 0; i < m_files_list_model->rowCount(); i++)
+        {
+            QStandardItem *item = m_files_list_model->item(i);
+            QString path = item->data(FILE_PATH_ROLE).toString();
+            QString output_pages = item->data(OUTPUT_PAGES_ROLE).toString();
+            int mp_index = item->data(MULTIPAGE_ROLE).toInt();
+            int rotation = item->data(ROTATION_ROLE).toInt();
+            QString outline = item->data(OUTLINE_ENTRY_ROLE).toString();
+            bool reverse = item->data(REVERSE_ORDER_ROLE).toBool();
+
+            QJsonObject file_data;
+            file_data.insert("path", path);
+            file_data.insert("pages", output_pages);
+            file_data.insert("multipage", mp_index);
+            file_data.insert("rotation", rotation);
+            file_data.insert("outline", outline);
+            file_data.insert("reverse", reverse);
+
+            files.push_back(file_data);
+        }
+
+        data.insert("files", files);
+
+        QJsonDocument doc;
+
+        doc.setObject(data);
+
+        QFile json;
+        json.setFileName(filename);
+        json.open(QIODevice::WriteOnly);
+        json.write(doc.toJson());
+        json.close();
+    }
+}
+
 void MainWindow::set_input_files(const QStringList &files)
 {
     if (files.size() == 0)
@@ -443,6 +598,7 @@ void MainWindow::add_pdf_files(const QStringList &files)
 
         this->update_output_pages_count();
         m_generate_pdf_button->setEnabled(true);
+        m_save_files_list_button->setEnabled(true);
     }
 }
 
@@ -525,7 +681,10 @@ void MainWindow::remove_pdf_file()
     this->update_output_pages_count();
 
     if (m_files_list_model->rowCount() == 0)
+    {
         m_generate_pdf_button->setEnabled(false);
+        m_save_files_list_button->setEnabled(false);
+    }
 }
 
 void MainWindow::edit_menu_activated()
@@ -740,7 +899,6 @@ void MainWindow::generate_pdf_button_pressed()
                 int mp_index = item->data(MULTIPAGE_ROLE).toInt();
                 int rotation = item->data(ROTATION_ROLE).toInt();
                 QString outline = item->data(OUTLINE_ENTRY_ROLE).toString();
-                bool reverse_order = item->data(REVERSE_ORDER_ROLE).toBool();
 
                 FileConf fileconf;
                 fileconf.path = file_path.toStdString();

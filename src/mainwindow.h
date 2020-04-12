@@ -56,6 +56,12 @@ public slots:
     void current_tab_changed(int index);
 
     // multiple files
+    bool load_json_files_list(const QString &filename);
+
+    void load_files_list_pressed();
+
+    void save_files_list_pressed();
+
     void add_pdf_files(const QStringList &files);
 
     void move_up();
@@ -104,6 +110,7 @@ private:
 
     QProgressBar *m_progress_bar;
     QLabel m_saved_file;
+    QPushButton *m_save_files_list_button;
     QPushButton *m_generate_pdf_button;
 
     QListView *m_files_list_view;

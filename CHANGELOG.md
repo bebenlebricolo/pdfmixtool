@@ -7,6 +7,7 @@
 <h3>Added</h3>
 
 <ul>
+    <li>Add ability to save and restore files list</li>
     <li>Add Swedish translation</li>
 </ul>
 

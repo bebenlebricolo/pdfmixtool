@@ -41,6 +41,7 @@ void write_alternate_mix(const std::vector<std::string> &input_filenames,
 void write_booklet_pdf(const std::string &input_filename,
                        const std::string &output_filename,
                        bool right_side_binding,
+                       bool back_cover,
                        std::function<void (int)> &progress);
 
 void write_add_empty_pages(const std::string &input_filename,

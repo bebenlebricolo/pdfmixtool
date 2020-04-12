@@ -20,6 +20,7 @@
 #define BOOKLET_H
 
 #include <QComboBox>
+#include <QCheckBox>
 
 #include "abstract_operation.h"
 
@@ -35,6 +36,7 @@ private:
     void generate_booklet();
 
     QComboBox m_booklet_binding;
+    QCheckBox m_booklet_back_cover;
 };
 
 #endif // BOOKLET_H

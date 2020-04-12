@@ -562,6 +562,7 @@ void write_booklet_pdf(
         const std::string &input_filename,
         const std::string &output_filename,
         bool right_side_binding,
+        bool back_cover,
         std::function<void (int)> &progress)
 {
     std::locale old_locale = std::locale::global(std::locale::classic());
@@ -631,6 +632,14 @@ void write_booklet_pdf(
 
         for (int current_page : couple)
         {
+            if (back_cover)
+            {
+                if (current_page == num_pages - 1)
+                    current_page = pages.size() - 1;
+                else if (current_page == pages.size() - 1)
+                    current_page = num_pages - 1;
+            }
+
             if (current_page >= pages.size())
             {
                 is_right_page = !is_right_page;

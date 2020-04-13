@@ -35,8 +35,8 @@ public:
 private:
     void generate_booklet();
 
-    QComboBox m_booklet_binding;
-    QCheckBox m_booklet_back_cover;
+    QComboBox m_binding;
+    QCheckBox m_back_cover;
 };
 
 #endif // BOOKLET_H

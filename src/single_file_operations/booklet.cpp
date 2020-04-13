@@ -42,6 +42,7 @@ AbstractOperation(pdf_info, progress_bar, parent)
     m_booklet_binding.addItem(tr("Left"));
     m_booklet_binding.addItem(tr("Right"));
     form_layout->addRow(tr("Binding:"), &m_booklet_binding);
+    form_layout->addRow(tr("Back cover:"), &m_booklet_back_cover);
 
     h_layout->addItem(new QSpacerItem(0, 0,
                                       QSizePolicy::Expanding,
@@ -93,6 +94,7 @@ void Booklet::generate_booklet()
         write_booklet_pdf(m_pdf_info->filename(),
                           m_save_filename.toStdString(),
                           m_booklet_binding.currentIndex(),
+                          m_booklet_back_cover.isChecked(),
                           progress);
 
         emit write_finished(m_save_filename);

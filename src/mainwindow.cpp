@@ -562,28 +562,37 @@ void MainWindow::add_pdf_files(const QStringList &files)
 {
     for (int i=0; i<files.count(); i++)
     {
-        PdfInfo pdf_info = PdfInfo(files.at(i).toStdString());
-        QString filename = QUrl(files.at(i)).fileName();
-        if (filename.endsWith(".pdf", Qt::CaseInsensitive))
-            filename.chop(4);
+        try
+        {
+            PdfInfo pdf_info = PdfInfo(files.at(i).toStdString());
+            QString filename = QUrl(files.at(i)).fileName();
+            if (filename.endsWith(".pdf", Qt::CaseInsensitive))
+                filename.chop(4);
 
-        QStandardItem *item = new QStandardItem();
+            QStandardItem *item = new QStandardItem();
 
-        item->setData(files.at(i), FILE_PATH_ROLE);
-        item->setData(pdf_info.width(), PAGE_WIDTH_ROLE);
-        item->setData(pdf_info.height(), PAGE_HEIGHT_ROLE);
-        item->setData(QString::fromStdString(pdf_info.paper_size()),
-                      PAPER_SIZE_ROLE);
-        item->setData(pdf_info.is_portrait(), IS_PORTRAIT_ROLE);
-        item->setData(pdf_info.n_pages(), N_PAGES_ROLE);
+            item->setData(files.at(i), FILE_PATH_ROLE);
+            item->setData(pdf_info.width(), PAGE_WIDTH_ROLE);
+            item->setData(pdf_info.height(), PAGE_HEIGHT_ROLE);
+            item->setData(QString::fromStdString(pdf_info.paper_size()),
+                        PAPER_SIZE_ROLE);
+            item->setData(pdf_info.is_portrait(), IS_PORTRAIT_ROLE);
+            item->setData(pdf_info.n_pages(), N_PAGES_ROLE);
 
-        item->setData("", OUTPUT_PAGES_ROLE);
-        item->setData(-1, MULTIPAGE_ROLE);
-        item->setData(0, ROTATION_ROLE);
-        item->setData(filename, OUTLINE_ENTRY_ROLE);
-        item->setData(false, REVERSE_ORDER_ROLE);
+            item->setData("", OUTPUT_PAGES_ROLE);
+            item->setData(-1, MULTIPAGE_ROLE);
+            item->setData(0, ROTATION_ROLE);
+            item->setData(filename, OUTLINE_ENTRY_ROLE);
+            item->setData(false, REVERSE_ORDER_ROLE);
 
-        m_files_list_model->appendRow(item);
+            m_files_list_model->appendRow(item);
+        }    
+        catch (std::exception& e)
+        {
+            QMessageBox::critical(this,
+                                  tr("Error opening file"),
+                                  QString::fromStdString(e.what()));
+        }
     }
 
     if (files.size() > 0)
@@ -925,32 +934,41 @@ void MainWindow::generate_pdf_button_pressed()
 
 void MainWindow::open_file_pressed()
 {
-    QString filename = QFileDialog::getOpenFileName(
-                this,
-                tr("Select a PDF file"),
-                settings->value("open_directory", "").toString(),
-                tr("PDF files (*.pdf)"));
-
-    if (!filename.isNull())
+    try
     {
+        QString filename = QFileDialog::getOpenFileName(
+                    this,
+                    tr("Select a PDF file"),
+                    settings->value("open_directory", "").toString(),
+                    tr("PDF files (*.pdf)"));
+
+        if (!filename.isNull())
+        {
 #ifdef FLATPAK_BUILD
-        settings->setValue("open_directory", "");
+            settings->setValue("open_directory", "");
 #else
-        settings->setValue(
-                    "open_directory",
-                    QFileInfo(filename).dir().absolutePath());
+            settings->setValue(
+                        "open_directory",
+                        QFileInfo(filename).dir().absolutePath());
 #endif
 
-        this->update_opened_file_label(filename);
-        m_view_opened_pdf_button->setEnabled(true);
+            this->update_opened_file_label(filename);
+            m_view_opened_pdf_button->setEnabled(true);
+        }
+    }
+    catch (std::exception& e)
+    {
+        QMessageBox::critical(this,
+                              tr("Error opening file"),
+                              QString::fromStdString(e.what()));
     }
 }
 
 void MainWindow::update_opened_file_label(const QString &filename)
 {
-    m_operations_splitter.setEnabled(true);
-
     m_opened_pdf_info = PdfInfo(filename.toStdString());
+
+    m_operations_splitter.setEnabled(true);
 
     m_opened_file_label->set_pdf_info(m_opened_pdf_info);
 

@@ -92,7 +92,6 @@ AboutDialog::AboutDialog(QWidget *parent) :
 
     QLabel *credits = new QLabel(this);
     credits->setText(
-                QString("<h2>%1</h2>").arg(tr("Authors")) +
                 QString::fromUtf8(authors.readAll()) +
                 QString("<h2>%1</h2>").arg(tr("Translators")) +
                 QString::fromUtf8(translator_credits.readAll())
@@ -178,4 +177,8 @@ AboutDialog::AboutDialog(QWidget *parent) :
                              QSizePolicy::Expanding, QSizePolicy::Minimum),
                          3, 3);
     grid_layout->addWidget(close_button, 3, 4);
+
+    authors.close();
+    translator_credits.close();
+    file.close();
 }

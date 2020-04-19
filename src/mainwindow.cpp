@@ -131,8 +131,8 @@ MainWindow::MainWindow(MouseEventFilter *filter, QWidget *parent) :
     main_menu->addAction(
                 QIcon::fromTheme("application-exit"),
                 tr("Exit"),
-                qApp,
-                SLOT(quit()),
+                this,
+                SLOT(close()),
                 QKeySequence::Quit);
     main_menu_button->setMenu(main_menu);
     m_tab_widget->setCornerWidget(main_menu_button);
@@ -198,6 +198,24 @@ MainWindow::MainWindow(MouseEventFilter *filter, QWidget *parent) :
                 this,
                 SLOT(remove_pdf_file()));
 
+    #ifndef FLATPAK_BUILD
+    QWidget *spacer = new QWidget(this);
+    spacer->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Minimum);
+    spacer->setMinimumWidth(50);
+    toolbar->addWidget(spacer);
+
+    toolbar->addAction(QIcon::fromTheme("document-open"),
+                       tr("Load files list"),
+                       this,
+                       &MainWindow::load_files_list_pressed);
+    m_save_files_list_action = toolbar->addAction(
+                QIcon::fromTheme("document-save-as"),
+                tr("Save files list"),
+                this,
+                &MainWindow::save_files_list_pressed);
+    m_save_files_list_action->setEnabled(false);
+    #endif
+
     // Set shortcuts for toolbar buttons
     add_file_action->setShortcut(QKeySequence::Open);
     move_up_action->setShortcut(QKeySequence("Ctrl+up"));
@@ -223,17 +241,6 @@ MainWindow::MainWindow(MouseEventFilter *filter, QWidget *parent) :
                 .arg(
                     remove_file_action->text(),
                     remove_file_action->shortcut().toString()));
-
-    // load/save files list buttons
-    QPushButton *load_files_list_button = new QPushButton(
-                QIcon::fromTheme("document-open"),
-                tr("Load files list"),
-                this);
-    m_save_files_list_button = new QPushButton(
-                QIcon::fromTheme("document-save-as"),
-                tr("Save files list"),
-                this);
-    m_save_files_list_button->setEnabled(false);
 
     // Create "Generate PDF" button
     m_generate_pdf_button = new QPushButton(
@@ -263,13 +270,11 @@ MainWindow::MainWindow(MouseEventFilter *filter, QWidget *parent) :
     h_layout->addItem(new QSpacerItem(
                           0, 0,
                           QSizePolicy::Expanding, QSizePolicy::Minimum));
-#ifndef FLATPAK_BUILD
-    h_layout->addWidget(load_files_list_button);
-    h_layout->addWidget(m_save_files_list_button);
+
     h_layout->addItem(new QSpacerItem(
                           0, 0,
                           QSizePolicy::Expanding, QSizePolicy::Minimum));
-#endif
+
     h_layout->addWidget(m_generate_pdf_button);
     v_layout->addLayout(h_layout);
 
@@ -288,12 +293,6 @@ MainWindow::MainWindow(MouseEventFilter *filter, QWidget *parent) :
 
     connect(m_multipage_profiles_manager, SIGNAL(close_signal()),
             this, SLOT(update_output_pages_count()));
-
-    connect(load_files_list_button, SIGNAL(released()),
-            this, SLOT(load_files_list_pressed()));
-
-    connect(m_save_files_list_button, SIGNAL(released()),
-            this, SLOT(save_files_list_pressed()));
 
     connect(m_generate_pdf_button, SIGNAL(released()),
             this, SLOT(generate_pdf_button_pressed()));
@@ -607,7 +606,7 @@ void MainWindow::add_pdf_files(const QStringList &files)
 
         this->update_output_pages_count();
         m_generate_pdf_button->setEnabled(true);
-        m_save_files_list_button->setEnabled(true);
+        m_save_files_list_action->setEnabled(true);
     }
 }
 
@@ -692,7 +691,7 @@ void MainWindow::remove_pdf_file()
     if (m_files_list_model->rowCount() == 0)
     {
         m_generate_pdf_button->setEnabled(false);
-        m_save_files_list_button->setEnabled(false);
+        m_save_files_list_action->setEnabled(false);
     }
 }
 
@@ -1012,6 +1011,10 @@ void MainWindow::write_finished(const QString &filename)
 
 void MainWindow::closeEvent(QCloseEvent *event)
 {
+    QList<int> sizes = m_operations_splitter.sizes();
+    settings->setValue("operations_list_width", sizes[0]);
+    settings->setValue("operations_widget_width", sizes[1]);
+
     settings->setValue("main_window_geometry", this->saveGeometry());
 
     // Save custom multipage profiles
@@ -1021,8 +1024,7 @@ void MainWindow::closeEvent(QCloseEvent *event)
         settings->remove(key);
 
     QMap<int, Multipage>::const_iterator it;
-    for (
-         it = multipages.constBegin();
+    for (it = multipages.constBegin();
          it != multipages.constEnd();
          ++it)
         settings->setValue(
@@ -1030,10 +1032,6 @@ void MainWindow::closeEvent(QCloseEvent *event)
                     QVariant::fromValue<Multipage>(it.value()));
 
     settings->endGroup();
-
-    QList<int> sizes = m_operations_splitter.sizes();
-    settings->setValue("operations_list_width", sizes[0]);
-    settings->setValue("operations_widget_width", sizes[1]);
 
     QMainWindow::closeEvent(event);
 }

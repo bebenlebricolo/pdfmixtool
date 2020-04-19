@@ -110,7 +110,7 @@ private:
 
     QProgressBar *m_progress_bar;
     QLabel m_saved_file;
-    QPushButton *m_save_files_list_button;
+    QAction *m_save_files_list_action;
     QPushButton *m_generate_pdf_button;
 
     QListView *m_files_list_view;

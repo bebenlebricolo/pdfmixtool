@@ -18,6 +18,7 @@
     <li><a href="mailto:31b32@tutanota.com">Gereko</a></li>
     <li><a href="mailto:anarchistcat@riseup.net">anarchistcat</a></li>
     <li><a href="mailto:epost@anotheragency.no">Allan Nordhøy</a></li>
+    <li><a href="mailto:nico_bidault@yahoo.fr">Nicolas Bidault</a></li>
 </ul>
 
 <h3>German</h3>

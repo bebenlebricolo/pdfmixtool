@@ -460,7 +460,7 @@ void MainWindow::load_files_list_pressed()
 {
     QString filename = QFileDialog::getOpenFileName(
                 this,
-                tr("Select the json file containing the files list"),
+                tr("Select the JSON file containing the files list"),
                 settings->value("open_directory", "").toString(),
                 tr("JSON files (*.json)"));
 

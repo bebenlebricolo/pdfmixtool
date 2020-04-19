@@ -666,11 +666,6 @@
         <translation>File PDF (*.pdf)</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="463"/>
-        <source>Select the json file containing the files list</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../src/mainwindow.cpp" line="465"/>
         <location filename="../src/mainwindow.cpp" line="483"/>
         <source>JSON files (*.json)</source>
@@ -761,6 +756,11 @@
         <location filename="../src/mainwindow.cpp" line="133"/>
         <source>Exit</source>
         <translation>Esci</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="463"/>
+        <source>Select the JSON file containing the files list</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="826"/>

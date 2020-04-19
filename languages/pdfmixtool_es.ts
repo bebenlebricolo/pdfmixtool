@@ -634,6 +634,11 @@
         <translation>Generar PDF</translation>
     </message>
     <message>
+        <location filename="../src/mainwindow.cpp" line="463"/>
+        <source>Select the JSON file containing the files list</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../src/mainwindow.cpp" line="843"/>
         <source>PDF generation error</source>
         <translation>Generación de error en PDF</translation>
@@ -704,11 +709,6 @@
         <location filename="../src/mainwindow.cpp" line="942"/>
         <source>PDF files (*.pdf)</source>
         <translation>Archivos PDF (*.pdf)</translation>
-    </message>
-    <message>
-        <location filename="../src/mainwindow.cpp" line="463"/>
-        <source>Select the json file containing the files list</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="465"/>

@@ -79,32 +79,32 @@
     <message>
         <location filename="../src/single_file_operations/abstract_operation.cpp" line="36"/>
         <source>Save</source>
-        <translation type="unfinished">Salva</translation>
+        <translation>Salva</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/abstract_operation.cpp" line="64"/>
         <source>Overwrite File?</source>
-        <translation type="unfinished">Sovrascrivere il File?</translation>
+        <translation>Sovrascrivere il File?</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/abstract_operation.cpp" line="65"/>
         <source>A file called «%1» already exists. Do you want to overwrite it?</source>
-        <translation type="unfinished">Esiste già un file chiamato «%1». Vuoi sovrascriverlo?</translation>
+        <translation>Esiste già un file chiamato «%1». Vuoi sovrascriverlo?</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/abstract_operation.cpp" line="71"/>
         <source>Always overwrite</source>
-        <translation type="unfinished">Sovrascrivi sempre</translation>
+        <translation>Sovrascrivi sempre</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/abstract_operation.cpp" line="89"/>
         <source>Save PDF file</source>
-        <translation type="unfinished">Salva file PDF</translation>
+        <translation>Salva file PDF</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/abstract_operation.cpp" line="93"/>
         <source>PDF files (*.pdf)</source>
-        <translation type="unfinished">File PDF (*.pdf)</translation>
+        <translation>File PDF (*.pdf)</translation>
     </message>
 </context>
 <context>
@@ -112,7 +112,7 @@
     <message>
         <location filename="../src/single_file_operations/add_empty_pages.cpp" line="34"/>
         <source>Add empty pages</source>
-        <translation type="unfinished">Aggiungi pagine vuote</translation>
+        <translation>Aggiungi pagine vuote</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/add_empty_pages.cpp" line="46"/>
@@ -180,7 +180,7 @@
     <message>
         <location filename="../src/single_file_operations/booklet.cpp" line="33"/>
         <source>Booklet</source>
-        <translation type="unfinished">Fascicolo</translation>
+        <translation>Fascicolo</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/booklet.cpp" line="42"/>
@@ -210,12 +210,12 @@
     <message>
         <location filename="../src/single_file_operations/booklet.cpp" line="68"/>
         <source>Save booklet PDF file</source>
-        <translation type="unfinished">Salva il file PDF del fascicolo</translation>
+        <translation>Salva il file PDF del fascicolo</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/booklet.cpp" line="72"/>
         <source>PDF files (*.pdf)</source>
-        <translation type="unfinished">File PDF (*.pdf)</translation>
+        <translation>File PDF (*.pdf)</translation>
     </message>
 </context>
 <context>
@@ -223,7 +223,7 @@
     <message>
         <location filename="../src/single_file_operations/delete_pages.cpp" line="34"/>
         <source>Delete pages</source>
-        <translation type="unfinished">Cancella pagine</translation>
+        <translation>Cancella pagine</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/delete_pages.cpp" line="46"/>
@@ -359,7 +359,7 @@
     <message>
         <location filename="../src/single_file_operations/edit_page_layout.cpp" line="34"/>
         <source>Edit page layout</source>
-        <translation type="unfinished">Modifica il layout delle pagine</translation>
+        <translation>Modifica il layout delle pagine</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/edit_page_layout.cpp" line="55"/>
@@ -474,7 +474,7 @@
     <message>
         <location filename="../src/single_file_operations/extract_pages.cpp" line="37"/>
         <source>Extract pages</source>
-        <translation type="unfinished">Estrai pagine</translation>
+        <translation>Estrai pagine</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/extract_pages.cpp" line="77"/>
@@ -501,12 +501,12 @@
     <message>
         <location filename="../src/single_file_operations/extract_pages.cpp" line="193"/>
         <source>Select save directory</source>
-        <translation type="unfinished">Seleziona la directory di salvataggio</translation>
+        <translation>Seleziona la directory di salvataggio</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/extract_pages.cpp" line="268"/>
         <source>PDF files (*.pdf)</source>
-        <translation type="unfinished">File PDF (*.pdf)</translation>
+        <translation>File PDF (*.pdf)</translation>
     </message>
 </context>
 <context>
@@ -669,28 +669,28 @@
         <location filename="../src/mainwindow.cpp" line="465"/>
         <location filename="../src/mainwindow.cpp" line="483"/>
         <source>JSON files (*.json)</source>
-        <translation type="unfinished"></translation>
+        <translation>File JSON (*.json)</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="471"/>
         <source>Error while reading the JSON file!</source>
-        <translation type="unfinished"></translation>
+        <translation>Errore durante la lettura del file JSON!</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="472"/>
         <source>An error occurred while reading the JSON file!</source>
-        <translation type="unfinished"></translation>
+        <translation>C&apos;è stato un errore durante la lettura del file JSON!</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="479"/>
         <source>Select a JSON file</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleziona un file JSON</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="592"/>
         <location filename="../src/mainwindow.cpp" line="961"/>
         <source>Error opening file</source>
-        <translation type="unfinished"></translation>
+        <translation>Errore durante l&apos;apertura del file</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="850"/>
@@ -705,12 +705,12 @@
     <message>
         <location filename="../src/mainwindow.cpp" line="997"/>
         <source>Files saved in %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>File salvati in %1.</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="1003"/>
         <source>File %1 saved.</source>
-        <translation type="unfinished"></translation>
+        <translation>File %1 salvato.</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="817"/>
@@ -760,7 +760,7 @@
     <message>
         <location filename="../src/mainwindow.cpp" line="463"/>
         <source>Select the JSON file containing the files list</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleziona il file JSON contenente la lista di file</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="826"/>

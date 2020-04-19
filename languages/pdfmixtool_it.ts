@@ -26,7 +26,7 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="68"/>
         <source>An application to perform common editing operations on PDF files.</source>
-        <translation type="unfinished"></translation>
+        <translation>Un applicazione per compiere le operazioni di modifica più comuni sui file PDF.</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="96"/>
@@ -200,7 +200,7 @@
     <message>
         <location filename="../src/single_file_operations/booklet.cpp" line="45"/>
         <source>Use last page as back cover:</source>
-        <translation type="unfinished"></translation>
+        <translation>Usa l&apos;ultima pagina come copertina posteriore:</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/booklet.cpp" line="52"/>
@@ -480,7 +480,7 @@
         <location filename="../src/single_file_operations/extract_pages.cpp" line="77"/>
         <location filename="../src/single_file_operations/extract_pages.cpp" line="101"/>
         <source>Extract…</source>
-        <translation type="unfinished"></translation>
+        <translation>Estrai…</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/extract_pages.cpp" line="96"/>
@@ -635,12 +635,12 @@
     <message>
         <location filename="../src/mainwindow.cpp" line="208"/>
         <source>Load files list</source>
-        <translation type="unfinished"></translation>
+        <translation>Carica lista dei file</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="213"/>
         <source>Save files list</source>
-        <translation type="unfinished"></translation>
+        <translation>Salva lista dei file</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="248"/>

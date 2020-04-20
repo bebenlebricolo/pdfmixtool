@@ -23,7 +23,6 @@
 #include <sstream>
 #include <locale>
 
-#include <podofo/podofo.h>
 #include <qpdf/QUtil.hh>
 #include <qpdf/QPDFPageDocumentHelper.hh>
 #include <qpdf/QPDFWriter.hh>
@@ -460,40 +459,63 @@ void write_pdf(const Conf &conf, std::function<void (int)> &progress)
         progress(100 * i / (conf.files.size() + 1));
     }
 
+    // add oulines
+    if (outlines.size() > 0)
+    {
+        QPDFObjectHandle outlines_root = QPDFObjectHandle::newDictionary();
+        outlines_root.replaceKey("/Type",
+                                 QPDFObjectHandle::newName("/Outlines"));
+        outlines_root = output_file.makeIndirectObject(outlines_root);
+
+        QPDFObjectHandle prev;
+        QPDFObjectHandle current;
+        QPDFObjectHandle first;
+
+        bool is_first_item = true;
+        for (std::pair<int, const std::string &> entry : outlines)
+        {
+            current = QPDFObjectHandle::newDictionary();
+            current.replaceKey("/Parent", outlines_root);
+            current.replaceKey(
+                        "/Title",
+                        QPDFObjectHandle::newUnicodeString(entry.second));
+            QPDFObjectHandle dest = QPDFObjectHandle::newArray();
+            dest.appendItem(output_file.getAllPages().at(entry.first));
+            dest.appendItem(QPDFObjectHandle::newName("/Fit"));
+            current.replaceKey("/Dest", dest);
+            current = output_file.makeIndirectObject(current);
+
+            if (!is_first_item)
+            {
+                current.replaceKey("/Prev", prev);
+                prev.replaceKey("/Next", current);
+            }
+            else
+            {
+                first = current;
+                is_first_item = false;
+            }
+
+            prev = current;
+        }
+
+        outlines_root.replaceKey("/First", first);
+        outlines_root.replaceKey("/Last", current);
+
+        output_file.getRoot().replaceKey("/Outlines", outlines_root);
+    }
+
     QPDFWriter writer(output_file);
     writer.setOutputMemory();
     writer.write();
     Buffer *buffer = writer.getBuffer();
 
-    // Add outline with podofo
-    PoDoFo::PdfMemDocument podofo_file;
-
     const char *buf = reinterpret_cast<const char *>(buffer->getBuffer());
-    podofo_file.LoadFromBuffer(buf, buffer->getSize());
 
-    PoDoFo::PdfOutlineItem *item;
-    bool first = true;
-    for (std::pair<int, const std::string &> entry : outlines)
-    {
-        if (first)
-        {
-            item = podofo_file.GetOutlines(true)
-                    ->CreateRoot(entry.second);
-            item->SetDestination(PoDoFo::PdfDestination(
-                                     podofo_file.GetPage(entry.first)));
-            first = false;
-        }
-        else
-        {
-            item = item->CreateNext(
-                        entry.second,
-                        PoDoFo::PdfDestination(podofo_file.GetPage(entry.first))
-                        );
-        }
-    }
-
-    podofo_file.Write(conf.output_path.c_str());
-
+    std::ofstream output_file_stream;
+    output_file_stream.open(conf.output_path);
+    output_file_stream.write(buf, buffer->getSize());
+    output_file_stream.close();
     delete buffer;
 
     progress(100);

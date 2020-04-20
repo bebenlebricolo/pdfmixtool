@@ -77,7 +77,6 @@ add_executable (
 
 target_link_libraries (
     pdfmixtool
-    podofo
     qpdf
     ${Qt5Widgets_LIBRARIES}
 )

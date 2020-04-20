@@ -760,7 +760,7 @@
     <message>
         <location filename="../src/mainwindow.cpp" line="463"/>
         <source>Select the JSON file containing the files list</source>
-        <translation type="unfinished"></translation>
+        <translation>Välj den JSON-fil som innehåller fillistan</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="826"/>

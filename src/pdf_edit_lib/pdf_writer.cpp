@@ -32,6 +32,46 @@
 #include "pdf_writer.h"
 #include "pdf_info.h"
 
+Point get_destination_coordinates(QPDFObjectHandle &page_obj)
+{
+    QPDFPageObjectHelper page = QPDFPageObjectHelper(page_obj);
+
+    // get rotation of the page
+    long long page_rotation = 0;
+    if (page.getAttribute("/Rotate", true).isInteger())
+        page_rotation = page.getAttribute("/Rotate", true).getIntValue();
+
+    // get the coordinates
+    Point point;
+    QPDFObjectHandle::Rectangle rect =
+            page.getAttribute("/MediaBox", true).getArrayAsRectangle();
+
+    double height = rect.ury - rect.lly;
+    double width = rect.urx - rect.llx;
+
+    switch (page_rotation)
+    {
+    case 90:
+        point.top = 0;
+        point.left = 0;
+        break;
+    case 180:
+        point.top = 0;
+        point.left = width;
+        break;
+    case 270:
+        point.top = height;
+        point.left = width;
+        break;
+    default:
+        point.top = height;
+        point.left = 0;
+        break;
+    }
+
+    return point;
+}
+
 bool parse_output_pages_string(
         const std::string &str,
         int n_pages,
@@ -479,9 +519,16 @@ void write_pdf(const Conf &conf, std::function<void (int)> &progress)
             current.replaceKey(
                         "/Title",
                         QPDFObjectHandle::newUnicodeString(entry.second));
+
+            QPDFObjectHandle page =
+                    output_file.getAllPages().at(entry.first);
+            Point point = get_destination_coordinates(page);
             QPDFObjectHandle dest = QPDFObjectHandle::newArray();
-            dest.appendItem(output_file.getAllPages().at(entry.first));
-            dest.appendItem(QPDFObjectHandle::newName("/Fit"));
+            dest.appendItem(page);
+            dest.appendItem(QPDFObjectHandle::newName("/XYZ"));
+            dest.appendItem(QPDFObjectHandle::newReal(point.left));
+            dest.appendItem(QPDFObjectHandle::newReal(point.top));
+            dest.appendItem(QPDFObjectHandle::newNull());
             current.replaceKey("/Dest", dest);
             current = output_file.makeIndirectObject(current);
 

@@ -22,7 +22,19 @@
 #include <functional>
 #include <vector>
 
+#include <qpdf/QPDFObjectHandle.hh>
+
 #include "definitions.h"
+
+struct Point {
+    double top;
+    double left;
+};
+
+// return coordinates for the destination in outlines so that the top left
+// corner of the page is displayed in the top left corner of the window,
+// independently on the rotation of the page
+Point get_destination_coordinates(QPDFObjectHandle &page_obj);
 
 // return true if the input string is valid
 bool parse_output_pages_string(

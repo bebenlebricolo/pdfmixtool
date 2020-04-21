@@ -634,12 +634,12 @@
         <translation>PDF genereren</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="463"/>
+        <location filename="../src/mainwindow.cpp" line="473"/>
         <source>Select the JSON file containing the files list</source>
         <translation>Kies het JSON-bestand dat de bestandslijst bevat</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="843"/>
+        <location filename="../src/mainwindow.cpp" line="853"/>
         <source>PDF generation error</source>
         <translation>PDF-genereerfout</translation>
     </message>
@@ -705,65 +705,70 @@
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="182"/>
-        <location filename="../src/mainwindow.cpp" line="854"/>
-        <location filename="../src/mainwindow.cpp" line="942"/>
+        <location filename="../src/mainwindow.cpp" line="864"/>
+        <location filename="../src/mainwindow.cpp" line="952"/>
         <source>PDF files (*.pdf)</source>
         <translation>PDF-bestanden (*.pdf)</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="465"/>
-        <location filename="../src/mainwindow.cpp" line="483"/>
+        <location filename="../src/mainwindow.cpp" line="48"/>
+        <source>Alternate mix</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="475"/>
+        <location filename="../src/mainwindow.cpp" line="493"/>
         <source>JSON files (*.json)</source>
         <translation>JSON-bestanden (*.json)</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="471"/>
+        <location filename="../src/mainwindow.cpp" line="481"/>
         <source>Error while reading the JSON file!</source>
         <translation>Fout tijdens uitlezen van JSON-bestand!</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="472"/>
+        <location filename="../src/mainwindow.cpp" line="482"/>
         <source>An error occurred while reading the JSON file!</source>
         <translation>Er is een fout opgetreden tijdens het uitlezen van het JSON-bestand!</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="479"/>
+        <location filename="../src/mainwindow.cpp" line="489"/>
         <source>Select a JSON file</source>
         <translation>JSON-bestand kiezen</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="592"/>
-        <location filename="../src/mainwindow.cpp" line="961"/>
+        <location filename="../src/mainwindow.cpp" line="602"/>
+        <location filename="../src/mainwindow.cpp" line="971"/>
         <source>Error opening file</source>
         <translation>Kan bestand niet openen</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="817"/>
+        <location filename="../src/mainwindow.cpp" line="827"/>
         <source>Output pages: %1</source>
         <translation>Uitvoerpagina&apos;s: %1</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="940"/>
+        <location filename="../src/mainwindow.cpp" line="950"/>
         <source>Select a PDF file</source>
         <translation>Kies een PDF-bestand</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="997"/>
+        <location filename="../src/mainwindow.cpp" line="1007"/>
         <source>Files saved in %1.</source>
         <translation>De bestanden zijn opgeslagen in %1.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1003"/>
+        <location filename="../src/mainwindow.cpp" line="1013"/>
         <source>File %1 saved.</source>
         <translation>&apos;%1&apos; is opgeslagen.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="826"/>
+        <location filename="../src/mainwindow.cpp" line="836"/>
         <source>&lt;p&gt;Output pages of file &lt;b&gt;%1&lt;/b&gt; are badly formatted. Please make sure you complied with the following rules:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;intervals of pages must be written indicating the first page and the last page separated by a dash (e.g. &quot;1-5&quot;);&lt;/li&gt;&lt;li&gt;single pages and intervals of pages must be separated by spaces, commas or both (e.g. &quot;1, 2, 3, 5-10&quot; or &quot;1 2 3 5-10&quot;);&lt;/li&gt;&lt;li&gt;all pages and intervals of pages must be between 1 and the number of pages of the PDF file;&lt;/li&gt;&lt;li&gt;only numbers, spaces, commas and dashes can be used. All other characters are not allowed.&lt;/li&gt;&lt;/ul&gt;</source>
         <translation>&lt;p&gt;De uitvoerpagina&apos;s van het bestand &lt;b&gt;%1&lt;/b&gt; zijn slecht opgemaakt. Zorg ervoor dat het voldoet aan de volgende regels:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;het aantal pagina&apos;s moet worden aangegeven, gescheiden door een streepje (bijv. &apos;1-5&apos;);&lt;/li&gt;&lt;li&gt;losse pagina&apos;s met meerdere ertussen moeten worden gescheiden door een spatie, komma of beide (bijv. &apos;1, 2, 3, 5-10&apos; of &apos;1 2 3 5-10&apos;);&lt;/li&gt;&lt;li&gt;alle pagina&apos;s moeten tussen 1 en het totaalaantal liggen;&lt;/li&gt;&lt;li&gt;je kunt alleen getallen, spaties, komma&apos;s en streepjes gebruiken. Het gebruik van ander soort tekens is niet toegestaan.&lt;/li&gt;&lt;/ul&gt;</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="850"/>
+        <location filename="../src/mainwindow.cpp" line="860"/>
         <source>Save PDF file</source>
         <translation>PDF-bestand opslaan</translation>
     </message>

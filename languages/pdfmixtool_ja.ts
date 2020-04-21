@@ -634,12 +634,12 @@
         <translation>PDF を生成</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="463"/>
+        <location filename="../src/mainwindow.cpp" line="473"/>
         <source>Select the JSON file containing the files list</source>
         <translation>ファイル一覧を含む JSON ファイルを選択</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="843"/>
+        <location filename="../src/mainwindow.cpp" line="853"/>
         <source>PDF generation error</source>
         <translation>PDF 生成エラー</translation>
     </message>
@@ -705,65 +705,70 @@
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="182"/>
-        <location filename="../src/mainwindow.cpp" line="854"/>
-        <location filename="../src/mainwindow.cpp" line="942"/>
+        <location filename="../src/mainwindow.cpp" line="864"/>
+        <location filename="../src/mainwindow.cpp" line="952"/>
         <source>PDF files (*.pdf)</source>
         <translation>PDF ファイル (*.pdf)</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="465"/>
-        <location filename="../src/mainwindow.cpp" line="483"/>
+        <location filename="../src/mainwindow.cpp" line="48"/>
+        <source>Alternate mix</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="475"/>
+        <location filename="../src/mainwindow.cpp" line="493"/>
         <source>JSON files (*.json)</source>
         <translation>JSON ファイル (*.json)</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="471"/>
+        <location filename="../src/mainwindow.cpp" line="481"/>
         <source>Error while reading the JSON file!</source>
         <translation>JSON ファイル読み取りエラー！</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="472"/>
+        <location filename="../src/mainwindow.cpp" line="482"/>
         <source>An error occurred while reading the JSON file!</source>
         <translation>JSON ファイルの読み取り中にエラーが発生しました！</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="479"/>
+        <location filename="../src/mainwindow.cpp" line="489"/>
         <source>Select a JSON file</source>
         <translation>JSON ファイルを選択</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="592"/>
-        <location filename="../src/mainwindow.cpp" line="961"/>
+        <location filename="../src/mainwindow.cpp" line="602"/>
+        <location filename="../src/mainwindow.cpp" line="971"/>
         <source>Error opening file</source>
         <translation>ファイルオープンエラー</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="817"/>
+        <location filename="../src/mainwindow.cpp" line="827"/>
         <source>Output pages: %1</source>
         <translation>出力ページ: %1</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="940"/>
+        <location filename="../src/mainwindow.cpp" line="950"/>
         <source>Select a PDF file</source>
         <translation>PDF ファイルを選択</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="997"/>
+        <location filename="../src/mainwindow.cpp" line="1007"/>
         <source>Files saved in %1.</source>
         <translation>%1 にファイルを保存しました。</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="1003"/>
+        <location filename="../src/mainwindow.cpp" line="1013"/>
         <source>File %1 saved.</source>
         <translation>ファイル %1 を保存しました。</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="826"/>
+        <location filename="../src/mainwindow.cpp" line="836"/>
         <source>&lt;p&gt;Output pages of file &lt;b&gt;%1&lt;/b&gt; are badly formatted. Please make sure you complied with the following rules:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;intervals of pages must be written indicating the first page and the last page separated by a dash (e.g. &quot;1-5&quot;);&lt;/li&gt;&lt;li&gt;single pages and intervals of pages must be separated by spaces, commas or both (e.g. &quot;1, 2, 3, 5-10&quot; or &quot;1 2 3 5-10&quot;);&lt;/li&gt;&lt;li&gt;all pages and intervals of pages must be between 1 and the number of pages of the PDF file;&lt;/li&gt;&lt;li&gt;only numbers, spaces, commas and dashes can be used. All other characters are not allowed.&lt;/li&gt;&lt;/ul&gt;</source>
         <translation>&lt;p&gt;ファイルの出力ページ &lt;b&gt;%1&lt;/b&gt; が適切な形式ではありません。次の規則に従っていることを確認してください:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;ページの間隔は、最初のページと最後のページをダッシュで区切って (例えば &quot;1-5&quot; ) 書く必要があります&lt;/li&gt;&lt;li&gt;単一のページとページ間隔は、スペース、カンマ、またはその両方で (例えば &quot;1, 2, 3, 5-10&quot; や &quot;1 2 3 5-10&quot;) 区切る必要があります。&lt;/li&gt;&lt;li&gt;すべてのページとページ間隔は、1 から PDF ファイルのページ数の間でなければなりません。&lt;/li&gt;&lt;li&gt;数字、スペース、カンマ、ダッシュのみ使用できます。他の文字は使用できません&lt;/li&gt;&lt;/ul&gt;</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="850"/>
+        <location filename="../src/mainwindow.cpp" line="860"/>
         <source>Save PDF file</source>
         <translation>PDF ファイルを保存</translation>
     </message>

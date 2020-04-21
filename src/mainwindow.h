@@ -120,6 +120,7 @@ private:
     QMenu *m_edit_menu;
 
     QSplitter m_operations_splitter;
+    bool m_operations_splitter_moved;
     QPushButton *m_view_opened_pdf_button;
     PdfInfo m_opened_pdf_info;
     PdfInfoLabel *m_opened_file_label;

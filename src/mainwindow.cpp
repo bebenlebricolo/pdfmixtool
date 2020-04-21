@@ -394,6 +394,16 @@ MainWindow::MainWindow(MouseEventFilter *filter, QWidget *parent) :
 
     connect(operations_list, &QListWidget::currentRowChanged,
             operations_widget, &QStackedWidget::setCurrentIndex);
+
+    // register whether the splitter have been moved at least once
+    m_operations_splitter_moved = false;
+    QMetaObject::Connection * const connection = new QMetaObject::Connection;
+    *connection = connect(&m_operations_splitter, &QSplitter::splitterMoved,
+                          [this, connection](){
+        m_operations_splitter_moved = true;
+        QObject::disconnect(*connection);
+        delete connection;
+    });
 }
 
 bool MainWindow::load_json_files_list(const QString &filename)
@@ -1011,9 +1021,14 @@ void MainWindow::write_finished(const QString &filename)
 
 void MainWindow::closeEvent(QCloseEvent *event)
 {
-    QList<int> sizes = m_operations_splitter.sizes();
-    settings->setValue("operations_list_width", sizes[0]);
-    settings->setValue("operations_widget_width", sizes[1]);
+    // save operations splitter sizes only if the splitter was moved to
+    // prevent saving default values
+    if (m_operations_splitter_moved)
+    {
+        QList<int> sizes = m_operations_splitter.sizes();
+        settings->setValue("operations_list_width", sizes[0]);
+        settings->setValue("operations_widget_width", sizes[1]);
+    }
 
     settings->setValue("main_window_geometry", this->saveGeometry());
 

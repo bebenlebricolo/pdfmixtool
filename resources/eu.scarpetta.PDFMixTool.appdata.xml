@@ -58,6 +58,16 @@
   <content_rating type="oars-1.0" />
 
   <releases>
+    <release version="0.6" date="2020-04-22">
+      <description>
+        <ul>
+          <li>The list of input PDF files can now be saved and restored</li>
+          <li>Add Swedish translation</li>
+          <li>Remove dependency on PoDoFo</li>
+          <li>Various fixes and UI improvements</li>
+        </ul>
+      </description>
+    </release>
     <release version="0.5" date="2020-03-14">
       <description>
         <p>"Single file" mode was added with the following operations:</p>

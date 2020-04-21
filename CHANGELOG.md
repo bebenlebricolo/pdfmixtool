@@ -2,13 +2,20 @@
 
 <h2>Version 0.6</h2>
 
-<p><strong>Release date:</strong> unreleased</p>
+<p><strong>Release date:</strong> 2020-04-22</p>
 
 <h3>Added</h3>
 
 <ul>
-    <li>Add ability to save and restore files list</li>
+    <li>Add ability to save and restore the list of input PDF files</li>
     <li>Add Swedish translation</li>
+</ul>
+
+<h3>Changed</h3>
+
+<ul>
+    <li>Remove dependency on PoDoFo</li>
+    <li>Various fixes and UI improvements</li>
 </ul>
 
 <h2>Version 0.5</h2>

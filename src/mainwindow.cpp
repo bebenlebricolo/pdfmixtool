@@ -45,7 +45,7 @@
 MainWindow::MainWindow(MouseEventFilter *filter, QWidget *parent) :
     QMainWindow(parent),
     m_tab_widget(new QTabWidget(this)),
-    m_alternate_mix(new QCheckBox("Alternate mix", this)),
+    m_alternate_mix(new QCheckBox(tr("Alternate mix"), this)),
     m_output_page_count(new QLabel(this)),
     m_output_pages_error_index(-1),
     m_progress_bar(new QProgressBar(this)),

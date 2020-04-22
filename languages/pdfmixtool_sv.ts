@@ -661,7 +661,7 @@
     <message>
         <location filename="../src/mainwindow.cpp" line="48"/>
         <source>Alternate mix</source>
-        <translation type="unfinished"></translation>
+        <translation>Alternativ blandning</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="182"/>

@@ -31,7 +31,7 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="68"/>
         <source>An application to perform common editing operations on PDF files.</source>
-        <translation type="unfinished"></translation>
+        <translation>Program za izvođenje uobičajenih operacija uređivanja PDF datoteka.</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="96"/>
@@ -79,32 +79,32 @@
     <message>
         <location filename="../src/single_file_operations/abstract_operation.cpp" line="36"/>
         <source>Save</source>
-        <translation type="unfinished">Spremi</translation>
+        <translation>Spremi</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/abstract_operation.cpp" line="64"/>
         <source>Overwrite File?</source>
-        <translation type="unfinished">Prepisati datoteku?</translation>
+        <translation>Prepisati datoteku?</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/abstract_operation.cpp" line="65"/>
         <source>A file called «%1» already exists. Do you want to overwrite it?</source>
-        <translation type="unfinished">Datoteka s imenom „%1” već postoji. Stvarno je želiš prepisati?</translation>
+        <translation>Datoteka s imenom „%1” već postoji. Želiš li je prepisati?</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/abstract_operation.cpp" line="71"/>
         <source>Always overwrite</source>
-        <translation type="unfinished">Uvijek prepiši</translation>
+        <translation>Uvijek prepiši</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/abstract_operation.cpp" line="89"/>
         <source>Save PDF file</source>
-        <translation type="unfinished">Spremi PDF datoteku</translation>
+        <translation>Spremi PDF datoteku</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/abstract_operation.cpp" line="93"/>
         <source>PDF files (*.pdf)</source>
-        <translation type="unfinished">PDF datoteke (*.pdf)</translation>
+        <translation>PDF datoteke (*.pdf)</translation>
     </message>
 </context>
 <context>
@@ -112,7 +112,7 @@
     <message>
         <location filename="../src/single_file_operations/add_empty_pages.cpp" line="34"/>
         <source>Add empty pages</source>
-        <translation type="unfinished">Dodaj prazne stranice</translation>
+        <translation>Dodaj prazne stranice</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/add_empty_pages.cpp" line="46"/>
@@ -180,7 +180,7 @@
     <message>
         <location filename="../src/single_file_operations/booklet.cpp" line="33"/>
         <source>Booklet</source>
-        <translation type="unfinished">Knjižica</translation>
+        <translation>Knjižica</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/booklet.cpp" line="42"/>
@@ -200,7 +200,7 @@
     <message>
         <location filename="../src/single_file_operations/booklet.cpp" line="45"/>
         <source>Use last page as back cover:</source>
-        <translation type="unfinished"></translation>
+        <translation>Koristi zadnju stranicu kao stražnje korice:</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/booklet.cpp" line="52"/>
@@ -210,12 +210,12 @@
     <message>
         <location filename="../src/single_file_operations/booklet.cpp" line="68"/>
         <source>Save booklet PDF file</source>
-        <translation type="unfinished">Spremi PDF datoteku knjižice</translation>
+        <translation>Spremi PDF datoteku knjižice</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/booklet.cpp" line="72"/>
         <source>PDF files (*.pdf)</source>
-        <translation type="unfinished">PDF datoteke (*.pdf)</translation>
+        <translation>PDF datoteke (*.pdf)</translation>
     </message>
 </context>
 <context>
@@ -223,7 +223,7 @@
     <message>
         <location filename="../src/single_file_operations/delete_pages.cpp" line="34"/>
         <source>Delete pages</source>
-        <translation type="unfinished">Ukloni stranice</translation>
+        <translation>Ukloni stranice</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/delete_pages.cpp" line="46"/>
@@ -359,7 +359,7 @@
     <message>
         <location filename="../src/single_file_operations/edit_page_layout.cpp" line="34"/>
         <source>Edit page layout</source>
-        <translation type="unfinished">Uredi prijelom stranice</translation>
+        <translation>Uredi prijelom stranice</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/edit_page_layout.cpp" line="55"/>
@@ -474,13 +474,13 @@
     <message>
         <location filename="../src/single_file_operations/extract_pages.cpp" line="37"/>
         <source>Extract pages</source>
-        <translation type="unfinished">Izdvoji stranice</translation>
+        <translation>Izdvoji stranice</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/extract_pages.cpp" line="77"/>
         <location filename="../src/single_file_operations/extract_pages.cpp" line="101"/>
         <source>Extract…</source>
-        <translation type="unfinished"></translation>
+        <translation>Izdvoji …</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/extract_pages.cpp" line="96"/>
@@ -501,12 +501,12 @@
     <message>
         <location filename="../src/single_file_operations/extract_pages.cpp" line="193"/>
         <source>Select save directory</source>
-        <translation type="unfinished">Odaberi mapu za spremanje</translation>
+        <translation>Odaberi mapu za spremanje</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/extract_pages.cpp" line="268"/>
         <source>PDF files (*.pdf)</source>
-        <translation type="unfinished">PDF datoteke (*.pdf)</translation>
+        <translation>PDF datoteke (*.pdf)</translation>
     </message>
 </context>
 <context>
@@ -636,7 +636,7 @@
     <message>
         <location filename="../src/mainwindow.cpp" line="473"/>
         <source>Select the JSON file containing the files list</source>
-        <translation type="unfinished"></translation>
+        <translation>Odaberi JSON datoteku koja sadrži popis datoteka</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="853"/>
@@ -691,12 +691,12 @@
     <message>
         <location filename="../src/mainwindow.cpp" line="208"/>
         <source>Load files list</source>
-        <translation type="unfinished"></translation>
+        <translation>Učitaj popis datoteka</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="213"/>
         <source>Save files list</source>
-        <translation type="unfinished"></translation>
+        <translation>Spremi popis datoteka</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="311"/>
@@ -713,34 +713,34 @@
     <message>
         <location filename="../src/mainwindow.cpp" line="48"/>
         <source>Alternate mix</source>
-        <translation type="unfinished"></translation>
+        <translation>Naizmjenično miješanje</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="475"/>
         <location filename="../src/mainwindow.cpp" line="493"/>
         <source>JSON files (*.json)</source>
-        <translation type="unfinished"></translation>
+        <translation>JSON datoteke (*.json)</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="481"/>
         <source>Error while reading the JSON file!</source>
-        <translation type="unfinished"></translation>
+        <translation>Greška tijekom čitanja JSON datoteke!</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="482"/>
         <source>An error occurred while reading the JSON file!</source>
-        <translation type="unfinished"></translation>
+        <translation>Došlo je do greške tijekom čitanja JSON datoteke!</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="489"/>
         <source>Select a JSON file</source>
-        <translation type="unfinished"></translation>
+        <translation>Odaberi JSON datoteku</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="602"/>
         <location filename="../src/mainwindow.cpp" line="971"/>
         <source>Error opening file</source>
-        <translation type="unfinished"></translation>
+        <translation>Greška tijekom otvaranja datoteke</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="827"/>
@@ -755,12 +755,12 @@
     <message>
         <location filename="../src/mainwindow.cpp" line="1007"/>
         <source>Files saved in %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>Datoteke su spremljene u %1.</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="1013"/>
         <source>File %1 saved.</source>
-        <translation type="unfinished"></translation>
+        <translation>Datoteka %1 je spremljena.</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="836"/>

@@ -625,7 +625,7 @@
     <message>
         <location filename="../src/mainwindow.cpp" line="128"/>
         <source>About</source>
-        <translation>Про</translation>
+        <translation>О программе</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="248"/>

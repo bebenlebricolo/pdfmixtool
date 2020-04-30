@@ -266,17 +266,17 @@
     <message>
         <location filename="../src/editmultipageprofiledialog.cpp" line="39"/>
         <source>Standard size:</source>
-        <translation type="unfinished"></translation>
+        <translation>Standardna veličina:</translation>
     </message>
     <message>
         <location filename="../src/editmultipageprofiledialog.cpp" line="40"/>
         <source>Width:</source>
-        <translation type="unfinished"></translation>
+        <translation>Širina:</translation>
     </message>
     <message>
         <location filename="../src/editmultipageprofiledialog.cpp" line="41"/>
         <source>Height:</source>
-        <translation type="unfinished"></translation>
+        <translation>Visina:</translation>
     </message>
     <message>
         <location filename="../src/editmultipageprofiledialog.cpp" line="64"/>

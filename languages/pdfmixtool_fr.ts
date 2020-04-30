@@ -84,12 +84,12 @@
     <message>
         <location filename="../src/single_file_operations/abstract_operation.cpp" line="64"/>
         <source>Overwrite File?</source>
-        <translation>Remplacer le fichier ?</translation>
+        <translation>Remplacer le fichier&#x202f;?</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/abstract_operation.cpp" line="65"/>
         <source>A file called «%1» already exists. Do you want to overwrite it?</source>
-        <translation>Un fichier nommé « %1 » existe déjà. Voulez-vous le remplacer ?</translation>
+        <translation>Un fichier nommé «&#x202f;%1&#x202f;» existe déjà. Voulez-vous le remplacer&#xa0;?</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/abstract_operation.cpp" line="71"/>
@@ -117,7 +117,7 @@
     <message>
         <location filename="../src/single_file_operations/add_empty_pages.cpp" line="46"/>
         <source>Count:</source>
-        <translation>Nombre :</translation>
+        <translation>Nombre&#xa0;:</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/add_empty_pages.cpp" line="50"/>
@@ -132,12 +132,12 @@
     <message>
         <location filename="../src/single_file_operations/add_empty_pages.cpp" line="56"/>
         <source>Custom:</source>
-        <translation>Personnalisée :</translation>
+        <translation>Personnalisée&#xa0;:</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/add_empty_pages.cpp" line="81"/>
         <source>Standard:</source>
-        <translation>Standard :</translation>
+        <translation>Standard&#xa0;:</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/add_empty_pages.cpp" line="90"/>
@@ -167,7 +167,7 @@
     <message>
         <location filename="../src/single_file_operations/add_empty_pages.cpp" line="103"/>
         <source>Page:</source>
-        <translation>Page :</translation>
+        <translation>Page&#xa0;:</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/add_empty_pages.cpp" line="117"/>
@@ -195,12 +195,12 @@
     <message>
         <location filename="../src/single_file_operations/booklet.cpp" line="44"/>
         <source>Binding:</source>
-        <translation>Reliure :</translation>
+        <translation>Reliure&#xa0;:</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/booklet.cpp" line="45"/>
         <source>Use last page as back cover:</source>
-        <translation>Utilisez la dernière page comme couverture arrière :</translation>
+        <translation>Utilisez la dernière page comme couverture arrière&#x202f;:</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/booklet.cpp" line="52"/>
@@ -228,7 +228,7 @@
     <message>
         <location filename="../src/single_file_operations/delete_pages.cpp" line="46"/>
         <source>Delete pages:</source>
-        <translation>Supprimer les pages :</translation>
+        <translation>Supprimer les pages&#xa0;:</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/delete_pages.cpp" line="49"/>
@@ -248,7 +248,7 @@
     <message>
         <location filename="../src/single_file_operations/delete_pages.cpp" line="105"/>
         <source>&lt;p&gt;Pages to be deleted are badly formatted. Please make sure you complied with the following rules:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;intervals of pages must be written indicating the first page and the last page separated by a dash (e.g. &quot;1-5&quot;);&lt;/li&gt;&lt;li&gt;single pages and intervals of pages must be separated by spaces, commas or both (e.g. &quot;1, 2, 3, 5-10&quot; or &quot;1 2 3 5-10&quot;);&lt;/li&gt;&lt;li&gt;all pages and intervals of pages must be between 1 and the number of pages of the PDF file;&lt;/li&gt;&lt;li&gt;only numbers, spaces, commas and dashes can be used. All other characters are not allowed.&lt;/li&gt;&lt;/ul&gt;</source>
-        <translation>&lt;p&gt;Les pages à supprimer ne sont pas formatées correctement. Veuillez vous assurer d&apos;avoir respecté les règles suivantes :&lt;/p&gt;&lt;ul&gt;&lt;li&gt;les intervalles de pages doivent mentionner la première et la dernière page séparées par un tiret (par exemple « 1-5 ») ;&lt;/li&gt;&lt;li&gt;les pages uniques et les intervalles de pages doivent être séparés par des espaces, des virgules ou les deux (par exemple « 1, 2, 3, 5-10 » ou « 1 2 3 5-10 ») ;&lt;/li&gt;&lt;li&gt;toutes les pages et intervalles de pages doivent être compris entre 1 et le nombre de pages du fichier PDF ;&lt;/li&gt;&lt;li&gt;seuls des nombres, des espaces, des virgules et des tirets peuvent être utilisés. Tout autre caractère n&apos;est pas autorisé.&lt;/li&gt;&lt;/ul&gt;</translation>
+        <translation>&lt;p&gt;Les pages à supprimer ne sont pas formatées correctement. Veuillez vous assurer d&apos;avoir respecté les règles suivantes&#xa0;:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;les intervalles de pages doivent mentionner la première et la dernière page séparées par un tiret (par exemple «&#xa0;1-5&#xa0;»)&#xa0;;&lt;/li&gt;&lt;li&gt;les pages uniques et les intervalles de pages doivent être séparés par des espaces, des virgules ou les deux (par exemple «&#xa0;1, 2, 3, 5-10&#xa0;» ou «&#xa0;1 2 3 5-10&#xa0;»)&#xa0;;&lt;/li&gt;&lt;li&gt;toutes les pages et intervalles de pages doivent être compris entre 1 et le nombre de pages du fichier PDF&#xa0;;&lt;/li&gt;&lt;li&gt;seuls des nombres, des espaces, des virgules et des tirets peuvent être utilisés. Tout autre caractère n&apos;est pas autorisé.&lt;/li&gt;&lt;/ul&gt;</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/delete_pages.cpp" line="120"/>
@@ -262,6 +262,21 @@
         <location filename="../src/editmultipageprofiledialog.cpp" line="29"/>
         <source>Edit multipage profile</source>
         <translation>Modifier le profil multipage</translation>
+    </message>
+    <message>
+        <location filename="../src/editmultipageprofiledialog.cpp" line="39"/>
+        <source>Standard size:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/editmultipageprofiledialog.cpp" line="40"/>
+        <source>Width:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/editmultipageprofiledialog.cpp" line="41"/>
+        <source>Height:</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/editmultipageprofiledialog.cpp" line="64"/>
@@ -369,7 +384,7 @@
     <message>
         <location filename="../src/single_file_operations/edit_page_layout.cpp" line="62"/>
         <source>Rotation:</source>
-        <translation>Rotation :</translation>
+        <translation>Rotation&#xa0;:</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/edit_page_layout.cpp" line="64"/>
@@ -388,12 +403,12 @@
     <message>
         <location filename="../src/single_file_operations/edit_page_layout.cpp" line="78"/>
         <source>Multipage:</source>
-        <translation>Multipage :</translation>
+        <translation>Multipage&#xa0;:</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/edit_page_layout.cpp" line="86"/>
         <source>Scale page:</source>
-        <translation>Échelle de la page :</translation>
+        <translation>Échelle de la page&#xa0;:</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/edit_page_layout.cpp" line="94"/>
@@ -444,7 +459,7 @@
     <message>
         <location filename="../src/single_file_operations/extract_pages.cpp" line="45"/>
         <source>Extract pages:</source>
-        <translation>Extraire les pages :</translation>
+        <translation>Extraire les pages&#xa0;:</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/extract_pages.cpp" line="48"/>
@@ -464,7 +479,7 @@
     <message>
         <location filename="../src/single_file_operations/extract_pages.cpp" line="70"/>
         <source>Output PDF base name:</source>
-        <translation>Nom du PDF de sortie :</translation>
+        <translation>Nom du PDF de sortie&#xa0;:</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/extract_pages.cpp" line="66"/>
@@ -519,7 +534,7 @@
     <message>
         <location filename="../src/inputpdffiledelegate.cpp" line="80"/>
         <source>Page order:</source>
-        <translation>Ordre des pages :</translation>
+        <translation>Ordre des pages&#x202f;:</translation>
     </message>
     <message>
         <location filename="../src/inputpdffiledelegate.cpp" line="83"/>
@@ -554,7 +569,7 @@
     <message>
         <location filename="../src/inputpdffiledelegate.cpp" line="140"/>
         <source>Outline entry:</source>
-        <translation>Entrée du plan :</translation>
+        <translation>Entrée du plan&#xa0;:</translation>
     </message>
 </context>
 <context>
@@ -562,7 +577,7 @@
     <message>
         <location filename="../src/inputpdffilewidget.cpp" line="57"/>
         <source>Reverse page order:</source>
-        <translation>Inverser l&apos;ordre des pages :</translation>
+        <translation>Inverser l&apos;ordre des pages&#x202f;:</translation>
     </message>
     <message>
         <location filename="../src/inputpdffilewidget.cpp" line="71"/>
@@ -724,12 +739,12 @@
     <message>
         <location filename="../src/mainwindow.cpp" line="481"/>
         <source>Error while reading the JSON file!</source>
-        <translation>Erreur lors de la lecture du fichier JSON !</translation>
+        <translation>Erreur lors de la lecture du fichier JSON&#x202f;!</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="482"/>
         <source>An error occurred while reading the JSON file!</source>
-        <translation>Une erreur s&apos;est produite lors de la lecture du fichier JSON !</translation>
+        <translation>Une erreur s&apos;est produite lors de la lecture du fichier JSON&#x202f;!</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="489"/>
@@ -765,7 +780,7 @@
     <message>
         <location filename="../src/mainwindow.cpp" line="836"/>
         <source>&lt;p&gt;Output pages of file &lt;b&gt;%1&lt;/b&gt; are badly formatted. Please make sure you complied with the following rules:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;intervals of pages must be written indicating the first page and the last page separated by a dash (e.g. &quot;1-5&quot;);&lt;/li&gt;&lt;li&gt;single pages and intervals of pages must be separated by spaces, commas or both (e.g. &quot;1, 2, 3, 5-10&quot; or &quot;1 2 3 5-10&quot;);&lt;/li&gt;&lt;li&gt;all pages and intervals of pages must be between 1 and the number of pages of the PDF file;&lt;/li&gt;&lt;li&gt;only numbers, spaces, commas and dashes can be used. All other characters are not allowed.&lt;/li&gt;&lt;/ul&gt;</source>
-        <translation>&lt;p&gt; Les pages de sortie du fichier &lt;b&gt;%1 &lt;/b&gt; sont mal formatées. Veuillez vous assurer que vous avez respecté les règles suivantes : &lt;/p&gt; &lt;ul&gt; &lt;li&gt; les intervalles de pages doivent être écrits en indiquant la première page et la dernière page séparées par un tiret (par exemple &quot;1-5&quot;) ; &lt;/li &gt;&lt;li&gt; les pages simples et les intervalles de pages doivent être séparés par des espaces, des virgules ou les deux (par exemple &quot;1, 2, 3, 5-10&quot; ou &quot;1 2 3 5-10&quot;) ; &lt;/li&gt; &lt;li&gt; toutes les pages et tous les intervalles de pages doivent être compris entre 1 et le nombre de pages du fichier PDF ; &lt;/li&gt; &lt;li&gt; seuls les nombres, les espaces, les virgules et les tirets peuvent être utilisés. Tous les autres caractères ne sont pas autorisés. &lt;/li&gt; &lt;/ul&gt;</translation>
+        <translation>&lt;p&gt; Les pages de sortie du fichier &lt;b&gt;%1 &lt;/b&gt; sont mal formatées. Veuillez vous assurer que vous avez respecté les règles suivantes&#x202f;: &lt;/p&gt; &lt;ul&gt; &lt;li&gt; les intervalles de pages doivent être écrits en indiquant la première page et la dernière page séparées par un tiret (par exemple &quot;1-5&quot;)&#x202f;; &lt;/li &gt;&lt;li&gt; les pages simples et les intervalles de pages doivent être séparés par des espaces, des virgules ou les deux (par exemple &quot;1, 2, 3, 5-10&quot; ou &quot;1 2 3 5-10&quot;)&#x202f;; &lt;/li&gt; &lt;li&gt; toutes les pages et tous les intervalles de pages doivent être compris entre 1 et le nombre de pages du fichier PDF&#x202f;; &lt;/li&gt; &lt;li&gt; seuls les nombres, les espaces, les virgules et les tirets peuvent être utilisés. Tous les autres caractères ne sont pas autorisés. &lt;/li&gt; &lt;/ul&gt;</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="860"/>

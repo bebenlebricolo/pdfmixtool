@@ -264,6 +264,21 @@
         <translation>Modifica il profilo multipagina</translation>
     </message>
     <message>
+        <location filename="../src/editmultipageprofiledialog.cpp" line="39"/>
+        <source>Standard size:</source>
+        <translation>Dimensione standard:</translation>
+    </message>
+    <message>
+        <location filename="../src/editmultipageprofiledialog.cpp" line="40"/>
+        <source>Width:</source>
+        <translation>Larghezza:</translation>
+    </message>
+    <message>
+        <location filename="../src/editmultipageprofiledialog.cpp" line="41"/>
+        <source>Height:</source>
+        <translation>Altezza:</translation>
+    </message>
+    <message>
         <location filename="../src/editmultipageprofiledialog.cpp" line="64"/>
         <location filename="../src/editmultipageprofiledialog.cpp" line="166"/>
         <source>Left</source>

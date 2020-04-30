@@ -264,6 +264,21 @@
         <translation>Editar perfil de página múltiple</translation>
     </message>
     <message>
+        <location filename="../src/editmultipageprofiledialog.cpp" line="39"/>
+        <source>Standard size:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/editmultipageprofiledialog.cpp" line="40"/>
+        <source>Width:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/editmultipageprofiledialog.cpp" line="41"/>
+        <source>Height:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../src/editmultipageprofiledialog.cpp" line="64"/>
         <location filename="../src/editmultipageprofiledialog.cpp" line="166"/>
         <source>Left</source>
@@ -398,7 +413,7 @@
     <message>
         <location filename="../src/single_file_operations/edit_page_layout.cpp" line="94"/>
         <source>Save as…</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Guardar como…</translation>
     </message>
 </context>
 <context>
@@ -765,7 +780,7 @@
     <message>
         <location filename="../src/mainwindow.cpp" line="836"/>
         <source>&lt;p&gt;Output pages of file &lt;b&gt;%1&lt;/b&gt; are badly formatted. Please make sure you complied with the following rules:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;intervals of pages must be written indicating the first page and the last page separated by a dash (e.g. &quot;1-5&quot;);&lt;/li&gt;&lt;li&gt;single pages and intervals of pages must be separated by spaces, commas or both (e.g. &quot;1, 2, 3, 5-10&quot; or &quot;1 2 3 5-10&quot;);&lt;/li&gt;&lt;li&gt;all pages and intervals of pages must be between 1 and the number of pages of the PDF file;&lt;/li&gt;&lt;li&gt;only numbers, spaces, commas and dashes can be used. All other characters are not allowed.&lt;/li&gt;&lt;/ul&gt;</source>
-        <translation>&lt;p&gt;Las páginas de salida del archivo &lt;b&gt;%1&lt;/b&gt; tienen un formato incorrecto. Cerciórese de que ha cumplido las reglas siguientes:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;los intervalos de páginas deben escribirse indicando las páginas primera y última separadas por un guion (p. ej., «1-5»);&lt;/li&gt;&lt;li&gt;las páginas sencillas y los intervalos de páginas deben separarse por espacios, comas o ambos signos (p. ej., «1, 2, 3, 5-10» o «1 2 3 5-10»);&lt;/li&gt;&lt;li&gt;todas las páginas e intervalos de páginas deben figurar entre 1 y el total de páginas del archivo PDF;&lt;/li&gt;&lt;li&gt;solo pueden utilizarse números, espacios, comas y guiones. No se permite ningún otro carácter.&lt;/li&gt;&lt;/ul&gt;</translation>
+        <translation>&lt;p&gt;Las páginas de salida del archivo &lt;b&gt;%1&lt;/b&gt; tienen un formato incorrecto. Cerciórese de que ha cumplido las reglas siguientes:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;los intervalos de páginas deben escribirse indicando las páginas primera y última separadas por un guion (p.&#xa0;ej., «1-5»);&lt;/li&gt;&lt;li&gt;las páginas sencillas y los intervalos de páginas deben separarse por espacios, comas o ambos signos (p.&#xa0;ej., «1, 2, 3, 5-10» o «1 2 3 5-10»);&lt;/li&gt;&lt;li&gt;todas las páginas e intervalos de páginas deben figurar entre 1 y el total de páginas del archivo PDF;&lt;/li&gt;&lt;li&gt;solo pueden utilizarse números, espacios, comas y guiones. No se permite ningún otro carácter.&lt;/li&gt;&lt;/ul&gt;</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="860"/>

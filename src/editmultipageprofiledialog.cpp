@@ -36,9 +36,9 @@ EditMultipageProfileDialog::EditMultipageProfileDialog(QWidget *parent) :
         i++;
     }
 
-    m_page_size_label.setText("Standard size:");
-    m_page_width_label.setText("Width:");
-    m_page_height_label.setText("Height:");
+    m_page_size_label.setText(tr("Standard size:"));
+    m_page_width_label.setText(tr("Width:"));
+    m_page_height_label.setText(tr("Height:"));
 
     m_page_width.setSuffix(" cm");
     m_page_width.setDecimals(1);

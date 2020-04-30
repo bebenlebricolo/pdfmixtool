@@ -264,6 +264,21 @@
         <translation>Upravit vícestránkový profil</translation>
     </message>
     <message>
+        <location filename="../src/editmultipageprofiledialog.cpp" line="39"/>
+        <source>Standard size:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/editmultipageprofiledialog.cpp" line="40"/>
+        <source>Width:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/editmultipageprofiledialog.cpp" line="41"/>
+        <source>Height:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../src/editmultipageprofiledialog.cpp" line="64"/>
         <location filename="../src/editmultipageprofiledialog.cpp" line="166"/>
         <source>Left</source>

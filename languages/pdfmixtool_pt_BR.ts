@@ -226,34 +226,9 @@
         <translation type="unfinished">Excluir páginas</translation>
     </message>
     <message>
-        <location filename="../src/single_file_operations/delete_pages.cpp" line="46"/>
-        <source>Delete pages:</source>
-        <translation>Excluir páginas:</translation>
-    </message>
-    <message>
-        <location filename="../src/single_file_operations/delete_pages.cpp" line="49"/>
-        <source>Delete even pages</source>
-        <translation>Excluir páginas pares</translation>
-    </message>
-    <message>
-        <location filename="../src/single_file_operations/delete_pages.cpp" line="52"/>
-        <source>Delete odd pages</source>
-        <translation>Excluir páginas ímpares</translation>
-    </message>
-    <message>
-        <location filename="../src/single_file_operations/delete_pages.cpp" line="69"/>
+        <location filename="../src/single_file_operations/delete_pages.cpp" line="54"/>
         <source>Save as…</source>
         <translation>Salvar como…</translation>
-    </message>
-    <message>
-        <location filename="../src/single_file_operations/delete_pages.cpp" line="105"/>
-        <source>&lt;p&gt;Pages to be deleted are badly formatted. Please make sure you complied with the following rules:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;intervals of pages must be written indicating the first page and the last page separated by a dash (e.g. &quot;1-5&quot;);&lt;/li&gt;&lt;li&gt;single pages and intervals of pages must be separated by spaces, commas or both (e.g. &quot;1, 2, 3, 5-10&quot; or &quot;1 2 3 5-10&quot;);&lt;/li&gt;&lt;li&gt;all pages and intervals of pages must be between 1 and the number of pages of the PDF file;&lt;/li&gt;&lt;li&gt;only numbers, spaces, commas and dashes can be used. All other characters are not allowed.&lt;/li&gt;&lt;/ul&gt;</source>
-        <translation>&lt;p&gt;As páginas a serem excluídas estão mal formatadas. Verifique se você cumpriu as seguintes regras: &lt;/p&gt;&lt;ul&gt;&lt;li&gt; intervalos de páginas devem ser escritos indicando a primeira e a última página separadas por um traço (por exemplo, &quot;1-5&quot;); &lt;/li &gt;&lt;li&gt; páginas únicas e intervalos de páginas devem ser separados por espaços, vírgulas ou ambos (por exemplo, &quot;1, 2, 3, 5-10&quot; ou &quot;1 2 3 5-10&quot;); &lt;/li&gt;&lt;li&gt; todas as páginas e intervalos de páginas devem estar entre 1 e o número de páginas do arquivo PDF; &lt;/li&gt;&lt;li&gt; somente números, espaços, vírgulas e traços podem ser usados. Todos os outros caracteres não são permitidos. &lt;/li&gt;&lt;/ul&gt;</translation>
-    </message>
-    <message>
-        <location filename="../src/single_file_operations/delete_pages.cpp" line="120"/>
-        <source>Error</source>
-        <translation>Erro</translation>
     </message>
 </context>
 <context>
@@ -457,32 +432,12 @@
 <context>
     <name>ExtractPages</name>
     <message>
-        <location filename="../src/single_file_operations/extract_pages.cpp" line="45"/>
-        <source>Extract pages:</source>
-        <translation>Extrair páginas:</translation>
-    </message>
-    <message>
-        <location filename="../src/single_file_operations/extract_pages.cpp" line="48"/>
-        <source>Extract all pages</source>
-        <translation>Extrair todas as páginas</translation>
-    </message>
-    <message>
-        <location filename="../src/single_file_operations/extract_pages.cpp" line="51"/>
-        <source>Extract even pages</source>
-        <translation>Extrair páginas pares</translation>
-    </message>
-    <message>
-        <location filename="../src/single_file_operations/extract_pages.cpp" line="54"/>
-        <source>Extract odd pages</source>
-        <translation>Extrair páginas ímpares</translation>
-    </message>
-    <message>
-        <location filename="../src/single_file_operations/extract_pages.cpp" line="70"/>
+        <location filename="../src/single_file_operations/extract_pages.cpp" line="53"/>
         <source>Output PDF base name:</source>
         <translation>Nome base do PDF de saída:</translation>
     </message>
     <message>
-        <location filename="../src/single_file_operations/extract_pages.cpp" line="66"/>
+        <location filename="../src/single_file_operations/extract_pages.cpp" line="49"/>
         <source>Extract to individual PDF files</source>
         <translation>Extrair para arquivos PDF individuais</translation>
     </message>
@@ -492,34 +447,24 @@
         <translation type="unfinished">Extrair páginas</translation>
     </message>
     <message>
-        <location filename="../src/single_file_operations/extract_pages.cpp" line="77"/>
-        <location filename="../src/single_file_operations/extract_pages.cpp" line="101"/>
+        <location filename="../src/single_file_operations/extract_pages.cpp" line="62"/>
+        <location filename="../src/single_file_operations/extract_pages.cpp" line="84"/>
         <source>Extract…</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/single_file_operations/extract_pages.cpp" line="96"/>
-        <location filename="../src/single_file_operations/extract_pages.cpp" line="264"/>
+        <location filename="../src/single_file_operations/extract_pages.cpp" line="79"/>
+        <location filename="../src/single_file_operations/extract_pages.cpp" line="190"/>
         <source>Extract to single PDF</source>
         <translation>Extrair para PDF único</translation>
     </message>
     <message>
-        <location filename="../src/single_file_operations/extract_pages.cpp" line="137"/>
-        <source>&lt;p&gt;Pages to be extracted are badly formatted. Please make sure you complied with the following rules:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;intervals of pages must be written indicating the first page and the last page separated by a dash (e.g. &quot;1-5&quot;);&lt;/li&gt;&lt;li&gt;single pages and intervals of pages must be separated by spaces, commas or both (e.g. &quot;1, 2, 3, 5-10&quot; or &quot;1 2 3 5-10&quot;);&lt;/li&gt;&lt;li&gt;all pages and intervals of pages must be between 1 and the number of pages of the PDF file;&lt;/li&gt;&lt;li&gt;only numbers, spaces, commas and dashes can be used. All other characters are not allowed.&lt;/li&gt;&lt;/ul&gt;</source>
-        <translation>&lt;p&gt;As páginas a serem extraídas estão mal formatadas. Verifique se você cumpriu as seguintes regras: &lt;/p&gt;&lt;ul&gt;&lt;li&gt; intervalos de páginas devem ser escritos indicando a primeira e a última página separadas por um traço (por exemplo, &quot;1-5&quot;); &lt;/li &gt;&lt;li&gt; páginas únicas e intervalos de páginas devem ser separados por espaços, vírgulas ou ambos (por exemplo, &quot;1, 2, 3, 5-10&quot; ou &quot;1 2 3 5-10&quot;); &lt;/li&gt;&lt;li&gt; todas as páginas e intervalos de páginas devem estar entre 1 e o número de páginas do arquivo PDF; &lt;/li&gt;&lt;li&gt; somente números, espaços, vírgulas e traços podem ser usados. Todos os outros caracteres não são permitidos. &lt;/li&gt;&lt;/ul&gt;</translation>
-    </message>
-    <message>
-        <location filename="../src/single_file_operations/extract_pages.cpp" line="152"/>
-        <source>Error</source>
-        <translation>Erro</translation>
-    </message>
-    <message>
-        <location filename="../src/single_file_operations/extract_pages.cpp" line="193"/>
+        <location filename="../src/single_file_operations/extract_pages.cpp" line="114"/>
         <source>Select save directory</source>
         <translation type="unfinished">Selecione diretório para salvar</translation>
     </message>
     <message>
-        <location filename="../src/single_file_operations/extract_pages.cpp" line="268"/>
+        <location filename="../src/single_file_operations/extract_pages.cpp" line="194"/>
         <source>PDF files (*.pdf)</source>
         <translation type="unfinished">Arquivos PDF (*.pdf)</translation>
     </message>
@@ -841,19 +786,52 @@
     </message>
 </context>
 <context>
+    <name>PagesSelector</name>
+    <message>
+        <location filename="../src/widgets/pages_selector.cpp" line="44"/>
+        <source>Pages:</source>
+        <translation type="unfinished">Páginas:</translation>
+    </message>
+    <message>
+        <location filename="../src/widgets/pages_selector.cpp" line="45"/>
+        <source>Even pages</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/widgets/pages_selector.cpp" line="46"/>
+        <source>Odd pages</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/widgets/pages_selector.cpp" line="48"/>
+        <source>All pages</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/widgets/pages_selector.cpp" line="108"/>
+        <source>&lt;p&gt;Page intervals are badly formatted. Please make sure you complied with the following rules:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;intervals of pages must be written indicating the first page and the last page separated by a dash (e.g. &quot;1-5&quot;);&lt;/li&gt;&lt;li&gt;single pages and intervals of pages must be separated by spaces, commas or both (e.g. &quot;1, 2, 3, 5-10&quot; or &quot;1 2 3 5-10&quot;);&lt;/li&gt;&lt;li&gt;all pages and intervals of pages must be between 1 and the number of pages of the PDF file;&lt;/li&gt;&lt;li&gt;only numbers, spaces, commas and dashes can be used. All other characters are not allowed.&lt;/li&gt;&lt;/ul&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/widgets/pages_selector.cpp" line="124"/>
+        <source>Error</source>
+        <translation type="unfinished">Erro</translation>
+    </message>
+</context>
+<context>
     <name>PdfInfoLabel</name>
     <message>
-        <location filename="../src/pdfinfolabel.cpp" line="52"/>
+        <location filename="../src/widgets/pdfinfolabel.cpp" line="52"/>
         <source>portrait</source>
         <translation>retrato</translation>
     </message>
     <message>
-        <location filename="../src/pdfinfolabel.cpp" line="53"/>
+        <location filename="../src/widgets/pdfinfolabel.cpp" line="53"/>
         <source>landscape</source>
         <translation>paisagem</translation>
     </message>
     <message numerus="yes">
-        <location filename="../src/pdfinfolabel.cpp" line="63"/>
+        <location filename="../src/widgets/pdfinfolabel.cpp" line="63"/>
         <source>%n page(s)</source>
         <translation>
             <numerusform>%n página</numerusform>

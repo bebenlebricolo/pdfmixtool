@@ -226,34 +226,9 @@
         <translation>ページを削除</translation>
     </message>
     <message>
-        <location filename="../src/single_file_operations/delete_pages.cpp" line="46"/>
-        <source>Delete pages:</source>
-        <translation>ページを削除:</translation>
-    </message>
-    <message>
-        <location filename="../src/single_file_operations/delete_pages.cpp" line="49"/>
-        <source>Delete even pages</source>
-        <translation>偶数ページを削除</translation>
-    </message>
-    <message>
-        <location filename="../src/single_file_operations/delete_pages.cpp" line="52"/>
-        <source>Delete odd pages</source>
-        <translation>奇数ページを削除</translation>
-    </message>
-    <message>
-        <location filename="../src/single_file_operations/delete_pages.cpp" line="69"/>
+        <location filename="../src/single_file_operations/delete_pages.cpp" line="54"/>
         <source>Save as…</source>
         <translation>名前を付けて保存…</translation>
-    </message>
-    <message>
-        <location filename="../src/single_file_operations/delete_pages.cpp" line="105"/>
-        <source>&lt;p&gt;Pages to be deleted are badly formatted. Please make sure you complied with the following rules:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;intervals of pages must be written indicating the first page and the last page separated by a dash (e.g. &quot;1-5&quot;);&lt;/li&gt;&lt;li&gt;single pages and intervals of pages must be separated by spaces, commas or both (e.g. &quot;1, 2, 3, 5-10&quot; or &quot;1 2 3 5-10&quot;);&lt;/li&gt;&lt;li&gt;all pages and intervals of pages must be between 1 and the number of pages of the PDF file;&lt;/li&gt;&lt;li&gt;only numbers, spaces, commas and dashes can be used. All other characters are not allowed.&lt;/li&gt;&lt;/ul&gt;</source>
-        <translation>&lt;p&gt;削除するページが適切な形式ではありません。次の規則に従っていることを確認してください:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;ページの間隔は、最初のページと最後のページをダッシュで区切って (例えば &quot;1-5&quot; ) 書く必要があります&lt;/li&gt;&lt;li&gt;単一のページとページ間隔は、スペース、カンマ、またはその両方で (例えば &quot;1, 2, 3, 5-10&quot; や &quot;1 2 3 5-10&quot;) 区切る必要があります。&lt;/li&gt;&lt;li&gt;すべてのページとページ間隔は、1 から PDF ファイルのページ数の間でなければなりません。&lt;/li&gt;&lt;li&gt;数字、スペース、カンマ、ダッシュのみ使用できます。他の文字は使用できません&lt;/li&gt;&lt;/ul&gt;</translation>
-    </message>
-    <message>
-        <location filename="../src/single_file_operations/delete_pages.cpp" line="120"/>
-        <source>Error</source>
-        <translation>エラー</translation>
     </message>
 </context>
 <context>
@@ -457,32 +432,12 @@
 <context>
     <name>ExtractPages</name>
     <message>
-        <location filename="../src/single_file_operations/extract_pages.cpp" line="45"/>
-        <source>Extract pages:</source>
-        <translation>ページを抽出:</translation>
-    </message>
-    <message>
-        <location filename="../src/single_file_operations/extract_pages.cpp" line="48"/>
-        <source>Extract all pages</source>
-        <translation>すべてのページを抽出</translation>
-    </message>
-    <message>
-        <location filename="../src/single_file_operations/extract_pages.cpp" line="51"/>
-        <source>Extract even pages</source>
-        <translation>偶数ページを抽出</translation>
-    </message>
-    <message>
-        <location filename="../src/single_file_operations/extract_pages.cpp" line="54"/>
-        <source>Extract odd pages</source>
-        <translation>奇数ページを抽出</translation>
-    </message>
-    <message>
-        <location filename="../src/single_file_operations/extract_pages.cpp" line="70"/>
+        <location filename="../src/single_file_operations/extract_pages.cpp" line="53"/>
         <source>Output PDF base name:</source>
         <translation>出力する PDF の基本名:</translation>
     </message>
     <message>
-        <location filename="../src/single_file_operations/extract_pages.cpp" line="66"/>
+        <location filename="../src/single_file_operations/extract_pages.cpp" line="49"/>
         <source>Extract to individual PDF files</source>
         <translation>個別の PDF ファイルに抽出</translation>
     </message>
@@ -492,34 +447,24 @@
         <translation>ページを抽出</translation>
     </message>
     <message>
-        <location filename="../src/single_file_operations/extract_pages.cpp" line="77"/>
-        <location filename="../src/single_file_operations/extract_pages.cpp" line="101"/>
+        <location filename="../src/single_file_operations/extract_pages.cpp" line="62"/>
+        <location filename="../src/single_file_operations/extract_pages.cpp" line="84"/>
         <source>Extract…</source>
         <translation>抽出…</translation>
     </message>
     <message>
-        <location filename="../src/single_file_operations/extract_pages.cpp" line="96"/>
-        <location filename="../src/single_file_operations/extract_pages.cpp" line="264"/>
+        <location filename="../src/single_file_operations/extract_pages.cpp" line="79"/>
+        <location filename="../src/single_file_operations/extract_pages.cpp" line="190"/>
         <source>Extract to single PDF</source>
         <translation>単一の PDF に抽出</translation>
     </message>
     <message>
-        <location filename="../src/single_file_operations/extract_pages.cpp" line="137"/>
-        <source>&lt;p&gt;Pages to be extracted are badly formatted. Please make sure you complied with the following rules:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;intervals of pages must be written indicating the first page and the last page separated by a dash (e.g. &quot;1-5&quot;);&lt;/li&gt;&lt;li&gt;single pages and intervals of pages must be separated by spaces, commas or both (e.g. &quot;1, 2, 3, 5-10&quot; or &quot;1 2 3 5-10&quot;);&lt;/li&gt;&lt;li&gt;all pages and intervals of pages must be between 1 and the number of pages of the PDF file;&lt;/li&gt;&lt;li&gt;only numbers, spaces, commas and dashes can be used. All other characters are not allowed.&lt;/li&gt;&lt;/ul&gt;</source>
-        <translation>&lt;p&gt;抽出するページが適切な形式ではありません。次の規則に従っていることを確認してください:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;ページの間隔は、最初のページと最後のページをダッシュで区切って (例えば &quot;1-5&quot; ) 書く必要があります&lt;/li&gt;&lt;li&gt;単一のページとページ間隔は、スペース、カンマ、またはその両方で (例えば &quot;1, 2, 3, 5-10&quot; や &quot;1 2 3 5-10&quot;) 区切る必要があります。&lt;/li&gt;&lt;li&gt;すべてのページとページ間隔は、1 から PDF ファイルのページ数の間でなければなりません。&lt;/li&gt;&lt;li&gt;数字、スペース、カンマ、ダッシュのみ使用できます。他の文字は使用できません&lt;/li&gt;&lt;/ul&gt;</translation>
-    </message>
-    <message>
-        <location filename="../src/single_file_operations/extract_pages.cpp" line="152"/>
-        <source>Error</source>
-        <translation>エラー</translation>
-    </message>
-    <message>
-        <location filename="../src/single_file_operations/extract_pages.cpp" line="193"/>
+        <location filename="../src/single_file_operations/extract_pages.cpp" line="114"/>
         <source>Select save directory</source>
         <translation>保存ディレクトリを選択</translation>
     </message>
     <message>
-        <location filename="../src/single_file_operations/extract_pages.cpp" line="268"/>
+        <location filename="../src/single_file_operations/extract_pages.cpp" line="194"/>
         <source>PDF files (*.pdf)</source>
         <translation>PDF ファイル (*.pdf)</translation>
     </message>
@@ -841,19 +786,52 @@
     </message>
 </context>
 <context>
+    <name>PagesSelector</name>
+    <message>
+        <location filename="../src/widgets/pages_selector.cpp" line="44"/>
+        <source>Pages:</source>
+        <translation type="unfinished">ページ:</translation>
+    </message>
+    <message>
+        <location filename="../src/widgets/pages_selector.cpp" line="45"/>
+        <source>Even pages</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/widgets/pages_selector.cpp" line="46"/>
+        <source>Odd pages</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/widgets/pages_selector.cpp" line="48"/>
+        <source>All pages</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/widgets/pages_selector.cpp" line="108"/>
+        <source>&lt;p&gt;Page intervals are badly formatted. Please make sure you complied with the following rules:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;intervals of pages must be written indicating the first page and the last page separated by a dash (e.g. &quot;1-5&quot;);&lt;/li&gt;&lt;li&gt;single pages and intervals of pages must be separated by spaces, commas or both (e.g. &quot;1, 2, 3, 5-10&quot; or &quot;1 2 3 5-10&quot;);&lt;/li&gt;&lt;li&gt;all pages and intervals of pages must be between 1 and the number of pages of the PDF file;&lt;/li&gt;&lt;li&gt;only numbers, spaces, commas and dashes can be used. All other characters are not allowed.&lt;/li&gt;&lt;/ul&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/widgets/pages_selector.cpp" line="124"/>
+        <source>Error</source>
+        <translation type="unfinished">エラー</translation>
+    </message>
+</context>
+<context>
     <name>PdfInfoLabel</name>
     <message>
-        <location filename="../src/pdfinfolabel.cpp" line="52"/>
+        <location filename="../src/widgets/pdfinfolabel.cpp" line="52"/>
         <source>portrait</source>
         <translation>縦向き</translation>
     </message>
     <message>
-        <location filename="../src/pdfinfolabel.cpp" line="53"/>
+        <location filename="../src/widgets/pdfinfolabel.cpp" line="53"/>
         <source>landscape</source>
         <translation>横向き</translation>
     </message>
     <message numerus="yes">
-        <location filename="../src/pdfinfolabel.cpp" line="63"/>
+        <location filename="../src/widgets/pdfinfolabel.cpp" line="63"/>
         <source>%n page(s)</source>
         <translation>
             <numerusform>%nページ</numerusform>

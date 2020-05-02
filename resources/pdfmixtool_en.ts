@@ -4,7 +4,7 @@
 <context>
     <name>PdfInfoLabel</name>
     <message numerus="yes">
-        <location filename="../src/pdfinfolabel.cpp" line="63"/>
+        <location filename="../src/widgets/pdfinfolabel.cpp" line="63"/>
         <source>%n page(s)</source>
         <translation>
             <numerusform>%n page</numerusform>

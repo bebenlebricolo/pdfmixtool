@@ -137,6 +137,9 @@ void AddEmptyPages::pdf_info_changed()
     AbstractOperation::pdf_info_changed();
 
     m_page.setRange(1, m_pdf_info->n_pages());
+
+    m_page_width.setValue(m_pdf_info->width());
+    m_page_height.setValue(m_pdf_info->height());
 }
 
 void AddEmptyPages::save()

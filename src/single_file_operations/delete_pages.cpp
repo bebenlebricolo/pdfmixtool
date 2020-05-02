@@ -33,36 +33,21 @@ DeletePages::DeletePages(const PdfInfo &pdf_info,
 {
     m_name = tr("Delete pages");
 
+    m_pages_selector = new PagesSelector(false, false, this);
+
     QVBoxLayout *v_layout = new QVBoxLayout();
-    QGridLayout *grid_layout = new QGridLayout();
-    QHBoxLayout *h_layout = new QHBoxLayout();
-    v_layout->addLayout(grid_layout);
-    v_layout->addItem(new QSpacerItem(0, 0,
-                                      QSizePolicy::Minimum,
-                                      QSizePolicy::Expanding));
-    v_layout->addLayout(h_layout);
     this->setLayout(v_layout);
 
-    m_selection_type.addButton(new QRadioButton(tr("Delete pages:"), this),
-                               0);
-    grid_layout->addWidget(m_selection_type.button(0), 0, 0);
-    m_selection_type.addButton(new QRadioButton(tr("Delete even pages"), this),
-                               1);
-    grid_layout->addWidget(m_selection_type.button(1), 1, 0);
-    m_selection_type.addButton(new QRadioButton(tr("Delete odd pages"), this),
-                               2);
-    grid_layout->addWidget(m_selection_type.button(2), 2, 0);
-    m_selection_type.button(0)->setChecked(true);
+    v_layout->addWidget(m_pages_selector);
 
-    grid_layout->addWidget(&m_selection, 0, 1);
-    m_selection.setClearButtonEnabled(true);
+    // spacer
+    v_layout->addWidget(new QWidget(this), 1);
 
-    grid_layout->setColumnStretch(0, 0);
-    grid_layout->setColumnStretch(1, 1);
+    QHBoxLayout *h_layout = new QHBoxLayout();
+    v_layout->addLayout(h_layout);
 
-    h_layout->addItem(new QSpacerItem(0, 0,
-                                      QSizePolicy::Expanding,
-                                      QSizePolicy::Minimum));
+    // spacer
+    h_layout->addWidget(new QWidget(this), 1);
 
     QPushButton *save_as_button = new QPushButton(
                 QIcon::fromTheme("document-save-as"),
@@ -79,88 +64,48 @@ DeletePages::DeletePages(const PdfInfo &pdf_info,
     h_layout->addWidget(save_as_button);
 
     connect(&m_save_button, &QPushButton::pressed,
-            [=]() {
-        if (check_selection() && show_overwrite_dialog())
-            save();});
+            [=]() {save(false);});
     connect(save_as_button, &QPushButton::pressed,
-            [=]() {
-        if (check_selection() && show_save_as_dialog())
-                save();});
+            [=]() {save(true);});
 }
 
-bool DeletePages::check_selection()
+void DeletePages::save(bool save_as)
 {
-    if (m_selection_type.checkedId() > 0)
-        return true;
+    QString selection = m_pages_selector->get_selection_as_text(
+                m_pdf_info->n_pages());
 
-    int output_pages_count;
-    std::vector<std::pair<int, int>> intervals;
-    if (m_selection.text().toStdString().empty() ||
-            !parse_output_pages_string(m_selection.text().toStdString(),
-                                       m_pdf_info->n_pages(),
-                                       intervals,
-                                       output_pages_count))
+    if (selection.isNull())
+        return;
+
+    if (save_as)
     {
-        QString error_message(
-                    tr("<p>Pages to be deleted are badly formatted. "
-                       "Please make sure you complied with the following "
-                       "rules:</p><ul>"
-                       "<li>intervals of pages must be written indicating the "
-                       "first page and the last page separated by a dash "
-                       "(e.g. \"1-5\");</li>"
-                       "<li>single pages and intervals of pages must be "
-                       "separated by spaces, commas or both "
-                       "(e.g. \"1, 2, 3, 5-10\" or \"1 2 3 5-10\");</li>"
-                       "<li>all pages and intervals of pages must be between "
-                       "1 and the number of pages of the PDF file;</li>"
-                       "<li>only numbers, spaces, commas and dashes can be "
-                       "used. All other characters are not allowed.</li>"
-                       "</ul>"));
-        QMessageBox::critical(this,
-                              tr("Error"),
-                              error_message);
-
-        return false;
+        if (!show_save_as_dialog())
+            return;
+    }
+    else
+    {
+        if (!show_overwrite_dialog())
+            return;
     }
 
-    return true;
-}
-
-void DeletePages::save()
-{
     emit write_started();
 
     std::vector<bool> pages;
     for (int i = 0; i < m_pdf_info->n_pages(); i++)
         pages.push_back(false);
 
-    switch (m_selection_type.checkedId()) {
-    case 0: {
-        int output_pages_count;
-        std::vector<std::pair<int, int>> intervals;
+    int output_pages_count;
+    std::vector<std::pair<int, int>> intervals;
 
-        parse_output_pages_string(m_selection.text().toStdString(),
-                                  m_pdf_info->n_pages(),
-                                  intervals,
-                                  output_pages_count);
+    parse_output_pages_string(selection.toStdString(),
+                              m_pdf_info->n_pages(),
+                              intervals,
+                              output_pages_count);
 
-        std::vector<std::pair<int, int>>::iterator it;
-        for (it = intervals.begin(); it != intervals.end(); ++it)
-            for (int i = it->first - 1; i < it->second; i++)
-                pages[i] = true;
-        break;
-    }
-    case 1: {
-        for (int i = 1; i < m_pdf_info->n_pages(); i += 2)
+    std::vector<std::pair<int, int>>::iterator it;
+    for (it = intervals.begin(); it != intervals.end(); ++it)
+        for (int i = it->first - 1; i < it->second; i++)
             pages[i] = true;
-        break;
-    }
-    case 2: {
-        for (int i = 0; i < m_pdf_info->n_pages(); i += 2)
-            pages[i] = true;
-        break;
-    }
-    }
 
     QProgressBar *pb = m_progress_bar;
     std::function<void (int)> progress = [pb] (int p)

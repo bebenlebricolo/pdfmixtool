@@ -16,24 +16,42 @@
  * along with PDF Mix Tool. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef DELETEPAGES_H
-#define DELETEPAGES_H
+#ifndef PAGESSELECTOR_H
+#define PAGESSELECTOR_H
 
-#include "abstract_operation.h"
-#include "../widgets/pages_selector.h"
+#include <QLineEdit>
+#include <QButtonGroup>
 
-class DeletePages : public AbstractOperation
+class LineEdit : public QLineEdit
 {
     Q_OBJECT
 public:
-    explicit DeletePages(const PdfInfo &pdf_info,
-                         QProgressBar *progress_bar,
-                         QWidget *parent = nullptr);
+    explicit LineEdit(QWidget *parent=nullptr);
 
-private:
-    PagesSelector *m_pages_selector;
+signals:
+    void focusIn();
 
-    void save(bool save_as);
+protected:
+    virtual void focusInEvent(QFocusEvent *e);
 };
 
-#endif // DELETEPAGES_H
+
+class PagesSelector : public QWidget
+{
+    Q_OBJECT
+public:
+    explicit PagesSelector(bool show_all_pages=true,
+                           bool all_pages_first=false,
+                           QWidget *parent=nullptr);
+
+    // Return a null string if there is an error in the selection
+    QString get_selection_as_text(int num_pages);
+
+signals:
+
+private:
+    QButtonGroup m_type;
+    LineEdit m_selection;
+};
+
+#endif // PAGESSELECTOR_H

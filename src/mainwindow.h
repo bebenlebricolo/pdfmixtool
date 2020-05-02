@@ -34,7 +34,7 @@
 #include "mouseeventfilter.h"
 #include "inputpdffiledelegate.h"
 #include "pdf_edit_lib/definitions.h"
-#include "pdfinfolabel.h"
+#include "widgets/pdfinfolabel.h"
 
 #include "single_file_operations/booklet.h"
 #include "single_file_operations/edit_page_layout.h"

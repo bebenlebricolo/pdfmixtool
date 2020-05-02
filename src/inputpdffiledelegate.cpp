@@ -26,7 +26,7 @@
 #include <QCoreApplication>
 
 #include "gui_utils.h"
-#include "pdfinfolabel.h"
+#include "widgets/pdfinfolabel.h"
 
 InputPdfFileDelegate::InputPdfFileDelegate(
         MouseEventFilter *filter,

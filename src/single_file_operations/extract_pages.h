@@ -19,11 +19,9 @@
 #ifndef EXTRACTPAGES_H
 #define EXTRACTPAGES_H
 
-#include <QButtonGroup>
-#include <QLineEdit>
-
 #include "abstract_operation.h"
 #include "../pdf_edit_lib/pdf_info.h"
+#include "../widgets/pages_selector.h"
 
 class ExtractPages : public AbstractOperation
 {
@@ -37,13 +35,8 @@ public slots:
     void pdf_info_changed();
 
 private:
-    QButtonGroup m_extraction_type;
-    QLineEdit m_selection;
+    PagesSelector *m_pages_selector;
     QLineEdit m_base_name;
-
-    bool check_selection();
-
-    QString get_selection();
 
     void extract_to_individual();
 

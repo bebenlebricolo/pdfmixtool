@@ -36,55 +36,38 @@ ExtractPages::ExtractPages(const PdfInfo &pdf_info,
 {
     m_name = tr("Extract pages");
 
-    QGridLayout *grid_layout = new QGridLayout();
-    grid_layout->setColumnStretch(0, 0);
-    grid_layout->setColumnStretch(1, 1);
-    this->setLayout(grid_layout);
+    QVBoxLayout *v_layout = new QVBoxLayout();
+    this->setLayout(v_layout);
 
-    m_extraction_type.addButton(
-                new QRadioButton(tr("Extract pages:"), this), 0);
-    grid_layout->addWidget(m_extraction_type.button(0), 0, 0);
-    m_extraction_type.addButton(
-                new QRadioButton(tr("Extract all pages"), this), 1);
-    grid_layout->addWidget(m_extraction_type.button(1), 1, 0);
-    m_extraction_type.addButton(
-                new QRadioButton(tr("Extract even pages"), this), 2);
-    grid_layout->addWidget(m_extraction_type.button(2), 2, 0);
-    m_extraction_type.addButton(
-                new QRadioButton(tr("Extract odd pages"), this), 3);
-    grid_layout->addWidget(m_extraction_type.button(3), 3, 0);
-    m_extraction_type.button(0)->setChecked(true);
+    m_pages_selector = new PagesSelector(parent=this);
+    v_layout->addWidget(m_pages_selector);
 
-    grid_layout->addWidget(&m_selection, 0, 1);
-    m_selection.setClearButtonEnabled(true);
-
-    grid_layout->addItem(new QSpacerItem(0, 0,
-                                         QSizePolicy::Minimum,
-                                         QSizePolicy::Expanding), 4, 0, 1, 2);
+    // spacer
+    v_layout->addWidget(new QWidget(this), 1);
 
     QLabel *label = new QLabel("<b>" +
                                tr("Extract to individual PDF files") +
                                "</b>", this);
-    grid_layout->addWidget(label, 5, 0, 1, 2);
+    v_layout->addWidget(label);
 
     QLabel *base_name_label = new QLabel(tr("Output PDF base name:"), this);
-    grid_layout->addWidget(base_name_label, 6, 0);
-    grid_layout->addWidget(&m_base_name, 6, 1);
-    m_selection.setClearButtonEnabled(true);
+    QHBoxLayout *h_layout = new QHBoxLayout();
+    h_layout->addWidget(base_name_label);
+    h_layout->addWidget(&m_base_name, 1);
+    m_base_name.setClearButtonEnabled(true);
+    v_layout->addLayout(h_layout);
 
     QPushButton *extract_individual_button = new QPushButton(
                 QIcon::fromTheme("document-save-as"),
                 tr("Extract…"),
                 this);
     connect(extract_individual_button, &QPushButton::pressed,
-            [=]() {if (check_selection()) extract_to_individual();});
+            this, &ExtractPages::extract_to_individual);
 
-    QHBoxLayout *h_layout = new QHBoxLayout();
-    h_layout->addItem(new QSpacerItem(0, 0,
-                                      QSizePolicy::Expanding,
-                                      QSizePolicy::Minimum));
+    h_layout = new QHBoxLayout();
+    h_layout->addWidget(new QWidget(this), 1);
     h_layout->addWidget(extract_individual_button);
-    grid_layout->addLayout(h_layout, 7, 0, 1, 2);
+    v_layout->addLayout(h_layout);
 
 #ifdef FLATPAK_BUILD
     base_name_label->setEnabled(false);
@@ -94,21 +77,19 @@ ExtractPages::ExtractPages(const PdfInfo &pdf_info,
 #endif
 
     label = new QLabel("<b>" + tr("Extract to single PDF") + "</b>", this);
-    grid_layout->addWidget(label, 8, 0, 1, 2);
+    v_layout->addWidget(label);
 
     QPushButton *extract_single_button = new QPushButton(
                 QIcon::fromTheme("document-save-as"),
                 tr("Extract…"),
                 this);
     connect(extract_single_button, &QPushButton::pressed,
-            [=]() {if (check_selection()) extract_to_single();});
+            this, &ExtractPages::extract_to_single);
 
     h_layout = new QHBoxLayout();
-    h_layout->addItem(new QSpacerItem(0, 0,
-                                      QSizePolicy::Expanding,
-                                      QSizePolicy::Minimum));
+    h_layout->addWidget(new QWidget(this), 1);
     h_layout->addWidget(extract_single_button);
-    grid_layout->addLayout(h_layout, 9, 0, 1, 2);
+    v_layout->addLayout(h_layout);
 }
 
 void ExtractPages::pdf_info_changed()
@@ -120,74 +101,14 @@ void ExtractPages::pdf_info_changed()
     m_base_name.setText(file_info.completeBaseName());
 }
 
-bool ExtractPages::check_selection()
-{
-    if (m_extraction_type.checkedId() > 0)
-        return true;
-
-    int output_pages_count;
-    std::vector<std::pair<int, int>> intervals;
-    if (m_selection.text().toStdString().empty() ||
-            !parse_output_pages_string(m_selection.text().toStdString(),
-                                       m_pdf_info->n_pages(),
-                                       intervals,
-                                       output_pages_count))
-    {
-        QString error_message(
-                    tr("<p>Pages to be extracted are badly formatted. "
-                       "Please make sure you complied with the following "
-                       "rules:</p><ul>"
-                       "<li>intervals of pages must be written indicating the "
-                       "first page and the last page separated by a dash "
-                       "(e.g. \"1-5\");</li>"
-                       "<li>single pages and intervals of pages must be "
-                       "separated by spaces, commas or both "
-                       "(e.g. \"1, 2, 3, 5-10\" or \"1 2 3 5-10\");</li>"
-                       "<li>all pages and intervals of pages must be between "
-                       "1 and the number of pages of the PDF file;</li>"
-                       "<li>only numbers, spaces, commas and dashes can be "
-                       "used. All other characters are not allowed.</li>"
-                       "</ul>"));
-        QMessageBox::critical(this,
-                              tr("Error"),
-                              error_message);
-
-        return false;
-    }
-
-    return true;
-}
-
-QString ExtractPages::get_selection()
-{
-    QString s;
-
-    switch (m_extraction_type.checkedId()) {
-    case 0: {
-        return m_selection.text();
-    }
-    case 1: {
-        return "";
-    }
-    case 2: {
-        for (int i = 1; i <= m_pdf_info->n_pages(); i++)
-            if (i % 2 == 0)
-                s += QString::number(i) + ",";
-        break;
-    }
-    case 3: {
-        for (int i = 1; i <= m_pdf_info->n_pages(); i++)
-            if (i % 2 == 1)
-                s += QString::number(i) + ",";
-        break;
-    }
-    }
-
-    return s;
-}
-
 void ExtractPages::extract_to_individual()
 {
+    QString selection = m_pages_selector->get_selection_as_text(
+                m_pdf_info->n_pages());
+
+    if (selection.isNull())
+        return;
+
     QString dir_name = QFileDialog::getExistingDirectory(
                 this,
                 tr("Select save directory"),
@@ -223,11 +144,10 @@ void ExtractPages::extract_to_individual()
 
         int output_pages_count;
         std::vector<std::pair<int, int>> intervals;
-        parse_output_pages_string(
-                    get_selection().toStdString(),
-                    m_pdf_info->n_pages(),
-                    intervals,
-                    output_pages_count);
+        parse_output_pages_string(selection.toStdString(),
+                                  m_pdf_info->n_pages(),
+                                  intervals,
+                                  output_pages_count);
 
         std::vector<std::pair<int, int>>::iterator it;
         for (it = intervals.begin(); it != intervals.end(); ++it)
@@ -259,6 +179,12 @@ void ExtractPages::extract_to_individual()
 
 void ExtractPages::extract_to_single()
 {
+    QString selection = m_pages_selector->get_selection_as_text(
+                m_pdf_info->n_pages());
+
+    if (selection.isNull())
+        return;
+
     m_save_filename = QFileDialog::getSaveFileName(
                 this,
                 tr("Extract to single PDF"),
@@ -294,7 +220,7 @@ void ExtractPages::extract_to_single()
 
         FileConf fileconf;
         fileconf.path = m_pdf_info->filename();
-        fileconf.ouput_pages = get_selection().toStdString();
+        fileconf.ouput_pages = selection.toStdString();
         fileconf.multipage_enabled = false;
         fileconf.rotation = 0;
         fileconf.outline_entry = "";

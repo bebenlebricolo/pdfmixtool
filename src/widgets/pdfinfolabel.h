@@ -21,7 +21,7 @@
 
 #include <QLabel>
 
-#include "pdf_edit_lib/pdf_info.h"
+#include "../pdf_edit_lib/pdf_info.h"
 
 class PdfInfoLabel : public QLabel
 {

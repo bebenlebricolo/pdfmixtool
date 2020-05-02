@@ -40,8 +40,6 @@ set (
     src/mouseeventfilter.h
     src/multipageprofilesmanager.cpp
     src/multipageprofilesmanager.h
-    src/pdfinfolabel.cpp
-    src/pdfinfolabel.h
     src/pdf_edit_lib/definitions.h
     src/pdf_edit_lib/pdf_info.cpp
     src/pdf_edit_lib/pdf_info.h
@@ -59,6 +57,10 @@ set (
     src/single_file_operations/extract_pages.h
     src/single_file_operations/edit_page_layout.cpp
     src/single_file_operations/edit_page_layout.h
+    src/widgets/pages_selector.cpp
+    src/widgets/pages_selector.h
+    src/widgets/pdfinfolabel.cpp
+    src/widgets/pdfinfolabel.h
 )
 
 file(GLOB TS_FILES

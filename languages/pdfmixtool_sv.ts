@@ -790,32 +790,32 @@
     <message>
         <location filename="../src/widgets/pages_selector.cpp" line="44"/>
         <source>Pages:</source>
-        <translation type="unfinished">Sidor:</translation>
+        <translation>Sidor:</translation>
     </message>
     <message>
         <location filename="../src/widgets/pages_selector.cpp" line="45"/>
         <source>Even pages</source>
-        <translation type="unfinished"></translation>
+        <translation>Jämna sidor</translation>
     </message>
     <message>
         <location filename="../src/widgets/pages_selector.cpp" line="46"/>
         <source>Odd pages</source>
-        <translation type="unfinished"></translation>
+        <translation>Udda sidor</translation>
     </message>
     <message>
         <location filename="../src/widgets/pages_selector.cpp" line="48"/>
         <source>All pages</source>
-        <translation type="unfinished"></translation>
+        <translation>Alla sidor</translation>
     </message>
     <message>
         <location filename="../src/widgets/pages_selector.cpp" line="108"/>
         <source>&lt;p&gt;Page intervals are badly formatted. Please make sure you complied with the following rules:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;intervals of pages must be written indicating the first page and the last page separated by a dash (e.g. &quot;1-5&quot;);&lt;/li&gt;&lt;li&gt;single pages and intervals of pages must be separated by spaces, commas or both (e.g. &quot;1, 2, 3, 5-10&quot; or &quot;1 2 3 5-10&quot;);&lt;/li&gt;&lt;li&gt;all pages and intervals of pages must be between 1 and the number of pages of the PDF file;&lt;/li&gt;&lt;li&gt;only numbers, spaces, commas and dashes can be used. All other characters are not allowed.&lt;/li&gt;&lt;/ul&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;Sidintervall är dåligt formaterade. Tillse att du följer följande regler:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Sidintervall måste skrivas som den första sidan och den sista sidan, åtskilda av ett streck (ex. &quot;1-5&quot;).&lt;/li&gt;&lt;li&gt;Enstaka sidor och intervall måste avgränsas med blanksteg, kommatecken eller både och (ex. &quot;1, 2, 3, 5-10&quot; eller &quot;1 2 3 5-10&quot;).&lt;/li&gt;&lt;li&gt;Alla sidor och intervall måste vara mellan 1 och antalet sidor i PDF-filen.&lt;/li&gt;&lt;li&gt;Endast siffror, blanksteg, kommatecken och streck kan användas. Alla andra tecken är otillåtna.&lt;/li&gt;&lt;/ul&gt;</translation>
     </message>
     <message>
         <location filename="../src/widgets/pages_selector.cpp" line="124"/>
         <source>Error</source>
-        <translation type="unfinished">Fel</translation>
+        <translation>Fel</translation>
     </message>
 </context>
 <context>

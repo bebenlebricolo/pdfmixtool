@@ -790,32 +790,32 @@
     <message>
         <location filename="../src/widgets/pages_selector.cpp" line="44"/>
         <source>Pages:</source>
-        <translation type="unfinished">Страницы:</translation>
+        <translation>Страницы:</translation>
     </message>
     <message>
         <location filename="../src/widgets/pages_selector.cpp" line="45"/>
         <source>Even pages</source>
-        <translation type="unfinished"></translation>
+        <translation>Чётные страницы</translation>
     </message>
     <message>
         <location filename="../src/widgets/pages_selector.cpp" line="46"/>
         <source>Odd pages</source>
-        <translation type="unfinished"></translation>
+        <translation>Нечётные страницы</translation>
     </message>
     <message>
         <location filename="../src/widgets/pages_selector.cpp" line="48"/>
         <source>All pages</source>
-        <translation type="unfinished"></translation>
+        <translation>Все страницы</translation>
     </message>
     <message>
         <location filename="../src/widgets/pages_selector.cpp" line="108"/>
         <source>&lt;p&gt;Page intervals are badly formatted. Please make sure you complied with the following rules:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;intervals of pages must be written indicating the first page and the last page separated by a dash (e.g. &quot;1-5&quot;);&lt;/li&gt;&lt;li&gt;single pages and intervals of pages must be separated by spaces, commas or both (e.g. &quot;1, 2, 3, 5-10&quot; or &quot;1 2 3 5-10&quot;);&lt;/li&gt;&lt;li&gt;all pages and intervals of pages must be between 1 and the number of pages of the PDF file;&lt;/li&gt;&lt;li&gt;only numbers, spaces, commas and dashes can be used. All other characters are not allowed.&lt;/li&gt;&lt;/ul&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;Некорректно указаны номера страниц. Пожалуйста, проверьте соблюдение следующих правил:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;диапазоны страниц должны быть написаны с указанием номеров первой и последней страниц, разделённых дефисом (например &quot;1-5&quot;);&lt;/li&gt;&lt;li&gt;отдельные страницы и диапазоны должны быть перечислены через запятую, пробел или запятую с пробелом (например &quot;1, 2, 3, 5-10&quot; или &quot;1 2 3 5-10&quot;);&lt;/li&gt;&lt;li&gt;номера страниц и границы диапазонов должны быть не меньше 1 и не больше количества страниц в PDF-файле;&lt;/li&gt;&lt;li&gt;допустимо использовать только цифры, пробелы, запятые и дефисы. Остальные символы запрещены.&lt;/li&gt;&lt;/ul&gt;</translation>
     </message>
     <message>
         <location filename="../src/widgets/pages_selector.cpp" line="124"/>
         <source>Error</source>
-        <translation type="unfinished">Ошибка</translation>
+        <translation>Ошибка</translation>
     </message>
 </context>
 <context>

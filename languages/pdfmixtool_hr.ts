@@ -790,32 +790,32 @@
     <message>
         <location filename="../src/widgets/pages_selector.cpp" line="44"/>
         <source>Pages:</source>
-        <translation type="unfinished">Stranice:</translation>
+        <translation>Stranice:</translation>
     </message>
     <message>
         <location filename="../src/widgets/pages_selector.cpp" line="45"/>
         <source>Even pages</source>
-        <translation type="unfinished"></translation>
+        <translation>Parne stranice</translation>
     </message>
     <message>
         <location filename="../src/widgets/pages_selector.cpp" line="46"/>
         <source>Odd pages</source>
-        <translation type="unfinished"></translation>
+        <translation>Neparne stranice</translation>
     </message>
     <message>
         <location filename="../src/widgets/pages_selector.cpp" line="48"/>
         <source>All pages</source>
-        <translation type="unfinished"></translation>
+        <translation>Sve stranice</translation>
     </message>
     <message>
         <location filename="../src/widgets/pages_selector.cpp" line="108"/>
         <source>&lt;p&gt;Page intervals are badly formatted. Please make sure you complied with the following rules:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;intervals of pages must be written indicating the first page and the last page separated by a dash (e.g. &quot;1-5&quot;);&lt;/li&gt;&lt;li&gt;single pages and intervals of pages must be separated by spaces, commas or both (e.g. &quot;1, 2, 3, 5-10&quot; or &quot;1 2 3 5-10&quot;);&lt;/li&gt;&lt;li&gt;all pages and intervals of pages must be between 1 and the number of pages of the PDF file;&lt;/li&gt;&lt;li&gt;only numbers, spaces, commas and dashes can be used. All other characters are not allowed.&lt;/li&gt;&lt;/ul&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;Intervali stranica su loše formatirani. Obavezno se drži sljedećih pravila:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;intervali stranica moraju se zadati s prvom i zadnjom stranicom, odvojene crticom (npr. „1-5”);&lt;/li&gt;&lt;li&gt;pojedinačne stranice i intervali stranica moraju se odvojiti s razmacima, sa zarezima ili s razmacima i zarezima (npr. „1, 2, 3, 5-10” ili „1 2 3 5-10”);&lt;/li&gt;&lt;li&gt;sve stranice i intervali stranica moraju biti između 1 i ukupnog broja stranica PDF datoteke;&lt;/li&gt;&lt;li&gt;mogu se koristiti samo brojevi, razmaci, zarezi i crtice. Svi drugi znakovi nisu dozvoljeni.&lt;/li&gt;&lt;/ul&gt;</translation>
     </message>
     <message>
         <location filename="../src/widgets/pages_selector.cpp" line="124"/>
         <source>Error</source>
-        <translation type="unfinished">Greška</translation>
+        <translation>Greška</translation>
     </message>
 </context>
 <context>

@@ -673,7 +673,7 @@
     <message>
         <location filename="../src/mainwindow.cpp" line="48"/>
         <source>Alternate mix</source>
-        <translation type="unfinished"></translation>
+        <translation>交互にミックス</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="475"/>

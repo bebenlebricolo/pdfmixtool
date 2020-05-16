@@ -790,22 +790,22 @@
     <message>
         <location filename="../src/widgets/pages_selector.cpp" line="44"/>
         <source>Pages:</source>
-        <translation type="unfinished">Seiten:</translation>
+        <translation>Seiten:</translation>
     </message>
     <message>
         <location filename="../src/widgets/pages_selector.cpp" line="45"/>
         <source>Even pages</source>
-        <translation type="unfinished"></translation>
+        <translation>Gerade Seiten</translation>
     </message>
     <message>
         <location filename="../src/widgets/pages_selector.cpp" line="46"/>
         <source>Odd pages</source>
-        <translation type="unfinished"></translation>
+        <translation>Ungerade Seiten</translation>
     </message>
     <message>
         <location filename="../src/widgets/pages_selector.cpp" line="48"/>
         <source>All pages</source>
-        <translation type="unfinished"></translation>
+        <translation>Alle Seiten</translation>
     </message>
     <message>
         <location filename="../src/widgets/pages_selector.cpp" line="108"/>
@@ -815,7 +815,7 @@
     <message>
         <location filename="../src/widgets/pages_selector.cpp" line="124"/>
         <source>Error</source>
-        <translation type="unfinished">Fehler</translation>
+        <translation>Fehler</translation>
     </message>
 </context>
 <context>

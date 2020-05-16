@@ -6,14 +6,16 @@ variables:
 pages:
   stage: deploy
   script:
+    # install build dependencies
     - dnf --quiet --assumeyes install flatpak flatpak-builder cmake make automake gcc gcc-c++
     - flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
     - flatpak install -y flathub org.kde.Sdk//5.14
-    - mkdir pdfmixtool
-    - mv !(pdfmixtool) pdfmixtool
+    # get manifest from github repository
     - curl https://raw.githubusercontent.com/flathub/eu.scarpetta.PDFMixTool/master/eu.scarpetta.PDFMixTool.yaml > tmp.yaml
+    # replace archive source with current directory
     - head -n -3 tmp.yaml > eu.scarpetta.PDFMixTool.yaml
-    - "echo \"      - {type: dir, path: pdfmixtool}\" >> eu.scarpetta.PDFMixTool.yaml"
+    - "echo \"      - {type: dir, path: .}\" >> eu.scarpetta.PDFMixTool.yaml"
+    # build and publish
     - flatpak-builder --repo=public --force-clean build-dir eu.scarpetta.PDFMixTool.yaml
   artifacts:
     paths:

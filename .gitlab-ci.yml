@@ -17,6 +17,7 @@ pages:
     - "echo \"      - {type: dir, path: .}\" >> eu.scarpetta.PDFMixTool.yaml"
     # build and publish
     - flatpak-builder --repo=public --force-clean build-dir eu.scarpetta.PDFMixTool.yaml
+    - flatpak build-update-repo public
   artifacts:
     paths:
       - public

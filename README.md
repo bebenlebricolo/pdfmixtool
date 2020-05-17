@@ -1,4 +1,4 @@
-# ![PDF Mix Tool logo](https://scarpetta.gitlab.io/pdfmixtool/icon.svg) PDF Mix Tool
+# ![PDF Mix Tool logo](https://scarpetta.eu/pdfmixtool/icon.svg) PDF Mix Tool
 
 <a href="https://build.snapcraft.io/user/marcoscarpetta/pdfmixtool">
 <img src="https://build.snapcraft.io/badge/marcoscarpetta/pdfmixtool.svg" alt="Snap status" /></a>
@@ -10,7 +10,7 @@
     perform common editing operations on PDF files.
 </p>
 
-![Screenshot](https://scarpetta.gitlab.io/pdfmixtool/merge_files.png)
+![Screenshot](https://scarpetta.eu/pdfmixtool/merge_files.png)
 
 <p>Base operations it can perform are the following:</p>
 <ul>

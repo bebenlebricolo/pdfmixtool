@@ -84,12 +84,12 @@
     <message>
         <location filename="../src/single_file_operations/abstract_operation.cpp" line="64"/>
         <source>Overwrite File?</source>
-        <translation>Remplacer le fichier&#x202f;?</translation>
+        <translation>Remplacer le fichier ?</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/abstract_operation.cpp" line="65"/>
         <source>A file called «%1» already exists. Do you want to overwrite it?</source>
-        <translation>Un fichier nommé «&#x202f;%1&#x202f;» existe déjà. Voulez-vous le remplacer&#xa0;?</translation>
+        <translation>Un fichier nommé « %1 » existe déjà. Voulez-vous le remplacer ?</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/abstract_operation.cpp" line="71"/>
@@ -117,7 +117,7 @@
     <message>
         <location filename="../src/single_file_operations/add_empty_pages.cpp" line="46"/>
         <source>Count:</source>
-        <translation>Nombre&#xa0;:</translation>
+        <translation>Nombre :</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/add_empty_pages.cpp" line="50"/>
@@ -132,12 +132,12 @@
     <message>
         <location filename="../src/single_file_operations/add_empty_pages.cpp" line="56"/>
         <source>Custom:</source>
-        <translation>Personnalisée&#xa0;:</translation>
+        <translation>Personnalisée :</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/add_empty_pages.cpp" line="81"/>
         <source>Standard:</source>
-        <translation>Standard&#xa0;:</translation>
+        <translation>Standard :</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/add_empty_pages.cpp" line="90"/>
@@ -167,7 +167,7 @@
     <message>
         <location filename="../src/single_file_operations/add_empty_pages.cpp" line="103"/>
         <source>Page:</source>
-        <translation>Page&#xa0;:</translation>
+        <translation>Page :</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/add_empty_pages.cpp" line="117"/>
@@ -195,12 +195,12 @@
     <message>
         <location filename="../src/single_file_operations/booklet.cpp" line="44"/>
         <source>Binding:</source>
-        <translation>Reliure&#xa0;:</translation>
+        <translation>Reliure :</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/booklet.cpp" line="45"/>
         <source>Use last page as back cover:</source>
-        <translation>Utilisez la dernière page comme couverture arrière&#x202f;:</translation>
+        <translation>Utilisez la dernière page comme couverture arrière :</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/booklet.cpp" line="52"/>
@@ -241,17 +241,17 @@
     <message>
         <location filename="../src/editmultipageprofiledialog.cpp" line="39"/>
         <source>Standard size:</source>
-        <translation type="unfinished"></translation>
+        <translation>Taille standard :</translation>
     </message>
     <message>
         <location filename="../src/editmultipageprofiledialog.cpp" line="40"/>
         <source>Width:</source>
-        <translation type="unfinished"></translation>
+        <translation>Largeur :</translation>
     </message>
     <message>
         <location filename="../src/editmultipageprofiledialog.cpp" line="41"/>
         <source>Height:</source>
-        <translation type="unfinished"></translation>
+        <translation>Hauteur :</translation>
     </message>
     <message>
         <location filename="../src/editmultipageprofiledialog.cpp" line="64"/>
@@ -359,7 +359,7 @@
     <message>
         <location filename="../src/single_file_operations/edit_page_layout.cpp" line="62"/>
         <source>Rotation:</source>
-        <translation>Rotation&#xa0;:</translation>
+        <translation>Rotation :</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/edit_page_layout.cpp" line="64"/>
@@ -378,12 +378,12 @@
     <message>
         <location filename="../src/single_file_operations/edit_page_layout.cpp" line="78"/>
         <source>Multipage:</source>
-        <translation>Multipage&#xa0;:</translation>
+        <translation>Multipage :</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/edit_page_layout.cpp" line="86"/>
         <source>Scale page:</source>
-        <translation>Échelle de la page&#xa0;:</translation>
+        <translation>Échelle de la page :</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/edit_page_layout.cpp" line="94"/>
@@ -434,7 +434,7 @@
     <message>
         <location filename="../src/single_file_operations/extract_pages.cpp" line="53"/>
         <source>Output PDF base name:</source>
-        <translation>Nom du PDF de sortie&#xa0;:</translation>
+        <translation>Nom du PDF de sortie :</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/extract_pages.cpp" line="49"/>
@@ -479,7 +479,7 @@
     <message>
         <location filename="../src/inputpdffiledelegate.cpp" line="80"/>
         <source>Page order:</source>
-        <translation>Ordre des pages&#x202f;:</translation>
+        <translation>Ordre des pages :</translation>
     </message>
     <message>
         <location filename="../src/inputpdffiledelegate.cpp" line="83"/>
@@ -514,7 +514,7 @@
     <message>
         <location filename="../src/inputpdffiledelegate.cpp" line="140"/>
         <source>Outline entry:</source>
-        <translation>Entrée du plan&#xa0;:</translation>
+        <translation>Entrée du plan :</translation>
     </message>
 </context>
 <context>
@@ -522,7 +522,7 @@
     <message>
         <location filename="../src/inputpdffilewidget.cpp" line="57"/>
         <source>Reverse page order:</source>
-        <translation>Inverser l&apos;ordre des pages&#x202f;:</translation>
+        <translation>Inverser l&apos;ordre des pages :</translation>
     </message>
     <message>
         <location filename="../src/inputpdffilewidget.cpp" line="71"/>
@@ -673,7 +673,7 @@
     <message>
         <location filename="../src/mainwindow.cpp" line="48"/>
         <source>Alternate mix</source>
-        <translation type="unfinished"></translation>
+        <translation>Mélange alternatif</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="475"/>
@@ -684,12 +684,12 @@
     <message>
         <location filename="../src/mainwindow.cpp" line="481"/>
         <source>Error while reading the JSON file!</source>
-        <translation>Erreur lors de la lecture du fichier JSON&#x202f;!</translation>
+        <translation>Erreur lors de la lecture du fichier JSON !</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="482"/>
         <source>An error occurred while reading the JSON file!</source>
-        <translation>Une erreur s&apos;est produite lors de la lecture du fichier JSON&#x202f;!</translation>
+        <translation>Une erreur s&apos;est produite lors de la lecture du fichier JSON !</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="489"/>
@@ -725,7 +725,7 @@
     <message>
         <location filename="../src/mainwindow.cpp" line="836"/>
         <source>&lt;p&gt;Output pages of file &lt;b&gt;%1&lt;/b&gt; are badly formatted. Please make sure you complied with the following rules:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;intervals of pages must be written indicating the first page and the last page separated by a dash (e.g. &quot;1-5&quot;);&lt;/li&gt;&lt;li&gt;single pages and intervals of pages must be separated by spaces, commas or both (e.g. &quot;1, 2, 3, 5-10&quot; or &quot;1 2 3 5-10&quot;);&lt;/li&gt;&lt;li&gt;all pages and intervals of pages must be between 1 and the number of pages of the PDF file;&lt;/li&gt;&lt;li&gt;only numbers, spaces, commas and dashes can be used. All other characters are not allowed.&lt;/li&gt;&lt;/ul&gt;</source>
-        <translation>&lt;p&gt; Les pages de sortie du fichier &lt;b&gt;%1 &lt;/b&gt; sont mal formatées. Veuillez vous assurer que vous avez respecté les règles suivantes&#x202f;: &lt;/p&gt; &lt;ul&gt; &lt;li&gt; les intervalles de pages doivent être écrits en indiquant la première page et la dernière page séparées par un tiret (par exemple &quot;1-5&quot;)&#x202f;; &lt;/li &gt;&lt;li&gt; les pages simples et les intervalles de pages doivent être séparés par des espaces, des virgules ou les deux (par exemple &quot;1, 2, 3, 5-10&quot; ou &quot;1 2 3 5-10&quot;)&#x202f;; &lt;/li&gt; &lt;li&gt; toutes les pages et tous les intervalles de pages doivent être compris entre 1 et le nombre de pages du fichier PDF&#x202f;; &lt;/li&gt; &lt;li&gt; seuls les nombres, les espaces, les virgules et les tirets peuvent être utilisés. Tous les autres caractères ne sont pas autorisés. &lt;/li&gt; &lt;/ul&gt;</translation>
+        <translation>&lt;p&gt; Les pages de sortie du fichier &lt;b&gt;%1 &lt;/b&gt; sont mal formatées. Veuillez vous assurer que vous avez respecté les règles suivantes : &lt;/p&gt; &lt;ul&gt; &lt;li&gt; les intervalles de pages doivent être écrits en indiquant la première page et la dernière page séparées par un tiret (par exemple &quot;1-5&quot;) ; &lt;/li &gt;&lt;li&gt; les pages simples et les intervalles de pages doivent être séparés par des espaces, des virgules ou les deux (par exemple &quot;1, 2, 3, 5-10&quot; ou &quot;1 2 3 5-10&quot;) ; &lt;/li&gt; &lt;li&gt; toutes les pages et tous les intervalles de pages doivent être compris entre 1 et le nombre de pages du fichier PDF ; &lt;/li&gt; &lt;li&gt; seuls les nombres, les espaces, les virgules et les tirets peuvent être utilisés. Tous les autres caractères ne sont pas autorisés. &lt;/li&gt; &lt;/ul&gt;</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="860"/>
@@ -790,22 +790,22 @@
     <message>
         <location filename="../src/widgets/pages_selector.cpp" line="44"/>
         <source>Pages:</source>
-        <translation type="unfinished">Pages :</translation>
+        <translation>Pages :</translation>
     </message>
     <message>
         <location filename="../src/widgets/pages_selector.cpp" line="45"/>
         <source>Even pages</source>
-        <translation type="unfinished"></translation>
+        <translation>Pages paires</translation>
     </message>
     <message>
         <location filename="../src/widgets/pages_selector.cpp" line="46"/>
         <source>Odd pages</source>
-        <translation type="unfinished"></translation>
+        <translation>Pages impaires</translation>
     </message>
     <message>
         <location filename="../src/widgets/pages_selector.cpp" line="48"/>
         <source>All pages</source>
-        <translation type="unfinished"></translation>
+        <translation>Toutes les pages</translation>
     </message>
     <message>
         <location filename="../src/widgets/pages_selector.cpp" line="108"/>
@@ -815,7 +815,7 @@
     <message>
         <location filename="../src/widgets/pages_selector.cpp" line="124"/>
         <source>Error</source>
-        <translation type="unfinished">Erreur</translation>
+        <translation>Erreur</translation>
     </message>
 </context>
 <context>

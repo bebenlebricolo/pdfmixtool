@@ -286,7 +286,7 @@
     <message>
         <location filename="../src/editmultipageprofiledialog.cpp" line="101"/>
         <source>Name:</source>
-        <translation>Nom:</translation>
+        <translation>Nom :</translation>
     </message>
     <message>
         <location filename="../src/editmultipageprofiledialog.cpp" line="109"/>
@@ -306,22 +306,22 @@
     <message>
         <location filename="../src/editmultipageprofiledialog.cpp" line="132"/>
         <source>Rows:</source>
-        <translation>Lignes:</translation>
+        <translation>Lignes :</translation>
     </message>
     <message>
         <location filename="../src/editmultipageprofiledialog.cpp" line="135"/>
         <source>Columns:</source>
-        <translation>Colonnes:</translation>
+        <translation>Colonnes :</translation>
     </message>
     <message>
         <location filename="../src/editmultipageprofiledialog.cpp" line="138"/>
         <source>Rotation:</source>
-        <translation>Rotation:</translation>
+        <translation>Rotation :</translation>
     </message>
     <message>
         <location filename="../src/editmultipageprofiledialog.cpp" line="141"/>
         <source>Spacing:</source>
-        <translation>Écartement:</translation>
+        <translation>Écartement :</translation>
     </message>
     <message>
         <location filename="../src/editmultipageprofiledialog.cpp" line="149"/>
@@ -331,12 +331,12 @@
     <message>
         <location filename="../src/editmultipageprofiledialog.cpp" line="152"/>
         <source>Horizontal:</source>
-        <translation>Horizontal:</translation>
+        <translation>Horizontal :</translation>
     </message>
     <message>
         <location filename="../src/editmultipageprofiledialog.cpp" line="155"/>
         <source>Vertical:</source>
-        <translation>Vertical:</translation>
+        <translation>Vertical :</translation>
     </message>
     <message>
         <location filename="../src/editmultipageprofiledialog.cpp" line="163"/>
@@ -421,12 +421,12 @@
     <message>
         <location filename="../src/editpdfentrydialog.cpp" line="103"/>
         <source>Multipage:</source>
-        <translation>Multipage:</translation>
+        <translation>Multipage :</translation>
     </message>
     <message>
         <location filename="../src/editpdfentrydialog.cpp" line="105"/>
         <source>Rotation:</source>
-        <translation>Rotation:</translation>
+        <translation>Rotation :</translation>
     </message>
 </context>
 <context>
@@ -484,12 +484,12 @@
     <message>
         <location filename="../src/inputpdffiledelegate.cpp" line="83"/>
         <source>reverse</source>
-        <translation type="unfinished"></translation>
+        <translation>en arrière</translation>
     </message>
     <message>
         <location filename="../src/inputpdffiledelegate.cpp" line="85"/>
         <source>forward</source>
-        <translation type="unfinished"></translation>
+        <translation>vers l&apos;avant</translation>
     </message>
     <message>
         <location filename="../src/inputpdffiledelegate.cpp" line="126"/>
@@ -499,7 +499,7 @@
     <message>
         <location filename="../src/inputpdffiledelegate.cpp" line="129"/>
         <source>Multipage:</source>
-        <translation>Multipage:</translation>
+        <translation>Multipage :</translation>
     </message>
     <message>
         <location filename="../src/inputpdffiledelegate.cpp" line="134"/>
@@ -547,12 +547,12 @@
     <message>
         <location filename="../src/inputpdffilewidget.cpp" line="88"/>
         <source>Multipage:</source>
-        <translation>Multipage:</translation>
+        <translation>Multipage :</translation>
     </message>
     <message>
         <location filename="../src/inputpdffilewidget.cpp" line="90"/>
         <source>Rotation:</source>
-        <translation>Rotation:</translation>
+        <translation>Rotation :</translation>
     </message>
     <message>
         <location filename="../src/inputpdffilewidget.cpp" line="92"/>
@@ -565,7 +565,7 @@
     <message>
         <location filename="../src/mainwindow.cpp" line="175"/>
         <source>Add PDF file</source>
-        <translation>Ajouter un fichier pdf :</translation>
+        <translation>Ajouter un fichier PDF</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="187"/>
@@ -810,7 +810,7 @@
     <message>
         <location filename="../src/widgets/pages_selector.cpp" line="108"/>
         <source>&lt;p&gt;Page intervals are badly formatted. Please make sure you complied with the following rules:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;intervals of pages must be written indicating the first page and the last page separated by a dash (e.g. &quot;1-5&quot;);&lt;/li&gt;&lt;li&gt;single pages and intervals of pages must be separated by spaces, commas or both (e.g. &quot;1, 2, 3, 5-10&quot; or &quot;1 2 3 5-10&quot;);&lt;/li&gt;&lt;li&gt;all pages and intervals of pages must be between 1 and the number of pages of the PDF file;&lt;/li&gt;&lt;li&gt;only numbers, spaces, commas and dashes can be used. All other characters are not allowed.&lt;/li&gt;&lt;/ul&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;Les intervalles de pages sont mal formatées. Veuillez vous assurer que vous avez respecté les règles suivantes : &lt;/p&gt; &lt;ul&gt; &lt;li&gt; les intervalles de pages doivent être écrits en indiquant la première page et la dernière page séparées par un tiret (par exemple &quot;1-5&quot;) ; &lt;/li &gt;&lt;li&gt; les pages simples et les intervalles de pages doivent être séparés par des espaces, des virgules ou les deux (par exemple &quot;1, 2, 3, 5-10&quot; ou &quot;1 2 3 5-10&quot;) ; &lt;/li&gt; &lt;li&gt; toutes les pages et tous les intervalles de pages doivent être compris entre 1 et le nombre de pages du fichier PDF ; &lt;/li&gt; &lt;li&gt; seuls les nombres, les espaces, les virgules et les tirets peuvent être utilisés. Tous les autres caractères ne sont pas autorisés. &lt;/li&gt; &lt;/ul&gt;</translation>
     </message>
     <message>
         <location filename="../src/widgets/pages_selector.cpp" line="124"/>

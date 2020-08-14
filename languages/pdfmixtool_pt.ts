@@ -514,7 +514,7 @@
     <message>
         <location filename="../src/inputpdffiledelegate.cpp" line="140"/>
         <source>Outline entry:</source>
-        <translation type="unfinished"></translation>
+        <translation>Entrada do esboço:</translation>
     </message>
 </context>
 <context>
@@ -557,7 +557,7 @@
     <message>
         <location filename="../src/inputpdffilewidget.cpp" line="92"/>
         <source>Outline entry:</source>
-        <translation type="unfinished"></translation>
+        <translation>Entrada do esboço:</translation>
     </message>
 </context>
 <context>
@@ -725,7 +725,7 @@
     <message>
         <location filename="../src/mainwindow.cpp" line="836"/>
         <source>&lt;p&gt;Output pages of file &lt;b&gt;%1&lt;/b&gt; are badly formatted. Please make sure you complied with the following rules:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;intervals of pages must be written indicating the first page and the last page separated by a dash (e.g. &quot;1-5&quot;);&lt;/li&gt;&lt;li&gt;single pages and intervals of pages must be separated by spaces, commas or both (e.g. &quot;1, 2, 3, 5-10&quot; or &quot;1 2 3 5-10&quot;);&lt;/li&gt;&lt;li&gt;all pages and intervals of pages must be between 1 and the number of pages of the PDF file;&lt;/li&gt;&lt;li&gt;only numbers, spaces, commas and dashes can be used. All other characters are not allowed.&lt;/li&gt;&lt;/ul&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;As páginas de saída do arquivo &lt;b&gt;%1&lt;/b&gt; estão formatados incorretamente. Certifique-se de cumprir as seguintes regras:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;intervalos de páginas devem ser escritos a indicar a primeira e a última página separadas por um traço (por exemplo, &quot;1-5&quot;); &lt;/li &gt;&lt;li&gt;páginas únicas e intervalos de páginas devem ser separados por espaços, vírgulas ou ambos (por exemplo, &quot;1, 2, 3, 5-10&quot; ou &quot;1 2 3 5-10&quot;); &lt;/li&gt;&lt;li&gt;todas as páginas e intervalos de páginas devem estar entre 1 e o número de páginas do arquivo PDF; &lt;/li&gt;&lt;li&gt;somente números, espaços, vírgulas e traços podem ser usados. Todos os outros caracteres não são permitidos. &lt;/li&gt;&lt;/ul&gt;</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="860"/>
@@ -810,7 +810,7 @@
     <message>
         <location filename="../src/widgets/pages_selector.cpp" line="108"/>
         <source>&lt;p&gt;Page intervals are badly formatted. Please make sure you complied with the following rules:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;intervals of pages must be written indicating the first page and the last page separated by a dash (e.g. &quot;1-5&quot;);&lt;/li&gt;&lt;li&gt;single pages and intervals of pages must be separated by spaces, commas or both (e.g. &quot;1, 2, 3, 5-10&quot; or &quot;1 2 3 5-10&quot;);&lt;/li&gt;&lt;li&gt;all pages and intervals of pages must be between 1 and the number of pages of the PDF file;&lt;/li&gt;&lt;li&gt;only numbers, spaces, commas and dashes can be used. All other characters are not allowed.&lt;/li&gt;&lt;/ul&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;Os intervalos de página estão formatados incorretamente. Certifique-se de cumprir as seguintes regras:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;intervalos de páginas devem ser escritos a indicar a primeira página e a última página separadas por um travessão (por exemplo, &quot;1-5&quot;);&lt;/li&gt;&lt;li&gt;páginas únicas e intervalos de páginas devem ser separados por espaços, vírgulas ou ambos (por exemplo, &quot;1, 2, 3, 5-10&quot; ou &quot;1 2 3 5-10&quot;);&lt;/li&gt;&lt;li&gt;todas as páginas e intervalos de páginas devem estar entre 1 e o número de páginas do arquivo PDF;&lt;/li&gt;&lt;li&gt;somente números, espaços, vírgulas e traços podem ser usados Todos os outros caracteres não são permitidos.&lt;/li&gt;&lt;/ul&gt;</translation>
     </message>
     <message>
         <location filename="../src/widgets/pages_selector.cpp" line="124"/>

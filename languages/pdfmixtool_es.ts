@@ -31,7 +31,7 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="68"/>
         <source>An application to perform common editing operations on PDF files.</source>
-        <translation>Una aplicación para efectuar modificaciones comunes en archivos PDF.</translation>
+        <translation>Una aplicación para realizar tareas de edición comunes en archivos PDF.</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="96"/>
@@ -51,17 +51,17 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="142"/>
         <source>Submit a pull request</source>
-        <translation>Enviar una solicitud de incorporación</translation>
+        <translation>Enviar una solicitud de extracción</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="143"/>
         <source>Report a bug</source>
-        <translation>Reportar un error</translation>
+        <translation>Informar de un error</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="144"/>
         <source>Help translating</source>
-        <translation>Ayudar con la traducción</translation>
+        <translation>Ayudar a traducir</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="151"/>
@@ -89,7 +89,7 @@
     <message>
         <location filename="../src/single_file_operations/abstract_operation.cpp" line="65"/>
         <source>A file called «%1» already exists. Do you want to overwrite it?</source>
-        <translation>Ya existe un archivo denominado «%1». ¿Quiere sobrescribirlo?</translation>
+        <translation>Ya existe un archivo llamado «%1». ¿Quiere sobrescribirlo?</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/abstract_operation.cpp" line="71"/>
@@ -99,7 +99,7 @@
     <message>
         <location filename="../src/single_file_operations/abstract_operation.cpp" line="89"/>
         <source>Save PDF file</source>
-        <translation>Guardar archivo PDF</translation>
+        <translation>Guardar el archivo PDF</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/abstract_operation.cpp" line="93"/>
@@ -112,27 +112,27 @@
     <message>
         <location filename="../src/single_file_operations/add_empty_pages.cpp" line="34"/>
         <source>Add empty pages</source>
-        <translation>Añadir páginas vacías</translation>
+        <translation>Añadir páginas en blanco</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/add_empty_pages.cpp" line="46"/>
         <source>Count:</source>
-        <translation>Recuento:</translation>
+        <translation>Cantidad:</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/add_empty_pages.cpp" line="50"/>
         <source>Page size</source>
-        <translation>Tamaño de página</translation>
+        <translation>Tamaño de la página</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/add_empty_pages.cpp" line="53"/>
         <source>Same as document</source>
-        <translation>Igual que en el documento</translation>
+        <translation>Igual que la del documento</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/add_empty_pages.cpp" line="56"/>
         <source>Custom:</source>
-        <translation>Personalizado:</translation>
+        <translation>Personalizar:</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/add_empty_pages.cpp" line="81"/>
@@ -180,7 +180,7 @@
     <message>
         <location filename="../src/single_file_operations/booklet.cpp" line="33"/>
         <source>Booklet</source>
-        <translation type="unfinished"></translation>
+        <translation>Folleto</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/booklet.cpp" line="42"/>
@@ -200,17 +200,17 @@
     <message>
         <location filename="../src/single_file_operations/booklet.cpp" line="45"/>
         <source>Use last page as back cover:</source>
-        <translation>Utilizar última página como contracubierta:</translation>
+        <translation>Usar la última página como contraportada:</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/booklet.cpp" line="52"/>
         <source>Generate booklet</source>
-        <translation type="unfinished"></translation>
+        <translation>Generar el folleto</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/booklet.cpp" line="68"/>
         <source>Save booklet PDF file</source>
-        <translation type="unfinished"></translation>
+        <translation>Guardar el archivo PDF del folleto</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/booklet.cpp" line="72"/>
@@ -236,22 +236,22 @@
     <message>
         <location filename="../src/editmultipageprofiledialog.cpp" line="29"/>
         <source>Edit multipage profile</source>
-        <translation>Editar perfil de página múltiple</translation>
+        <translation>Editar el perfil multipágina</translation>
     </message>
     <message>
         <location filename="../src/editmultipageprofiledialog.cpp" line="39"/>
         <source>Standard size:</source>
-        <translation type="unfinished"></translation>
+        <translation>Tamaño estándar:</translation>
     </message>
     <message>
         <location filename="../src/editmultipageprofiledialog.cpp" line="40"/>
         <source>Width:</source>
-        <translation type="unfinished"></translation>
+        <translation>Anchura:</translation>
     </message>
     <message>
         <location filename="../src/editmultipageprofiledialog.cpp" line="41"/>
         <source>Height:</source>
-        <translation type="unfinished"></translation>
+        <translation>Altura:</translation>
     </message>
     <message>
         <location filename="../src/editmultipageprofiledialog.cpp" line="64"/>
@@ -301,7 +301,7 @@
     <message>
         <location filename="../src/editmultipageprofiledialog.cpp" line="129"/>
         <source>Pages layout</source>
-        <translation>Disposición de páginas</translation>
+        <translation>Distribución de las páginas</translation>
     </message>
     <message>
         <location filename="../src/editmultipageprofiledialog.cpp" line="132"/>
@@ -316,7 +316,7 @@
     <message>
         <location filename="../src/editmultipageprofiledialog.cpp" line="138"/>
         <source>Rotation:</source>
-        <translation>Giro:</translation>
+        <translation>Rotación:</translation>
     </message>
     <message>
         <location filename="../src/editmultipageprofiledialog.cpp" line="141"/>
@@ -326,7 +326,7 @@
     <message>
         <location filename="../src/editmultipageprofiledialog.cpp" line="149"/>
         <source>Pages alignment</source>
-        <translation>Alineación de página</translation>
+        <translation>Alineación de las páginas</translation>
     </message>
     <message>
         <location filename="../src/editmultipageprofiledialog.cpp" line="152"/>
@@ -349,24 +349,24 @@
     <message>
         <location filename="../src/single_file_operations/edit_page_layout.cpp" line="34"/>
         <source>Edit page layout</source>
-        <translation type="unfinished"></translation>
+        <translation>Editar la distribución de las páginas</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/edit_page_layout.cpp" line="55"/>
         <source>No rotation</source>
-        <translation>Sin giro</translation>
+        <translation>Sin rotación</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/edit_page_layout.cpp" line="62"/>
         <source>Rotation:</source>
-        <translation>Giro:</translation>
+        <translation>Rotación:</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/edit_page_layout.cpp" line="64"/>
         <location filename="../src/single_file_operations/edit_page_layout.cpp" line="124"/>
         <location filename="../src/single_file_operations/edit_page_layout.cpp" line="211"/>
         <source>Disabled</source>
-        <translation>Desactivado</translation>
+        <translation>Desactivar</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/edit_page_layout.cpp" line="72"/>
@@ -378,17 +378,17 @@
     <message>
         <location filename="../src/single_file_operations/edit_page_layout.cpp" line="78"/>
         <source>Multipage:</source>
-        <translation>Página múltiple:</translation>
+        <translation>Múltiples páginas:</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/edit_page_layout.cpp" line="86"/>
         <source>Scale page:</source>
-        <translation type="unfinished"></translation>
+        <translation>Escala de la página:</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/edit_page_layout.cpp" line="94"/>
         <source>Save as…</source>
-        <translation type="unfinished">Guardar como…</translation>
+        <translation>Guardar como…</translation>
     </message>
 </context>
 <context>
@@ -396,17 +396,17 @@
     <message>
         <location filename="../src/editpdfentrydialog.cpp" line="37"/>
         <source>Edit PDF files&apos; properties</source>
-        <translation>Editar propiedades de los archivos PDF</translation>
+        <translation>Editar las propiedades de los archivos PDF</translation>
     </message>
     <message>
         <location filename="../src/editpdfentrydialog.cpp" line="40"/>
         <source>No rotation</source>
-        <translation>Sin giro</translation>
+        <translation>Sin rotación</translation>
     </message>
     <message>
         <location filename="../src/editpdfentrydialog.cpp" line="45"/>
         <source>Disabled</source>
-        <translation>Desactivado</translation>
+        <translation>Desactivar</translation>
     </message>
     <message>
         <location filename="../src/editpdfentrydialog.cpp" line="90"/>
@@ -421,12 +421,12 @@
     <message>
         <location filename="../src/editpdfentrydialog.cpp" line="103"/>
         <source>Multipage:</source>
-        <translation>Página múltiple:</translation>
+        <translation>Múltiples páginas:</translation>
     </message>
     <message>
         <location filename="../src/editpdfentrydialog.cpp" line="105"/>
         <source>Rotation:</source>
-        <translation>Giro:</translation>
+        <translation>Rotación:</translation>
     </message>
 </context>
 <context>
@@ -434,34 +434,34 @@
     <message>
         <location filename="../src/single_file_operations/extract_pages.cpp" line="53"/>
         <source>Output PDF base name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nombre base del PDF de salida:</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/extract_pages.cpp" line="49"/>
         <source>Extract to individual PDF files</source>
-        <translation type="unfinished"></translation>
+        <translation>Extracción a archivos PDF independientes</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/extract_pages.cpp" line="37"/>
         <source>Extract pages</source>
-        <translation type="unfinished"></translation>
+        <translation>Extraer páginas</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/extract_pages.cpp" line="62"/>
         <location filename="../src/single_file_operations/extract_pages.cpp" line="84"/>
         <source>Extract…</source>
-        <translation type="unfinished"></translation>
+        <translation>Extraer…</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/extract_pages.cpp" line="79"/>
         <location filename="../src/single_file_operations/extract_pages.cpp" line="190"/>
         <source>Extract to single PDF</source>
-        <translation type="unfinished"></translation>
+        <translation>Extracción a un solo archivo PDF</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/extract_pages.cpp" line="114"/>
         <source>Select save directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleccione la carpeta para guardar</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/extract_pages.cpp" line="194"/>
@@ -474,47 +474,47 @@
     <message>
         <location filename="../src/inputpdffiledelegate.cpp" line="113"/>
         <source>All</source>
-        <translation>Todo</translation>
+        <translation>Todas</translation>
     </message>
     <message>
         <location filename="../src/inputpdffiledelegate.cpp" line="80"/>
         <source>Page order:</source>
-        <translation type="unfinished"></translation>
+        <translation>Orden de las páginas:</translation>
     </message>
     <message>
         <location filename="../src/inputpdffiledelegate.cpp" line="83"/>
         <source>reverse</source>
-        <translation type="unfinished"></translation>
+        <translation>retroceder</translation>
     </message>
     <message>
         <location filename="../src/inputpdffiledelegate.cpp" line="85"/>
         <source>forward</source>
-        <translation type="unfinished"></translation>
+        <translation>avanzar</translation>
     </message>
     <message>
         <location filename="../src/inputpdffiledelegate.cpp" line="126"/>
         <source>Pages:</source>
-        <translation>Página:</translation>
+        <translation>Páginas:</translation>
     </message>
     <message>
         <location filename="../src/inputpdffiledelegate.cpp" line="129"/>
         <source>Multipage:</source>
-        <translation>Página múltiple:</translation>
+        <translation>Múltiples páginas:</translation>
     </message>
     <message>
         <location filename="../src/inputpdffiledelegate.cpp" line="134"/>
         <source>Disabled</source>
-        <translation>Desactivado</translation>
+        <translation>Desactivar</translation>
     </message>
     <message>
         <location filename="../src/inputpdffiledelegate.cpp" line="137"/>
         <source>Rotation:</source>
-        <translation>Giro:</translation>
+        <translation>Rotación:</translation>
     </message>
     <message>
         <location filename="../src/inputpdffiledelegate.cpp" line="140"/>
         <source>Outline entry:</source>
-        <translation>Entrada de esquema:</translation>
+        <translation>Entrada en el índice:</translation>
     </message>
 </context>
 <context>
@@ -522,12 +522,12 @@
     <message>
         <location filename="../src/inputpdffilewidget.cpp" line="57"/>
         <source>Reverse page order:</source>
-        <translation type="unfinished"></translation>
+        <translation>Invertir el orden de las páginas:</translation>
     </message>
     <message>
         <location filename="../src/inputpdffilewidget.cpp" line="71"/>
         <source>Disabled</source>
-        <translation>Desactivado</translation>
+        <translation>Desactivar</translation>
     </message>
     <message>
         <location filename="../src/inputpdffilewidget.cpp" line="79"/>
@@ -537,7 +537,7 @@
     <message>
         <location filename="../src/inputpdffilewidget.cpp" line="81"/>
         <source>No rotation</source>
-        <translation>Sin giro</translation>
+        <translation>Sin rotación</translation>
     </message>
     <message>
         <location filename="../src/inputpdffilewidget.cpp" line="86"/>
@@ -547,17 +547,17 @@
     <message>
         <location filename="../src/inputpdffilewidget.cpp" line="88"/>
         <source>Multipage:</source>
-        <translation>Página múltiple:</translation>
+        <translation>Múltiples páginas:</translation>
     </message>
     <message>
         <location filename="../src/inputpdffilewidget.cpp" line="90"/>
         <source>Rotation:</source>
-        <translation>Giro:</translation>
+        <translation>Rotación:</translation>
     </message>
     <message>
         <location filename="../src/inputpdffilewidget.cpp" line="92"/>
         <source>Outline entry:</source>
-        <translation>Entrada de esquema:</translation>
+        <translation>Entrada en el índice:</translation>
     </message>
 </context>
 <context>
@@ -565,7 +565,7 @@
     <message>
         <location filename="../src/mainwindow.cpp" line="175"/>
         <source>Add PDF file</source>
-        <translation>Añadir archivo PDF</translation>
+        <translation>Añadir un archivo PDF</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="187"/>
@@ -580,7 +580,7 @@
     <message>
         <location filename="../src/mainwindow.cpp" line="197"/>
         <source>Remove file</source>
-        <translation>Quitar archivo</translation>
+        <translation>Eliminar el archivo</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="128"/>
@@ -591,17 +591,17 @@
         <location filename="../src/mainwindow.cpp" line="248"/>
         <location filename="../src/mainwindow.cpp" line="252"/>
         <source>Generate PDF</source>
-        <translation>Generar PDF</translation>
+        <translation>Generar el PDF</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="473"/>
         <source>Select the JSON file containing the files list</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleccionar el archivo JSON que contiene la lista de archivos</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="853"/>
         <source>PDF generation error</source>
-        <translation>Generación de error en PDF</translation>
+        <translation>Error en la generación del PDF</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="180"/>
@@ -631,17 +631,17 @@
     <message>
         <location filename="../src/mainwindow.cpp" line="95"/>
         <source>Multiple files</source>
-        <translation type="unfinished"></translation>
+        <translation>Múltiples archivos</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="96"/>
         <source>Single file</source>
-        <translation type="unfinished"></translation>
+        <translation>Un solo archivo</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="123"/>
         <source>Multipage profiles…</source>
-        <translation>Perfiles de página múltiple…</translation>
+        <translation>Perfiles múltipágina…</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="133"/>
@@ -651,17 +651,17 @@
     <message>
         <location filename="../src/mainwindow.cpp" line="208"/>
         <source>Load files list</source>
-        <translation type="unfinished"></translation>
+        <translation>Cargar la lista de archivos</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="213"/>
         <source>Save files list</source>
-        <translation type="unfinished"></translation>
+        <translation>Guardar la lista de archivos</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="311"/>
         <source>Open PDF file…</source>
-        <translation type="unfinished"></translation>
+        <translation>Abrir un archivo PDF…</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="182"/>
@@ -673,34 +673,34 @@
     <message>
         <location filename="../src/mainwindow.cpp" line="48"/>
         <source>Alternate mix</source>
-        <translation type="unfinished"></translation>
+        <translation>Mezcla alternativa</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="475"/>
         <location filename="../src/mainwindow.cpp" line="493"/>
         <source>JSON files (*.json)</source>
-        <translation type="unfinished"></translation>
+        <translation>Archivos JSON (*.json)</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="481"/>
         <source>Error while reading the JSON file!</source>
-        <translation type="unfinished"></translation>
+        <translation>¡Error al leer el archivo JSON!</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="482"/>
         <source>An error occurred while reading the JSON file!</source>
-        <translation type="unfinished"></translation>
+        <translation>¡Se ha producido un error al leer el archivo JSON!</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="489"/>
         <source>Select a JSON file</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleccione un archivo JSON</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="602"/>
         <location filename="../src/mainwindow.cpp" line="971"/>
         <source>Error opening file</source>
-        <translation type="unfinished"></translation>
+        <translation>Error al abrir el archivo</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="827"/>
@@ -710,27 +710,27 @@
     <message>
         <location filename="../src/mainwindow.cpp" line="950"/>
         <source>Select a PDF file</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleccione un archivo PDF</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="1007"/>
         <source>Files saved in %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>Archivos guardados en %1.</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="1013"/>
         <source>File %1 saved.</source>
-        <translation type="unfinished"></translation>
+        <translation>Se ha guardado el archivo %1.</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="836"/>
         <source>&lt;p&gt;Output pages of file &lt;b&gt;%1&lt;/b&gt; are badly formatted. Please make sure you complied with the following rules:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;intervals of pages must be written indicating the first page and the last page separated by a dash (e.g. &quot;1-5&quot;);&lt;/li&gt;&lt;li&gt;single pages and intervals of pages must be separated by spaces, commas or both (e.g. &quot;1, 2, 3, 5-10&quot; or &quot;1 2 3 5-10&quot;);&lt;/li&gt;&lt;li&gt;all pages and intervals of pages must be between 1 and the number of pages of the PDF file;&lt;/li&gt;&lt;li&gt;only numbers, spaces, commas and dashes can be used. All other characters are not allowed.&lt;/li&gt;&lt;/ul&gt;</source>
-        <translation>&lt;p&gt;Las páginas de salida del archivo &lt;b&gt;%1&lt;/b&gt; tienen un formato incorrecto. Cerciórese de que ha cumplido las reglas siguientes:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;los intervalos de páginas deben escribirse indicando las páginas primera y última separadas por un guion (p.&#xa0;ej., «1-5»);&lt;/li&gt;&lt;li&gt;las páginas sencillas y los intervalos de páginas deben separarse por espacios, comas o ambos signos (p.&#xa0;ej., «1, 2, 3, 5-10» o «1 2 3 5-10»);&lt;/li&gt;&lt;li&gt;todas las páginas e intervalos de páginas deben figurar entre 1 y el total de páginas del archivo PDF;&lt;/li&gt;&lt;li&gt;solo pueden utilizarse números, espacios, comas y guiones. No se permite ningún otro carácter.&lt;/li&gt;&lt;/ul&gt;</translation>
+        <translation>&lt;p&gt;El formato de las páginas de salida del archivo &lt;b&gt;%1&lt;/b&gt; es incorrecto. Asegúrese de que cumple las reglas siguientes:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;los intervalos de páginas se deben indicar escribiendo la primera y la última página separadas por un guion (p. ej., «1-5»);&lt;/li&gt;&lt;li&gt;las páginas sueltas y los intervalos de páginas se deben separar por espacios, comas o ambos signos (p. ej., «1, 2, 3, 5-10» o «1 2 3 5-10»);&lt;/li&gt;&lt;li&gt;las páginas y los intervalos de páginas deben estar entre 1 y el total de páginas del archivo PDF;&lt;/li&gt;&lt;li&gt;solo se pueden usar números, espacios, comas y guiones. Todos los demás caracteres no están permitidos.&lt;/li&gt;&lt;/ul&gt;</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="860"/>
         <source>Save PDF file</source>
-        <translation>Guardar archivo PDF</translation>
+        <translation>Guardar el archivo PDF</translation>
     </message>
 </context>
 <context>
@@ -743,17 +743,17 @@
     <message>
         <location filename="../src/multipageprofilesmanager.cpp" line="35"/>
         <source>Delete profile</source>
-        <translation>Eliminar perfil</translation>
+        <translation>Eliminar el perfil</translation>
     </message>
     <message>
         <location filename="../src/multipageprofilesmanager.cpp" line="43"/>
         <source>Manage multipage profiles</source>
-        <translation>Gestionar perfiles de página múltiple</translation>
+        <translation>Gestionar los perfiles múltipágina</translation>
     </message>
     <message>
         <location filename="../src/multipageprofilesmanager.cpp" line="76"/>
         <source>Edit profile</source>
-        <translation type="unfinished"></translation>
+        <translation>Editar el perfil</translation>
     </message>
     <message>
         <location filename="../src/multipageprofilesmanager.cpp" line="122"/>
@@ -771,18 +771,18 @@
     <message>
         <location filename="../src/multipageprofilesmanager.cpp" line="184"/>
         <source>Profile name can not be empty.</source>
-        <translation>El nombre del perfil no puede quedar vacío.</translation>
+        <translation>El nombre del perfil no se puede dejar en blanco.</translation>
     </message>
     <message>
         <location filename="../src/multipageprofilesmanager.cpp" line="189"/>
         <source>Disabled</source>
-        <translation>Desactivado</translation>
+        <translation>Desactivar</translation>
     </message>
     <message>
         <location filename="../src/multipageprofilesmanager.cpp" line="193"/>
         <location filename="../src/multipageprofilesmanager.cpp" line="207"/>
         <source>Profile name already exists.</source>
-        <translation>El nombre del perfil ya existe.</translation>
+        <translation>Ya existe el nombre del perfil.</translation>
     </message>
 </context>
 <context>
@@ -790,32 +790,32 @@
     <message>
         <location filename="../src/widgets/pages_selector.cpp" line="44"/>
         <source>Pages:</source>
-        <translation type="unfinished"></translation>
+        <translation>Páginas:</translation>
     </message>
     <message>
         <location filename="../src/widgets/pages_selector.cpp" line="45"/>
         <source>Even pages</source>
-        <translation type="unfinished"></translation>
+        <translation>Páginas pares</translation>
     </message>
     <message>
         <location filename="../src/widgets/pages_selector.cpp" line="46"/>
         <source>Odd pages</source>
-        <translation type="unfinished"></translation>
+        <translation>Páginas impares</translation>
     </message>
     <message>
         <location filename="../src/widgets/pages_selector.cpp" line="48"/>
         <source>All pages</source>
-        <translation type="unfinished"></translation>
+        <translation>Todas las páginas</translation>
     </message>
     <message>
         <location filename="../src/widgets/pages_selector.cpp" line="108"/>
         <source>&lt;p&gt;Page intervals are badly formatted. Please make sure you complied with the following rules:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;intervals of pages must be written indicating the first page and the last page separated by a dash (e.g. &quot;1-5&quot;);&lt;/li&gt;&lt;li&gt;single pages and intervals of pages must be separated by spaces, commas or both (e.g. &quot;1, 2, 3, 5-10&quot; or &quot;1 2 3 5-10&quot;);&lt;/li&gt;&lt;li&gt;all pages and intervals of pages must be between 1 and the number of pages of the PDF file;&lt;/li&gt;&lt;li&gt;only numbers, spaces, commas and dashes can be used. All other characters are not allowed.&lt;/li&gt;&lt;/ul&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;El formato de los intervalos de páginas es incorrecto. Asegúrese de que cumple las reglas siguientes:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;los intervalos de páginas se deben indicar escribiendo la primera y la última página separadas por un guion (p. ej., «1-5»);&lt;/li&gt;&lt;li&gt;las páginas sueltas y los intervalos de páginas se deben separar por espacios, comas o ambos signos (p. ej., «1, 2, 3, 5-10» o «1 2 3 5-10»);&lt;/li&gt;&lt;li&gt;las páginas y los intervalos de página deben estar entre 1 y el total de páginas del archivo PDF;&lt;/li&gt;&lt;li&gt;solo se pueden usar números, espacios, comas y guiones. Todos los demás caracteres no están permitidos.&lt;/li&gt;&lt;/ul&gt;</translation>
     </message>
     <message>
         <location filename="../src/widgets/pages_selector.cpp" line="124"/>
         <source>Error</source>
-        <translation type="unfinished">Error</translation>
+        <translation>Error</translation>
     </message>
 </context>
 <context>

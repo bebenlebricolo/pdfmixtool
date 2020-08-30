@@ -6,7 +6,7 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="33"/>
         <source>About PDF Mix Tool</source>
-        <translation>Acerca de PDF Mix Tool</translation>
+        <translation>Acerca de la herramienta de mezcla de PDF</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="44"/>
@@ -31,7 +31,7 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="68"/>
         <source>An application to perform common editing operations on PDF files.</source>
-        <translation>Una aplicación para realizar tareas de edición comunes en archivos PDF.</translation>
+        <translation>Una aplicación para realizar tareas de edición habituales en archivos PDF.</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="96"/>
@@ -66,7 +66,7 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="151"/>
         <source>Contribute</source>
-        <translation>Contribuir</translation>
+        <translation>Colaborar</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="168"/>
@@ -456,7 +456,7 @@
         <location filename="../src/single_file_operations/extract_pages.cpp" line="79"/>
         <location filename="../src/single_file_operations/extract_pages.cpp" line="190"/>
         <source>Extract to single PDF</source>
-        <translation>Extracción a un solo archivo PDF</translation>
+        <translation>Extracción a un único archivo PDF</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/extract_pages.cpp" line="114"/>
@@ -641,7 +641,7 @@
     <message>
         <location filename="../src/mainwindow.cpp" line="123"/>
         <source>Multipage profiles…</source>
-        <translation>Perfiles múltipágina…</translation>
+        <translation>Perfiles multipágina…</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="133"/>
@@ -748,7 +748,7 @@
     <message>
         <location filename="../src/multipageprofilesmanager.cpp" line="43"/>
         <source>Manage multipage profiles</source>
-        <translation>Gestionar los perfiles múltipágina</translation>
+        <translation>Gestionar los perfiles multipágina</translation>
     </message>
     <message>
         <location filename="../src/multipageprofilesmanager.cpp" line="76"/>

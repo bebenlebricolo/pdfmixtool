@@ -21,7 +21,7 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="68"/>
         <source>An application to perform common editing operations on PDF files.</source>
-        <translation>Una aplicació per realitzar tasques d&apos;edició comunes en fitxers PDF.</translation>
+        <translation>Una aplicació per realitzar tasques d&apos;edició habituals en fitxers PDF.</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="71"/>
@@ -51,17 +51,17 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="142"/>
         <source>Submit a pull request</source>
-        <translation>Envieu una sol·licitud d&apos;extracció</translation>
+        <translation>Envia una sol·licitud d&apos;extracció</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="143"/>
         <source>Report a bug</source>
-        <translation>Informeu d&apos;un error</translation>
+        <translation>Informa d&apos;un error</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="144"/>
         <source>Help translating</source>
-        <translation>Ajudeu en la traducció</translation>
+        <translation>Ajuda en la traducció</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="151"/>
@@ -585,7 +585,7 @@
     <message>
         <location filename="../src/mainwindow.cpp" line="123"/>
         <source>Multipage profiles…</source>
-        <translation>Perfils múltipàgina…</translation>
+        <translation>Perfils multipàgina…</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="128"/>

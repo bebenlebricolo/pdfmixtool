@@ -31,7 +31,7 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="68"/>
         <source>An application to perform common editing operations on PDF files.</source>
-        <translation type="unfinished"></translation>
+        <translation>PDF dosyalarında genel düzenleme işlemlerini gerçekleştirmek için bir uygulama.</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="96"/>
@@ -51,7 +51,7 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="142"/>
         <source>Submit a pull request</source>
-        <translation>Çekme isteği gönderin</translation>
+        <translation>Çekme isteği gönder</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="143"/>
@@ -61,7 +61,7 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="144"/>
         <source>Help translating</source>
-        <translation>Çeviri yardımı</translation>
+        <translation>Çeviriye yardım et</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="151"/>
@@ -79,32 +79,32 @@
     <message>
         <location filename="../src/single_file_operations/abstract_operation.cpp" line="36"/>
         <source>Save</source>
-        <translation type="unfinished">Kaydet</translation>
+        <translation>Kaydet</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/abstract_operation.cpp" line="64"/>
         <source>Overwrite File?</source>
-        <translation type="unfinished">Dosyanın üzerine yazılsın mı?</translation>
+        <translation>Dosyanın üzerine yazılsın mı?</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/abstract_operation.cpp" line="65"/>
         <source>A file called «%1» already exists. Do you want to overwrite it?</source>
-        <translation type="unfinished">«%1» adında bir dosya zaten var. Üzerine yazmak istiyor musunuz?</translation>
+        <translation>«%1» adında bir dosya zaten var. Üzerine yazmak istiyor musunuz?</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/abstract_operation.cpp" line="71"/>
         <source>Always overwrite</source>
-        <translation type="unfinished"></translation>
+        <translation>Her zaman üzerine yaz</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/abstract_operation.cpp" line="89"/>
         <source>Save PDF file</source>
-        <translation type="unfinished">PDF dosyayı kaydet</translation>
+        <translation>PDF dosyasını kaydet</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/abstract_operation.cpp" line="93"/>
         <source>PDF files (*.pdf)</source>
-        <translation type="unfinished">PDF dosyalar (*.pdf)</translation>
+        <translation>PDF dosyaları (*.pdf)</translation>
     </message>
 </context>
 <context>
@@ -112,7 +112,7 @@
     <message>
         <location filename="../src/single_file_operations/add_empty_pages.cpp" line="34"/>
         <source>Add empty pages</source>
-        <translation type="unfinished">Boş sayfa ekle</translation>
+        <translation>Boş sayfa ekle</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/add_empty_pages.cpp" line="46"/>
@@ -180,7 +180,7 @@
     <message>
         <location filename="../src/single_file_operations/booklet.cpp" line="33"/>
         <source>Booklet</source>
-        <translation type="unfinished">Kitapçık</translation>
+        <translation>Kitapçık</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/booklet.cpp" line="42"/>
@@ -200,7 +200,7 @@
     <message>
         <location filename="../src/single_file_operations/booklet.cpp" line="45"/>
         <source>Use last page as back cover:</source>
-        <translation type="unfinished"></translation>
+        <translation>Son sayfayı arka kapak olarak kullan:</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/booklet.cpp" line="52"/>
@@ -210,12 +210,12 @@
     <message>
         <location filename="../src/single_file_operations/booklet.cpp" line="68"/>
         <source>Save booklet PDF file</source>
-        <translation type="unfinished">Kitapçık PDF dosyasını kaydet</translation>
+        <translation>Kitapçık PDF dosyasını kaydet</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/booklet.cpp" line="72"/>
         <source>PDF files (*.pdf)</source>
-        <translation type="unfinished">PDF dosyalar (*.pdf)</translation>
+        <translation>PDF dosyaları (*.pdf)</translation>
     </message>
 </context>
 <context>
@@ -223,12 +223,12 @@
     <message>
         <location filename="../src/single_file_operations/delete_pages.cpp" line="34"/>
         <source>Delete pages</source>
-        <translation type="unfinished">Sayfa sil</translation>
+        <translation>Sayfa sil</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/delete_pages.cpp" line="54"/>
         <source>Save as…</source>
-        <translation type="unfinished">Farklı kaydet…</translation>
+        <translation>Farklı kaydet…</translation>
     </message>
 </context>
 <context>
@@ -241,17 +241,17 @@
     <message>
         <location filename="../src/editmultipageprofiledialog.cpp" line="39"/>
         <source>Standard size:</source>
-        <translation type="unfinished"></translation>
+        <translation>Standart boyut:</translation>
     </message>
     <message>
         <location filename="../src/editmultipageprofiledialog.cpp" line="40"/>
         <source>Width:</source>
-        <translation type="unfinished"></translation>
+        <translation>Genişlik:</translation>
     </message>
     <message>
         <location filename="../src/editmultipageprofiledialog.cpp" line="41"/>
         <source>Height:</source>
-        <translation type="unfinished"></translation>
+        <translation>Yükseklik:</translation>
     </message>
     <message>
         <location filename="../src/editmultipageprofiledialog.cpp" line="64"/>
@@ -349,46 +349,46 @@
     <message>
         <location filename="../src/single_file_operations/edit_page_layout.cpp" line="34"/>
         <source>Edit page layout</source>
-        <translation type="unfinished"></translation>
+        <translation>Sayfa düzenini düzenle</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/edit_page_layout.cpp" line="55"/>
         <source>No rotation</source>
-        <translation type="unfinished">Döndürme</translation>
+        <translation>Döndürme yok</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/edit_page_layout.cpp" line="62"/>
         <source>Rotation:</source>
-        <translation type="unfinished">Döndürme:</translation>
+        <translation>Döndürme:</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/edit_page_layout.cpp" line="64"/>
         <location filename="../src/single_file_operations/edit_page_layout.cpp" line="124"/>
         <location filename="../src/single_file_operations/edit_page_layout.cpp" line="211"/>
         <source>Disabled</source>
-        <translation type="unfinished">Devre dışı</translation>
+        <translation>Devre dışı</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/edit_page_layout.cpp" line="72"/>
         <location filename="../src/single_file_operations/edit_page_layout.cpp" line="136"/>
         <location filename="../src/single_file_operations/edit_page_layout.cpp" line="219"/>
         <source>New custom profile…</source>
-        <translation type="unfinished">Yeni özel profil…</translation>
+        <translation>Yeni özel profil…</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/edit_page_layout.cpp" line="78"/>
         <source>Multipage:</source>
-        <translation type="unfinished"></translation>
+        <translation>Çok sayfalı:</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/edit_page_layout.cpp" line="86"/>
         <source>Scale page:</source>
-        <translation type="unfinished"></translation>
+        <translation>Sayfayı ölçekle:</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/edit_page_layout.cpp" line="94"/>
         <source>Save as…</source>
-        <translation type="unfinished">Farklı kaydet…</translation>
+        <translation>Farklı kaydet…</translation>
     </message>
 </context>
 <context>
@@ -396,12 +396,12 @@
     <message>
         <location filename="../src/editpdfentrydialog.cpp" line="37"/>
         <source>Edit PDF files&apos; properties</source>
-        <translation>PDF dosyaların özelliklerini düzenle</translation>
+        <translation>PDF dosyalarının özelliklerini düzenle</translation>
     </message>
     <message>
         <location filename="../src/editpdfentrydialog.cpp" line="40"/>
         <source>No rotation</source>
-        <translation>Döndürme</translation>
+        <translation>Döndürme yok</translation>
     </message>
     <message>
         <location filename="../src/editpdfentrydialog.cpp" line="45"/>
@@ -434,39 +434,39 @@
     <message>
         <location filename="../src/single_file_operations/extract_pages.cpp" line="53"/>
         <source>Output PDF base name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Çıktı PDF dosyası temel adı:</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/extract_pages.cpp" line="49"/>
         <source>Extract to individual PDF files</source>
-        <translation type="unfinished"></translation>
+        <translation>Tek tek PDF dosyalarına çıkar</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/extract_pages.cpp" line="37"/>
         <source>Extract pages</source>
-        <translation type="unfinished">Sayfa çıkar</translation>
+        <translation>Sayfa çıkar</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/extract_pages.cpp" line="62"/>
         <location filename="../src/single_file_operations/extract_pages.cpp" line="84"/>
         <source>Extract…</source>
-        <translation type="unfinished"></translation>
+        <translation>Çıkar…</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/extract_pages.cpp" line="79"/>
         <location filename="../src/single_file_operations/extract_pages.cpp" line="190"/>
         <source>Extract to single PDF</source>
-        <translation type="unfinished"></translation>
+        <translation>Tek bir PDF dosyasına çıkar</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/extract_pages.cpp" line="114"/>
         <source>Select save directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Kayıt dizinini seç</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/extract_pages.cpp" line="194"/>
         <source>PDF files (*.pdf)</source>
-        <translation type="unfinished">PDF dosyalar (*.pdf)</translation>
+        <translation>PDF dosyaları (*.pdf)</translation>
     </message>
 </context>
 <context>
@@ -474,7 +474,7 @@
     <message>
         <location filename="../src/inputpdffiledelegate.cpp" line="113"/>
         <source>All</source>
-        <translation>Tüm</translation>
+        <translation>Tümü</translation>
     </message>
     <message>
         <location filename="../src/inputpdffiledelegate.cpp" line="80"/>
@@ -499,7 +499,7 @@
     <message>
         <location filename="../src/inputpdffiledelegate.cpp" line="129"/>
         <source>Multipage:</source>
-        <translation>Çoklu sayfa:</translation>
+        <translation>Çok sayfalı:</translation>
     </message>
     <message>
         <location filename="../src/inputpdffiledelegate.cpp" line="134"/>
@@ -537,7 +537,7 @@
     <message>
         <location filename="../src/inputpdffilewidget.cpp" line="81"/>
         <source>No rotation</source>
-        <translation>Döndürme</translation>
+        <translation>Döndürme yok</translation>
     </message>
     <message>
         <location filename="../src/inputpdffilewidget.cpp" line="86"/>
@@ -596,7 +596,7 @@
     <message>
         <location filename="../src/mainwindow.cpp" line="473"/>
         <source>Select the JSON file containing the files list</source>
-        <translation type="unfinished"></translation>
+        <translation>Dosya listesini içeren JSON dosyasını seç</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="853"/>
@@ -606,7 +606,7 @@
     <message>
         <location filename="../src/mainwindow.cpp" line="180"/>
         <source>Select one or more PDF files to open</source>
-        <translation>Açmak için bir veya daha fazla PDF dosya seçin</translation>
+        <translation>Açmak için bir veya daha fazla PDF dosyası seç</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="164"/>
@@ -621,7 +621,7 @@
     <message>
         <location filename="../src/mainwindow.cpp" line="168"/>
         <source>Main toolbar</source>
-        <translation>Ana Araç Çubuğu</translation>
+        <translation>Ana araç çubuğu</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="118"/>
@@ -631,7 +631,7 @@
     <message>
         <location filename="../src/mainwindow.cpp" line="95"/>
         <source>Multiple files</source>
-        <translation>Çoklu dosya</translation>
+        <translation>Birden çok dosya</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="96"/>
@@ -651,56 +651,56 @@
     <message>
         <location filename="../src/mainwindow.cpp" line="208"/>
         <source>Load files list</source>
-        <translation type="unfinished"></translation>
+        <translation>Dosya listesini yükle</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="213"/>
         <source>Save files list</source>
-        <translation type="unfinished"></translation>
+        <translation>Dosya listesini kaydet</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="311"/>
         <source>Open PDF file…</source>
-        <translation>PDF dosya aç…</translation>
+        <translation>PDF dosyası aç…</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="182"/>
         <location filename="../src/mainwindow.cpp" line="864"/>
         <location filename="../src/mainwindow.cpp" line="952"/>
         <source>PDF files (*.pdf)</source>
-        <translation>PDF dosyalar (*.pdf)</translation>
+        <translation>PDF dosyaları (*.pdf)</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="48"/>
         <source>Alternate mix</source>
-        <translation type="unfinished"></translation>
+        <translation>Dönüşümlü karıştırma</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="475"/>
         <location filename="../src/mainwindow.cpp" line="493"/>
         <source>JSON files (*.json)</source>
-        <translation type="unfinished"></translation>
+        <translation>JSON dosyaları (*.json)</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="481"/>
         <source>Error while reading the JSON file!</source>
-        <translation type="unfinished"></translation>
+        <translation>JSON dosyasını okurken hata!</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="482"/>
         <source>An error occurred while reading the JSON file!</source>
-        <translation type="unfinished"></translation>
+        <translation>JSON dosyasını okurken bir hata oluştu!</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="489"/>
         <source>Select a JSON file</source>
-        <translation type="unfinished"></translation>
+        <translation>Bir JSON dosyası seç</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="602"/>
         <location filename="../src/mainwindow.cpp" line="971"/>
         <source>Error opening file</source>
-        <translation type="unfinished"></translation>
+        <translation>Dosya açma hatası</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="827"/>
@@ -715,22 +715,22 @@
     <message>
         <location filename="../src/mainwindow.cpp" line="1007"/>
         <source>Files saved in %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>Dosyalar %1 konumuna kaydedildi.</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="1013"/>
         <source>File %1 saved.</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 dosyası kaydedildi.</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="836"/>
         <source>&lt;p&gt;Output pages of file &lt;b&gt;%1&lt;/b&gt; are badly formatted. Please make sure you complied with the following rules:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;intervals of pages must be written indicating the first page and the last page separated by a dash (e.g. &quot;1-5&quot;);&lt;/li&gt;&lt;li&gt;single pages and intervals of pages must be separated by spaces, commas or both (e.g. &quot;1, 2, 3, 5-10&quot; or &quot;1 2 3 5-10&quot;);&lt;/li&gt;&lt;li&gt;all pages and intervals of pages must be between 1 and the number of pages of the PDF file;&lt;/li&gt;&lt;li&gt;only numbers, spaces, commas and dashes can be used. All other characters are not allowed.&lt;/li&gt;&lt;/ul&gt;</source>
-        <translation>&lt;p&gt;Dosya çıktı sayfaları %&lt;b&gt;%1&lt;/b&gt; kötü biçimlendirilmiş. Lütfen aşağıdaki kurallara uyduğunuzdan emin olun:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;sayfa aralıkları, ilk sayfayı ve son sayfayı bir çizgiyle ayrılmış olarak belirterek yazılmalıdır (örn. &quot;1-5&quot;&lt;/li&gt;); &lt;li&gt;tek sayfalar ve sayfaların aralıkları boşluklar, virgüller veya her ikisi ile ayrılmalıdır (örn. &quot;1, 2, 3, 5-10&quot; veya &quot;1 2 3 5-10&quot;&lt;/li&gt;); &lt;li&gt;tüm sayfalar ve sayfa aralıkları 1 ile PDF dosyasının sayfa sayısı arasında olmalıdır;&lt;/li&gt; &lt;li&gt; sadece sayılar, boşluklar, virgüller ve tireler kullanılabilir. Diğer tüm karakterlere izin verilmiyor.&lt;/li&gt;&lt;/ul&gt;</translation>
+        <translation>&lt;p&gt;&lt;b&gt;%1&lt;/b&gt; dosyasının çıktı sayfaları hatalı biçimlendirilmiş. Lütfen şu kurallara uyduğunuzdan emin olun:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;sayfa aralıkları, ilk sayfayı ve son sayfayı bir tire ile ayırarak yazılmalıdır. (örn. &quot;1-5&quot;&lt;/li&gt;);&lt;li&gt;tek sayfalar ve sayfa aralıkları boşluk, virgül veya her ikisiyle ayrılmalıdır (örn. &quot;1, 2, 3, 5-10&quot; veya &quot;1 2 3 5-10&quot;&lt;/li&gt;); &lt;li&gt;tüm sayfalar ve sayfaların aralıkları 1 ile PDF dosyasının sayfa sayısı arasında olmalıdır;&lt;/li&gt;&lt;li&gt;sadece sayılar, boşluklar, virgüller ve kısa çizgiler kullanılabilir. Diğer hiçbir karaktere izin verilmez.&lt;/li&gt;&lt;/ul&gt;</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="860"/>
         <source>Save PDF file</source>
-        <translation>PDF dosyayı kaydet</translation>
+        <translation>PDF dosyasını kaydet</translation>
     </message>
 </context>
 <context>
@@ -753,7 +753,7 @@
     <message>
         <location filename="../src/multipageprofilesmanager.cpp" line="76"/>
         <source>Edit profile</source>
-        <translation type="unfinished"></translation>
+        <translation>Profili düzenle</translation>
     </message>
     <message>
         <location filename="../src/multipageprofilesmanager.cpp" line="122"/>
@@ -790,32 +790,32 @@
     <message>
         <location filename="../src/widgets/pages_selector.cpp" line="44"/>
         <source>Pages:</source>
-        <translation type="unfinished">Sayfalar:</translation>
+        <translation>Sayfalar:</translation>
     </message>
     <message>
         <location filename="../src/widgets/pages_selector.cpp" line="45"/>
         <source>Even pages</source>
-        <translation type="unfinished"></translation>
+        <translation>Çift sayfalar</translation>
     </message>
     <message>
         <location filename="../src/widgets/pages_selector.cpp" line="46"/>
         <source>Odd pages</source>
-        <translation type="unfinished"></translation>
+        <translation>Tek sayfalar</translation>
     </message>
     <message>
         <location filename="../src/widgets/pages_selector.cpp" line="48"/>
         <source>All pages</source>
-        <translation type="unfinished"></translation>
+        <translation>Tüm sayfalar</translation>
     </message>
     <message>
         <location filename="../src/widgets/pages_selector.cpp" line="108"/>
         <source>&lt;p&gt;Page intervals are badly formatted. Please make sure you complied with the following rules:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;intervals of pages must be written indicating the first page and the last page separated by a dash (e.g. &quot;1-5&quot;);&lt;/li&gt;&lt;li&gt;single pages and intervals of pages must be separated by spaces, commas or both (e.g. &quot;1, 2, 3, 5-10&quot; or &quot;1 2 3 5-10&quot;);&lt;/li&gt;&lt;li&gt;all pages and intervals of pages must be between 1 and the number of pages of the PDF file;&lt;/li&gt;&lt;li&gt;only numbers, spaces, commas and dashes can be used. All other characters are not allowed.&lt;/li&gt;&lt;/ul&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;Sayfa aralıkları hatalı biçimlendirilmiş. Lütfen şu kurallara uyduğunuzdan emin olun:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;sayfa aralıkları, ilk sayfayı ve son sayfayı bir tire ile ayırarak yazılmalıdır. (örn. &quot;1-5&quot;);&lt;/li&gt;&lt;li&gt;tek sayfalar ve sayfa aralıkları boşluk, virgül veya her ikisiyle ayrılmalıdır (örn. &quot;1, 2, 3, 5-10&quot; veya &quot;1 2 3 5-10&quot;);&lt;/li&gt;&lt;li&gt;tüm sayfalar ve sayfaların aralıkları 1 ile PDF dosyasının sayfa sayısı arasında olmalıdır;&lt;/li&gt;&lt;li&gt;sadece sayılar, boşluklar, virgüller ve kısa çizgiler kullanılabilir. Diğer hiçbir karaktere izin verilmez.&lt;/li&gt;&lt;/ul&gt;</translation>
     </message>
     <message>
         <location filename="../src/widgets/pages_selector.cpp" line="124"/>
         <source>Error</source>
-        <translation type="unfinished">Hata</translation>
+        <translation>Hata</translation>
     </message>
 </context>
 <context>
@@ -834,6 +834,7 @@
         <location filename="../src/widgets/pdfinfolabel.cpp" line="63"/>
         <source>%n page(s)</source>
         <translation>
+            <numerusform>%n sayfa</numerusform>
             <numerusform>%n sayfa</numerusform>
         </translation>
     </message>

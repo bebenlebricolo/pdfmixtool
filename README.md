@@ -1,9 +1,16 @@
 # ![PDF Mix Tool logo](https://scarpetta.eu/pdfmixtool/icon.svg) PDF Mix Tool
 
+<a href='https://flathub.org/apps/details/eu.scarpetta.PDFMixTool'>
+    <img height='56' alt='Download on Flathub' src='https://flathub.org/assets/badges/flathub-badge-en.png'/>
+</a>
 <a href="https://snapcraft.io/pdfmixtool">
-<img alt="pdfmixtool" src="https://snapcraft.io/pdfmixtool/badge.svg" /></a>
-<a href="https://hosted.weblate.org/engage/pdf-mix-tool/?utm_source=widget">
-<img src="https://hosted.weblate.org/widgets/pdf-mix-tool/-/svg-badge.svg" alt="Translations status" /></a>
+    <img alt="Get it from the Snap Store" src="https://snapcraft.io/static/images/badges/en/snap-store-black.svg" />
+</a>
+<p>
+    <a href="https://hosted.weblate.org/engage/pdf-mix-tool/?utm_source=widget">
+        <img src="https://hosted.weblate.org/widgets/pdf-mix-tool/-/svg-badge.svg" alt="Translations status" />
+    </a>
+</p>
 
 <p>
     PDF Mix Tool is a simple and lightweight application that allows you to

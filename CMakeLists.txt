@@ -41,6 +41,8 @@ set (
     src/multipageprofilesmanager.cpp
     src/multipageprofilesmanager.h
     src/pdf_edit_lib/definitions.h
+    src/pdf_edit_lib/pdf_editor.cpp
+    src/pdf_edit_lib/pdf_editor.h
     src/pdf_edit_lib/pdf_info.cpp
     src/pdf_edit_lib/pdf_info.h
     src/pdf_edit_lib/pdf_writer.cpp

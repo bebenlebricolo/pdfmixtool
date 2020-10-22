@@ -9,7 +9,7 @@ pages:
     # install build dependencies
     - dnf --quiet --assumeyes install flatpak flatpak-builder cmake make automake gcc gcc-c++
     - flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-    - flatpak install -y flathub org.kde.Sdk//5.14 org.kde.Platform//5.14
+    - flatpak install -y flathub org.kde.Sdk//5.15 org.kde.Platform//5.15
     # get manifest from github repository
     - curl https://raw.githubusercontent.com/flathub/eu.scarpetta.PDFMixTool/master/eu.scarpetta.PDFMixTool.yaml > tmp.yaml
     # replace archive source with current directory

@@ -75,13 +75,9 @@ void Booklet::generate_booklet()
     {
         emit write_started();
 
-#ifdef FLATPAK_BUILD
-        settings->setValue("save_directory", "");
-#else
         settings->setValue(
                     "save_directory",
                     QFileInfo(m_save_filename).dir().absolutePath());
-#endif
 
         QProgressBar *pb = m_progress_bar;
         std::function<void (int)> progress = [pb] (int p)

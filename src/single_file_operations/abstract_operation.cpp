@@ -96,13 +96,9 @@ bool AbstractOperation::show_save_as_dialog()
     {
         m_save_filename = selected_file;
 
-#ifdef FLATPAK_BUILD
-        settings->setValue("save_directory", "");
-#else
         settings->setValue(
                     "save_directory",
                     QFileInfo(selected_file).dir().absolutePath());
-#endif
 
         return true;
     }

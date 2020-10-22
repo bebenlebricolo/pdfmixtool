@@ -57,7 +57,6 @@ int main(int argc, char *argv[])
     MainWindow *main_window = new MainWindow(filter);
     main_window->show();
 
-#ifndef FLATPAK_BUILD
     // parse input arguments
     if (argc > 1)
     {
@@ -73,7 +72,6 @@ int main(int argc, char *argv[])
 
         main_window->set_input_files(files);
     }
-#endif
 
     return app.exec();
 }

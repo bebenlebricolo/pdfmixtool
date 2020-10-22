@@ -198,7 +198,6 @@ MainWindow::MainWindow(MouseEventFilter *filter, QWidget *parent) :
                 this,
                 SLOT(remove_pdf_file()));
 
-    #ifndef FLATPAK_BUILD
     QWidget *spacer = new QWidget(this);
     spacer->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Minimum);
     spacer->setMinimumWidth(50);
@@ -214,7 +213,6 @@ MainWindow::MainWindow(MouseEventFilter *filter, QWidget *parent) :
                 this,
                 &MainWindow::save_files_list_pressed);
     m_save_files_list_action->setEnabled(false);
-    #endif
 
     // Set shortcuts for toolbar buttons
     add_file_action->setShortcut(QKeySequence::Open);
@@ -539,13 +537,9 @@ void MainWindow::set_input_files(const QStringList &files)
     if (files.size() == 0)
         return;
 
-#ifdef FLATPAK_BUILD
-    settings->setValue("open_directory", "");
-#else
     settings->setValue(
                 "open_directory",
                 QFileInfo(files[0]).dir().absolutePath());
-#endif
 
     if (files.size() == 1)
     {
@@ -606,13 +600,9 @@ void MainWindow::add_pdf_files(const QStringList &files)
 
     if (files.size() > 0)
     {
-#ifdef FLATPAK_BUILD
-        settings->setValue("open_directory", "");
-#else
         settings->setValue(
                     "open_directory",
                     QFileInfo(files.at(0)).dir().absolutePath());
-#endif
 
         this->update_output_pages_count();
         m_generate_pdf_button->setEnabled(true);
@@ -867,13 +857,9 @@ void MainWindow::generate_pdf_button_pressed()
     {
         write_started();
 
-#ifdef FLATPAK_BUILD
-        settings->setValue("save_directory", "");
-#else
         settings->setValue(
                     "save_directory",
                     QFileInfo(selected_file).dir().absolutePath());
-#endif
 
         QProgressBar *pb = m_progress_bar;
         std::function<void (int)> progress = [pb] (int p)
@@ -953,13 +939,9 @@ void MainWindow::open_file_pressed()
 
         if (!filename.isNull())
         {
-#ifdef FLATPAK_BUILD
-            settings->setValue("open_directory", "");
-#else
             settings->setValue(
                         "open_directory",
                         QFileInfo(filename).dir().absolutePath());
-#endif
 
             this->update_opened_file_label(filename);
             m_view_opened_pdf_button->setEnabled(true);
@@ -998,7 +980,6 @@ void MainWindow::write_finished(const QString &filename)
 
     QTimer::singleShot(2000, m_progress_bar, SLOT(hide()));
 
-#ifndef FLATPAK_BUILD
     QFileInfo info(filename);
     if (info.isDir())
     {
@@ -1016,7 +997,6 @@ void MainWindow::write_finished(const QString &filename)
     m_saved_file.show();
 
     QTimer::singleShot(6000, &m_saved_file, SLOT(hide()));
-#endif
 }
 
 void MainWindow::closeEvent(QCloseEvent *event)

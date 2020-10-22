@@ -80,9 +80,7 @@ void PdfInfoLabel::paintEvent(QPaintEvent *event)
     int available_path_width = painter.device()->width() - m_minimum_width - 20;
 
     QString path;
-#ifndef FLATPAK_BUILD
     path = fm.elidedText(m_path, Qt::ElideLeft, available_path_width);
-#endif
     if (!path.isEmpty())
         path += QDir::separator();
 

@@ -69,13 +69,6 @@ ExtractPages::ExtractPages(const PdfInfo &pdf_info,
     h_layout->addWidget(extract_individual_button);
     v_layout->addLayout(h_layout);
 
-#ifdef FLATPAK_BUILD
-    base_name_label->setEnabled(false);
-    m_base_name.setEnabled(false);
-    label->setEnabled(false);
-    extract_individual_button->setEnabled(false);
-#endif
-
     label = new QLabel("<b>" + tr("Extract to single PDF") + "</b>", this);
     v_layout->addWidget(label);
 
@@ -122,13 +115,9 @@ void ExtractPages::extract_to_individual()
     {
         emit write_started();
 
-#ifdef FLATPAK_BUILD
-        settings->setValue("save_directory", "");
-#else
         settings->setValue(
                     "save_directory",
                     QFileInfo(dir_name).dir().absolutePath());
-#endif
 
         QProgressBar *pb = m_progress_bar;
         std::function<void (int)> progress = [pb] (int p)
@@ -197,13 +186,9 @@ void ExtractPages::extract_to_single()
     {
         emit write_started();
 
-#ifdef FLATPAK_BUILD
-        settings->setValue("save_directory", "");
-#else
         settings->setValue(
                     "save_directory",
                     QFileInfo(m_save_filename).dir().absolutePath());
-#endif
 
         QProgressBar *pb = m_progress_bar;
         std::function<void (int)> progress = [pb] (int p)

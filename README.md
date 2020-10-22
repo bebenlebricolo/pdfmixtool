@@ -1,7 +1,7 @@
 # ![PDF Mix Tool logo](https://scarpetta.eu/pdfmixtool/icon.svg) PDF Mix Tool
 
-<a href="https://build.snapcraft.io/user/marcoscarpetta/pdfmixtool">
-<img src="https://build.snapcraft.io/badge/marcoscarpetta/pdfmixtool.svg" alt="Snap status" /></a>
+<a href="https://snapcraft.io/pdfmixtool">
+<img alt="pdfmixtool" src="https://snapcraft.io/pdfmixtool/badge.svg" /></a>
 <a href="https://hosted.weblate.org/engage/pdf-mix-tool/?utm_source=widget">
 <img src="https://hosted.weblate.org/widgets/pdf-mix-tool/-/svg-badge.svg" alt="Translations status" /></a>
 

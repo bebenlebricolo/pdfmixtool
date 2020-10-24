@@ -28,6 +28,7 @@
 
 #include "../gui_utils.h"
 #include "../pdf_edit_lib/pdf_writer.h"
+#include "../pdf_edit_lib/pdf_editor.h"
 
 ExtractPages::ExtractPages(const PdfInfo &pdf_info,
                            QProgressBar *progress_bar,
@@ -145,20 +146,11 @@ void ExtractPages::extract_to_individual()
             {
                 QString filename = base_name + QString("_%1.pdf").arg(i);
 
-                Conf conf;
-
-                conf.output_path = dir.filePath(filename).toStdString();
-
-                FileConf fileconf;
-                fileconf.path = m_pdf_info->filename();
-                fileconf.ouput_pages = std::to_string(i);
-                fileconf.multipage_enabled = false;
-                fileconf.rotation = 0;
-                fileconf.outline_entry = "";
-
-                conf.files.push_back(fileconf);
-
-                write_pdf(conf, progress);
+                // FIXME SLOW! A custom function that opens the input file once may be necessary
+                PdfEditor editor;
+                unsigned int id = editor.add_file(m_pdf_info->filename());
+                editor.add_pages(id, {{i, i}}, 0, {}, {});
+                editor.write(dir.filePath(filename).toStdString(), progress);
             }
         }
 
@@ -199,20 +191,24 @@ void ExtractPages::extract_to_single()
         m_progress_bar->setValue(0);
         m_progress_bar->show();
 
-        Conf conf;
+        int output_pages_count;
+        std::vector<std::pair<int, int>> intervals;
+        parse_output_pages_string(selection.toStdString(),
+                                  m_pdf_info->n_pages(),
+                                  intervals,
+                                  output_pages_count);
 
-        conf.output_path = m_save_filename.toStdString();
+        // FIXME
+        for (unsigned int i = 0; i < intervals.size(); ++i)
+        {
+            --intervals[i].first;
+            --intervals[i].second;
+        }
 
-        FileConf fileconf;
-        fileconf.path = m_pdf_info->filename();
-        fileconf.ouput_pages = selection.toStdString();
-        fileconf.multipage_enabled = false;
-        fileconf.rotation = 0;
-        fileconf.outline_entry = "";
-
-        conf.files.push_back(fileconf);
-
-        write_pdf(conf, progress);
+        PdfEditor editor;
+        unsigned int id = editor.add_file(m_pdf_info->filename());
+        editor.add_pages(id, intervals, 0, {}, {});
+        editor.write(m_save_filename.toStdString(), progress);
 
         emit write_finished(m_save_filename);
     }

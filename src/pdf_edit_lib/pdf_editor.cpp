@@ -146,8 +146,6 @@ void PdfEditor::write(const std::string &output_filename,
             FromFile *block = static_cast<FromFile *>(block_pointer.p);
 
             // add pages to the output file and add outlines to output_outlines
-            int page_count = 0;
-
             switch (block->layout.size())
             {
             case 0: // simple case: only rotation
@@ -170,6 +168,8 @@ void PdfEditor::write(const std::string &output_filename,
                 for (unsigned int i = 0; i < block->intervals.size(); i++)
                 {
                     // add pages
+                    int page_count = 0;
+
                     for (int j = block->intervals[i].first; j <= block->intervals[i].second; ++j)
                     {
                         QPDFPageObjectHelper page = pages[block->id][j].shallowCopyPage();
@@ -229,6 +229,8 @@ void PdfEditor::write(const std::string &output_filename,
 
                         ++j;
                     }
+
+                    last_page += page_count;
                 }
 
                 // set parent outline next_move based on whether any child outline was added
@@ -258,8 +260,6 @@ void PdfEditor::write(const std::string &output_filename,
                 break;
             }
             }
-
-            last_page += page_count;
 
             break;
         }
@@ -344,8 +344,8 @@ void PdfEditor::add_flatten_outlines(const std::vector<QPDFPageObjectHelper> &pa
 }
 
 int PdfEditor::build_outline_level(const std::vector<FlatOutline> &flat_outlines,
-                        QPDFObjectHandle &parent,
-                        unsigned int starting_index)
+                                   QPDFObjectHandle &parent,
+                                   unsigned int starting_index)
 {
     unsigned int i = starting_index;
 

@@ -24,7 +24,7 @@
 #include <QMessageBox>
 
 #include "../gui_utils.h"
-#include "../pdf_edit_lib/pdf_writer.h"
+#include "../pdf_edit_lib/pdf_editor.h"
 
 DeletePages::DeletePages(const PdfInfo &pdf_info,
                          QProgressBar *progress_bar,
@@ -90,22 +90,39 @@ void DeletePages::save(bool save_as)
 
     emit write_started();
 
-    std::vector<bool> pages;
-    for (int i = 0; i < m_pdf_info->n_pages(); i++)
-        pages.push_back(false);
-
     int output_pages_count;
-    std::vector<std::pair<int, int>> intervals;
+    std::vector<std::pair<int, int>> delete_intervals;
 
-    parse_output_pages_string(selection.toStdString(),
-                              m_pdf_info->n_pages(),
-                              intervals,
-                              output_pages_count);
+    PdfEditor::parse_output_pages_string(selection.toStdString(),
+                                         m_pdf_info->n_pages(),
+                                         delete_intervals,
+                                         output_pages_count);
+
+    std::vector<bool> keep_pages;
+    for (int i = 0; i < m_pdf_info->n_pages(); i++)
+        keep_pages.push_back(true);
 
     std::vector<std::pair<int, int>>::iterator it;
-    for (it = intervals.begin(); it != intervals.end(); ++it)
-        for (int i = it->first - 1; i < it->second; i++)
-            pages[i] = true;
+    for (it = delete_intervals.begin(); it != delete_intervals.end(); ++it)
+        for (int i = it->first; i <= it->second; i++)
+            keep_pages[i] = false;
+
+    bool prev = false;
+    int first;
+    std::vector<std::pair<int, int>> keep_intervals;
+    for (unsigned int i = 0; i < keep_pages.size(); i++)
+    {
+        if (!prev && keep_pages[i])
+            first = i;
+
+        if (!keep_pages[i] && prev)
+            keep_intervals.push_back(std::pair<int, int>(first, i - 1));
+
+        if (keep_pages[i] && i == keep_pages.size() - 1)
+            keep_intervals.push_back(std::pair<int, int>(first, i));
+
+        prev = keep_pages[i];
+    }
 
     QProgressBar *pb = m_progress_bar;
     std::function<void (int)> progress = [pb] (int p)
@@ -113,10 +130,11 @@ void DeletePages::save(bool save_as)
         pb->setValue(p);
     };
 
-    write_delete_pages(m_pdf_info->filename(),
-                       m_save_filename.toStdString(),
-                       pages,
-                       progress);
+    PdfEditor editor;
+    unsigned int id = editor.add_file(m_pdf_info->filename());
+    editor.add_pages(id, keep_intervals, 0, {}, {});
+
+    editor.write(m_save_filename.toStdString(), progress);
 
     emit write_finished(m_save_filename);
 }

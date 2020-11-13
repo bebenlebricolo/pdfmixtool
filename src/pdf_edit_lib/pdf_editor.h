@@ -42,6 +42,11 @@ struct PageLocation {
 class PdfEditor
 {
 public:
+    static bool parse_output_pages_string(const std::string &str,
+                                          int n_pages,
+                                          std::vector<std::pair<int, int>> &intervals,
+                                          int &output_pages_count);
+
     PdfEditor();
 
     unsigned int add_file(const std::string &filename);
@@ -73,8 +78,8 @@ private:
     };
 
     static void add_flatten_outlines(const std::vector<QPDFPageObjectHelper> &pages,
-                                 const std::vector<QPDFOutlineObjectHelper> &outlines,
-                                 std::vector<FlatOutline> &flat_outlines);
+                                     const std::vector<QPDFOutlineObjectHelper> &outlines,
+                                     std::vector<FlatOutline> &flat_outlines);
 
     static QPDFObjectHandle m_create_blank_page(double width, double height);
 

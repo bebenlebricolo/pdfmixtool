@@ -27,7 +27,6 @@
 #include <QFileDialog>
 
 #include "../gui_utils.h"
-#include "../pdf_edit_lib/pdf_writer.h"
 #include "../pdf_edit_lib/pdf_editor.h"
 
 ExtractPages::ExtractPages(const PdfInfo &pdf_info,
@@ -134,17 +133,17 @@ void ExtractPages::extract_to_individual()
 
         int output_pages_count;
         std::vector<std::pair<int, int>> intervals;
-        parse_output_pages_string(selection.toStdString(),
-                                  m_pdf_info->n_pages(),
-                                  intervals,
-                                  output_pages_count);
+        PdfEditor::parse_output_pages_string(selection.toStdString(),
+                                             m_pdf_info->n_pages(),
+                                             intervals,
+                                             output_pages_count);
 
         std::vector<std::pair<int, int>>::iterator it;
         for (it = intervals.begin(); it != intervals.end(); ++it)
         {
             for (int i = it->first; i <= it->second; i++)
             {
-                QString filename = base_name + QString("_%1.pdf").arg(i);
+                QString filename = base_name + QString("_%1.pdf").arg(i + 1);
 
                 // FIXME SLOW! A custom function that opens the input file once may be necessary
                 PdfEditor editor;
@@ -193,17 +192,10 @@ void ExtractPages::extract_to_single()
 
         int output_pages_count;
         std::vector<std::pair<int, int>> intervals;
-        parse_output_pages_string(selection.toStdString(),
-                                  m_pdf_info->n_pages(),
-                                  intervals,
-                                  output_pages_count);
-
-        // FIXME
-        for (unsigned int i = 0; i < intervals.size(); ++i)
-        {
-            --intervals[i].first;
-            --intervals[i].second;
-        }
+        PdfEditor::parse_output_pages_string(selection.toStdString(),
+                                             m_pdf_info->n_pages(),
+                                             intervals,
+                                             output_pages_count);
 
         PdfEditor editor;
         unsigned int id = editor.add_file(m_pdf_info->filename());

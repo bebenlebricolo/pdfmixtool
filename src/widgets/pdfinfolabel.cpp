@@ -88,7 +88,7 @@ void PdfInfoLabel::paintEvent(QPaintEvent *event)
                      this->contentsMargins().top() + y,
                      path);
 
-    int x = fm.boundingRect(path).width();
+    int x = fm.horizontalAdvance(path);
 
     QFont font = painter.font();
     font.setBold(true);
@@ -98,7 +98,7 @@ void PdfInfoLabel::paintEvent(QPaintEvent *event)
                      m_filename);
 
     fm = painter.fontMetrics();
-    x += fm.boundingRect(m_filename).width();
+    x += fm.horizontalAdvance(m_filename);
 
     font.setBold(false);
     painter.setFont(font);

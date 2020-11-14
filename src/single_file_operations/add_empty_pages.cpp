@@ -194,22 +194,20 @@ void AddEmptyPages::save()
     if (m_before_after.checkedId() == 0)
     {
         if (location > 0)
-            editor.add_pages(id, {{0, location - 1}}, 0, "", {});
+            editor.add_pages(id, {{0, location - 1}});
 
         editor.add_blank_pages(page_width, page_height, count);
 
-        editor.add_pages(
-                    id, {{location, m_pdf_info->n_pages() - 1}}, 0, {}, {});
+        editor.add_pages(id, {{location, m_pdf_info->n_pages() - 1}});
     }
     else
     {
-        editor.add_pages(id, {{0, location}}, 0, "", {});
+        editor.add_pages(id, {{0, location}});
 
         editor.add_blank_pages(page_width, page_height, count);
 
         if (location < m_pdf_info->n_pages() - 1)
-            editor.add_pages(id, {{location + 1, m_pdf_info->n_pages() - 1}},
-                             0, {}, {});
+            editor.add_pages(id, {{location + 1, m_pdf_info->n_pages() - 1}});
     }
 
     editor.write(m_save_filename.toStdString(), progress);

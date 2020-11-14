@@ -148,7 +148,7 @@ void ExtractPages::extract_to_individual()
                 // FIXME SLOW! A custom function that opens the input file once may be necessary
                 PdfEditor editor;
                 unsigned int id = editor.add_file(m_pdf_info->filename());
-                editor.add_pages(id, {{i, i}}, 0, {}, {});
+                editor.add_pages(id, {{i, i}});
                 editor.write(dir.filePath(filename).toStdString(), progress);
             }
         }
@@ -199,7 +199,7 @@ void ExtractPages::extract_to_single()
 
         PdfEditor editor;
         unsigned int id = editor.add_file(m_pdf_info->filename());
-        editor.add_pages(id, intervals, 0, {}, {});
+        editor.add_pages(id, intervals);
         editor.write(m_save_filename.toStdString(), progress);
 
         emit write_finished(m_save_filename);

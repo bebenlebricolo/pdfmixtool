@@ -52,10 +52,10 @@ public:
     unsigned int add_file(const std::string &filename);
 
     void add_pages(unsigned int file_id,
-                   const std::vector<std::pair<int, int>> &intervals,
-                   int relative_rotation,
-                   const std::string &outline_entry,
-                   const std::vector<PageLocation> &layout);
+                   const std::vector<std::pair<int, int>> &intervals = {},
+                   int relative_rotation = 0,
+                   const std::string &outline_entry = {},
+                   const std::vector<PageLocation> &layout = {});
 
     void add_blank_pages(double width, double height, int count);
 

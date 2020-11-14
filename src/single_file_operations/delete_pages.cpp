@@ -132,7 +132,7 @@ void DeletePages::save(bool save_as)
 
     PdfEditor editor;
     unsigned int id = editor.add_file(m_pdf_info->filename());
-    editor.add_pages(id, keep_intervals, 0, {}, {});
+    editor.add_pages(id, keep_intervals);
 
     editor.write(m_save_filename.toStdString(), progress);
 

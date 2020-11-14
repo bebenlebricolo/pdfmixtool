@@ -37,3 +37,25 @@
 
 [Website](https://scarpetta.eu/pdfmixtool/): here you can find usage
 guides, building instructions and all other information.
+
+## Building
+To build PDF Mix Tool you need the following libraries and tools:
+
+- **Qt** (base and tools) >= **5.11**
+- **qpdf** >= **10.0.0**
+- **CMake** >= **3.6**
+
+Run the following commands inside the git repository directory:
+
+```
+mkdir build
+cd build
+cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release
+make
+```
+
+Run the following command to install PDF Mix Tool system-wide:
+
+```
+sudo make install
+```

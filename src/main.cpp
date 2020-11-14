@@ -32,10 +32,7 @@ int main(int argc, char *argv[])
     app.setOrganizationDomain("scarpetta.eu");
     app.setOrganizationName("PDFMixTool");
     app.setApplicationVersion("1.0");
-
-#if QT_VERSION >= 0x050700
     app.setDesktopFileName("eu.scarpetta.PDFMixTool");
-#endif
 
     // Set up translations
     QTranslator translator;

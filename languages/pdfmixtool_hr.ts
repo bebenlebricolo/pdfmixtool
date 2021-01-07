@@ -89,7 +89,7 @@
     <message>
         <location filename="../src/single_file_operations/abstract_operation.cpp" line="65"/>
         <source>A file called «%1» already exists. Do you want to overwrite it?</source>
-        <translation>Datoteka s imenom „%1” već postoji. Želiš li je prepisati?</translation>
+        <translation>Datoteka „%1” već postoji. Želiš li je prepisati?</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/abstract_operation.cpp" line="71"/>
@@ -152,7 +152,7 @@
     <message>
         <location filename="../src/single_file_operations/add_empty_pages.cpp" line="95"/>
         <source>Location</source>
-        <translation>Položaj</translation>
+        <translation>Mjesto</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/add_empty_pages.cpp" line="98"/>
@@ -291,7 +291,7 @@
     <message>
         <location filename="../src/editmultipageprofiledialog.cpp" line="109"/>
         <source>Output page size</source>
-        <translation>Izlazna veličina stranice</translation>
+        <translation>Veličina stranice rezultata</translation>
     </message>
     <message>
         <location filename="../src/editmultipageprofiledialog.cpp" line="115"/>
@@ -349,7 +349,7 @@
     <message>
         <location filename="../src/single_file_operations/edit_page_layout.cpp" line="34"/>
         <source>Edit page layout</source>
-        <translation>Uredi prijelom stranice</translation>
+        <translation>Uredi raspored stranice</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/edit_page_layout.cpp" line="55"/>
@@ -373,7 +373,7 @@
         <location filename="../src/single_file_operations/edit_page_layout.cpp" line="136"/>
         <location filename="../src/single_file_operations/edit_page_layout.cpp" line="219"/>
         <source>New custom profile…</source>
-        <translation>Novi prilagođeni profil …</translation>
+        <translation>Nov prilagođeni profil …</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/edit_page_layout.cpp" line="78"/>
@@ -456,7 +456,7 @@
         <location filename="../src/single_file_operations/extract_pages.cpp" line="79"/>
         <location filename="../src/single_file_operations/extract_pages.cpp" line="190"/>
         <source>Extract to single PDF</source>
-        <translation>Izdvoji u pojedinačni PDF</translation>
+        <translation>Izdvoji u jedan PDF</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/extract_pages.cpp" line="114"/>
@@ -532,7 +532,7 @@
     <message>
         <location filename="../src/inputpdffilewidget.cpp" line="79"/>
         <source>New custom profile…</source>
-        <translation>Novi prilagođeni profil …</translation>
+        <translation>Nov prilagođeni profil …</translation>
     </message>
     <message>
         <location filename="../src/inputpdffilewidget.cpp" line="81"/>
@@ -570,12 +570,12 @@
     <message>
         <location filename="../src/mainwindow.cpp" line="187"/>
         <source>Move up</source>
-        <translation>Premjesti gore</translation>
+        <translation>Premjesti prema gore</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="192"/>
         <source>Move down</source>
-        <translation>Premjesti dolje</translation>
+        <translation>Premjesti prema dolje</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="197"/>
@@ -616,7 +616,7 @@
     <message>
         <location filename="../src/mainwindow.cpp" line="165"/>
         <source>View</source>
-        <translation>Pogledaj</translation>
+        <translation>Prikaz</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="168"/>
@@ -636,7 +636,7 @@
     <message>
         <location filename="../src/mainwindow.cpp" line="96"/>
         <source>Single file</source>
-        <translation>Pojedinačna datoteka</translation>
+        <translation>Jedna datoteka</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="123"/>
@@ -646,7 +646,7 @@
     <message>
         <location filename="../src/mainwindow.cpp" line="133"/>
         <source>Exit</source>
-        <translation>Izlaz</translation>
+        <translation>Zatvori program</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="208"/>
@@ -705,7 +705,7 @@
     <message>
         <location filename="../src/mainwindow.cpp" line="827"/>
         <source>Output pages: %1</source>
-        <translation>Broj izlaznih stranica: %1</translation>
+        <translation>Broj stranica rezultata: %1</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="950"/>
@@ -725,7 +725,7 @@
     <message>
         <location filename="../src/mainwindow.cpp" line="836"/>
         <source>&lt;p&gt;Output pages of file &lt;b&gt;%1&lt;/b&gt; are badly formatted. Please make sure you complied with the following rules:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;intervals of pages must be written indicating the first page and the last page separated by a dash (e.g. &quot;1-5&quot;);&lt;/li&gt;&lt;li&gt;single pages and intervals of pages must be separated by spaces, commas or both (e.g. &quot;1, 2, 3, 5-10&quot; or &quot;1 2 3 5-10&quot;);&lt;/li&gt;&lt;li&gt;all pages and intervals of pages must be between 1 and the number of pages of the PDF file;&lt;/li&gt;&lt;li&gt;only numbers, spaces, commas and dashes can be used. All other characters are not allowed.&lt;/li&gt;&lt;/ul&gt;</source>
-        <translation>&lt;p&gt;Izlazne stranice datoteke &lt;b&gt;%1&lt;/b&gt; su loše formatirane. Obavezno se drži sljedećih pravila:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;rasponi stranica moraju se zadati s prvom i zadnjom stranicom, odvojene crticom (npr. „1-5”);&lt;/li&gt;&lt;li&gt;pojedinačne stranice i rasponi stranica moraju se odvojiti s razmacima, sa zarezima ili s razmacima i zarezima (npr. „1, 2, 3, 5-10” ili „1 2 3 5-10”);&lt;/li&gt;&lt;li&gt;sve stranice i rasponi stranica moraju biti između 1 i ukupnog broja stranica PDF datoteke;&lt;/li&gt;&lt;li&gt;mogu se koristiti samo brojevi, razmaci, zarezi i crtice. Svi drugi znakovi nisu dozvoljeni.&lt;/li&gt;&lt;/ul&gt;</translation>
+        <translation>&lt;p&gt;Stranice rezultata datoteke &lt;b&gt;%1&lt;/b&gt; nisu ispravno formatirane. Obavezno se drži sljedećih pravila:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;rasponi stranica moraju se zadati s prvom i zadnjom stranicom, odvojene crticom (npr. „1-5”);&lt;/li&gt;&lt;li&gt;pojedinačne stranice i rasponi stranica moraju se odvojiti s razmacima, sa zarezima ili s razmacima i zarezima (npr. „1, 2, 3, 5-10” ili „1 2 3 5-10”);&lt;/li&gt;&lt;li&gt;sve stranice i rasponi stranica moraju biti između 1 i ukupnog broja stranica PDF datoteke;&lt;/li&gt;&lt;li&gt;mogu se koristiti samo brojevi, razmaci, zarezi i crtice. Svi drugi znakovi nisu dozvoljeni.&lt;/li&gt;&lt;/ul&gt;</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="860"/>

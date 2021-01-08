@@ -6,7 +6,7 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="33"/>
         <source>About PDF Mix Tool</source>
-        <translation>Informacije o PDF Mix Tool</translation>
+        <translation>O programu PDF mikser</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="44"/>

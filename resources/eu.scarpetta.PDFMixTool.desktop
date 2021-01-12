@@ -2,7 +2,9 @@
 Version=1.0
 MimeType=application/pdf;application/x-gzpdf;application/x-bzpdf;application/x-wwf;
 Name=PDF Mix Tool
+Name[hr]=PDF mikser
 Comment=Perform common editing operations on PDF files
+Comment[hr]=Izvodi uobičajene operacije uređivanja PDF datoteka
 Exec=pdfmixtool %U
 Icon=eu.scarpetta.PDFMixTool
 Terminal=false

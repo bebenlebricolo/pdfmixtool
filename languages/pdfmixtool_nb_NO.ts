@@ -79,7 +79,7 @@
     <message>
         <location filename="../src/single_file_operations/abstract_operation.cpp" line="36"/>
         <source>Save</source>
-        <translation type="unfinished"></translation>
+        <translation>Lagre</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/abstract_operation.cpp" line="64"/>

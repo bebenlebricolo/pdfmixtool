@@ -26,12 +26,12 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="71"/>
         <source>Website</source>
-        <translation type="unfinished"></translation>
+        <translation>වියමන අඩවිය</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="78"/>
         <source>About</source>
-        <translation type="unfinished"></translation>
+        <translation>පිළිබඳව</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="96"/>

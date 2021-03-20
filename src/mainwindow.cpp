@@ -879,36 +879,38 @@ void MainWindow::generate_pdf_button_pressed()
         // standard mode
         else
         {
-            Conf conf;
-
-            conf.output_path = selected_file.toStdString();
+            PdfEditor editor;
 
             for (int i = 0; i < m_files_list_model->rowCount(); i++)
             {
                 QStandardItem *item = m_files_list_model->item(i);
+
                 QString file_path = item->data(FILE_PATH_ROLE).toString();
                 QString output_pages = item->data(OUTPUT_PAGES_ROLE).toString();
                 int mp_index = item->data(MULTIPAGE_ROLE).toInt();
                 int rotation = item->data(ROTATION_ROLE).toInt();
                 QString outline = item->data(OUTLINE_ENTRY_ROLE).toString();
+                int n_pages = item->data(N_PAGES_ROLE).toInt();
 
-                FileConf fileconf;
-                fileconf.path = file_path.toStdString();
-                fileconf.ouput_pages = output_pages.toStdString();
-                if (mp_index < 0)
-                    fileconf.multipage_enabled = false;
-                else
-                {
-                    fileconf.multipage_enabled = true;
-                    fileconf.multipage = &multipages[mp_index];
-                }
-                fileconf.rotation = rotation;
-                fileconf.outline_entry = outline.toStdString();
+                int output_pages_count;
 
-                conf.files.push_back(fileconf);
+                std::vector<std::pair<int, int>> intervals;
+                parse_output_pages_string(output_pages.toStdString(),
+                                                     n_pages,
+                                                     intervals,
+                                                     output_pages_count);
+
+                unsigned int id = editor.add_file(file_path.toStdString());
+
+                PdfEditor::PageLayout *page_layout{nullptr};
+                if (mp_index >= 0)
+                    page_layout = new PdfEditor::PageLayout(multipages[mp_index]);
+
+                editor.add_pages(id, rotation, page_layout, intervals,
+                                 outline.toStdString());
             }
 
-            write_pdf(conf, progress);
+            editor.write(selected_file.toStdString());
         }
 
         write_finished(selected_file);

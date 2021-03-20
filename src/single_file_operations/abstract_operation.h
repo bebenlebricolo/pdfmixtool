@@ -22,12 +22,35 @@
 #include <QWidget>
 #include <QProgressBar>
 #include <QPushButton>
+#include <QThread>
 
 #include "../pdf_edit_lib/pdf_info.h"
+#include "../pdf_edit_lib/pdf_editor.h"
+
+//class WriterThread : public QThread
+//{
+//    Q_OBJECT
+
+//    void run() override;
+
+//public:
+//    WriterThread(const PdfEditor &editor, const QString &filename);
+
+//signals:
+//    void progress(int progress);
+
+//    void done(const QString &filename);
+
+//private:
+//    PdfEditor editor;
+//    QString filename;
+//};
 
 class AbstractOperation : public QWidget
 {
     Q_OBJECT
+    QThread worker_thread;
+
 public:
     explicit AbstractOperation(const PdfInfo &pdf_info,
                                QProgressBar *progress_bar,
@@ -37,6 +60,8 @@ public:
 
 public slots:
     virtual void pdf_info_changed();
+
+    void update_progress(int progress);
 
 signals:
     void write_started();
@@ -50,9 +75,13 @@ protected:
     bool show_overwrite_dialog();
     bool show_save_as_dialog();
 
+    void launch_write_pdf(PdfEditor &editor, const QString &filename);
+
     PdfInfo const *m_pdf_info;
     QProgressBar *m_progress_bar;
 
+private:
+    void update_progress_bar(std::atomic_int *progress);
 };
 
 #endif // ABSTRACTOPERATION_H

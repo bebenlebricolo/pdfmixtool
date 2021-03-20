@@ -32,87 +32,13 @@ QPDFOutlineDocumentHelper::~QPDFOutlineDocumentHelper()
 
 }
 
-bool PdfEditor::parse_output_pages_string(const std::string &str,
-                                          int n_pages,
-                                          std::vector<std::pair<int, int>> &intervals,
-                                          int &output_pages_count)
+PdfEditor::PdfEditor() :
+    m_old_locale{std::locale::global(std::locale::classic())},
+    m_last_page{-1}
 {
-    intervals.clear();
-    output_pages_count = 0;
-
-    // Invalid characters
-    if (str.find_first_not_of("0123456789- ,") != std::string::npos)
-        return false;
-
-    // Void string
-    if (str.find_first_not_of("- ,") == std::string::npos)
-    {
-        output_pages_count = n_pages;
-        intervals.push_back(std::pair<int, int>(0, n_pages - 1));
-        return true;
-    }
-
-    // Parse string
-    std::string::size_type cursor = str.find_first_not_of(" ,-");
-    std::string::size_type interval_end = str.find_first_of(" ,", cursor);
-
-    while (cursor < str.length())
-    {
-        // Single number
-        if (str.find_first_of('-', cursor) >= interval_end)
-        {
-            std::string page_number = str.substr(cursor, interval_end - cursor);
-            int num = std::stoi(page_number) - 1;
-
-            // Syntax error
-            if (num < 0 || num > n_pages - 1)
-                return false;
-
-            intervals.push_back(std::pair<int, int>(num, num));
-            output_pages_count++;
-
-            cursor = str.find_first_not_of(" ,-", interval_end);
-            interval_end = str.find_first_of(" ,", cursor);
-        }
-        // Interval
-        else
-        {
-            std::string::size_type first_number_end =
-                    str.find_first_of('-', cursor);
-            std::string::size_type second_number_start =
-                    str.find_first_not_of('-', first_number_end);
-            if (
-                    // Syntax error: no second number
-                    second_number_start >= interval_end ||
-                    // Syntax error: more '-' in one interval
-                    str.find_first_of('-', second_number_start) < interval_end
-                    )
-                return false;
-
-            int from = std::stoi(str.substr(cursor, first_number_end - cursor)) - 1;
-            int to = std::stoi(str.substr(second_number_start, interval_end)) - 1;
-
-            // Syntax error
-            if (from > to || from < 0 || to > n_pages - 1)
-                return false;
-
-            intervals.push_back(std::pair<int, int>(from, to));
-            output_pages_count += to - from + 1;
-
-            cursor = str.find_first_not_of(" ,-", interval_end);
-            interval_end = str.find_first_of(" ,", cursor);
-        }
-    }
-
-    if (intervals.size() == 0)
-        intervals.push_back(std::pair<int, int>(0, n_pages - 1));
-
-    return true;
-}
-
-PdfEditor::PdfEditor()
-{
-
+    // create empty PDF
+    m_output_pdf = QPDF();
+    m_output_pdf.emptyPDF();
 }
 
 unsigned int PdfEditor::add_file(const std::string &filename)
@@ -122,230 +48,214 @@ unsigned int PdfEditor::add_file(const std::string &filename)
             return i;
 
     m_input_filenames.push_back(filename);
-    return m_input_filenames.size() - 1;
-}
 
-void PdfEditor::add_pages(unsigned int file_id,
-               const std::vector<std::pair<int, int> > &intervals,
-               int relative_rotation,
-               const std::string &outline_entry,
-               const std::vector<PageLocation> &layout)
-{
-    FromFile *block = new FromFile;
+    unsigned int file_id = m_input_files.size();
 
-    block->id = file_id;
-    block->intervals = intervals;
-    block->relative_rotation = relative_rotation;
-    block->outline_entry = outline_entry;
-    block->layout = layout;
+    m_input_files.push_back(QPDF());
+    m_input_files[file_id].processFile(filename.c_str());
+    // FIXME not necessary if input files are keep until write
+    m_input_files[file_id].setImmediateCopyFrom(true);
 
-    BlockPointer p = {BlockPointer::FromFile, block};
+    m_pages.push_back(
+                QPDFPageDocumentHelper(m_input_files[file_id]).getAllPages());
 
-    m_blocks.push_back(p);
+    QPDFOutlineDocumentHelper outline_helper(m_input_files[file_id]);
+
+    // flatten outlines tree
+    m_flat_outlines.push_back(std::vector<FlatOutline>());
+    m_add_flatten_outlines(m_pages[file_id],
+                           outline_helper.getTopLevelOutlines(),
+                           m_flat_outlines[file_id]);
+
+    // add document's info from the first input file
+    if (file_id == 0 && m_input_files[file_id].getTrailer().hasKey("/Info"))
+    {
+        QPDFObjectHandle info = m_output_pdf.makeIndirectObject(
+                    m_input_files[file_id].getTrailer().getKey("/Info"));
+        m_output_pdf.getTrailer().replaceKey("/Info", info);
+    }
+
+    return file_id;
 }
 
 void PdfEditor::add_blank_pages(double width, double height, int count)
 {
-    BlankPages *block = new BlankPages;
-
-    block->width = width;
-    block->height = height;
-    block->count = count;
-
-    BlockPointer p = {BlockPointer::BlankPages, block};
-
-    m_blocks.push_back(p);
-}
-
-void PdfEditor::write(const std::string &output_filename,
-                      std::function<void (int)> &progress)
-{
-    std::locale old_locale = std::locale::global(std::locale::classic());
-
-    // load input files
-    std::vector<QPDF> input_files;
-    std::vector<std::vector<QPDFPageObjectHelper>> pages;
-    std::vector<QPDFOutlineDocumentHelper> outline_helpers;
-    std::vector<std::vector<FlatOutline>> flat_outlines;
-
-    for (unsigned int i = 0; i < m_input_filenames.size(); ++i)
-    {
-        input_files.push_back(QPDF());
-        input_files[i].processFile(m_input_filenames[i].c_str());
-        input_files[i].setImmediateCopyFrom(true);
-
-        pages.push_back(QPDFPageDocumentHelper(input_files[i]).getAllPages());
-
-        outline_helpers.push_back(QPDFOutlineDocumentHelper(input_files[i]));
-
-        // flatten outlines tree
-        flat_outlines.push_back(std::vector<FlatOutline>());
-        add_flatten_outlines(pages[i], outline_helpers[i].getTopLevelOutlines(), flat_outlines[i]);
-    }
-
-    // create empty PDF
-    m_output_pdf = QPDF();
-    m_output_pdf.emptyPDF();
-
-    // add document's info from the first input file
-    if (input_files[0].getTrailer().hasKey("/Info"))
-    {
-        QPDFObjectHandle info = m_output_pdf.makeIndirectObject(
-                    input_files[0].getTrailer().getKey("/Info"));
-        m_output_pdf.getTrailer().replaceKey("/Info", info);
-    }
-
-    // outlines of the output file will be added to this vector (in flattened version)
-    std::vector<FlatOutline> output_outlines;
-
-    // add pages from each block
     QPDFPageDocumentHelper output_helper(m_output_pdf);
 
-    int last_page = -1;
+    for (int i = 0; i < count; ++i)
+        output_helper.addPage(m_create_blank_page(width, height), false);
 
-    for (BlockPointer block_pointer : m_blocks)
+    m_last_page += count;
+}
+
+void PdfEditor::add_pages(unsigned int file_id,
+                          int relative_rotation,
+                          const PageLayout *layout,
+                          const std::vector<std::pair<int, int>> &intervals,
+                          const std::string &outline_entry)
+{
+    QPDFPageDocumentHelper output_helper(m_output_pdf);
+
+    // add pages to the output file and add outlines to m_output_outlines
+
+    // add parent outline for the block, if any
+    unsigned int parent_outline_index;
+    if (!outline_entry.empty())
     {
-        switch (block_pointer.type)
+        FlatOutline outline;
+        outline.title = outline_entry;
+        outline.top = 0;
+        outline.left = 0;
+        outline.page = m_last_page + 1;
+
+        parent_outline_index = m_output_outlines.size();
+        m_output_outlines.push_back(outline);
+    }
+
+    int num_pages_per_paper;
+    int sub_page_count;
+    QPDFObjectHandle outer_page_obj;
+
+    if (layout)
+    {
+        num_pages_per_paper = layout->pages.size();
+        sub_page_count = 0;
+        outer_page_obj = m_create_blank_page(layout->width, layout->height);
+
+        output_helper.addPage(QPDFPageObjectHelper(outer_page_obj), false);
+    }
+
+    int page_count = 0;
+
+    // add pages from each interval and outlines poinintg to those pages
+    for (unsigned int i = 0; i < intervals.size(); i++)
+    {
+        // add pages
+        int initial_page_count = page_count;
+        int initial_sub_page_count = sub_page_count;
+
+        for (int j = intervals[i].first; j <= intervals[i].second; ++j)
         {
-        case BlockPointer::BlankPages: {
-            BlankPages *block =
-                    static_cast<BlankPages *>(block_pointer.p);
+            if (layout)
+            {
+                if (sub_page_count >= num_pages_per_paper)
+                {
+                    sub_page_count = 0;
 
-            for (int i = 0; i < block->count; ++i)
-                output_helper.addPage(
-                            m_create_blank_page(block->width, block->height),
-                            false);
+                    outer_page_obj = m_create_blank_page(layout->width,
+                                                         layout->height);
 
-            last_page += block->count;
+                    output_helper.addPage(QPDFPageObjectHelper(outer_page_obj), false);
 
-            break;
+                    ++page_count;
+                }
+
+                if (j > -1)
+                {
+                    const Page &page_pos = layout->pages[sub_page_count++];
+                    QPDFPageObjectHelper page = m_pages[file_id][j];
+                    m_impose_page(outer_page_obj, page, page_pos.relative_rotation,
+                                  page_pos.x, page_pos.y, page_pos.width, page_pos.height);
+                }
+
+                QPDFPageObjectHelper(outer_page_obj).rotatePage(relative_rotation,
+                                                                true);
+            }
+            else
+            {
+                QPDFPageObjectHelper page = m_pages[file_id][j].shallowCopyPage();
+
+                if (relative_rotation != 0)
+                    page.rotatePage(relative_rotation, true);
+
+                output_helper.addPage(page, false);
+
+                ++page_count;
+            }
         }
-        case BlockPointer::FromFile: {
-            FromFile *block = static_cast<FromFile *>(block_pointer.p);
 
-            // add pages to the output file and add outlines to output_outlines
-            switch (block->layout.size())
+        // add outlines
+        unsigned int j = 0;
+        while (j < m_flat_outlines[file_id].size())
+        {
+            if (m_flat_outlines[file_id][j].page >= intervals[i].first)
             {
-            case 0: // simple case: only rotation
-            {
-                // add parent outline for the block, if any
-                unsigned int parent_outline_index;
-                if (!block->outline_entry.empty())
+                int depth = 0;
+
+                while (j < m_flat_outlines[file_id].size() &&
+                       (m_flat_outlines[file_id][j].page <= intervals[i].second
+                        || m_flat_outlines[file_id][j].page == -1))
                 {
-                    FlatOutline outline;
-                    outline.title = block->outline_entry;
-                    outline.top = 0;
-                    outline.left = 0;
-                    outline.page = last_page + 1;
+                    FlatOutline outline = m_flat_outlines[file_id][j++];
 
-                    parent_outline_index = output_outlines.size();
-                    output_outlines.push_back(outline);
-                }
-
-                // add pages from each interval and outlines poinintg to those pages
-                for (unsigned int i = 0; i < block->intervals.size(); i++)
-                {
-                    // add pages
-                    int page_count = 0;
-
-                    for (int j = block->intervals[i].first; j <= block->intervals[i].second; ++j)
+                    if (outline.next_move == Move::up)
                     {
-                        QPDFPageObjectHelper page = pages[block->id][j].shallowCopyPage();
+                        // add move-ups only if depth > 0
+                        if (depth == 0)
+                            continue;
+                        else
+                            --depth;
+                    }
+                    else if (outline.next_move == Move::down)
+                        ++depth;
 
-                        if (block->relative_rotation != 0)
-                            page.rotatePage(block->relative_rotation, true);
-
-                        output_helper.addPage(page, false);
-
-                        ++page_count;
+                    // update destination page number
+                    if (outline.page != -1)
+                    {
+                        if (layout)
+                            outline.page = m_last_page + 1 + initial_page_count +
+                                    (outline.page - intervals[i].first +
+                                     initial_sub_page_count) / num_pages_per_paper;
+                        else
+                            outline.page = m_last_page + 1 + outline.page -
+                                    intervals[i].first;
                     }
 
-                    // add outlines
-                    unsigned int j = 0;
-                    while (j < flat_outlines[block->id].size())
-                    {
-                        if (flat_outlines[block->id][j].page >= block->intervals[i].first)
-                        {
-                            int depth = 0;
-
-                            while (j < flat_outlines[block->id].size() &&
-                                   (flat_outlines[block->id][j].page <= block->intervals[i].second
-                                    || flat_outlines[block->id][j].page == -1))
-                            {
-                                FlatOutline outline = flat_outlines[block->id][j++];
-
-                                if (outline.next_move == Move::up)
-                                {
-                                    // add move-ups only if depth > 0
-                                    if (depth == 0)
-                                        continue;
-                                    else
-                                        --depth;
-                                }
-                                else if (outline.next_move == Move::down)
-                                    ++depth;
-
-                                // update destination page number
-                                if (outline.page != -1)
-                                    outline.page = last_page + 1 + outline.page -
-                                            block->intervals[i].first;
-
-                                output_outlines.push_back(outline);
-                            }
-
-                            // go back to the starting level
-                            while (depth > 0)
-                            {
-                                FlatOutline dummy_outline;
-                                dummy_outline.page = -1;
-                                dummy_outline.next_move = Move::up;
-                                output_outlines.push_back(dummy_outline);
-
-                                --depth;
-                            }
-                        }
-
-                        ++j;
-                    }
-
-                    last_page += page_count;
+                    m_output_outlines.push_back(outline);
                 }
 
-                // set parent outline next_move based on whether any child outline was added
-                if (!block->outline_entry.empty())
+                // go back to the starting level
+                while (depth > 0)
                 {
-                    if (parent_outline_index == output_outlines.size() - 1)
-                        output_outlines[parent_outline_index].next_move = Move::next;
-                    else
-                    {
-                        output_outlines[parent_outline_index].next_move = Move::down;
+                    FlatOutline dummy_outline;
+                    dummy_outline.page = -1;
+                    dummy_outline.next_move = Move::up;
+                    m_output_outlines.push_back(dummy_outline);
 
-                        FlatOutline dummy_outline;
-                        dummy_outline.page = -1;
-                        dummy_outline.next_move = Move::up;
-                        output_outlines.push_back(dummy_outline);
-                    }
+                    --depth;
                 }
-
-                break;
-            }
-            case 1: // more complex case: alter crop box and resize
-            {
-                break;
-            }
-            default: // page composition
-            {
-                break;
-            }
             }
 
-            break;
-        }
+            ++j;
         }
     }
 
+    ++page_count;
+    m_last_page += page_count;
+
+    // set parent outline next_move based on whether any child outline was added
+    if (!outline_entry.empty())
+    {
+        if (parent_outline_index == m_output_outlines.size() - 1)
+            m_output_outlines[parent_outline_index].next_move = Move::next;
+        else
+        {
+            m_output_outlines[parent_outline_index].next_move = Move::down;
+
+            FlatOutline dummy_outline;
+            dummy_outline.page = -1;
+            dummy_outline.next_move = Move::up;
+            m_output_outlines.push_back(dummy_outline);
+        }
+    }
+
+    delete layout;
+}
+
+void PdfEditor::write(const std::string &output_filename)
+{
     // add outlines to the output file
-    m_build_outlines(output_outlines);
+    m_build_outlines(m_output_outlines);
 
     // write the PDF file to memory first to prevent problems when saving to
     // one of the input files
@@ -363,12 +273,12 @@ void PdfEditor::write(const std::string &output_filename,
     output_file_stream.close();
     delete buffer;
 
-    progress(100);
+    std::locale::global(m_old_locale);
 
-    std::locale::global(old_locale);
+    // FIXME clear object
 }
 
-void PdfEditor::add_flatten_outlines(const std::vector<QPDFPageObjectHelper> &pages,
+void PdfEditor::m_add_flatten_outlines(const std::vector<QPDFPageObjectHelper> &pages,
                                      const std::vector<QPDFOutlineObjectHelper> &outlines,
                                      std::vector<FlatOutline> &flat_outlines)
 {
@@ -406,7 +316,7 @@ void PdfEditor::add_flatten_outlines(const std::vector<QPDFPageObjectHelper> &pa
 
         flat_outlines.push_back(flat_outline);
 
-        add_flatten_outlines(pages, outline.getKids(), flat_outlines);
+        m_add_flatten_outlines(pages, outline.getKids(), flat_outlines);
 
         ++count;
     }
@@ -421,7 +331,7 @@ void PdfEditor::add_flatten_outlines(const std::vector<QPDFPageObjectHelper> &pa
     }
 }
 
-int PdfEditor::build_outline_level(const std::vector<FlatOutline> &flat_outlines,
+int PdfEditor::m_build_outline_level(const std::vector<FlatOutline> &flat_outlines,
                                    QPDFObjectHandle &parent,
                                    unsigned int starting_index)
 {
@@ -457,7 +367,7 @@ int PdfEditor::build_outline_level(const std::vector<FlatOutline> &flat_outlines
         last = outline;
 
         if (flat_outlines[i].next_move == Move::down)
-            i = build_outline_level(flat_outlines, outline, i + 1);
+            i = m_build_outline_level(flat_outlines, outline, i + 1);
         else if (flat_outlines[i].next_move == Move::next)
             ++i;
     }
@@ -474,7 +384,7 @@ void PdfEditor::m_build_outlines(const std::vector<FlatOutline> &flat_outlines)
     outlines_root.replaceKey("/Type", QPDFObjectHandle::newName("/Outlines"));
     outlines_root = m_output_pdf.makeIndirectObject(outlines_root);
 
-    build_outline_level(flat_outlines, outlines_root, 0);
+    m_build_outline_level(flat_outlines, outlines_root, 0);
 
     if (outlines_root.hasKey("/First"))
         m_output_pdf.getRoot().replaceKey("/Outlines", outlines_root);
@@ -499,8 +409,8 @@ QPDFObjectHandle PdfEditor::m_create_blank_page(double width, double height)
     proc_set.appendItem(QPDFObjectHandle::newName("ImageB"));
     proc_set.appendItem(QPDFObjectHandle::newName("ImageC"));
     proc_set.appendItem(QPDFObjectHandle::newName("ImageI"));
-    resources.replaceKey("ProcSet", proc_set);
-    page.replaceKey("Resources", resources);
+    resources.replaceKey("/ProcSet", proc_set);
+    page.replaceKey("/Resources", resources);
 
     return page;
 }
@@ -552,4 +462,73 @@ void PdfEditor::m_set_outline_destination(QPDFObjectHandle &outline,
     dest.appendItem(QPDFObjectHandle::newReal(top));
     dest.appendItem(QPDFObjectHandle::newNull());
     outline.replaceKey("/Dest", dest);
+}
+
+void PdfEditor::m_impose_page(QPDFObjectHandle &outer_page_obj,
+                              QPDFPageObjectHelper &page,
+                              int relative_rotation,
+                              double x,
+                              double y,
+                              double width,
+                              double height)
+{
+    QPDFPageObjectHelper outer_page(outer_page_obj);
+
+    page.rotatePage(relative_rotation, true);
+
+    // Get form xobject for input page
+    QPDFObjectHandle page_xobject = m_output_pdf.copyForeignObject(page.getFormXObjectForPage());
+
+    // Find a unique resource name for the new form XObject
+    QPDFObjectHandle resources = outer_page.getAttribute("/Resources", true);
+
+    int min_suffix = 0;
+    std::string name = resources.getUniqueResourceName("/Fx", min_suffix);
+
+    std::string content = outer_page.placeFormXObject(
+                page_xobject,
+                name,
+                QPDFObjectHandle::Rectangle(
+                    x, y,
+                    x + width, y + height),
+                false,
+                true,
+                true);
+
+    if (!content.empty())
+    {
+        // Append the content to the page's content.
+        // Surround the original content with q...Q to the
+        // new content from the page's original content.
+
+        if (!resources.hasKey("/XObject"))
+            resources.replaceKey("/XObject", QPDFObjectHandle::newDictionary());
+
+        resources.getKey("/XObject").replaceKey(name, page_xobject);
+
+        outer_page.addPageContents(QPDFObjectHandle::newStream(&m_output_pdf, "q\n"),
+                                   true);
+        outer_page.addPageContents(QPDFObjectHandle::newStream(&m_output_pdf, "\nQ\n" + content),
+                                   false);
+    }
+}
+
+PdfEditor::PageLayout::PageLayout(const Multipage &mp) :
+    width{mp.page_width}, height{mp.page_height}
+{
+    double subpage_width = width / mp.columns;
+    double subpage_height = height / mp.rows;
+
+    for (auto i = 0; i < mp.rows; ++i)
+        for (auto j = 0; j < mp.columns; ++j)
+        {
+            PdfEditor::Page page;
+            page.y = (mp.rows - 1 - i) * subpage_height;
+            page.x = j * subpage_width;
+            page.width = subpage_width;
+            page.height = subpage_height;
+            page.relative_rotation = mp.rotation;
+
+            pages.push_back(page);
+        }
 }

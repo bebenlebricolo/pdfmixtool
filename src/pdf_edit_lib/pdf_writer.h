@@ -36,13 +36,6 @@ struct Point {
 // independently on the rotation of the page
 Point get_destination_coordinates(QPDFObjectHandle &page_obj);
 
-// return true if the input string is valid
-bool parse_output_pages_string(
-        const std::string &str,
-        int n_pages,
-        std::vector<std::pair<int, int>> &intervals,
-        int &output_pages_count);
-
 void write_pdf(const Conf &conf, std::function<void(int)> &progress);
 
 void write_alternate_mix(const std::vector<std::string> &input_filenames,

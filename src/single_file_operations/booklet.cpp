@@ -24,6 +24,7 @@
 
 #include "../gui_utils.h"
 #include "../pdf_edit_lib/pdf_writer.h"
+#include "../pdf_edit_lib/pdf_editor.h"
 
 Booklet::Booklet(const PdfInfo &pdf_info,
                  QProgressBar *progress_bar,
@@ -73,27 +74,81 @@ void Booklet::generate_booklet()
 
     if (!m_save_filename.isNull())
     {
-        emit write_started();
-
         settings->setValue(
                     "save_directory",
                     QFileInfo(m_save_filename).dir().absolutePath());
 
-        QProgressBar *pb = m_progress_bar;
-        std::function<void (int)> progress = [pb] (int p)
+        std::vector<std::pair<int, int>> intervals;
+
+        // define output pages layout
+        PdfEditor::PageLayout *layout = new PdfEditor::PageLayout();
+        layout->width = 2 * m_pdf_info->width() * cm;
+        layout->height = m_pdf_info->height() * cm;
+
+        PdfEditor::Page page1;
+        page1.x = 0;
+        page1.y = 0;
+        page1.width = m_pdf_info->width() * cm;
+        page1.height = m_pdf_info->height() * cm;
+        page1.relative_rotation = 0;
+
+        PdfEditor::Page page2 = page1;
+        page2.x = m_pdf_info->width() * cm;
+
+        layout->pages.push_back(page1);
+        layout->pages.push_back(page2);
+
+        // compute vector of indices of pages in the output file
+        int num_pages = m_pdf_info->n_pages() % 4 == 0 ?
+                    m_pdf_info->n_pages() : (m_pdf_info->n_pages() / 4 + 1) * 4;
+
+        int i = 0;
+        int j = num_pages - 1;
+
+        bool is_right_page = !m_binding.currentIndex();
+
+        while (j > i)
         {
-            pb->setValue(p);
-        };
+            std::vector<int> couple;
+            couple.push_back(i);
+            couple.push_back(j);
 
-        m_progress_bar->setValue(0);
-        m_progress_bar->show();
+            intervals.push_back(std::pair<int, int>(-1, -1));
+            intervals.push_back(std::pair<int, int>(-1, -1));
 
-        write_booklet_pdf(m_pdf_info->filename(),
-                          m_save_filename.toStdString(),
-                          m_binding.currentIndex(),
-                          m_back_cover.isChecked(),
-                          progress);
+            for (int current_page : couple)
+            {
+                if (m_back_cover.isChecked())
+                {
+                    if (current_page == num_pages - 1)
+                        current_page = m_pdf_info->n_pages() - 1;
+                    else if (current_page == m_pdf_info->n_pages() - 1)
+                        current_page = num_pages - 1;
+                }
 
-        emit write_finished(m_save_filename);
+                if (current_page >= m_pdf_info->n_pages())
+                {
+                    is_right_page = !is_right_page;
+                    continue;
+                }
+
+                if (is_right_page)
+                    intervals.end()[-1] = {current_page, current_page};
+                else
+                    intervals.end()[-2] = {current_page, current_page};
+
+                is_right_page = !is_right_page;
+            }
+
+            is_right_page = !is_right_page; // revert last one
+
+            i++;
+            j--;
+        }
+
+        PdfEditor editor;
+        unsigned int id = editor.add_file(m_pdf_info->filename());
+        editor.add_pages(id, 0, layout, intervals);
+        launch_write_pdf(editor, m_save_filename);
     }
 }

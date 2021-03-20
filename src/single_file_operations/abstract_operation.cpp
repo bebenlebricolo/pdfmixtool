@@ -18,12 +18,40 @@
 
 #include "abstract_operation.h"
 
+#include <atomic>
+#include <thread>
+#include <chrono>
+
 #include <QFileInfo>
 #include <QMessageBox>
 #include <QCheckBox>
 #include <QFileDialog>
 
 #include "../gui_utils.h"
+
+//WriterThread::WriterThread(const PdfEditor &editor, const QString &filename) :
+//    QThread()
+//{
+//    this->editor = editor;
+//    this->filename = filename;
+//}
+
+//void WriterThread::run()
+//{
+//    std::atomic_int progress;
+//    std::thread t(&PdfEditor::write, editor, filename.toStdString(), &progress);
+
+//    while (progress.load() < 100)
+//    {
+//        emit this->progress(progress.load());
+//        std::this_thread::sleep_for(std::chrono::milliseconds(20));
+//    }
+
+//    emit this->progress(progress.load());
+//    emit this->done(filename);
+
+//    t.join();
+//}
 
 AbstractOperation::AbstractOperation(const PdfInfo &pdf_info,
                                      QProgressBar *progress_bar,
@@ -44,6 +72,11 @@ AbstractOperation::AbstractOperation(const PdfInfo &pdf_info,
 const QString &AbstractOperation::name()
 {
     return m_name;
+}
+
+void AbstractOperation::update_progress(int progress)
+{
+    m_progress_bar->setValue(progress);
 }
 
 void AbstractOperation::pdf_info_changed()
@@ -103,6 +136,23 @@ bool AbstractOperation::show_save_as_dialog()
         return true;
     }
 
-
     return false;
+}
+
+void AbstractOperation::launch_write_pdf(PdfEditor &editor,
+                                         const QString &filename)
+{
+    emit write_started();
+
+    editor.write(filename.toStdString());
+
+    m_progress_bar->setValue(100);
+
+    emit write_finished(filename);
+
+//    WriterThread *writer_thread = new WriterThread(editor, filename);
+//    connect(writer_thread, &WriterThread::progress, this, &AbstractOperation::update_progress);
+//    connect(writer_thread, &WriterThread::done, this, &AbstractOperation::write_finished);
+//    connect(writer_thread, &WriterThread::finished, writer_thread, &QObject::deleteLater);
+//    writer_thread->start();
 }

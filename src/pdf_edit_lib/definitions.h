@@ -137,4 +137,10 @@ struct Conf {
     bool alternate_mix;
 };
 
+// return true if the input string is valid
+bool parse_output_pages_string(const std::string &str,
+                               int n_pages,
+                               std::vector<std::pair<int, int>> &intervals,
+                               int &output_pages_count);
+
 #endif // DEFINITIONS_H

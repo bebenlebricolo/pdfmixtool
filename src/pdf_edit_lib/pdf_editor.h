@@ -22,6 +22,7 @@
 #include <string>
 #include <functional>
 #include <vector>
+#include <atomic>
 
 #include <qpdf/QPDF.hh>
 #include <qpdf/QUtil.hh>
@@ -30,40 +31,44 @@
 #include <qpdf/QPDFPageLabelDocumentHelper.hh>
 #include <qpdf/QPDFOutlineDocumentHelper.hh>
 
-struct Rect {
-    double x, y, width, height;
-};
-
-struct PageLocation {
-    Rect crop_box;
-    Rect location;
-};
+#include "definitions.h"
 
 class PdfEditor
 {
 public:
-    static bool parse_output_pages_string(const std::string &str,
-                                          int n_pages,
-                                          std::vector<std::pair<int, int>> &intervals,
-                                          int &output_pages_count);
+
+    class Page {
+    public:
+        double x, y, width, height;
+        double crop_top, crop_bottom, crop_left, crop_right;
+        int relative_rotation;
+    };
+
+    class PageLayout {
+    public:
+        PageLayout() {};
+        PageLayout(const Multipage &mp);
+        double width, height;
+        std::vector<Page> pages;
+    };
 
     PdfEditor();
 
     unsigned int add_file(const std::string &filename);
 
-    void add_pages(unsigned int file_id,
-                   const std::vector<std::pair<int, int>> &intervals = {},
-                   int relative_rotation = 0,
-                   const std::string &outline_entry = {},
-                   const std::vector<PageLocation> &layout = {});
-
     void add_blank_pages(double width, double height, int count);
 
-    void write(const std::string &output_filename,
-               std::function<void(int)> &progress);
+    // layout is deleted
+    void add_pages(unsigned int file_id,
+                   int relative_rotation = 0,
+                   const PageLayout *layout = nullptr,
+                   const std::vector<std::pair<int, int>> &intervals = {},
+                   const std::string &outline_entry = {});
+
+    void write(const std::string &output_filename);
 
 private:
-    enum Move {
+    enum class Move {
         up,
         down,
         next,
@@ -77,13 +82,21 @@ private:
         double left;
     };
 
-    static void add_flatten_outlines(const std::vector<QPDFPageObjectHelper> &pages,
+    std::locale m_old_locale;
+    int m_last_page;
+
+    std::vector<std::string> m_input_filenames;
+    std::vector<QPDF> m_input_files;
+    std::vector<std::vector<QPDFPageObjectHelper>> m_pages;
+    std::vector<std::vector<FlatOutline>> m_flat_outlines;
+
+    static void m_add_flatten_outlines(const std::vector<QPDFPageObjectHelper> &pages,
                                      const std::vector<QPDFOutlineObjectHelper> &outlines,
                                      std::vector<FlatOutline> &flat_outlines);
 
     static QPDFObjectHandle m_create_blank_page(double width, double height);
 
-    int build_outline_level(const std::vector<FlatOutline> &flat_outlines,
+    int m_build_outline_level(const std::vector<FlatOutline> &flat_outlines,
                             QPDFObjectHandle &parent,
                             unsigned int starting_index);
 
@@ -92,41 +105,16 @@ private:
     void m_set_outline_destination(QPDFObjectHandle &outline,
                                    unsigned int page_index);
 
-    struct BlankPages {
-        double width;
-        double height;
-        int count;
-    };
-
-    struct Rotation {
-        int first_page;
-        int last_page;
-        int relative_rotation;
-    };
-
-    struct FromFile {
-        unsigned int id;
-        std::vector<std::pair<int, int>> intervals;
-        int relative_rotation;
-        std::string outline_entry;
-        std::vector<PageLocation> layout;
-    };
-
-    struct BlockPointer {
-        enum Type {
-            BlankPages,
-            FromFile
-        };
-
-        Type type;
-        void *p;
-    };
-
-    std::vector<BlockPointer> m_blocks;
-
-    std::vector<std::string> m_input_filenames;
+    void m_impose_page(QPDFObjectHandle &outer_page_obj,
+                       QPDFPageObjectHelper &page,
+                       int relative_rotation,
+                       double x,
+                       double y,
+                       double width,
+                       double height);
 
     QPDF m_output_pdf;
+    std::vector<FlatOutline> m_output_outlines;
 
     QPDFObjectHandle m_last_outline;
     QPDFObjectHandle m_last_first_level_outline;

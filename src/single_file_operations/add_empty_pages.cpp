@@ -144,8 +144,6 @@ void AddEmptyPages::pdf_info_changed()
 
 void AddEmptyPages::save()
 {
-    emit write_started();
-
     int count = m_count.value();
 
     double page_width, page_height;
@@ -181,12 +179,6 @@ void AddEmptyPages::save()
     page_width = page_width * cm;
     page_height = page_height * cm;
 
-    QProgressBar *pb = m_progress_bar;
-    std::function<void (int)> progress = [pb] (int p)
-    {
-        pb->setValue(p);
-    };
-
     PdfEditor editor;
     unsigned int id = editor.add_file(m_pdf_info->filename());
     int location = m_page.value() - 1;
@@ -194,23 +186,21 @@ void AddEmptyPages::save()
     if (m_before_after.checkedId() == 0)
     {
         if (location > 0)
-            editor.add_pages(id, {{0, location - 1}});
+            editor.add_pages(id, 0, nullptr, {{0, location - 1}});
 
         editor.add_blank_pages(page_width, page_height, count);
 
-        editor.add_pages(id, {{location, m_pdf_info->n_pages() - 1}});
+        editor.add_pages(id, 0, nullptr, {{location, m_pdf_info->n_pages() - 1}});
     }
     else
     {
-        editor.add_pages(id, {{0, location}});
+        editor.add_pages(id, 0, nullptr, {{0, location}});
 
         editor.add_blank_pages(page_width, page_height, count);
 
         if (location < m_pdf_info->n_pages() - 1)
-            editor.add_pages(id, {{location + 1, m_pdf_info->n_pages() - 1}});
+            editor.add_pages(id, 0, nullptr, {{location + 1, m_pdf_info->n_pages() - 1}});
     }
 
-    editor.write(m_save_filename.toStdString(), progress);
-
-    emit write_finished(m_save_filename);
+    launch_write_pdf(editor, m_save_filename);
 }

@@ -34,6 +34,7 @@ set (
     src/mouseeventfilter.h
     src/multipageprofilesmanager.cpp
     src/multipageprofilesmanager.h
+    src/pdf_edit_lib/definitions.cpp
     src/pdf_edit_lib/definitions.h
     src/pdf_edit_lib/pdf_editor.cpp
     src/pdf_edit_lib/pdf_editor.h
@@ -76,6 +77,7 @@ add_executable (
 target_link_libraries (
     pdfmixtool
     qpdf
+    pthread
     ${Qt5Widgets_LIBRARIES}
 )
 

@@ -225,34 +225,22 @@ void EditPageLayout::profile_created(int index)
 void EditPageLayout::save()
 {
     emit write_started();
-    Conf conf;
 
-    conf.output_path = m_save_filename.toStdString();
-
-    FileConf fileconf;
-    fileconf.path = m_pdf_info->filename();
-    fileconf.ouput_pages = "";
     int mp_index = m_multipage.currentData().toInt();
-    if (mp_index < 0)
-        fileconf.multipage_enabled = false;
-    else
-    {
-        fileconf.multipage_enabled = true;
-        fileconf.multipage = &multipages[mp_index];
-    }
-    fileconf.rotation = m_rotation.currentData().toInt();
-    fileconf.scale = m_scale.value();
-    fileconf.outline_entry = "";
 
-    conf.files.push_back(fileconf);
+    // FIXME m_scale.value();
 
-    QProgressBar *pb = m_progress_bar;
-    std::function<void (int)> progress = [pb] (int p)
-    {
-        pb->setValue(p);
-    };
+    PdfEditor editor;
 
-    write_pdf(conf, progress);
+    unsigned int id = editor.add_file(m_pdf_info->filename());
+
+    PdfEditor::PageLayout *page_layout{nullptr};
+    if (mp_index >= 0)
+        page_layout = new PdfEditor::PageLayout(multipages[mp_index]);
+
+    editor.add_pages(id, m_rotation.currentData().toInt(), page_layout, {});
+
+    editor.write(m_save_filename.toStdString());
 
     emit write_finished(m_save_filename);
 }

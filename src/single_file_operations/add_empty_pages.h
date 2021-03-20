@@ -37,6 +37,8 @@ public slots:
     void pdf_info_changed();
 
 signals:
+    void write_started();
+    void write_finished(const QString &filename);
     void save_button_pressed();
     void save_as_button_pressed();
 

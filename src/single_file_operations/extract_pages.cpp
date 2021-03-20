@@ -113,27 +113,16 @@ void ExtractPages::extract_to_individual()
 
     if (!dir_name.isNull())
     {
-        emit write_started();
-
         settings->setValue(
                     "save_directory",
                     QFileInfo(dir_name).dir().absolutePath());
-
-        QProgressBar *pb = m_progress_bar;
-        std::function<void (int)> progress = [pb] (int p)
-        {
-            pb->setValue(p);
-        };
-
-        m_progress_bar->setValue(0);
-        m_progress_bar->show();
 
         QDir dir(dir_name);
         QString base_name = m_base_name.text();
 
         int output_pages_count;
         std::vector<std::pair<int, int>> intervals;
-        PdfEditor::parse_output_pages_string(selection.toStdString(),
+        parse_output_pages_string(selection.toStdString(),
                                              m_pdf_info->n_pages(),
                                              intervals,
                                              output_pages_count);
@@ -148,8 +137,9 @@ void ExtractPages::extract_to_individual()
                 // FIXME SLOW! A custom function that opens the input file once may be necessary
                 PdfEditor editor;
                 unsigned int id = editor.add_file(m_pdf_info->filename());
-                editor.add_pages(id, {{i, i}});
-                editor.write(dir.filePath(filename).toStdString(), progress);
+                editor.add_pages(id, 0, nullptr, {{i, i}});
+
+                launch_write_pdf(editor, dir.filePath(filename));
             }
         }
 
@@ -175,33 +165,20 @@ void ExtractPages::extract_to_single()
 
     if (!m_save_filename.isNull())
     {
-        emit write_started();
-
         settings->setValue(
                     "save_directory",
                     QFileInfo(m_save_filename).dir().absolutePath());
 
-        QProgressBar *pb = m_progress_bar;
-        std::function<void (int)> progress = [pb] (int p)
-        {
-            pb->setValue(p);
-        };
-
-        m_progress_bar->setValue(0);
-        m_progress_bar->show();
-
         int output_pages_count;
         std::vector<std::pair<int, int>> intervals;
-        PdfEditor::parse_output_pages_string(selection.toStdString(),
+        parse_output_pages_string(selection.toStdString(),
                                              m_pdf_info->n_pages(),
                                              intervals,
                                              output_pages_count);
 
         PdfEditor editor;
         unsigned int id = editor.add_file(m_pdf_info->filename());
-        editor.add_pages(id, intervals);
-        editor.write(m_save_filename.toStdString(), progress);
-
-        emit write_finished(m_save_filename);
+        editor.add_pages(id, 0, nullptr, intervals);
+        launch_write_pdf(editor, m_save_filename);
     }
 }

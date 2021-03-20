@@ -79,12 +79,12 @@
     <message>
         <location filename="../src/single_file_operations/abstract_operation.cpp" line="36"/>
         <source>Save</source>
-        <translation type="unfinished"></translation>
+        <translation>Lagre</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/abstract_operation.cpp" line="64"/>
         <source>Overwrite File?</source>
-        <translation type="unfinished"></translation>
+        <translation>Overskriv fil?</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/abstract_operation.cpp" line="65"/>
@@ -94,7 +94,7 @@
     <message>
         <location filename="../src/single_file_operations/abstract_operation.cpp" line="71"/>
         <source>Always overwrite</source>
-        <translation type="unfinished"></translation>
+        <translation>Alltid overskriv</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/abstract_operation.cpp" line="89"/>
@@ -104,7 +104,7 @@
     <message>
         <location filename="../src/single_file_operations/abstract_operation.cpp" line="93"/>
         <source>PDF files (*.pdf)</source>
-        <translation type="unfinished"></translation>
+        <translation>PDF-filer (*.pdf)</translation>
     </message>
 </context>
 <context>
@@ -112,27 +112,27 @@
     <message>
         <location filename="../src/single_file_operations/add_empty_pages.cpp" line="34"/>
         <source>Add empty pages</source>
-        <translation type="unfinished"></translation>
+        <translation>Legg til tomme sider</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/add_empty_pages.cpp" line="46"/>
         <source>Count:</source>
-        <translation type="unfinished"></translation>
+        <translation>Antall:</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/add_empty_pages.cpp" line="50"/>
         <source>Page size</source>
-        <translation type="unfinished"></translation>
+        <translation>Sidestørrelse</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/add_empty_pages.cpp" line="53"/>
         <source>Same as document</source>
-        <translation type="unfinished"></translation>
+        <translation>Samme som dokument</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/add_empty_pages.cpp" line="56"/>
         <source>Custom:</source>
-        <translation type="unfinished"></translation>
+        <translation>Egendefinert:</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/add_empty_pages.cpp" line="81"/>
@@ -157,22 +157,22 @@
     <message>
         <location filename="../src/single_file_operations/add_empty_pages.cpp" line="98"/>
         <source>Before</source>
-        <translation type="unfinished"></translation>
+        <translation>Før</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/add_empty_pages.cpp" line="100"/>
         <source>After</source>
-        <translation type="unfinished"></translation>
+        <translation>Etter</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/add_empty_pages.cpp" line="103"/>
         <source>Page:</source>
-        <translation type="unfinished"></translation>
+        <translation>Side:</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/add_empty_pages.cpp" line="117"/>
         <source>Save as…</source>
-        <translation type="unfinished"></translation>
+        <translation>Lagre som …</translation>
     </message>
 </context>
 <context>
@@ -215,7 +215,7 @@
     <message>
         <location filename="../src/single_file_operations/booklet.cpp" line="72"/>
         <source>PDF files (*.pdf)</source>
-        <translation type="unfinished"></translation>
+        <translation>PDF-filer (*.pdf)</translation>
     </message>
 </context>
 <context>
@@ -223,12 +223,12 @@
     <message>
         <location filename="../src/single_file_operations/delete_pages.cpp" line="34"/>
         <source>Delete pages</source>
-        <translation type="unfinished"></translation>
+        <translation>Slett sider</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/delete_pages.cpp" line="54"/>
         <source>Save as…</source>
-        <translation type="unfinished"></translation>
+        <translation>Lagre som …</translation>
     </message>
 </context>
 <context>
@@ -246,12 +246,12 @@
     <message>
         <location filename="../src/editmultipageprofiledialog.cpp" line="40"/>
         <source>Width:</source>
-        <translation type="unfinished"></translation>
+        <translation>Bredde:</translation>
     </message>
     <message>
         <location filename="../src/editmultipageprofiledialog.cpp" line="41"/>
         <source>Height:</source>
-        <translation type="unfinished"></translation>
+        <translation>Høyde:</translation>
     </message>
     <message>
         <location filename="../src/editmultipageprofiledialog.cpp" line="64"/>
@@ -388,7 +388,7 @@
     <message>
         <location filename="../src/single_file_operations/edit_page_layout.cpp" line="94"/>
         <source>Save as…</source>
-        <translation type="unfinished"></translation>
+        <translation>Lagre som …</translation>
     </message>
 </context>
 <context>
@@ -439,34 +439,34 @@
     <message>
         <location filename="../src/single_file_operations/extract_pages.cpp" line="49"/>
         <source>Extract to individual PDF files</source>
-        <translation type="unfinished"></translation>
+        <translation>Pakk ut til individuelle PDF-filer</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/extract_pages.cpp" line="37"/>
         <source>Extract pages</source>
-        <translation type="unfinished"></translation>
+        <translation>Pakk ut sider</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/extract_pages.cpp" line="62"/>
         <location filename="../src/single_file_operations/extract_pages.cpp" line="84"/>
         <source>Extract…</source>
-        <translation type="unfinished"></translation>
+        <translation>Pakk ut …</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/extract_pages.cpp" line="79"/>
         <location filename="../src/single_file_operations/extract_pages.cpp" line="190"/>
         <source>Extract to single PDF</source>
-        <translation type="unfinished"></translation>
+        <translation>Pakk ut enkelt PDF</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/extract_pages.cpp" line="114"/>
         <source>Select save directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Velg lagringsmappe</translation>
     </message>
     <message>
         <location filename="../src/single_file_operations/extract_pages.cpp" line="194"/>
         <source>PDF files (*.pdf)</source>
-        <translation type="unfinished"></translation>
+        <translation>PDF-filer (*.pdf)</translation>
     </message>
 </context>
 <context>
@@ -479,7 +479,7 @@
     <message>
         <location filename="../src/inputpdffiledelegate.cpp" line="80"/>
         <source>Page order:</source>
-        <translation type="unfinished"></translation>
+        <translation>Siderekkefølge:</translation>
     </message>
     <message>
         <location filename="../src/inputpdffiledelegate.cpp" line="83"/>
@@ -585,22 +585,22 @@
     <message>
         <location filename="../src/mainwindow.cpp" line="95"/>
         <source>Multiple files</source>
-        <translation type="unfinished"></translation>
+        <translation>Flere filer</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="96"/>
         <source>Single file</source>
-        <translation type="unfinished"></translation>
+        <translation>Enkelt fil</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="208"/>
         <source>Load files list</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Last inn filliste</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="213"/>
         <source>Save files list</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Lagre filliste</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="248"/>
@@ -611,7 +611,7 @@
     <message>
         <location filename="../src/mainwindow.cpp" line="311"/>
         <source>Open PDF file…</source>
-        <translation type="unfinished"></translation>
+        <translation>Åpne PDF-fil …</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="180"/>
@@ -634,7 +634,7 @@
         <location filename="../src/mainwindow.cpp" line="475"/>
         <location filename="../src/mainwindow.cpp" line="493"/>
         <source>JSON files (*.json)</source>
-        <translation type="unfinished"></translation>
+        <translation>JSON-filer (*.json)</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="481"/>
@@ -649,13 +649,13 @@
     <message>
         <location filename="../src/mainwindow.cpp" line="489"/>
         <source>Select a JSON file</source>
-        <translation type="unfinished"></translation>
+        <translation>Velg en JSON-fil</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="602"/>
         <location filename="../src/mainwindow.cpp" line="971"/>
         <source>Error opening file</source>
-        <translation type="unfinished"></translation>
+        <translation>Klarte ikke å åpne fil</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="860"/>
@@ -665,17 +665,17 @@
     <message>
         <location filename="../src/mainwindow.cpp" line="950"/>
         <source>Select a PDF file</source>
-        <translation type="unfinished"></translation>
+        <translation>Velg en PDF-fil</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="1007"/>
         <source>Files saved in %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>Filer lagret i %1.</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="1013"/>
         <source>File %1 saved.</source>
-        <translation type="unfinished"></translation>
+        <translation>Fil %1 lagret.</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="827"/>
@@ -725,7 +725,7 @@
     <message>
         <location filename="../src/mainwindow.cpp" line="473"/>
         <source>Select the JSON file containing the files list</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Velg JSON-filen som inneholder fillisten</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="836"/>
@@ -753,7 +753,7 @@
     <message>
         <location filename="../src/multipageprofilesmanager.cpp" line="76"/>
         <source>Edit profile</source>
-        <translation type="unfinished"></translation>
+        <translation>Rediger profil</translation>
     </message>
     <message>
         <location filename="../src/multipageprofilesmanager.cpp" line="122"/>
@@ -795,17 +795,17 @@
     <message>
         <location filename="../src/widgets/pages_selector.cpp" line="45"/>
         <source>Even pages</source>
-        <translation type="unfinished"></translation>
+        <translation>Partallssider</translation>
     </message>
     <message>
         <location filename="../src/widgets/pages_selector.cpp" line="46"/>
         <source>Odd pages</source>
-        <translation type="unfinished"></translation>
+        <translation>Oddetallssider</translation>
     </message>
     <message>
         <location filename="../src/widgets/pages_selector.cpp" line="48"/>
         <source>All pages</source>
-        <translation type="unfinished"></translation>
+        <translation>Alle sider</translation>
     </message>
     <message>
         <location filename="../src/widgets/pages_selector.cpp" line="108"/>

@@ -22,7 +22,7 @@
 #include <QRadioButton>
 #include <QMessageBox>
 
-#include "../pdf_edit_lib/pdf_writer.h"
+#include "../pdf_edit_lib/definitions.h"
 
 LineEdit::LineEdit(QWidget *parent) :
     QLineEdit(parent)

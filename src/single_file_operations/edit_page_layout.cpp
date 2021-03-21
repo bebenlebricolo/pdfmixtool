@@ -24,7 +24,6 @@
 #include <cmath>
 
 #include "../gui_utils.h"
-#include "../pdf_edit_lib/pdf_writer.h"
 
 EditPageLayout::EditPageLayout(const PdfInfo &pdf_info,
                                QWidget *parent) :

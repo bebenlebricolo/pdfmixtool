@@ -23,7 +23,6 @@
 #include <QFileDialog>
 
 #include "../gui_utils.h"
-#include "../pdf_edit_lib/pdf_writer.h"
 #include "../pdf_edit_lib/pdf_editor.h"
 
 Booklet::Booklet(const PdfInfo &pdf_info,

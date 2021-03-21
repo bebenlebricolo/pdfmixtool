@@ -39,7 +39,6 @@
 #include "aboutdialog.h"
 #include "editpdfentrydialog.h"
 #include "pdf_edit_lib/pdf_info.h"
-#include "pdf_edit_lib/pdf_writer.h"
 #include "gui_utils.h"
 
 MainWindow::MainWindow(MouseEventFilter *filter, QWidget *parent) :
@@ -849,33 +848,49 @@ void MainWindow::generate_pdf_button_pressed()
                     "save_directory",
                     QFileInfo(selected_file).dir().absolutePath());
 
-        QProgressBar *pb = m_progress_bar;
-        std::function<void (int)> progress = [pb] (int p)
-        {
-            pb->setValue(p);
-        };
-
         // alternate mix
         if (m_alternate_mix->isChecked())
         {
             std::vector<std::string> input_filenames;
-            std::vector<bool> reverse_order;
 
+            std::vector<int> num_pages{};
+            std::vector<int> file_ids{};
+            std::vector<bool> reverse_order;
+            PdfEditor editor;
+
+            // add files to editor
             for (int i = 0; i < m_files_list_model->rowCount(); i++)
             {
                 QStandardItem *item = m_files_list_model->item(i);
                 QString file_path = item->data(FILE_PATH_ROLE).toString();
-
-                input_filenames.push_back(file_path.toStdString());
+                num_pages.push_back(item->data(N_PAGES_ROLE).toInt());
+                file_ids.push_back(editor.add_file(file_path.toStdString()));
                 reverse_order.push_back(
                             item->data(REVERSE_ORDER_ROLE).toBool());
             }
 
-            write_alternate_mix(input_filenames,
-                                selected_file.toStdString(),
-                                reverse_order,
-                                progress);
+            int max_num_pages = *std::max_element(num_pages.begin(),
+                                                  num_pages.end());
+
+            // alternatively add pages
+            for (int i{0}; i < max_num_pages; ++i)
+            {
+                for (size_t j{0}; j < file_ids.size(); ++j)
+                {
+                    if (i < num_pages[j])
+                    {
+                        int index = reverse_order[j] ? num_pages[j] - 1 - i : i;
+                        editor.add_pages(file_ids[j], 0, nullptr,
+                                         {{index, index}});
+                    }
+                }
+
+                update_progress(100. * (i + 1) / (max_num_pages + 1));
+            }
+
+            editor.write(selected_file.toStdString());
         }
+
         // standard mode
         else
         {
@@ -915,8 +930,6 @@ void MainWindow::generate_pdf_button_pressed()
             }
 
             editor.write(selected_file.toStdString());
-
-            update_progress(100);
         }
 
         write_finished(selected_file);

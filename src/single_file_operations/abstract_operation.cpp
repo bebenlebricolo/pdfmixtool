@@ -29,30 +29,6 @@
 
 #include "../gui_utils.h"
 
-//WriterThread::WriterThread(const PdfEditor &editor, const QString &filename) :
-//    QThread()
-//{
-//    this->editor = editor;
-//    this->filename = filename;
-//}
-
-//void WriterThread::run()
-//{
-//    std::atomic_int progress;
-//    std::thread t(&PdfEditor::write, editor, filename.toStdString(), &progress);
-
-//    while (progress.load() < 100)
-//    {
-//        emit this->progress(progress.load());
-//        std::this_thread::sleep_for(std::chrono::milliseconds(20));
-//    }
-
-//    emit this->progress(progress.load());
-//    emit this->done(filename);
-
-//    t.join();
-//}
-
 AbstractOperation::AbstractOperation(const PdfInfo &pdf_info,
                                      QWidget *parent) :
     QWidget(parent),

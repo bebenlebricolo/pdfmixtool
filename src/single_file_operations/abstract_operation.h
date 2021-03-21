@@ -27,25 +27,6 @@
 #include "../pdf_edit_lib/pdf_info.h"
 #include "../pdf_edit_lib/pdf_editor.h"
 
-//class WriterThread : public QThread
-//{
-//    Q_OBJECT
-
-//    void run() override;
-
-//public:
-//    WriterThread(const PdfEditor &editor, const QString &filename);
-
-//signals:
-//    void progress(int progress);
-
-//    void done(const QString &filename);
-
-//private:
-//    PdfEditor editor;
-//    QString filename;
-//};
-
 class AbstractOperation : public QWidget
 {
     Q_OBJECT

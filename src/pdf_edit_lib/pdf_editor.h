@@ -93,9 +93,11 @@ private:
     std::vector<std::vector<QPDFPageObjectHelper>> m_pages;
     std::vector<std::vector<FlatOutline>> m_flat_outlines;
 
-    static void m_add_flatten_outlines(const std::vector<QPDFPageObjectHelper> &pages,
-                                     const std::vector<QPDFOutlineObjectHelper> &outlines,
-                                     std::vector<FlatOutline> &flat_outlines);
+    static void m_add_flatten_outlines(
+            QPDFObjectHandle &root,
+            const std::vector<QPDFPageObjectHelper> &pages,
+            const std::vector<QPDFOutlineObjectHelper> &outlines,
+            std::vector<FlatOutline> &flat_outlines);
 
     static QPDFObjectHandle m_create_blank_page(double width, double height);
 
@@ -121,6 +123,9 @@ private:
 
     QPDFObjectHandle m_last_outline;
     QPDFObjectHandle m_last_first_level_outline;
+
+    static QPDFObjectHandle m_get_key_in_name_tree(QPDFObjectHandle &node,
+                                                   const std::string &key);
 };
 
 #endif // PDFEDITOR_H

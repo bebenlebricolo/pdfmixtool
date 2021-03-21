@@ -60,10 +60,12 @@ unsigned int PdfEditor::add_file(const std::string &filename)
                 QPDFPageDocumentHelper(m_input_files[file_id]).getAllPages());
 
     QPDFOutlineDocumentHelper outline_helper(m_input_files[file_id]);
+    QPDFObjectHandle root = m_input_files[file_id].getRoot();
 
     // flatten outlines tree
     m_flat_outlines.push_back(std::vector<FlatOutline>());
-    m_add_flatten_outlines(m_pages[file_id],
+    m_add_flatten_outlines(root,
+                           m_pages[file_id],
                            outline_helper.getTopLevelOutlines(),
                            m_flat_outlines[file_id]);
 
@@ -286,9 +288,11 @@ void PdfEditor::write(const std::string &output_filename)
     // FIXME clear object
 }
 
-void PdfEditor::m_add_flatten_outlines(const std::vector<QPDFPageObjectHelper> &pages,
-                                     const std::vector<QPDFOutlineObjectHelper> &outlines,
-                                     std::vector<FlatOutline> &flat_outlines)
+void PdfEditor::m_add_flatten_outlines(
+        QPDFObjectHandle &root,
+        const std::vector<QPDFPageObjectHelper> &pages,
+        const std::vector<QPDFOutlineObjectHelper> &outlines,
+        std::vector<FlatOutline> &flat_outlines)
 {
     int count = 0;
 
@@ -302,6 +306,7 @@ void PdfEditor::m_add_flatten_outlines(const std::vector<QPDFPageObjectHelper> &
         flat_outline.left = 0;
 
         // find destination page object and coordinates
+        // FIXME submit a patch for QPDFOutlineObjectHelper::getDestPage()
         QPDFObjectHandle outline_obj = outline.getObjectHandle();
         QPDFObjectHandle dest_page = QPDFObjectHandle::newNull();
         QPDFObjectHandle dest = QPDFObjectHandle::newNull();
@@ -312,10 +317,35 @@ void PdfEditor::m_add_flatten_outlines(const std::vector<QPDFPageObjectHelper> &
         else if (outline_obj.hasKey("/A"))
         {
             QPDFObjectHandle action = outline_obj.getKey("/A");
-            if (action.getKey("/Type").getName() == "GoTo" &&
-                    action.hasKey("/D"))
+            if (action.getKey("/S").getName() == "/GoTo" && action.hasKey("/D"))
             {
                 dest = action.getKey("/D");
+
+                // destination is a name: retrieve real destination
+                if (dest.isString())
+                {
+                    QPDFObjectHandle tmp;
+                    // PDF 1.1
+                    if (root.hasKey("/Dests"))
+                    {
+                         tmp = root.getKey("/Dests")
+                                 .getKey(dest.getStringValue());
+                    }
+                    // PDF 1.2
+                    else if (root.hasKey("/Names"))
+                    {
+                        QPDFObjectHandle dests_root = root.getKey("/Names")
+                                .getKey("/Dests");
+
+                        // traverse nodes tree to find the named destination
+                        tmp = m_get_key_in_name_tree(dests_root,
+                                                     dest.getStringValue());
+                    }
+                    if (tmp.isArray())
+                        dest = tmp;
+                    else if (tmp.isDictionary())
+                        dest = tmp.getKey("/D");
+                }
             }
         }
         if (!dest.isNull())
@@ -325,7 +355,7 @@ void PdfEditor::m_add_flatten_outlines(const std::vector<QPDFPageObjectHelper> &
                 dest_page = dest.getArrayItem(0);
 
                 // find coordinates
-                if (dest.getArrayItem(1).getName() == "XYZ")
+                if (dest.getArrayItem(1).getName() == "/XYZ")
                 {
                     if (!dest.getArrayItem(2).isNull())
                         flat_outline.left =
@@ -334,19 +364,19 @@ void PdfEditor::m_add_flatten_outlines(const std::vector<QPDFPageObjectHelper> &
                         flat_outline.top =
                                 dest.getArrayItem(3).getNumericValue();
                 }
-                else if (dest.getArrayItem(1).getName() == "FitH")
+                else if (dest.getArrayItem(1).getName() == "/FitH")
                 {
                     if (!dest.getArrayItem(2).isNull())
                         flat_outline.top =
                                 dest.getArrayItem(2).getNumericValue();
                 }
-                else if (dest.getArrayItem(1).getName() == "FitV")
+                else if (dest.getArrayItem(1).getName() == "/FitV")
                 {
                     if (!dest.getArrayItem(2).isNull())
                         flat_outline.left =
                                 dest.getArrayItem(2).getNumericValue();
                 }
-                else if (dest.getArrayItem(1).getName() == "FitR")
+                else if (dest.getArrayItem(1).getName() == "/FitR")
                 {
                     if (!dest.getArrayItem(2).isNull())
                         flat_outline.left =
@@ -355,7 +385,7 @@ void PdfEditor::m_add_flatten_outlines(const std::vector<QPDFPageObjectHelper> &
                         flat_outline.top =
                                 dest.getArrayItem(5).getNumericValue();
                 }
-                else if (dest.getArrayItem(1).getName() == "FitBH")
+                else if (dest.getArrayItem(1).getName() == "/FitBH")
                 {
                     if (!dest.getArrayItem(2).isNull())
                         flat_outline.top =
@@ -364,6 +394,7 @@ void PdfEditor::m_add_flatten_outlines(const std::vector<QPDFPageObjectHelper> &
             }
         }
 
+        // last try
         if (dest_page.isNull())
             dest_page = outline.getDestPage();
 
@@ -389,7 +420,7 @@ void PdfEditor::m_add_flatten_outlines(const std::vector<QPDFPageObjectHelper> &
 
         flat_outlines.push_back(flat_outline);
 
-        m_add_flatten_outlines(pages, outline.getKids(), flat_outlines);
+        m_add_flatten_outlines(root, pages, outline.getKids(), flat_outlines);
 
         ++count;
     }
@@ -477,11 +508,11 @@ QPDFObjectHandle PdfEditor::m_create_blank_page(double width, double height)
 
     QPDFObjectHandle resources = QPDFObjectHandle::newDictionary();
     QPDFObjectHandle proc_set = QPDFObjectHandle::newArray();
-    proc_set.appendItem(QPDFObjectHandle::newName("PDF"));
-    proc_set.appendItem(QPDFObjectHandle::newName("Text"));
-    proc_set.appendItem(QPDFObjectHandle::newName("ImageB"));
-    proc_set.appendItem(QPDFObjectHandle::newName("ImageC"));
-    proc_set.appendItem(QPDFObjectHandle::newName("ImageI"));
+    proc_set.appendItem(QPDFObjectHandle::newName("/PDF"));
+    proc_set.appendItem(QPDFObjectHandle::newName("/Text"));
+    proc_set.appendItem(QPDFObjectHandle::newName("/ImageB"));
+    proc_set.appendItem(QPDFObjectHandle::newName("/ImageC"));
+    proc_set.appendItem(QPDFObjectHandle::newName("/ImageI"));
     resources.replaceKey("/ProcSet", proc_set);
     page.replaceKey("/Resources", resources);
 
@@ -604,4 +635,29 @@ PdfEditor::PageLayout::PageLayout(const Multipage &mp) :
 
             pages.push_back(page);
         }
+}
+
+QPDFObjectHandle PdfEditor::m_get_key_in_name_tree(QPDFObjectHandle &node,
+                                                   const std::string &key)
+{
+    if (node.hasKey("/Kids"))
+    {
+        for (auto obj : node.getKey("/Kids").getArrayAsVector())
+        {
+            QPDFObjectHandle res = m_get_key_in_name_tree(obj, key);
+            if (!res.isNull())
+                return res;
+        }
+    }
+    else
+    {
+        auto names = node.getKey("/Names").getArrayAsVector();
+        for (size_t i{0}; i < names.size(); i += 2)
+        {
+            if (names[i].getStringValue() == key)
+                return names[i + 1];
+        }
+    }
+
+    return QPDFObjectHandle::newNull();
 }

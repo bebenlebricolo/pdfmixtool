@@ -301,9 +301,74 @@ void PdfEditor::m_add_flatten_outlines(const std::vector<QPDFPageObjectHelper> &
         flat_outline.top = 0;
         flat_outline.left = 0;
 
+        // find destination page object and coordinates
+        QPDFObjectHandle outline_obj = outline.getObjectHandle();
+        QPDFObjectHandle dest_page = QPDFObjectHandle::newNull();
+        QPDFObjectHandle dest = QPDFObjectHandle::newNull();
+        if (outline_obj.hasKey("/Dest"))
+        {
+            dest = outline_obj.getKey("/Dest");
+        }
+        else if (outline_obj.hasKey("/A"))
+        {
+            QPDFObjectHandle action = outline_obj.getKey("/A");
+            if (action.getKey("/Type").getName() == "GoTo" &&
+                    action.hasKey("/D"))
+            {
+                dest = action.getKey("/D");
+            }
+        }
+        if (!dest.isNull())
+        {
+            if (dest.isArray())
+            {
+                dest_page = dest.getArrayItem(0);
+
+                // find coordinates
+                if (dest.getArrayItem(1).getName() == "XYZ")
+                {
+                    if (!dest.getArrayItem(2).isNull())
+                        flat_outline.left =
+                                dest.getArrayItem(2).getNumericValue();
+                    if (!dest.getArrayItem(3).isNull())
+                        flat_outline.top =
+                                dest.getArrayItem(3).getNumericValue();
+                }
+                else if (dest.getArrayItem(1).getName() == "FitH")
+                {
+                    if (!dest.getArrayItem(2).isNull())
+                        flat_outline.top =
+                                dest.getArrayItem(2).getNumericValue();
+                }
+                else if (dest.getArrayItem(1).getName() == "FitV")
+                {
+                    if (!dest.getArrayItem(2).isNull())
+                        flat_outline.left =
+                                dest.getArrayItem(2).getNumericValue();
+                }
+                else if (dest.getArrayItem(1).getName() == "FitR")
+                {
+                    if (!dest.getArrayItem(2).isNull())
+                        flat_outline.left =
+                                dest.getArrayItem(2).getNumericValue();
+                    if (!dest.getArrayItem(5).isNull())
+                        flat_outline.top =
+                                dest.getArrayItem(5).getNumericValue();
+                }
+                else if (dest.getArrayItem(1).getName() == "FitBH")
+                {
+                    if (!dest.getArrayItem(2).isNull())
+                        flat_outline.top =
+                                dest.getArrayItem(2).getNumericValue();
+                }
+            }
+        }
+
+        if (dest_page.isNull())
+            dest_page = outline.getDestPage();
+
         // find destination page number
         flat_outline.page = -1;
-        QPDFObjectHandle dest_page = outline.getDestPage();
         if (!dest_page.isNull())
         {
             QPDFObjGen og = dest_page.getObjGen();

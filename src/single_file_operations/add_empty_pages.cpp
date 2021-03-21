@@ -49,10 +49,12 @@ AddEmptyPages::AddEmptyPages(const PdfInfo &pdf_info,
     grid_layout->addWidget(new QLabel("<b>" + tr("Page size") + "</b>", this),
                            1, 0, 1, 4);
 
-    m_page_size.addButton(new QRadioButton(tr("Same as document"), this), 0);
+    m_page_size.addButton(new QRadioButton(tr("Same as document"), this),
+                          static_cast<int>(m_pages_size_type::same));
     grid_layout->addWidget(m_page_size.button(0), 2, 0);
 
-    m_page_size.addButton(new QRadioButton(tr("Custom:"), this), 1);
+    m_page_size.addButton(new QRadioButton(tr("Custom:"), this),
+                          static_cast<int>(m_pages_size_type::custom));
     grid_layout->addWidget(m_page_size.button(1), 3, 0);
 
     m_page_width.setSuffix(" cm");
@@ -77,7 +79,8 @@ AddEmptyPages::AddEmptyPages(const PdfInfo &pdf_info,
     grid_layout->setColumnStretch(3, 1);
     grid_layout->addWidget(&m_page_height, 3, 3);
 
-    m_page_size.addButton(new QRadioButton(tr("Standard:"), this), 2);
+    m_page_size.addButton(new QRadioButton(tr("Standard:"), this),
+                          static_cast<int>(m_pages_size_type::standard));
     grid_layout->addWidget(m_page_size.button(2), 4, 0, 1, 2);
     int i = 0;
     for (PaperSize size : paper_sizes)
@@ -94,9 +97,11 @@ AddEmptyPages::AddEmptyPages(const PdfInfo &pdf_info,
     grid_layout->addWidget(new QLabel("<b>" + tr("Location") + "</b>", this),
                            6, 0, 1, 4);
 
-    m_before_after.addButton(new QRadioButton(tr("Before"), this), 0);
+    m_before_after.addButton(new QRadioButton(tr("Before"), this),
+                             static_cast<int>(m_position::before));
     grid_layout->addWidget(m_before_after.button(0), 7, 0);
-    m_before_after.addButton(new QRadioButton(tr("After"), this), 1);
+    m_before_after.addButton(new QRadioButton(tr("After"), this),
+                             static_cast<int>(m_position::after));
     grid_layout->addWidget(m_before_after.button(1), 7, 1);
 
     grid_layout->addWidget(new QLabel(tr("Page:"), this), 8, 0);
@@ -126,9 +131,9 @@ AddEmptyPages::AddEmptyPages(const PdfInfo &pdf_info,
     h_layout->addWidget(save_as_button);
 
     connect(&m_save_button, &QPushButton::pressed,
-            [=]() {if (show_overwrite_dialog()) save();});
+            [=]() {if (show_overwrite_dialog()) m_save();});
     connect(save_as_button, &QPushButton::pressed,
-            [=]() {if (show_save_as_dialog()) save();});
+            [=]() {if (show_save_as_dialog()) m_save();});
 }
 
 void AddEmptyPages::pdf_info_changed()
@@ -141,25 +146,31 @@ void AddEmptyPages::pdf_info_changed()
     m_page_height.setValue(m_pdf_info->height());
 }
 
-void AddEmptyPages::save()
+void AddEmptyPages::m_save()
 {
     emit write_started();
 
     int count = m_count.value();
 
+    m_pages_size_type type =
+            static_cast<m_pages_size_type>(m_page_size.checkedId());
     double page_width, page_height;
-    switch (m_page_size.checkedId()) {
-    case 0: {
+    switch (type)
+    {
+    case m_pages_size_type::same:
+    {
         page_width = m_pdf_info->width();
         page_height = m_pdf_info->height();
         break;
     }
-    case 1: {
+    case m_pages_size_type::custom:
+    {
         page_width = m_page_width.value();
         page_height = m_page_height.value();
         break;
     }
-    case 2: {
+    case m_pages_size_type::standard:
+    {
         PaperSize size = paper_sizes[
                 m_standard_page_size.currentData().toUInt()];
 
@@ -184,7 +195,10 @@ void AddEmptyPages::save()
     unsigned int id = editor.add_file(m_pdf_info->filename());
     int location = m_page.value() - 1;
 
-    if (m_before_after.checkedId() == 0)
+    m_position position = static_cast<m_position>(m_before_after.checkedId());
+    switch (position)
+    {
+    case m_position::before:
     {
         if (location > 0)
         {
@@ -195,10 +209,13 @@ void AddEmptyPages::save()
         editor.add_blank_pages(page_width, page_height, count);
         emit progress_changed(40);
 
-        editor.add_pages(id, 0, nullptr, {{location, m_pdf_info->n_pages() - 1}});
+        editor.add_pages(id, 0, nullptr,
+                         {{location, m_pdf_info->n_pages() - 1}});
         emit progress_changed(60);
+
+        break;
     }
-    else
+    case m_position::after:
     {
         editor.add_pages(id, 0, nullptr, {{0, location}});
         emit progress_changed(20);
@@ -208,9 +225,11 @@ void AddEmptyPages::save()
 
         if (location < m_pdf_info->n_pages() - 1)
         {
-            editor.add_pages(id, 0, nullptr, {{location + 1, m_pdf_info->n_pages() - 1}});
+            editor.add_pages(id, 0, nullptr,
+                             {{location + 1, m_pdf_info->n_pages() - 1}});
             emit progress_changed(60);
         }
+    }
     }
 
     editor.write(m_save_filename.toStdString());

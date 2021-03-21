@@ -40,7 +40,10 @@ signals:
     void save_as_button_pressed();
 
 private:
-    void save();
+    enum class m_pages_size_type {same, custom, standard};
+    enum class m_position {before, after};
+
+    void m_save();
 
     QSpinBox m_count;
     QButtonGroup m_page_size;

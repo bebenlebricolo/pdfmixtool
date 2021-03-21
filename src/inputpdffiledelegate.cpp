@@ -167,7 +167,7 @@ QWidget *InputPdfFileDelegate::build_widget(
     }
 
     main_widget->setContentsMargins(0, 0, 0, 0);
-    main_widget->layout()->setMargin(2);
+    main_widget->layout()->setContentsMargins(2, 2, 2, 2);
     widget->setContentsMargins(10, 5, 10, 5);
     preview_label->setContentsMargins(0, 0, 0, 0);
     grid_layout->setColumnStretch(3, 1);

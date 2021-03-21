@@ -66,7 +66,9 @@ MainWindow::MainWindow(MouseEventFilter *filter, QWidget *parent) :
     settings->endGroup();
 
     // Load custom multipage profiles
+#if QT_VERSION < 0x060000
     qRegisterMetaTypeStreamOperators<Multipage>("Multipage");
+#endif
     settings->beginGroup("maltipage_profiles");
     for (QString key : settings->childKeys())
         multipages[key.toInt()] =

@@ -54,11 +54,14 @@ public:
 
     PdfEditor();
 
+    // returns the file_id to be used in add_pages
     unsigned int add_file(const std::string &filename);
 
     void add_blank_pages(double width, double height, int count);
 
-    // layout is deleted
+    // add pages from pdf denoted by file_id.
+    // layout is deleted by this function.
+    // intervals pages numbering starts from 0.
     void add_pages(unsigned int file_id,
                    int relative_rotation = 0,
                    const PageLayout *layout = nullptr,

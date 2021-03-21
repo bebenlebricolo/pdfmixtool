@@ -94,6 +94,15 @@ void PdfEditor::add_pages(unsigned int file_id,
                           const std::vector<std::pair<int, int>> &intervals,
                           const std::string &outline_entry)
 {
+    // if no intervals are provided, call this function with one interval
+    // containing all the pages of the file_id pdf
+    if (intervals.empty())
+    {
+        add_pages(file_id, relative_rotation, layout,
+                  {{0, m_pages[file_id].size() - 1}}, outline_entry);
+        return;
+    }
+
     QPDFPageDocumentHelper output_helper(m_output_pdf);
 
     // add pages to the output file and add outlines to m_output_outlines
@@ -128,7 +137,7 @@ void PdfEditor::add_pages(unsigned int file_id,
     int page_count = 0;
 
     // add pages from each interval and outlines poinintg to those pages
-    for (unsigned int i = 0; i < intervals.size(); i++)
+    for (unsigned int i = 0; i < intervals.size(); ++i)
     {
         // add pages
         int initial_page_count = page_count;
@@ -230,7 +239,6 @@ void PdfEditor::add_pages(unsigned int file_id,
         }
     }
 
-    ++page_count;
     m_last_page += page_count;
 
     // set parent outline next_move based on whether any child outline was added

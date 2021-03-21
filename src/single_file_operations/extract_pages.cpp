@@ -30,9 +30,8 @@
 #include "../pdf_edit_lib/pdf_editor.h"
 
 ExtractPages::ExtractPages(const PdfInfo &pdf_info,
-                           QProgressBar *progress_bar,
                            QWidget *parent) :
-      AbstractOperation(pdf_info, progress_bar, parent)
+      AbstractOperation(pdf_info, parent)
 {
     m_name = tr("Extract pages");
 
@@ -113,6 +112,8 @@ void ExtractPages::extract_to_individual()
 
     if (!dir_name.isNull())
     {
+        emit write_started();
+
         settings->setValue(
                     "save_directory",
                     QFileInfo(dir_name).dir().absolutePath());
@@ -127,6 +128,7 @@ void ExtractPages::extract_to_individual()
                                              intervals,
                                              output_pages_count);
 
+        int  j{0};
         std::vector<std::pair<int, int>>::iterator it;
         for (it = intervals.begin(); it != intervals.end(); ++it)
         {
@@ -138,8 +140,9 @@ void ExtractPages::extract_to_individual()
                 PdfEditor editor;
                 unsigned int id = editor.add_file(m_pdf_info->filename());
                 editor.add_pages(id, 0, nullptr, {{i, i}});
+                editor.write(dir.filePath(filename).toStdString());
 
-                launch_write_pdf(editor, dir.filePath(filename));
+                emit progress_changed(100. * ++j / (output_pages_count + 1));
             }
         }
 
@@ -165,6 +168,8 @@ void ExtractPages::extract_to_single()
 
     if (!m_save_filename.isNull())
     {
+        emit write_started();
+
         settings->setValue(
                     "save_directory",
                     QFileInfo(m_save_filename).dir().absolutePath());
@@ -176,9 +181,14 @@ void ExtractPages::extract_to_single()
                                              intervals,
                                              output_pages_count);
 
+        emit progress_changed(20);
+
         PdfEditor editor;
         unsigned int id = editor.add_file(m_pdf_info->filename());
         editor.add_pages(id, 0, nullptr, intervals);
-        launch_write_pdf(editor, m_save_filename);
+        emit progress_changed(70);
+
+        editor.write(m_save_filename.toStdString());
+        emit write_finished(m_save_filename);
     }
 }

@@ -27,7 +27,6 @@ class DeletePages : public AbstractOperation
     Q_OBJECT
 public:
     explicit DeletePages(const PdfInfo &pdf_info,
-                         QProgressBar *progress_bar,
                          QWidget *parent = nullptr);
 
 private:

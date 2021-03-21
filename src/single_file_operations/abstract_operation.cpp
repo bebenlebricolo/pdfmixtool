@@ -54,11 +54,9 @@
 //}
 
 AbstractOperation::AbstractOperation(const PdfInfo &pdf_info,
-                                     QProgressBar *progress_bar,
                                      QWidget *parent) :
     QWidget(parent),
-    m_pdf_info(&pdf_info),
-    m_progress_bar(progress_bar)
+    m_pdf_info(&pdf_info)
 {
     m_save_button.setIcon(QIcon::fromTheme("document-save"));
     m_save_button.setText(tr("Save"));
@@ -72,11 +70,6 @@ AbstractOperation::AbstractOperation(const PdfInfo &pdf_info,
 const QString &AbstractOperation::name()
 {
     return m_name;
-}
-
-void AbstractOperation::update_progress(int progress)
-{
-    m_progress_bar->setValue(progress);
 }
 
 void AbstractOperation::pdf_info_changed()
@@ -137,22 +130,4 @@ bool AbstractOperation::show_save_as_dialog()
     }
 
     return false;
-}
-
-void AbstractOperation::launch_write_pdf(PdfEditor &editor,
-                                         const QString &filename)
-{
-    emit write_started();
-
-    editor.write(filename.toStdString());
-
-    m_progress_bar->setValue(100);
-
-    emit write_finished(filename);
-
-//    WriterThread *writer_thread = new WriterThread(editor, filename);
-//    connect(writer_thread, &WriterThread::progress, this, &AbstractOperation::update_progress);
-//    connect(writer_thread, &WriterThread::done, this, &AbstractOperation::write_finished);
-//    connect(writer_thread, &WriterThread::finished, writer_thread, &QObject::deleteLater);
-//    writer_thread->start();
 }

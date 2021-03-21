@@ -53,7 +53,6 @@ class AbstractOperation : public QWidget
 
 public:
     explicit AbstractOperation(const PdfInfo &pdf_info,
-                               QProgressBar *progress_bar,
                                QWidget *parent = nullptr);
 
     const QString &name();
@@ -61,10 +60,9 @@ public:
 public slots:
     virtual void pdf_info_changed();
 
-    void update_progress(int progress);
-
 signals:
     void write_started();
+    void progress_changed(int progress);
     void write_finished(const QString &filename);
 
 protected:
@@ -75,10 +73,7 @@ protected:
     bool show_overwrite_dialog();
     bool show_save_as_dialog();
 
-    void launch_write_pdf(PdfEditor &editor, const QString &filename);
-
     PdfInfo const *m_pdf_info;
-    QProgressBar *m_progress_bar;
 
 private:
     void update_progress_bar(std::atomic_int *progress);

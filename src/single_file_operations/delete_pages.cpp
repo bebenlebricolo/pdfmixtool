@@ -27,9 +27,8 @@
 #include "../pdf_edit_lib/pdf_editor.h"
 
 DeletePages::DeletePages(const PdfInfo &pdf_info,
-                         QProgressBar *progress_bar,
                          QWidget *parent) :
-    AbstractOperation(pdf_info, progress_bar, parent)
+    AbstractOperation(pdf_info, parent)
 {
     m_name = tr("Delete pages");
 
@@ -88,6 +87,8 @@ void DeletePages::save(bool save_as)
             return;
     }
 
+    emit write_started();
+
     int output_pages_count;
     std::vector<std::pair<int, int>> delete_intervals;
 
@@ -121,10 +122,14 @@ void DeletePages::save(bool save_as)
 
         prev = keep_pages[i];
     }
+    emit progress_changed(20);
 
     PdfEditor editor;
     unsigned int id = editor.add_file(m_pdf_info->filename());
     editor.add_pages(id, 0, nullptr, keep_intervals);
+    emit progress_changed(70);
 
-    launch_write_pdf(editor, m_save_filename);
+    editor.write(m_save_filename.toStdString());
+
+    emit write_finished(m_save_filename);
 }

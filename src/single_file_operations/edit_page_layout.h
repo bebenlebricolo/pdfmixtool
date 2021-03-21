@@ -31,7 +31,6 @@ class EditPageLayout : public AbstractOperation
     Q_OBJECT
 public:
     explicit EditPageLayout(const PdfInfo &pdf_info,
-                            QProgressBar *progress_bar,
                             QWidget *parent = nullptr);
 
 public slots:

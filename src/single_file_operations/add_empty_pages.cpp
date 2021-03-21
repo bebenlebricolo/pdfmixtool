@@ -27,9 +27,8 @@
 #include "../pdf_edit_lib/pdf_editor.h"
 
 AddEmptyPages::AddEmptyPages(const PdfInfo &pdf_info,
-                             QProgressBar *progress_bar,
                              QWidget *parent) :
-        AbstractOperation(pdf_info, progress_bar, parent)
+        AbstractOperation(pdf_info, parent)
 {
     m_name = tr("Add empty pages");
 
@@ -144,6 +143,8 @@ void AddEmptyPages::pdf_info_changed()
 
 void AddEmptyPages::save()
 {
+    emit write_started();
+
     int count = m_count.value();
 
     double page_width, page_height;
@@ -186,21 +187,33 @@ void AddEmptyPages::save()
     if (m_before_after.checkedId() == 0)
     {
         if (location > 0)
+        {
             editor.add_pages(id, 0, nullptr, {{0, location - 1}});
+            emit progress_changed(20);
+        }
 
         editor.add_blank_pages(page_width, page_height, count);
+        emit progress_changed(40);
 
         editor.add_pages(id, 0, nullptr, {{location, m_pdf_info->n_pages() - 1}});
+        emit progress_changed(60);
     }
     else
     {
         editor.add_pages(id, 0, nullptr, {{0, location}});
+        emit progress_changed(20);
 
         editor.add_blank_pages(page_width, page_height, count);
+        emit progress_changed(40);
 
         if (location < m_pdf_info->n_pages() - 1)
+        {
             editor.add_pages(id, 0, nullptr, {{location + 1, m_pdf_info->n_pages() - 1}});
+            emit progress_changed(60);
+        }
     }
 
-    launch_write_pdf(editor, m_save_filename);
+    editor.write(m_save_filename.toStdString());
+
+    emit write_finished(m_save_filename);
 }

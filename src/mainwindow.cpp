@@ -339,10 +339,9 @@ MainWindow::MainWindow(MouseEventFilter *filter, QWidget *parent) :
     QListWidget *operations_list = new QListWidget(this);
     QStackedWidget *operations_widget = new QStackedWidget(this);
 
-    m_operations.push_back(new Booklet(m_opened_pdf_info,
-                                       m_progress_bar, this));
+    m_operations.push_back(new Booklet(m_opened_pdf_info, this));
     EditPageLayout *edit_page_layout = new EditPageLayout(m_opened_pdf_info,
-                                                          m_progress_bar, this);
+                                                          this);
     edit_page_layout->update_multipage_profiles();
     connect(m_multipage_profiles_manager,
             &MultipageProfilesManager::close_signal,
@@ -357,12 +356,9 @@ MainWindow::MainWindow(MouseEventFilter *filter, QWidget *parent) :
             edit_page_layout,
             &EditPageLayout::profile_created);
     m_operations.push_back(edit_page_layout);
-    m_operations.push_back(new AddEmptyPages(m_opened_pdf_info,
-                                             m_progress_bar, this));
-    m_operations.push_back(new DeletePages(m_opened_pdf_info,
-                                           m_progress_bar, this));
-    m_operations.push_back(new ExtractPages(m_opened_pdf_info,
-                                           m_progress_bar, this));
+    m_operations.push_back(new AddEmptyPages(m_opened_pdf_info, this));
+    m_operations.push_back(new DeletePages(m_opened_pdf_info, this));
+    m_operations.push_back(new ExtractPages(m_opened_pdf_info, this));
 
     for (AbstractOperation *operation : m_operations)
     {
@@ -370,6 +366,8 @@ MainWindow::MainWindow(MouseEventFilter *filter, QWidget *parent) :
         operations_widget->addWidget(operation);
         connect(operation, &AbstractOperation::write_started,
                 this, &MainWindow::write_started);
+        connect(operation, &AbstractOperation::progress_changed,
+                this, &MainWindow::update_progress);
         connect(operation, &AbstractOperation::write_finished,
                 this, &MainWindow::write_finished);
     }
@@ -883,7 +881,9 @@ void MainWindow::generate_pdf_button_pressed()
         {
             PdfEditor editor;
 
-            for (int i = 0; i < m_files_list_model->rowCount(); i++)
+            int num_items{m_files_list_model->rowCount()};
+
+            for (int i{0}; i < num_items; i++)
             {
                 QStandardItem *item = m_files_list_model->item(i);
 
@@ -910,9 +910,13 @@ void MainWindow::generate_pdf_button_pressed()
 
                 editor.add_pages(id, rotation, page_layout, intervals,
                                  outline.toStdString());
+
+                update_progress(100. * (i + 1) / (num_items + 1));
             }
 
             editor.write(selected_file.toStdString());
+
+            update_progress(100);
         }
 
         write_finished(selected_file);
@@ -965,8 +969,15 @@ void MainWindow::write_started()
     m_progress_bar->show();
 }
 
+void MainWindow::update_progress(int progress)
+{
+    m_progress_bar->setValue(progress);
+}
+
 void MainWindow::write_finished(const QString &filename)
 {
+    m_progress_bar->setValue(100);
+
     if (filename == QString::fromStdString(m_opened_pdf_info.filename()))
         update_opened_file_label(filename);
 

@@ -29,7 +29,6 @@ class Booklet : public AbstractOperation
     Q_OBJECT
 public:
     explicit Booklet(const PdfInfo &pdf_info,
-                     QProgressBar *progress_bar,
                      QWidget *parent = nullptr);
 
 private:

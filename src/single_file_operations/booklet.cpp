@@ -27,9 +27,8 @@
 #include "../pdf_edit_lib/pdf_editor.h"
 
 Booklet::Booklet(const PdfInfo &pdf_info,
-                 QProgressBar *progress_bar,
                  QWidget *parent) :
-AbstractOperation(pdf_info, progress_bar, parent)
+AbstractOperation(pdf_info, parent)
 {
     m_name = tr("Booklet");
 
@@ -74,6 +73,8 @@ void Booklet::generate_booklet()
 
     if (!m_save_filename.isNull())
     {
+        emit write_started();
+
         settings->setValue(
                     "save_directory",
                     QFileInfo(m_save_filename).dir().absolutePath());
@@ -148,7 +149,13 @@ void Booklet::generate_booklet()
 
         PdfEditor editor;
         unsigned int id = editor.add_file(m_pdf_info->filename());
+
+        emit progress_changed(20);
         editor.add_pages(id, 0, layout, intervals);
-        launch_write_pdf(editor, m_save_filename);
+        emit progress_changed(70);
+
+        editor.write(m_save_filename.toStdString());
+
+        emit write_finished(m_save_filename);
     }
 }

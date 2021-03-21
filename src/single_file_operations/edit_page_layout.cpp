@@ -27,9 +27,8 @@
 #include "../pdf_edit_lib/pdf_writer.h"
 
 EditPageLayout::EditPageLayout(const PdfInfo &pdf_info,
-                               QProgressBar *progress_bar,
                                QWidget *parent) :
-          AbstractOperation(pdf_info, progress_bar, parent)
+          AbstractOperation(pdf_info, parent)
 {
     m_name = tr("Edit page layout");
 
@@ -237,8 +236,10 @@ void EditPageLayout::save()
     PdfEditor::PageLayout *page_layout{nullptr};
     if (mp_index >= 0)
         page_layout = new PdfEditor::PageLayout(multipages[mp_index]);
+    emit progress_changed(20);
 
     editor.add_pages(id, m_rotation.currentData().toInt(), page_layout, {});
+    emit progress_changed(70);
 
     editor.write(m_save_filename.toStdString());
 

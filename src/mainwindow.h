@@ -89,6 +89,8 @@ public slots:
 
     void write_started();
 
+    void update_progress(int progress);
+
     void write_finished(const QString &filename);
 
     // close event

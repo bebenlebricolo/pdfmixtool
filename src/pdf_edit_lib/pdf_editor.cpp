@@ -329,7 +329,7 @@ void PdfEditor::m_add_flatten_outlines(
                     if (root.hasKey("/Dests"))
                     {
                          tmp = root.getKey("/Dests")
-                                 .getKey(dest.getStringValue());
+                                 .getKey(dest.getUTF8Value());
                     }
                     // PDF 1.2
                     else if (root.hasKey("/Names"))
@@ -339,7 +339,7 @@ void PdfEditor::m_add_flatten_outlines(
 
                         // traverse nodes tree to find the named destination
                         tmp = m_get_key_in_name_tree(dests_root,
-                                                     dest.getStringValue());
+                                                     dest.getUTF8Value());
                     }
                     if (tmp.isArray())
                         dest = tmp;
@@ -654,7 +654,7 @@ QPDFObjectHandle PdfEditor::m_get_key_in_name_tree(QPDFObjectHandle &node,
         auto names = node.getKey("/Names").getArrayAsVector();
         for (size_t i{0}; i < names.size(); i += 2)
         {
-            if (names[i].getStringValue() == key)
+            if (names[i].getUTF8Value() == key)
                 return names[i + 1];
         }
     }

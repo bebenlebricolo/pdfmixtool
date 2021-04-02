@@ -111,32 +111,6 @@ const Multipage multipage_defaults[] = {
     }
 };
 
-struct FileConf {
-    FileConf() :
-        multipage_enabled(false),
-        multipage(nullptr),
-        rotation(0),
-        scale(100)
-    {
-
-    }
-    std::string path;
-    std::string ouput_pages;
-    bool multipage_enabled;
-    const Multipage *multipage;
-    int rotation;
-    std::string outline_entry;
-    int scale;
-};
-
-struct Conf {
-    std::string output_path;
-
-    std::vector<FileConf> files;
-
-    bool alternate_mix;
-};
-
 // return true if the input string is valid
 bool parse_output_pages_string(const std::string &str,
                                int n_pages,

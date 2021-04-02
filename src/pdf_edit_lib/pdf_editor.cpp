@@ -53,21 +53,19 @@ unsigned int PdfEditor::add_file(const std::string &filename)
 
     m_input_files.push_back(QPDF());
     m_input_files[file_id].processFile(filename.c_str());
-    // FIXME not necessary if input files are keep until write
+    // FIXME not necessary if input files are kept until write
     m_input_files[file_id].setImmediateCopyFrom(true);
 
     m_pages.push_back(
                 QPDFPageDocumentHelper(m_input_files[file_id]).getAllPages());
+    m_page_infos.push_back(std::map<int, PageInfo>{});
 
     QPDFOutlineDocumentHelper outline_helper(m_input_files[file_id]);
     QPDFObjectHandle root = m_input_files[file_id].getRoot();
 
     // flatten outlines tree
     m_flat_outlines.push_back(std::vector<FlatOutline>());
-    m_add_flatten_outlines(root,
-                           m_pages[file_id],
-                           outline_helper.getTopLevelOutlines(),
-                           m_flat_outlines[file_id]);
+    m_add_flat_outlines(file_id, root, outline_helper.getTopLevelOutlines());
 
     // add document's info from the first input file
     if (file_id == 0 && m_input_files[file_id].getTrailer().hasKey("/Info"))
@@ -112,39 +110,43 @@ void PdfEditor::add_pages(unsigned int file_id,
     // add parent outline for the block, if any
     unsigned int parent_outline_index;
     if (!outline_entry.empty())
-    {
+    {        
+        QPDFPageObjectHelper &page = m_pages[file_id][intervals[0].first];
+        QPDFObjectHandle::Rectangle rect =
+                page.getAttribute("/MediaBox", true).getArrayAsRectangle();
+
         FlatOutline outline;
         outline.title = outline_entry;
-        outline.top = 0;
+        outline.top = std::abs(rect.lly - rect.ury);
         outline.left = 0;
-        outline.page = m_last_page + 1;
+        outline.file_id = file_id;
+        outline.page = intervals[0].first;
 
         parent_outline_index = m_output_outlines.size();
         m_output_outlines.push_back(outline);
     }
 
     int num_pages_per_paper;
-    int sub_page_count;
+    int sub_page_count{0};
     QPDFObjectHandle outer_page_obj;
 
     if (layout)
     {
         num_pages_per_paper = layout->pages.size();
-        sub_page_count = 0;
         outer_page_obj = m_create_blank_page(layout->width, layout->height);
 
         output_helper.addPage(QPDFPageObjectHelper(outer_page_obj), false);
-    }
 
-    int page_count = 0;
+        QPDFPageObjectHelper(outer_page_obj).rotatePage(relative_rotation,
+                                                        true);
+
+        ++m_last_page;
+    }
 
     // add pages from each interval and outlines poinintg to those pages
     for (unsigned int i = 0; i < intervals.size(); ++i)
     {
         // add pages
-        int initial_page_count = page_count;
-        int initial_sub_page_count = sub_page_count;
-
         for (int j = intervals[i].first; j <= intervals[i].second; ++j)
         {
             if (layout)
@@ -158,19 +160,24 @@ void PdfEditor::add_pages(unsigned int file_id,
 
                     output_helper.addPage(QPDFPageObjectHelper(outer_page_obj), false);
 
-                    ++page_count;
+                    QPDFPageObjectHelper(outer_page_obj).rotatePage(relative_rotation,
+                                                                    true);
+
+                    ++m_last_page;
                 }
 
                 if (j > -1)
                 {
-                    const Page &page_pos = layout->pages[sub_page_count++];
-                    QPDFPageObjectHelper page = m_pages[file_id][j];
-                    m_impose_page(outer_page_obj, page, page_pos.relative_rotation,
-                                  page_pos.x, page_pos.y, page_pos.width, page_pos.height);
-                }
+                    PageInfo pi;
+                    pi.dest = m_last_page;
+                    m_page_infos[file_id][j] = pi;
 
-                QPDFPageObjectHelper(outer_page_obj).rotatePage(relative_rotation,
-                                                                true);
+                    const Page &page_pos = layout->pages[sub_page_count++];
+                    m_impose_page(outer_page_obj, file_id, j,
+                                  page_pos.relative_rotation,
+                                  page_pos.x, page_pos.y,
+                                  page_pos.width, page_pos.height);
+                }
             }
             else
             {
@@ -181,7 +188,11 @@ void PdfEditor::add_pages(unsigned int file_id,
 
                 output_helper.addPage(page, false);
 
-                ++page_count;
+                ++m_last_page;
+
+                PageInfo pi;
+                pi.dest = m_last_page;
+                m_page_infos[file_id][j] = pi;
             }
         }
 
@@ -210,18 +221,6 @@ void PdfEditor::add_pages(unsigned int file_id,
                     else if (outline.next_move == Move::down)
                         ++depth;
 
-                    // update destination page number
-                    if (outline.page != -1)
-                    {
-                        if (layout)
-                            outline.page = m_last_page + 1 + initial_page_count +
-                                    (outline.page - intervals[i].first +
-                                     initial_sub_page_count) / num_pages_per_paper;
-                        else
-                            outline.page = m_last_page + 1 + outline.page -
-                                    intervals[i].first;
-                    }
-
                     m_output_outlines.push_back(outline);
                 }
 
@@ -240,8 +239,6 @@ void PdfEditor::add_pages(unsigned int file_id,
             ++j;
         }
     }
-
-    m_last_page += page_count;
 
     // set parent outline next_move based on whether any child outline was added
     if (!outline_entry.empty())
@@ -288,20 +285,22 @@ void PdfEditor::write(const std::string &output_filename)
     // FIXME clear object
 }
 
-void PdfEditor::m_add_flatten_outlines(
+void PdfEditor::m_add_flat_outlines(
+        int file_id,
         QPDFObjectHandle &root,
-        const std::vector<QPDFPageObjectHelper> &pages,
-        const std::vector<QPDFOutlineObjectHelper> &outlines,
-        std::vector<FlatOutline> &flat_outlines)
+        const std::vector<QPDFOutlineObjectHelper> &outlines)
 {
+    const std::vector<QPDFPageObjectHelper> &pages = m_pages[file_id];
+    std::vector<FlatOutline> &flat_outlines = m_flat_outlines[file_id];
+
     int count = 0;
 
     for (QPDFOutlineObjectHelper outline : outlines)
     {
         FlatOutline flat_outline;
+        flat_outline.file_id = file_id;
         flat_outline.title = outline.getTitle();
 
-        // FIXME compute correct top-left point
         flat_outline.top = 0;
         flat_outline.left = 0;
 
@@ -420,7 +419,7 @@ void PdfEditor::m_add_flatten_outlines(
 
         flat_outlines.push_back(flat_outline);
 
-        m_add_flatten_outlines(root, pages, outline.getKids(), flat_outlines);
+        m_add_flat_outlines(file_id, root, outline.getKids());
 
         ++count;
     }
@@ -455,8 +454,7 @@ int PdfEditor::m_build_outline_level(const std::vector<FlatOutline> &flat_outlin
         outline = m_output_pdf.makeIndirectObject(outline);
         outline.replaceKey("/Title", QPDFObjectHandle::newUnicodeString(flat_outlines[i].title));
         outline.replaceKey("/Parent", parent);
-        if (flat_outlines[i].page != -1)
-            m_set_outline_destination(outline, flat_outlines[i].page);
+        m_set_outline_destination(outline, flat_outlines[i]);
 
         if (last.isNull())
         {
@@ -520,64 +518,37 @@ QPDFObjectHandle PdfEditor::m_create_blank_page(double width, double height)
 }
 
 void PdfEditor::m_set_outline_destination(QPDFObjectHandle &outline,
-                                          unsigned int page_index)
+                                          const FlatOutline &flat_outline)
 {
-    QPDFPageObjectHelper page = m_output_pdf.getAllPages()[page_index];
-
-    // get rotation of the page
-    long long page_rotation = 0;
-    if (page.getAttribute("/Rotate", true).isInteger())
-        page_rotation = page.getAttribute("/Rotate", true).getIntValue();
-
-    // get the coordinates
-    QPDFObjectHandle::Rectangle rect =
-            page.getAttribute("/MediaBox", true).getArrayAsRectangle();
-
-    double height = rect.ury - rect.lly;
-    double width = rect.urx - rect.llx;
-    double top;
-    double left;
-
-    switch (page_rotation)
-    {
-    case 90:
-        top = 0;
-        left = 0;
-        break;
-    case 180:
-        top = 0;
-        left = width;
-        break;
-    case 270:
-        top = height;
-        left = width;
-        break;
-    default:
-        top = height;
-        left = 0;
-        break;
-    }
+    PageInfo &pi = m_page_infos[flat_outline.file_id][flat_outline.page];
+    QPDFPageObjectHelper page = m_output_pdf.getAllPages()[pi.dest];
+    Point dest_point = pi.get_point_in_dest(
+                flat_outline.left, flat_outline.top);
 
     // set destination
     QPDFObjectHandle dest = QPDFObjectHandle::newArray();
     dest.appendItem(page.getObjectHandle());
     dest.appendItem(QPDFObjectHandle::newName("/XYZ"));
-    dest.appendItem(QPDFObjectHandle::newReal(left));
-    dest.appendItem(QPDFObjectHandle::newReal(top));
+    dest.appendItem(QPDFObjectHandle::newReal(dest_point.first));
+    dest.appendItem(QPDFObjectHandle::newReal(dest_point.second));
     dest.appendItem(QPDFObjectHandle::newNull());
     outline.replaceKey("/Dest", dest);
 }
 
 void PdfEditor::m_impose_page(QPDFObjectHandle &outer_page_obj,
-                              QPDFPageObjectHelper &page,
+                              int file_id,
+                              int page_id,
                               int relative_rotation,
                               double x,
                               double y,
                               double width,
                               double height)
 {
+    QPDFPageObjectHelper &page = m_pages[file_id][page_id];
+
     QPDFPageObjectHelper outer_page(outer_page_obj);
 
+    // FIXME the page remains rotated for other add_pages on the same file
     page.rotatePage(relative_rotation, true);
 
     // Get form xobject for input page
@@ -615,10 +586,31 @@ void PdfEditor::m_impose_page(QPDFObjectHandle &outer_page_obj,
         outer_page.addPageContents(QPDFObjectHandle::newStream(&m_output_pdf, "\nQ\n" + content),
                                    false);
     }
+
+    // update pageinfo
+    Point page_size = m_get_page_size(page);
+    PageInfo &pi = m_page_infos[file_id][page_id];
+    pi.scale = std::min(width / page_size.first, height / page_size.second);
+    pi.rot = page.getAttribute("/Rotate", true).getIntValue();
+    pi.x0 = x + (width - page_size.first * pi.scale) / 2;
+    pi.y0 = y + (height - page_size.second * pi.scale) / 2;
+    if (pi.rot % 360 == 90)
+    {
+        pi.y0 += page_size.second * pi.scale;
+    }
+    else if (pi.rot % 360 == 180)
+    {
+        pi.x0 += page_size.first * pi.scale;
+        pi.y0 += page_size.second * pi.scale;
+    }
+    else if (pi.rot % 360 == 90)
+    {
+        pi.x0 += page_size.first * pi.scale;
+    }
 }
 
 PdfEditor::PageLayout::PageLayout(const Multipage &mp) :
-    width{mp.page_width}, height{mp.page_height}
+    width{mp.page_width * cm}, height{mp.page_height * cm}
 {
     double subpage_width = width / mp.columns;
     double subpage_height = height / mp.rows;
@@ -660,4 +652,30 @@ QPDFObjectHandle PdfEditor::m_get_key_in_name_tree(QPDFObjectHandle &node,
     }
 
     return QPDFObjectHandle::newNull();
+}
+
+PdfEditor::Point PdfEditor::m_get_page_size(QPDFPageObjectHelper &page)
+{
+    // get rotation of the page
+    long long page_rotation = 0;
+    if (page.getAttribute("/Rotate", true).isInteger())
+        page_rotation = page.getAttribute("/Rotate", true).getIntValue();
+
+    // get size of the page
+    QPDFObjectHandle::Rectangle rect =
+            page.getAttribute("/MediaBox", true).getArrayAsRectangle();
+
+    Point size;
+    if (page_rotation % 180 == 90)
+    {
+        size.first = std::abs(rect.lly - rect.ury);
+        size.second = std::abs(rect.llx - rect.urx);
+    }
+    else
+    {
+        size.first = std::abs(rect.llx - rect.urx);
+        size.second = std::abs(rect.lly - rect.ury);
+    }
+
+    return size;
 }

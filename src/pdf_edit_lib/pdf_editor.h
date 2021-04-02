@@ -20,9 +20,8 @@
 #define PDFEDITOR_H
 
 #include <string>
-#include <functional>
 #include <vector>
-#include <atomic>
+#include <cmath>
 
 #include <qpdf/QPDF.hh>
 #include <qpdf/QUtil.hh>
@@ -36,7 +35,7 @@
 class PdfEditor
 {
 public:
-
+    // origin of the frame of reference is in the lower-left corner of the page
     class Page {
     public:
         double x, y, width, height;
@@ -62,6 +61,7 @@ public:
     // add pages from pdf denoted by file_id.
     // layout is deleted by this function.
     // intervals pages numbering starts from 0.
+    // [-1, -1] intervals mean "skip position" when there is a multipage layout
     void add_pages(unsigned int file_id,
                    int relative_rotation = 0,
                    const PageLayout *layout = nullptr,
@@ -71,6 +71,8 @@ public:
     void write(const std::string &output_filename);
 
 private:
+    using Point = std::pair<double, double>;
+
     enum class Move {
         up,
         down,
@@ -80,9 +82,28 @@ private:
     struct FlatOutline {
         Move next_move;
         std::string title;
+        int file_id;
         int page;
         double top;
         double left;
+    };
+
+    struct PageInfo {
+        Point get_point_in_dest(double x, double y)
+        {
+            double r = - M_PI / 180. * rot;
+            double xr = std::cos(r) * x - std::sin(r) * y;
+            double yr = std::sin(r) * x + std::cos(r) * y;
+            double xo = x0 + xr * scale;
+            double yo = y0 + yr * scale;
+            return {xo, yo};
+
+        }
+        int dest{-1};
+        int rot{0};
+        double x0{0.};
+        double y0{0.};
+        double scale{1.};
     };
 
     std::locale m_old_locale;
@@ -92,12 +113,18 @@ private:
     std::vector<QPDF> m_input_files;
     std::vector<std::vector<QPDFPageObjectHelper>> m_pages;
     std::vector<std::vector<FlatOutline>> m_flat_outlines;
+    std::vector<std::map<int, PageInfo>> m_page_infos;
 
-    static void m_add_flatten_outlines(
+    QPDF m_output_pdf;
+    std::vector<FlatOutline> m_output_outlines;
+
+    QPDFObjectHandle m_last_outline;
+    QPDFObjectHandle m_last_first_level_outline;
+
+    void m_add_flat_outlines(
+            int file_id,
             QPDFObjectHandle &root,
-            const std::vector<QPDFPageObjectHelper> &pages,
-            const std::vector<QPDFOutlineObjectHelper> &outlines,
-            std::vector<FlatOutline> &flat_outlines);
+            const std::vector<QPDFOutlineObjectHelper> &outlines);
 
     static QPDFObjectHandle m_create_blank_page(double width, double height);
 
@@ -107,25 +134,25 @@ private:
 
     void m_build_outlines(const std::vector<FlatOutline> &flat_outlines);
 
-    void m_set_outline_destination(QPDFObjectHandle &outline,
-                                   unsigned int page_index);
+    void m_set_outline_destination(
+            QPDFObjectHandle &outline,
+            const FlatOutline &flat_outline);
 
+    // impose the page on the outer page and update its PageInfo
     void m_impose_page(QPDFObjectHandle &outer_page_obj,
-                       QPDFPageObjectHelper &page,
+                       int file_id,
+                       int page_id,
                        int relative_rotation,
                        double x,
                        double y,
                        double width,
                        double height);
 
-    QPDF m_output_pdf;
-    std::vector<FlatOutline> m_output_outlines;
-
-    QPDFObjectHandle m_last_outline;
-    QPDFObjectHandle m_last_first_level_outline;
-
     static QPDFObjectHandle m_get_key_in_name_tree(QPDFObjectHandle &node,
                                                    const std::string &key);
+
+    // return the size of the given page, considering its rotation
+    static Point m_get_page_size(QPDFPageObjectHelper &page);
 };
 
 #endif // PDFEDITOR_H

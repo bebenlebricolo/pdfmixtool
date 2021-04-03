@@ -30,6 +30,8 @@ QDataStream &operator<<(QDataStream &out, const Multipage &multipage)
     out << multipage.rows;
     out << multipage.columns;
 
+    out << multipage.rtl;
+
     out << multipage.h_alignment;
     out << multipage.v_alignment;
 
@@ -62,6 +64,11 @@ QDataStream &operator>>(QDataStream &in, Multipage &multipage)
     {
         int rotation;
         in >> rotation;
+        multipage.rtl = false;
+    }
+    else if (version == 1)
+    {
+        in >> multipage.rtl;
     }
 
     int h_alignment;
@@ -194,8 +201,14 @@ void draw_preview(QPainter *painter, const QRect &rect,
         {
             for (int j = 0; j < columns; j++)
             {
-                int dx = margin_left - page_width / 2 +
-                        j * (spacing + subpage_width) + subpage_width / 2;
+                int dx;
+                if (multipage.rtl)
+                    dx = margin_left - page_width / 2 \
+                            + (columns - 1 - j) * (spacing + subpage_width) \
+                            + subpage_width / 2;
+                else
+                    dx = margin_left - page_width / 2 +
+                            j * (spacing + subpage_width) + subpage_width / 2;
                 int dy = margin_top - page_height / 2 +
                         i * (spacing + subpage_height) + subpage_height / 2;
 

@@ -134,7 +134,7 @@ void MultipageProfilesManager::new_profile_button_pressed()
     Multipage multipage = {
         name.toStdString(),
         21.0, 29.7,
-        1, 1,
+        1, 1, false,
         Multipage::Center, Multipage::Center,
         0, 0, 0, 0, 0
     };

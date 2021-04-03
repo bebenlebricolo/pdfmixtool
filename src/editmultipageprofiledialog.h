@@ -66,6 +66,7 @@ private:
     QDoubleSpinBox m_page_height;
     QSpinBox m_rows;
     QSpinBox m_columns;
+    QCheckBox m_rtl;
     QComboBox m_h_alignment;
     QComboBox m_v_alignment;
     QDoubleSpinBox m_margin_left;

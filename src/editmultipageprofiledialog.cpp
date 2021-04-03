@@ -140,7 +140,10 @@ EditMultipageProfileDialog::EditMultipageProfileDialog(QWidget *parent) :
     layout->addWidget(&m_columns, row++, 4);
 
     layout->addWidget(new QLabel(tr("Spacing:"), this), row, 1);
-    layout->addWidget(&m_spacing, row++, 2);
+    layout->addWidget(&m_spacing, row, 2);
+
+    layout->addWidget(new QLabel(tr("Right-to-left:"), this), row, 3);
+    layout->addWidget(&m_rtl, row++, 4);
 
     separator = new QFrame(this);
     separator->setFrameShape(QFrame::HLine);
@@ -210,6 +213,17 @@ void EditMultipageProfileDialog::set_multipage(const Multipage &multipage)
                 std::lround(size.height * 10))
         {
             m_page_size.setCurrentIndex(i);
+            m_orientation.setCurrentIndex(0);
+            custom_size = false;
+            break;
+        }
+        else if (std::lround(multipage.page_width * 10) ==
+                std::lround(size.height * 10)
+                && std::lround(multipage.page_height * 10) ==
+                std::lround(size.width * 10))
+        {
+            m_page_size.setCurrentIndex(i);
+            m_orientation.setCurrentIndex(1);
             custom_size = false;
             break;
         }
@@ -225,6 +239,7 @@ void EditMultipageProfileDialog::set_multipage(const Multipage &multipage)
     m_rows.setValue(multipage.rows);
     m_columns.setValue(multipage.columns);
     m_spacing.setValue(multipage.spacing);
+    m_rtl.setChecked(multipage.rtl);
     m_h_alignment.setCurrentIndex(
                 m_h_alignment.findData(multipage.h_alignment));
     m_v_alignment.setCurrentIndex(
@@ -240,7 +255,7 @@ Multipage EditMultipageProfileDialog::get_multipage()
     return {
         m_name.text().toStdString(),
         m_page_width.value(), m_page_height.value(),
-        m_rows.value(), m_columns.value(),
+        m_rows.value(), m_columns.value(), m_rtl.isChecked(),
         static_cast<Multipage::Alignment>(m_h_alignment.currentData().toInt()),
         static_cast<Multipage::Alignment>(m_v_alignment.currentData().toInt()),
         m_margin_left.value(), m_margin_right.value(),

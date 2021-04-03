@@ -649,7 +649,11 @@ PdfEditor::PageLayout::PageLayout(const Multipage &mp) :
             PdfEditor::Page page;
             page.y = margin_bottom \
                     + (mp.rows - 1 - i) * (subpage_height + spacing);
-            page.x = margin_left + j * (subpage_width + spacing);
+            if (mp.rtl)
+                page.x = margin_left \
+                        + (mp.columns - 1 - j) * (subpage_width + spacing);
+            else
+                page.x = margin_left + j * (subpage_width + spacing);
             page.width = subpage_width;
             page.height = subpage_height;
             page.h_alignment = mp.h_alignment;

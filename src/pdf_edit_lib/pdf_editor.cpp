@@ -173,8 +173,10 @@ void PdfEditor::add_pages(unsigned int file_id,
                     m_page_infos[file_id][j] = pi;
 
                     m_impose_page(outer_page_obj, file_id, j,
-                                  layout->pages[sub_page_count++]);
+                                  layout->pages[sub_page_count]);
                 }
+
+                ++sub_page_count;
             }
             else
             {

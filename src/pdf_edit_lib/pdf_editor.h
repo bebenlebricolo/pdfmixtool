@@ -80,13 +80,24 @@ private:
         next,
     };
 
+    struct Dest {
+        int file_id{-1};
+        int page_id{-1};
+        double x{0};
+        double y{0};
+    };
+
     struct FlatOutline {
         Move next_move;
         std::string title;
-        int file_id;
-        int page;
-        double top;
-        double left;
+        Dest dest;
+    };
+
+    // represent a link annotation
+    struct Link {
+        QPDFObjectHandle ann;
+        int orig_page_id;
+        Dest dest;
     };
 
     struct PageInfo {
@@ -113,6 +124,7 @@ private:
     std::vector<QPDF> m_input_files;
     std::vector<std::vector<QPDFPageObjectHelper>> m_pages;
     std::vector<std::vector<FlatOutline>> m_flat_outlines;
+    std::map<int, std::vector<Link>> m_links;
     std::vector<std::map<int, PageInfo>> m_page_infos;
 
     QPDF m_output_pdf;
@@ -121,9 +133,10 @@ private:
     QPDFObjectHandle m_last_outline;
     QPDFObjectHandle m_last_first_level_outline;
 
+    Dest m_find_destination(int file_id, QPDFObjectHandle &obj);
+
     void m_add_flat_outlines(
             int file_id,
-            QPDFObjectHandle &root,
             const std::vector<QPDFOutlineObjectHelper> &outlines);
 
     static QPDFObjectHandle m_create_blank_page(double width, double height);
@@ -132,11 +145,12 @@ private:
                             QPDFObjectHandle &parent,
                             unsigned int starting_index);
 
-    void m_build_outlines(const std::vector<FlatOutline> &flat_outlines);
+    void m_build_outlines();
 
-    void m_set_outline_destination(
-            QPDFObjectHandle &outline,
-            const FlatOutline &flat_outline);
+    void m_build_links();
+
+    void m_set_outline_destination(QPDFObjectHandle &obj,
+                                   const Dest &dest);
 
     // impose the page on the outer page and update its PageInfo
     void m_impose_page(QPDFObjectHandle &outer_page_obj,

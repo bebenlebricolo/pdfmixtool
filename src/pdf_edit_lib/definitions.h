@@ -67,8 +67,6 @@ struct Multipage {
     int rows;
     int columns;
 
-    int rotation;
-
     Alignment h_alignment;
     Alignment v_alignment;
 
@@ -82,32 +80,32 @@ struct Multipage {
 
 const Multipage multipage_defaults[] = {
     {
-        "2x1, A4, 0°",
+        "2x1, A4 portrait",
         21.0, 29.7,
-        2, 1, 0,
+        2, 1,
         Multipage::Center, Multipage::Center,
-        1, 1, 1, 1, 1
+        0, 0, 0, 0, 0
     },
     {
-        "2x1, A4, 90°",
-        21.0, 29.7,
-        2, 1, 90,
+        "1x2, A4 landscape",
+        29.7, 21.0,
+        1, 2,
         Multipage::Center, Multipage::Center,
-        1, 1, 1, 1, 1
+        0, 0, 0, 0, 0
     },
     {
-        "2x2, A4, 0°",
+        "2x2, A4 portrait",
         21.0, 29.7,
-        2, 2, 0,
+        2, 2,
         Multipage::Center, Multipage::Center,
-        1, 1, 1, 1, 1
+        0, 0, 0, 0, 0
     },
     {
-        "2x2, A4, 90°",
-        21.0, 29.7,
-        2, 2, 90,
+        "2x2, A4 landscape",
+        29.7, 21.0,
+        2, 2,
         Multipage::Center, Multipage::Center,
-        1, 1, 1, 1, 1
+        0, 0, 0, 0, 0
     }
 };
 

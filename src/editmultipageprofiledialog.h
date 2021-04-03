@@ -46,7 +46,7 @@ public:
 private slots:
     void custom_page_size_toggled(bool toggled);
 
-    void page_size_changed(int index);
+    void page_size_changed();
 
     void page_width_changed(double value);
 
@@ -57,6 +57,8 @@ private:
     QLineEdit m_name;
     QLabel m_page_size_label;
     QComboBox m_page_size;
+    QLabel m_orientation_label;
+    QComboBox m_orientation;
     QCheckBox m_custom_page_size;
     QLabel m_page_width_label;
     QLabel m_page_height_label;
@@ -64,7 +66,6 @@ private:
     QDoubleSpinBox m_page_height;
     QSpinBox m_rows;
     QSpinBox m_columns;
-    QComboBox m_rotation;
     QComboBox m_h_alignment;
     QComboBox m_v_alignment;
     QDoubleSpinBox m_margin_left;

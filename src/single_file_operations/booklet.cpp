@@ -90,7 +90,6 @@ void Booklet::generate_booklet()
         page1.y = 0;
         page1.width = m_pdf_info->width() * cm;
         page1.height = m_pdf_info->height() * cm;
-        page1.relative_rotation = 0;
 
         PdfEditor::Page page2 = page1;
         page2.x = m_pdf_info->width() * cm;

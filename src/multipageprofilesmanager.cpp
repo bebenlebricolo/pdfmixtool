@@ -134,9 +134,9 @@ void MultipageProfilesManager::new_profile_button_pressed()
     Multipage multipage = {
         name.toStdString(),
         21.0, 29.7,
-        1, 1, 0,
+        1, 1,
         Multipage::Center, Multipage::Center,
-        1, 1, 1, 1, 1
+        0, 0, 0, 0, 0
     };
 
     m_edit_dialog->set_multipage(multipage);

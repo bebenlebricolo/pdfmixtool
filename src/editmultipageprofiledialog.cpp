@@ -36,6 +36,10 @@ EditMultipageProfileDialog::EditMultipageProfileDialog(QWidget *parent) :
         i++;
     }
 
+    m_orientation_label.setText(tr("Orientation:"));
+    m_orientation.addItem(tr("Portrait"));
+    m_orientation.addItem(tr("Landscape"));
+
     m_page_size_label.setText(tr("Standard size:"));
     m_page_width_label.setText(tr("Width:"));
     m_page_height_label.setText(tr("Height:"));
@@ -57,9 +61,6 @@ EditMultipageProfileDialog::EditMultipageProfileDialog(QWidget *parent) :
 
     m_columns.setMinimum(1);
     m_columns.setMaximum(10);
-
-    m_rotation.addItem("0°", 0);
-    m_rotation.addItem("90°", 90);
 
     m_h_alignment.addItem(tr("Left"), Multipage::Left);
     m_h_alignment.addItem(tr("Center"), Multipage::Center);
@@ -110,7 +111,10 @@ EditMultipageProfileDialog::EditMultipageProfileDialog(QWidget *parent) :
                       row++, 1, 1, 4, Qt::AlignCenter);
 
     layout->addWidget(&m_page_size_label, row, 1);
-    layout->addWidget(&m_page_size, row++, 2);
+    layout->addWidget(&m_page_size, row, 2);
+
+    layout->addWidget(&m_orientation_label, row, 3);
+    layout->addWidget(&m_orientation, row++, 4);
 
     layout->addWidget(new QLabel(tr("Custom size:"), this), row, 2);
     layout->addWidget(&m_custom_page_size, row++, 3);
@@ -135,11 +139,8 @@ EditMultipageProfileDialog::EditMultipageProfileDialog(QWidget *parent) :
     layout->addWidget(new QLabel(tr("Columns:"), this), row, 3);
     layout->addWidget(&m_columns, row++, 4);
 
-    layout->addWidget(new QLabel(tr("Rotation:"), this), row, 1);
-    layout->addWidget(&m_rotation, row, 2);
-
-    layout->addWidget(new QLabel(tr("Spacing:"), this), row, 3);
-    layout->addWidget(&m_spacing, row++, 4);
+    layout->addWidget(new QLabel(tr("Spacing:"), this), row, 1);
+    layout->addWidget(&m_spacing, row++, 2);
 
     separator = new QFrame(this);
     separator->setFrameShape(QFrame::HLine);
@@ -186,7 +187,9 @@ EditMultipageProfileDialog::EditMultipageProfileDialog(QWidget *parent) :
     connect(&m_custom_page_size, SIGNAL(toggled(bool)),
             this, SLOT(custom_page_size_toggled(bool)));
     connect(&m_page_size, SIGNAL(currentIndexChanged(int)),
-            this, SLOT(page_size_changed(int)));
+            this, SLOT(page_size_changed()));
+    connect(&m_orientation, SIGNAL(currentIndexChanged(int)),
+            this, SLOT(page_size_changed()));
     connect(&m_page_width, SIGNAL(valueChanged(double)),
             this, SLOT(page_width_changed(double)));
     connect(&m_page_height, SIGNAL(valueChanged(double)),
@@ -221,7 +224,6 @@ void EditMultipageProfileDialog::set_multipage(const Multipage &multipage)
 
     m_rows.setValue(multipage.rows);
     m_columns.setValue(multipage.columns);
-    m_rotation.setCurrentIndex(m_rotation.findData(multipage.rotation));
     m_spacing.setValue(multipage.spacing);
     m_h_alignment.setCurrentIndex(
                 m_h_alignment.findData(multipage.h_alignment));
@@ -239,7 +241,6 @@ Multipage EditMultipageProfileDialog::get_multipage()
         m_name.text().toStdString(),
         m_page_width.value(), m_page_height.value(),
         m_rows.value(), m_columns.value(),
-        m_rotation.currentData().toInt(),
         static_cast<Multipage::Alignment>(m_h_alignment.currentData().toInt()),
         static_cast<Multipage::Alignment>(m_v_alignment.currentData().toInt()),
         m_margin_left.value(), m_margin_right.value(),
@@ -264,6 +265,8 @@ void EditMultipageProfileDialog::custom_page_size_toggled(bool toggled)
     {
         m_page_size_label.setDisabled(true);
         m_page_size.setDisabled(true);
+        m_orientation_label.setDisabled(true);
+        m_orientation.setDisabled(true);
         m_page_width_label.setDisabled(false);
         m_page_height_label.setDisabled(false);
         m_page_width.setDisabled(false);
@@ -271,9 +274,11 @@ void EditMultipageProfileDialog::custom_page_size_toggled(bool toggled)
     }
     else
     {
-        this->page_size_changed(m_page_size.currentIndex());
+        this->page_size_changed();
         m_page_size_label.setDisabled(false);
         m_page_size.setDisabled(false);
+        m_orientation_label.setDisabled(false);
+        m_orientation.setDisabled(false);
         m_page_width_label.setDisabled(true);
         m_page_height_label.setDisabled(true);
         m_page_width.setDisabled(true);
@@ -281,10 +286,19 @@ void EditMultipageProfileDialog::custom_page_size_toggled(bool toggled)
     }
 }
 
-void EditMultipageProfileDialog::page_size_changed(int index)
+void EditMultipageProfileDialog::page_size_changed()
 {
-    m_page_width.setValue(paper_sizes[index].width);
-    m_page_height.setValue(paper_sizes[index].height);
+    int index = m_page_size.currentIndex();
+    if (m_orientation.currentIndex() == 0)
+    {
+        m_page_width.setValue(paper_sizes[index].width);
+        m_page_height.setValue(paper_sizes[index].height);
+    }
+    else
+    {
+        m_page_width.setValue(paper_sizes[index].height);
+        m_page_height.setValue(paper_sizes[index].width);
+    }
 }
 
 void EditMultipageProfileDialog::page_width_changed(double value)

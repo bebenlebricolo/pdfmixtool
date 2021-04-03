@@ -20,7 +20,7 @@
 
 QDataStream &operator<<(QDataStream &out, const Multipage &multipage)
 {
-    out << 0; // version
+    out << 1; // version
 
     out << multipage.name.c_str();
 
@@ -29,8 +29,6 @@ QDataStream &operator<<(QDataStream &out, const Multipage &multipage)
 
     out << multipage.rows;
     out << multipage.columns;
-
-    out << multipage.rotation;
 
     out << multipage.h_alignment;
     out << multipage.v_alignment;
@@ -60,7 +58,11 @@ QDataStream &operator>>(QDataStream &in, Multipage &multipage)
     in >> multipage.rows;
     in >> multipage.columns;
 
-    in >> multipage.rotation;
+    if (version == 0)
+    {
+        int rotation;
+        in >> rotation;
+    }
 
     int h_alignment;
     int v_alignment;
@@ -80,11 +82,11 @@ QDataStream &operator>>(QDataStream &in, Multipage &multipage)
 }
 
 double draw_preview_page(QPainter *painter,
-                       int max_width, int max_height,
-                       double page_width, double page_height,
-                       Multipage::Alignment h_alignment,
-                       Multipage::Alignment v_alignment,
-                       const QString &text)
+                         int max_width, int max_height,
+                         double page_width, double page_height,
+                         Multipage::Alignment h_alignment,
+                         Multipage::Alignment v_alignment,
+                         const QString &text)
 {
     double scale = std::min(max_width / page_width, max_height / page_height);
 
@@ -171,35 +173,14 @@ void draw_preview(QPainter *painter, const QRect &rect,
                                          Multipage::Center,
                                          "");
 
-        painter->rotate(multipage.rotation);
-
-        int rows, columns, margin_left, margin_right, margin_top, margin_bottom,
-                page_width, page_height;
-
-        if (multipage.rotation == 90)
-        {
-            rows = multipage.columns;
-            columns = multipage.rows;
-            margin_left = static_cast<int>(multipage.margin_top * scale);
-            margin_right = static_cast<int>(multipage.margin_bottom * scale);
-            margin_top = static_cast<int>(multipage.margin_left  * scale);
-            margin_bottom = static_cast<int>(multipage.margin_right  * scale);
-            page_width = static_cast<int>(multipage.page_height * scale);
-            page_height = static_cast<int>(multipage.page_width * scale);
-
-        }
-        else
-        {
-            rows = multipage.rows;
-            columns = multipage.columns;
-            margin_left = static_cast<int>(multipage.margin_left * scale);
-            margin_right = static_cast<int>(multipage.margin_right * scale);
-            margin_top = static_cast<int>(multipage.margin_top * scale);
-            margin_bottom = static_cast<int>(multipage.margin_bottom * scale);
-            page_width = static_cast<int>(multipage.page_width * scale);
-            page_height = static_cast<int>(multipage.page_height * scale);
-        }
-
+        int rows = multipage.rows;
+        int columns = multipage.columns;
+        int margin_left = static_cast<int>(multipage.margin_left * scale);
+        int margin_right = static_cast<int>(multipage.margin_right * scale);
+        int margin_top = static_cast<int>(multipage.margin_top * scale);
+        int margin_bottom = static_cast<int>(multipage.margin_bottom * scale);
+        int page_width = static_cast<int>(multipage.page_width * scale);
+        int page_height = static_cast<int>(multipage.page_height * scale);
         int spacing = static_cast<int>(multipage.spacing * scale);
 
         int subpage_width = (page_width - margin_left - margin_right -

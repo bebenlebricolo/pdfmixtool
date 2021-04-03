@@ -40,7 +40,8 @@ public:
     public:
         double x, y, width, height;
         double crop_top, crop_bottom, crop_left, crop_right;
-        int relative_rotation;
+        Multipage::Alignment h_alignment{Multipage::Alignment::Center};
+        Multipage::Alignment v_alignment{Multipage::Alignment::Center};
     };
 
     class PageLayout {
@@ -97,7 +98,6 @@ private:
             double xo = x0 + xr * scale;
             double yo = y0 + yr * scale;
             return {xo, yo};
-
         }
         int dest{-1};
         int rot{0};
@@ -142,11 +142,7 @@ private:
     void m_impose_page(QPDFObjectHandle &outer_page_obj,
                        int file_id,
                        int page_id,
-                       int relative_rotation,
-                       double x,
-                       double y,
-                       double width,
-                       double height);
+                       const Page &page_layout);
 
     static QPDFObjectHandle m_get_key_in_name_tree(QPDFObjectHandle &node,
                                                    const std::string &key);

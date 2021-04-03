@@ -172,11 +172,8 @@ void PdfEditor::add_pages(unsigned int file_id,
                     pi.dest = m_last_page;
                     m_page_infos[file_id][j] = pi;
 
-                    const Page &page_pos = layout->pages[sub_page_count++];
                     m_impose_page(outer_page_obj, file_id, j,
-                                  page_pos.relative_rotation,
-                                  page_pos.x, page_pos.y,
-                                  page_pos.width, page_pos.height);
+                                  layout->pages[sub_page_count++]);
                 }
             }
             else
@@ -538,18 +535,36 @@ void PdfEditor::m_set_outline_destination(QPDFObjectHandle &outline,
 void PdfEditor::m_impose_page(QPDFObjectHandle &outer_page_obj,
                               int file_id,
                               int page_id,
-                              int relative_rotation,
-                              double x,
-                              double y,
-                              double width,
-                              double height)
+                              const Page &page_layout)
 {
     QPDFPageObjectHelper &page = m_pages[file_id][page_id];
 
     QPDFPageObjectHelper outer_page(outer_page_obj);
 
-    // FIXME the page remains rotated for other add_pages on the same file
-    page.rotatePage(relative_rotation, true);
+    // handle alignment
+    Point page_size = m_get_page_size(page);
+    double scale_factor = std::min(
+                page_layout.width / page_size.first,
+                page_layout.height / page_size.second
+                );
+
+    double page_width = page_size.first * scale_factor;
+    double page_height = page_size.second * scale_factor;
+
+    double delta_x = 0, delta_y = 0;
+
+    if (page_layout.h_alignment == Multipage::Center)
+        delta_x = (page_layout.width - page_width) / 2;
+    else if (page_layout.h_alignment == Multipage::Right)
+        delta_x = page_layout.width - page_width;
+
+    if (page_layout.v_alignment == Multipage::Center)
+        delta_y = (page_layout.height - page_height) / 2;
+    else if (page_layout.v_alignment == Multipage::Top)
+        delta_y = page_layout.height - page_height;
+
+    double x = page_layout.x + delta_x;
+    double y = page_layout.y + delta_y;
 
     // Get form xobject for input page
     QPDFObjectHandle page_xobject = m_output_pdf.copyForeignObject(page.getFormXObjectForPage());
@@ -565,7 +580,7 @@ void PdfEditor::m_impose_page(QPDFObjectHandle &outer_page_obj,
                 name,
                 QPDFObjectHandle::Rectangle(
                     x, y,
-                    x + width, y + height),
+                    x + page_width, y + page_height),
                 false,
                 true,
                 true);
@@ -588,42 +603,55 @@ void PdfEditor::m_impose_page(QPDFObjectHandle &outer_page_obj,
     }
 
     // update pageinfo
-    Point page_size = m_get_page_size(page);
     PageInfo &pi = m_page_infos[file_id][page_id];
-    pi.scale = std::min(width / page_size.first, height / page_size.second);
+    pi.scale = scale_factor;
     pi.rot = page.getAttribute("/Rotate", true).getIntValue();
-    pi.x0 = x + (width - page_size.first * pi.scale) / 2;
-    pi.y0 = y + (height - page_size.second * pi.scale) / 2;
+    pi.x0 = x;
+    pi.y0 = y;
     if (pi.rot % 360 == 90)
     {
-        pi.y0 += page_size.second * pi.scale;
+        pi.y0 += page_size.second * scale_factor;
     }
     else if (pi.rot % 360 == 180)
     {
-        pi.x0 += page_size.first * pi.scale;
-        pi.y0 += page_size.second * pi.scale;
+        pi.x0 += page_size.first * scale_factor;
+        pi.y0 += page_size.second * scale_factor;
     }
     else if (pi.rot % 360 == 90)
     {
-        pi.x0 += page_size.first * pi.scale;
+        pi.x0 += page_size.first * scale_factor;
     }
 }
 
 PdfEditor::PageLayout::PageLayout(const Multipage &mp) :
     width{mp.page_width * cm}, height{mp.page_height * cm}
 {
-    double subpage_width = width / mp.columns;
-    double subpage_height = height / mp.rows;
+    double margin_top = mp.margin_top * cm;
+    double margin_bottom = mp.margin_bottom * cm;
+    double margin_left = mp.margin_left * cm;
+    double margin_right = mp.margin_right * cm;
+    double spacing = mp.spacing * cm;
+
+    double subpage_width = (width -
+                            margin_left - margin_right -
+                            spacing * (mp.columns - 1)
+                            ) / mp.columns;
+    double subpage_height = (height -
+                             margin_top - margin_bottom -
+                             spacing * (mp.rows - 1)
+                             ) / mp.rows;
 
     for (auto i = 0; i < mp.rows; ++i)
         for (auto j = 0; j < mp.columns; ++j)
         {
             PdfEditor::Page page;
-            page.y = (mp.rows - 1 - i) * subpage_height;
-            page.x = j * subpage_width;
+            page.y = margin_bottom \
+                    + (mp.rows - 1 - i) * (subpage_height + spacing);
+            page.x = margin_left + j * (subpage_width + spacing);
             page.width = subpage_width;
             page.height = subpage_height;
-            page.relative_rotation = mp.rotation;
+            page.h_alignment = mp.h_alignment;
+            page.v_alignment = mp.v_alignment;
 
             pages.push_back(page);
         }

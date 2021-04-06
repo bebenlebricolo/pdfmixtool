@@ -26,14 +26,22 @@
 #include <QMessageBox>
 #include <QCheckBox>
 #include <QFileDialog>
+#include <QApplication>
 
 #include "../gui_utils.h"
 
 AbstractOperation::AbstractOperation(const PdfInfo &pdf_info,
                                      QWidget *parent) :
     QWidget(parent),
+    m_icon_dir{QString("%1/../share/pdfmixtool/icons").arg(
+                    qApp->applicationDirPath()
+                    )},
+    m_is_single_file_operation{true},
+    m_active{false},
     m_pdf_info(&pdf_info)
 {
+    m_icon = QIcon(m_icon_dir.filePath("icon.svg"));
+
     m_save_button.setIcon(QIcon::fromTheme("document-save"));
     m_save_button.setText(tr("Save"));
     m_save_button.setShortcut(QKeySequence::Save);
@@ -48,10 +56,40 @@ const QString &AbstractOperation::name()
     return m_name;
 }
 
+const QIcon &AbstractOperation::icon()
+{
+    return m_icon;
+}
+
+bool AbstractOperation::is_single_file_operation()
+{
+    return m_is_single_file_operation;
+}
+
+void AbstractOperation::set_active(bool active)
+{
+    m_active = active;
+}
+
+int AbstractOperation::output_pages_count()
+{
+    return 0;
+}
+
 void AbstractOperation::pdf_info_changed()
 {
     QFileInfo info(QString::fromStdString(m_pdf_info->filename()));
     m_save_button.setEnabled(info.isWritable());
+}
+
+void AbstractOperation::update_multipage_profiles()
+{
+
+}
+
+void AbstractOperation::profile_created(int index)
+{
+
 }
 
 bool AbstractOperation::show_overwrite_dialog()

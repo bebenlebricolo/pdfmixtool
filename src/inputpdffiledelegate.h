@@ -29,7 +29,6 @@ class InputPdfFileDelegate : public QStyledItemDelegate
     Q_OBJECT
 public:
     InputPdfFileDelegate(MouseEventFilter *filter,
-                         MultipageProfilesManager *mp_manager,
                          QWidget *parent);
 
     QWidget *build_widget(const QModelIndex &index,
@@ -59,12 +58,15 @@ public:
 signals:
     void data_edit() const;
 
+    void profile_created(int index);
+
+    void trigger_new_profile(int index);
+
 public slots:
     void end_editing(QWidget *editor);
 
 private:
     MouseEventFilter *m_mouse_event_filter;
-    MultipageProfilesManager *m_mp_manager;
     bool m_alternate_mix;
 };
 

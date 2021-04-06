@@ -36,13 +36,15 @@ public:
 public slots:
     void pdf_info_changed();
 
-    void update_multipage_profiles();
+    void update_multipage_profiles() override;
 
-    void profile_created(int index);
+    void profile_created(int index) override;
 
 signals:
     void trigger_new_profile();
+
     void save_button_pressed();
+
     void save_as_button_pressed();
 
 private slots:

@@ -33,7 +33,6 @@ class InputPdfFileWidget : public QWidget
 public:
     explicit InputPdfFileWidget(const QModelIndex &index,
                                 const QMap<int, Multipage> &custom_multipages,
-                                MultipageProfilesManager *mp_manager,
                                 int preview_size,
                                 bool alternate_mix,
                                 QWidget *parent = nullptr);
@@ -45,6 +44,8 @@ public:
 signals:
     void focus_out(QWidget *editor) const;
 
+    void trigger_new_profile(int index);
+
 public slots:
     void mouse_button_pressed(QMouseEvent *event);
 
@@ -55,10 +56,10 @@ public slots:
     void profile_created(int index);
 
 private:
+    int m_index;
     double m_page_width;
     double m_page_height;
     const QMap<int, Multipage> &m_multipages;
-    MultipageProfilesManager *m_mp_manager;
     bool m_alternate_mix;
     QStandardItem *m_last_item;
     int m_preview_size;

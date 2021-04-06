@@ -25,67 +25,44 @@
 #include <QListView>
 #include <QStandardItemModel>
 #include <QSettings>
-#include <QTabWidget>
 #include <QCheckBox>
 #include <QPushButton>
 #include <QButtonGroup>
-#include <QSplitter>
+#include <QStackedWidget>
+#include <QListWidget>
 
 #include "mouseeventfilter.h"
 #include "inputpdffiledelegate.h"
 #include "pdf_edit_lib/definitions.h"
 #include "widgets/pdfinfolabel.h"
 
-#include "single_file_operations/booklet.h"
-#include "single_file_operations/edit_page_layout.h"
-#include "single_file_operations/add_empty_pages.h"
-#include "single_file_operations/delete_pages.h"
-#include "single_file_operations/extract_pages.h"
+#include "operations/add_empty_pages.h"
+#include "operations/alternate_mix.h"
+#include "operations/booklet.h"
+#include "operations/delete_pages.h"
+#include "operations/edit_page_layout.h"
+#include "operations/extract_pages.h"
+#include "operations/merge.h"
 
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
 public:
-    explicit MainWindow(MouseEventFilter *filter, QWidget *parent = nullptr);
+    explicit MainWindow(QWidget *parent = nullptr);
 
     void set_input_files(const QStringList &files);
 
 signals:
 
 public slots:
-    void current_tab_changed(int index);
-
-    // multiple files
-    bool load_json_files_list(const QString &filename);
-
-    void load_files_list_pressed();
-
-    void save_files_list_pressed();
-
-    void add_pdf_files(const QStringList &files);
-
-    void move_up();
-
-    void move_down();
-
-    void remove_pdf_file();
-
-    void edit_menu_activated();
-
-    void view_menu_activated();
-
-    void item_mouse_pressed(const QModelIndex &index);
-
-    void alternate_mix_checked(bool checked);
-
-    void update_output_pages_count();
-
-    void generate_pdf_button_pressed();
-
     // single file
+    void operation_changed(int index);
+
     void open_file_pressed();
 
     void update_opened_file_label(const QString &filename);
+
+    void update_output_pages_count(int count);
 
     void write_started();
 
@@ -96,33 +73,17 @@ public slots:
     // close event
     void closeEvent(QCloseEvent *event);
 
-protected:
-    bool eventFilter(QObject *obj, QEvent *ev);
-
 private:
-    const QList<int> selected_indexes();
-
-    QTabWidget *m_tab_widget;
     QStatusBar *m_status_bar;
 
-    QCheckBox *m_alternate_mix;
-
     QLabel *m_output_page_count;
-    int m_output_pages_error_index;
 
     QProgressBar *m_progress_bar;
     QLabel m_saved_file;
-    QAction *m_save_files_list_action;
-    QPushButton *m_generate_pdf_button;
 
-    QListView *m_files_list_view;
-    QStandardItemModel *m_files_list_model;
-    InputPdfFileDelegate *m_delegate;
-
-    QMenu *m_edit_menu;
-
-    QSplitter m_operations_splitter;
-    bool m_operations_splitter_moved;
+    QListWidget *m_operations_list;
+    QStackedWidget m_operations_widget;
+    QWidget m_open_pdf_widget;
     QPushButton *m_view_opened_pdf_button;
     PdfInfo m_opened_pdf_info;
     PdfInfoLabel *m_opened_file_label;

@@ -30,6 +30,7 @@ Booklet::Booklet(const PdfInfo &pdf_info,
 AbstractOperation(pdf_info, parent)
 {
     m_name = tr("Booklet");
+    m_icon = QIcon(m_icon_dir.filePath("booklet.svg"));
 
     QVBoxLayout *v_layout = new QVBoxLayout();
     QFormLayout *form_layout = new QFormLayout();

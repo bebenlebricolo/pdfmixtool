@@ -23,22 +23,22 @@
 #include <QPainter>
 
 #include "gui_utils.h"
+#include "multipageprofilesmanager.h"
 
 InputPdfFileWidget::InputPdfFileWidget(
         const QModelIndex &index,
         const QMap<int, Multipage> &custom_multipages,
-        MultipageProfilesManager *mp_manager,
         int preview_size,
         bool alternate_mix,
         QWidget *parent) :
     QWidget(parent),
     m_multipages(custom_multipages),
-    m_mp_manager(mp_manager),
     m_alternate_mix(alternate_mix),
     m_preview_size(preview_size),
     m_preview_label(new QLabel(this)),
     m_new_profile_triggered(false)
 {
+    m_index = index.row();
     m_page_width = index.data(PAGE_WIDTH_ROLE).toDouble();
     m_page_height = index.data(PAGE_HEIGHT_ROLE).toDouble();
 
@@ -101,10 +101,6 @@ InputPdfFileWidget::InputPdfFileWidget(
                 this, SLOT(update_preview()));
         connect(m_multipage_combobox, SIGNAL(activated(int)),
                 this, SLOT(multipage_activated(int)));
-        connect(m_mp_manager,
-                &MultipageProfilesManager::profile_created,
-                this,
-                &InputPdfFileWidget::profile_created);
         connect(m_rotation_combobox, SIGNAL(currentIndexChanged(int)),
                 this, SLOT(update_preview()));
     }
@@ -234,7 +230,7 @@ void InputPdfFileWidget::multipage_activated(int index)
     {
         m_multipage_combobox->setCurrentIndex(0);
         m_new_profile_triggered = true;
-        m_mp_manager->new_profile_button_pressed();
+        emit trigger_new_profile(m_index);
     }
 }
 

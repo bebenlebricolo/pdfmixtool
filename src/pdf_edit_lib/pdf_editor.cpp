@@ -34,11 +34,16 @@ QPDFOutlineDocumentHelper::~QPDFOutlineDocumentHelper()
 
 PdfEditor::PdfEditor() :
     m_old_locale{std::locale::global(std::locale::classic())},
-    m_last_page{-1}
+    m_last_page{0}
 {
     // create empty PDF
-    m_output_pdf = QPDF();
-    m_output_pdf.emptyPDF();
+    m_output_pdf = new QPDF{};
+    m_output_pdf->emptyPDF();
+}
+
+PdfEditor::~PdfEditor()
+{
+    m_clear();
 }
 
 unsigned int PdfEditor::add_file(const std::string &filename)
@@ -51,27 +56,27 @@ unsigned int PdfEditor::add_file(const std::string &filename)
 
     unsigned int file_id = m_input_files.size();
 
-    m_input_files.push_back(QPDF());
-    m_input_files[file_id].processFile(filename.c_str());
+    m_input_files.push_back(new QPDF{});
+    m_input_files[file_id]->processFile(filename.c_str());
     // FIXME not necessary if input files are kept until write
-    m_input_files[file_id].setImmediateCopyFrom(true);
+//    m_input_files[file_id]->setImmediateCopyFrom(true);
 
     m_pages.push_back(
-                QPDFPageDocumentHelper(m_input_files[file_id]).getAllPages());
+                QPDFPageDocumentHelper(*m_input_files[file_id]).getAllPages());
     m_page_infos.push_back(std::map<int, PageInfo>{});
 
-    QPDFOutlineDocumentHelper outline_helper(m_input_files[file_id]);
+    QPDFOutlineDocumentHelper outline_helper(*m_input_files[file_id]);
 
     // flatten outlines tree
     m_flat_outlines.push_back(std::vector<FlatOutline>());
     m_add_flat_outlines(file_id, outline_helper.getTopLevelOutlines());
 
     // add document's info from the first input file
-    if (file_id == 0 && m_input_files[file_id].getTrailer().hasKey("/Info"))
+    if (file_id == 0 && m_input_files[file_id]->getTrailer().hasKey("/Info"))
     {
-        QPDFObjectHandle info = m_output_pdf.makeIndirectObject(
-                    m_input_files[file_id].getTrailer().getKey("/Info"));
-        m_output_pdf.getTrailer().replaceKey("/Info", info);
+        QPDFObjectHandle info = m_output_pdf->makeIndirectObject(
+                    m_input_files[file_id]->getTrailer().getKey("/Info"));
+        m_output_pdf->getTrailer().replaceKey("/Info", info);
     }
 
     return file_id;
@@ -79,7 +84,7 @@ unsigned int PdfEditor::add_file(const std::string &filename)
 
 void PdfEditor::add_blank_pages(double width, double height, int count)
 {
-    QPDFPageDocumentHelper output_helper(m_output_pdf);
+    QPDFPageDocumentHelper output_helper(*m_output_pdf);
 
     for (int i = 0; i < count; ++i)
         output_helper.addPage(m_create_blank_page(width, height), false);
@@ -102,7 +107,7 @@ void PdfEditor::add_pages(unsigned int file_id,
         return;
     }
 
-    QPDFPageDocumentHelper output_helper(m_output_pdf);
+    QPDFPageDocumentHelper output_helper(*m_output_pdf);
 
     // add pages to the output file and add outlines to m_output_outlines
 
@@ -125,7 +130,7 @@ void PdfEditor::add_pages(unsigned int file_id,
         m_output_outlines.push_back(outline);
     }
 
-    int num_pages_per_paper;
+    int num_pages_per_paper{0};
     int sub_page_count{0};
     QPDFObjectHandle outer_page_obj;
 
@@ -138,8 +143,6 @@ void PdfEditor::add_pages(unsigned int file_id,
 
         QPDFPageObjectHelper(outer_page_obj).rotatePage(relative_rotation,
                                                         true);
-
-        ++m_last_page;
     }
 
     // add pages from each interval and outlines poinintg to those pages
@@ -148,29 +151,59 @@ void PdfEditor::add_pages(unsigned int file_id,
         // add pages
         for (int j = intervals[i].first; j <= intervals[i].second; ++j)
         {
+            // create a new blank page if the current one is full
+            if (layout && sub_page_count >= num_pages_per_paper)
+            {
+                sub_page_count = 0;
+
+                outer_page_obj = m_create_blank_page(layout->width,
+                                                     layout->height);
+
+                output_helper.addPage(QPDFPageObjectHelper(outer_page_obj), false);
+
+                QPDFPageObjectHelper(outer_page_obj).rotatePage(relative_rotation,
+                                                                true);
+
+                ++m_last_page;
+            }
+            if (j > -1)
+            {
+                // add pageinfo
+                PageInfo pi;
+                pi.dest = m_last_page;
+                m_page_infos[file_id][j] = pi;
+
+                // save links in the page
+                QPDFPageObjectHelper &page = m_pages[file_id][j];
+                auto annotations = page.getObjectHandle().getKey("/Annots");
+                if (!annotations.isNull())
+                {
+                    if (m_links.find(m_last_page) == m_links.end())
+                    {
+                        m_links[m_last_page] = {};
+                        for (auto k{annotations.getArrayNItems() - 1}; k > -1; k--)
+                        {
+                            auto ann = annotations.getArrayItem(k);
+                            if (ann.getKey("/Subtype").getName() == "/Link")
+                            {
+                                Link link;
+                                link.orig_page_id = j;
+                                link.ann = ann.shallowCopy();
+                                link.dest = m_find_destination(file_id, link.ann);
+                                if (link.dest.page_id > -1)
+                                {
+                                    m_links[m_last_page].push_back(link);
+                                    annotations.eraseItem(k);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
             if (layout)
             {
-                if (sub_page_count >= num_pages_per_paper)
-                {
-                    sub_page_count = 0;
-
-                    outer_page_obj = m_create_blank_page(layout->width,
-                                                         layout->height);
-
-                    output_helper.addPage(QPDFPageObjectHelper(outer_page_obj), false);
-
-                    QPDFPageObjectHelper(outer_page_obj).rotatePage(relative_rotation,
-                                                                    true);
-
-                    ++m_last_page;
-                }
-
                 if (j > -1)
                 {
-                    PageInfo pi;
-                    pi.dest = m_last_page;
-                    m_page_infos[file_id][j] = pi;
-
                     m_impose_page(outer_page_obj, file_id, j,
                                   layout->pages[sub_page_count]);
                 }
@@ -187,30 +220,6 @@ void PdfEditor::add_pages(unsigned int file_id,
                 output_helper.addPage(page, false);
 
                 ++m_last_page;
-
-                PageInfo pi;
-                pi.dest = m_last_page;
-                m_page_infos[file_id][j] = pi;
-            }
-
-            if (j > -1)
-            {
-                // save links in the page
-                QPDFPageObjectHelper &page = m_pages[file_id][j];
-                auto annotations = page.getAnnotations("/Link");
-                if (!annotations.empty())
-                {
-                    if (m_links.find(m_last_page) == m_links.end())
-                        m_links[m_last_page] = {};
-                    for (auto ann : annotations)
-                    {
-                        Link link;
-                        link.orig_page_id = j;
-                        link.ann = ann.getObjectHandle().shallowCopy();
-                        link.dest = m_find_destination(file_id, link.ann);
-                        m_links[m_last_page].push_back(link);
-                    }
-                }
             }
         }
 
@@ -285,7 +294,7 @@ void PdfEditor::write(const std::string &output_filename)
 
     // write the PDF file to memory first to prevent problems when saving to
     // one of the input files
-    QPDFWriter writer(m_output_pdf);
+    QPDFWriter writer(*m_output_pdf);
     writer.setOutputMemory();
     writer.write();
     Buffer *buffer = writer.getBuffer();
@@ -301,7 +310,10 @@ void PdfEditor::write(const std::string &output_filename)
 
     std::locale::global(m_old_locale);
 
-    // FIXME clear object
+    // clear object and make it ready for a new run
+    m_clear();
+    m_output_pdf = new QPDF{};
+    m_output_pdf->emptyPDF();
 }
 
 PdfEditor::Dest PdfEditor::m_find_destination(int file_id,
@@ -309,7 +321,7 @@ PdfEditor::Dest PdfEditor::m_find_destination(int file_id,
 {
     Dest dest;
     dest.file_id = file_id;
-    QPDFObjectHandle root = m_input_files[file_id].getRoot();
+    QPDFObjectHandle root = m_input_files[file_id]->getRoot();
 
     // find destination page object and coordinates
     // FIXME submit a patch for QPDFOutlineObjectHelper::getDestPage()
@@ -459,7 +471,7 @@ int PdfEditor::m_build_outline_level(const std::vector<FlatOutline> &flat_outlin
         }
 
         QPDFObjectHandle outline = QPDFObjectHandle::newDictionary();
-        outline = m_output_pdf.makeIndirectObject(outline);
+        outline = m_output_pdf->makeIndirectObject(outline);
         outline.replaceKey("/Title", QPDFObjectHandle::newUnicodeString(flat_outlines[i].title));
         outline.replaceKey("/Parent", parent);
         m_set_outline_destination(outline, flat_outlines[i].dest);
@@ -492,17 +504,17 @@ void PdfEditor::m_build_outlines()
     // initialize outlines dictionary
     QPDFObjectHandle outlines_root = QPDFObjectHandle::newDictionary();
     outlines_root.replaceKey("/Type", QPDFObjectHandle::newName("/Outlines"));
-    outlines_root = m_output_pdf.makeIndirectObject(outlines_root);
+    outlines_root = m_output_pdf->makeIndirectObject(outlines_root);
 
     m_build_outline_level(m_output_outlines, outlines_root, 0);
 
     if (outlines_root.hasKey("/First"))
-        m_output_pdf.getRoot().replaceKey("/Outlines", outlines_root);
+        m_output_pdf->getRoot().replaceKey("/Outlines", outlines_root);
 }
 
 void PdfEditor::m_build_links()
 {
-    auto pages = m_output_pdf.getAllPages();
+    auto pages = m_output_pdf->getAllPages();
 
     for(auto it = m_links.begin(); it != m_links.end(); ++it)
     {
@@ -518,7 +530,7 @@ void PdfEditor::m_build_links()
             if (pi_it != m_page_infos[link.dest.file_id].end())
             {
                 QPDFObjectHandle ann =
-                        m_output_pdf.makeIndirectObject(link.ann);
+                        m_output_pdf->makeIndirectObject(link.ann);
                 ann.removeKey("/Dest");
                 ann.removeKey("/A");
                 m_set_outline_destination(ann, link.dest);
@@ -586,7 +598,7 @@ void PdfEditor::m_set_outline_destination(QPDFObjectHandle &obj,
                                           const Dest &dest)
 {
     PageInfo &pi = m_page_infos[dest.file_id][dest.page_id];
-    QPDFPageObjectHelper page = m_output_pdf.getAllPages()[pi.dest];
+    QPDFPageObjectHelper page = m_output_pdf->getAllPages()[pi.dest];
     Point dest_point = pi.get_point_in_dest(dest.x, dest.y);
 
     // set destination
@@ -634,7 +646,7 @@ void PdfEditor::m_impose_page(QPDFObjectHandle &outer_page_obj,
     double y = page_layout.y + delta_y;
 
     // Get form xobject for input page
-    QPDFObjectHandle page_xobject = m_output_pdf.copyForeignObject(page.getFormXObjectForPage());
+    QPDFObjectHandle page_xobject = m_output_pdf->copyForeignObject(page.getFormXObjectForPage());
 
     // Find a unique resource name for the new form XObject
     QPDFObjectHandle resources = outer_page.getAttribute("/Resources", true);
@@ -663,9 +675,9 @@ void PdfEditor::m_impose_page(QPDFObjectHandle &outer_page_obj,
 
         resources.getKey("/XObject").replaceKey(name, page_xobject);
 
-        outer_page.addPageContents(QPDFObjectHandle::newStream(&m_output_pdf, "q\n"),
+        outer_page.addPageContents(QPDFObjectHandle::newStream(m_output_pdf, "q\n"),
                                    true);
-        outer_page.addPageContents(QPDFObjectHandle::newStream(&m_output_pdf, "\nQ\n" + content),
+        outer_page.addPageContents(QPDFObjectHandle::newStream(m_output_pdf, "\nQ\n" + content),
                                    false);
     }
 
@@ -777,4 +789,21 @@ PdfEditor::Point PdfEditor::m_get_page_size(QPDFPageObjectHelper &page)
     }
 
     return size;
+}
+
+void PdfEditor::m_clear()
+{
+    m_last_page = 0;
+    m_input_filenames.clear();
+    m_pages.clear();
+    m_flat_outlines.clear();
+    m_links.clear();
+    m_page_infos.clear();
+    m_output_outlines.clear();
+
+    for (auto input_file : m_input_files)
+        delete input_file;
+    m_input_files.clear();
+
+    delete m_output_pdf;
 }

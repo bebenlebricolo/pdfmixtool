@@ -30,11 +30,9 @@
 
 InputPdfFileDelegate::InputPdfFileDelegate(
         MouseEventFilter *filter,
-        MultipageProfilesManager *mp_manager,
         QWidget *parent) :
     QStyledItemDelegate(parent),
     m_mouse_event_filter(filter),
-    m_mp_manager(mp_manager),
     m_alternate_mix(false)
 {
 
@@ -242,7 +240,6 @@ QWidget *InputPdfFileDelegate::createEditor(
     InputPdfFileWidget *editor = new InputPdfFileWidget(
                 index,
                 multipages,
-                m_mp_manager,
                 option.rect.height(),
                 m_alternate_mix,
                 parent);
@@ -250,6 +247,10 @@ QWidget *InputPdfFileDelegate::createEditor(
             editor, SLOT(mouse_button_pressed(QMouseEvent*)));
     connect(editor, SIGNAL(focus_out(QWidget*)),
             this, SLOT(end_editing(QWidget*)));
+    connect(this, &InputPdfFileDelegate::profile_created,
+            editor, &InputPdfFileWidget::profile_created);
+    connect(editor, &InputPdfFileWidget::trigger_new_profile,
+            this, &InputPdfFileDelegate::trigger_new_profile);
     return editor;
 }
 

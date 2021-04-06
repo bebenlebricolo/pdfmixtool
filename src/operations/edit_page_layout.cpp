@@ -116,23 +116,26 @@ void EditPageLayout::pdf_info_changed()
 
 void EditPageLayout::update_multipage_profiles()
 {
-    int current_data = m_multipage.currentData().toInt();
-    int current_index = 0;
-    m_multipage.clear();
-    m_multipage.addItem(tr("Disabled"), -1);
-    QMap<int, Multipage>::const_iterator it;
-    for (it = multipages.constBegin();
-         it != multipages.constEnd();
-         ++it)
+    if (m_active)
     {
-        m_multipage.addItem(
-                    QString::fromStdString(it.value().name),
-                    it.key());
-        if (it.key() == current_data)
-            current_index = m_multipage.count() - 1;
+        int current_data = m_multipage.currentData().toInt();
+        int current_index = 0;
+        m_multipage.clear();
+        m_multipage.addItem(tr("Disabled"), -1);
+        QMap<int, Multipage>::const_iterator it;
+        for (it = multipages.constBegin();
+             it != multipages.constEnd();
+             ++it)
+        {
+            m_multipage.addItem(
+                        QString::fromStdString(it.value().name),
+                        it.key());
+            if (it.key() == current_data)
+                current_index = m_multipage.count() - 1;
+        }
+        m_multipage.addItem(tr("New custom profile…"), -2);
+        m_multipage.setCurrentIndex(current_index);
     }
-    m_multipage.addItem(tr("New custom profile…"), -2);
-    m_multipage.setCurrentIndex(current_index);
 }
 
 void EditPageLayout::update_preview_image()

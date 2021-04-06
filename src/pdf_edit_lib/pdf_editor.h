@@ -54,6 +54,8 @@ public:
 
     PdfEditor();
 
+    ~PdfEditor();
+
     // returns the file_id to be used in add_pages
     unsigned int add_file(const std::string &filename);
 
@@ -121,17 +123,14 @@ private:
     int m_last_page;
 
     std::vector<std::string> m_input_filenames;
-    std::vector<QPDF> m_input_files;
+    std::vector<QPDF *> m_input_files;
     std::vector<std::vector<QPDFPageObjectHelper>> m_pages;
     std::vector<std::vector<FlatOutline>> m_flat_outlines;
     std::map<int, std::vector<Link>> m_links;
     std::vector<std::map<int, PageInfo>> m_page_infos;
 
-    QPDF m_output_pdf;
+    QPDF *m_output_pdf;
     std::vector<FlatOutline> m_output_outlines;
-
-    QPDFObjectHandle m_last_outline;
-    QPDFObjectHandle m_last_first_level_outline;
 
     Dest m_find_destination(int file_id, QPDFObjectHandle &obj);
 
@@ -163,6 +162,8 @@ private:
 
     // return the size of the given page, considering its rotation
     static Point m_get_page_size(QPDFPageObjectHelper &page);
+
+    void m_clear();
 };
 
 #endif // PDFEDITOR_H

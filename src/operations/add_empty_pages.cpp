@@ -31,6 +31,7 @@ AddEmptyPages::AddEmptyPages(const PdfInfo &pdf_info,
         AbstractOperation(pdf_info, parent)
 {
     m_name = tr("Add empty pages");
+    m_icon = QIcon(m_icon_dir.filePath("add_empty_pages.svg"));
 
     QVBoxLayout *v_layout = new QVBoxLayout();
     QGridLayout *grid_layout = new QGridLayout();

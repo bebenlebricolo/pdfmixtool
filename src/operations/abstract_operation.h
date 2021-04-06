@@ -22,7 +22,7 @@
 #include <QWidget>
 #include <QProgressBar>
 #include <QPushButton>
-#include <QThread>
+#include <QDir>
 
 #include "../pdf_edit_lib/pdf_info.h"
 #include "../pdf_edit_lib/pdf_editor.h"
@@ -30,7 +30,6 @@
 class AbstractOperation : public QWidget
 {
     Q_OBJECT
-    QThread worker_thread;
 
 public:
     explicit AbstractOperation(const PdfInfo &pdf_info,
@@ -38,16 +37,39 @@ public:
 
     const QString &name();
 
+    const QIcon &icon();
+
+    virtual bool is_single_file_operation();
+
+    void set_active(bool active);
+
+    virtual int output_pages_count();
+
 public slots:
     virtual void pdf_info_changed();
 
+    virtual void update_multipage_profiles();
+
+    virtual void profile_created(int index);
+
 signals:
+    void trigger_new_profile();
+
+    void output_pages_count_changed(int);
+
     void write_started();
+
     void progress_changed(int progress);
+
     void write_finished(const QString &filename);
 
 protected:
     QString m_name;
+    QDir m_icon_dir;
+    QIcon m_icon;
+    bool m_is_single_file_operation;
+
+    bool m_active;
 
     QPushButton m_save_button;
     QString m_save_filename;
@@ -55,9 +77,6 @@ protected:
     bool show_save_as_dialog();
 
     PdfInfo const *m_pdf_info;
-
-private:
-    void update_progress_bar(std::atomic_int *progress);
 };
 
 #endif // ABSTRACTOPERATION_H

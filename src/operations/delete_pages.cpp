@@ -31,6 +31,7 @@ DeletePages::DeletePages(const PdfInfo &pdf_info,
     AbstractOperation(pdf_info, parent)
 {
     m_name = tr("Delete pages");
+    m_icon = QIcon(m_icon_dir.filePath("delete.svg"));
 
     m_pages_selector = new PagesSelector(false, false, this);
 

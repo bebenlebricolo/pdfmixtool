@@ -46,13 +46,8 @@ int main(int argc, char *argv[])
 
     if (ok) app.installTranslator(&translator);
 
-    // Event filter
-    MouseEventFilter *filter = new MouseEventFilter(&app);
-    app.installEventFilter(filter);
-
     // Create and show the main window
-    MainWindow *main_window = new MainWindow(filter);
-    main_window->show();
+    MainWindow main_window{};
 
     // parse input arguments
     if (argc > 1)
@@ -67,8 +62,10 @@ int main(int argc, char *argv[])
                 files.push_back(filename);
         }
 
-        main_window->set_input_files(files);
+        main_window.set_input_files(files);
     }
+
+    main_window.show();
 
     return app.exec();
 }

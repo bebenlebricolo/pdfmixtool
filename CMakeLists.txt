@@ -40,18 +40,22 @@ set (
     src/pdf_edit_lib/pdf_editor.h
     src/pdf_edit_lib/pdf_info.cpp
     src/pdf_edit_lib/pdf_info.h
-    src/single_file_operations/abstract_operation.cpp
-    src/single_file_operations/abstract_operation.h
-    src/single_file_operations/add_empty_pages.cpp
-    src/single_file_operations/add_empty_pages.h
-    src/single_file_operations/booklet.cpp
-    src/single_file_operations/booklet.h
-    src/single_file_operations/delete_pages.cpp
-    src/single_file_operations/delete_pages.h
-    src/single_file_operations/extract_pages.cpp
-    src/single_file_operations/extract_pages.h
-    src/single_file_operations/edit_page_layout.cpp
-    src/single_file_operations/edit_page_layout.h
+    src/operations/abstract_operation.cpp
+    src/operations/abstract_operation.h
+    src/operations/add_empty_pages.cpp
+    src/operations/add_empty_pages.h
+    src/operations/alternate_mix.cpp
+    src/operations/alternate_mix.h
+    src/operations/booklet.cpp
+    src/operations/booklet.h
+    src/operations/delete_pages.cpp
+    src/operations/delete_pages.h
+    src/operations/extract_pages.cpp
+    src/operations/extract_pages.h
+    src/operations/edit_page_layout.cpp
+    src/operations/edit_page_layout.h
+    src/operations/merge.cpp
+    src/operations/merge.h
     src/widgets/pages_selector.cpp
     src/widgets/pages_selector.h
     src/widgets/pdfinfolabel.cpp
@@ -78,6 +82,11 @@ target_link_libraries (
     ${Qt5Widgets_LIBRARIES}
 )
 
+file(GLOB ICONS
+     LIST_DIRECTORIES false
+     resources/*.svg
+)
+
 install(TARGETS pdfmixtool RUNTIME DESTINATION bin)
 install(FILES resources/eu.scarpetta.PDFMixTool.desktop DESTINATION share/applications)
 install(FILES resources/eu.scarpetta.PDFMixTool.appdata.xml DESTINATION share/metainfo)
@@ -86,6 +95,7 @@ install(FILES resources/icon_48.png DESTINATION share/icons/hicolor/48x48/apps R
 install(FILES resources/icon_64.png DESTINATION share/icons/hicolor/64x64/apps RENAME eu.scarpetta.PDFMixTool.png)
 install(FILES resources/icon_128.png DESTINATION share/icons/hicolor/128x128/apps RENAME eu.scarpetta.PDFMixTool.png)
 install(FILES resources/icon_256.png DESTINATION share/icons/hicolor/256x256/apps RENAME eu.scarpetta.PDFMixTool.png)
+install(FILES ${ICONS} DESTINATION share/pdfmixtool/icons)
 install(FILES ${QM_FILES} DESTINATION share/pdfmixtool/translations)
 install(FILES CHANGELOG.md DESTINATION share/pdfmixtool)
 install(FILES AUTHORS.md DESTINATION share/pdfmixtool)

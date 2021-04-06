@@ -34,6 +34,7 @@ ExtractPages::ExtractPages(const PdfInfo &pdf_info,
       AbstractOperation(pdf_info, parent)
 {
     m_name = tr("Extract pages");
+    m_icon = QIcon(m_icon_dir.filePath("extract.svg"));
 
     QVBoxLayout *v_layout = new QVBoxLayout();
     this->setLayout(v_layout);

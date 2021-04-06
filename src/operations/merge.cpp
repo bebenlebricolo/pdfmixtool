@@ -189,11 +189,9 @@ Merge::Merge(const PdfInfo &pdf_info,
 
     connect(m_delegate, SIGNAL(data_edit()),
             this, SLOT(update_output_pages_count()));
+
     connect(m_delegate, &InputPdfFileDelegate::trigger_new_profile,
             this, &Merge::new_profile_triggered);
-
-    connect(this, &Merge::update_multipage_profiles,
-            this, &Merge::update_output_pages_count);
 
     connect(m_generate_pdf_button, SIGNAL(released()),
             this, SLOT(generate_pdf_button_pressed()));

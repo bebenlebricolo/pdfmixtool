@@ -34,7 +34,7 @@ QPDFOutlineDocumentHelper::~QPDFOutlineDocumentHelper()
 
 PdfEditor::PdfEditor() :
     m_old_locale{std::locale::global(std::locale::classic())},
-    m_last_page{0}
+    m_last_page{-1}
 {
     // create empty PDF
     m_output_pdf = new QPDF{};
@@ -143,7 +143,10 @@ void PdfEditor::add_pages(unsigned int file_id,
 
         QPDFPageObjectHelper(outer_page_obj).rotatePage(relative_rotation,
                                                         true);
+
+        ++m_last_page;
     }
+
 
     // add pages from each interval and outlines poinintg to those pages
     for (unsigned int i = 0; i < intervals.size(); ++i)
@@ -152,7 +155,11 @@ void PdfEditor::add_pages(unsigned int file_id,
         for (int j = intervals[i].first; j <= intervals[i].second; ++j)
         {
             // create a new blank page if the current one is full
-            if (layout && sub_page_count >= num_pages_per_paper)
+            if (layout == nullptr)
+            {
+                ++m_last_page;
+            }
+            else if (sub_page_count >= num_pages_per_paper)
             {
                 sub_page_count = 0;
 
@@ -178,24 +185,18 @@ void PdfEditor::add_pages(unsigned int file_id,
                 auto annotations = page.getObjectHandle().getKey("/Annots");
                 if (!annotations.isNull())
                 {
-                    if (m_links.find(m_last_page) == m_links.end())
+                    if (m_annots.find(m_last_page) == m_annots.end())
                     {
-                        m_links[m_last_page] = {};
+                        m_annots[m_last_page] = {};
                         for (auto k{annotations.getArrayNItems() - 1}; k > -1; k--)
                         {
-                            auto ann = annotations.getArrayItem(k);
-                            if (ann.getKey("/Subtype").getName() == "/Link")
-                            {
-                                Link link;
-                                link.orig_page_id = j;
-                                link.ann = ann.shallowCopy();
-                                link.dest = m_find_destination(file_id, link.ann);
-                                if (link.dest.page_id > -1)
-                                {
-                                    m_links[m_last_page].push_back(link);
-                                    annotations.eraseItem(k);
-                                }
-                            }
+                            auto ann_obj = annotations.getArrayItem(k);
+                            Annotation ann;
+                            ann.orig_page_id = j;
+                            ann.ann_obj = ann_obj.shallowCopy();
+                            ann.dest = m_find_destination(file_id, ann.ann_obj);
+                            m_annots[m_last_page].push_back(ann);
+                            annotations.eraseItem(k);
                         }
                     }
                 }
@@ -218,8 +219,6 @@ void PdfEditor::add_pages(unsigned int file_id,
                     page.rotatePage(relative_rotation, true);
 
                 output_helper.addPage(page, false);
-
-                ++m_last_page;
             }
         }
 
@@ -516,55 +515,65 @@ void PdfEditor::m_build_links()
 {
     auto pages = m_output_pdf->getAllPages();
 
-    for(auto it = m_links.begin(); it != m_links.end(); ++it)
+    for(auto it = m_annots.begin(); it != m_annots.end(); ++it)
     {
         int output_page = it->first;
-        auto &links = it->second;
+        auto &annots = it->second;
 
-        for (Link &link : links)
+        for (Annotation &ann : annots)
         {
-            if (link.dest.file_id < 0 || link.dest.page_id < 0)
-                continue;
-            auto pi_it =
-                    m_page_infos[link.dest.file_id].find(link.dest.page_id);
-            if (pi_it != m_page_infos[link.dest.file_id].end())
+            QPDFObjectHandle ann_obj =
+                    m_output_pdf->makeIndirectObject(ann.ann_obj);
+
+            // update rect
+            QPDFObjectHandle rect = ann_obj.getKey("/Rect");
+            if (rect.isArray())
             {
-                QPDFObjectHandle ann =
-                        m_output_pdf->makeIndirectObject(link.ann);
-                ann.removeKey("/Dest");
-                ann.removeKey("/A");
-                m_set_outline_destination(ann, link.dest);
-
-                // update rect
-                QPDFObjectHandle rect = ann.getKey("/Rect");
-                if (rect.isArray())
-                {
-                    double x1 = rect.getArrayItem(0).getNumericValue();
-                    double y1 = rect.getArrayItem(1).getNumericValue();
-                    double x2 = rect.getArrayItem(2).getNumericValue();
-                    double y2 = rect.getArrayItem(3).getNumericValue();
-                    PageInfo &pi =
-                            m_page_infos[link.dest.file_id][link.orig_page_id];
-                    Point p1 = pi.get_point_in_dest(x1, y1);
-                    Point p2 = pi.get_point_in_dest(x2, y2);
-                    QPDFObjectHandle new_rect{QPDFObjectHandle::newArray()};
-                    new_rect.appendItem(QPDFObjectHandle::newReal(p1.first));
-                    new_rect.appendItem(QPDFObjectHandle::newReal(p1.second));
-                    new_rect.appendItem(QPDFObjectHandle::newReal(p2.first));
-                    new_rect.appendItem(QPDFObjectHandle::newReal(p2.second));
-                    ann.replaceKey("/Rect", new_rect);
-                }
-
-                //add annotation to the page
-                QPDFObjectHandle annots = pages[output_page].getKey("/Annots");
-                if (!annots.isArray())
-                {
-                    QPDFObjectHandle new_annots{QPDFObjectHandle::newArray()};
-                    pages[output_page].replaceKey("/Annots", new_annots);
-                    annots = pages[output_page].getKey("/Annots");
-                }
-                annots.appendItem(ann);
+                double x1 = rect.getArrayItem(0).getNumericValue();
+                double y1 = rect.getArrayItem(1).getNumericValue();
+                double x2 = rect.getArrayItem(2).getNumericValue();
+                double y2 = rect.getArrayItem(3).getNumericValue();
+                PageInfo &pi =
+                        m_page_infos[ann.dest.file_id][ann.orig_page_id];
+                Point p1 = pi.get_point_in_dest(x1, y1);
+                Point p2 = pi.get_point_in_dest(x2, y2);
+                QPDFObjectHandle new_rect{QPDFObjectHandle::newArray()};
+                new_rect.appendItem(QPDFObjectHandle::newReal(p1.first));
+                new_rect.appendItem(QPDFObjectHandle::newReal(p1.second));
+                new_rect.appendItem(QPDFObjectHandle::newReal(p2.first));
+                new_rect.appendItem(QPDFObjectHandle::newReal(p2.second));
+                ann_obj.replaceKey("/Rect", new_rect);
             }
+
+            // update page
+            QPDFObjectHandle p = ann_obj.getKey("/P");
+            if (p.isDictionary())
+            {
+                ann_obj.replaceKey("/P", pages[output_page]);
+            }
+
+            // update destination if it points to a page in the document
+            if (ann.dest.page_id > -1)
+            {
+                auto pi_it =
+                        m_page_infos[ann.dest.file_id].find(ann.dest.page_id);
+                if (pi_it != m_page_infos[ann.dest.file_id].end())
+                {
+                    ann_obj.removeKey("/Dest");
+                    ann_obj.removeKey("/A");
+                    m_set_outline_destination(ann_obj, ann.dest);
+                }
+            }
+
+            //add annotation to the page
+            QPDFObjectHandle annots = pages[output_page].getKey("/Annots");
+            if (!annots.isArray())
+            {
+                QPDFObjectHandle new_annots{QPDFObjectHandle::newArray()};
+                pages[output_page].replaceKey("/Annots", new_annots);
+                annots = pages[output_page].getKey("/Annots");
+            }
+            annots.appendItem(ann_obj);
         }
     }
 }
@@ -793,11 +802,11 @@ PdfEditor::Point PdfEditor::m_get_page_size(QPDFPageObjectHelper &page)
 
 void PdfEditor::m_clear()
 {
-    m_last_page = 0;
+    m_last_page = -1;
     m_input_filenames.clear();
     m_pages.clear();
     m_flat_outlines.clear();
-    m_links.clear();
+    m_annots.clear();
     m_page_infos.clear();
     m_output_outlines.clear();
 

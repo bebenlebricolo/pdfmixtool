@@ -95,9 +95,9 @@ private:
         Dest dest;
     };
 
-    // represent a link annotation
-    struct Link {
-        QPDFObjectHandle ann;
+    // represent an annotation
+    struct Annotation {
+        QPDFObjectHandle ann_obj;
         int orig_page_id;
         Dest dest;
     };
@@ -126,7 +126,7 @@ private:
     std::vector<QPDF *> m_input_files;
     std::vector<std::vector<QPDFPageObjectHelper>> m_pages;
     std::vector<std::vector<FlatOutline>> m_flat_outlines;
-    std::map<int, std::vector<Link>> m_links;
+    std::map<int, std::vector<Annotation>> m_annots;
     std::vector<std::map<int, PageInfo>> m_page_infos;
 
     QPDF *m_output_pdf;

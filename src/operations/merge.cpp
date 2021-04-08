@@ -288,13 +288,8 @@ bool Merge::load_json_files_list(const QString &filename)
 
     QJsonObject data = doc.object();
     QJsonValue version = data.value("version");
-    if (version.isUndefined() || version.toInt() != 1)
+    if (version.isUndefined() || version.toInt() < 0 || version.toInt() > 2)
         return false;
-
-    QJsonValue alternate_mix = data.value("alternate_mix");
-    if (alternate_mix.isUndefined())
-        return false;
-//    m_alternate_mix->setChecked(alternate_mix.toBool());
 
     QJsonValue files = data.value("files");
     if (!files.isArray())
@@ -364,8 +359,7 @@ void Merge::save_files_list_pressed()
     if (!filename.isNull())
     {
         QJsonObject data;
-        data.insert("version", 1);
-//        data.insert("alternate_mix", m_alternate_mix->isChecked());
+        data.insert("version", 2);
 
         QJsonArray files;
         for (int i = 0; i < m_files_list_model->rowCount(); i++)

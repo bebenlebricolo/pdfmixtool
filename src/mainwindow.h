@@ -40,6 +40,7 @@
 #include "operations/alternate_mix.h"
 #include "operations/booklet.h"
 #include "operations/delete_pages.h"
+#include "operations/edit_document_info.h"
 #include "operations/edit_page_layout.h"
 #include "operations/extract_pages.h"
 #include "operations/merge.h"

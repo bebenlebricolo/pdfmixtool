@@ -20,6 +20,7 @@
 #define PDF_INFO_H
 
 #include <string>
+#include <ctime>
 #include <qpdf/QUtil.hh>
 #include <qpdf/QPDFPageDocumentHelper.hh>
 #include <qpdf/QPDFWriter.hh>
@@ -45,14 +46,36 @@ public:
 
     int n_pages() const;
 
-    QPDF qpdf;
+    const std::string &title() const;
+    const std::string &author() const;
+    const std::string &subject() const;
+    const std::string &keywords() const;
+    const std::string &creator() const;
+    const std::string &producer() const;
+    const std::tm &creation_date() const;
+    const std::tm &mod_date() const;
+
+    static std::tm string_to_datetime(const std::string &str);
 
 private:
+    QPDF m_qpdf;
     std::string m_filename;
     double m_page_width, m_page_height;
     int m_n_pages;
     std::string m_paper_size;
     bool m_is_portrait;
+
+    std::string m_title;
+    std::string m_author;
+    std::string m_subject;
+    std::string m_keywords;
+    std::string m_creator;
+    std::string m_producer;
+    std::tm m_creation_date;
+    std::tm m_mod_date;
 };
+
+// 1900/01/01 00:00
+static const std::tm default_datetime{0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ""};
 
 #endif // PDF_INFO_H

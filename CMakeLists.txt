@@ -50,6 +50,8 @@ set (
     src/operations/booklet.h
     src/operations/delete_pages.cpp
     src/operations/delete_pages.h
+    src/operations/edit_document_info.cpp
+    src/operations/edit_document_info.h
     src/operations/extract_pages.cpp
     src/operations/extract_pages.h
     src/operations/edit_page_layout.cpp

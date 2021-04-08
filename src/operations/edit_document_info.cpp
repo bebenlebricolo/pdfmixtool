@@ -1,0 +1,204 @@
+#include "edit_document_info.h"
+
+#include <ctime>
+#include <fstream>
+#include <QVBoxLayout>
+#include <QGridLayout>
+#include <QLabel>
+
+#include "../pdf_edit_lib/pdf_editor.h"
+#include "../gui_utils.h"
+
+EditDocumentInfo::EditDocumentInfo(const PdfInfo &pdf_info,
+                                   QWidget *parent) :
+    AbstractOperation(pdf_info, parent)
+{
+    m_name = tr("Edit document information");
+    m_icon = QIcon(m_icon_dir.filePath("edit_document_info.svg"));
+
+    QVBoxLayout *v_layout = new QVBoxLayout();
+    this->setLayout(v_layout);
+
+    QGridLayout *grid_layout = new QGridLayout();
+    v_layout->addLayout(grid_layout);
+
+    int row = 1;
+    grid_layout->addWidget(new QLabel(tr("Title:"), this), row, 1);
+    grid_layout->addWidget(&m_title, row, 2);
+
+    grid_layout->addWidget(new QLabel(tr("Author:"), this), ++row, 1);
+    grid_layout->addWidget(&m_author, row, 2);
+
+    grid_layout->addWidget(new QLabel(tr("Subject:"), this), ++row, 1);
+    grid_layout->addWidget(&m_subject, row, 2);
+
+    grid_layout->addWidget(new QLabel(tr("Keywords:"), this), ++row, 1);
+    grid_layout->addWidget(&m_keywords, row, 2);
+
+    grid_layout->addWidget(new QLabel(tr("Creator:"), this), ++row, 1);
+    grid_layout->addWidget(&m_creator, row, 2);
+
+    grid_layout->addWidget(new QLabel(tr("Producer:"), this), ++row, 1);
+    grid_layout->addWidget(&m_producer, row, 2);
+
+    grid_layout->addWidget(new QLabel(tr("Creation date:"), this), ++row, 1);
+    grid_layout->addWidget(&m_creation_date, row, 2);
+
+    grid_layout->addWidget(new QLabel(tr("Modification date:"), this), ++row, 1);
+    grid_layout->addWidget(&m_mod_date, row, 2);
+
+    m_creation_date.setCalendarPopup(true);
+    m_mod_date.setCalendarPopup(true);
+
+    // spacer
+    v_layout->addWidget(new QWidget(this), 1);
+
+    QHBoxLayout *h_layout = new QHBoxLayout();
+    v_layout->addLayout(h_layout);
+
+    // spacer
+    h_layout->addWidget(new QWidget(this), 1);
+
+    QPushButton *save_as_button = new QPushButton(
+                QIcon::fromTheme("document-save-as"),
+                tr("Save as…"),
+                this);
+    save_as_button->setShortcut(QKeySequence::SaveAs);
+    save_as_button->setToolTip(
+                QString(TOOLTIP_STRING)
+                .arg(
+                    save_as_button->text(),
+                    save_as_button->shortcut().toString()));
+
+    h_layout->addWidget(&m_save_button);
+    h_layout->addWidget(save_as_button);
+
+    connect(&m_save_button, &QPushButton::pressed,
+            [=]() {save(false);});
+    connect(save_as_button, &QPushButton::pressed,
+            [=]() {save(true);});
+
+}
+
+void EditDocumentInfo::pdf_info_changed()
+{
+    AbstractOperation::pdf_info_changed();
+
+    m_title.setText(QString::fromStdString(m_pdf_info->title()));
+    m_author.setText(QString::fromStdString(m_pdf_info->author()));
+    m_subject.setText(QString::fromStdString(m_pdf_info->subject()));
+    m_keywords.setText(QString::fromStdString(m_pdf_info->keywords()));
+    m_creator.setText(QString::fromStdString(m_pdf_info->creator()));
+    m_producer.setText(QString::fromStdString(m_pdf_info->producer()));
+
+    std::tm creation_date = m_pdf_info->creation_date();
+    m_creation_date.setDateTime(QDateTime::fromSecsSinceEpoch(
+                                    std::mktime(&creation_date)));
+
+    std::tm mod_date = m_pdf_info->mod_date();
+    m_mod_date.setDateTime(QDateTime::fromSecsSinceEpoch(
+                                    std::mktime(&mod_date)));
+}
+
+void EditDocumentInfo::save(bool save_as)
+{
+    if (save_as)
+    {
+        if (!show_save_as_dialog())
+            return;
+    }
+    else
+    {
+        if (!show_overwrite_dialog())
+            return;
+    }
+
+    emit write_started();
+
+    try
+    {
+        std::locale old_locale{std::locale::global(std::locale::classic())};
+
+        QPDF qpdf;
+        qpdf.processFile(m_pdf_info->filename().c_str());
+
+        using handle = QPDFObjectHandle;
+        handle doc_info = qpdf.makeIndirectObject(handle::newDictionary());
+
+        if (!m_title.text().isEmpty())
+            doc_info.replaceKey("/Title",
+                                handle::newUnicodeString(
+                                    m_title.text().toStdString()));
+
+        if (!m_author.text().isEmpty())
+            doc_info.replaceKey("/Author",
+                                handle::newUnicodeString(
+                                    m_author.text().toStdString()));
+
+        if (!m_subject.text().isEmpty())
+            doc_info.replaceKey("/Subject",
+                                handle::newUnicodeString(
+                                    m_subject.text().toStdString()));
+
+        if (!m_keywords.text().isEmpty())
+            doc_info.replaceKey("/Keywords",
+                                handle::newUnicodeString(
+                                    m_keywords.text().toStdString()));
+
+        if (!m_creator.text().isEmpty())
+            doc_info.replaceKey("/Creator",
+                                handle::newUnicodeString(
+                                    m_creator.text().toStdString()));
+
+        if (!m_producer.text().isEmpty())
+            doc_info.replaceKey("/Producer",
+                                handle::newUnicodeString(
+                                    m_producer.text().toStdString()));
+
+        QDateTime creation_date = m_creation_date.dateTime().toUTC();
+        if (creation_date != QDateTime(QDate(1900, 1, 1), QTime(0, 0)))
+        {
+            QString str = creation_date.toString("D:yyyyMMddHHmmssZ00");
+            doc_info.replaceKey("/CreationDate",
+                                handle::newUnicodeString(str.toStdString()));
+        }
+
+        QDateTime mod_date = m_mod_date.dateTime().toUTC();
+        if (mod_date != QDateTime(QDate(1900, 1, 1), QTime(0, 0)))
+        {
+            QString str = mod_date.toString("D:yyyyMMddHHmmssZ00");
+            doc_info.replaceKey("/ModDate",
+                                handle::newUnicodeString(str.toStdString()));
+        }
+
+        qpdf.getTrailer().replaceKey("/Info", doc_info);
+
+        emit progress_changed(20);
+
+        QPDFWriter writer(qpdf);
+        writer.setOutputMemory();
+        writer.write();
+        Buffer *buffer = writer.getBuffer();
+
+        const char *buf = reinterpret_cast<const char *>(buffer->getBuffer());
+
+        emit progress_changed(70);
+
+        // write the PDF file to disk
+        std::ofstream output_file_stream;
+        output_file_stream.open(m_save_filename.toStdString());
+        output_file_stream.write(buf, buffer->getSize());
+        output_file_stream.close();
+        delete buffer;
+
+        std::locale::global(old_locale);
+
+
+        emit write_finished(m_save_filename);
+    }
+    catch (std::exception &e)
+    {
+        emit(write_error(QString::fromStdString(e.what())));
+    }
+
+}

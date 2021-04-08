@@ -33,14 +33,16 @@ PdfInfo::PdfInfo() :
 
 }
 
-PdfInfo::PdfInfo(const std::string &filename)
+PdfInfo::PdfInfo(const std::string &filename) :
+    m_creation_date{default_datetime},
+    m_mod_date{default_datetime}
 {
     m_filename = filename;
 
-    qpdf.processFile(filename.c_str());
+    m_qpdf.processFile(filename.c_str());
 
     std::vector<QPDFPageObjectHelper> pages =
-            QPDFPageDocumentHelper(qpdf).getAllPages();
+            QPDFPageDocumentHelper(m_qpdf).getAllPages();
 
     m_n_pages = pages.size();
 
@@ -74,15 +76,46 @@ PdfInfo::PdfInfo(const std::string &filename)
         {
             m_paper_size = size.name;
             m_is_portrait = true;
-            return;
+            break;
         }
         else if (std::abs(m_page_width - size.height) < 0.05 &&
                  std::abs(m_page_height - size.width) < 0.05)
         {
             m_paper_size = size.name;
             m_is_portrait = false;
-            return;
+            break;
         }
+    }
+
+    // get document info
+    QPDFObjectHandle doc_info = m_qpdf.getTrailer().getKey("/Info");
+    if (doc_info.isDictionary())
+    {
+        if (doc_info.hasKey("/Title"))
+            m_title = doc_info.getKey(("/Title")).getUTF8Value();
+
+        if (doc_info.hasKey("/Author"))
+            m_author = doc_info.getKey(("/Author")).getUTF8Value();
+
+        if (doc_info.hasKey("/Subject"))
+            m_subject = doc_info.getKey(("/Subject")).getUTF8Value();
+
+        if (doc_info.hasKey("/Keywords"))
+            m_keywords = doc_info.getKey(("/Keywords")).getUTF8Value();
+
+        if (doc_info.hasKey("/Creator"))
+            m_creator = doc_info.getKey(("/Creator")).getUTF8Value();
+
+        if (doc_info.hasKey("/Producer"))
+            m_producer = doc_info.getKey(("/Producer")).getUTF8Value();
+
+        if (doc_info.hasKey("/CreationDate"))
+            m_creation_date = PdfInfo::string_to_datetime(
+                        doc_info.getKey(("/CreationDate")).getUTF8Value());
+
+        if (doc_info.hasKey("/ModDate"))
+            m_mod_date = PdfInfo::string_to_datetime(
+                        doc_info.getKey(("/ModDate")).getUTF8Value());
     }
 }
 
@@ -114,4 +147,71 @@ bool PdfInfo::is_portrait() const
 int PdfInfo::n_pages() const
 {
     return m_n_pages;
+}
+
+const std::string &PdfInfo::title() const
+{
+    return m_title;
+}
+const std::string &PdfInfo::author() const
+{
+    return m_author;
+}
+
+const std::string &PdfInfo::subject() const
+{
+    return m_subject;
+}
+
+const std::string &PdfInfo::keywords() const
+{
+    return m_keywords;
+}
+
+const std::string &PdfInfo::creator() const
+{
+    return m_creator;
+}
+
+const std::string &PdfInfo::producer() const
+{
+    return m_producer;
+}
+
+const std::tm &PdfInfo::creation_date() const
+{
+    return m_creation_date;
+}
+
+const std::tm &PdfInfo::mod_date() const
+{
+    return m_mod_date;
+}
+
+std::tm PdfInfo::string_to_datetime(const std::string &str)
+{
+    std::istringstream ss{str};
+
+    std::tm datetime{};
+
+    try
+    {
+        datetime.tm_year = std::stoi(str.substr(2, 4)) - 1900;
+        datetime.tm_mon = std::stoi(str.substr(6, 2)) - 1;
+        datetime.tm_mday = std::stoi(str.substr(8, 2));
+        datetime.tm_hour = std::stoi(str.substr(10, 2));
+        datetime.tm_min = std::stoi(str.substr(12, 2));
+        datetime.tm_sec = std::stoi(str.substr(14, 2));
+
+        if (str.at(16) != 'Z')
+        {
+            datetime.tm_hour -= std::stoi(str.substr(16, 3));
+        }
+    }
+    catch (std::exception &e)
+    {
+        datetime = default_datetime;
+    }
+
+    return datetime;
 }

@@ -610,9 +610,16 @@ void Merge::generate_pdf_button_pressed()
                     "save_directory",
                     QFileInfo(selected_file).dir().absolutePath());
 
-        write(selected_file);
+        try
+        {
+            write(selected_file);
 
-        emit write_finished(selected_file);
+            emit write_finished(selected_file);
+        }
+        catch (std::exception &e)
+        {
+            emit(write_error(QString::fromStdString(e.what())));
+        }
     }
 }
 

@@ -125,29 +125,36 @@ void ExtractPages::extract_to_individual()
         int output_pages_count;
         std::vector<std::pair<int, int>> intervals;
         parse_output_pages_string(selection.toStdString(),
-                                             m_pdf_info->n_pages(),
-                                             intervals,
-                                             output_pages_count);
+                                  m_pdf_info->n_pages(),
+                                  intervals,
+                                  output_pages_count);
 
-        int  j{0};
-        std::vector<std::pair<int, int>>::iterator it;
-        for (it = intervals.begin(); it != intervals.end(); ++it)
+        try
         {
-            for (int i = it->first; i <= it->second; i++)
+            int  j{0};
+            std::vector<std::pair<int, int>>::iterator it;
+            for (it = intervals.begin(); it != intervals.end(); ++it)
             {
-                QString filename = base_name + QString("_%1.pdf").arg(i + 1);
+                for (int i = it->first; i <= it->second; i++)
+                {
+                    QString filename = base_name + QString("_%1.pdf").arg(i + 1);
 
-                // FIXME SLOW! A custom function that opens the input file once may be necessary
-                PdfEditor editor;
-                unsigned int id = editor.add_file(m_pdf_info->filename());
-                editor.add_pages(id, 0, nullptr, {{i, i}});
-                editor.write(dir.filePath(filename).toStdString());
+                    // FIXME SLOW! A custom function that opens the input file once may be necessary
+                    PdfEditor editor;
+                    unsigned int id = editor.add_file(m_pdf_info->filename());
+                    editor.add_pages(id, 0, nullptr, {{i, i}});
+                    editor.write(dir.filePath(filename).toStdString());
 
-                emit progress_changed(100. * ++j / (output_pages_count + 1));
+                    emit progress_changed(100. * ++j / (output_pages_count + 1));
+                }
             }
-        }
 
-        emit write_finished(dir_name);
+            emit write_finished(dir_name);
+        }
+        catch (std::exception &e)
+        {
+            emit(write_error(QString::fromStdString(e.what())));
+        }
     }
 }
 
@@ -184,12 +191,21 @@ void ExtractPages::extract_to_single()
 
         emit progress_changed(20);
 
-        PdfEditor editor;
-        unsigned int id = editor.add_file(m_pdf_info->filename());
-        editor.add_pages(id, 0, nullptr, intervals);
-        emit progress_changed(70);
+        try
+        {
+            PdfEditor editor;
+            unsigned int id = editor.add_file(m_pdf_info->filename());
+            editor.add_pages(id, 0, nullptr, intervals);
+            emit progress_changed(70);
 
-        editor.write(m_save_filename.toStdString());
-        emit write_finished(m_save_filename);
+            editor.write(m_save_filename.toStdString());
+
+            emit write_finished(m_save_filename);
+        }
+        catch (std::exception &e)
+        {
+            emit(write_error(QString::fromStdString(e.what())));
+        }
+
     }
 }

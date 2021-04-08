@@ -70,6 +70,8 @@ public slots:
 
     void write_finished(const QString &filename);
 
+    void write_error(const QString &error);
+
     // close event
     void closeEvent(QCloseEvent *event);
 

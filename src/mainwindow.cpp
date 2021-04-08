@@ -166,6 +166,8 @@ MainWindow::MainWindow(QWidget *parent) :
                 this, &MainWindow::update_progress);
         connect(operation, &AbstractOperation::write_finished,
                 this, &MainWindow::write_finished);
+        connect(operation, &AbstractOperation::write_error,
+                this, &MainWindow::write_error);
         connect(operation, &AbstractOperation::output_pages_count_changed,
                 this, &MainWindow::update_output_pages_count);
         operation->update_multipage_profiles();
@@ -381,6 +383,13 @@ void MainWindow::write_finished(const QString &filename)
     m_saved_file.show();
 
     QTimer::singleShot(6000, &m_saved_file, SLOT(hide()));
+}
+
+void MainWindow::write_error(const QString &error)
+{
+    QMessageBox::critical(this, tr("Error generating the PDF"), error);
+
+    m_progress_bar->hide();
 }
 
 void MainWindow::closeEvent(QCloseEvent *event)

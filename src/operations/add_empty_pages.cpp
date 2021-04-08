@@ -192,48 +192,55 @@ void AddEmptyPages::m_save()
     page_width = page_width * cm;
     page_height = page_height * cm;
 
-    PdfEditor editor;
-    unsigned int id = editor.add_file(m_pdf_info->filename());
-    int location = m_page.value() - 1;
+    try
+    {
+        PdfEditor editor;
+        unsigned int id = editor.add_file(m_pdf_info->filename());
+        int location = m_page.value() - 1;
 
-    m_position position = static_cast<m_position>(m_before_after.checkedId());
-    switch (position)
-    {
-    case m_position::before:
-    {
-        if (location > 0)
+        m_position position = static_cast<m_position>(m_before_after.checkedId());
+        switch (position)
         {
-            editor.add_pages(id, 0, nullptr, {{0, location - 1}});
-            emit progress_changed(20);
-        }
-
-        editor.add_blank_pages(page_width, page_height, count);
-        emit progress_changed(40);
-
-        editor.add_pages(id, 0, nullptr,
-                         {{location, m_pdf_info->n_pages() - 1}});
-        emit progress_changed(60);
-
-        break;
-    }
-    case m_position::after:
-    {
-        editor.add_pages(id, 0, nullptr, {{0, location}});
-        emit progress_changed(20);
-
-        editor.add_blank_pages(page_width, page_height, count);
-        emit progress_changed(40);
-
-        if (location < m_pdf_info->n_pages() - 1)
+        case m_position::before:
         {
+            if (location > 0)
+            {
+                editor.add_pages(id, 0, nullptr, {{0, location - 1}});
+                emit progress_changed(20);
+            }
+
+            editor.add_blank_pages(page_width, page_height, count);
+            emit progress_changed(40);
+
             editor.add_pages(id, 0, nullptr,
-                             {{location + 1, m_pdf_info->n_pages() - 1}});
+                             {{location, m_pdf_info->n_pages() - 1}});
             emit progress_changed(60);
+
+            break;
         }
-    }
-    }
+        case m_position::after:
+        {
+            editor.add_pages(id, 0, nullptr, {{0, location}});
+            emit progress_changed(20);
 
-    editor.write(m_save_filename.toStdString());
+            editor.add_blank_pages(page_width, page_height, count);
+            emit progress_changed(40);
 
-    emit write_finished(m_save_filename);
+            if (location < m_pdf_info->n_pages() - 1)
+            {
+                editor.add_pages(id, 0, nullptr,
+                                 {{location + 1, m_pdf_info->n_pages() - 1}});
+                emit progress_changed(60);
+            }
+        }
+        }
+
+        editor.write(m_save_filename.toStdString());
+
+        emit write_finished(m_save_filename);
+    }
+    catch (std::exception &e)
+    {
+        emit(write_error(QString::fromStdString(e.what())));
+    }
 }

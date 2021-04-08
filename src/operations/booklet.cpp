@@ -146,15 +146,22 @@ void Booklet::generate_booklet()
             j--;
         }
 
-        PdfEditor editor;
-        unsigned int id = editor.add_file(m_pdf_info->filename());
+        try
+        {
+            PdfEditor editor;
+            unsigned int id = editor.add_file(m_pdf_info->filename());
 
-        emit progress_changed(20);
-        editor.add_pages(id, 0, layout, intervals);
-        emit progress_changed(70);
+            emit progress_changed(20);
+            editor.add_pages(id, 0, layout, intervals);
+            emit progress_changed(70);
 
-        editor.write(m_save_filename.toStdString());
+            editor.write(m_save_filename.toStdString());
 
-        emit write_finished(m_save_filename);
+            emit write_finished(m_save_filename);
+        }
+        catch (std::exception &e)
+        {
+            emit(write_error(QString::fromStdString(e.what())));
+        }
     }
 }

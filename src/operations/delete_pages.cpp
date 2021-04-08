@@ -125,12 +125,19 @@ void DeletePages::save(bool save_as)
     }
     emit progress_changed(20);
 
-    PdfEditor editor;
-    unsigned int id = editor.add_file(m_pdf_info->filename());
-    editor.add_pages(id, 0, nullptr, keep_intervals);
-    emit progress_changed(70);
+    try
+    {
+        PdfEditor editor;
+        unsigned int id = editor.add_file(m_pdf_info->filename());
+        editor.add_pages(id, 0, nullptr, keep_intervals);
+        emit progress_changed(70);
 
-    editor.write(m_save_filename.toStdString());
+        editor.write(m_save_filename.toStdString());
 
-    emit write_finished(m_save_filename);
+        emit write_finished(m_save_filename);
+    }
+    catch (std::exception &e)
+    {
+        emit(write_error(QString::fromStdString(e.what())));
+    }
 }

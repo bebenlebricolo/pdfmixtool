@@ -63,6 +63,8 @@ signals:
 
     void write_finished(const QString &filename);
 
+    void write_error(const QString &error);
+
 protected:
     QString m_name;
     QDir m_icon_dir;

@@ -110,12 +110,26 @@ PdfInfo::PdfInfo(const std::string &filename) :
             m_producer = doc_info.getKey(("/Producer")).getUTF8Value();
 
         if (doc_info.hasKey("/CreationDate"))
+        {
             m_creation_date = PdfInfo::string_to_datetime(
                         doc_info.getKey(("/CreationDate")).getUTF8Value());
+            m_has_creation_date = true;
+        }
+        else
+        {
+            m_has_creation_date = false;
+        }
 
         if (doc_info.hasKey("/ModDate"))
+        {
             m_mod_date = PdfInfo::string_to_datetime(
                         doc_info.getKey(("/ModDate")).getUTF8Value());
+            m_has_mod_date = true;
+        }
+        else
+        {
+            m_has_mod_date = false;
+        }
     }
 }
 
@@ -183,9 +197,19 @@ const std::tm &PdfInfo::creation_date() const
     return m_creation_date;
 }
 
+bool PdfInfo::has_creation_date() const
+{
+    return m_has_creation_date;
+}
+
 const std::tm &PdfInfo::mod_date() const
 {
     return m_mod_date;
+}
+
+bool PdfInfo::has_mod_date() const
+{
+    return m_has_mod_date;
 }
 
 std::tm PdfInfo::string_to_datetime(const std::string &str)
@@ -196,6 +220,7 @@ std::tm PdfInfo::string_to_datetime(const std::string &str)
 
     try
     {
+        datetime.tm_zone = "UTC";
         datetime.tm_year = std::stoi(str.substr(2, 4)) - 1900;
         datetime.tm_mon = std::stoi(str.substr(6, 2)) - 1;
         datetime.tm_mday = std::stoi(str.substr(8, 2));

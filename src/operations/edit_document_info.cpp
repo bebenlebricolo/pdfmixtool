@@ -1,6 +1,5 @@
 #include "edit_document_info.h"
 
-#include <ctime>
 #include <fstream>
 #include <QVBoxLayout>
 #include <QGridLayout>
@@ -43,12 +42,25 @@ EditDocumentInfo::EditDocumentInfo(const PdfInfo &pdf_info,
 
     grid_layout->addWidget(new QLabel(tr("Creation date:"), this), ++row, 1);
     grid_layout->addWidget(&m_creation_date, row, 2);
+    grid_layout->addWidget(&m_creation_date_enabled, row, 3);
 
     grid_layout->addWidget(new QLabel(tr("Modification date:"), this), ++row, 1);
     grid_layout->addWidget(&m_mod_date, row, 2);
+    grid_layout->addWidget(&m_mod_date_enabled, row, 3);
 
+    m_title.setClearButtonEnabled(true);
+    m_author.setClearButtonEnabled(true);
+    m_subject.setClearButtonEnabled(true);
+    m_keywords.setClearButtonEnabled(true);
+    m_creator.setClearButtonEnabled(true);
+    m_producer.setClearButtonEnabled(true);
     m_creation_date.setCalendarPopup(true);
     m_mod_date.setCalendarPopup(true);
+
+    connect(&m_creation_date_enabled, &QCheckBox::toggled,
+            &m_creation_date, &QDateTimeEdit::setEnabled);
+    connect(&m_mod_date_enabled, &QCheckBox::toggled,
+            &m_mod_date, &QDateTimeEdit::setEnabled);
 
     // spacer
     v_layout->addWidget(new QWidget(this), 1);
@@ -77,7 +89,6 @@ EditDocumentInfo::EditDocumentInfo(const PdfInfo &pdf_info,
             [=]() {save(false);});
     connect(save_as_button, &QPushButton::pressed,
             [=]() {save(true);});
-
 }
 
 void EditDocumentInfo::pdf_info_changed()
@@ -91,13 +102,43 @@ void EditDocumentInfo::pdf_info_changed()
     m_creator.setText(QString::fromStdString(m_pdf_info->creator()));
     m_producer.setText(QString::fromStdString(m_pdf_info->producer()));
 
-    std::tm creation_date = m_pdf_info->creation_date();
-    m_creation_date.setDateTime(QDateTime::fromSecsSinceEpoch(
-                                    std::mktime(&creation_date)));
+    if (m_pdf_info->has_creation_date())
+    {
+        m_creation_date_enabled.setChecked(true);
+        m_creation_date.setEnabled(true);
+        std::tm creation_date = m_pdf_info->creation_date();
+        QDateTime dt{};
+        dt.setOffsetFromUtc(0);
+        dt.setDate(QDate{creation_date.tm_year + 1900, creation_date.tm_mon + 1,
+                         creation_date.tm_mday});
+        dt.setTime(QTime{creation_date.tm_hour, creation_date.tm_min});
+        m_creation_date.setDateTime(dt.toLocalTime());
+    }
+    else
+    {
+        m_creation_date_enabled.setChecked(false);
+        m_creation_date.setEnabled(false);
+        m_creation_date.setDateTime(QDateTime::currentDateTime());
+    }
 
-    std::tm mod_date = m_pdf_info->mod_date();
-    m_mod_date.setDateTime(QDateTime::fromSecsSinceEpoch(
-                                    std::mktime(&mod_date)));
+    if (m_pdf_info->has_mod_date())
+    {
+        m_mod_date_enabled.setChecked(true);
+        m_mod_date.setEnabled(true);
+        std::tm mod_date = m_pdf_info->mod_date();
+        QDateTime dt{};
+        dt.setOffsetFromUtc(0);
+        dt.setDate(QDate{mod_date.tm_year + 1900, mod_date.tm_mon + 1,
+                         mod_date.tm_mday});
+        dt.setTime(QTime{mod_date.tm_hour, mod_date.tm_min});
+        m_mod_date.setDateTime(dt.toLocalTime());
+    }
+    else
+    {
+        m_mod_date_enabled.setChecked(false);
+        m_mod_date.setEnabled(false);
+        m_mod_date.setDateTime(QDateTime::currentDateTime());
+    }
 }
 
 void EditDocumentInfo::save(bool save_as)
@@ -155,17 +196,17 @@ void EditDocumentInfo::save(bool save_as)
                                 handle::newUnicodeString(
                                     m_producer.text().toStdString()));
 
-        QDateTime creation_date = m_creation_date.dateTime().toUTC();
-        if (creation_date != QDateTime(QDate(1900, 1, 1), QTime(0, 0)))
+        if (m_creation_date_enabled.isChecked())
         {
+            QDateTime creation_date = m_creation_date.dateTime().toUTC();
             QString str = creation_date.toString("D:yyyyMMddHHmmssZ00");
             doc_info.replaceKey("/CreationDate",
                                 handle::newUnicodeString(str.toStdString()));
         }
 
-        QDateTime mod_date = m_mod_date.dateTime().toUTC();
-        if (mod_date != QDateTime(QDate(1900, 1, 1), QTime(0, 0)))
+        if (m_mod_date_enabled.isChecked())
         {
+            QDateTime mod_date = m_mod_date.dateTime().toUTC();
             QString str = mod_date.toString("D:yyyyMMddHHmmssZ00");
             doc_info.replaceKey("/ModDate",
                                 handle::newUnicodeString(str.toStdString()));

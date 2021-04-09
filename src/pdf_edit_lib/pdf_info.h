@@ -53,7 +53,9 @@ public:
     const std::string &creator() const;
     const std::string &producer() const;
     const std::tm &creation_date() const;
+    bool has_creation_date() const;
     const std::tm &mod_date() const;
+    bool has_mod_date() const;
 
     static std::tm string_to_datetime(const std::string &str);
 
@@ -72,7 +74,9 @@ private:
     std::string m_creator;
     std::string m_producer;
     std::tm m_creation_date;
+    bool m_has_creation_date;
     std::tm m_mod_date;
+    bool m_has_mod_date;
 };
 
 // 1900/01/01 00:00

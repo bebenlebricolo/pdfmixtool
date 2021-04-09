@@ -3,6 +3,7 @@
 
 #include <QLineEdit>
 #include <QDateTimeEdit>
+#include <QCheckBox>
 
 #include "abstract_operation.h"
 
@@ -25,6 +26,8 @@ private:
     QLineEdit m_producer;
     QDateTimeEdit m_creation_date;
     QDateTimeEdit m_mod_date;
+    QCheckBox m_creation_date_enabled;
+    QCheckBox m_mod_date_enabled;
 
     void save(bool save_as);
 };

@@ -60,6 +60,8 @@ MainWindow::MainWindow(QWidget *parent) :
 #if QT_VERSION < 0x060000
     qRegisterMetaTypeStreamOperators<Multipage>("Multipage");
 #endif
+    qRegisterMetaType<Multipage>();
+
     settings->beginGroup("maltipage_profiles");
     for (QString key : settings->childKeys())
         multipages[key.toInt()] = settings->value(key).value<Multipage>();

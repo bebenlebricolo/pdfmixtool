@@ -11,7 +11,20 @@ if(CMAKE_COMPILER_IS_GNUCC OR CMAKE_COMPILER_IS_GNUCXX)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -pedantic")
 endif()
 
-find_package (Qt5 REQUIRED COMPONENTS Widgets LinguistTools)
+file(GLOB TS_FILES
+     LIST_DIRECTORIES false
+     languages/pdfmixtool_*.ts
+)
+
+if(NOT(DEFINED QT_VERSION) OR QT_VERSION EQUAL 5)
+    find_package (Qt5 REQUIRED COMPONENTS Widgets LinguistTools)
+    set(QT_LIBRARIES ${Qt5Widgets_LIBRARIES})
+    qt5_add_translation(QM_FILES ${TS_FILES} resources/pdfmixtool_en.ts)
+elseif(QT_VERSION EQUAL 6)
+    find_package (Qt6 REQUIRED COMPONENTS Widgets LinguistTools)
+    set(QT_LIBRARIES ${Qt6Widgets_LIBRARIES})
+    qt6_add_translation(QM_FILES ${TS_FILES} resources/pdfmixtool_en.ts)
+endif()
 
 set (
     SRCS
@@ -64,13 +77,6 @@ set (
     src/widgets/pdfinfolabel.h
 )
 
-file(GLOB TS_FILES
-     LIST_DIRECTORIES false
-     languages/pdfmixtool_*.ts
-)
-
-qt5_add_translation(QM_FILES ${TS_FILES} resources/pdfmixtool_en.ts)
-
 add_executable (
     pdfmixtool
     ${SRCS}
@@ -81,7 +87,7 @@ add_executable (
 target_link_libraries (
     pdfmixtool
     qpdf
-    ${Qt5Widgets_LIBRARIES}
+    ${QT_LIBRARIES}
 )
 
 file(GLOB ICONS

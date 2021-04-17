@@ -24,7 +24,7 @@
 #include "gui_utils.h"
 
 MultipageProfilesManager::MultipageProfilesManager(QWidget *parent) :
-    QMainWindow(parent),
+    QDialog(parent),
     m_edit_dialog(new EditMultipageProfileDialog(this)),
     m_new_profile_button(new QPushButton(
                              QIcon::fromTheme("list-add"),
@@ -37,10 +37,8 @@ MultipageProfilesManager::MultipageProfilesManager(QWidget *parent) :
     m_profiles_view(new QListView(this)),
     m_profiles_model(new QStandardItemModel(this))
 {
-    this->restoreGeometry(settings
-                          ->value("multipage_profiles_manager_geometry")
-                          .toByteArray());
     this->setWindowTitle(tr("Manage multipage profiles"));
+    this->setModal(true);
 
     m_profiles_view->setWordWrap(false);
     m_profiles_view->setSelectionBehavior(QAbstractItemView::SelectItems);
@@ -65,9 +63,7 @@ MultipageProfilesManager::MultipageProfilesManager(QWidget *parent) :
     m_new_profile_button->setAutoDefault(true);
 
     QVBoxLayout *v_layout = new QVBoxLayout();
-    QWidget *central_widget = new QWidget(this);
-    central_widget->setLayout(v_layout);
-    this->setCentralWidget(central_widget);
+    this->setLayout(v_layout);
 
     QHBoxLayout *layout = new QHBoxLayout();
     layout->addWidget(m_new_profile_button);
@@ -238,20 +234,9 @@ void MultipageProfilesManager::edit_dialog_closed()
     emit profile_created(-1);
 }
 
-void MultipageProfilesManager::show()
-{
-    this->restoreGeometry(settings
-                          ->value("multipage_profiles_manager_geometry")
-                          .toByteArray());
-    QMainWindow::show();
-}
-
 void MultipageProfilesManager::closeEvent(QCloseEvent *event)
 {
-    settings->setValue("multipage_profiles_manager_geometry",
-                         this->saveGeometry());
-
     emit(close_signal());
 
-    QMainWindow::closeEvent(event);
+    QDialog::closeEvent(event);
 }

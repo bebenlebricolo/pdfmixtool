@@ -27,18 +27,15 @@
 #include <QScrollArea>
 
 AboutDialog::AboutDialog(QWidget *parent) :
-    QMainWindow(parent)
+    QDialog(parent)
 {
     // Dialog header
     this->setWindowTitle(tr("About PDF Mix Tool"));
+    this->setModal(true);
 
-    QWidget *central_widget = new QWidget(this);
-    QGridLayout *grid_layout = new QGridLayout(central_widget);
+    QGridLayout *grid_layout = new QGridLayout();
     grid_layout->setVerticalSpacing(20);
-
-    central_widget->setContentsMargins(5, 5, 5, 5);
-    central_widget->setLayout(grid_layout);
-    this->setCentralWidget(central_widget);
+    this->setLayout(grid_layout);
 
     QPushButton *close_button = new QPushButton(
                 QIcon::fromTheme("window-close"), tr("Close"), this);

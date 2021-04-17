@@ -75,12 +75,11 @@ MainWindow::MainWindow(QWidget *parent) :
             multipages[i] = mp;
             i++;
         }
-
     }
 
     // Create other windows
     m_multipage_profiles_manager = new MultipageProfilesManager(this);
-    AboutDialog *about_dialog = new AboutDialog(new AboutDialog(this));
+    AboutDialog *about_dialog = new AboutDialog(this);
 
     // main layout
     QVBoxLayout *main_layout = new QVBoxLayout();

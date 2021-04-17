@@ -19,7 +19,7 @@
 #ifndef MULTIPAGEPROFILESMANAGER_H
 #define MULTIPAGEPROFILESMANAGER_H
 
-#include <QMainWindow>
+#include <QDialog>
 #include <QSettings>
 #include <QListView>
 #include <QStandardItemModel>
@@ -27,7 +27,7 @@
 
 #include "editmultipageprofiledialog.h"
 
-class MultipageProfilesManager : public QMainWindow
+class MultipageProfilesManager : public QDialog
 {
     Q_OBJECT
 public:
@@ -46,9 +46,7 @@ public slots:
 
     void edit_dialog_closed();
 
-    void show();
-
-    void closeEvent(QCloseEvent *event);
+    void closeEvent(QCloseEvent *event) override;
 
 signals:
     void close_signal();

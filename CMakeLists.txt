@@ -71,6 +71,10 @@ set (
     src/operations/edit_page_layout.h
     src/operations/merge.cpp
     src/operations/merge.h
+    src/operations/rotate.cpp
+    src/operations/rotate.h
+    src/widgets/output_preview.cpp
+    src/widgets/output_preview.h
     src/widgets/pages_selector.cpp
     src/widgets/pages_selector.h
     src/widgets/pdfinfolabel.cpp

@@ -91,6 +91,7 @@ QWidget *InputPdfFileDelegate::build_widget(
         if (height > 0)
         {
             QPixmap preview(height - 4, height - 4);
+            preview.fill(Qt::transparent);
             QPainter painter(&preview);
             draw_preview(&painter,
                          preview.rect(),
@@ -154,6 +155,7 @@ QWidget *InputPdfFileDelegate::build_widget(
         if (height > 0)
         {
             QPixmap preview(height - 4, height - 4);
+            preview.fill(Qt::transparent);
             QPainter painter(&preview);
             draw_preview(&painter,
                          preview.rect(),

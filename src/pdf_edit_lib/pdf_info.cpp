@@ -39,10 +39,11 @@ PdfInfo::PdfInfo(const std::string &filename) :
 {
     m_filename = filename;
 
-    m_qpdf.processFile(filename.c_str());
+    QPDF pdf_file;
+    pdf_file.processFile(filename.c_str());
 
     std::vector<QPDFPageObjectHelper> pages =
-            QPDFPageDocumentHelper(m_qpdf).getAllPages();
+            QPDFPageDocumentHelper(pdf_file).getAllPages();
 
     m_n_pages = pages.size();
 
@@ -88,7 +89,7 @@ PdfInfo::PdfInfo(const std::string &filename) :
     }
 
     // get document info
-    QPDFObjectHandle doc_info = m_qpdf.getTrailer().getKey("/Info");
+    QPDFObjectHandle doc_info = pdf_file.getTrailer().getKey("/Info");
     if (doc_info.isDictionary())
     {
         if (doc_info.hasKey("/Title"))

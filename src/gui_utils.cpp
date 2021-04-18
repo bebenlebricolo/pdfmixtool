@@ -131,6 +131,7 @@ double draw_preview_page(QPainter *painter,
         dy = - max_height / 2;
     }
 
+    painter->fillRect(dx, dy, w, h, Qt::white);
     painter->drawRect(dx, dy, w, h);
 
     if (text.size() > 0)
@@ -156,24 +157,23 @@ void draw_preview(QPainter *painter, const QRect &rect,
                   bool multipage_enabled, const Multipage &multipage)
 {
     painter->save();
-
-    painter->fillRect(rect, painter->background());
     painter->setPen(QColor(10, 10, 10));
-
     painter->translate(rect.x() + rect.width() / 2,
                        rect.y() + rect.height() / 2);
     painter->rotate(rotation);
 
+    int size = std::min(rect.width(), rect.height()) - 4;
+
     if (!multipage_enabled)
-        draw_preview_page(painter, rect.width() - 4, rect.height() - 4,
+        draw_preview_page(painter, size, size,
                           source_width, source_height,
                           Multipage::Center, Multipage::Center,
                           "1");
     else
     {
         double scale = draw_preview_page(painter,
-                                         rect.width() - 4,
-                                         rect.height() - 4,
+                                         size,
+                                         size,
                                          multipage.page_width,
                                          multipage.page_height,
                                          Multipage::Center,

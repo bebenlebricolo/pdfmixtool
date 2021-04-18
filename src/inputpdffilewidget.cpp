@@ -190,6 +190,7 @@ void InputPdfFileWidget::update_preview()
 {
     QPixmap pixmap(m_preview_size - layout()->contentsMargins().top() * 2,
                    m_preview_size - layout()->contentsMargins().top() * 2);
+    pixmap.fill(Qt::transparent);
     QPainter painter(&pixmap);
 
     if (m_alternate_mix)

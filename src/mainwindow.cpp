@@ -141,6 +141,7 @@ MainWindow::MainWindow(QWidget *parent) :
     m_operations.push_back(new Merge(m_opened_pdf_info, this));
     m_operations.push_back(new ExtractPages(m_opened_pdf_info, this));
     m_operations.push_back(new DeletePages(m_opened_pdf_info, this));
+    m_operations.push_back(new Rotate(m_opened_pdf_info, this));
     m_operations.push_back(new EditPageLayout(m_opened_pdf_info, this));
     m_operations.push_back(new EditDocumentInfo(m_opened_pdf_info, this));
     m_operations.push_back(new AlternateMix(m_opened_pdf_info, this));

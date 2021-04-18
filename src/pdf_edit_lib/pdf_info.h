@@ -60,7 +60,6 @@ public:
     static std::tm string_to_datetime(const std::string &str);
 
 private:
-    QPDF m_qpdf;
     std::string m_filename;
     double m_page_width, m_page_height;
     int m_n_pages;

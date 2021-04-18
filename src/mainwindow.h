@@ -44,6 +44,7 @@
 #include "operations/edit_page_layout.h"
 #include "operations/extract_pages.h"
 #include "operations/merge.h"
+#include "operations/rotate.h"
 
 class MainWindow : public QMainWindow
 {

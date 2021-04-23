@@ -23,6 +23,7 @@
 
 #include "../pdf_edit_lib/definitions.h"
 #include "../pdf_edit_lib/pdf_info.h"
+#include "../gui_utils.h"
 
 class OutputPreview : public QWidget
 {
@@ -34,9 +35,10 @@ public:
 
     void set_multipage_enabled(bool enabled);
 
-    void set_multipage(const Multipage &multipage);
-
     void set_rotation(int rotation);
+
+public slots:
+    void set_multipage(const Multipage &multipage);
 
 protected:
     void paintEvent(QPaintEvent *event) override;

@@ -19,7 +19,6 @@
 #include <QDebug>
 
 #include "output_preview.h"
-#include "../gui_utils.h"
 
 OutputPreview::OutputPreview(QWidget *parent) :
     QWidget(parent),

@@ -52,12 +52,28 @@ const PaperSize paper_sizes[] = {
 
 struct Multipage {
     enum Alignment {
-        Left,
-        Right,
-        Top,
-        Bottom,
-        Center
+        Left=0,
+        Right=1,
+        Top=2,
+        Bottom=3,
+        Center=4
     };
+
+    Multipage(const std::string &name="multipage profile",
+              double page_width=21., double page_height=29.7,
+              int rows=1, int columns=1, bool rtl=false,
+              Alignment h_alignment=Multipage::Center,
+              Alignment v_alignment=Multipage::Center,
+              double margin_left=0., double margin_right=0.,
+              double margin_top=0., double margin_bottom=0.,
+              double spacing=0.) :
+        name{name},
+        page_width{page_width}, page_height{page_height},
+        rows{rows}, columns{columns}, rtl{rtl},
+        h_alignment{h_alignment}, v_alignment{v_alignment},
+        margin_left{margin_left}, margin_right{margin_right},
+        margin_top{margin_top}, margin_bottom{margin_bottom},
+        spacing{spacing} {};
 
     std::string name;
 

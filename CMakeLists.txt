@@ -73,6 +73,8 @@ set (
     src/operations/merge.h
     src/operations/rotate.cpp
     src/operations/rotate.h
+    src/widgets/multipage_editor.cpp
+    src/widgets/multipage_editor.h
     src/widgets/output_preview.cpp
     src/widgets/output_preview.h
     src/widgets/pages_selector.cpp

@@ -24,6 +24,11 @@
 
 int main(int argc, char *argv[])
 {
+#if QT_VERSION < 0x060000
+    qRegisterMetaTypeStreamOperators<Multipage>("Multipage");
+#endif
+    qRegisterMetaType<Multipage>();
+
     // Set application informations
     QApplication app(argc, argv);
 

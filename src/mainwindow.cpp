@@ -51,18 +51,8 @@ MainWindow::MainWindow(QWidget *parent) :
     this->restoreGeometry(
                 settings->value("main_window_geometry").toByteArray());
 
-    // Delete profiles of old versions
-    settings->beginGroup("custom_maltipage_profiles");
-    settings->remove("");
-    settings->endGroup();
-
     // Load custom multipage profiles
-#if QT_VERSION < 0x060000
-    qRegisterMetaTypeStreamOperators<Multipage>("Multipage");
-#endif
-    qRegisterMetaType<Multipage>();
-
-    settings->beginGroup("maltipage_profiles");
+    settings->beginGroup("multipage_profiles");
     for (QString key : settings->childKeys())
         multipages[key.toInt()] = settings->value(key).value<Multipage>();
     settings->endGroup();
@@ -400,7 +390,7 @@ void MainWindow::closeEvent(QCloseEvent *event)
     settings->setValue("main_window_geometry", this->saveGeometry());
 
     // Save custom multipage profiles
-    settings->beginGroup("maltipage_profiles");
+    settings->beginGroup("multipage_profiles");
 
     for (QString key : settings->childKeys())
         settings->remove(key);

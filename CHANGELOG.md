@@ -1,5 +1,17 @@
 <h1>Changelog</h1>
 
+<h2>Version 1.0</h2>
+
+<p><strong>Release date:</strong> unreleased</p>
+
+<ul>
+    <li>Interface has been overhauled to make it more intuitive</li>
+    <li>Links, annotations, outlines are now preserved as much as possible in all operations</li>
+    <li>Add Qt 6 support</li>
+    <li>Add right-to-left support in pages composition</li>
+    <li>Add ability to edit PDF document information</li>
+</ul>
+
 <h2>Version 0.6</h2>
 
 <p><strong>Release date:</strong> 2020-04-22</p>

@@ -297,6 +297,17 @@ void MultipageEditor::set_multipage(const Multipage &multipage)
     m_page_height.setValue(multipage.page_height);
 
     m_standard_custom.button(button)->setChecked(true);
+    if (button == 0)
+    {
+        m_custom_size_chooser.hide();
+        m_standard_size_chooser.show();
+        update_custom_page_size();
+    }
+    else
+    {
+        m_standard_size_chooser.hide();
+        m_custom_size_chooser.show();
+    }
 
     m_rows.setValue(multipage.rows);
     m_columns.setValue(multipage.columns);

@@ -5,5 +5,5 @@
 
 <h2>Contributors</h2>
 <ul>
-<li><a href="mailto:germinolegrand@gmail.com">Florent Chapelle</a></li>
+<li>Florent Chapelle</li>
 </ul>

@@ -36,7 +36,7 @@ int main(int argc, char *argv[])
     app.setApplicationDisplayName("PDF Mix Tool");
     app.setOrganizationDomain("scarpetta.eu");
     app.setOrganizationName("PDFMixTool");
-    app.setApplicationVersion("1.0");
+    app.setApplicationVersion("1.0 Beta");
     app.setDesktopFileName("eu.scarpetta.PDFMixTool");
 
     // Set up translations

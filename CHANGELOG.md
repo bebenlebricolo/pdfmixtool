@@ -3,6 +3,7 @@
 <h2>Version 1.0</h2>
 
 <p><strong>Release date:</strong> unreleased</p>
+<p><strong>Beta release date:</strong> 2021-04-24</p>
 
 <ul>
     <li>Interface has been overhauled to make it more intuitive</li>

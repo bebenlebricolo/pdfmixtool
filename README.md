@@ -12,25 +12,21 @@
     </a>
 </p>
 
-<p>
-    PDF Mix Tool is a simple and lightweight application that allows you to
-    perform common editing operations on PDF files.
-</p>
+PDF Mix Tool is a simple and lightweight application that allows you to
+perform common editing operations on PDF files.
 
 ![Screenshot](https://scarpetta.eu/pdfmixtool/merge_files.png)
 
-<p>Base operations it can perform are the following:</p>
-<ul>
-    <li>Merge two or more files specifying a page set for each of them</li>
-    <li>Rotate pages</li>
-    <li>Composite more pages onto a single one (N-up)</li>
-    <li>Combinations of all of the above</li>
-</ul>
-<p>
-    Besides, it can also mix files alternating their pages, generate booklets,
-    add white pages to a PDF file, delete pages from a PDF file, extract pages
-    from a PDF file. 
-</p>
+Base operations it can perform are the following:
+
+- Merge two or more files specifying a page set for each of them
+- Rotate pages
+- Composite more pages onto a single one (N-up)
+- Combinations of all of the above
+
+Besides, it can also mix files alternating their pages, generate booklets,
+add white pages to a PDF file, delete pages from a PDF file, extract pages
+from a PDF file, edit the PDF document information.
 
 ## Useful links
 [Changelog/Roadmap](CHANGELOG.md)
@@ -41,7 +37,7 @@ guides, building instructions and all other information.
 ## Building
 To build PDF Mix Tool you need the following libraries and tools:
 
-- **Qt** (base and tools) >= **5.11**
+- **Qt** (base, svg and tools) >= **5.11**
 - **qpdf** >= **10.0.0**
 - **CMake** >= **3.6**
 
@@ -51,6 +47,16 @@ Run the following commands inside the git repository directory:
 mkdir build
 cd build
 cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release
+make
+```
+
+Starting from version 1.0, Qt 6 is supported. To build PDF Mix Tool using
+Qt 6, run the following commands inside the git repository directory:
+
+```
+mkdir build
+cd build
+cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DQT_VERSION=6
 make
 ```
 

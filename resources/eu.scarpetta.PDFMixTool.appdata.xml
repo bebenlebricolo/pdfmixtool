@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Copyright 2018-2020 Marco Scarpetta <marcoscarpetta02@gmail.com> -->
+<!-- Copyright 2018-2021 Marco Scarpetta <marcoscarpetta02@gmail.com> -->
 <component type="desktop-application">
   <id>eu.scarpetta.PDFMixTool</id>
   <metadata_license>FSFAP</metadata_license>
@@ -23,7 +23,7 @@
     <p>
       Besides, it can also mix files alternating their pages, generate booklets,
       add white pages to a PDF file, delete pages from a PDF file, extract pages
-      from a PDF file.
+      from a PDF file, edit the PDF document information.
     </p>
   </description>
 
@@ -35,16 +35,24 @@
       <image>https://scarpetta.eu/pdfmixtool/merge_files.png</image>
     </screenshot>
     <screenshot>
-      <caption>Extract pages from a file</caption>
-      <image>https://scarpetta.eu/pdfmixtool/extract_pages.png</image>
-    </screenshot>
-    <screenshot>
       <caption>Page composition (N-up)</caption>
       <image>https://scarpetta.eu/pdfmixtool/nup.png</image>
     </screenshot>
     <screenshot>
-      <caption>Alternate mix of PDF file</caption>
-      <image>https://scarpetta.eu/pdfmixtool/alternate_mix.png</image>
+      <caption>Rotate pages</caption>
+      <image>https://scarpetta.eu/pdfmixtool/rotate.png</image>
+    </screenshot>
+    <screenshot>
+      <caption>Extract pages from a file</caption>
+      <image>https://scarpetta.eu/pdfmixtool/extract_pages.png</image>
+    </screenshot>
+    <screenshot>
+      <caption>Delete pages from a file</caption>
+      <image>https://scarpetta.eu/pdfmixtool/delete_pages.png</image>
+    </screenshot>
+    <screenshot>
+      <caption>Edit document information</caption>
+      <image>https://scarpetta.eu/pdfmixtool/document_information.png</image>
     </screenshot>
   </screenshots>
 
@@ -58,6 +66,17 @@
   <content_rating type="oars-1.0" />
 
   <releases>
+    <release version="1.0beta" date="2021-04-24">
+      <description>
+        <ul>
+          <li>Interface has been overhauled to make it more intuitive</li>
+          <li>Links, annotations, outlines are now preserved as much as possible in all operations</li>
+          <li>Add Qt 6 support</li>
+          <li>Add right-to-left support in pages composition</li>
+          <li>Add ability to edit PDF document information</li>
+        </ul>
+      </description>
+    </release>
     <release version="0.6" date="2020-04-22">
       <description>
         <ul>

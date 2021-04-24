@@ -29,239 +29,47 @@ EditMultipageProfileDialog::EditMultipageProfileDialog(QWidget *parent) :
     this->setWindowTitle(tr("Edit multipage profile"));
     this->setModal(true);
 
-    int i = 0;
-    for (PaperSize size : paper_sizes)
-    {
-        m_page_size.addItem(QString::fromStdString(size.name));
-        i++;
-    }
-
-    m_orientation_label.setText(tr("Orientation:"));
-    m_orientation.addItem(tr("Portrait"));
-    m_orientation.addItem(tr("Landscape"));
-
-    m_page_size_label.setText(tr("Standard size:"));
-    m_page_width_label.setText(tr("Width:"));
-    m_page_height_label.setText(tr("Height:"));
-
-    m_page_width.setSuffix(" cm");
-    m_page_width.setDecimals(1);
-    m_page_width.setSingleStep(0.1);
-    m_page_width.setMinimum(1.0);
-    m_page_width.setMaximum(1000.0);
-
-    m_page_height.setSuffix(" cm");
-    m_page_height.setDecimals(1);
-    m_page_height.setSingleStep(0.1);
-    m_page_height.setMinimum(1.0);
-    m_page_height.setMaximum(1000.0);
-
-    m_rows.setMinimum(1);
-    m_rows.setMaximum(10);
-
-    m_columns.setMinimum(1);
-    m_columns.setMaximum(10);
-
-    m_h_alignment.addItem(tr("Left"), Multipage::Left);
-    m_h_alignment.addItem(tr("Center"), Multipage::Center);
-    m_h_alignment.addItem(tr("Right"), Multipage::Right);
-
-    m_v_alignment.addItem(tr("Top"), Multipage::Top);
-    m_v_alignment.addItem(tr("Center"), Multipage::Center);
-    m_v_alignment.addItem(tr("Bottom"), Multipage::Bottom);
-
-    m_margin_left.setSuffix(" cm");
-    m_margin_left.setDecimals(1);
-    m_margin_left.setSingleStep(0.1);
-    m_margin_left.setMaximum(1000.0);
-
-    m_margin_right.setSuffix(" cm");
-    m_margin_right.setDecimals(1);
-    m_margin_right.setSingleStep(0.1);
-    m_margin_right.setMaximum(1000.0);
-
-    m_margin_top.setSuffix(" cm");
-    m_margin_top.setDecimals(1);
-    m_margin_top.setSingleStep(0.1);
-    m_margin_top.setMaximum(1000.0);
-
-    m_margin_bottom.setSuffix(" cm");
-    m_margin_bottom.setDecimals(1);
-    m_margin_bottom.setSingleStep(0.1);
-    m_margin_bottom.setMaximum(1000.0);
-
-    m_spacing.setSuffix(" cm");
-    m_spacing.setDecimals(1);
-    m_spacing.setSingleStep(0.1);
-    m_spacing.setMaximum(1000.0);
-
     QGridLayout *layout = new QGridLayout();
+    layout->setSpacing(10);
     this->setLayout(layout);
 
     int row = 1;
     layout->addWidget(new QLabel(tr("Name:"), this), row, 1);
-    layout->addWidget(&m_name, row++, 2, 1, 3);
+    layout->addWidget(&m_name, row, 2, 1, 3);
+    m_name.setClearButtonEnabled(true);
 
-    QFrame *separator = new QFrame(this);
-    separator->setFrameShape(QFrame::HLine);
-    separator->setLineWidth(1);
-    layout->addWidget(separator, row++, 1, 1, 4);
-
-    layout->addWidget(new QLabel(tr("Output page size"), this),
-                      row++, 1, 1, 4, Qt::AlignCenter);
-
-    layout->addWidget(&m_page_size_label, row, 1);
-    layout->addWidget(&m_page_size, row, 2);
-
-    layout->addWidget(&m_orientation_label, row, 3);
-    layout->addWidget(&m_orientation, row++, 4);
-
-    layout->addWidget(new QLabel(tr("Custom size:"), this), row, 2);
-    layout->addWidget(&m_custom_page_size, row++, 3);
-
-    layout->addWidget(&m_page_width_label, row, 1);
-    layout->addWidget(&m_page_width, row, 2);
-
-    layout->addWidget(&m_page_height_label, row, 3);
-    layout->addWidget(&m_page_height, row++, 4);
-
-    separator = new QFrame(this);
-    separator->setFrameShape(QFrame::HLine);
-    separator->setLineWidth(1);
-    layout->addWidget(separator, row++, 1, 1, 4);
-
-    layout->addWidget(new QLabel(tr("Pages layout"), this),
-                      row++, 1, 1, 4, Qt::AlignCenter);
-
-    layout->addWidget(new QLabel(tr("Rows:"), this), row, 1);
-    layout->addWidget(&m_rows, row, 2);
-
-    layout->addWidget(new QLabel(tr("Columns:"), this), row, 3);
-    layout->addWidget(&m_columns, row++, 4);
-
-    layout->addWidget(new QLabel(tr("Spacing:"), this), row, 1);
-    layout->addWidget(&m_spacing, row, 2);
-
-    layout->addWidget(new QLabel(tr("Right-to-left:"), this), row, 3);
-    layout->addWidget(&m_rtl, row++, 4);
-
-    separator = new QFrame(this);
-    separator->setFrameShape(QFrame::HLine);
-    separator->setLineWidth(1);
-    layout->addWidget(separator, row++, 1, 1, 4);
-
-    layout->addWidget(new QLabel(tr("Pages alignment"), this),
-                      row++, 1, 1, 4, Qt::AlignCenter);
-
-    layout->addWidget(new QLabel(tr("Horizontal:"), this), row, 1);
-    layout->addWidget(&m_h_alignment, row, 2);
-
-    layout->addWidget(new QLabel(tr("Vertical:"), this), row, 3);
-    layout->addWidget(&m_v_alignment, row++, 4);
-
-    separator = new QFrame(this);
-    separator->setFrameShape(QFrame::HLine);
-    separator->setLineWidth(1);
-    layout->addWidget(separator, row++, 1, 1, 4);
-
-    layout->addWidget(new QLabel(tr("Margins"), this),
-                      row++, 1, 1, 4, Qt::AlignCenter);
-
-    layout->addWidget(new QLabel(tr("Left") + ":", this), row, 1);
-    layout->addWidget(&m_margin_left, row, 2);
-    layout->addWidget(new QLabel(tr("Right") + ":", this), row, 3);
-    layout->addWidget(&m_margin_right, row++, 4);
-    layout->addWidget(new QLabel(tr("Top") + ":", this), row, 1);
-    layout->addWidget(&m_margin_top, row, 2);
-    layout->addWidget(new QLabel(tr("Bottom") + ":", this), row, 3);
-    layout->addWidget(&m_margin_bottom, row++, 4);
+    layout->addWidget(&m_multipage_editor, ++row, 1, 1, 4);
 
     QPushButton *cancel_button = new QPushButton("Cancel", this);
     QPushButton *save_button = new QPushButton("Save", this);
     cancel_button->setDefault(true);
     save_button->setAutoDefault(true);
 
-    layout->addItem(new QSpacerItem(20, 20), row++, 1, 1, 4);
-    layout->addWidget(cancel_button, row, 3);
+    layout->addItem(new QSpacerItem(0, 30), ++row, 1);
+
+    layout->addWidget(cancel_button, ++row, 3);
     layout->addWidget(save_button, row, 4);
+
+    layout->setColumnStretch(1, 0);
+    layout->setColumnStretch(2, 1);
+    layout->setColumnStretch(3, 0);
+    layout->setColumnStretch(4, 0);
 
     connect(save_button, SIGNAL(pressed()), this, SLOT(accept()));
     connect(cancel_button, SIGNAL(pressed()), this, SLOT(reject()));
-    connect(&m_custom_page_size, SIGNAL(toggled(bool)),
-            this, SLOT(custom_page_size_toggled(bool)));
-    connect(&m_page_size, SIGNAL(currentIndexChanged(int)),
-            this, SLOT(page_size_changed()));
-    connect(&m_orientation, SIGNAL(currentIndexChanged(int)),
-            this, SLOT(page_size_changed()));
-    connect(&m_page_width, SIGNAL(valueChanged(double)),
-            this, SLOT(page_width_changed(double)));
-    connect(&m_page_height, SIGNAL(valueChanged(double)),
-            this, SLOT(page_height_changed(double)));
 }
 
 void EditMultipageProfileDialog::set_multipage(const Multipage &multipage)
 {
     m_name.setText(QString::fromStdString(multipage.name));
-
-    int i = 0;
-    bool custom_size = true;
-    for (const PaperSize &size : paper_sizes)
-    {
-        if (std::lround(multipage.page_width * 10) ==
-                std::lround(size.width * 10)
-                && std::lround(multipage.page_height * 10) ==
-                std::lround(size.height * 10))
-        {
-            m_page_size.setCurrentIndex(i);
-            m_orientation.setCurrentIndex(0);
-            custom_size = false;
-            break;
-        }
-        else if (std::lround(multipage.page_width * 10) ==
-                std::lround(size.height * 10)
-                && std::lround(multipage.page_height * 10) ==
-                std::lround(size.width * 10))
-        {
-            m_page_size.setCurrentIndex(i);
-            m_orientation.setCurrentIndex(1);
-            custom_size = false;
-            break;
-        }
-        i++;
-    }
-
-    m_page_width.setValue(multipage.page_width);
-    m_page_height.setValue(multipage.page_height);
-
-    m_custom_page_size.setChecked(custom_size);
-    this->custom_page_size_toggled(custom_size);
-
-    m_rows.setValue(multipage.rows);
-    m_columns.setValue(multipage.columns);
-    m_spacing.setValue(multipage.spacing);
-    m_rtl.setChecked(multipage.rtl);
-    m_h_alignment.setCurrentIndex(
-                m_h_alignment.findData(multipage.h_alignment));
-    m_v_alignment.setCurrentIndex(
-                m_v_alignment.findData(multipage.v_alignment));
-    m_margin_left.setValue(multipage.margin_left);
-    m_margin_right.setValue(multipage.margin_right);
-    m_margin_top.setValue(multipage.margin_top);
-    m_margin_bottom.setValue(multipage.margin_bottom);
+    m_multipage_editor.set_multipage(multipage);
 }
 
 Multipage EditMultipageProfileDialog::get_multipage()
 {
-    return {
-        m_name.text().toStdString(),
-        m_page_width.value(), m_page_height.value(),
-        m_rows.value(), m_columns.value(), m_rtl.isChecked(),
-        static_cast<Multipage::Alignment>(m_h_alignment.currentData().toInt()),
-        static_cast<Multipage::Alignment>(m_v_alignment.currentData().toInt()),
-        m_margin_left.value(), m_margin_right.value(),
-        m_margin_top.value(), m_margin_bottom.value(),
-        m_spacing.value()
-    };
+    Multipage multipage = m_multipage_editor.get_multipage();
+    multipage.name = m_name.text().toStdString();
+    return multipage;
 }
 
 void EditMultipageProfileDialog::set_index(int index)
@@ -272,60 +80,4 @@ void EditMultipageProfileDialog::set_index(int index)
 int EditMultipageProfileDialog::get_index()
 {
     return m_index;
-}
-
-void EditMultipageProfileDialog::custom_page_size_toggled(bool toggled)
-{
-    if (toggled)
-    {
-        m_page_size_label.setDisabled(true);
-        m_page_size.setDisabled(true);
-        m_orientation_label.setDisabled(true);
-        m_orientation.setDisabled(true);
-        m_page_width_label.setDisabled(false);
-        m_page_height_label.setDisabled(false);
-        m_page_width.setDisabled(false);
-        m_page_height.setDisabled(false);
-    }
-    else
-    {
-        this->page_size_changed();
-        m_page_size_label.setDisabled(false);
-        m_page_size.setDisabled(false);
-        m_orientation_label.setDisabled(false);
-        m_orientation.setDisabled(false);
-        m_page_width_label.setDisabled(true);
-        m_page_height_label.setDisabled(true);
-        m_page_width.setDisabled(true);
-        m_page_height.setDisabled(true);
-    }
-}
-
-void EditMultipageProfileDialog::page_size_changed()
-{
-    int index = m_page_size.currentIndex();
-    if (m_orientation.currentIndex() == 0)
-    {
-        m_page_width.setValue(paper_sizes[index].width);
-        m_page_height.setValue(paper_sizes[index].height);
-    }
-    else
-    {
-        m_page_width.setValue(paper_sizes[index].height);
-        m_page_height.setValue(paper_sizes[index].width);
-    }
-}
-
-void EditMultipageProfileDialog::page_width_changed(double value)
-{
-    m_margin_left.setMaximum(value / 2);
-    m_margin_right.setMaximum(value / 2);
-    m_spacing.setMaximum(value);
-}
-
-void EditMultipageProfileDialog::page_height_changed(double value)
-{
-    m_margin_top.setMaximum(value / 2);
-    m_margin_bottom.setMaximum(value / 2);
-    m_spacing.setMaximum(value);
 }

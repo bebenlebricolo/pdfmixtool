@@ -28,6 +28,7 @@
 #include <QCheckBox>
 
 #include "pdf_edit_lib/definitions.h"
+#include "widgets/multipage_editor.h"
 
 class EditMultipageProfileDialog : public QDialog
 {
@@ -43,37 +44,10 @@ public:
 
     int get_index();
 
-private slots:
-    void custom_page_size_toggled(bool toggled);
-
-    void page_size_changed();
-
-    void page_width_changed(double value);
-
-    void page_height_changed(double value);
-
 private:
     int m_index;
     QLineEdit m_name;
-    QLabel m_page_size_label;
-    QComboBox m_page_size;
-    QLabel m_orientation_label;
-    QComboBox m_orientation;
-    QCheckBox m_custom_page_size;
-    QLabel m_page_width_label;
-    QLabel m_page_height_label;
-    QDoubleSpinBox m_page_width;
-    QDoubleSpinBox m_page_height;
-    QSpinBox m_rows;
-    QSpinBox m_columns;
-    QCheckBox m_rtl;
-    QComboBox m_h_alignment;
-    QComboBox m_v_alignment;
-    QDoubleSpinBox m_margin_left;
-    QDoubleSpinBox m_margin_right;
-    QDoubleSpinBox m_margin_top;
-    QDoubleSpinBox m_margin_bottom;
-    QDoubleSpinBox m_spacing;
+    MultipageEditor m_multipage_editor;
 };
 
 #endif // EDITMULTIPAGEPROFILEDIALOG_H

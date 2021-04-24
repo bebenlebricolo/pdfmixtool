@@ -180,7 +180,7 @@
     <message>
         <location filename="../src/operations/alternate_mix.cpp" line="27"/>
         <source>Alternate mix</source>
-        <translation type="unfinished">Dönüşümlü karıştırma</translation>
+        <translation>Dönüşümlü karıştırma</translation>
     </message>
 </context>
 <context>
@@ -244,52 +244,52 @@
     <message>
         <location filename="../src/operations/edit_document_info.cpp" line="15"/>
         <source>Document information</source>
-        <translation type="unfinished"></translation>
+        <translation>Belge bilgileri</translation>
     </message>
     <message>
         <location filename="../src/operations/edit_document_info.cpp" line="25"/>
         <source>Title:</source>
-        <translation type="unfinished"></translation>
+        <translation>Başlık:</translation>
     </message>
     <message>
         <location filename="../src/operations/edit_document_info.cpp" line="28"/>
         <source>Author:</source>
-        <translation type="unfinished"></translation>
+        <translation>Yazar:</translation>
     </message>
     <message>
         <location filename="../src/operations/edit_document_info.cpp" line="31"/>
         <source>Subject:</source>
-        <translation type="unfinished"></translation>
+        <translation>Konu:</translation>
     </message>
     <message>
         <location filename="../src/operations/edit_document_info.cpp" line="34"/>
         <source>Keywords:</source>
-        <translation type="unfinished"></translation>
+        <translation>Anahtar sözcükler:</translation>
     </message>
     <message>
         <location filename="../src/operations/edit_document_info.cpp" line="37"/>
         <source>Creator:</source>
-        <translation type="unfinished"></translation>
+        <translation>Oluşturan:</translation>
     </message>
     <message>
         <location filename="../src/operations/edit_document_info.cpp" line="40"/>
         <source>Producer:</source>
-        <translation type="unfinished"></translation>
+        <translation>Üretici:</translation>
     </message>
     <message>
         <location filename="../src/operations/edit_document_info.cpp" line="43"/>
         <source>Creation date:</source>
-        <translation type="unfinished"></translation>
+        <translation>Oluşturulma tarihi:</translation>
     </message>
     <message>
         <location filename="../src/operations/edit_document_info.cpp" line="47"/>
         <source>Modification date:</source>
-        <translation type="unfinished"></translation>
+        <translation>Değiştirme tarihi:</translation>
     </message>
     <message>
         <location filename="../src/operations/edit_document_info.cpp" line="76"/>
         <source>Save as…</source>
-        <translation type="unfinished">Farklı kaydet…</translation>
+        <translation>Farklı kaydet…</translation>
     </message>
 </context>
 <context>
@@ -310,12 +310,12 @@
     <message>
         <location filename="../src/operations/edit_page_layout.cpp" line="35"/>
         <source>Pages layout</source>
-        <translation type="unfinished">Sayfa düzeni</translation>
+        <translation>Sayfa düzeni</translation>
     </message>
     <message>
         <location filename="../src/operations/edit_page_layout.cpp" line="45"/>
         <source>Apply to:</source>
-        <translation type="unfinished"></translation>
+        <translation>Uygula:</translation>
     </message>
     <message>
         <location filename="../src/operations/edit_page_layout.cpp" line="71"/>
@@ -552,7 +552,7 @@
     <message>
         <location filename="../src/mainwindow.cpp" line="383"/>
         <source>Error generating the PDF</source>
-        <translation type="unfinished"></translation>
+        <translation>PDF oluşturulurken hata oluştu</translation>
     </message>
 </context>
 <context>
@@ -560,115 +560,115 @@
     <message>
         <location filename="../src/operations/merge.cpp" line="43"/>
         <source>Merge PDF files</source>
-        <translation type="unfinished"></translation>
+        <translation>PDF dosyalarını birleştir</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="72"/>
         <source>Edit</source>
-        <translation type="unfinished">Düzenle</translation>
+        <translation>Düzenle</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="73"/>
         <source>View</source>
-        <translation type="unfinished">Görünüm</translation>
+        <translation>Görünüm</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="76"/>
         <source>Main toolbar</source>
-        <translation type="unfinished">Ana araç çubuğu</translation>
+        <translation>Ana araç çubuğu</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="83"/>
         <source>Add PDF file</source>
-        <translation type="unfinished">PDF dosyası ekle</translation>
+        <translation>PDF dosyası ekle</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="88"/>
         <source>Select one or more PDF files to open</source>
-        <translation type="unfinished">Açmak için bir veya daha fazla PDF dosyası seç</translation>
+        <translation>Açmak için bir veya daha fazla PDF dosyası seç</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="90"/>
         <location filename="../src/operations/merge.cpp" line="603"/>
         <source>PDF files (*.pdf)</source>
-        <translation type="unfinished">PDF dosyaları (*.pdf)</translation>
+        <translation>PDF dosyaları (*.pdf)</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="95"/>
         <source>Move up</source>
-        <translation type="unfinished">Yukarı taşı</translation>
+        <translation>Yukarı taşı</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="100"/>
         <source>Move down</source>
-        <translation type="unfinished">Aşağı taşı</translation>
+        <translation>Aşağı taşı</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="105"/>
         <source>Remove file</source>
-        <translation type="unfinished">Dosyayı kaldır</translation>
+        <translation>Dosyayı kaldır</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="115"/>
         <source>Load files list</source>
-        <translation type="unfinished">Dosya listesini yükle</translation>
+        <translation>Dosya listesini yükle</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="120"/>
         <source>Save files list</source>
-        <translation type="unfinished">Dosya listesini kaydet</translation>
+        <translation>Dosya listesini kaydet</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="154"/>
         <location filename="../src/operations/merge.cpp" line="158"/>
         <source>Generate PDF</source>
-        <translation type="unfinished">PDF oluştur</translation>
+        <translation>PDF oluştur</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="337"/>
         <source>Select the JSON file containing the files list</source>
-        <translation type="unfinished">Dosya listesini içeren JSON dosyasını seç</translation>
+        <translation>Dosya listesini içeren JSON dosyasını seç</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="339"/>
         <location filename="../src/operations/merge.cpp" line="357"/>
         <source>JSON files (*.json)</source>
-        <translation type="unfinished">JSON dosyaları (*.json)</translation>
+        <translation>JSON dosyaları (*.json)</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="345"/>
         <source>Error while reading the JSON file!</source>
-        <translation type="unfinished">JSON dosyasını okurken hata!</translation>
+        <translation>JSON dosyasını okurken hata oluştu!</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="346"/>
         <source>An error occurred while reading the JSON file!</source>
-        <translation type="unfinished">JSON dosyasını okurken bir hata oluştu!</translation>
+        <translation>JSON dosyasını okurken bir hata oluştu!</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="353"/>
         <source>Select a JSON file</source>
-        <translation type="unfinished">Bir JSON dosyası seç</translation>
+        <translation>Bir JSON dosyası seç</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="432"/>
         <source>Error opening file</source>
-        <translation type="unfinished">Dosya açma hatası</translation>
+        <translation>Dosya açma hatası</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="575"/>
         <source>&lt;p&gt;Output pages of file &lt;b&gt;%1&lt;/b&gt; are badly formatted. Please make sure you complied with the following rules:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;intervals of pages must be written indicating the first page and the last page separated by a dash (e.g. &quot;1-5&quot;);&lt;/li&gt;&lt;li&gt;single pages and intervals of pages must be separated by spaces, commas or both (e.g. &quot;1, 2, 3, 5-10&quot; or &quot;1 2 3 5-10&quot;);&lt;/li&gt;&lt;li&gt;all pages and intervals of pages must be between 1 and the number of pages of the PDF file;&lt;/li&gt;&lt;li&gt;only numbers, spaces, commas and dashes can be used. All other characters are not allowed.&lt;/li&gt;&lt;/ul&gt;</source>
-        <translation type="unfinished">&lt;p&gt;&lt;b&gt;%1&lt;/b&gt; dosyasının çıktı sayfaları hatalı biçimlendirilmiş. Lütfen şu kurallara uyduğunuzdan emin olun:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;sayfa aralıkları, ilk sayfayı ve son sayfayı bir tire ile ayırarak yazılmalıdır. (örn. &quot;1-5&quot;&lt;/li&gt;);&lt;li&gt;tek sayfalar ve sayfa aralıkları boşluk, virgül veya her ikisiyle ayrılmalıdır (örn. &quot;1, 2, 3, 5-10&quot; veya &quot;1 2 3 5-10&quot;&lt;/li&gt;); &lt;li&gt;tüm sayfalar ve sayfaların aralıkları 1 ile PDF dosyasının sayfa sayısı arasında olmalıdır;&lt;/li&gt;&lt;li&gt;sadece sayılar, boşluklar, virgüller ve kısa çizgiler kullanılabilir. Diğer hiçbir karaktere izin verilmez.&lt;/li&gt;&lt;/ul&gt;</translation>
+        <translation>&lt;p&gt;&lt;b&gt;%1&lt;/b&gt; dosyasının çıktı sayfaları hatalı biçimlendirilmiş. Lütfen şu kurallara uyduğunuzdan emin olun:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;sayfa aralıkları, ilk sayfayı ve son sayfayı bir kısa çizgi ile ayırarak yazılmalıdır. (örn. &quot;1-5&quot;);&lt;/li&gt;&lt;li&gt;tek sayfalar ve sayfa aralıkları boşluk, virgül veya her ikisiyle ayrılmalıdır (örn. &quot;1, 2, 3, 5-10&quot; veya &quot;1 2 3 5-10&quot;);&lt;/li&gt;&lt;li&gt;tüm sayfalar ve sayfa aralıkları 1 ile PDF dosyasının sayfa sayısı arasında olmalıdır;&lt;/li&gt;&lt;li&gt;sadece sayılar, boşluklar, virgüller ve kısa çizgiler kullanılabilir. Diğer hiçbir karaktere izin verilmez.&lt;/li&gt;&lt;/ul&gt;</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="592"/>
         <source>PDF generation error</source>
-        <translation type="unfinished">PDF oluşturma hatası</translation>
+        <translation>PDF oluşturma hatası</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="599"/>
         <source>Save PDF file</source>
-        <translation type="unfinished">PDF dosyasını kaydet</translation>
+        <translation>PDF dosyasını kaydet</translation>
     </message>
 </context>
 <context>
@@ -676,117 +676,117 @@
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="34"/>
         <source>Standard size</source>
-        <translation type="unfinished"></translation>
+        <translation>Standart boyut</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="35"/>
         <source>Custom size</source>
-        <translation type="unfinished"></translation>
+        <translation>Özel boyut</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="44"/>
         <source>Portrait</source>
-        <translation type="unfinished">Dikey</translation>
+        <translation>Dikey</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="45"/>
         <source>Landscape</source>
-        <translation type="unfinished">Yatay</translation>
+        <translation>Yatay</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="75"/>
         <source>Right-to-left</source>
-        <translation type="unfinished"></translation>
+        <translation>Sağdan sola</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="77"/>
         <location filename="../src/widgets/multipage_editor.cpp" line="212"/>
         <source>Left</source>
-        <translation type="unfinished">Sol</translation>
+        <translation>Sol</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="78"/>
         <location filename="../src/widgets/multipage_editor.cpp" line="82"/>
         <source>Center</source>
-        <translation type="unfinished">Merkez</translation>
+        <translation>Merkez</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="79"/>
         <location filename="../src/widgets/multipage_editor.cpp" line="215"/>
         <source>Right</source>
-        <translation type="unfinished">Sağ</translation>
+        <translation>Sağ</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="81"/>
         <location filename="../src/widgets/multipage_editor.cpp" line="218"/>
         <source>Top</source>
-        <translation type="unfinished">Üst</translation>
+        <translation>Üst</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="83"/>
         <location filename="../src/widgets/multipage_editor.cpp" line="221"/>
         <source>Bottom</source>
-        <translation type="unfinished">Alt</translation>
+        <translation>Alt</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="116"/>
         <source>Page size</source>
-        <translation type="unfinished">Sayfa boyutu</translation>
+        <translation>Sayfa boyutu</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="135"/>
         <source>Orientation:</source>
-        <translation type="unfinished"></translation>
+        <translation>Yönlendirme:</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="142"/>
         <source>Width:</source>
-        <translation type="unfinished">Genişlik:</translation>
+        <translation>Genişlik:</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="145"/>
         <source>Height:</source>
-        <translation type="unfinished">Yükseklik:</translation>
+        <translation>Yükseklik:</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="172"/>
         <source>Pages layout</source>
-        <translation type="unfinished">Sayfa düzeni</translation>
+        <translation>Sayfa düzeni</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="179"/>
         <source>Rows:</source>
-        <translation type="unfinished">Satırlar:</translation>
+        <translation>Satırlar:</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="182"/>
         <source>Columns:</source>
-        <translation type="unfinished">Sütunlar:</translation>
+        <translation>Sütunlar:</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="185"/>
         <source>Spacing:</source>
-        <translation type="unfinished">Aralık:</translation>
+        <translation>Aralık:</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="191"/>
         <source>Pages alignment</source>
-        <translation type="unfinished">Sayfa hizalama</translation>
+        <translation>Sayfa hizalama</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="198"/>
         <source>Horizontal:</source>
-        <translation type="unfinished">Yatay:</translation>
+        <translation>Yatay:</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="201"/>
         <source>Vertical:</source>
-        <translation type="unfinished">Dikey:</translation>
+        <translation>Dikey:</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="205"/>
         <source>Margins</source>
-        <translation type="unfinished">Kenar boşlukları</translation>
+        <translation>Kenar boşlukları</translation>
     </message>
 </context>
 <context>
@@ -891,6 +891,7 @@
         <source>%n page(s)</source>
         <translation>
             <numerusform>%n sayfa</numerusform>
+            <numerusform>%n sayfa</numerusform>
         </translation>
     </message>
 </context>
@@ -899,12 +900,12 @@
     <message>
         <location filename="../src/operations/rotate.cpp" line="33"/>
         <source>Rotate</source>
-        <translation type="unfinished"></translation>
+        <translation>Döndür</translation>
     </message>
     <message>
         <location filename="../src/operations/rotate.cpp" line="74"/>
         <source>Save as…</source>
-        <translation type="unfinished">Farklı kaydet…</translation>
+        <translation>Farklı kaydet…</translation>
     </message>
 </context>
 </TS>

@@ -26,6 +26,7 @@
 #include <QStandardItem>
 
 #include "multipageprofilesmanager.h"
+#include "widgets/output_preview.h"
 
 class InputPdfFileWidget : public QWidget
 {
@@ -62,8 +63,7 @@ private:
     const QMap<int, Multipage> &m_multipages;
     bool m_alternate_mix;
     QStandardItem *m_last_item;
-    int m_preview_size;
-    QLabel *m_preview_label;
+    OutputPreview *m_output_preview;
     QLineEdit *m_pages_filter_lineedit;
     QComboBox *m_multipage_combobox;
     QComboBox *m_rotation_combobox;

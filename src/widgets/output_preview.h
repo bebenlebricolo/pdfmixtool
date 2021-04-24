@@ -31,6 +31,8 @@ class OutputPreview : public QWidget
 public:
     explicit OutputPreview(QWidget *parent = nullptr);
 
+    void set_page_size(double width, double height);
+
     void set_pdf_info(const PdfInfo &pdf_info);
 
     void set_multipage_enabled(bool enabled);
@@ -44,11 +46,21 @@ protected:
     void paintEvent(QPaintEvent *event) override;
 
 private:
-    bool m_has_pdf_info;
-    PdfInfo m_pdf_info;
+    bool m_has_page_size;
+    double m_page_width;
+    double m_page_height;
     bool m_multipage_enabled;
     Multipage m_multipage;
     int m_rotation;
+
+    static double draw_preview_page(QPainter &painter,
+                                    int max_width,
+                                    int max_height,
+                                    double page_width,
+                                    double page_height,
+                                    Multipage::Alignment h_alignment,
+                                    Multipage::Alignment v_alignment,
+                                    const QString &text);
 };
 
 #endif // OUTPUTPREVIEW_H

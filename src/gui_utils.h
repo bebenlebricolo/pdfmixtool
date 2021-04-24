@@ -45,23 +45,6 @@ QDataStream &operator<<(QDataStream &out, const Multipage &multipage);
 
 QDataStream &operator>>(QDataStream &in, Multipage &multipage);
 
-double draw_preview_page(QPainter *painter,
-                         int max_width,
-                         int max_height,
-                         double page_width,
-                         double page_height,
-                         Multipage::Alignment h_alignment,
-                         Multipage::Alignment v_alignment,
-                         const QString &text);
-
-void draw_preview(QPainter *painter,
-                  const QRect &rect,
-                  double source_width,
-                  double source_height,
-                  int rotation,
-                  bool multipage_enabled,
-                  const Multipage &multipage);
-
 extern QSettings *settings;
 extern QMap<int, Multipage> multipages;
 

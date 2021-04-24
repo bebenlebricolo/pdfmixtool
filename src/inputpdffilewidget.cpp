@@ -34,8 +34,7 @@ InputPdfFileWidget::InputPdfFileWidget(
     QWidget(parent),
     m_multipages(custom_multipages),
     m_alternate_mix(alternate_mix),
-    m_preview_size(preview_size),
-    m_preview_label(new QLabel(this)),
+    m_output_preview(new OutputPreview(this)),
     m_new_profile_triggered(false)
 {
     m_index = index.row();
@@ -48,7 +47,11 @@ InputPdfFileWidget::InputPdfFileWidget(
     QGridLayout *layout = new QGridLayout();
     this->setLayout(layout);
 
-    layout->addWidget(m_preview_label, 1, 1, 2, 1);
+    layout->addWidget(m_output_preview, 1, 1, 2, 1);
+    double size = preview_size - layout->contentsMargins().top() * 2;
+    m_output_preview->setFixedSize(size, size);
+    layout->setColumnMinimumWidth(1, preview_size + 10);
+    layout->setAlignment(m_output_preview, Qt::AlignLeft);
 
     if (alternate_mix)
     {
@@ -156,7 +159,7 @@ void InputPdfFileWidget::mouse_button_pressed(QMouseEvent *event)
 {
     if (m_alternate_mix)
     {
-        if (! this->rect().contains(
+        if (!this->rect().contains(
                     this->mapFromGlobal(event->globalPos())))
             emit focus_out(this);
     }
@@ -175,11 +178,11 @@ void InputPdfFileWidget::mouse_button_pressed(QMouseEvent *event)
                              m_rotation_combobox->count() *
                              rotation_rect.height());
 
-        if (! this->rect().contains(
+        if (!this->rect().contains(
                     this->mapFromGlobal(event->globalPos())) &&
-                ! mp_rect.contains(
+                !mp_rect.contains(
                     m_multipage_combobox->mapFromGlobal(event->globalPos())) &&
-                ! rotation_rect.contains(
+                !rotation_rect.contains(
                     m_rotation_combobox->mapFromGlobal(event->globalPos()))
                 )
             emit focus_out(this);
@@ -188,17 +191,12 @@ void InputPdfFileWidget::mouse_button_pressed(QMouseEvent *event)
 
 void InputPdfFileWidget::update_preview()
 {
-    QPixmap pixmap(m_preview_size - layout()->contentsMargins().top() * 2,
-                   m_preview_size - layout()->contentsMargins().top() * 2);
-    pixmap.fill(Qt::transparent);
-    QPainter painter(&pixmap);
 
     if (m_alternate_mix)
     {
-        draw_preview(&painter, pixmap.rect(),
-                     m_page_width, m_page_height,
-                     0,
-                     false, Multipage());
+        m_output_preview->set_page_size(m_page_width, m_page_height);
+        m_output_preview->set_rotation(0);
+        m_output_preview->set_multipage_enabled(false);
     }
     else
     {
@@ -216,13 +214,11 @@ void InputPdfFileWidget::update_preview()
             mp = m_multipages[mp_index];
         }
 
-        draw_preview(&painter, pixmap.rect(),
-                     m_page_width, m_page_height,
-                     m_rotation_combobox->currentData().toInt(),
-                     mp_enabled, mp);
+        m_output_preview->set_page_size(m_page_width, m_page_height);
+        m_output_preview->set_rotation(m_rotation_combobox->currentData().toInt());
+        m_output_preview->set_multipage(mp);
+        m_output_preview->set_multipage_enabled(mp_enabled);
     }
-
-    m_preview_label->setPixmap(pixmap);
 }
 
 void InputPdfFileWidget::multipage_activated(int index)

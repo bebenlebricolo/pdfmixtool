@@ -27,6 +27,7 @@
 
 #include "gui_utils.h"
 #include "widgets/pdfinfolabel.h"
+#include "widgets/output_preview.h"
 
 InputPdfFileDelegate::InputPdfFileDelegate(
         MouseEventFilter *filter,
@@ -44,10 +45,14 @@ QWidget *InputPdfFileDelegate::build_widget(
         int height) const
 {
     QWidget *main_widget = new QWidget();
+    main_widget->setFixedSize(width, height);
     main_widget->setLayout(new QHBoxLayout());
+    main_widget->layout()->setContentsMargins(2, 2, 2, 2);
 
-    QLabel *preview_label = new QLabel("", main_widget);
-    main_widget->layout()->addWidget(preview_label);
+    OutputPreview *output_preview = new OutputPreview(main_widget);
+    double size = height - 4;
+    output_preview->setFixedSize(size, size);
+    main_widget->layout()->addWidget(output_preview);
 
     QWidget *widget = new QWidget(main_widget);
     QGridLayout *grid_layout = new QGridLayout(widget);
@@ -90,15 +95,7 @@ QWidget *InputPdfFileDelegate::build_widget(
 
         if (height > 0)
         {
-            QPixmap preview(height - 4, height - 4);
-            preview.fill(Qt::transparent);
-            QPainter painter(&preview);
-            draw_preview(&painter,
-                         preview.rect(),
-                         page_width, page_height,
-                         0,
-                         false, Multipage());
-            preview_label->setPixmap(preview);
+            output_preview->set_page_size(page_width, page_height);
         }
     }
     else
@@ -154,22 +151,16 @@ QWidget *InputPdfFileDelegate::build_widget(
 
         if (height > 0)
         {
-            QPixmap preview(height - 4, height - 4);
-            preview.fill(Qt::transparent);
-            QPainter painter(&preview);
-            draw_preview(&painter,
-                         preview.rect(),
-                         page_width, page_height,
-                         rotation,
-                         mp_enabled, mp);
-            preview_label->setPixmap(preview);
+            output_preview->set_page_size(page_width, page_height);
+            output_preview->set_rotation(rotation);
+            output_preview->set_multipage(mp);
+            output_preview->set_multipage_enabled(mp_enabled);
         }
     }
 
     main_widget->setContentsMargins(0, 0, 0, 0);
-    main_widget->layout()->setContentsMargins(2, 2, 2, 2);
     widget->setContentsMargins(10, 5, 10, 5);
-    preview_label->setContentsMargins(0, 0, 0, 0);
+    output_preview->setContentsMargins(0, 0, 0, 0);
     grid_layout->setColumnStretch(3, 1);
     grid_layout->setHorizontalSpacing(30);
     grid_layout->setVerticalSpacing(5);

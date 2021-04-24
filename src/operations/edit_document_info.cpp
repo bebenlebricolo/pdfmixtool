@@ -12,7 +12,7 @@ EditDocumentInfo::EditDocumentInfo(const PdfInfo &pdf_info,
                                    QWidget *parent) :
     AbstractOperation(pdf_info, parent)
 {
-    m_name = tr("Edit document information");
+    m_name = tr("Document information");
     m_icon = QIcon(m_icon_dir.filePath("edit_document_info.svg"));
 
     QVBoxLayout *v_layout = new QVBoxLayout();

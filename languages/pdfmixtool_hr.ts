@@ -147,7 +147,7 @@
     <message>
         <location filename="../src/operations/add_empty_pages.cpp" line="95"/>
         <source>Landscape</source>
-        <translation>Polegnuto</translation>
+        <translation>Ležeće</translation>
     </message>
     <message>
         <location filename="../src/operations/add_empty_pages.cpp" line="98"/>
@@ -180,7 +180,7 @@
     <message>
         <location filename="../src/operations/alternate_mix.cpp" line="27"/>
         <source>Alternate mix</source>
-        <translation type="unfinished">Naizmjenično miješanje</translation>
+        <translation>Naizmjenično slaganje</translation>
     </message>
 </context>
 <context>
@@ -244,52 +244,52 @@
     <message>
         <location filename="../src/operations/edit_document_info.cpp" line="15"/>
         <source>Document information</source>
-        <translation type="unfinished"></translation>
+        <translation>Podaci dokumenta</translation>
     </message>
     <message>
         <location filename="../src/operations/edit_document_info.cpp" line="25"/>
         <source>Title:</source>
-        <translation type="unfinished"></translation>
+        <translation>Naslov:</translation>
     </message>
     <message>
         <location filename="../src/operations/edit_document_info.cpp" line="28"/>
         <source>Author:</source>
-        <translation type="unfinished"></translation>
+        <translation>Autor:</translation>
     </message>
     <message>
         <location filename="../src/operations/edit_document_info.cpp" line="31"/>
         <source>Subject:</source>
-        <translation type="unfinished"></translation>
+        <translation>Predmet:</translation>
     </message>
     <message>
         <location filename="../src/operations/edit_document_info.cpp" line="34"/>
         <source>Keywords:</source>
-        <translation type="unfinished"></translation>
+        <translation>Ključne riječi:</translation>
     </message>
     <message>
         <location filename="../src/operations/edit_document_info.cpp" line="37"/>
         <source>Creator:</source>
-        <translation type="unfinished"></translation>
+        <translation>Izvorni program:</translation>
     </message>
     <message>
         <location filename="../src/operations/edit_document_info.cpp" line="40"/>
         <source>Producer:</source>
-        <translation type="unfinished"></translation>
+        <translation>Izrađeno pomoću:</translation>
     </message>
     <message>
         <location filename="../src/operations/edit_document_info.cpp" line="43"/>
         <source>Creation date:</source>
-        <translation type="unfinished"></translation>
+        <translation>Datum stvaranja:</translation>
     </message>
     <message>
         <location filename="../src/operations/edit_document_info.cpp" line="47"/>
         <source>Modification date:</source>
-        <translation type="unfinished"></translation>
+        <translation>Datum promjene:</translation>
     </message>
     <message>
         <location filename="../src/operations/edit_document_info.cpp" line="76"/>
         <source>Save as…</source>
-        <translation type="unfinished">Spremi kao …</translation>
+        <translation>Spremi kao …</translation>
     </message>
 </context>
 <context>
@@ -310,12 +310,12 @@
     <message>
         <location filename="../src/operations/edit_page_layout.cpp" line="35"/>
         <source>Pages layout</source>
-        <translation type="unfinished">Raspored stranica</translation>
+        <translation>Raspored stranica</translation>
     </message>
     <message>
         <location filename="../src/operations/edit_page_layout.cpp" line="45"/>
         <source>Apply to:</source>
-        <translation type="unfinished"></translation>
+        <translation>Primijeni na:</translation>
     </message>
     <message>
         <location filename="../src/operations/edit_page_layout.cpp" line="71"/>
@@ -527,12 +527,12 @@
     <message>
         <location filename="../src/mainwindow.cpp" line="312"/>
         <source>Error opening file</source>
-        <translation>Greška tijekom otvaranja datoteke</translation>
+        <translation>Greška u otvaranju datoteke</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="337"/>
         <source>Output pages: %1</source>
-        <translation>Broj stranica rezultata: %1</translation>
+        <translation>Stranice rezultata: %1</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="295"/>
@@ -552,7 +552,7 @@
     <message>
         <location filename="../src/mainwindow.cpp" line="383"/>
         <source>Error generating the PDF</source>
-        <translation type="unfinished"></translation>
+        <translation>Greška u izradi PDF-a</translation>
     </message>
 </context>
 <context>
@@ -560,115 +560,115 @@
     <message>
         <location filename="../src/operations/merge.cpp" line="43"/>
         <source>Merge PDF files</source>
-        <translation type="unfinished"></translation>
+        <translation>Sjedini PDF datoteke</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="72"/>
         <source>Edit</source>
-        <translation type="unfinished">Uredi</translation>
+        <translation>Uredi</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="73"/>
         <source>View</source>
-        <translation type="unfinished">Prikaz</translation>
+        <translation>Prikaz</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="76"/>
         <source>Main toolbar</source>
-        <translation type="unfinished">Glavna alatna traka</translation>
+        <translation>Glavna alatna traka</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="83"/>
         <source>Add PDF file</source>
-        <translation type="unfinished">Dodaj PDF datoteku</translation>
+        <translation>Dodaj PDF datoteku</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="88"/>
         <source>Select one or more PDF files to open</source>
-        <translation type="unfinished">Odaberi i otvori jednu ili više PDF datoteka</translation>
+        <translation>Odaberi jednu ili više PDF datoteka za otvaranje</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="90"/>
         <location filename="../src/operations/merge.cpp" line="603"/>
         <source>PDF files (*.pdf)</source>
-        <translation type="unfinished">PDF datoteke (*.pdf)</translation>
+        <translation>PDF datoteke (*.pdf)</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="95"/>
         <source>Move up</source>
-        <translation type="unfinished">Premjesti prema gore</translation>
+        <translation>Pomakni gore</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="100"/>
         <source>Move down</source>
-        <translation type="unfinished">Premjesti prema dolje</translation>
+        <translation>Pomakni dolje</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="105"/>
         <source>Remove file</source>
-        <translation type="unfinished">Ukloni datoteku</translation>
+        <translation>Ukloni datoteku</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="115"/>
         <source>Load files list</source>
-        <translation type="unfinished">Učitaj popis datoteka</translation>
+        <translation>Učitaj popis datoteka</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="120"/>
         <source>Save files list</source>
-        <translation type="unfinished">Spremi popis datoteka</translation>
+        <translation>Spremi popis datoteka</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="154"/>
         <location filename="../src/operations/merge.cpp" line="158"/>
         <source>Generate PDF</source>
-        <translation type="unfinished">Izradi PDF</translation>
+        <translation>Izradi PDF</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="337"/>
         <source>Select the JSON file containing the files list</source>
-        <translation type="unfinished">Odaberi JSON datoteku koja sadrži popis datoteka</translation>
+        <translation>Odaberi JSON datoteku koja sadrži popis datoteka</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="339"/>
         <location filename="../src/operations/merge.cpp" line="357"/>
         <source>JSON files (*.json)</source>
-        <translation type="unfinished">JSON datoteke (*.json)</translation>
+        <translation>JSON datoteke (*.json)</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="345"/>
         <source>Error while reading the JSON file!</source>
-        <translation type="unfinished">Greška tijekom čitanja JSON datoteke!</translation>
+        <translation>Greška tijekom čitanja JSON datoteke!</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="346"/>
         <source>An error occurred while reading the JSON file!</source>
-        <translation type="unfinished">Došlo je do greške tijekom čitanja JSON datoteke!</translation>
+        <translation>Došlo je do greške tijekom čitanja JSON datoteke!</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="353"/>
         <source>Select a JSON file</source>
-        <translation type="unfinished">Odaberi JSON datoteku</translation>
+        <translation>Odaberi JSON datoteku</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="432"/>
         <source>Error opening file</source>
-        <translation type="unfinished">Greška tijekom otvaranja datoteke</translation>
+        <translation>Greška u otvaranju datoteke</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="575"/>
         <source>&lt;p&gt;Output pages of file &lt;b&gt;%1&lt;/b&gt; are badly formatted. Please make sure you complied with the following rules:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;intervals of pages must be written indicating the first page and the last page separated by a dash (e.g. &quot;1-5&quot;);&lt;/li&gt;&lt;li&gt;single pages and intervals of pages must be separated by spaces, commas or both (e.g. &quot;1, 2, 3, 5-10&quot; or &quot;1 2 3 5-10&quot;);&lt;/li&gt;&lt;li&gt;all pages and intervals of pages must be between 1 and the number of pages of the PDF file;&lt;/li&gt;&lt;li&gt;only numbers, spaces, commas and dashes can be used. All other characters are not allowed.&lt;/li&gt;&lt;/ul&gt;</source>
-        <translation type="unfinished">&lt;p&gt;Stranice rezultata datoteke &lt;b&gt;%1&lt;/b&gt; nisu ispravno formatirane. Obavezno se drži sljedećih pravila:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;rasponi stranica moraju se zadati s prvom i zadnjom stranicom, odvojene crticom (npr. „1-5”);&lt;/li&gt;&lt;li&gt;pojedinačne stranice i rasponi stranica moraju se odvojiti s razmacima, sa zarezima ili s razmacima i zarezima (npr. „1, 2, 3, 5-10” ili „1 2 3 5-10”);&lt;/li&gt;&lt;li&gt;sve stranice i rasponi stranica moraju biti između 1 i ukupnog broja stranica PDF datoteke;&lt;/li&gt;&lt;li&gt;mogu se koristiti samo brojevi, razmaci, zarezi i crtice. Svi drugi znakovi nisu dozvoljeni.&lt;/li&gt;&lt;/ul&gt;</translation>
+        <translation>&lt;p&gt;Stranice rezultata datoteke &lt;b&gt;%1&lt;/b&gt; nisu ispravno formatirane. Obavezno se drži sljedećih pravila:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;rasponi stranica moraju se zadati s prvom i zadnjom stranicom, odvojene crticom (npr. „1-5”);&lt;/li&gt;&lt;li&gt;pojedinačne stranice i rasponi stranica moraju se odvojiti s razmacima, sa zarezima ili s razmacima i zarezima (npr. „1, 2, 3, 5-10” ili „1 2 3 5-10”);&lt;/li&gt;&lt;li&gt;sve stranice i rasponi stranica moraju biti između 1 i ukupnog broja stranica PDF datoteke;&lt;/li&gt;&lt;li&gt;mogu se koristiti samo brojevi, razmaci, zarezi i crtice. Svi drugi znakovi nisu dozvoljeni.&lt;/li&gt;&lt;/ul&gt;</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="592"/>
         <source>PDF generation error</source>
-        <translation type="unfinished">Greška tijekom izrade PDF-a</translation>
+        <translation>Greška u izradi PDF-a</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="599"/>
         <source>Save PDF file</source>
-        <translation type="unfinished">Spremi PDF datoteku</translation>
+        <translation>Spremi PDF datoteku</translation>
     </message>
 </context>
 <context>
@@ -676,117 +676,117 @@
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="34"/>
         <source>Standard size</source>
-        <translation type="unfinished"></translation>
+        <translation>Standardna veličina</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="35"/>
         <source>Custom size</source>
-        <translation type="unfinished"></translation>
+        <translation>Prilagođena veličina</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="44"/>
         <source>Portrait</source>
-        <translation type="unfinished">Uspravno</translation>
+        <translation>Uspravno</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="45"/>
         <source>Landscape</source>
-        <translation type="unfinished">Polegnuto</translation>
+        <translation>Ležeće</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="75"/>
         <source>Right-to-left</source>
-        <translation type="unfinished"></translation>
+        <translation>Zdesna na lijevo</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="77"/>
         <location filename="../src/widgets/multipage_editor.cpp" line="212"/>
         <source>Left</source>
-        <translation type="unfinished">Lijevo</translation>
+        <translation>Lijevo</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="78"/>
         <location filename="../src/widgets/multipage_editor.cpp" line="82"/>
         <source>Center</source>
-        <translation type="unfinished">Sredina</translation>
+        <translation>Centrirano</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="79"/>
         <location filename="../src/widgets/multipage_editor.cpp" line="215"/>
         <source>Right</source>
-        <translation type="unfinished">Desno</translation>
+        <translation>Desno</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="81"/>
         <location filename="../src/widgets/multipage_editor.cpp" line="218"/>
         <source>Top</source>
-        <translation type="unfinished">Gore</translation>
+        <translation>Gore</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="83"/>
         <location filename="../src/widgets/multipage_editor.cpp" line="221"/>
         <source>Bottom</source>
-        <translation type="unfinished">Dolje</translation>
+        <translation>Dolje</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="116"/>
         <source>Page size</source>
-        <translation type="unfinished">Veličina stranice</translation>
+        <translation>Veličina stranice</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="135"/>
         <source>Orientation:</source>
-        <translation type="unfinished"></translation>
+        <translation>Položaj:</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="142"/>
         <source>Width:</source>
-        <translation type="unfinished">Širina:</translation>
+        <translation>Širina:</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="145"/>
         <source>Height:</source>
-        <translation type="unfinished">Visina:</translation>
+        <translation>Visina:</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="172"/>
         <source>Pages layout</source>
-        <translation type="unfinished">Raspored stranica</translation>
+        <translation>Raspored stranica</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="179"/>
         <source>Rows:</source>
-        <translation type="unfinished">Broj redaka:</translation>
+        <translation>Broj redaka:</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="182"/>
         <source>Columns:</source>
-        <translation type="unfinished">Broj stupaca:</translation>
+        <translation>Broj stupaca:</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="185"/>
         <source>Spacing:</source>
-        <translation type="unfinished">Razmak:</translation>
+        <translation>Razmak:</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="191"/>
         <source>Pages alignment</source>
-        <translation type="unfinished">Poravnanje stranica</translation>
+        <translation>Poravnanje stranica</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="198"/>
         <source>Horizontal:</source>
-        <translation type="unfinished">Vodoravno:</translation>
+        <translation>Vodoravno:</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="201"/>
         <source>Vertical:</source>
-        <translation type="unfinished">Okomito:</translation>
+        <translation>Okomito:</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="205"/>
         <source>Margins</source>
-        <translation type="unfinished">Margine</translation>
+        <translation>Margine</translation>
     </message>
 </context>
 <context>
@@ -884,7 +884,7 @@
     <message>
         <location filename="../src/widgets/pdfinfolabel.cpp" line="53"/>
         <source>landscape</source>
-        <translation>polegnuto</translation>
+        <translation>ležeće</translation>
     </message>
     <message numerus="yes">
         <location filename="../src/widgets/pdfinfolabel.cpp" line="63"/>
@@ -901,12 +901,12 @@
     <message>
         <location filename="../src/operations/rotate.cpp" line="33"/>
         <source>Rotate</source>
-        <translation type="unfinished"></translation>
+        <translation>Okreni</translation>
     </message>
     <message>
         <location filename="../src/operations/rotate.cpp" line="74"/>
         <source>Save as…</source>
-        <translation type="unfinished">Spremi kao …</translation>
+        <translation>Spremi kao …</translation>
     </message>
 </context>
 </TS>

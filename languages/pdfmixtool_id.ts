@@ -180,7 +180,7 @@
     <message>
         <location filename="../src/operations/alternate_mix.cpp" line="27"/>
         <source>Alternate mix</source>
-        <translation type="unfinished">Campuran alternatif</translation>
+        <translation>Campuran alternatif</translation>
     </message>
 </context>
 <context>
@@ -244,52 +244,52 @@
     <message>
         <location filename="../src/operations/edit_document_info.cpp" line="15"/>
         <source>Document information</source>
-        <translation type="unfinished"></translation>
+        <translation>Informasi dokumen</translation>
     </message>
     <message>
         <location filename="../src/operations/edit_document_info.cpp" line="25"/>
         <source>Title:</source>
-        <translation type="unfinished"></translation>
+        <translation>Judul:</translation>
     </message>
     <message>
         <location filename="../src/operations/edit_document_info.cpp" line="28"/>
         <source>Author:</source>
-        <translation type="unfinished"></translation>
+        <translation>Pengarang:</translation>
     </message>
     <message>
         <location filename="../src/operations/edit_document_info.cpp" line="31"/>
         <source>Subject:</source>
-        <translation type="unfinished"></translation>
+        <translation>Subjek:</translation>
     </message>
     <message>
         <location filename="../src/operations/edit_document_info.cpp" line="34"/>
         <source>Keywords:</source>
-        <translation type="unfinished"></translation>
+        <translation>Kata kunci:</translation>
     </message>
     <message>
         <location filename="../src/operations/edit_document_info.cpp" line="37"/>
         <source>Creator:</source>
-        <translation type="unfinished"></translation>
+        <translation>Kreator:</translation>
     </message>
     <message>
         <location filename="../src/operations/edit_document_info.cpp" line="40"/>
         <source>Producer:</source>
-        <translation type="unfinished"></translation>
+        <translation>Produser:</translation>
     </message>
     <message>
         <location filename="../src/operations/edit_document_info.cpp" line="43"/>
         <source>Creation date:</source>
-        <translation type="unfinished"></translation>
+        <translation>Tanggal dibuat:</translation>
     </message>
     <message>
         <location filename="../src/operations/edit_document_info.cpp" line="47"/>
         <source>Modification date:</source>
-        <translation type="unfinished"></translation>
+        <translation>Tanggal modifikasi:</translation>
     </message>
     <message>
         <location filename="../src/operations/edit_document_info.cpp" line="76"/>
         <source>Save as…</source>
-        <translation type="unfinished">Simpan sebagai…</translation>
+        <translation>Simpan sebagai…</translation>
     </message>
 </context>
 <context>
@@ -310,12 +310,12 @@
     <message>
         <location filename="../src/operations/edit_page_layout.cpp" line="35"/>
         <source>Pages layout</source>
-        <translation type="unfinished">Tata letak halaman</translation>
+        <translation>Tata letak halaman</translation>
     </message>
     <message>
         <location filename="../src/operations/edit_page_layout.cpp" line="45"/>
         <source>Apply to:</source>
-        <translation type="unfinished"></translation>
+        <translation>Terapkan ke:</translation>
     </message>
     <message>
         <location filename="../src/operations/edit_page_layout.cpp" line="71"/>
@@ -552,7 +552,7 @@
     <message>
         <location filename="../src/mainwindow.cpp" line="383"/>
         <source>Error generating the PDF</source>
-        <translation type="unfinished"></translation>
+        <translation>Terjadi kesalahan saat membuat PDF</translation>
     </message>
 </context>
 <context>
@@ -560,115 +560,115 @@
     <message>
         <location filename="../src/operations/merge.cpp" line="43"/>
         <source>Merge PDF files</source>
-        <translation type="unfinished"></translation>
+        <translation>Gabungkan file PDF</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="72"/>
         <source>Edit</source>
-        <translation type="unfinished">Sunting</translation>
+        <translation>Sunting</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="73"/>
         <source>View</source>
-        <translation type="unfinished">Lihat</translation>
+        <translation>Lihat</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="76"/>
         <source>Main toolbar</source>
-        <translation type="unfinished">Toolbar utama</translation>
+        <translation>Toolbar utama</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="83"/>
         <source>Add PDF file</source>
-        <translation type="unfinished">Tambahkan berkas PDF</translation>
+        <translation>Tambah file PDF</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="88"/>
         <source>Select one or more PDF files to open</source>
-        <translation type="unfinished">Pilih satu atau lebih berkas PDF untuk dibuka</translation>
+        <translation>Pilih satu atau lebih berkas PDF untuk dibuka</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="90"/>
         <location filename="../src/operations/merge.cpp" line="603"/>
         <source>PDF files (*.pdf)</source>
-        <translation type="unfinished">Berkas PDF (*.pdf)</translation>
+        <translation>Berkas PDF (*.pdf)</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="95"/>
         <source>Move up</source>
-        <translation type="unfinished">Pindah ke atas</translation>
+        <translation>Pindah ke atas</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="100"/>
         <source>Move down</source>
-        <translation type="unfinished">Pindah ke bawah</translation>
+        <translation>Pindah ke bawah</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="105"/>
         <source>Remove file</source>
-        <translation type="unfinished">Hapus berkas</translation>
+        <translation>Hapus berkas</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="115"/>
         <source>Load files list</source>
-        <translation type="unfinished">Muat daftar file</translation>
+        <translation>Muat daftar file</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="120"/>
         <source>Save files list</source>
-        <translation type="unfinished">Simpan daftar file</translation>
+        <translation>Simpan daftar file</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="154"/>
         <location filename="../src/operations/merge.cpp" line="158"/>
         <source>Generate PDF</source>
-        <translation type="unfinished">Menggenerasi PDF</translation>
+        <translation>Buat PDF</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="337"/>
         <source>Select the JSON file containing the files list</source>
-        <translation type="unfinished">Pilih file JSON yang berisi daftar file</translation>
+        <translation>Pilih file JSON yang berisi daftar file</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="339"/>
         <location filename="../src/operations/merge.cpp" line="357"/>
         <source>JSON files (*.json)</source>
-        <translation type="unfinished">file JSON (*.json)</translation>
+        <translation>file JSON (*.json)</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="345"/>
         <source>Error while reading the JSON file!</source>
-        <translation type="unfinished">Galat ketika membaca file JSON!</translation>
+        <translation>Galat ketika membaca file JSON!</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="346"/>
         <source>An error occurred while reading the JSON file!</source>
-        <translation type="unfinished">Sebuah galat terjadi ketika membaca file JSON!</translation>
+        <translation>Sebuah galat terjadi ketika membaca file JSON!</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="353"/>
         <source>Select a JSON file</source>
-        <translation type="unfinished">Pilih file JSON</translation>
+        <translation>Pilih file JSON</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="432"/>
         <source>Error opening file</source>
-        <translation type="unfinished">Galat ketika membuka file</translation>
+        <translation>Galat ketika membuka file</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="575"/>
         <source>&lt;p&gt;Output pages of file &lt;b&gt;%1&lt;/b&gt; are badly formatted. Please make sure you complied with the following rules:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;intervals of pages must be written indicating the first page and the last page separated by a dash (e.g. &quot;1-5&quot;);&lt;/li&gt;&lt;li&gt;single pages and intervals of pages must be separated by spaces, commas or both (e.g. &quot;1, 2, 3, 5-10&quot; or &quot;1 2 3 5-10&quot;);&lt;/li&gt;&lt;li&gt;all pages and intervals of pages must be between 1 and the number of pages of the PDF file;&lt;/li&gt;&lt;li&gt;only numbers, spaces, commas and dashes can be used. All other characters are not allowed.&lt;/li&gt;&lt;/ul&gt;</source>
-        <translation type="unfinished">&lt;p&gt;Tampilan halaman dari file &lt;b&gt;%1&lt;/b&gt; berformat buruk. Tolong pastikan anda mengikuti sebagai aturan berikut:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;jarak antar halaman harus ditulis mengindikasikan halaman pertama dan halaman terakhir dipisahkan oleh sebuah strip (e.g. &quot;1-5&quot;);&lt;/li&gt;&lt;li&gt;satu halaman dan jarak antar halaman harus dipisahkan oleh spasi, koma atau keduanya (e.g. &quot;1, 2, 3, 5-10&quot; or &quot;1 2 3 5-10&quot;);&lt;/li&gt;&lt;li&gt;semua halaman dan jarak antar halaman harus diantara 1 dan jumlah halaman dari file PDF;&lt;/li&gt;&lt;li&gt;hanya bisa menggunakan angka, spasi, koma dan strip. Katarkter lain tidak diperbolehkan&lt;/li&gt;&lt;/ul&gt;</translation>
+        <translation>&lt;p&gt;Tampilan halaman dari file &lt;b&gt;%1&lt;/b&gt; berformat buruk. Tolong pastikan anda mengikuti aturan berikut:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;jarak antar halaman harus ditulis mengindikasikan halaman pertama dan halaman terakhir dipisahkan oleh sebuah strip (e.g. &quot;1-5&quot;);&lt;/li&gt;&lt;li&gt;satu halaman dan jarak antar halaman harus dipisahkan oleh spasi, koma atau keduanya (e.g. &quot;1, 2, 3, 5-10&quot; or &quot;1 2 3 5-10&quot;);&lt;/li&gt;&lt;li&gt;semua halaman dan jarak antar halaman harus diantara 1 dan jumlah halaman dari file PDF;&lt;/li&gt;&lt;li&gt;hanya bisa menggunakan angka, spasi, koma dan strip. Katarkter lain tidak diperbolehkan&lt;/li&gt;&lt;/ul&gt;</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="592"/>
         <source>PDF generation error</source>
-        <translation type="unfinished">gagal menggenerasi PDF</translation>
+        <translation>gagal membuat PDF</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="599"/>
         <source>Save PDF file</source>
-        <translation type="unfinished">Simpan berkas PDF</translation>
+        <translation>Simpan berkas PDF</translation>
     </message>
 </context>
 <context>
@@ -676,117 +676,117 @@
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="34"/>
         <source>Standard size</source>
-        <translation type="unfinished"></translation>
+        <translation>Ukuran standar</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="35"/>
         <source>Custom size</source>
-        <translation type="unfinished"></translation>
+        <translation>Ukuran kustom</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="44"/>
         <source>Portrait</source>
-        <translation type="unfinished">Tegak</translation>
+        <translation>Tegak</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="45"/>
         <source>Landscape</source>
-        <translation type="unfinished">Lanskap</translation>
+        <translation>Lanskap</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="75"/>
         <source>Right-to-left</source>
-        <translation type="unfinished"></translation>
+        <translation>Kanan-ke-kiri</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="77"/>
         <location filename="../src/widgets/multipage_editor.cpp" line="212"/>
         <source>Left</source>
-        <translation type="unfinished">Kiri</translation>
+        <translation>Kiri</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="78"/>
         <location filename="../src/widgets/multipage_editor.cpp" line="82"/>
         <source>Center</source>
-        <translation type="unfinished">Tengah</translation>
+        <translation>Tengah</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="79"/>
         <location filename="../src/widgets/multipage_editor.cpp" line="215"/>
         <source>Right</source>
-        <translation type="unfinished">Kanan</translation>
+        <translation>Kanan</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="81"/>
         <location filename="../src/widgets/multipage_editor.cpp" line="218"/>
         <source>Top</source>
-        <translation type="unfinished">Atas</translation>
+        <translation>Atas</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="83"/>
         <location filename="../src/widgets/multipage_editor.cpp" line="221"/>
         <source>Bottom</source>
-        <translation type="unfinished">Bawah</translation>
+        <translation>Bawah</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="116"/>
         <source>Page size</source>
-        <translation type="unfinished">Ukuran laman</translation>
+        <translation>Ukuran laman</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="135"/>
         <source>Orientation:</source>
-        <translation type="unfinished"></translation>
+        <translation>Orientasi:</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="142"/>
         <source>Width:</source>
-        <translation type="unfinished">Lebar:</translation>
+        <translation>Lebar:</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="145"/>
         <source>Height:</source>
-        <translation type="unfinished">Tinggi:</translation>
+        <translation>Tinggi:</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="172"/>
         <source>Pages layout</source>
-        <translation type="unfinished">Tata letak halaman</translation>
+        <translation>Tata letak halaman</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="179"/>
         <source>Rows:</source>
-        <translation type="unfinished">Baris:</translation>
+        <translation>Baris:</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="182"/>
         <source>Columns:</source>
-        <translation type="unfinished">Kolom:</translation>
+        <translation>Kolom:</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="185"/>
         <source>Spacing:</source>
-        <translation type="unfinished">Jarak:</translation>
+        <translation>Jarak:</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="191"/>
         <source>Pages alignment</source>
-        <translation type="unfinished">Perataan halaman</translation>
+        <translation>Perataan halaman</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="198"/>
         <source>Horizontal:</source>
-        <translation type="unfinished">Horizontal:</translation>
+        <translation>Horisontal:</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="201"/>
         <source>Vertical:</source>
-        <translation type="unfinished">Vertikal:</translation>
+        <translation>Vertikal:</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="205"/>
         <source>Margins</source>
-        <translation type="unfinished">Margin</translation>
+        <translation>Margin</translation>
     </message>
 </context>
 <context>
@@ -899,12 +899,12 @@
     <message>
         <location filename="../src/operations/rotate.cpp" line="33"/>
         <source>Rotate</source>
-        <translation type="unfinished"></translation>
+        <translation>Putar</translation>
     </message>
     <message>
         <location filename="../src/operations/rotate.cpp" line="74"/>
         <source>Save as…</source>
-        <translation type="unfinished">Simpan sebagai…</translation>
+        <translation>Simpan sebagai…</translation>
     </message>
 </context>
 </TS>

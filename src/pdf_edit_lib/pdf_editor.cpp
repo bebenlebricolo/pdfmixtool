@@ -58,8 +58,6 @@ unsigned int PdfEditor::add_file(const std::string &filename)
 
     m_input_files.push_back(new QPDF{});
     m_input_files[file_id]->processFile(filename.c_str());
-    // FIXME not necessary if input files are kept until write
-//    m_input_files[file_id]->setImmediateCopyFrom(true);
 
     m_pages.push_back(
                 QPDFPageDocumentHelper(*m_input_files[file_id]).getAllPages());
@@ -563,7 +561,14 @@ void PdfEditor::m_build_links()
                     ann_obj.removeKey("/A");
                     m_set_outline_destination(ann_obj, ann.dest);
                 }
+                else
+                {
+                    ann_obj.removeKey("/Dest");
+                    ann_obj.removeKey("/A");
+                }
             }
+            else
+                ann_obj.removeKey("/Dest");
 
             //add annotation to the page
             QPDFObjectHandle annots = pages[output_page].getKey("/Annots");

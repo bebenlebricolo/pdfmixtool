@@ -176,6 +176,6 @@ void Rotate::save(bool save_as)
     }
     catch (std::exception &e)
     {
-        emit(write_error(QString::fromStdString(e.what())));
+        emit write_error(QString::fromStdString(e.what()));
     }
 }

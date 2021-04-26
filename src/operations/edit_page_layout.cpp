@@ -27,10 +27,10 @@
 
 EditPageLayout::EditPageLayout(const PdfInfo &pdf_info,
                                QWidget *parent) :
-          AbstractOperation(pdf_info, parent),
-          m_multipage_editor{new MultipageEditor{this}},
-          m_pages_selector{new PagesSelector{true, true, this}},
-          m_output_preview{new OutputPreview{this}}
+    AbstractOperation(pdf_info, parent),
+    m_multipage_editor{new MultipageEditor{this}},
+    m_pages_selector{new PagesSelector{true, true, this}},
+    m_output_preview{new OutputPreview{this}}
 {
     m_name = tr("Pages layout");
     m_icon = QIcon(m_icon_dir.filePath("pages_layout.svg"));
@@ -179,6 +179,6 @@ void EditPageLayout::save()
     }
     catch (std::exception &e)
     {
-        emit(write_error(QString::fromStdString(e.what())));
+        emit write_error(QString::fromStdString(e.what()));
     }
 }

@@ -184,9 +184,6 @@ Merge::Merge(const PdfInfo &pdf_info,
     v_layout->addLayout(h_layout);
 
     // Connect signals to slots
-    connect(m_files_list_view, SIGNAL(pressed(QModelIndex)),
-            this, SLOT(item_mouse_pressed(QModelIndex)));
-
     connect(m_delegate, SIGNAL(data_edit()),
             this, SLOT(update_output_pages_count()));
 
@@ -272,7 +269,7 @@ void Merge::profile_created(int index)
 void Merge::new_profile_triggered(int index)
 {
     m_triggered_new_profile = index;
-    emit(trigger_new_profile());
+    emit trigger_new_profile();
 }
 
 bool Merge::load_json_files_list(const QString &filename)
@@ -553,15 +550,6 @@ void Merge::view_menu_activated()
     }
 }
 
-void Merge::item_mouse_pressed(const QModelIndex &index) //eventfilter
-{
-    if (qApp->mouseButtons() == Qt::RightButton)
-    {
-        QList<int> indexes = this->selected_indexes();
-        index.row();
-    }
-}
-
 void Merge::update_output_pages_count()
 {
     emit output_pages_count_changed(output_pages_count());
@@ -618,7 +606,7 @@ void Merge::generate_pdf_button_pressed()
         }
         catch (std::exception &e)
         {
-            emit(write_error(QString::fromStdString(e.what())));
+            emit write_error(QString::fromStdString(e.what()));
         }
     }
 }

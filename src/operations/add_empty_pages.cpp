@@ -241,6 +241,6 @@ void AddEmptyPages::m_save()
     }
     catch (std::exception &e)
     {
-        emit(write_error(QString::fromStdString(e.what())));
+        emit write_error(QString::fromStdString(e.what()));
     }
 }

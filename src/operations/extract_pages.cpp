@@ -39,7 +39,7 @@ ExtractPages::ExtractPages(const PdfInfo &pdf_info,
     QVBoxLayout *v_layout = new QVBoxLayout();
     this->setLayout(v_layout);
 
-    m_pages_selector = new PagesSelector(parent=this);
+    m_pages_selector = new PagesSelector(true, false, this);
     v_layout->addWidget(m_pages_selector);
 
     // spacer
@@ -153,7 +153,7 @@ void ExtractPages::extract_to_individual()
         }
         catch (std::exception &e)
         {
-            emit(write_error(QString::fromStdString(e.what())));
+            emit write_error(QString::fromStdString(e.what()));
         }
     }
 }
@@ -204,7 +204,7 @@ void ExtractPages::extract_to_single()
         }
         catch (std::exception &e)
         {
-            emit(write_error(QString::fromStdString(e.what())));
+            emit write_error(QString::fromStdString(e.what()));
         }
 
     }

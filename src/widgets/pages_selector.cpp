@@ -33,7 +33,7 @@ LineEdit::LineEdit(QWidget *parent) :
 void LineEdit::focusInEvent(QFocusEvent *e)
 {
     QLineEdit::focusInEvent(e);
-    emit(focusIn());
+    emit focusIn();
 }
 
 

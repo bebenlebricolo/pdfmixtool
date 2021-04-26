@@ -236,7 +236,7 @@ void MultipageProfilesManager::edit_dialog_closed()
 
 void MultipageProfilesManager::closeEvent(QCloseEvent *event)
 {
-    emit(close_signal());
+    emit close_signal();
 
     QDialog::closeEvent(event);
 }

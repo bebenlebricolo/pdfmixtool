@@ -61,8 +61,6 @@ protected slots:
 
     void view_menu_activated();
 
-    void item_mouse_pressed(const QModelIndex &index);
-
     void update_output_pages_count();
 
     void generate_pdf_button_pressed();

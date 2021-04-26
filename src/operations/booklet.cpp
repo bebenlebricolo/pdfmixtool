@@ -161,7 +161,7 @@ void Booklet::generate_booklet()
         }
         catch (std::exception &e)
         {
-            emit(write_error(QString::fromStdString(e.what())));
+            emit write_error(QString::fromStdString(e.what()));
         }
     }
 }

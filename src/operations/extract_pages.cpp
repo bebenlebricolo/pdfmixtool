@@ -39,7 +39,7 @@ ExtractPages::ExtractPages(const PdfInfo &pdf_info,
     QVBoxLayout *v_layout = new QVBoxLayout();
     this->setLayout(v_layout);
 
-    m_pages_selector = new PagesSelector(true, false, this);
+    m_pages_selector = new PagesSelector(true, true, this);
     v_layout->addWidget(m_pages_selector);
 
     // spacer

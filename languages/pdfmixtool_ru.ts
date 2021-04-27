@@ -180,7 +180,7 @@
     <message>
         <location filename="../src/operations/alternate_mix.cpp" line="27"/>
         <source>Alternate mix</source>
-        <translation type="unfinished">Альтернативная обработка</translation>
+        <translation>Альтернативная обработка</translation>
     </message>
 </context>
 <context>
@@ -244,52 +244,52 @@
     <message>
         <location filename="../src/operations/edit_document_info.cpp" line="15"/>
         <source>Document information</source>
-        <translation type="unfinished"></translation>
+        <translation>Сведения о документе</translation>
     </message>
     <message>
         <location filename="../src/operations/edit_document_info.cpp" line="25"/>
         <source>Title:</source>
-        <translation type="unfinished"></translation>
+        <translation>Заголовок:</translation>
     </message>
     <message>
         <location filename="../src/operations/edit_document_info.cpp" line="28"/>
         <source>Author:</source>
-        <translation type="unfinished"></translation>
+        <translation>Автор:</translation>
     </message>
     <message>
         <location filename="../src/operations/edit_document_info.cpp" line="31"/>
         <source>Subject:</source>
-        <translation type="unfinished"></translation>
+        <translation>Тема:</translation>
     </message>
     <message>
         <location filename="../src/operations/edit_document_info.cpp" line="34"/>
         <source>Keywords:</source>
-        <translation type="unfinished"></translation>
+        <translation>Ключевые слова:</translation>
     </message>
     <message>
         <location filename="../src/operations/edit_document_info.cpp" line="37"/>
         <source>Creator:</source>
-        <translation type="unfinished"></translation>
+        <translation>Создатель:</translation>
     </message>
     <message>
         <location filename="../src/operations/edit_document_info.cpp" line="40"/>
         <source>Producer:</source>
-        <translation type="unfinished"></translation>
+        <translation>Генератор:</translation>
     </message>
     <message>
         <location filename="../src/operations/edit_document_info.cpp" line="43"/>
         <source>Creation date:</source>
-        <translation type="unfinished"></translation>
+        <translation>Дата создания:</translation>
     </message>
     <message>
         <location filename="../src/operations/edit_document_info.cpp" line="47"/>
         <source>Modification date:</source>
-        <translation type="unfinished"></translation>
+        <translation>Дата изменения:</translation>
     </message>
     <message>
         <location filename="../src/operations/edit_document_info.cpp" line="76"/>
         <source>Save as…</source>
-        <translation type="unfinished">Сохранить как…</translation>
+        <translation>Сохранить как…</translation>
     </message>
 </context>
 <context>
@@ -310,12 +310,12 @@
     <message>
         <location filename="../src/operations/edit_page_layout.cpp" line="35"/>
         <source>Pages layout</source>
-        <translation type="unfinished">Компоновка страницы</translation>
+        <translation>Компоновка страниц</translation>
     </message>
     <message>
         <location filename="../src/operations/edit_page_layout.cpp" line="45"/>
         <source>Apply to:</source>
-        <translation type="unfinished"></translation>
+        <translation>Применить к:</translation>
     </message>
     <message>
         <location filename="../src/operations/edit_page_layout.cpp" line="71"/>
@@ -552,7 +552,7 @@
     <message>
         <location filename="../src/mainwindow.cpp" line="383"/>
         <source>Error generating the PDF</source>
-        <translation type="unfinished"></translation>
+        <translation>Ошибка создания PDF-файла</translation>
     </message>
 </context>
 <context>
@@ -560,115 +560,115 @@
     <message>
         <location filename="../src/operations/merge.cpp" line="43"/>
         <source>Merge PDF files</source>
-        <translation type="unfinished"></translation>
+        <translation>Объединение PDF-файлов</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="72"/>
         <source>Edit</source>
-        <translation type="unfinished">Правка</translation>
+        <translation>Правка</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="73"/>
         <source>View</source>
-        <translation type="unfinished">Открыть файл</translation>
+        <translation>Просмотр</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="76"/>
         <source>Main toolbar</source>
-        <translation type="unfinished">Главная панель инструментов</translation>
+        <translation>Главная панель инструментов</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="83"/>
         <source>Add PDF file</source>
-        <translation type="unfinished">Добавить PDF-файл</translation>
+        <translation>Добавить PDF-файл</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="88"/>
         <source>Select one or more PDF files to open</source>
-        <translation type="unfinished">Выбор одного или нескольких PDF-файлов для открытия</translation>
+        <translation>Выберите один или несколько PDF-файлов для открытия</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="90"/>
         <location filename="../src/operations/merge.cpp" line="603"/>
         <source>PDF files (*.pdf)</source>
-        <translation type="unfinished">PDF-файлы (*.pdf)</translation>
+        <translation>PDF-файлы (*.pdf)</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="95"/>
         <source>Move up</source>
-        <translation type="unfinished">Сдвинуть выше</translation>
+        <translation>Сдвинуть выше</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="100"/>
         <source>Move down</source>
-        <translation type="unfinished">Сдвинуть ниже</translation>
+        <translation>Сдвинуть ниже</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="105"/>
         <source>Remove file</source>
-        <translation type="unfinished">Удалить файл</translation>
+        <translation>Удалить файл</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="115"/>
         <source>Load files list</source>
-        <translation type="unfinished">Загрузить список файлов</translation>
+        <translation>Загрузить список файлов</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="120"/>
         <source>Save files list</source>
-        <translation type="unfinished">Сохранить список файлов</translation>
+        <translation>Сохранить список файлов</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="154"/>
         <location filename="../src/operations/merge.cpp" line="158"/>
         <source>Generate PDF</source>
-        <translation type="unfinished">Создать PDF</translation>
+        <translation>Создать PDF</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="337"/>
         <source>Select the JSON file containing the files list</source>
-        <translation type="unfinished">Выберите JSON-файл со списком файлов</translation>
+        <translation>Выберите JSON-файл со списком файлов</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="339"/>
         <location filename="../src/operations/merge.cpp" line="357"/>
         <source>JSON files (*.json)</source>
-        <translation type="unfinished">JSON-файлы (*.json)</translation>
+        <translation>JSON-файлы (*.json)</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="345"/>
         <source>Error while reading the JSON file!</source>
-        <translation type="unfinished">Ошибка чтения JSON-файла!</translation>
+        <translation>Ошибка чтения JSON-файла!</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="346"/>
         <source>An error occurred while reading the JSON file!</source>
-        <translation type="unfinished">При чтении JSON-файла произошла ошибка!</translation>
+        <translation>При чтении JSON-файла произошла ошибка!</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="353"/>
         <source>Select a JSON file</source>
-        <translation type="unfinished">Выберите JSON-файл</translation>
+        <translation>Выберите JSON-файл</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="432"/>
         <source>Error opening file</source>
-        <translation type="unfinished">Ошибка открытия файла</translation>
+        <translation>Ошибка открытия файла</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="575"/>
         <source>&lt;p&gt;Output pages of file &lt;b&gt;%1&lt;/b&gt; are badly formatted. Please make sure you complied with the following rules:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;intervals of pages must be written indicating the first page and the last page separated by a dash (e.g. &quot;1-5&quot;);&lt;/li&gt;&lt;li&gt;single pages and intervals of pages must be separated by spaces, commas or both (e.g. &quot;1, 2, 3, 5-10&quot; or &quot;1 2 3 5-10&quot;);&lt;/li&gt;&lt;li&gt;all pages and intervals of pages must be between 1 and the number of pages of the PDF file;&lt;/li&gt;&lt;li&gt;only numbers, spaces, commas and dashes can be used. All other characters are not allowed.&lt;/li&gt;&lt;/ul&gt;</source>
-        <translation type="unfinished">&lt;p&gt;Некорректно указаны номера выводимых страниц для файла &lt;b&gt;%1&lt;/b&gt;. Пожалуйста, проверьте соблюдение следующих правил: &lt;/p&gt;&lt;ul&gt;&lt;li&gt;диапазоны страниц должны быть написаны с указанием номеров первой и последней страниц, разделённых дефисом (например &quot;1-5&quot;);&lt;/li&gt;&lt;li&gt;отдельные страницы и диапазоны должны быть перечислены через запятую, пробел или запятую с пробелом (например &quot;1, 2, 3, 5-10&quot; или &quot;1 2 3 5-10&quot;);&lt;/li&gt;&lt;li&gt;номера страниц и границы диапазонов должны быть не меньше 1 и не больше количества страниц в PDF-файле;&lt;/li&gt;&lt;li&gt;допустимо использовать только цифры, пробелы, запятые и дефисы. Остальные символы запрещены.&lt;/li&gt;&lt;/ul&gt;</translation>
+        <translation>&lt;p&gt;Некорректно указаны номера выводимых страниц для файла &lt;b&gt;%1&lt;/b&gt;. Пожалуйста, проверьте соблюдение следующих правил: &lt;/p&gt;&lt;ul&gt;&lt;li&gt;диапазоны страниц должны быть написаны с указанием номеров первой и последней страниц, разделённых дефисом (например &quot;1-5&quot;);&lt;/li&gt;&lt;li&gt;отдельные страницы и диапазоны страниц должны быть разделены пробелами, запятыми или запятыми с пробелами (например «1, 2, 3, 5-10» или «1 2 3 5-10»);&lt;/li&gt;&lt;li&gt;номера страниц и границы диапазонов должны быть не меньше 1 и не больше количества страниц в PDF-файле;&lt;/li&gt;&lt;li&gt;допустимо использовать только цифры, пробелы, запятые и дефисы. Остальные символы запрещены.&lt;/li&gt;&lt;/ul&gt;</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="592"/>
         <source>PDF generation error</source>
-        <translation type="unfinished">Ошибка при создании PDF</translation>
+        <translation>Ошибка при создании PDF</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="599"/>
         <source>Save PDF file</source>
-        <translation type="unfinished">Сохранить PDF-файл</translation>
+        <translation>Сохранить PDF-файл</translation>
     </message>
 </context>
 <context>
@@ -676,117 +676,117 @@
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="34"/>
         <source>Standard size</source>
-        <translation type="unfinished"></translation>
+        <translation>Стандартный размер</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="35"/>
         <source>Custom size</source>
-        <translation type="unfinished"></translation>
+        <translation>Пользовательский размер</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="44"/>
         <source>Portrait</source>
-        <translation type="unfinished">Книжная</translation>
+        <translation>Книжная</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="45"/>
         <source>Landscape</source>
-        <translation type="unfinished">Альбомная</translation>
+        <translation>Альбомная</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="75"/>
         <source>Right-to-left</source>
-        <translation type="unfinished"></translation>
+        <translation>Справа налево</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="77"/>
         <location filename="../src/widgets/multipage_editor.cpp" line="212"/>
         <source>Left</source>
-        <translation type="unfinished"></translation>
+        <translation>Левое</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="78"/>
         <location filename="../src/widgets/multipage_editor.cpp" line="82"/>
         <source>Center</source>
-        <translation type="unfinished">По центру</translation>
+        <translation>По центру</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="79"/>
         <location filename="../src/widgets/multipage_editor.cpp" line="215"/>
         <source>Right</source>
-        <translation type="unfinished"></translation>
+        <translation>Правое</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="81"/>
         <location filename="../src/widgets/multipage_editor.cpp" line="218"/>
         <source>Top</source>
-        <translation type="unfinished">Верхнее</translation>
+        <translation>Верхнее</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="83"/>
         <location filename="../src/widgets/multipage_editor.cpp" line="221"/>
         <source>Bottom</source>
-        <translation type="unfinished">Нижнее</translation>
+        <translation>Нижнее</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="116"/>
         <source>Page size</source>
-        <translation type="unfinished">Размер страницы</translation>
+        <translation>Размер страницы</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="135"/>
         <source>Orientation:</source>
-        <translation type="unfinished"></translation>
+        <translation>Ориентация:</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="142"/>
         <source>Width:</source>
-        <translation type="unfinished">Ширина:</translation>
+        <translation>Ширина:</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="145"/>
         <source>Height:</source>
-        <translation type="unfinished">Высота:</translation>
+        <translation>Высота:</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="172"/>
         <source>Pages layout</source>
-        <translation type="unfinished">Компоновка страницы</translation>
+        <translation>Компоновка страниц</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="179"/>
         <source>Rows:</source>
-        <translation type="unfinished">Строк:</translation>
+        <translation>Строк:</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="182"/>
         <source>Columns:</source>
-        <translation type="unfinished">Столбцов:</translation>
+        <translation>Столбцов:</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="185"/>
         <source>Spacing:</source>
-        <translation type="unfinished">Интервал:</translation>
+        <translation>Интервал:</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="191"/>
         <source>Pages alignment</source>
-        <translation type="unfinished">Выравнивание страниц</translation>
+        <translation>Выравнивание страниц</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="198"/>
         <source>Horizontal:</source>
-        <translation type="unfinished">Горизонтальное:</translation>
+        <translation>Горизонтальное:</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="201"/>
         <source>Vertical:</source>
-        <translation type="unfinished">Вертикальное:</translation>
+        <translation>Вертикальное:</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="205"/>
         <source>Margins</source>
-        <translation type="unfinished">Поля</translation>
+        <translation>Поля</translation>
     </message>
 </context>
 <context>
@@ -901,12 +901,12 @@
     <message>
         <location filename="../src/operations/rotate.cpp" line="33"/>
         <source>Rotate</source>
-        <translation type="unfinished"></translation>
+        <translation>Повернуть</translation>
     </message>
     <message>
         <location filename="../src/operations/rotate.cpp" line="74"/>
         <source>Save as…</source>
-        <translation type="unfinished">Сохранить как…</translation>
+        <translation>Сохранить как…</translation>
     </message>
 </context>
 </TS>

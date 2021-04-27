@@ -24,7 +24,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="2.8284271"
-     inkscape:cx="-30.671312"
+     inkscape:cx="-62.844671"
      inkscape:cy="17.539667"
      inkscape:document-units="px"
      inkscape:current-layer="g869"
@@ -130,18 +130,16 @@
                cy="280.77106"
                rx="5.9834261"
                ry="5.9870162" />
-            <text
-               xml:space="preserve"
-               style="font-size:11.7044px;line-height:1.25;font-family:car;-inkscape-font-specification:car;fill:#fffffd;fill-opacity:1;stroke-width:0.159174;"
-               x="34.68959"
-               y="285.0936"
+            <g
+               aria-label="i"
+               transform="scale(0.99970009,1.0003)"
                id="text864"
-               transform="scale(0.99970009,1.0003)"><tspan
-                 sodipodi:role="line"
-                 id="tspan862"
-                 x="34.68959"
-                 y="285.0936"
-                 style="font-style:italic;font-variant:normal;font-weight:500;font-stretch:normal;font-size:11.7044px;font-family:'Noto Serif';-inkscape-font-specification:'Noto Serif Medium Italic';fill:#fffffd;fill-opacity:1;stroke-width:0.159174;">i</tspan></text>
+               style="font-size:11.7044px;line-height:1.25;font-family:car;-inkscape-font-specification:car;fill:#fffffd;fill-opacity:1;stroke-width:0.159174">
+              <path
+                 d="m 37.346489,277.68471 q -0.316019,0 -0.526698,-0.16386 -0.198975,-0.16386 -0.198975,-0.50329 0,-0.40965 0.222384,-0.63204 0.234088,-0.22238 0.58522,-0.22238 0.304314,0 0.514994,0.16386 0.210679,0.15216 0.210679,0.50329 0,0.45647 -0.257497,0.65545 -0.257497,0.19897 -0.550107,0.19897 z m -0.749081,7.52593 q -0.514994,0 -0.807604,-0.32772 -0.280906,-0.32772 -0.280906,-0.80761 0,-0.22238 0.03511,-0.52669 0.04682,-0.30432 0.09363,-0.62034 0.05852,-0.32772 0.117044,-0.57351 l 0.456471,-2.15361 q 0.04682,-0.22239 0.04682,-0.36284 0,-0.31602 -0.18727,-0.39795 -0.175566,-0.0936 -0.50329,-0.0936 h -0.163861 l 0.105339,-0.5267 h 2.282358 l -0.807603,3.76882 q -0.03511,0.15215 -0.07023,0.38624 -0.03511,0.23409 -0.07023,0.46818 -0.02341,0.23409 -0.02341,0.39795 0,0.57351 0.386245,0.57351 0.187271,0 0.386246,-0.0819 0.198974,-0.0819 0.421358,-0.21068 l 0.222384,0.36284 q -0.257497,0.24579 -0.702264,0.49158 -0.433063,0.23409 -0.936352,0.23409 z"
+                 style="font-style:italic;font-variant:normal;font-weight:500;font-stretch:normal;font-size:11.7044px;font-family:'Noto Serif';-inkscape-font-specification:'Noto Serif Medium Italic';fill:#fffffd;fill-opacity:1;stroke-width:0.159174"
+                 id="path847" />
+            </g>
           </g>
         </g>
       </g>

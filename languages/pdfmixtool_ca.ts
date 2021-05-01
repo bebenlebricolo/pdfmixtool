@@ -104,7 +104,7 @@
     <message>
         <location filename="../src/operations/abstract_operation.cpp" line="133"/>
         <source>PDF files (*.pdf *.PDF)</source>
-        <translation type="unfinished"></translation>
+        <translation>Fitxers PDF (*.pdf , *.PDF)</translation>
     </message>
 </context>
 <context>
@@ -223,7 +223,7 @@
     <message>
         <location filename="../src/operations/booklet.cpp" line="72"/>
         <source>PDF files (*.pdf *.PDF)</source>
-        <translation type="unfinished"></translation>
+        <translation>Fitxers PDF (*.pdf , *.PDF)</translation>
     </message>
 </context>
 <context>
@@ -398,7 +398,7 @@
     <message>
         <location filename="../src/operations/extract_pages.cpp" line="175"/>
         <source>PDF files (*.pdf *.PDF)</source>
-        <translation type="unfinished"></translation>
+        <translation>Fitxers PDF (*.pdf, *.PDF)</translation>
     </message>
 </context>
 <context>
@@ -517,7 +517,7 @@
     <message>
         <location filename="../src/mainwindow.cpp" line="297"/>
         <source>PDF files (*.pdf *.PDF)</source>
-        <translation type="unfinished"></translation>
+        <translation>Fitxers PDF (*.pdf, *.PDF)</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="383"/>
@@ -591,7 +591,7 @@
         <location filename="../src/operations/merge.cpp" line="90"/>
         <location filename="../src/operations/merge.cpp" line="591"/>
         <source>PDF files (*.pdf *.PDF)</source>
-        <translation type="unfinished"></translation>
+        <translation>Fitxers PDF (*.pdf, *.PDF)</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="95"/>
@@ -638,12 +638,12 @@
     <message>
         <location filename="../src/operations/merge.cpp" line="342"/>
         <source>Error while reading the JSON file!</source>
-        <translation>S&apos;ha produït un error en llegir el fitxer JSON.</translation>
+        <translation>S&apos;ha produït un error en llegir el fitxer JSON!</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="343"/>
         <source>An error occurred while reading the JSON file!</source>
-        <translation>S&apos;ha produït un error en llegir el fitxer JSON.</translation>
+        <translation>S&apos;ha produït un error en llegir el fitxer JSON!</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="350"/>

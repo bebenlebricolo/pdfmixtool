@@ -103,8 +103,8 @@
     </message>
     <message>
         <location filename="../src/operations/abstract_operation.cpp" line="133"/>
-        <source>PDF files (*.pdf)</source>
-        <translation>PDF datoteke (*.pdf)</translation>
+        <source>PDF files (*.pdf *.PDF)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -222,8 +222,8 @@
     </message>
     <message>
         <location filename="../src/operations/booklet.cpp" line="72"/>
-        <source>PDF files (*.pdf)</source>
-        <translation>PDF datoteke (*.pdf)</translation>
+        <source>PDF files (*.pdf *.PDF)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -397,8 +397,8 @@
     </message>
     <message>
         <location filename="../src/operations/extract_pages.cpp" line="175"/>
-        <source>PDF files (*.pdf)</source>
-        <translation>PDF datoteke (*.pdf)</translation>
+        <source>PDF files (*.pdf *.PDF)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -520,11 +520,6 @@
         <translation>Otvori PDF datoteku …</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="297"/>
-        <source>PDF files (*.pdf)</source>
-        <translation>PDF datoteke (*.pdf)</translation>
-    </message>
-    <message>
         <location filename="../src/mainwindow.cpp" line="312"/>
         <source>Error opening file</source>
         <translation>Greška u otvaranju datoteke</translation>
@@ -538,6 +533,11 @@
         <location filename="../src/mainwindow.cpp" line="295"/>
         <source>Select a PDF file</source>
         <translation>Odaberi PDF datoteku</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="297"/>
+        <source>PDF files (*.pdf *.PDF)</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="367"/>
@@ -589,9 +589,9 @@
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="90"/>
-        <location filename="../src/operations/merge.cpp" line="603"/>
-        <source>PDF files (*.pdf)</source>
-        <translation>PDF datoteke (*.pdf)</translation>
+        <location filename="../src/operations/merge.cpp" line="591"/>
+        <source>PDF files (*.pdf *.PDF)</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="95"/>
@@ -625,48 +625,48 @@
         <translation>Izradi PDF</translation>
     </message>
     <message>
-        <location filename="../src/operations/merge.cpp" line="337"/>
+        <location filename="../src/operations/merge.cpp" line="334"/>
         <source>Select the JSON file containing the files list</source>
         <translation>Odaberi JSON datoteku koja sadrži popis datoteka</translation>
     </message>
     <message>
-        <location filename="../src/operations/merge.cpp" line="339"/>
-        <location filename="../src/operations/merge.cpp" line="357"/>
+        <location filename="../src/operations/merge.cpp" line="336"/>
+        <location filename="../src/operations/merge.cpp" line="354"/>
         <source>JSON files (*.json)</source>
         <translation>JSON datoteke (*.json)</translation>
     </message>
     <message>
-        <location filename="../src/operations/merge.cpp" line="345"/>
+        <location filename="../src/operations/merge.cpp" line="342"/>
         <source>Error while reading the JSON file!</source>
         <translation>Greška tijekom čitanja JSON datoteke!</translation>
     </message>
     <message>
-        <location filename="../src/operations/merge.cpp" line="346"/>
+        <location filename="../src/operations/merge.cpp" line="343"/>
         <source>An error occurred while reading the JSON file!</source>
         <translation>Došlo je do greške tijekom čitanja JSON datoteke!</translation>
     </message>
     <message>
-        <location filename="../src/operations/merge.cpp" line="353"/>
+        <location filename="../src/operations/merge.cpp" line="350"/>
         <source>Select a JSON file</source>
         <translation>Odaberi JSON datoteku</translation>
     </message>
     <message>
-        <location filename="../src/operations/merge.cpp" line="432"/>
+        <location filename="../src/operations/merge.cpp" line="429"/>
         <source>Error opening file</source>
         <translation>Greška u otvaranju datoteke</translation>
     </message>
     <message>
-        <location filename="../src/operations/merge.cpp" line="575"/>
+        <location filename="../src/operations/merge.cpp" line="563"/>
         <source>&lt;p&gt;Output pages of file &lt;b&gt;%1&lt;/b&gt; are badly formatted. Please make sure you complied with the following rules:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;intervals of pages must be written indicating the first page and the last page separated by a dash (e.g. &quot;1-5&quot;);&lt;/li&gt;&lt;li&gt;single pages and intervals of pages must be separated by spaces, commas or both (e.g. &quot;1, 2, 3, 5-10&quot; or &quot;1 2 3 5-10&quot;);&lt;/li&gt;&lt;li&gt;all pages and intervals of pages must be between 1 and the number of pages of the PDF file;&lt;/li&gt;&lt;li&gt;only numbers, spaces, commas and dashes can be used. All other characters are not allowed.&lt;/li&gt;&lt;/ul&gt;</source>
         <translation>&lt;p&gt;Stranice rezultata datoteke &lt;b&gt;%1&lt;/b&gt; nisu ispravno formatirane. Obavezno se drži sljedećih pravila:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;rasponi stranica moraju se zadati s prvom i zadnjom stranicom, odvojene crticom (npr. „1-5”);&lt;/li&gt;&lt;li&gt;pojedinačne stranice i rasponi stranica moraju se odvojiti s razmacima, sa zarezima ili s razmacima i zarezima (npr. „1, 2, 3, 5-10” ili „1 2 3 5-10”);&lt;/li&gt;&lt;li&gt;sve stranice i rasponi stranica moraju biti između 1 i ukupnog broja stranica PDF datoteke;&lt;/li&gt;&lt;li&gt;mogu se koristiti samo brojevi, razmaci, zarezi i crtice. Svi drugi znakovi nisu dozvoljeni.&lt;/li&gt;&lt;/ul&gt;</translation>
     </message>
     <message>
-        <location filename="../src/operations/merge.cpp" line="592"/>
+        <location filename="../src/operations/merge.cpp" line="580"/>
         <source>PDF generation error</source>
         <translation>Greška u izradi PDF-a</translation>
     </message>
     <message>
-        <location filename="../src/operations/merge.cpp" line="599"/>
+        <location filename="../src/operations/merge.cpp" line="587"/>
         <source>Save PDF file</source>
         <translation>Spremi PDF datoteku</translation>
     </message>

@@ -103,8 +103,8 @@
     </message>
     <message>
         <location filename="../src/operations/abstract_operation.cpp" line="133"/>
-        <source>PDF files (*.pdf)</source>
-        <translation>Fitxers PDF (*.pdf)</translation>
+        <source>PDF files (*.pdf *.PDF)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -222,8 +222,8 @@
     </message>
     <message>
         <location filename="../src/operations/booklet.cpp" line="72"/>
-        <source>PDF files (*.pdf)</source>
-        <translation>Fitxers PDF (*.pdf)</translation>
+        <source>PDF files (*.pdf *.PDF)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -397,8 +397,8 @@
     </message>
     <message>
         <location filename="../src/operations/extract_pages.cpp" line="175"/>
-        <source>PDF files (*.pdf)</source>
-        <translation>Fitxers PDF (*.pdf)</translation>
+        <source>PDF files (*.pdf *.PDF)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -515,14 +515,14 @@
         <translation>Surt</translation>
     </message>
     <message>
+        <location filename="../src/mainwindow.cpp" line="297"/>
+        <source>PDF files (*.pdf *.PDF)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../src/mainwindow.cpp" line="383"/>
         <source>Error generating the PDF</source>
         <translation>S&apos;ha produït un error en generar el PDF</translation>
-    </message>
-    <message>
-        <location filename="../src/mainwindow.cpp" line="297"/>
-        <source>PDF files (*.pdf)</source>
-        <translation>Fitxers PDF (*.pdf)</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="198"/>
@@ -589,9 +589,9 @@
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="90"/>
-        <location filename="../src/operations/merge.cpp" line="603"/>
-        <source>PDF files (*.pdf)</source>
-        <translation>Fitxers PDF (*.pdf)</translation>
+        <location filename="../src/operations/merge.cpp" line="591"/>
+        <source>PDF files (*.pdf *.PDF)</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="95"/>
@@ -625,48 +625,48 @@
         <translation>Genera el PDF</translation>
     </message>
     <message>
-        <location filename="../src/operations/merge.cpp" line="337"/>
+        <location filename="../src/operations/merge.cpp" line="334"/>
         <source>Select the JSON file containing the files list</source>
         <translation>Seleccioneu el fitxer JSON que conté la llista de fitxers</translation>
     </message>
     <message>
-        <location filename="../src/operations/merge.cpp" line="339"/>
-        <location filename="../src/operations/merge.cpp" line="357"/>
+        <location filename="../src/operations/merge.cpp" line="336"/>
+        <location filename="../src/operations/merge.cpp" line="354"/>
         <source>JSON files (*.json)</source>
         <translation>Fitxers JSON (* .json)</translation>
     </message>
     <message>
-        <location filename="../src/operations/merge.cpp" line="345"/>
+        <location filename="../src/operations/merge.cpp" line="342"/>
         <source>Error while reading the JSON file!</source>
         <translation>S&apos;ha produït un error en llegir el fitxer JSON.</translation>
     </message>
     <message>
-        <location filename="../src/operations/merge.cpp" line="346"/>
+        <location filename="../src/operations/merge.cpp" line="343"/>
         <source>An error occurred while reading the JSON file!</source>
         <translation>S&apos;ha produït un error en llegir el fitxer JSON.</translation>
     </message>
     <message>
-        <location filename="../src/operations/merge.cpp" line="353"/>
+        <location filename="../src/operations/merge.cpp" line="350"/>
         <source>Select a JSON file</source>
         <translation>Seleccioneu un fitxer JSON</translation>
     </message>
     <message>
-        <location filename="../src/operations/merge.cpp" line="432"/>
+        <location filename="../src/operations/merge.cpp" line="429"/>
         <source>Error opening file</source>
         <translation>S&apos;ha produït un error en obrir el fitxer</translation>
     </message>
     <message>
-        <location filename="../src/operations/merge.cpp" line="575"/>
+        <location filename="../src/operations/merge.cpp" line="563"/>
         <source>&lt;p&gt;Output pages of file &lt;b&gt;%1&lt;/b&gt; are badly formatted. Please make sure you complied with the following rules:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;intervals of pages must be written indicating the first page and the last page separated by a dash (e.g. &quot;1-5&quot;);&lt;/li&gt;&lt;li&gt;single pages and intervals of pages must be separated by spaces, commas or both (e.g. &quot;1, 2, 3, 5-10&quot; or &quot;1 2 3 5-10&quot;);&lt;/li&gt;&lt;li&gt;all pages and intervals of pages must be between 1 and the number of pages of the PDF file;&lt;/li&gt;&lt;li&gt;only numbers, spaces, commas and dashes can be used. All other characters are not allowed.&lt;/li&gt;&lt;/ul&gt;</source>
         <translation>&lt;p&gt;El format de les pàgines de sortida del fitxer &lt;b&gt;%1&lt;/b&gt; és incorrecte. Assegureu-vos que compleix les regles següents:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;els intervals de pàgines s&apos;han d&apos;indicar escrivint la primera i l&apos;última pàgina separades per un guió (p. ex., «1-5»);&lt;/li&gt;&lt;li&gt;les pàgines soltes i els intervals de pàgines s&apos;han de separar per espais, comes o tots dos signes (p. ex., «1, 2, 3, 5-10» o «1 2 3 5-10»);&lt;/li&gt;&lt;li&gt;les pàgines i els intervals de pàgines han d&apos;estar entre 1 i el total de pàgines del fitxer PDF;&lt;/li&gt;&lt;li&gt;només es poden fer servir números, espais, comes i guions. Tots els altres caràcters no estan permesos.&lt;/li&gt;&lt;/ul&gt;</translation>
     </message>
     <message>
-        <location filename="../src/operations/merge.cpp" line="592"/>
+        <location filename="../src/operations/merge.cpp" line="580"/>
         <source>PDF generation error</source>
         <translation>Error en la generació del PDF</translation>
     </message>
     <message>
-        <location filename="../src/operations/merge.cpp" line="599"/>
+        <location filename="../src/operations/merge.cpp" line="587"/>
         <source>Save PDF file</source>
         <translation>Desa el fitxer PDF</translation>
     </message>

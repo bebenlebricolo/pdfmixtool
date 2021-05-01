@@ -103,8 +103,8 @@
     </message>
     <message>
         <location filename="../src/operations/abstract_operation.cpp" line="133"/>
-        <source>PDF files (*.pdf)</source>
-        <translation>Archivos PDF (*.pdf)</translation>
+        <source>PDF files (*.pdf *.PDF)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -222,8 +222,8 @@
     </message>
     <message>
         <location filename="../src/operations/booklet.cpp" line="72"/>
-        <source>PDF files (*.pdf)</source>
-        <translation>Archivos PDF (*.pdf)</translation>
+        <source>PDF files (*.pdf *.PDF)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -397,8 +397,8 @@
     </message>
     <message>
         <location filename="../src/operations/extract_pages.cpp" line="175"/>
-        <source>PDF files (*.pdf)</source>
-        <translation>Archivos PDF (*.pdf)</translation>
+        <source>PDF files (*.pdf *.PDF)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -520,11 +520,6 @@
         <translation>Abrir un archivo PDF…</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="297"/>
-        <source>PDF files (*.pdf)</source>
-        <translation>Archivos PDF (*.pdf)</translation>
-    </message>
-    <message>
         <location filename="../src/mainwindow.cpp" line="312"/>
         <source>Error opening file</source>
         <translation>Error al abrir el archivo</translation>
@@ -538,6 +533,11 @@
         <location filename="../src/mainwindow.cpp" line="295"/>
         <source>Select a PDF file</source>
         <translation>Seleccione un archivo PDF</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="297"/>
+        <source>PDF files (*.pdf *.PDF)</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="367"/>
@@ -589,9 +589,9 @@
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="90"/>
-        <location filename="../src/operations/merge.cpp" line="603"/>
-        <source>PDF files (*.pdf)</source>
-        <translation type="unfinished">Archivos PDF (*.pdf)</translation>
+        <location filename="../src/operations/merge.cpp" line="591"/>
+        <source>PDF files (*.pdf *.PDF)</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="95"/>
@@ -625,48 +625,48 @@
         <translation type="unfinished">Generar el PDF</translation>
     </message>
     <message>
-        <location filename="../src/operations/merge.cpp" line="337"/>
+        <location filename="../src/operations/merge.cpp" line="334"/>
         <source>Select the JSON file containing the files list</source>
         <translation type="unfinished">Seleccionar el archivo JSON que contiene la lista de archivos</translation>
     </message>
     <message>
-        <location filename="../src/operations/merge.cpp" line="339"/>
-        <location filename="../src/operations/merge.cpp" line="357"/>
+        <location filename="../src/operations/merge.cpp" line="336"/>
+        <location filename="../src/operations/merge.cpp" line="354"/>
         <source>JSON files (*.json)</source>
         <translation type="unfinished">Archivos JSON (*.json)</translation>
     </message>
     <message>
-        <location filename="../src/operations/merge.cpp" line="345"/>
+        <location filename="../src/operations/merge.cpp" line="342"/>
         <source>Error while reading the JSON file!</source>
         <translation type="unfinished">¡Error al leer el archivo JSON!</translation>
     </message>
     <message>
-        <location filename="../src/operations/merge.cpp" line="346"/>
+        <location filename="../src/operations/merge.cpp" line="343"/>
         <source>An error occurred while reading the JSON file!</source>
         <translation type="unfinished">¡Se ha producido un error al leer el archivo JSON!</translation>
     </message>
     <message>
-        <location filename="../src/operations/merge.cpp" line="353"/>
+        <location filename="../src/operations/merge.cpp" line="350"/>
         <source>Select a JSON file</source>
         <translation type="unfinished">Seleccione un archivo JSON</translation>
     </message>
     <message>
-        <location filename="../src/operations/merge.cpp" line="432"/>
+        <location filename="../src/operations/merge.cpp" line="429"/>
         <source>Error opening file</source>
         <translation type="unfinished">Error al abrir el archivo</translation>
     </message>
     <message>
-        <location filename="../src/operations/merge.cpp" line="575"/>
+        <location filename="../src/operations/merge.cpp" line="563"/>
         <source>&lt;p&gt;Output pages of file &lt;b&gt;%1&lt;/b&gt; are badly formatted. Please make sure you complied with the following rules:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;intervals of pages must be written indicating the first page and the last page separated by a dash (e.g. &quot;1-5&quot;);&lt;/li&gt;&lt;li&gt;single pages and intervals of pages must be separated by spaces, commas or both (e.g. &quot;1, 2, 3, 5-10&quot; or &quot;1 2 3 5-10&quot;);&lt;/li&gt;&lt;li&gt;all pages and intervals of pages must be between 1 and the number of pages of the PDF file;&lt;/li&gt;&lt;li&gt;only numbers, spaces, commas and dashes can be used. All other characters are not allowed.&lt;/li&gt;&lt;/ul&gt;</source>
         <translation type="unfinished">&lt;p&gt;El formato de las páginas de salida del archivo &lt;b&gt;%1&lt;/b&gt; es incorrecto. Asegúrese de que cumple las reglas siguientes:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;los intervalos de páginas se deben indicar escribiendo la primera y la última página separadas por un guion (p.&#xa0;ej., «1-5»);&lt;/li&gt;&lt;li&gt;las páginas sueltas y los intervalos de páginas se deben separar por espacios, comas o ambos signos (p.&#xa0;ej., «1, 2, 3, 5-10» o «1 2 3 5-10»);&lt;/li&gt;&lt;li&gt;las páginas y los intervalos de páginas deben estar entre 1 y el total de páginas del archivo PDF;&lt;/li&gt;&lt;li&gt;solo se pueden usar números, espacios, comas y guiones. Todos los demás caracteres no están permitidos.&lt;/li&gt;&lt;/ul&gt;</translation>
     </message>
     <message>
-        <location filename="../src/operations/merge.cpp" line="592"/>
+        <location filename="../src/operations/merge.cpp" line="580"/>
         <source>PDF generation error</source>
         <translation type="unfinished">Error en la generación del PDF</translation>
     </message>
     <message>
-        <location filename="../src/operations/merge.cpp" line="599"/>
+        <location filename="../src/operations/merge.cpp" line="587"/>
         <source>Save PDF file</source>
         <translation type="unfinished">Guardar el archivo PDF</translation>
     </message>

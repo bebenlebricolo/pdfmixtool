@@ -13,7 +13,7 @@ pages:
     # get manifest from github repository
     - curl https://raw.githubusercontent.com/flathub/eu.scarpetta.PDFMixTool/master/eu.scarpetta.PDFMixTool.yaml > tmp.yaml
     # replace archive source with current directory
-    - head -n -5 tmp.yaml > eu.scarpetta.PDFMixTool.yaml
+    - head -n -3 tmp.yaml > eu.scarpetta.PDFMixTool.yaml
     - "echo \"      - {type: dir, path: .}\" >> eu.scarpetta.PDFMixTool.yaml"
     # build and publish
     - flatpak-builder --repo=public --force-clean build-dir eu.scarpetta.PDFMixTool.yaml
@@ -26,7 +26,7 @@ pages:
 
 # windows build
 # image: fedora:latest
-# 
+#
 # build_mingw64:
 #   stage: build
 #   script:

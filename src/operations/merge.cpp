@@ -87,7 +87,7 @@ Merge::Merge(const PdfInfo &pdf_info,
                     this,
                     tr("Select one or more PDF files to open"),
                     settings->value("open_directory", "").toString(),
-                    tr("PDF files (*.pdf)"));
+                    tr("PDF files (*.pdf *.PDF)"));
         add_pdf_files(files);
     });
     QAction *move_up_action = toolbar->addAction(
@@ -588,7 +588,7 @@ void Merge::generate_pdf_button_pressed()
                 settings->value("save_directory",
                                   settings->value("open_directory", "")
                                   ).toString(),
-                tr("PDF files (*.pdf)"));
+                tr("PDF files (*.pdf *.PDF)"));
 
     if (!selected_file.isNull())
     {

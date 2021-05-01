@@ -294,7 +294,7 @@ void MainWindow::open_file_pressed()
                     this,
                     tr("Select a PDF file"),
                     settings->value("open_directory", "").toString(),
-                    tr("PDF files (*.pdf)"));
+                    tr("PDF files (*.pdf *.PDF)"));
 
         if (!filename.isNull())
         {

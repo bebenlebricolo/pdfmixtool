@@ -69,7 +69,7 @@ void Booklet::generate_booklet()
                 settings->value("save_directory",
                                   settings->value("open_directory", "")
                                   ).toString(),
-                tr("PDF files (*.pdf)"));
+                tr("PDF files (*.pdf *.PDF)"));
 
     if (!m_save_filename.isNull())
     {

@@ -50,8 +50,6 @@ QWidget *InputPdfFileDelegate::build_widget(
     main_widget->layout()->setContentsMargins(2, 2, 2, 2);
 
     OutputPreview *output_preview = new OutputPreview(main_widget);
-    double size = height - 4;
-    output_preview->setFixedSize(size, size);
     main_widget->layout()->addWidget(output_preview);
 
     QWidget *widget = new QWidget(main_widget);
@@ -95,6 +93,8 @@ QWidget *InputPdfFileDelegate::build_widget(
 
         if (height > 0)
         {
+            double size = height - 4;
+            output_preview->setFixedSize(size, size);
             output_preview->set_page_size(page_width, page_height);
         }
     }
@@ -151,6 +151,8 @@ QWidget *InputPdfFileDelegate::build_widget(
 
         if (height > 0)
         {
+            double size = height - 4;
+            output_preview->setFixedSize(size, size);
             output_preview->set_page_size(page_width, page_height);
             output_preview->set_rotation(rotation);
             output_preview->set_multipage(mp);

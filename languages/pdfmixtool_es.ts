@@ -104,7 +104,7 @@
     <message>
         <location filename="../src/operations/abstract_operation.cpp" line="133"/>
         <source>PDF files (*.pdf *.PDF)</source>
-        <translation type="unfinished"></translation>
+        <translation>Archivos PDF (*.pdf, *.PDF)</translation>
     </message>
 </context>
 <context>
@@ -223,7 +223,7 @@
     <message>
         <location filename="../src/operations/booklet.cpp" line="72"/>
         <source>PDF files (*.pdf *.PDF)</source>
-        <translation type="unfinished"></translation>
+        <translation>Archivos PDF (*.pdf, *.PDF)</translation>
     </message>
 </context>
 <context>
@@ -244,47 +244,47 @@
     <message>
         <location filename="../src/operations/edit_document_info.cpp" line="15"/>
         <source>Document information</source>
-        <translation type="unfinished"></translation>
+        <translation>Información del documento</translation>
     </message>
     <message>
         <location filename="../src/operations/edit_document_info.cpp" line="25"/>
         <source>Title:</source>
-        <translation type="unfinished"></translation>
+        <translation>Título:</translation>
     </message>
     <message>
         <location filename="../src/operations/edit_document_info.cpp" line="28"/>
         <source>Author:</source>
-        <translation type="unfinished"></translation>
+        <translation>Autor:</translation>
     </message>
     <message>
         <location filename="../src/operations/edit_document_info.cpp" line="31"/>
         <source>Subject:</source>
-        <translation type="unfinished"></translation>
+        <translation>Asunto:</translation>
     </message>
     <message>
         <location filename="../src/operations/edit_document_info.cpp" line="34"/>
         <source>Keywords:</source>
-        <translation type="unfinished"></translation>
+        <translation>Palabras clave:</translation>
     </message>
     <message>
         <location filename="../src/operations/edit_document_info.cpp" line="37"/>
         <source>Creator:</source>
-        <translation type="unfinished"></translation>
+        <translation>Creador:</translation>
     </message>
     <message>
         <location filename="../src/operations/edit_document_info.cpp" line="40"/>
         <source>Producer:</source>
-        <translation type="unfinished"></translation>
+        <translation>Productor:</translation>
     </message>
     <message>
         <location filename="../src/operations/edit_document_info.cpp" line="43"/>
         <source>Creation date:</source>
-        <translation type="unfinished"></translation>
+        <translation>Fecha de creación:</translation>
     </message>
     <message>
         <location filename="../src/operations/edit_document_info.cpp" line="47"/>
         <source>Modification date:</source>
-        <translation type="unfinished"></translation>
+        <translation>Fecha de modificación:</translation>
     </message>
     <message>
         <location filename="../src/operations/edit_document_info.cpp" line="76"/>
@@ -315,7 +315,7 @@
     <message>
         <location filename="../src/operations/edit_page_layout.cpp" line="45"/>
         <source>Apply to:</source>
-        <translation type="unfinished"></translation>
+        <translation>Aplicar a:</translation>
     </message>
     <message>
         <location filename="../src/operations/edit_page_layout.cpp" line="71"/>
@@ -398,7 +398,7 @@
     <message>
         <location filename="../src/operations/extract_pages.cpp" line="175"/>
         <source>PDF files (*.pdf *.PDF)</source>
-        <translation type="unfinished"></translation>
+        <translation>Archivos PDF (*.pdf, *.PDF)</translation>
     </message>
 </context>
 <context>
@@ -537,7 +537,7 @@
     <message>
         <location filename="../src/mainwindow.cpp" line="297"/>
         <source>PDF files (*.pdf *.PDF)</source>
-        <translation type="unfinished"></translation>
+        <translation>Archivos PDF (*.pdf, *.PDF)</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="367"/>
@@ -552,7 +552,7 @@
     <message>
         <location filename="../src/mainwindow.cpp" line="383"/>
         <source>Error generating the PDF</source>
-        <translation type="unfinished"></translation>
+        <translation>Error al generar el PDF</translation>
     </message>
 </context>
 <context>
@@ -560,7 +560,7 @@
     <message>
         <location filename="../src/operations/merge.cpp" line="43"/>
         <source>Merge PDF files</source>
-        <translation type="unfinished"></translation>
+        <translation>Fusionar archivos PDF</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="72"/>
@@ -591,7 +591,7 @@
         <location filename="../src/operations/merge.cpp" line="90"/>
         <location filename="../src/operations/merge.cpp" line="591"/>
         <source>PDF files (*.pdf *.PDF)</source>
-        <translation type="unfinished"></translation>
+        <translation>Archivos PDF (*.pdf, *.PDF)</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="95"/>
@@ -676,12 +676,12 @@
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="34"/>
         <source>Standard size</source>
-        <translation type="unfinished"></translation>
+        <translation>Tamaño estándar</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="35"/>
         <source>Custom size</source>
-        <translation type="unfinished"></translation>
+        <translation>Tamaño personalizado</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="44"/>
@@ -696,7 +696,7 @@
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="75"/>
         <source>Right-to-left</source>
-        <translation type="unfinished"></translation>
+        <translation>De derecha a izquierda</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="77"/>
@@ -736,7 +736,7 @@
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="135"/>
         <source>Orientation:</source>
-        <translation type="unfinished"></translation>
+        <translation>Orientación:</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="142"/>
@@ -900,7 +900,7 @@
     <message>
         <location filename="../src/operations/rotate.cpp" line="33"/>
         <source>Rotate</source>
-        <translation type="unfinished"></translation>
+        <translation>Girar</translation>
     </message>
     <message>
         <location filename="../src/operations/rotate.cpp" line="74"/>

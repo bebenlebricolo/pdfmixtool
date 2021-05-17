@@ -18,6 +18,7 @@
 
 #include <iostream>
 #include <cmath>
+#include <ctime>
 
 #include "pdf_info.h"
 #include "definitions.h"
@@ -221,7 +222,9 @@ std::tm PdfInfo::string_to_datetime(const std::string &str)
 
     try
     {
+        #ifndef WIN32
         datetime.tm_zone = "UTC";
+        #endif
         datetime.tm_year = std::stoi(str.substr(2, 4)) - 1900;
         datetime.tm_mon = std::stoi(str.substr(6, 2)) - 1;
         datetime.tm_mday = std::stoi(str.substr(8, 2));

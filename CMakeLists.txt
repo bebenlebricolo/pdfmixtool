@@ -2,13 +2,23 @@ cmake_minimum_required (VERSION 3.6)
 
 project (PDFMixTool)
 
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
+if (WIN32)
+    if(NOT DEFINED QPDF_PATH)
+        message(FATAL_ERROR "/!\\ QPDF_PATH is not set, please provide QPDF_PATH pointing to QPDF installation as cmake argument like so: -DQPDF_PATH=<...>")
+    endif()
+    message(STATUS "o [Note] : You might need to provide the path to QtX installation directory like so : -DCMAKE_PREFIX_PATH=<Qt installation directory")
+    message(STATUS "o [Note] : For instance, you can use the following command line : -DCMAKE_PREFIX_PATH=[...]/Qt5/5.15.2/mingw81_64 for mingw64 binaries")
+endif()
+
+find_library(qpdf PATHS ${QPDF_PATH}/lib/libqpdf.dll.a )
+
 if(CMAKE_COMPILER_IS_GNUCC OR CMAKE_COMPILER_IS_GNUCXX)
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -pedantic")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -pedantic -Wno-deprecated-declarations")
 endif()
 
 file(GLOB TS_FILES
@@ -17,8 +27,9 @@ file(GLOB TS_FILES
 )
 
 if(NOT(DEFINED QT_VERSION) OR QT_VERSION EQUAL 5)
-    find_package (Qt5 REQUIRED COMPONENTS Widgets LinguistTools)
-    set(QT_LIBRARIES ${Qt5Widgets_LIBRARIES})
+    find_package (Qt5 REQUIRED COMPONENTS Widgets LinguistTools Core)
+    set(QT_LIBRARIES Qt5::Widgets Qt5::Core )
+    message(STATUS "[DEBUG] : QT_LIBRARIES = ${QT_LIBRARIES}")
     qt5_add_translation(QM_FILES ${TS_FILES} resources/pdfmixtool_en.ts)
 elseif(QT_VERSION EQUAL 6)
     find_package (Qt6 REQUIRED COMPONENTS Widgets LinguistTools)
@@ -90,8 +101,26 @@ add_executable (
     ${EN_QM_FILE}
 )
 
-target_link_libraries (
-    pdfmixtool
+target_include_directories( pdfmixtool SYSTEM PUBLIC
+    ${QPDF_PATH}/include
+)
+
+target_link_directories(pdfmixtool PUBLIC
+    ${QPDF_PATH}/lib/
+)
+
+# Linking with Dynamic distribution of Qt on Windows
+# So we have to provide Qt with such information so that
+# headers will contain __declspec(dllimport) annotations for the symbols to be imported
+# as expected by pdfmixtool
+if(WIN32)
+    target_compile_definitions( pdfmixtool PUBLIC
+        QT_DLL
+    )
+endif()
+
+
+target_link_libraries ( pdfmixtool
     qpdf
     ${QT_LIBRARIES}
 )

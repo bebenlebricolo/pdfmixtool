@@ -79,6 +79,12 @@ private:
 };
 
 // 1900/01/01 00:00
+#ifndef WIN32
 static const std::tm default_datetime{0, 0, 0, 1, 0, 0, 0, 0, 0, 0, ""};
+#else
+#pragma GCC diagnostic ignored "-Wunused-variable"
+static const std::tm default_datetime{0, 0, 0, 1, 0, 0, 0, 0, 0};
+#pragma GCC diagnostic pop
+#endif
 
 #endif // PDF_INFO_H

@@ -191,7 +191,7 @@ void PdfEditor::add_pages(unsigned int file_id,
                             auto ann_obj = annotations.getArrayItem(k);
                             Annotation ann;
                             ann.orig_page_id = j;
-                            ann.ann_obj = ann_obj.shallowCopy();
+                            ann.ann_obj = ann_obj;
                             ann.dest = m_find_destination(file_id, ann.ann_obj);
                             m_annots[m_last_page].push_back(ann);
                             annotations.eraseItem(k);
@@ -521,7 +521,7 @@ void PdfEditor::m_build_links()
         for (Annotation &ann : annots)
         {
             QPDFObjectHandle ann_obj =
-                    m_output_pdf->makeIndirectObject(ann.ann_obj);
+                    m_output_pdf->copyForeignObject(ann.ann_obj);
 
             // update rect
             QPDFObjectHandle rect = ann_obj.getKey("/Rect");

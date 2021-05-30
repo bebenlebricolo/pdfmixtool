@@ -72,7 +72,7 @@ unsigned int PdfEditor::add_file(const std::string &filename)
     // add document's info from the first input file
     if (file_id == 0 && m_input_files[file_id]->getTrailer().hasKey("/Info"))
     {
-        QPDFObjectHandle info = m_output_pdf->makeIndirectObject(
+        QPDFObjectHandle info = m_output_pdf->copyForeignObject(
                     m_input_files[file_id]->getTrailer().getKey("/Info"));
         m_output_pdf->getTrailer().replaceKey("/Info", info);
     }

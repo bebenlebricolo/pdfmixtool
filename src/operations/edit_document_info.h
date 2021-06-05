@@ -11,11 +11,11 @@ class EditDocumentInfo : public AbstractOperation
 {
     Q_OBJECT
 public:
-    explicit EditDocumentInfo(const PdfInfo &pdf_info,
-                              QWidget *parent = nullptr);
+    explicit EditDocumentInfo(QWidget *parent = nullptr);
 
-public slots:
-    void pdf_info_changed() override;
+    void set_pdf_info(const PdfInfo &pdf_info) override;
+
+    int output_pages_count() override;
 
 private:
     QLineEdit m_title;

@@ -27,11 +27,11 @@ class ExtractPages : public AbstractOperation
 {
     Q_OBJECT
 public:
-    explicit ExtractPages(const PdfInfo &pdf_info,
-                          QWidget *parent = nullptr);
+    explicit ExtractPages(QWidget *parent = nullptr);
 
-public slots:
-    void pdf_info_changed();
+    void set_pdf_info(const PdfInfo &pdf_info) override;
+
+    int output_pages_count() override;
 
 private:
     PagesSelector *m_pages_selector;

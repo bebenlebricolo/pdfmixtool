@@ -92,6 +92,7 @@ private:
     PdfInfo m_opened_pdf_info;
     PdfInfoLabel *m_opened_file_label;
     QVector<AbstractOperation *> m_operations;
+    AbstractOperation *m_active_operation;
 
     MultipageProfilesManager *m_multipage_profiles_manager;
 };

@@ -39,17 +39,32 @@ protected:
 class PagesSelector : public QWidget
 {
     Q_OBJECT
+
+    using Intervals = std::vector<std::pair<int, int>>;
+
 public:
     explicit PagesSelector(bool show_all_pages=true,
                            bool all_pages_first=false,
                            QWidget *parent=nullptr);
 
+    void set_num_pages(int num_pages);
+
+    bool has_error();
+
+    Intervals get_selected_intervals();
+
+    int get_number_of_selected_pages();
+
+    int get_number_of_unique_selected_pages();
+
     // Return a null string if there is an error in the selection
-    QString get_selection_as_text(int num_pages);
+    QString get_selection_as_text();
 
 signals:
+    void selection_changed();
 
 private:
+    int m_num_pages;
     QButtonGroup m_type;
     LineEdit m_selection;
 };

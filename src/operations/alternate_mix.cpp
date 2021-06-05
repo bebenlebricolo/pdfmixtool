@@ -20,9 +20,8 @@
 
 #include "../gui_utils.h"
 
-AlternateMix::AlternateMix(const PdfInfo &pdf_info,
-                           QWidget *parent) :
-    Merge(pdf_info, parent)
+AlternateMix::AlternateMix(QWidget *parent) :
+    Merge(parent)
 {
     m_name = tr("Alternate mix");
     m_icon = QIcon(m_icon_dir.filePath("alternate_mix.svg"));

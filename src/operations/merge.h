@@ -30,8 +30,7 @@ class Merge : public AbstractOperation
 {
     Q_OBJECT
 public:
-    explicit Merge(const PdfInfo &pdf_info,
-                   QWidget *parent = nullptr);
+    explicit Merge(QWidget *parent = nullptr);
 
     int output_pages_count() override;
 

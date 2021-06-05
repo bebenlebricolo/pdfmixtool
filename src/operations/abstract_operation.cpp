@@ -30,15 +30,13 @@
 
 #include "../gui_utils.h"
 
-AbstractOperation::AbstractOperation(const PdfInfo &pdf_info,
-                                     QWidget *parent) :
+AbstractOperation::AbstractOperation(QWidget *parent) :
     QWidget(parent),
     m_icon_dir{QString("%1/../share/pdfmixtool/icons").arg(
                     qApp->applicationDirPath()
                     )},
     m_is_single_file_operation{true},
-    m_active{false},
-    m_pdf_info(&pdf_info)
+    m_active{false}
 {
     m_icon = QIcon(m_icon_dir.filePath("icon.svg"));
 
@@ -71,15 +69,18 @@ void AbstractOperation::set_active(bool active)
     m_active = active;
 }
 
+void AbstractOperation::set_pdf_info(const PdfInfo &pdf_info)
+{
+    m_pdf_info = pdf_info;
+    QFileInfo info(QString::fromStdString(m_pdf_info.filename()));
+    m_save_button.setEnabled(info.isWritable());
+
+    emit output_pages_count_changed(output_pages_count());
+}
+
 int AbstractOperation::output_pages_count()
 {
     return 0;
-}
-
-void AbstractOperation::pdf_info_changed()
-{
-    QFileInfo info(QString::fromStdString(m_pdf_info->filename()));
-    m_save_button.setEnabled(info.isWritable());
 }
 
 void AbstractOperation::update_multipage_profiles()
@@ -94,7 +95,7 @@ void AbstractOperation::profile_created(int index)
 
 bool AbstractOperation::show_overwrite_dialog()
 {
-    m_save_filename = QString::fromStdString(m_pdf_info->filename());
+    m_save_filename = QString::fromStdString(m_pdf_info.filename());
 
     QString filename = QFileInfo(m_save_filename).fileName();
 

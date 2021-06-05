@@ -31,9 +31,8 @@
 #include "../gui_utils.h"
 #include "../editpdfentrydialog.h"
 
-Merge::Merge(const PdfInfo &pdf_info,
-             QWidget *parent) :
-    AbstractOperation(pdf_info, parent),
+Merge::Merge(QWidget *parent) :
+    AbstractOperation(parent),
     m_triggered_new_profile{-1},
     m_output_pages_error_index(-1),
     m_files_list_view(new QListView(this)),

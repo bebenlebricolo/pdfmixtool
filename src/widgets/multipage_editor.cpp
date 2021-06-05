@@ -58,19 +58,9 @@ MultipageEditor::MultipageEditor(QWidget *parent) :
 
     m_rows.setMinimum(1);
     m_rows.setMaximum(10);
-    connect(&m_rows, QOverload<int>::of(&QSpinBox::valueChanged),
-            [=](int rows) {emit subpages_number_changed(rows * m_columns.value());});
 
     m_columns.setMinimum(1);
     m_columns.setMaximum(10);
-    connect(&m_columns, QOverload<int>::of(&QSpinBox::valueChanged),
-            [=](int columns) {
-        if (columns > 1)
-            m_rtl.setEnabled(true);
-        else
-            m_rtl.setEnabled(false);
-        emit subpages_number_changed(columns * m_rows.value());
-    });
 
     m_rtl.setText(tr("Right-to-left"));
 
@@ -151,9 +141,9 @@ MultipageEditor::MultipageEditor(QWidget *parent) :
     m_standard_size_chooser.show();
     connect(&m_standard_custom,
         #if QT_VERSION < 0x060000
-            QOverload<int>::of(&QButtonGroup::buttonPressed),
+            QOverload<int>::of(&QButtonGroup::buttonClicked),
         #else
-            &QButtonGroup::idPressed,
+            &QButtonGroup::idClicked,
         #endif
             [=](int id) {
         if (id == 0)
@@ -262,6 +252,18 @@ MultipageEditor::MultipageEditor(QWidget *parent) :
             this, &MultipageEditor::update_multipage);
     connect(&m_margin_bottom, QOverload<double>::of(&QDoubleSpinBox::valueChanged),
             this, &MultipageEditor::update_multipage);
+
+    connect(&m_rows, QOverload<int>::of(&QSpinBox::valueChanged),
+            [=](int rows) {emit subpages_number_changed(rows * m_columns.value());});
+
+    connect(&m_columns, QOverload<int>::of(&QSpinBox::valueChanged),
+            [=](int columns) {
+        if (columns > 1)
+            m_rtl.setEnabled(true);
+        else
+            m_rtl.setEnabled(false);
+        emit subpages_number_changed(columns * m_rows.value());
+    });
 }
 
 void MultipageEditor::set_multipage(const Multipage &multipage)

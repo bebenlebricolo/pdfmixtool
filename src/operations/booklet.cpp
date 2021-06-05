@@ -25,9 +25,8 @@
 #include "../gui_utils.h"
 #include "../pdf_edit_lib/pdf_editor.h"
 
-Booklet::Booklet(const PdfInfo &pdf_info,
-                 QWidget *parent) :
-AbstractOperation(pdf_info, parent)
+Booklet::Booklet(QWidget *parent) :
+    AbstractOperation(parent)
 {
     m_name = tr("Booklet");
     m_icon = QIcon(m_icon_dir.filePath("booklet.svg"));
@@ -61,6 +60,11 @@ AbstractOperation(pdf_info, parent)
     h_layout->addWidget(button);
 }
 
+int Booklet::output_pages_count()
+{
+    return ceil(m_pdf_info.n_pages() / 4.) * 2;
+}
+
 void Booklet::generate_booklet()
 {
     QString m_save_filename = QFileDialog::getSaveFileName(
@@ -83,24 +87,24 @@ void Booklet::generate_booklet()
 
         // define output pages layout
         PdfEditor::PageLayout *layout = new PdfEditor::PageLayout();
-        layout->width = 2 * m_pdf_info->width() * cm;
-        layout->height = m_pdf_info->height() * cm;
+        layout->width = 2 * m_pdf_info.width() * cm;
+        layout->height = m_pdf_info.height() * cm;
 
         PdfEditor::Page page1;
         page1.x = 0;
         page1.y = 0;
-        page1.width = m_pdf_info->width() * cm;
-        page1.height = m_pdf_info->height() * cm;
+        page1.width = m_pdf_info.width() * cm;
+        page1.height = m_pdf_info.height() * cm;
 
         PdfEditor::Page page2 = page1;
-        page2.x = m_pdf_info->width() * cm;
+        page2.x = m_pdf_info.width() * cm;
 
         layout->pages.push_back(page1);
         layout->pages.push_back(page2);
 
         // compute vector of indices of pages in the output file
-        int num_pages = m_pdf_info->n_pages() % 4 == 0 ?
-                    m_pdf_info->n_pages() : (m_pdf_info->n_pages() / 4 + 1) * 4;
+        int num_pages = m_pdf_info.n_pages() % 4 == 0 ?
+                    m_pdf_info.n_pages() : (m_pdf_info.n_pages() / 4 + 1) * 4;
 
         int i = 0;
         int j = num_pages - 1;
@@ -121,12 +125,12 @@ void Booklet::generate_booklet()
                 if (m_back_cover.isChecked())
                 {
                     if (current_page == num_pages - 1)
-                        current_page = m_pdf_info->n_pages() - 1;
-                    else if (current_page == m_pdf_info->n_pages() - 1)
+                        current_page = m_pdf_info.n_pages() - 1;
+                    else if (current_page == m_pdf_info.n_pages() - 1)
                         current_page = num_pages - 1;
                 }
 
-                if (current_page >= m_pdf_info->n_pages())
+                if (current_page >= m_pdf_info.n_pages())
                 {
                     is_right_page = !is_right_page;
                     continue;
@@ -149,7 +153,7 @@ void Booklet::generate_booklet()
         try
         {
             PdfEditor editor;
-            unsigned int id = editor.add_file(m_pdf_info->filename());
+            unsigned int id = editor.add_file(m_pdf_info.filename());
 
             emit progress_changed(20);
             editor.add_pages(id, 0, layout, intervals);

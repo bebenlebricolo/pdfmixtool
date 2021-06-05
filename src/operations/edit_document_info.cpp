@@ -8,9 +8,8 @@
 #include "../pdf_edit_lib/pdf_editor.h"
 #include "../gui_utils.h"
 
-EditDocumentInfo::EditDocumentInfo(const PdfInfo &pdf_info,
-                                   QWidget *parent) :
-    AbstractOperation(pdf_info, parent)
+EditDocumentInfo::EditDocumentInfo(QWidget *parent) :
+    AbstractOperation(parent)
 {
     m_name = tr("Document information");
     m_icon = QIcon(m_icon_dir.filePath("edit_document_info.svg"));
@@ -91,22 +90,22 @@ EditDocumentInfo::EditDocumentInfo(const PdfInfo &pdf_info,
             [=]() {save(true);});
 }
 
-void EditDocumentInfo::pdf_info_changed()
+void EditDocumentInfo::set_pdf_info(const PdfInfo &pdf_info)
 {
-    AbstractOperation::pdf_info_changed();
+    AbstractOperation::set_pdf_info(pdf_info);
 
-    m_title.setText(QString::fromStdString(m_pdf_info->title()));
-    m_author.setText(QString::fromStdString(m_pdf_info->author()));
-    m_subject.setText(QString::fromStdString(m_pdf_info->subject()));
-    m_keywords.setText(QString::fromStdString(m_pdf_info->keywords()));
-    m_creator.setText(QString::fromStdString(m_pdf_info->creator()));
-    m_producer.setText(QString::fromStdString(m_pdf_info->producer()));
+    m_title.setText(QString::fromStdString(m_pdf_info.title()));
+    m_author.setText(QString::fromStdString(m_pdf_info.author()));
+    m_subject.setText(QString::fromStdString(m_pdf_info.subject()));
+    m_keywords.setText(QString::fromStdString(m_pdf_info.keywords()));
+    m_creator.setText(QString::fromStdString(m_pdf_info.creator()));
+    m_producer.setText(QString::fromStdString(m_pdf_info.producer()));
 
-    if (m_pdf_info->has_creation_date())
+    if (m_pdf_info.has_creation_date())
     {
         m_creation_date_enabled.setChecked(true);
         m_creation_date.setEnabled(true);
-        std::tm creation_date = m_pdf_info->creation_date();
+        std::tm creation_date = m_pdf_info.creation_date();
         QDateTime dt{};
         dt.setOffsetFromUtc(0);
         dt.setDate(QDate{creation_date.tm_year + 1900, creation_date.tm_mon + 1,
@@ -121,11 +120,11 @@ void EditDocumentInfo::pdf_info_changed()
         m_creation_date.setDateTime(QDateTime::currentDateTime());
     }
 
-    if (m_pdf_info->has_mod_date())
+    if (m_pdf_info.has_mod_date())
     {
         m_mod_date_enabled.setChecked(true);
         m_mod_date.setEnabled(true);
-        std::tm mod_date = m_pdf_info->mod_date();
+        std::tm mod_date = m_pdf_info.mod_date();
         QDateTime dt{};
         dt.setOffsetFromUtc(0);
         dt.setDate(QDate{mod_date.tm_year + 1900, mod_date.tm_mon + 1,
@@ -139,6 +138,11 @@ void EditDocumentInfo::pdf_info_changed()
         m_mod_date.setEnabled(false);
         m_mod_date.setDateTime(QDateTime::currentDateTime());
     }
+}
+
+int EditDocumentInfo::output_pages_count()
+{
+    return m_pdf_info.n_pages();
 }
 
 void EditDocumentInfo::save(bool save_as)
@@ -161,7 +165,7 @@ void EditDocumentInfo::save(bool save_as)
         std::locale old_locale{std::locale::global(std::locale::classic())};
 
         QPDF qpdf;
-        qpdf.processFile(m_pdf_info->filename().c_str());
+        qpdf.processFile(m_pdf_info.filename().c_str());
 
         using handle = QPDFObjectHandle;
         handle doc_info = qpdf.makeIndirectObject(handle::newDictionary());

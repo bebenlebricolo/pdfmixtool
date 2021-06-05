@@ -21,7 +21,7 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="65"/>
         <source>An application to perform common editing operations on PDF files.</source>
-        <translation>Una aplicació per realitzar tasques d&apos;edició habituals en fitxers PDF.</translation>
+        <translation>Una aplicació per a efectuar tasques d&apos;edició habituals en fitxers PDF.</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="68"/>
@@ -61,7 +61,7 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="141"/>
         <source>Help translating</source>
-        <translation>Ajuda en la traducció</translation>
+        <translation>Ajudeu en la traducció</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="148"/>
@@ -343,7 +343,7 @@
     <message>
         <location filename="../src/editpdfentrydialog.cpp" line="90"/>
         <source>OK</source>
-        <translation>Acepta</translation>
+        <translation>D&apos;acord</translation>
     </message>
     <message>
         <location filename="../src/editpdfentrydialog.cpp" line="96"/>
@@ -393,7 +393,7 @@
     <message>
         <location filename="../src/operations/extract_pages.cpp" line="107"/>
         <source>Select save directory</source>
-        <translation>Seleccioneu la carpeta per desar</translation>
+        <translation>Seleccioneu la carpeta on desar</translation>
     </message>
     <message>
         <location filename="../src/operations/extract_pages.cpp" line="175"/>
@@ -585,7 +585,7 @@
     <message>
         <location filename="../src/operations/merge.cpp" line="88"/>
         <source>Select one or more PDF files to open</source>
-        <translation>Seleccioneu un o més fitxers PDF per obrir-los</translation>
+        <translation>Seleccioneu un o més fitxers PDF per a obrir-los</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="90"/>
@@ -638,12 +638,12 @@
     <message>
         <location filename="../src/operations/merge.cpp" line="342"/>
         <source>Error while reading the JSON file!</source>
-        <translation>S&apos;ha produït un error en llegir el fitxer JSON!</translation>
+        <translation>S&apos;ha produït un error en llegir el fitxer JSON.</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="343"/>
         <source>An error occurred while reading the JSON file!</source>
-        <translation>S&apos;ha produït un error en llegir el fitxer JSON!</translation>
+        <translation>S&apos;ha produït un error en llegir el fitxer JSON.</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="350"/>
@@ -832,7 +832,7 @@
     <message>
         <location filename="../src/multipageprofilesmanager.cpp" line="185"/>
         <source>Disabled</source>
-        <translation>Desactiva</translation>
+        <translation>Desactivat</translation>
     </message>
     <message>
         <location filename="../src/multipageprofilesmanager.cpp" line="189"/>

@@ -146,7 +146,7 @@ private:
 
     void m_build_outlines();
 
-    void m_build_links();
+    void m_build_annotations();
 
     void m_set_outline_destination(QPDFObjectHandle &obj,
                                    const Dest &dest);

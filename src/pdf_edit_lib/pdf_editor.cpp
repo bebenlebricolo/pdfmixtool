@@ -178,24 +178,23 @@ void PdfEditor::add_pages(unsigned int file_id,
                 pi.dest = m_last_page;
                 m_page_infos[file_id][j] = pi;
 
-                // save links in the page
+                // save annotations in m_annots and remove them from the page
                 QPDFPageObjectHelper &page = m_pages[file_id][j];
                 auto annotations = page.getObjectHandle().getKey("/Annots");
                 if (!annotations.isNull())
                 {
                     if (m_annots.find(m_last_page) == m_annots.end())
-                    {
                         m_annots[m_last_page] = {};
-                        for (auto k{annotations.getArrayNItems() - 1}; k > -1; k--)
-                        {
-                            auto ann_obj = annotations.getArrayItem(k);
-                            Annotation ann;
-                            ann.orig_page_id = j;
-                            ann.ann_obj = ann_obj;
-                            ann.dest = m_find_destination(file_id, ann.ann_obj);
-                            m_annots[m_last_page].push_back(ann);
-                            annotations.eraseItem(k);
-                        }
+
+                    for (auto k{annotations.getArrayNItems() - 1}; k > -1; k--)
+                    {
+                        auto ann_obj = annotations.getArrayItem(k);
+                        Annotation ann;
+                        ann.orig_page_id = j;
+                        ann.ann_obj = ann_obj;
+                        ann.dest = m_find_destination(file_id, ann.ann_obj);
+                        m_annots[m_last_page].push_back(ann);
+                        annotations.eraseItem(k);
                     }
                 }
             }
@@ -287,7 +286,7 @@ void PdfEditor::write(const std::string &output_filename)
     m_build_outlines();
 
     // add links to inner pages
-    m_build_links();
+    m_build_annotations();
 
     // write the PDF file to memory first to prevent problems when saving to
     // one of the input files
@@ -509,7 +508,7 @@ void PdfEditor::m_build_outlines()
         m_output_pdf->getRoot().replaceKey("/Outlines", outlines_root);
 }
 
-void PdfEditor::m_build_links()
+void PdfEditor::m_build_annotations()
 {
     auto pages = m_output_pdf->getAllPages();
 

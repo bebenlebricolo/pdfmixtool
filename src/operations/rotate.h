@@ -27,11 +27,11 @@ class Rotate : public AbstractOperation
 {
     Q_OBJECT
 public:
-    explicit Rotate(const PdfInfo &pdf_info,
-                    QWidget *parent = nullptr);
+    explicit Rotate(QWidget *parent = nullptr);
 
-public slots:
-    void pdf_info_changed() override;
+    void set_pdf_info(const PdfInfo &pdf_info) override;
+
+    int output_pages_count() override;
 
 private:
     void rotate(bool clockwise);

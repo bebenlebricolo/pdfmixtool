@@ -26,8 +26,11 @@ class DeletePages : public AbstractOperation
 {
     Q_OBJECT
 public:
-    explicit DeletePages(const PdfInfo &pdf_info,
-                         QWidget *parent = nullptr);
+    explicit DeletePages(QWidget *parent = nullptr);
+
+    void set_pdf_info(const PdfInfo &pdf_info) override;
+
+    int output_pages_count() override;
 
 private:
     PagesSelector *m_pages_selector;

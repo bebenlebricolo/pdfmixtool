@@ -39,7 +39,9 @@ void LineEdit::focusInEvent(QFocusEvent *e)
 
 PagesSelector::PagesSelector(bool show_all_pages,
                              bool all_pages_first,
-                             QWidget *parent) : QWidget(parent)
+                             QWidget *parent) :
+    QWidget{parent},
+    m_num_pages{0}
 {
     m_type.addButton(new QRadioButton(tr("Pages:"), this), 0);
     m_type.addButton(new QRadioButton(tr("Even pages"), this), 1);
@@ -86,19 +88,34 @@ PagesSelector::PagesSelector(bool show_all_pages,
 
     connect(&m_selection, &LineEdit::focusIn,
             [=]() {m_type.button(0)->setChecked(true);});
+
+    connect(&m_type,
+        #if QT_VERSION < 0x060000
+            QOverload<int>::of(&QButtonGroup::buttonClicked),
+        #else
+            &QButtonGroup::idClicked,
+        #endif
+            this, &PagesSelector::selection_changed);
+
+    connect(&m_selection, &LineEdit::textChanged,
+            this, &PagesSelector::selection_changed);
 }
 
-QString PagesSelector::get_selection_as_text(int num_pages)
+void PagesSelector::set_num_pages(int num_pages)
 {
-    switch (m_type.checkedId())
+    m_num_pages = num_pages;
+}
+
+bool PagesSelector::has_error()
+{
+    if (m_type.checkedId() == 0)
     {
-    case 0: {
         int output_pages_count;
         std::vector<std::pair<int, int>> intervals;
 
         bool result = parse_output_pages_string(
                     m_selection.text().toStdString(),
-                    num_pages,
+                    m_num_pages,
                     intervals,
                     output_pages_count);
 
@@ -124,6 +141,105 @@ QString PagesSelector::get_selection_as_text(int num_pages)
                                   tr("Error"),
                                   error_message);
 
+            return true;
+        }
+    }
+
+    return false;
+}
+
+PagesSelector::Intervals PagesSelector::get_selected_intervals()
+{
+    Intervals intervals;
+
+    switch (m_type.checkedId())
+    {
+    case 0:
+    {
+        int output_pages_count;
+
+        bool result = parse_output_pages_string(
+                    m_selection.text().toStdString(),
+                    m_num_pages,
+                    intervals,
+                    output_pages_count);
+
+        if (m_selection.text().isEmpty() || !result)
+        {
+            return Intervals{};
+        }
+
+        break;
+    }
+    case 1:
+    {
+        for (int i = 1; i < m_num_pages; i += 2)
+            intervals.push_back({i, i});
+
+        break;
+    }
+    case 2:
+    {
+        for (int i = 0; i < m_num_pages; i += 2)
+            intervals.push_back({i, i});
+
+        break;
+    }
+    case 3:
+    {
+        intervals.push_back({0, m_num_pages - 1});
+
+        break;
+    }
+    }
+
+    return intervals;
+}
+
+int PagesSelector::get_number_of_selected_pages()
+{
+    Intervals intervals = get_selected_intervals();
+    int count = 0;
+
+    for (auto interval : intervals)
+        count += interval.second - interval.first + 1;
+
+    return count;
+}
+
+int PagesSelector::get_number_of_unique_selected_pages()
+{
+    Intervals intervals = get_selected_intervals();
+    std::vector<bool> selected(m_num_pages, false);
+
+    for (auto interval : intervals)
+        for (auto i = interval.first; i <= interval.second; ++i)
+            selected[i] = true;
+
+    int count = 0;
+    for (auto elem : selected)
+        if (elem)
+            ++count;
+
+    return count;
+}
+
+QString PagesSelector::get_selection_as_text()
+{
+    switch (m_type.checkedId())
+    {
+    case 0: {
+        int output_pages_count;
+        std::vector<std::pair<int, int>> intervals;
+
+        bool result = parse_output_pages_string(
+                    m_selection.text().toStdString(),
+                    m_num_pages,
+                    intervals,
+                    output_pages_count);
+
+        if (m_selection.text().isEmpty() || !result)
+        {
             return QString();
         }
         else
@@ -132,7 +248,7 @@ QString PagesSelector::get_selection_as_text(int num_pages)
     case 1: {
         QString s;
 
-        for (int i = 1; i <= num_pages; i++)
+        for (int i = 1; i <= m_num_pages; i++)
             if (i % 2 == 0)
                 s += QString::number(i) + ",";
 
@@ -141,7 +257,7 @@ QString PagesSelector::get_selection_as_text(int num_pages)
     case 2: {
         QString s;
 
-        for (int i = 1; i <= num_pages; i++)
+        for (int i = 1; i <= m_num_pages; i++)
             if (i % 2 == 1)
                 s += QString::number(i) + ",";
 

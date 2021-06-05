@@ -23,9 +23,8 @@
 
 #include "../gui_utils.h"
 
-Rotate::Rotate(const PdfInfo &pdf_info,
-               QWidget *parent) :
-    AbstractOperation(pdf_info, parent),
+Rotate::Rotate(QWidget *parent) :
+    AbstractOperation(parent),
     m_rotation{0},
     m_output_preview{new OutputPreview{this}},
     m_pages_selector{new PagesSelector{true, true, this}}
@@ -89,11 +88,18 @@ Rotate::Rotate(const PdfInfo &pdf_info,
             [=]() {save(true);});
 }
 
-void Rotate::pdf_info_changed()
+void Rotate::set_pdf_info(const PdfInfo &pdf_info)
 {
+    m_pages_selector->set_num_pages(pdf_info.n_pages());
+    AbstractOperation::set_pdf_info(pdf_info);
     m_rotation = 0;
     m_output_preview->set_rotation(m_rotation);
-    m_output_preview->set_pdf_info(*m_pdf_info);
+    m_output_preview->set_pdf_info(m_pdf_info);
+}
+
+int Rotate::output_pages_count()
+{
+    return m_pdf_info.n_pages();
 }
 
 void Rotate::rotate(bool clockwise)
@@ -108,11 +114,11 @@ void Rotate::rotate(bool clockwise)
 
 void Rotate::save(bool save_as)
 {
-    QString selection = m_pages_selector->get_selection_as_text(
-                m_pdf_info->n_pages());
-
-    if (selection.isNull())
+    if (m_pages_selector->has_error())
         return;
+
+    std::vector<std::pair<int, int>> rotate_intervals =
+            m_pages_selector->get_selected_intervals();
 
     if (save_as)
     {
@@ -130,19 +136,9 @@ void Rotate::save(bool save_as)
     try
     {
         PdfEditor editor;
-        unsigned int id = editor.add_file(m_pdf_info->filename());
+        unsigned int id = editor.add_file(m_pdf_info.filename());
 
-        int output_pages_count;
-        std::vector<std::pair<int, int>> rotate_intervals;
-
-        parse_output_pages_string(selection.toStdString(),
-                                  m_pdf_info->n_pages(),
-                                  rotate_intervals,
-                                  output_pages_count);
-
-        std::vector<bool> rotate_pages;
-        for (int i = 0; i < m_pdf_info->n_pages(); i++)
-            rotate_pages.push_back(false);
+        std::vector<bool> rotate_pages(m_pdf_info.n_pages(), false);
 
         std::vector<std::pair<int, int>>::iterator it;
         for (it = rotate_intervals.begin(); it != rotate_intervals.end(); ++it)

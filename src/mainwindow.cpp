@@ -72,25 +72,11 @@ MainWindow::MainWindow(QWidget *parent) :
     AboutDialog *about_dialog = new AboutDialog(this);
 
     // main layout
-    QVBoxLayout *main_layout = new QVBoxLayout();
     QHBoxLayout *splitter_layout = new QHBoxLayout();
-    main_layout->addLayout(splitter_layout);
-
-    QFrame *separator = new QFrame(this);
-    separator->setFrameStyle(QFrame::HLine | QFrame::Plain);
-    separator->setContentsMargins(10, 0, 10, 0);
-    main_layout->addWidget(separator);
-
-    QStatusBar *m_status_bar = new QStatusBar(this);
-    m_status_bar->addWidget(m_output_page_count);
-    m_status_bar->addWidget(m_progress_bar, 100);
-    m_status_bar->addWidget(new QWidget(this), 1);
-    m_status_bar->addWidget(&m_saved_file);
-    main_layout->addWidget(m_status_bar);
 
     QWidget *central_widget = new QWidget(this);
     this->setCentralWidget(central_widget);
-    central_widget->setLayout(main_layout);
+    central_widget->setLayout(splitter_layout);
 
     // Hide progress bar and saved file label
     m_progress_bar->hide();
@@ -128,15 +114,15 @@ MainWindow::MainWindow(QWidget *parent) :
     v_layout->addWidget(main_menu_button, 0, Qt::AlignLeft);
     v_layout->addWidget(m_operations_list, 1);
 
-    m_operations.push_back(new Merge(m_opened_pdf_info, this));
-    m_operations.push_back(new ExtractPages(m_opened_pdf_info, this));
-    m_operations.push_back(new DeletePages(m_opened_pdf_info, this));
-    m_operations.push_back(new Rotate(m_opened_pdf_info, this));
-    m_operations.push_back(new EditPageLayout(m_opened_pdf_info, this));
-    m_operations.push_back(new EditDocumentInfo(m_opened_pdf_info, this));
-    m_operations.push_back(new AlternateMix(m_opened_pdf_info, this));
-    m_operations.push_back(new Booklet(m_opened_pdf_info, this));
-    m_operations.push_back(new AddEmptyPages(m_opened_pdf_info, this));
+    m_operations.push_back(new Merge(this));
+    m_operations.push_back(new ExtractPages(this));
+    m_operations.push_back(new DeletePages(this));
+    m_operations.push_back(new Rotate(this));
+    m_operations.push_back(new EditPageLayout(this));
+    m_operations.push_back(new EditDocumentInfo(this));
+    m_operations.push_back(new AlternateMix(this));
+    m_operations.push_back(new Booklet(this));
+    m_operations.push_back(new AddEmptyPages(this));
 
     for (AbstractOperation *operation : m_operations)
     {
@@ -181,6 +167,8 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(m_operations_list, &QListWidget::currentRowChanged,
             this, &MainWindow::operation_changed);
 
+    m_active_operation = m_operations.first();
+    m_active_operation->set_active(true);
     m_operations_list->setCurrentRow(0);
     m_operations_list->setFixedWidth(
                 m_operations_list->sizeHintForColumn(0) + 64);
@@ -222,12 +210,24 @@ MainWindow::MainWindow(QWidget *parent) :
                                   m_opened_pdf_info.filename().c_str());});
 
 
-    separator = new QFrame(this);
+    QFrame *separator = new QFrame(this);
     separator->setFrameStyle(QFrame::HLine | QFrame::Plain);
     separator->setMinimumHeight(20);
     open_pdf_layout->addWidget(separator, 2, 1, 1, 3);
 
     v_layout->addWidget(&m_operations_widget);
+
+    separator = new QFrame(this);
+    separator->setFrameStyle(QFrame::HLine | QFrame::Plain);
+    separator->setContentsMargins(10, 0, 10, 0);
+    v_layout->addWidget(separator);
+
+    QStatusBar *m_status_bar = new QStatusBar(this);
+    m_status_bar->addWidget(m_output_page_count);
+    m_status_bar->addWidget(m_progress_bar, 100);
+    m_status_bar->addWidget(new QWidget(this), 1);
+    m_status_bar->addWidget(&m_saved_file);
+    v_layout->addWidget(m_status_bar);
 
     // splitter: left + right
     splitter_layout->addWidget(left_side);
@@ -265,14 +265,17 @@ void MainWindow::operation_changed(int index)
 //            ->findChildren<QLabel *>().at(1)
 //            ->setForegroundRole(QPalette::HighlightedText);
 
-    for (auto operation : m_operations)
-        operation->set_active(false);
-    m_operations.at(index)->set_active(true);
+    m_active_operation->set_active(false);
+    m_active_operation = m_operations.at(index);
+    m_active_operation->set_active(true);
 
-    if (m_operations.at(index)->is_single_file_operation())
+    if (m_active_operation->is_single_file_operation())
     {
         if (m_opened_pdf_info.filename() == "")
             m_operations_widget.setDisabled(true);
+        else
+            m_active_operation->set_pdf_info(m_opened_pdf_info);
+
         m_open_pdf_widget.show();
     }
     else
@@ -322,8 +325,8 @@ void MainWindow::update_opened_file_label(const QString &filename)
 
     m_opened_file_label->set_pdf_info(m_opened_pdf_info);
 
-    for (AbstractOperation *operation : m_operations)
-        operation->pdf_info_changed();
+    if (m_active_operation->is_single_file_operation())
+        m_active_operation->set_pdf_info(m_opened_pdf_info);
 }
 
 void MainWindow::update_output_pages_count(int count)

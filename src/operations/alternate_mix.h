@@ -25,8 +25,7 @@ class AlternateMix : public Merge
 {
     Q_OBJECT
 public:
-    explicit AlternateMix(const PdfInfo &pdf_info,
-                          QWidget *parent = nullptr);
+    explicit AlternateMix(QWidget *parent = nullptr);
 
     int output_pages_count() override;
 

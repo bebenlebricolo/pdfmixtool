@@ -29,11 +29,11 @@ class AddEmptyPages : public AbstractOperation
 {
     Q_OBJECT
 public:
-    explicit AddEmptyPages(const PdfInfo &pdf_info,
-                           QWidget *parent = nullptr);
+    explicit AddEmptyPages(QWidget *parent = nullptr);
 
-public slots:
-    void pdf_info_changed();
+    void set_pdf_info(const PdfInfo &pdf_info) override;
+
+    int output_pages_count() override;
 
 signals:
     void save_button_pressed();

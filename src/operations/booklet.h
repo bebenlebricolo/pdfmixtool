@@ -28,8 +28,9 @@ class Booklet : public AbstractOperation
 {
     Q_OBJECT
 public:
-    explicit Booklet(const PdfInfo &pdf_info,
-                     QWidget *parent = nullptr);
+    explicit Booklet(QWidget *parent = nullptr);
+
+    int output_pages_count() override;
 
 private:
     void generate_booklet();

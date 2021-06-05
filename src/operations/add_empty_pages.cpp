@@ -26,9 +26,8 @@
 #include "../gui_utils.h"
 #include "../pdf_edit_lib/pdf_editor.h"
 
-AddEmptyPages::AddEmptyPages(const PdfInfo &pdf_info,
-                             QWidget *parent) :
-        AbstractOperation(pdf_info, parent)
+AddEmptyPages::AddEmptyPages(QWidget *parent) :
+        AbstractOperation(parent)
 {
     m_name = tr("Add empty pages");
     m_icon = QIcon(m_icon_dir.filePath("add_empty_pages.svg"));
@@ -46,6 +45,9 @@ AddEmptyPages::AddEmptyPages(const PdfInfo &pdf_info,
     grid_layout->addWidget(new QLabel(tr("Count:"), this), 0, 0);
     grid_layout->addWidget(&m_count, 0, 1);
     m_count.setRange(1, 1000);
+    connect(&m_count, QOverload<int>::of(&QSpinBox::valueChanged),
+            [=](int value) {
+        emit output_pages_count_changed(output_pages_count());});
 
     grid_layout->addWidget(new QLabel("<b>" + tr("Page size") + "</b>", this),
                            1, 0, 1, 4);
@@ -137,14 +139,22 @@ AddEmptyPages::AddEmptyPages(const PdfInfo &pdf_info,
             [=]() {if (show_save_as_dialog()) m_save();});
 }
 
-void AddEmptyPages::pdf_info_changed()
+void AddEmptyPages::set_pdf_info(const PdfInfo &pdf_info)
 {
-    AbstractOperation::pdf_info_changed();
+    AbstractOperation::set_pdf_info(pdf_info);
 
-    m_page.setRange(1, m_pdf_info->n_pages());
+    m_page.setRange(1, m_pdf_info.n_pages());
 
-    m_page_width.setValue(m_pdf_info->width());
-    m_page_height.setValue(m_pdf_info->height());
+    m_page_width.setValue(m_pdf_info.width());
+    m_page_height.setValue(m_pdf_info.height());
+}
+
+int AddEmptyPages::output_pages_count()
+{
+    if (m_pdf_info.n_pages() == 0)
+        return 0;
+    else
+        return m_pdf_info.n_pages() + m_count.value();
 }
 
 void AddEmptyPages::m_save()
@@ -160,8 +170,8 @@ void AddEmptyPages::m_save()
     {
     case m_pages_size_type::same:
     {
-        page_width = m_pdf_info->width();
-        page_height = m_pdf_info->height();
+        page_width = m_pdf_info.width();
+        page_height = m_pdf_info.height();
         break;
     }
     case m_pages_size_type::custom:
@@ -195,7 +205,7 @@ void AddEmptyPages::m_save()
     try
     {
         PdfEditor editor;
-        unsigned int id = editor.add_file(m_pdf_info->filename());
+        unsigned int id = editor.add_file(m_pdf_info.filename());
         int location = m_page.value() - 1;
 
         m_position position = static_cast<m_position>(m_before_after.checkedId());
@@ -213,7 +223,7 @@ void AddEmptyPages::m_save()
             emit progress_changed(40);
 
             editor.add_pages(id, 0, nullptr,
-                             {{location, m_pdf_info->n_pages() - 1}});
+                             {{location, m_pdf_info.n_pages() - 1}});
             emit progress_changed(60);
 
             break;
@@ -226,10 +236,10 @@ void AddEmptyPages::m_save()
             editor.add_blank_pages(page_width, page_height, count);
             emit progress_changed(40);
 
-            if (location < m_pdf_info->n_pages() - 1)
+            if (location < m_pdf_info.n_pages() - 1)
             {
                 editor.add_pages(id, 0, nullptr,
-                                 {{location + 1, m_pdf_info->n_pages() - 1}});
+                                 {{location + 1, m_pdf_info.n_pages() - 1}});
                 emit progress_changed(60);
             }
         }

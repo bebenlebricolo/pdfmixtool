@@ -32,8 +32,7 @@ class AbstractOperation : public QWidget
     Q_OBJECT
 
 public:
-    explicit AbstractOperation(const PdfInfo &pdf_info,
-                               QWidget *parent = nullptr);
+    explicit AbstractOperation(QWidget *parent = nullptr);
 
     const QString &name();
 
@@ -43,11 +42,11 @@ public:
 
     void set_active(bool active);
 
+    virtual void set_pdf_info(const PdfInfo &pdf_info);
+
     virtual int output_pages_count();
 
 public slots:
-    virtual void pdf_info_changed();
-
     virtual void update_multipage_profiles();
 
     virtual void profile_created(int index);
@@ -78,7 +77,7 @@ protected:
     bool show_overwrite_dialog();
     bool show_save_as_dialog();
 
-    PdfInfo const *m_pdf_info;
+    PdfInfo m_pdf_info;
 };
 
 #endif // ABSTRACTOPERATION_H

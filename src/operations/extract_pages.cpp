@@ -29,9 +29,8 @@
 #include "../gui_utils.h"
 #include "../pdf_edit_lib/pdf_editor.h"
 
-ExtractPages::ExtractPages(const PdfInfo &pdf_info,
-                           QWidget *parent) :
-      AbstractOperation(pdf_info, parent)
+ExtractPages::ExtractPages(QWidget *parent) :
+      AbstractOperation(parent)
 {
     m_name = tr("Extract pages");
     m_icon = QIcon(m_icon_dir.filePath("extract.svg"));
@@ -41,6 +40,9 @@ ExtractPages::ExtractPages(const PdfInfo &pdf_info,
 
     m_pages_selector = new PagesSelector(true, true, this);
     v_layout->addWidget(m_pages_selector);
+
+    connect(m_pages_selector, &PagesSelector::selection_changed,
+            [=]() {emit output_pages_count_changed(output_pages_count());});
 
     // spacer
     v_layout->addWidget(new QWidget(this), 1);
@@ -85,22 +87,29 @@ ExtractPages::ExtractPages(const PdfInfo &pdf_info,
     v_layout->addLayout(h_layout);
 }
 
-void ExtractPages::pdf_info_changed()
+void ExtractPages::set_pdf_info(const PdfInfo &pdf_info)
 {
-    AbstractOperation::pdf_info_changed();
+    m_pages_selector->set_num_pages(pdf_info.n_pages());
 
-    QFileInfo file_info(QString::fromStdString(m_pdf_info->filename()));
+    AbstractOperation::set_pdf_info(pdf_info);
+
+    QFileInfo file_info(QString::fromStdString(m_pdf_info.filename()));
 
     m_base_name.setText(file_info.completeBaseName());
 }
 
+int ExtractPages::output_pages_count()
+{
+    return m_pages_selector->get_number_of_selected_pages();
+}
+
 void ExtractPages::extract_to_individual()
 {
-    QString selection = m_pages_selector->get_selection_as_text(
-                m_pdf_info->n_pages());
-
-    if (selection.isNull())
+    if (m_pages_selector->has_error())
         return;
+
+    std::vector<std::pair<int, int>> intervals =
+            m_pages_selector->get_selected_intervals();
 
     QString dir_name = QFileDialog::getExistingDirectory(
                 this,
@@ -122,30 +131,24 @@ void ExtractPages::extract_to_individual()
         QDir dir(dir_name);
         QString base_name = m_base_name.text();
 
-        int output_pages_count;
-        std::vector<std::pair<int, int>> intervals;
-        parse_output_pages_string(selection.toStdString(),
-                                  m_pdf_info->n_pages(),
-                                  intervals,
-                                  output_pages_count);
-
         try
         {
             int  j{0};
             std::vector<std::pair<int, int>>::iterator it;
             for (it = intervals.begin(); it != intervals.end(); ++it)
             {
+                ++j;
                 for (int i = it->first; i <= it->second; i++)
                 {
                     QString filename = base_name + QString("_%1.pdf").arg(i + 1);
 
                     // FIXME SLOW! A custom function that opens the input file once may be necessary
                     PdfEditor editor;
-                    unsigned int id = editor.add_file(m_pdf_info->filename());
+                    unsigned int id = editor.add_file(m_pdf_info.filename());
                     editor.add_pages(id, 0, nullptr, {{i, i}});
                     editor.write(dir.filePath(filename).toStdString());
 
-                    emit progress_changed(100. * ++j / (output_pages_count + 1));
+                    emit progress_changed(100. * j / intervals.size());
                 }
             }
 
@@ -160,11 +163,11 @@ void ExtractPages::extract_to_individual()
 
 void ExtractPages::extract_to_single()
 {
-    QString selection = m_pages_selector->get_selection_as_text(
-                m_pdf_info->n_pages());
-
-    if (selection.isNull())
+    if (m_pages_selector->has_error())
         return;
+
+    std::vector<std::pair<int, int>> intervals =
+            m_pages_selector->get_selected_intervals();
 
     m_save_filename = QFileDialog::getSaveFileName(
                 this,
@@ -182,19 +185,12 @@ void ExtractPages::extract_to_single()
                     "save_directory",
                     QFileInfo(m_save_filename).dir().absolutePath());
 
-        int output_pages_count;
-        std::vector<std::pair<int, int>> intervals;
-        parse_output_pages_string(selection.toStdString(),
-                                             m_pdf_info->n_pages(),
-                                             intervals,
-                                             output_pages_count);
-
         emit progress_changed(20);
 
         try
         {
             PdfEditor editor;
-            unsigned int id = editor.add_file(m_pdf_info->filename());
+            unsigned int id = editor.add_file(m_pdf_info.filename());
             editor.add_pages(id, 0, nullptr, intervals);
             emit progress_changed(70);
 

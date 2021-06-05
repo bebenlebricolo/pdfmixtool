@@ -26,9 +26,8 @@
 #include "../gui_utils.h"
 #include "../pdf_edit_lib/pdf_editor.h"
 
-DeletePages::DeletePages(const PdfInfo &pdf_info,
-                         QWidget *parent) :
-    AbstractOperation(pdf_info, parent)
+DeletePages::DeletePages(QWidget *parent) :
+    AbstractOperation(parent)
 {
     m_name = tr("Delete pages");
     m_icon = QIcon(m_icon_dir.filePath("delete.svg"));
@@ -39,6 +38,9 @@ DeletePages::DeletePages(const PdfInfo &pdf_info,
     this->setLayout(v_layout);
 
     v_layout->addWidget(m_pages_selector);
+
+    connect(m_pages_selector, &PagesSelector::selection_changed,
+            [=]() {emit output_pages_count_changed(output_pages_count());});
 
     // spacer
     v_layout->addWidget(new QWidget(this), 1);
@@ -69,12 +71,22 @@ DeletePages::DeletePages(const PdfInfo &pdf_info,
             [=]() {save(true);});
 }
 
+void DeletePages::set_pdf_info(const PdfInfo &pdf_info)
+{
+    m_pages_selector->set_num_pages(pdf_info.n_pages());
+
+    AbstractOperation::set_pdf_info(pdf_info);
+}
+
+int DeletePages::output_pages_count()
+{
+    return m_pdf_info.n_pages() -
+            m_pages_selector->get_number_of_unique_selected_pages();
+}
+
 void DeletePages::save(bool save_as)
 {
-    QString selection = m_pages_selector->get_selection_as_text(
-                m_pdf_info->n_pages());
-
-    if (selection.isNull())
+    if (m_pages_selector->has_error())
         return;
 
     if (save_as)
@@ -90,17 +102,10 @@ void DeletePages::save(bool save_as)
 
     emit write_started();
 
-    int output_pages_count;
-    std::vector<std::pair<int, int>> delete_intervals;
+    std::vector<std::pair<int, int>> delete_intervals =
+            m_pages_selector->get_selected_intervals();
 
-    parse_output_pages_string(selection.toStdString(),
-                                         m_pdf_info->n_pages(),
-                                         delete_intervals,
-                                         output_pages_count);
-
-    std::vector<bool> keep_pages;
-    for (int i = 0; i < m_pdf_info->n_pages(); i++)
-        keep_pages.push_back(true);
+    std::vector<bool> keep_pages(m_pdf_info.n_pages(), true);
 
     std::vector<std::pair<int, int>>::iterator it;
     for (it = delete_intervals.begin(); it != delete_intervals.end(); ++it)
@@ -128,7 +133,7 @@ void DeletePages::save(bool save_as)
     try
     {
         PdfEditor editor;
-        unsigned int id = editor.add_file(m_pdf_info->filename());
+        unsigned int id = editor.add_file(m_pdf_info.filename());
         editor.add_pages(id, 0, nullptr, keep_intervals);
         emit progress_changed(70);
 

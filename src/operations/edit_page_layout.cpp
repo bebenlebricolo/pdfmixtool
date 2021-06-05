@@ -25,9 +25,8 @@
 
 #include "../gui_utils.h"
 
-EditPageLayout::EditPageLayout(const PdfInfo &pdf_info,
-                               QWidget *parent) :
-    AbstractOperation(pdf_info, parent),
+EditPageLayout::EditPageLayout(QWidget *parent) :
+    AbstractOperation(parent),
     m_multipage_editor{new MultipageEditor{this}},
     m_pages_selector{new PagesSelector{true, true, this}},
     m_output_preview{new OutputPreview{this}}
@@ -88,6 +87,8 @@ EditPageLayout::EditPageLayout(const PdfInfo &pdf_info,
         bool enabled = subpages == 1;
         m_pages_selector->setEnabled(enabled);
         apply_to_label->setEnabled(enabled);
+
+        emit output_pages_count_changed(output_pages_count());
     });
 
     m_multipage_editor->set_multipage(
@@ -99,25 +100,48 @@ EditPageLayout::EditPageLayout(const PdfInfo &pdf_info,
             [=]() {if (show_save_as_dialog()) save();});
 }
 
-void EditPageLayout::pdf_info_changed()
+void EditPageLayout::set_pdf_info(const PdfInfo &pdf_info)
 {
-    AbstractOperation::pdf_info_changed();
+    m_pages_selector->set_num_pages(pdf_info.n_pages());
 
-    m_output_preview->set_pdf_info(*m_pdf_info);
+    AbstractOperation::set_pdf_info(pdf_info);
+
+    m_output_preview->set_pdf_info(m_pdf_info);
+}
+
+int EditPageLayout::output_pages_count()
+{
+    if (m_pages_selector->isEnabled())
+    {
+        return m_pdf_info.n_pages();
+    }
+    else
+    {
+        Multipage mp = m_multipage_editor->get_multipage();
+
+        int subpages = mp.rows * mp.columns;
+
+        if (m_pdf_info.n_pages() % subpages > 0)
+            return m_pdf_info.n_pages() / subpages + 1;
+        else
+            return m_pdf_info.n_pages() / subpages;
+    }
 }
 
 void EditPageLayout::save()
 {
-
-    QString selection{""};
+    std::vector<std::pair<int, int>> intervals;
 
     if (m_pages_selector->isEnabled())
     {
-        selection = m_pages_selector->get_selection_as_text(
-                    m_pdf_info->n_pages());
-
-        if (selection.isNull())
+        if (m_pages_selector->has_error())
             return;
+
+        intervals = m_pages_selector->get_selected_intervals();
+    }
+    else
+    {
+        intervals.push_back({0, m_pdf_info.n_pages()});
     }
 
     // save multipage profile
@@ -130,37 +154,27 @@ void EditPageLayout::save()
     try
     {
         PdfEditor editor;
-        unsigned int id = editor.add_file(m_pdf_info->filename());
+        unsigned int id = editor.add_file(m_pdf_info.filename());
 
-        int output_pages_count;
-        std::vector<std::pair<int, int>> rotate_intervals;
-
-        parse_output_pages_string(selection.toStdString(),
-                                  m_pdf_info->n_pages(),
-                                  rotate_intervals,
-                                  output_pages_count);
-
-        std::vector<bool> rotate_pages;
-        for (int i = 0; i < m_pdf_info->n_pages(); i++)
-            rotate_pages.push_back(false);
+        std::vector<bool> apply_to_pages(m_pdf_info.n_pages(), false);
 
         std::vector<std::pair<int, int>>::iterator it;
-        for (it = rotate_intervals.begin(); it != rotate_intervals.end(); ++it)
+        for (it = intervals.begin(); it != intervals.end(); ++it)
             for (int i = it->first; i <= it->second; i++)
-                rotate_pages[i] = true;
+                apply_to_pages[i] = true;
 
         // add dummy last element
-        rotate_pages.push_back(!rotate_pages.back());
+        apply_to_pages.push_back(!apply_to_pages.back());
 
         PdfEditor::PageLayout page_layout{multipage};
 
         int first{0};
         std::vector<std::pair<int, int>> intervals;
-        for (unsigned int i{1}; i < rotate_pages.size(); i++)
+        for (unsigned int i{1}; i < apply_to_pages.size(); i++)
         {
-            if (rotate_pages[i - 1] != rotate_pages[i])
+            if (apply_to_pages[i - 1] != apply_to_pages[i])
             {
-                if (rotate_pages[i - 1])
+                if (apply_to_pages[i - 1])
                     editor.add_pages(id, 0,
                                      new PdfEditor::PageLayout(page_layout),
                                      {std::pair<int, int>{first, i - 1}});

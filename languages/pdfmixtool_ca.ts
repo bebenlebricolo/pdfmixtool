@@ -104,7 +104,7 @@
     <message>
         <location filename="../src/operations/abstract_operation.cpp" line="134"/>
         <source>PDF files</source>
-        <translation type="unfinished"></translation>
+        <translation>Fitxers PDF</translation>
     </message>
 </context>
 <context>
@@ -223,7 +223,7 @@
     <message>
         <location filename="../src/operations/booklet.cpp" line="76"/>
         <source>PDF files</source>
-        <translation type="unfinished"></translation>
+        <translation>Fitxers PDF</translation>
     </message>
 </context>
 <context>
@@ -333,12 +333,12 @@
     <message>
         <location filename="../src/editpdfentrydialog.cpp" line="40"/>
         <source>No rotation</source>
-        <translation>Sense rotació</translation>
+        <translation>Cap gir</translation>
     </message>
     <message>
         <location filename="../src/editpdfentrydialog.cpp" line="45"/>
         <source>Disabled</source>
-        <translation>Desactiva</translation>
+        <translation>Desactivat</translation>
     </message>
     <message>
         <location filename="../src/editpdfentrydialog.cpp" line="90"/>
@@ -358,7 +358,7 @@
     <message>
         <location filename="../src/editpdfentrydialog.cpp" line="105"/>
         <source>Rotation:</source>
-        <translation>Rotació:</translation>
+        <translation>Gir:</translation>
     </message>
 </context>
 <context>
@@ -398,7 +398,7 @@
     <message>
         <location filename="../src/operations/extract_pages.cpp" line="178"/>
         <source>PDF files</source>
-        <translation type="unfinished"></translation>
+        <translation>Fitxers PDF</translation>
     </message>
 </context>
 <context>
@@ -411,12 +411,12 @@
     <message>
         <location filename="../src/inputpdffiledelegate.cpp" line="84"/>
         <source>reverse</source>
-        <translation>retrocedir</translation>
+        <translation>endarrere</translation>
     </message>
     <message>
         <location filename="../src/inputpdffiledelegate.cpp" line="86"/>
         <source>forward</source>
-        <translation>avançar</translation>
+        <translation>endavant</translation>
     </message>
     <message>
         <location filename="../src/inputpdffiledelegate.cpp" line="109"/>
@@ -436,12 +436,12 @@
     <message>
         <location filename="../src/inputpdffiledelegate.cpp" line="130"/>
         <source>Disabled</source>
-        <translation>Desactiva</translation>
+        <translation>Desactivat</translation>
     </message>
     <message>
         <location filename="../src/inputpdffiledelegate.cpp" line="133"/>
         <source>Rotation:</source>
-        <translation>Rotació:</translation>
+        <translation>Gir:</translation>
     </message>
     <message>
         <location filename="../src/inputpdffiledelegate.cpp" line="136"/>
@@ -459,7 +459,7 @@
     <message>
         <location filename="../src/inputpdffilewidget.cpp" line="74"/>
         <source>Disabled</source>
-        <translation>Desactiva</translation>
+        <translation>Desactivat</translation>
     </message>
     <message>
         <location filename="../src/inputpdffilewidget.cpp" line="82"/>
@@ -469,7 +469,7 @@
     <message>
         <location filename="../src/inputpdffilewidget.cpp" line="84"/>
         <source>No rotation</source>
-        <translation>Sense rotació</translation>
+        <translation>Cap gir</translation>
     </message>
     <message>
         <location filename="../src/inputpdffilewidget.cpp" line="89"/>
@@ -484,7 +484,7 @@
     <message>
         <location filename="../src/inputpdffilewidget.cpp" line="93"/>
         <source>Rotation:</source>
-        <translation>Rotació:</translation>
+        <translation>Gir:</translation>
     </message>
     <message>
         <location filename="../src/inputpdffilewidget.cpp" line="95"/>
@@ -527,7 +527,7 @@
     <message>
         <location filename="../src/mainwindow.cpp" line="300"/>
         <source>PDF files</source>
-        <translation type="unfinished"></translation>
+        <translation>Fitxers PDF</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="315"/>
@@ -591,7 +591,7 @@
         <location filename="../src/operations/merge.cpp" line="89"/>
         <location filename="../src/operations/merge.cpp" line="590"/>
         <source>PDF files</source>
-        <translation type="unfinished"></translation>
+        <translation>Fitxers PDF</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="94"/>

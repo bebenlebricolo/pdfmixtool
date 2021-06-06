@@ -175,7 +175,7 @@ void ExtractPages::extract_to_single()
                 settings->value("save_directory",
                                   settings->value("open_directory", "")
                                   ).toString(),
-                tr("PDF files (*.pdf *.PDF)"));
+                tr("PDF files") + " (*.pdf *.PDF)");
 
     if (!m_save_filename.isNull())
     {

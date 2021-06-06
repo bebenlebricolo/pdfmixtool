@@ -77,100 +77,100 @@
 <context>
     <name>AbstractOperation</name>
     <message>
-        <location filename="../src/operations/abstract_operation.cpp" line="46"/>
+        <location filename="../src/operations/abstract_operation.cpp" line="44"/>
         <source>Save</source>
         <translation>Desa</translation>
     </message>
     <message>
-        <location filename="../src/operations/abstract_operation.cpp" line="104"/>
+        <location filename="../src/operations/abstract_operation.cpp" line="105"/>
         <source>Overwrite File?</source>
         <translation>Voleu sobreescriure el fitxer?</translation>
     </message>
     <message>
-        <location filename="../src/operations/abstract_operation.cpp" line="105"/>
+        <location filename="../src/operations/abstract_operation.cpp" line="106"/>
         <source>A file called «%1» already exists. Do you want to overwrite it?</source>
         <translation>Ja existeix un fitxer anomenat «%1». Voleu sobreescriure&apos;l?</translation>
     </message>
     <message>
-        <location filename="../src/operations/abstract_operation.cpp" line="111"/>
+        <location filename="../src/operations/abstract_operation.cpp" line="112"/>
         <source>Always overwrite</source>
         <translation>Sobreescriu sempre</translation>
     </message>
     <message>
-        <location filename="../src/operations/abstract_operation.cpp" line="129"/>
+        <location filename="../src/operations/abstract_operation.cpp" line="130"/>
         <source>Save PDF file</source>
         <translation>Desa el fitxer PDF</translation>
     </message>
     <message>
-        <location filename="../src/operations/abstract_operation.cpp" line="133"/>
-        <source>PDF files (*.pdf *.PDF)</source>
-        <translation>Fitxers PDF (*.pdf , *.PDF)</translation>
+        <location filename="../src/operations/abstract_operation.cpp" line="134"/>
+        <source>PDF files</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>AddEmptyPages</name>
     <message>
-        <location filename="../src/operations/add_empty_pages.cpp" line="33"/>
+        <location filename="../src/operations/add_empty_pages.cpp" line="32"/>
         <source>Add empty pages</source>
         <translation>Afegeix pàgines en blanc</translation>
     </message>
     <message>
-        <location filename="../src/operations/add_empty_pages.cpp" line="46"/>
+        <location filename="../src/operations/add_empty_pages.cpp" line="45"/>
         <source>Count:</source>
         <translation>Quantitat:</translation>
     </message>
     <message>
-        <location filename="../src/operations/add_empty_pages.cpp" line="50"/>
+        <location filename="../src/operations/add_empty_pages.cpp" line="52"/>
         <source>Page size</source>
         <translation>Mida de la pàgina</translation>
     </message>
     <message>
-        <location filename="../src/operations/add_empty_pages.cpp" line="53"/>
+        <location filename="../src/operations/add_empty_pages.cpp" line="55"/>
         <source>Same as document</source>
         <translation>Igual que la del document</translation>
     </message>
     <message>
-        <location filename="../src/operations/add_empty_pages.cpp" line="57"/>
+        <location filename="../src/operations/add_empty_pages.cpp" line="59"/>
         <source>Custom:</source>
         <translation>Personalitza:</translation>
     </message>
     <message>
-        <location filename="../src/operations/add_empty_pages.cpp" line="83"/>
+        <location filename="../src/operations/add_empty_pages.cpp" line="85"/>
         <source>Standard:</source>
         <translation>Estàndard:</translation>
     </message>
     <message>
-        <location filename="../src/operations/add_empty_pages.cpp" line="93"/>
+        <location filename="../src/operations/add_empty_pages.cpp" line="95"/>
         <source>Portrait</source>
         <translation>Vertical</translation>
     </message>
     <message>
-        <location filename="../src/operations/add_empty_pages.cpp" line="95"/>
+        <location filename="../src/operations/add_empty_pages.cpp" line="97"/>
         <source>Landscape</source>
         <translation>Horitzontal</translation>
     </message>
     <message>
-        <location filename="../src/operations/add_empty_pages.cpp" line="98"/>
+        <location filename="../src/operations/add_empty_pages.cpp" line="100"/>
         <source>Location</source>
         <translation>Ubicació</translation>
     </message>
     <message>
-        <location filename="../src/operations/add_empty_pages.cpp" line="101"/>
+        <location filename="../src/operations/add_empty_pages.cpp" line="103"/>
         <source>Before</source>
         <translation>Abans</translation>
     </message>
     <message>
-        <location filename="../src/operations/add_empty_pages.cpp" line="104"/>
+        <location filename="../src/operations/add_empty_pages.cpp" line="106"/>
         <source>After</source>
         <translation>Després</translation>
     </message>
     <message>
-        <location filename="../src/operations/add_empty_pages.cpp" line="108"/>
+        <location filename="../src/operations/add_empty_pages.cpp" line="110"/>
         <source>Page:</source>
         <translation>Pàgina:</translation>
     </message>
     <message>
-        <location filename="../src/operations/add_empty_pages.cpp" line="122"/>
+        <location filename="../src/operations/add_empty_pages.cpp" line="124"/>
         <source>Save as…</source>
         <translation>Anomena i desa…</translation>
     </message>
@@ -178,7 +178,7 @@
 <context>
     <name>AlternateMix</name>
     <message>
-        <location filename="../src/operations/alternate_mix.cpp" line="27"/>
+        <location filename="../src/operations/alternate_mix.cpp" line="26"/>
         <source>Alternate mix</source>
         <translation>Mescla alternativa</translation>
     </message>
@@ -186,55 +186,55 @@
 <context>
     <name>Booklet</name>
     <message>
-        <location filename="../src/operations/booklet.cpp" line="32"/>
+        <location filename="../src/operations/booklet.cpp" line="31"/>
         <source>Booklet</source>
         <translation>Fullet</translation>
     </message>
     <message>
-        <location filename="../src/operations/booklet.cpp" line="42"/>
+        <location filename="../src/operations/booklet.cpp" line="41"/>
         <source>Left</source>
         <translation>Esquerra</translation>
     </message>
     <message>
-        <location filename="../src/operations/booklet.cpp" line="43"/>
+        <location filename="../src/operations/booklet.cpp" line="42"/>
         <source>Right</source>
         <translation>Dreta</translation>
     </message>
     <message>
-        <location filename="../src/operations/booklet.cpp" line="44"/>
+        <location filename="../src/operations/booklet.cpp" line="43"/>
         <source>Binding:</source>
         <translation>Enquadernació:</translation>
     </message>
     <message>
-        <location filename="../src/operations/booklet.cpp" line="45"/>
+        <location filename="../src/operations/booklet.cpp" line="44"/>
         <source>Use last page as back cover:</source>
         <translation>Utilitza l&apos;última pàgina com a contraportada:</translation>
     </message>
     <message>
-        <location filename="../src/operations/booklet.cpp" line="52"/>
+        <location filename="../src/operations/booklet.cpp" line="51"/>
         <source>Generate booklet</source>
         <translation>Genera el fullet</translation>
     </message>
     <message>
-        <location filename="../src/operations/booklet.cpp" line="68"/>
+        <location filename="../src/operations/booklet.cpp" line="72"/>
         <source>Save booklet PDF file</source>
         <translation>Desa el fitxer PDF del fullet</translation>
     </message>
     <message>
-        <location filename="../src/operations/booklet.cpp" line="72"/>
-        <source>PDF files (*.pdf *.PDF)</source>
-        <translation>Fitxers PDF (*.pdf , *.PDF)</translation>
+        <location filename="../src/operations/booklet.cpp" line="76"/>
+        <source>PDF files</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>DeletePages</name>
     <message>
-        <location filename="../src/operations/delete_pages.cpp" line="33"/>
+        <location filename="../src/operations/delete_pages.cpp" line="32"/>
         <source>Delete pages</source>
         <translation>Suprimeix pàgines</translation>
     </message>
     <message>
-        <location filename="../src/operations/delete_pages.cpp" line="54"/>
+        <location filename="../src/operations/delete_pages.cpp" line="56"/>
         <source>Save as…</source>
         <translation>Anomena i desa…</translation>
     </message>
@@ -242,52 +242,52 @@
 <context>
     <name>EditDocumentInfo</name>
     <message>
-        <location filename="../src/operations/edit_document_info.cpp" line="15"/>
+        <location filename="../src/operations/edit_document_info.cpp" line="14"/>
         <source>Document information</source>
         <translation>Informació del document</translation>
     </message>
     <message>
-        <location filename="../src/operations/edit_document_info.cpp" line="25"/>
+        <location filename="../src/operations/edit_document_info.cpp" line="24"/>
         <source>Title:</source>
         <translation>Títol:</translation>
     </message>
     <message>
-        <location filename="../src/operations/edit_document_info.cpp" line="28"/>
+        <location filename="../src/operations/edit_document_info.cpp" line="27"/>
         <source>Author:</source>
         <translation>Autor:</translation>
     </message>
     <message>
-        <location filename="../src/operations/edit_document_info.cpp" line="31"/>
+        <location filename="../src/operations/edit_document_info.cpp" line="30"/>
         <source>Subject:</source>
         <translation>Assumpte:</translation>
     </message>
     <message>
-        <location filename="../src/operations/edit_document_info.cpp" line="34"/>
+        <location filename="../src/operations/edit_document_info.cpp" line="33"/>
         <source>Keywords:</source>
         <translation>Paraules clau:</translation>
     </message>
     <message>
-        <location filename="../src/operations/edit_document_info.cpp" line="37"/>
+        <location filename="../src/operations/edit_document_info.cpp" line="36"/>
         <source>Creator:</source>
         <translation>Creador:</translation>
     </message>
     <message>
-        <location filename="../src/operations/edit_document_info.cpp" line="40"/>
+        <location filename="../src/operations/edit_document_info.cpp" line="39"/>
         <source>Producer:</source>
         <translation>Productor:</translation>
     </message>
     <message>
-        <location filename="../src/operations/edit_document_info.cpp" line="43"/>
+        <location filename="../src/operations/edit_document_info.cpp" line="42"/>
         <source>Creation date:</source>
         <translation>Data de creació:</translation>
     </message>
     <message>
-        <location filename="../src/operations/edit_document_info.cpp" line="47"/>
+        <location filename="../src/operations/edit_document_info.cpp" line="46"/>
         <source>Modification date:</source>
         <translation>Data de modificació:</translation>
     </message>
     <message>
-        <location filename="../src/operations/edit_document_info.cpp" line="76"/>
+        <location filename="../src/operations/edit_document_info.cpp" line="75"/>
         <source>Save as…</source>
         <translation>Anomena i desa…</translation>
     </message>
@@ -308,17 +308,17 @@
 <context>
     <name>EditPageLayout</name>
     <message>
-        <location filename="../src/operations/edit_page_layout.cpp" line="35"/>
+        <location filename="../src/operations/edit_page_layout.cpp" line="34"/>
         <source>Pages layout</source>
         <translation>Disposició de les pàgines</translation>
     </message>
     <message>
-        <location filename="../src/operations/edit_page_layout.cpp" line="45"/>
+        <location filename="../src/operations/edit_page_layout.cpp" line="44"/>
         <source>Apply to:</source>
         <translation>Aplica a:</translation>
     </message>
     <message>
-        <location filename="../src/operations/edit_page_layout.cpp" line="71"/>
+        <location filename="../src/operations/edit_page_layout.cpp" line="70"/>
         <source>Save as…</source>
         <translation>Anomena i desa…</translation>
     </message>
@@ -364,57 +364,57 @@
 <context>
     <name>ExtractPages</name>
     <message>
-        <location filename="../src/operations/extract_pages.cpp" line="36"/>
+        <location filename="../src/operations/extract_pages.cpp" line="35"/>
         <source>Extract pages</source>
         <translation>Extreu pàgines</translation>
     </message>
     <message>
-        <location filename="../src/operations/extract_pages.cpp" line="49"/>
+        <location filename="../src/operations/extract_pages.cpp" line="51"/>
         <source>Extract to individual PDF files</source>
         <translation>Extracció a fitxers PDF independents</translation>
     </message>
     <message>
-        <location filename="../src/operations/extract_pages.cpp" line="53"/>
+        <location filename="../src/operations/extract_pages.cpp" line="55"/>
         <source>Output PDF base name:</source>
         <translation>Nom base del PDF de sortida:</translation>
     </message>
     <message>
-        <location filename="../src/operations/extract_pages.cpp" line="62"/>
-        <location filename="../src/operations/extract_pages.cpp" line="77"/>
+        <location filename="../src/operations/extract_pages.cpp" line="64"/>
+        <location filename="../src/operations/extract_pages.cpp" line="79"/>
         <source>Extract…</source>
         <translation>Extreu…</translation>
     </message>
     <message>
-        <location filename="../src/operations/extract_pages.cpp" line="72"/>
-        <location filename="../src/operations/extract_pages.cpp" line="171"/>
+        <location filename="../src/operations/extract_pages.cpp" line="74"/>
+        <location filename="../src/operations/extract_pages.cpp" line="174"/>
         <source>Extract to single PDF</source>
         <translation>Extracció a un únic fitxer PDF</translation>
     </message>
     <message>
-        <location filename="../src/operations/extract_pages.cpp" line="107"/>
+        <location filename="../src/operations/extract_pages.cpp" line="116"/>
         <source>Select save directory</source>
         <translation>Seleccioneu la carpeta per desar</translation>
     </message>
     <message>
-        <location filename="../src/operations/extract_pages.cpp" line="175"/>
-        <source>PDF files (*.pdf *.PDF)</source>
-        <translation>Fitxers PDF (*.pdf, *.PDF)</translation>
+        <location filename="../src/operations/extract_pages.cpp" line="178"/>
+        <source>PDF files</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>InputPdfFileDelegate</name>
     <message>
-        <location filename="../src/inputpdffiledelegate.cpp" line="83"/>
+        <location filename="../src/inputpdffiledelegate.cpp" line="81"/>
         <source>Page order:</source>
         <translation>Ordre de les pàgines:</translation>
     </message>
     <message>
-        <location filename="../src/inputpdffiledelegate.cpp" line="86"/>
+        <location filename="../src/inputpdffiledelegate.cpp" line="84"/>
         <source>reverse</source>
         <translation>retrocedir</translation>
     </message>
     <message>
-        <location filename="../src/inputpdffiledelegate.cpp" line="88"/>
+        <location filename="../src/inputpdffiledelegate.cpp" line="86"/>
         <source>forward</source>
         <translation>avançar</translation>
     </message>
@@ -495,62 +495,62 @@
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../src/mainwindow.cpp" line="103"/>
+        <location filename="../src/mainwindow.cpp" line="89"/>
         <source>Menu</source>
         <translation>Menú</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="108"/>
+        <location filename="../src/mainwindow.cpp" line="94"/>
         <source>Multipage profiles…</source>
         <translation>Perfils multipàgina…</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="113"/>
+        <location filename="../src/mainwindow.cpp" line="99"/>
         <source>About</source>
         <translation>Quant a</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="118"/>
+        <location filename="../src/mainwindow.cpp" line="104"/>
         <source>Exit</source>
         <translation>Surt</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="297"/>
-        <source>PDF files (*.pdf *.PDF)</source>
-        <translation>Fitxers PDF (*.pdf, *.PDF)</translation>
-    </message>
-    <message>
-        <location filename="../src/mainwindow.cpp" line="383"/>
+        <location filename="../src/mainwindow.cpp" line="386"/>
         <source>Error generating the PDF</source>
         <translation>S&apos;ha produït un error en generar el PDF</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="198"/>
+        <location filename="../src/mainwindow.cpp" line="186"/>
         <source>Open PDF file…</source>
         <translation>Obre un fitxer PDF…</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="312"/>
+        <location filename="../src/mainwindow.cpp" line="300"/>
+        <source>PDF files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="315"/>
         <source>Error opening file</source>
         <translation>S&apos;ha produït un error en obrir el fitxer</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="337"/>
+        <location filename="../src/mainwindow.cpp" line="340"/>
         <source>Output pages: %1</source>
         <translation>Pàgines de sortida: %1</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="295"/>
+        <location filename="../src/mainwindow.cpp" line="298"/>
         <source>Select a PDF file</source>
         <translation>Seleccioneu un fitxer PDF</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="367"/>
+        <location filename="../src/mainwindow.cpp" line="370"/>
         <source>Files saved in %1.</source>
         <translation>Fitxers desats a %1.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="373"/>
+        <location filename="../src/mainwindow.cpp" line="376"/>
         <source>File %1 saved.</source>
         <translation>S&apos;ha desat el fitxer %1.</translation>
     </message>
@@ -558,115 +558,115 @@
 <context>
     <name>Merge</name>
     <message>
-        <location filename="../src/operations/merge.cpp" line="43"/>
+        <location filename="../src/operations/merge.cpp" line="42"/>
         <source>Merge PDF files</source>
         <translation>Fusiona fitxers PDF</translation>
     </message>
     <message>
-        <location filename="../src/operations/merge.cpp" line="72"/>
+        <location filename="../src/operations/merge.cpp" line="71"/>
         <source>Edit</source>
         <translation>Edita</translation>
     </message>
     <message>
-        <location filename="../src/operations/merge.cpp" line="73"/>
+        <location filename="../src/operations/merge.cpp" line="72"/>
         <source>View</source>
         <translation>Visualitza</translation>
     </message>
     <message>
-        <location filename="../src/operations/merge.cpp" line="76"/>
+        <location filename="../src/operations/merge.cpp" line="75"/>
         <source>Main toolbar</source>
         <translation>Barra d&apos;eines principal</translation>
     </message>
     <message>
-        <location filename="../src/operations/merge.cpp" line="83"/>
+        <location filename="../src/operations/merge.cpp" line="82"/>
         <source>Add PDF file</source>
         <translation>Afegeix un fitxer PDF</translation>
     </message>
     <message>
-        <location filename="../src/operations/merge.cpp" line="88"/>
+        <location filename="../src/operations/merge.cpp" line="87"/>
         <source>Select one or more PDF files to open</source>
         <translation>Seleccioneu un o més fitxers PDF per obrir-los</translation>
     </message>
     <message>
-        <location filename="../src/operations/merge.cpp" line="90"/>
-        <location filename="../src/operations/merge.cpp" line="591"/>
-        <source>PDF files (*.pdf *.PDF)</source>
-        <translation>Fitxers PDF (*.pdf, *.PDF)</translation>
+        <location filename="../src/operations/merge.cpp" line="89"/>
+        <location filename="../src/operations/merge.cpp" line="590"/>
+        <source>PDF files</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/operations/merge.cpp" line="95"/>
+        <location filename="../src/operations/merge.cpp" line="94"/>
         <source>Move up</source>
         <translation>Puja</translation>
     </message>
     <message>
-        <location filename="../src/operations/merge.cpp" line="100"/>
+        <location filename="../src/operations/merge.cpp" line="99"/>
         <source>Move down</source>
         <translation>Baixa</translation>
     </message>
     <message>
-        <location filename="../src/operations/merge.cpp" line="105"/>
+        <location filename="../src/operations/merge.cpp" line="104"/>
         <source>Remove file</source>
         <translation>Suprimeix el fitxer</translation>
     </message>
     <message>
-        <location filename="../src/operations/merge.cpp" line="115"/>
+        <location filename="../src/operations/merge.cpp" line="114"/>
         <source>Load files list</source>
         <translation>Carrega la llista de fitxers</translation>
     </message>
     <message>
-        <location filename="../src/operations/merge.cpp" line="120"/>
+        <location filename="../src/operations/merge.cpp" line="119"/>
         <source>Save files list</source>
         <translation>Desa la llista de fitxers</translation>
     </message>
     <message>
-        <location filename="../src/operations/merge.cpp" line="154"/>
-        <location filename="../src/operations/merge.cpp" line="158"/>
+        <location filename="../src/operations/merge.cpp" line="153"/>
+        <location filename="../src/operations/merge.cpp" line="157"/>
         <source>Generate PDF</source>
         <translation>Genera el PDF</translation>
     </message>
     <message>
-        <location filename="../src/operations/merge.cpp" line="334"/>
+        <location filename="../src/operations/merge.cpp" line="333"/>
         <source>Select the JSON file containing the files list</source>
         <translation>Seleccioneu el fitxer JSON que conté la llista de fitxers</translation>
     </message>
     <message>
-        <location filename="../src/operations/merge.cpp" line="336"/>
-        <location filename="../src/operations/merge.cpp" line="354"/>
+        <location filename="../src/operations/merge.cpp" line="335"/>
+        <location filename="../src/operations/merge.cpp" line="353"/>
         <source>JSON files (*.json)</source>
         <translation>Fitxers JSON (* .json)</translation>
     </message>
     <message>
-        <location filename="../src/operations/merge.cpp" line="342"/>
+        <location filename="../src/operations/merge.cpp" line="341"/>
         <source>Error while reading the JSON file!</source>
         <translation>S&apos;ha produït un error en llegir el fitxer JSON!</translation>
     </message>
     <message>
-        <location filename="../src/operations/merge.cpp" line="343"/>
+        <location filename="../src/operations/merge.cpp" line="342"/>
         <source>An error occurred while reading the JSON file!</source>
         <translation>S&apos;ha produït un error en llegir el fitxer JSON!</translation>
     </message>
     <message>
-        <location filename="../src/operations/merge.cpp" line="350"/>
+        <location filename="../src/operations/merge.cpp" line="349"/>
         <source>Select a JSON file</source>
         <translation>Seleccioneu un fitxer JSON</translation>
     </message>
     <message>
-        <location filename="../src/operations/merge.cpp" line="429"/>
+        <location filename="../src/operations/merge.cpp" line="428"/>
         <source>Error opening file</source>
         <translation>S&apos;ha produït un error en obrir el fitxer</translation>
     </message>
     <message>
-        <location filename="../src/operations/merge.cpp" line="563"/>
+        <location filename="../src/operations/merge.cpp" line="562"/>
         <source>&lt;p&gt;Output pages of file &lt;b&gt;%1&lt;/b&gt; are badly formatted. Please make sure you complied with the following rules:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;intervals of pages must be written indicating the first page and the last page separated by a dash (e.g. &quot;1-5&quot;);&lt;/li&gt;&lt;li&gt;single pages and intervals of pages must be separated by spaces, commas or both (e.g. &quot;1, 2, 3, 5-10&quot; or &quot;1 2 3 5-10&quot;);&lt;/li&gt;&lt;li&gt;all pages and intervals of pages must be between 1 and the number of pages of the PDF file;&lt;/li&gt;&lt;li&gt;only numbers, spaces, commas and dashes can be used. All other characters are not allowed.&lt;/li&gt;&lt;/ul&gt;</source>
         <translation>&lt;p&gt;El format de les pàgines de sortida del fitxer &lt;b&gt;%1&lt;/b&gt; és incorrecte. Assegureu-vos que compleix les regles següents:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;els intervals de pàgines s&apos;han d&apos;indicar escrivint la primera i l&apos;última pàgina separades per un guió (p. ex., «1-5»);&lt;/li&gt;&lt;li&gt;les pàgines soltes i els intervals de pàgines s&apos;han de separar per espais, comes o tots dos signes (p. ex., «1, 2, 3, 5-10» o «1 2 3 5-10»);&lt;/li&gt;&lt;li&gt;les pàgines i els intervals de pàgines han d&apos;estar entre 1 i el total de pàgines del fitxer PDF;&lt;/li&gt;&lt;li&gt;només es poden fer servir números, espais, comes i guions. Tots els altres caràcters no estan permesos.&lt;/li&gt;&lt;/ul&gt;</translation>
     </message>
     <message>
-        <location filename="../src/operations/merge.cpp" line="580"/>
+        <location filename="../src/operations/merge.cpp" line="579"/>
         <source>PDF generation error</source>
         <translation>Error en la generació del PDF</translation>
     </message>
     <message>
-        <location filename="../src/operations/merge.cpp" line="587"/>
+        <location filename="../src/operations/merge.cpp" line="586"/>
         <source>Save PDF file</source>
         <translation>Desa el fitxer PDF</translation>
     </message>
@@ -694,97 +694,97 @@
         <translation>Horitzontal</translation>
     </message>
     <message>
-        <location filename="../src/widgets/multipage_editor.cpp" line="75"/>
+        <location filename="../src/widgets/multipage_editor.cpp" line="65"/>
         <source>Right-to-left</source>
         <translation>De dreta a esquerra</translation>
     </message>
     <message>
-        <location filename="../src/widgets/multipage_editor.cpp" line="77"/>
-        <location filename="../src/widgets/multipage_editor.cpp" line="212"/>
+        <location filename="../src/widgets/multipage_editor.cpp" line="67"/>
+        <location filename="../src/widgets/multipage_editor.cpp" line="202"/>
         <source>Left</source>
         <translation>Esquerra</translation>
     </message>
     <message>
-        <location filename="../src/widgets/multipage_editor.cpp" line="78"/>
-        <location filename="../src/widgets/multipage_editor.cpp" line="82"/>
+        <location filename="../src/widgets/multipage_editor.cpp" line="68"/>
+        <location filename="../src/widgets/multipage_editor.cpp" line="72"/>
         <source>Center</source>
         <translation>Centre</translation>
     </message>
     <message>
-        <location filename="../src/widgets/multipage_editor.cpp" line="79"/>
-        <location filename="../src/widgets/multipage_editor.cpp" line="215"/>
+        <location filename="../src/widgets/multipage_editor.cpp" line="69"/>
+        <location filename="../src/widgets/multipage_editor.cpp" line="205"/>
         <source>Right</source>
         <translation>Dreta</translation>
     </message>
     <message>
-        <location filename="../src/widgets/multipage_editor.cpp" line="81"/>
-        <location filename="../src/widgets/multipage_editor.cpp" line="218"/>
+        <location filename="../src/widgets/multipage_editor.cpp" line="71"/>
+        <location filename="../src/widgets/multipage_editor.cpp" line="208"/>
         <source>Top</source>
         <translation>Superior</translation>
     </message>
     <message>
-        <location filename="../src/widgets/multipage_editor.cpp" line="83"/>
-        <location filename="../src/widgets/multipage_editor.cpp" line="221"/>
+        <location filename="../src/widgets/multipage_editor.cpp" line="73"/>
+        <location filename="../src/widgets/multipage_editor.cpp" line="211"/>
         <source>Bottom</source>
         <translation>Inferior</translation>
     </message>
     <message>
-        <location filename="../src/widgets/multipage_editor.cpp" line="116"/>
+        <location filename="../src/widgets/multipage_editor.cpp" line="106"/>
         <source>Page size</source>
         <translation>Mida de la pàgina</translation>
     </message>
     <message>
-        <location filename="../src/widgets/multipage_editor.cpp" line="135"/>
+        <location filename="../src/widgets/multipage_editor.cpp" line="125"/>
         <source>Orientation:</source>
         <translation>Orientació:</translation>
     </message>
     <message>
-        <location filename="../src/widgets/multipage_editor.cpp" line="142"/>
+        <location filename="../src/widgets/multipage_editor.cpp" line="132"/>
         <source>Width:</source>
         <translation>Amplada:</translation>
     </message>
     <message>
-        <location filename="../src/widgets/multipage_editor.cpp" line="145"/>
+        <location filename="../src/widgets/multipage_editor.cpp" line="135"/>
         <source>Height:</source>
         <translation>Alçada:</translation>
     </message>
     <message>
-        <location filename="../src/widgets/multipage_editor.cpp" line="172"/>
+        <location filename="../src/widgets/multipage_editor.cpp" line="162"/>
         <source>Pages layout</source>
         <translation>Disposició de les pàgines</translation>
     </message>
     <message>
-        <location filename="../src/widgets/multipage_editor.cpp" line="179"/>
+        <location filename="../src/widgets/multipage_editor.cpp" line="169"/>
         <source>Rows:</source>
         <translation>Files:</translation>
     </message>
     <message>
-        <location filename="../src/widgets/multipage_editor.cpp" line="182"/>
+        <location filename="../src/widgets/multipage_editor.cpp" line="172"/>
         <source>Columns:</source>
         <translation>Columnes:</translation>
     </message>
     <message>
-        <location filename="../src/widgets/multipage_editor.cpp" line="185"/>
+        <location filename="../src/widgets/multipage_editor.cpp" line="175"/>
         <source>Spacing:</source>
         <translation>Espaiat:</translation>
     </message>
     <message>
-        <location filename="../src/widgets/multipage_editor.cpp" line="191"/>
+        <location filename="../src/widgets/multipage_editor.cpp" line="181"/>
         <source>Pages alignment</source>
         <translation>Alineació de les pàgines</translation>
     </message>
     <message>
-        <location filename="../src/widgets/multipage_editor.cpp" line="198"/>
+        <location filename="../src/widgets/multipage_editor.cpp" line="188"/>
         <source>Horizontal:</source>
         <translation>Horitzontal:</translation>
     </message>
     <message>
-        <location filename="../src/widgets/multipage_editor.cpp" line="201"/>
+        <location filename="../src/widgets/multipage_editor.cpp" line="191"/>
         <source>Vertical:</source>
         <translation>Vertical:</translation>
     </message>
     <message>
-        <location filename="../src/widgets/multipage_editor.cpp" line="205"/>
+        <location filename="../src/widgets/multipage_editor.cpp" line="195"/>
         <source>Margins</source>
         <translation>Marges</translation>
     </message>
@@ -844,32 +844,32 @@
 <context>
     <name>PagesSelector</name>
     <message>
-        <location filename="../src/widgets/pages_selector.cpp" line="44"/>
+        <location filename="../src/widgets/pages_selector.cpp" line="46"/>
         <source>Pages:</source>
         <translation>Pàgines:</translation>
     </message>
     <message>
-        <location filename="../src/widgets/pages_selector.cpp" line="45"/>
+        <location filename="../src/widgets/pages_selector.cpp" line="47"/>
         <source>Even pages</source>
         <translation>Pàgines parells</translation>
     </message>
     <message>
-        <location filename="../src/widgets/pages_selector.cpp" line="46"/>
+        <location filename="../src/widgets/pages_selector.cpp" line="48"/>
         <source>Odd pages</source>
         <translation>Pàgines senars</translation>
     </message>
     <message>
-        <location filename="../src/widgets/pages_selector.cpp" line="48"/>
+        <location filename="../src/widgets/pages_selector.cpp" line="50"/>
         <source>All pages</source>
         <translation>Totes les pàgines</translation>
     </message>
     <message>
-        <location filename="../src/widgets/pages_selector.cpp" line="108"/>
+        <location filename="../src/widgets/pages_selector.cpp" line="125"/>
         <source>&lt;p&gt;Page intervals are badly formatted. Please make sure you complied with the following rules:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;intervals of pages must be written indicating the first page and the last page separated by a dash (e.g. &quot;1-5&quot;);&lt;/li&gt;&lt;li&gt;single pages and intervals of pages must be separated by spaces, commas or both (e.g. &quot;1, 2, 3, 5-10&quot; or &quot;1 2 3 5-10&quot;);&lt;/li&gt;&lt;li&gt;all pages and intervals of pages must be between 1 and the number of pages of the PDF file;&lt;/li&gt;&lt;li&gt;only numbers, spaces, commas and dashes can be used. All other characters are not allowed.&lt;/li&gt;&lt;/ul&gt;</source>
         <translation>&lt;p&gt;El format dels intervals de pàgines és incorrecte. Assegureu-vos que compleix les regles següents:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;els intervals de pàgines s&apos;han d&apos;indicar escrivint la primera i l&apos;última pàgina separades per un guió (p. ex., «1-5»);&lt;/li&gt;&lt;li&gt;les pàgines soltes i els intervals de pàgines s&apos;han de separar per espais, comes o tots dos signes (p. ex., «1, 2, 3, 5-10» o «1 2 3 5-10»);&lt;/li&gt;&lt;li&gt;les pàgines i els intervals de pàgines han d&apos;estar entre 1 i el total de pàgines del fitxer PDF;&lt;/li&gt;&lt;li&gt;només es poden fer servir números, espais, comes i guions. Tots els altres caràcters no estan permesos.&lt;/li&gt;&lt;/ul&gt;</translation>
     </message>
     <message>
-        <location filename="../src/widgets/pages_selector.cpp" line="124"/>
+        <location filename="../src/widgets/pages_selector.cpp" line="141"/>
         <source>Error</source>
         <translation>Error</translation>
     </message>
@@ -898,12 +898,12 @@
 <context>
     <name>Rotate</name>
     <message>
-        <location filename="../src/operations/rotate.cpp" line="33"/>
+        <location filename="../src/operations/rotate.cpp" line="32"/>
         <source>Rotate</source>
         <translation>Gira</translation>
     </message>
     <message>
-        <location filename="../src/operations/rotate.cpp" line="74"/>
+        <location filename="../src/operations/rotate.cpp" line="73"/>
         <source>Save as…</source>
         <translation>Anomena i desa…</translation>
     </message>

@@ -104,7 +104,7 @@
     <message>
         <location filename="../src/operations/abstract_operation.cpp" line="134"/>
         <source>PDF files</source>
-        <translation type="unfinished"></translation>
+        <translation>Archivos PDF</translation>
     </message>
 </context>
 <context>
@@ -223,7 +223,7 @@
     <message>
         <location filename="../src/operations/booklet.cpp" line="76"/>
         <source>PDF files</source>
-        <translation type="unfinished"></translation>
+        <translation>Archivos PDF</translation>
     </message>
 </context>
 <context>
@@ -310,7 +310,7 @@
     <message>
         <location filename="../src/operations/edit_page_layout.cpp" line="34"/>
         <source>Pages layout</source>
-        <translation>Distribución de las páginas</translation>
+        <translation>Disposición de páginas</translation>
     </message>
     <message>
         <location filename="../src/operations/edit_page_layout.cpp" line="44"/>
@@ -333,7 +333,7 @@
     <message>
         <location filename="../src/editpdfentrydialog.cpp" line="40"/>
         <source>No rotation</source>
-        <translation>Sin rotación</translation>
+        <translation>Sin giro</translation>
     </message>
     <message>
         <location filename="../src/editpdfentrydialog.cpp" line="45"/>
@@ -358,7 +358,7 @@
     <message>
         <location filename="../src/editpdfentrydialog.cpp" line="105"/>
         <source>Rotation:</source>
-        <translation>Rotación:</translation>
+        <translation>Giro:</translation>
     </message>
 </context>
 <context>
@@ -398,7 +398,7 @@
     <message>
         <location filename="../src/operations/extract_pages.cpp" line="178"/>
         <source>PDF files</source>
-        <translation type="unfinished"></translation>
+        <translation>Archivos PDF</translation>
     </message>
 </context>
 <context>
@@ -416,12 +416,12 @@
     <message>
         <location filename="../src/inputpdffiledelegate.cpp" line="84"/>
         <source>reverse</source>
-        <translation>retroceder</translation>
+        <translation>hacia atrás</translation>
     </message>
     <message>
         <location filename="../src/inputpdffiledelegate.cpp" line="86"/>
         <source>forward</source>
-        <translation>avanzar</translation>
+        <translation>hacia delante</translation>
     </message>
     <message>
         <location filename="../src/inputpdffiledelegate.cpp" line="122"/>
@@ -441,7 +441,7 @@
     <message>
         <location filename="../src/inputpdffiledelegate.cpp" line="133"/>
         <source>Rotation:</source>
-        <translation>Rotación:</translation>
+        <translation>Giro:</translation>
     </message>
     <message>
         <location filename="../src/inputpdffiledelegate.cpp" line="136"/>
@@ -469,7 +469,7 @@
     <message>
         <location filename="../src/inputpdffilewidget.cpp" line="84"/>
         <source>No rotation</source>
-        <translation>Sin rotación</translation>
+        <translation>Sin giro</translation>
     </message>
     <message>
         <location filename="../src/inputpdffilewidget.cpp" line="89"/>
@@ -484,7 +484,7 @@
     <message>
         <location filename="../src/inputpdffilewidget.cpp" line="93"/>
         <source>Rotation:</source>
-        <translation>Rotación:</translation>
+        <translation>Giro:</translation>
     </message>
     <message>
         <location filename="../src/inputpdffilewidget.cpp" line="95"/>
@@ -522,7 +522,7 @@
     <message>
         <location filename="../src/mainwindow.cpp" line="300"/>
         <source>PDF files</source>
-        <translation type="unfinished"></translation>
+        <translation>Archivos PDF</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="315"/>
@@ -591,7 +591,7 @@
         <location filename="../src/operations/merge.cpp" line="89"/>
         <location filename="../src/operations/merge.cpp" line="590"/>
         <source>PDF files</source>
-        <translation type="unfinished"></translation>
+        <translation>Archivos PDF</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="94"/>
@@ -638,12 +638,12 @@
     <message>
         <location filename="../src/operations/merge.cpp" line="341"/>
         <source>Error while reading the JSON file!</source>
-        <translation>¡Error al leer el archivo JSON!</translation>
+        <translation>Error al leer el archivo JSON.</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="342"/>
         <source>An error occurred while reading the JSON file!</source>
-        <translation>¡Se ha producido un error al leer el archivo JSON!</translation>
+        <translation>Se ha producido un error al leer el archivo JSON.</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="349"/>
@@ -751,7 +751,7 @@
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="162"/>
         <source>Pages layout</source>
-        <translation>Distribución de las páginas</translation>
+        <translation>Disposición de páginas</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="169"/>

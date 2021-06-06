@@ -31,7 +31,7 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="65"/>
         <source>An application to perform common editing operations on PDF files.</source>
-        <translation type="unfinished"></translation>
+        <translation>Et program for å utføre vanlig redigering av PDF-filer.</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="93"/>
@@ -89,7 +89,7 @@
     <message>
         <location filename="../src/operations/abstract_operation.cpp" line="106"/>
         <source>A file called «%1» already exists. Do you want to overwrite it?</source>
-        <translation type="unfinished"></translation>
+        <translation>En fil ved navn «%1» finnes allerede. Ønsker du å overskrive den?</translation>
     </message>
     <message>
         <location filename="../src/operations/abstract_operation.cpp" line="112"/>
@@ -104,7 +104,7 @@
     <message>
         <location filename="../src/operations/abstract_operation.cpp" line="134"/>
         <source>PDF files</source>
-        <translation type="unfinished"></translation>
+        <translation>PDF-filer</translation>
     </message>
 </context>
 <context>
@@ -137,22 +137,22 @@
     <message>
         <location filename="../src/operations/add_empty_pages.cpp" line="85"/>
         <source>Standard:</source>
-        <translation type="unfinished"></translation>
+        <translation>Standard:</translation>
     </message>
     <message>
         <location filename="../src/operations/add_empty_pages.cpp" line="95"/>
         <source>Portrait</source>
-        <translation type="unfinished"></translation>
+        <translation>Stående</translation>
     </message>
     <message>
         <location filename="../src/operations/add_empty_pages.cpp" line="97"/>
         <source>Landscape</source>
-        <translation type="unfinished"></translation>
+        <translation>Liggende</translation>
     </message>
     <message>
         <location filename="../src/operations/add_empty_pages.cpp" line="100"/>
         <source>Location</source>
-        <translation type="unfinished"></translation>
+        <translation>Plassering</translation>
     </message>
     <message>
         <location filename="../src/operations/add_empty_pages.cpp" line="103"/>
@@ -180,7 +180,7 @@
     <message>
         <location filename="../src/operations/alternate_mix.cpp" line="26"/>
         <source>Alternate mix</source>
-        <translation type="unfinished"></translation>
+        <translation>Alternativ miks</translation>
     </message>
 </context>
 <context>
@@ -188,7 +188,7 @@
     <message>
         <location filename="../src/operations/booklet.cpp" line="31"/>
         <source>Booklet</source>
-        <translation type="unfinished"></translation>
+        <translation>Brosjyre</translation>
     </message>
     <message>
         <location filename="../src/operations/booklet.cpp" line="41"/>
@@ -203,27 +203,27 @@
     <message>
         <location filename="../src/operations/booklet.cpp" line="43"/>
         <source>Binding:</source>
-        <translation type="unfinished"></translation>
+        <translation>Tastatursnarvei:</translation>
     </message>
     <message>
         <location filename="../src/operations/booklet.cpp" line="44"/>
         <source>Use last page as back cover:</source>
-        <translation type="unfinished"></translation>
+        <translation>Bruk siste side som omslag:</translation>
     </message>
     <message>
         <location filename="../src/operations/booklet.cpp" line="51"/>
         <source>Generate booklet</source>
-        <translation type="unfinished"></translation>
+        <translation>Generer brosjyre</translation>
     </message>
     <message>
         <location filename="../src/operations/booklet.cpp" line="72"/>
         <source>Save booklet PDF file</source>
-        <translation type="unfinished"></translation>
+        <translation>Lagre PDF-brosjyre</translation>
     </message>
     <message>
         <location filename="../src/operations/booklet.cpp" line="76"/>
         <source>PDF files</source>
-        <translation type="unfinished"></translation>
+        <translation>PDF-filer</translation>
     </message>
 </context>
 <context>
@@ -244,47 +244,47 @@
     <message>
         <location filename="../src/operations/edit_document_info.cpp" line="14"/>
         <source>Document information</source>
-        <translation type="unfinished"></translation>
+        <translation>Dokumentinfo</translation>
     </message>
     <message>
         <location filename="../src/operations/edit_document_info.cpp" line="24"/>
         <source>Title:</source>
-        <translation type="unfinished"></translation>
+        <translation>Tittel:</translation>
     </message>
     <message>
         <location filename="../src/operations/edit_document_info.cpp" line="27"/>
         <source>Author:</source>
-        <translation type="unfinished"></translation>
+        <translation>Forfatter:</translation>
     </message>
     <message>
         <location filename="../src/operations/edit_document_info.cpp" line="30"/>
         <source>Subject:</source>
-        <translation type="unfinished"></translation>
+        <translation>Emne:</translation>
     </message>
     <message>
         <location filename="../src/operations/edit_document_info.cpp" line="33"/>
         <source>Keywords:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nøkkelord:</translation>
     </message>
     <message>
         <location filename="../src/operations/edit_document_info.cpp" line="36"/>
         <source>Creator:</source>
-        <translation type="unfinished"></translation>
+        <translation>Skaper:</translation>
     </message>
     <message>
         <location filename="../src/operations/edit_document_info.cpp" line="39"/>
         <source>Producer:</source>
-        <translation type="unfinished"></translation>
+        <translation>Produsent:</translation>
     </message>
     <message>
         <location filename="../src/operations/edit_document_info.cpp" line="42"/>
         <source>Creation date:</source>
-        <translation type="unfinished"></translation>
+        <translation>Opprettelsesdato:</translation>
     </message>
     <message>
         <location filename="../src/operations/edit_document_info.cpp" line="46"/>
         <source>Modification date:</source>
-        <translation type="unfinished"></translation>
+        <translation>Endringsdato:</translation>
     </message>
     <message>
         <location filename="../src/operations/edit_document_info.cpp" line="75"/>
@@ -315,7 +315,7 @@
     <message>
         <location filename="../src/operations/edit_page_layout.cpp" line="44"/>
         <source>Apply to:</source>
-        <translation type="unfinished"></translation>
+        <translation>Bruk for:</translation>
     </message>
     <message>
         <location filename="../src/operations/edit_page_layout.cpp" line="70"/>
@@ -366,7 +366,7 @@
     <message>
         <location filename="../src/operations/extract_pages.cpp" line="55"/>
         <source>Output PDF base name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Basisnavn for utdata-PDF</translation>
     </message>
     <message>
         <location filename="../src/operations/extract_pages.cpp" line="51"/>
@@ -398,7 +398,7 @@
     <message>
         <location filename="../src/operations/extract_pages.cpp" line="178"/>
         <source>PDF files</source>
-        <translation type="unfinished"></translation>
+        <translation>PDF-filer</translation>
     </message>
 </context>
 <context>
@@ -416,12 +416,12 @@
     <message>
         <location filename="../src/inputpdffiledelegate.cpp" line="84"/>
         <source>reverse</source>
-        <translation type="unfinished"></translation>
+        <translation>omvendt</translation>
     </message>
     <message>
         <location filename="../src/inputpdffiledelegate.cpp" line="86"/>
         <source>forward</source>
-        <translation type="unfinished"></translation>
+        <translation>forover</translation>
     </message>
     <message>
         <location filename="../src/inputpdffiledelegate.cpp" line="122"/>
@@ -454,7 +454,7 @@
     <message>
         <location filename="../src/inputpdffilewidget.cpp" line="60"/>
         <source>Reverse page order:</source>
-        <translation type="unfinished"></translation>
+        <translation>Omvendt siderekkefølge:</translation>
     </message>
     <message>
         <location filename="../src/inputpdffilewidget.cpp" line="74"/>
@@ -507,7 +507,7 @@
     <message>
         <location filename="../src/mainwindow.cpp" line="300"/>
         <source>PDF files</source>
-        <translation type="unfinished"></translation>
+        <translation>PDF-filer</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="315"/>
@@ -532,7 +532,7 @@
     <message>
         <location filename="../src/mainwindow.cpp" line="386"/>
         <source>Error generating the PDF</source>
-        <translation type="unfinished"></translation>
+        <translation>Kunne ikke generer PDF</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="340"/>
@@ -560,7 +560,7 @@
     <message>
         <location filename="../src/operations/merge.cpp" line="42"/>
         <source>Merge PDF files</source>
-        <translation type="unfinished"></translation>
+        <translation>Flett PDF-filer</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="71"/>
@@ -591,7 +591,7 @@
         <location filename="../src/operations/merge.cpp" line="89"/>
         <location filename="../src/operations/merge.cpp" line="590"/>
         <source>PDF files</source>
-        <translation type="unfinished"></translation>
+        <translation>PDF-filer</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="94"/>
@@ -638,12 +638,12 @@
     <message>
         <location filename="../src/operations/merge.cpp" line="341"/>
         <source>Error while reading the JSON file!</source>
-        <translation type="unfinished"></translation>
+        <translation>Klarte ikke å lese JSON-filen.</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="342"/>
         <source>An error occurred while reading the JSON file!</source>
-        <translation type="unfinished"></translation>
+        <translation>Kunne ikke lese JSON-filen.</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="349"/>
@@ -676,27 +676,27 @@
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="34"/>
         <source>Standard size</source>
-        <translation type="unfinished"></translation>
+        <translation>Forvalgt størrelse</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="35"/>
         <source>Custom size</source>
-        <translation type="unfinished"></translation>
+        <translation>Egendefinert størrelse</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="44"/>
         <source>Portrait</source>
-        <translation type="unfinished"></translation>
+        <translation>Stående</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="45"/>
         <source>Landscape</source>
-        <translation type="unfinished"></translation>
+        <translation>Liggende</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="65"/>
         <source>Right-to-left</source>
-        <translation type="unfinished"></translation>
+        <translation>Høyre til venstre</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="67"/>
@@ -736,7 +736,7 @@
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="125"/>
         <source>Orientation:</source>
-        <translation type="unfinished"></translation>
+        <translation>SIderetning:</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="132"/>
@@ -866,7 +866,7 @@
     <message>
         <location filename="../src/widgets/pages_selector.cpp" line="125"/>
         <source>&lt;p&gt;Page intervals are badly formatted. Please make sure you complied with the following rules:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;intervals of pages must be written indicating the first page and the last page separated by a dash (e.g. &quot;1-5&quot;);&lt;/li&gt;&lt;li&gt;single pages and intervals of pages must be separated by spaces, commas or both (e.g. &quot;1, 2, 3, 5-10&quot; or &quot;1 2 3 5-10&quot;);&lt;/li&gt;&lt;li&gt;all pages and intervals of pages must be between 1 and the number of pages of the PDF file;&lt;/li&gt;&lt;li&gt;only numbers, spaces, commas and dashes can be used. All other characters are not allowed.&lt;/li&gt;&lt;/ul&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;Sideintervallene er feilformatert. Forsikre deg om at følgende regler er fulgt:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;intervaller for sider må skrives der første og siste side er indikert, inndelt av en bindestrek (f.eks. «1-5»);&lt;/li&gt;&lt;li&gt;enkeltsider og sider må inndeles av mellomrom, komma, eller begge (f.eks. «1, 2, 3, 5-10» eller «1 2 3 5-10»);&lt;/li&gt;&lt;li&gt;alle sider og intervaller for sider må være mellom 1 og antallet sider i PDF-filen;&lt;/li&gt;&lt;li&gt;kun nummer, mellomrom, komma og bindestrek kan brukes. Alle andre tegn tillates ikke.&lt;/li&gt;&lt;/ul&gt;</translation>
     </message>
     <message>
         <location filename="../src/widgets/pages_selector.cpp" line="141"/>
@@ -900,7 +900,7 @@
     <message>
         <location filename="../src/operations/rotate.cpp" line="32"/>
         <source>Rotate</source>
-        <translation type="unfinished"></translation>
+        <translation>Roter</translation>
     </message>
     <message>
         <location filename="../src/operations/rotate.cpp" line="73"/>

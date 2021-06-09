@@ -104,7 +104,7 @@
     <message>
         <location filename="../src/operations/abstract_operation.cpp" line="134"/>
         <source>PDF files</source>
-        <translation type="unfinished"></translation>
+        <translation>PDF-файлы</translation>
     </message>
 </context>
 <context>
@@ -223,7 +223,7 @@
     <message>
         <location filename="../src/operations/booklet.cpp" line="76"/>
         <source>PDF files</source>
-        <translation type="unfinished"></translation>
+        <translation>PDF-файлы</translation>
     </message>
 </context>
 <context>
@@ -398,7 +398,7 @@
     <message>
         <location filename="../src/operations/extract_pages.cpp" line="178"/>
         <source>PDF files</source>
-        <translation type="unfinished"></translation>
+        <translation>PDF-файлы</translation>
     </message>
 </context>
 <context>
@@ -522,7 +522,7 @@
     <message>
         <location filename="../src/mainwindow.cpp" line="300"/>
         <source>PDF files</source>
-        <translation type="unfinished"></translation>
+        <translation>PDF-файлы</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="315"/>
@@ -591,7 +591,7 @@
         <location filename="../src/operations/merge.cpp" line="89"/>
         <location filename="../src/operations/merge.cpp" line="590"/>
         <source>PDF files</source>
-        <translation type="unfinished"></translation>
+        <translation>PDF-файлы</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="94"/>

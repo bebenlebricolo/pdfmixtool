@@ -1,6 +1,6 @@
 <h1>Changelog</h1>
 
-<h2>Version 1.0</h2>
+<h2>Version 1.0.1</h2>
 
 <p><strong>Release date:</strong> 2021-06-13</p>
 <p><strong>Beta release date:</strong> 2021-04-24</p>

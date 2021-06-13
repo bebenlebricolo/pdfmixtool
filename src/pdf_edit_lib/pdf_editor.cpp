@@ -610,18 +610,21 @@ QPDFObjectHandle PdfEditor::m_create_blank_page(double width, double height)
 void PdfEditor::m_set_outline_destination(QPDFObjectHandle &obj,
                                           const Dest &dest)
 {
-    PageInfo &pi = m_page_infos[dest.file_id][dest.page_id];
-    QPDFPageObjectHelper page = m_output_pdf->getAllPages()[pi.dest];
-    Point dest_point = pi.get_point_in_dest(dest.x, dest.y);
+    if (dest.page_id > -1)
+    {
+        PageInfo &pi = m_page_infos[dest.file_id][dest.page_id];
+        QPDFPageObjectHelper page = m_output_pdf->getAllPages()[pi.dest];
+        Point dest_point = pi.get_point_in_dest(dest.x, dest.y);
 
-    // set destination
-    QPDFObjectHandle dest_obj = QPDFObjectHandle::newArray();
-    dest_obj.appendItem(page.getObjectHandle());
-    dest_obj.appendItem(QPDFObjectHandle::newName("/XYZ"));
-    dest_obj.appendItem(QPDFObjectHandle::newReal(dest_point.first));
-    dest_obj.appendItem(QPDFObjectHandle::newReal(dest_point.second));
-    dest_obj.appendItem(QPDFObjectHandle::newNull());
-    obj.replaceKey("/Dest", dest_obj);
+        // set destination
+        QPDFObjectHandle dest_obj = QPDFObjectHandle::newArray();
+        dest_obj.appendItem(page.getObjectHandle());
+        dest_obj.appendItem(QPDFObjectHandle::newName("/XYZ"));
+        dest_obj.appendItem(QPDFObjectHandle::newReal(dest_point.first));
+        dest_obj.appendItem(QPDFObjectHandle::newReal(dest_point.second));
+        dest_obj.appendItem(QPDFObjectHandle::newNull());
+        obj.replaceKey("/Dest", dest_obj);
+    }
 }
 
 void PdfEditor::m_impose_page(QPDFObjectHandle &outer_page_obj,

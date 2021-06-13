@@ -5,7 +5,7 @@
   <metadata_license>FSFAP</metadata_license>
   <project_license>GPL-3.0+</project_license>
   <name>PDF Mix Tool</name>
-  
+
   <summary>An application to perform common editing operations on PDF files</summary>
 
   <description>
@@ -62,10 +62,21 @@
   <provides>
     <binary>pdfmixtool</binary>
   </provides>
-  
+
   <content_rating type="oars-1.0" />
 
   <releases>
+    <release version="1.0" date="2021-06-13">
+      <description>
+        <ul>
+          <li>Interface has been overhauled to make it more intuitive</li>
+          <li>Links, annotations, outlines are now preserved as much as possible in all operations</li>
+          <li>Add Qt 6 support</li>
+          <li>Add right-to-left support in pages composition</li>
+          <li>Add ability to edit PDF document information</li>
+        </ul>
+      </description>
+    </release>
     <release version="1.0beta" date="2021-04-24">
       <description>
         <ul>

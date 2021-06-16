@@ -2,6 +2,8 @@ cmake_minimum_required (VERSION 3.6)
 
 project (PDFMixTool)
 
+include(GNUInstallDirs)
+
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 set(CMAKE_AUTOMOC ON)
@@ -101,22 +103,17 @@ file(GLOB ICONS
      resources/*.svg
 )
 
-install(TARGETS pdfmixtool RUNTIME DESTINATION bin)
-install(FILES resources/eu.scarpetta.PDFMixTool.desktop DESTINATION share/applications)
-install(FILES resources/eu.scarpetta.PDFMixTool.appdata.xml DESTINATION share/metainfo)
-install(FILES resources/icon.svg DESTINATION share/icons/hicolor/scalable/apps RENAME eu.scarpetta.PDFMixTool.svg)
-install(FILES resources/icon_48.png DESTINATION share/icons/hicolor/48x48/apps RENAME eu.scarpetta.PDFMixTool.png)
-install(FILES resources/icon_64.png DESTINATION share/icons/hicolor/64x64/apps RENAME eu.scarpetta.PDFMixTool.png)
-install(FILES resources/icon_128.png DESTINATION share/icons/hicolor/128x128/apps RENAME eu.scarpetta.PDFMixTool.png)
-install(FILES resources/icon_256.png DESTINATION share/icons/hicolor/256x256/apps RENAME eu.scarpetta.PDFMixTool.png)
-install(FILES ${ICONS} DESTINATION share/pdfmixtool/icons)
-install(FILES ${QM_FILES} DESTINATION share/pdfmixtool/translations)
-install(FILES CHANGELOG.md DESTINATION share/pdfmixtool)
-install(FILES AUTHORS.md DESTINATION share/pdfmixtool)
-install(FILES TRANSLATORS.md DESTINATION share/pdfmixtool)
+INSTALL(TARGETS pdfmixtool RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
+INSTALL(FILES resources/eu.scarpetta.PDFMixTool.desktop DESTINATION ${CMAKE_INSTALL_DATADIR}/applications)
+INSTALL(FILES resources/eu.scarpetta.PDFMixTool.appdata.xml DESTINATION ${CMAKE_INSTALL_DATADIR}/metainfo)
+INSTALL(FILES resources/icon.svg DESTINATION ${CMAKE_INSTALL_DATADIR}/icons/hicolor/scalable/apps RENAME eu.scarpetta.PDFMixTool.svg)
+INSTALL(FILES resources/icon_48.png DESTINATION ${CMAKE_INSTALL_DATADIR}/icons/hicolor/48x48/apps RENAME eu.scarpetta.PDFMixTool.png)
+INSTALL(FILES resources/icon_64.png DESTINATION ${CMAKE_INSTALL_DATADIR}/icons/hicolor/64x64/apps RENAME eu.scarpetta.PDFMixTool.png)
+INSTALL(FILES resources/icon_128.png DESTINATION ${CMAKE_INSTALL_DATADIR}/icons/hicolor/128x128/apps RENAME eu.scarpetta.PDFMixTool.png)
+INSTALL(FILES resources/icon_256.png DESTINATION ${CMAKE_INSTALL_DATADIR}/icons/hicolor/256x256/apps RENAME eu.scarpetta.PDFMixTool.png)
+INSTALL(FILES ${ICONS} DESTINATION ${CMAKE_INSTALL_DATADIR}/pdfmixtool/icons)
+INSTALL(FILES ${QM_FILES} DESTINATION ${CMAKE_INSTALL_DATADIR}/pdfmixtool/translations)
+INSTALL(FILES CHANGELOG.md DESTINATION ${CMAKE_INSTALL_DATADIR}/pdfmixtool)
+INSTALL(FILES AUTHORS.md DESTINATION ${CMAKE_INSTALL_DATADIR}/pdfmixtool)
+INSTALL(FILES TRANSLATORS.md DESTINATION ${CMAKE_INSTALL_DATADIR}/pdfmixtool)
 
-add_custom_command(
-    TARGET pdfmixtool
-    POST_BUILD
-    COMMAND ${CMAKE_COMMAND} -DCMAKE_INSTALL_PREFIX=${CMAKE_BINARY_DIR} -P cmake_install.cmake
-)

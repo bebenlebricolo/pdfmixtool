@@ -180,7 +180,7 @@
     <message>
         <location filename="../src/operations/alternate_mix.cpp" line="26"/>
         <source>Alternate mix</source>
-        <translation>Alternativer Mix</translation>
+        <translation>Alternierend mischen</translation>
     </message>
 </context>
 <context>

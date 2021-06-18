@@ -45,8 +45,7 @@ MainWindow::MainWindow(QWidget *parent) :
     m_operations_list(new QListWidget(this))
 {
     // Main window properties
-    this->setWindowIcon(QIcon(QString(ICON_PATH).arg(
-                                  qApp->applicationDirPath())));
+    this->setWindowIcon(QIcon(":/icons/icon.svg"));
     this->setWindowTitle(qApp->applicationDisplayName());
     this->restoreGeometry(
                 settings->value("main_window_geometry").toByteArray());

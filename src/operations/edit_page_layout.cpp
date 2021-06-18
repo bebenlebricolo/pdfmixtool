@@ -32,7 +32,7 @@ EditPageLayout::EditPageLayout(QWidget *parent) :
     m_output_preview{new OutputPreview{this}}
 {
     m_name = tr("Pages layout");
-    m_icon = QIcon(m_icon_dir.filePath("pages_layout.svg"));
+    m_icon = QIcon(":/icons/pages_layout.svg");
 
     QVBoxLayout *v_layout = new QVBoxLayout();
     this->setLayout(v_layout);

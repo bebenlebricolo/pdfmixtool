@@ -40,7 +40,7 @@ Merge::Merge(QWidget *parent) :
     m_edit_menu(new QMenu(this))
 {
     m_name = tr("Merge PDF files");
-    m_icon = QIcon(m_icon_dir.filePath("merge.svg"));
+    m_icon = QIcon(":/icons/merge.svg");
     m_is_single_file_operation = false;
 
     // Create delegate for files list

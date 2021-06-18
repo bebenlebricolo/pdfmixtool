@@ -21,9 +21,6 @@
 
 #include <QDialog>
 
-#define ICON_PATH "%1/../share/icons/hicolor/128x128/\
-apps/eu.scarpetta.PDFMixTool.png"
-
 class AboutDialog : public QDialog
 {
     Q_OBJECT

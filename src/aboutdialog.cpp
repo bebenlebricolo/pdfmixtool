@@ -43,8 +43,7 @@ AboutDialog::AboutDialog(QWidget *parent) :
     connect(close_button, SIGNAL(pressed()), this, SLOT(close()));
 
     QLabel *application_icon = new QLabel(this);
-    application_icon->setPixmap(QPixmap(QString(ICON_PATH).arg
-                                        (qApp->applicationDirPath())));
+    application_icon->setPixmap(QPixmap(":/icons/icon.svg"));
     application_icon->setAlignment(Qt::AlignCenter);
 
     QLabel *application_name = new QLabel(
@@ -78,13 +77,10 @@ AboutDialog::AboutDialog(QWidget *parent) :
     QScrollArea *scroll_area = new QScrollArea();
     scroll_area->setBackgroundRole(QPalette::Light);
 
-    QFile authors(QString("%1/../share/pdfmixtool/AUTHORS.md").arg(
-                                 qApp->applicationDirPath()));
+    QFile authors(":/docs/AUTHORS.md");
     authors.open(QIODevice::ReadOnly | QIODevice::Text);
 
-    QFile translator_credits(
-                QString("%1/../share/pdfmixtool/TRANSLATORS.md").arg(
-                    qApp->applicationDirPath()));
+    QFile translator_credits(":/docs/TRANSLATORS.md");
     translator_credits.open(QIODevice::ReadOnly | QIODevice::Text);
 
     QLabel *credits = new QLabel(this);
@@ -151,8 +147,7 @@ AboutDialog::AboutDialog(QWidget *parent) :
     scroll_area = new QScrollArea();
     scroll_area->setBackgroundRole(QPalette::Light);
 
-    QFile file(QString("%1/../share/pdfmixtool/CHANGELOG.md").arg(
-                   qApp->applicationDirPath()));
+    QFile file(":/docs/CHANGELOG.md");
     file.open(QIODevice::ReadOnly | QIODevice::Text);
 
     QLabel *changelog = new QLabel(this);

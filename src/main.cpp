@@ -43,11 +43,7 @@ int main(int argc, char *argv[])
     QTranslator translator;
 
     bool ok = translator.load(
-                QString("pdfmixtool_%1.qm").arg(QLocale::system().name()),
-                QString("%1/../share/pdfmixtool/translations").arg(
-                    qApp->applicationDirPath()
-                    )
-                );
+                QString(":/tr/pdfmixtool_%1.qm").arg(QLocale::system().name()));
 
     if (ok) app.installTranslator(&translator);
 

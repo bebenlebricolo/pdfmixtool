@@ -30,7 +30,7 @@ DeletePages::DeletePages(QWidget *parent) :
     AbstractOperation(parent)
 {
     m_name = tr("Delete pages");
-    m_icon = QIcon(m_icon_dir.filePath("delete.svg"));
+    m_icon = QIcon(":/icons/delete.svg");
 
     m_pages_selector = new PagesSelector(false, false, this);
 

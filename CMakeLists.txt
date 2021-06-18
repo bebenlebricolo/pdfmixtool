@@ -7,6 +7,7 @@ include(GNUInstallDirs)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTORCC ON)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 if(CMAKE_COMPILER_IS_GNUCC OR CMAKE_COMPILER_IS_GNUCXX)
@@ -27,6 +28,14 @@ elseif(QT_VERSION EQUAL 6)
     set(QT_LIBRARIES ${Qt6Widgets_LIBRARIES})
     qt6_add_translation(QM_FILES ${TS_FILES} resources/pdfmixtool_en.ts)
 endif()
+
+set(TRANSLATIONS_QRC "${CMAKE_CURRENT_BINARY_DIR}/tr.qrc")
+file(WRITE ${TRANSLATIONS_QRC} "<RCC><qresource prefix=\"/tr\">")
+foreach(QM_FILE ${QM_FILES})
+    get_filename_component(QM_FILE_NAME ${QM_FILE} NAME)
+    file(APPEND ${TRANSLATIONS_QRC} "<file>${QM_FILE_NAME}</file>")
+endforeach()
+file(APPEND ${TRANSLATIONS_QRC} "</qresource></RCC>")
 
 set (
     SRCS
@@ -88,19 +97,14 @@ set (
 add_executable (
     pdfmixtool
     ${SRCS}
-    ${QM_FILES}
-    ${EN_QM_FILE}
+    resources/resources.qrc
+    ${TRANSLATIONS_QRC}
 )
 
 target_link_libraries (
     pdfmixtool
     qpdf
     ${QT_LIBRARIES}
-)
-
-file(GLOB ICONS
-     LIST_DIRECTORIES false
-     resources/*.svg
 )
 
 INSTALL(TARGETS pdfmixtool RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
@@ -111,9 +115,3 @@ INSTALL(FILES resources/icon_48.png DESTINATION ${CMAKE_INSTALL_DATADIR}/icons/h
 INSTALL(FILES resources/icon_64.png DESTINATION ${CMAKE_INSTALL_DATADIR}/icons/hicolor/64x64/apps RENAME eu.scarpetta.PDFMixTool.png)
 INSTALL(FILES resources/icon_128.png DESTINATION ${CMAKE_INSTALL_DATADIR}/icons/hicolor/128x128/apps RENAME eu.scarpetta.PDFMixTool.png)
 INSTALL(FILES resources/icon_256.png DESTINATION ${CMAKE_INSTALL_DATADIR}/icons/hicolor/256x256/apps RENAME eu.scarpetta.PDFMixTool.png)
-INSTALL(FILES ${ICONS} DESTINATION ${CMAKE_INSTALL_DATADIR}/pdfmixtool/icons)
-INSTALL(FILES ${QM_FILES} DESTINATION ${CMAKE_INSTALL_DATADIR}/pdfmixtool/translations)
-INSTALL(FILES CHANGELOG.md DESTINATION ${CMAKE_INSTALL_DATADIR}/pdfmixtool)
-INSTALL(FILES AUTHORS.md DESTINATION ${CMAKE_INSTALL_DATADIR}/pdfmixtool)
-INSTALL(FILES TRANSLATORS.md DESTINATION ${CMAKE_INSTALL_DATADIR}/pdfmixtool)
-

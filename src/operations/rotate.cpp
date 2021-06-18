@@ -30,7 +30,7 @@ Rotate::Rotate(QWidget *parent) :
     m_pages_selector{new PagesSelector{true, true, this}}
 {
     m_name = tr("Rotate");
-    m_icon = QIcon(m_icon_dir.filePath("rotate.svg"));
+    m_icon = QIcon(":/icons/rotate.svg");
 
     QVBoxLayout *v_layout = new QVBoxLayout{};
     this->setLayout(v_layout);

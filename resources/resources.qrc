@@ -1,0 +1,19 @@
+<RCC>
+    <qresource prefix="/icons">
+        <file>add_empty_pages.svg</file>
+        <file>alternate_mix.svg</file>
+        <file>booklet.svg</file>
+        <file>delete.svg</file>
+        <file>edit_document_info.svg</file>
+        <file>extract.svg</file>
+        <file>icon.svg</file>
+        <file>merge.svg</file>
+        <file>pages_layout.svg</file>
+        <file>rotate.svg</file>
+    </qresource>
+    <qresource prefix="/docs">
+        <file>../AUTHORS.md</file>
+        <file>../CHANGELOG.md</file>
+        <file>../TRANSLATORS.md</file>
+    </qresource>
+</RCC>

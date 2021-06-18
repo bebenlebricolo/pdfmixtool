@@ -32,13 +32,10 @@
 
 AbstractOperation::AbstractOperation(QWidget *parent) :
     QWidget(parent),
-    m_icon_dir{QString("%1/../share/pdfmixtool/icons").arg(
-                    qApp->applicationDirPath()
-                    )},
     m_is_single_file_operation{true},
     m_active{false}
 {
-    m_icon = QIcon(m_icon_dir.filePath("icon.svg"));
+    m_icon = QIcon(":/icons/icon.svg");
 
     m_save_button.setIcon(QIcon::fromTheme("document-save"));
     m_save_button.setText(tr("Save"));

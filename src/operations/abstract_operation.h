@@ -66,7 +66,6 @@ signals:
 
 protected:
     QString m_name;
-    QDir m_icon_dir;
     QIcon m_icon;
     bool m_is_single_file_operation;
 

@@ -33,7 +33,7 @@ ExtractPages::ExtractPages(QWidget *parent) :
       AbstractOperation(parent)
 {
     m_name = tr("Extract pages");
-    m_icon = QIcon(m_icon_dir.filePath("extract.svg"));
+    m_icon = QIcon(":/icons/extract.svg");
 
     QVBoxLayout *v_layout = new QVBoxLayout();
     this->setLayout(v_layout);

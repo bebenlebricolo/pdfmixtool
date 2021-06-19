@@ -26,6 +26,7 @@
 #include <qpdf/QPDFPageLabelDocumentHelper.hh>
 #include <qpdf/QPDFAcroFormDocumentHelper.hh>
 #include <qpdf/QPDFOutlineDocumentHelper.hh>
+#include "qpdf_version.h"
 
 QPDFOutlineDocumentHelper::~QPDFOutlineDocumentHelper()
 {
@@ -670,6 +671,15 @@ void PdfEditor::m_impose_page(QPDFObjectHandle &outer_page_obj,
     int min_suffix = 0;
     std::string name = resources.getUniqueResourceName("/Fx", min_suffix);
 
+#if QPDF_VERSION_MAJOR < 10
+    std::string content = outer_page.placeFormXObject(
+                page_xobject,
+                name,
+                QPDFObjectHandle::Rectangle(
+                    x, y,
+                    x + page_width, y + page_height),
+                false);
+#else
     std::string content = outer_page.placeFormXObject(
                 page_xobject,
                 name,
@@ -679,6 +689,7 @@ void PdfEditor::m_impose_page(QPDFObjectHandle &outer_page_obj,
                 false,
                 true,
                 true);
+#endif
 
     if (!content.empty())
     {

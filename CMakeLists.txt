@@ -3,6 +3,7 @@ cmake_minimum_required (VERSION 3.6)
 project (PDFMixTool)
 
 include(GNUInstallDirs)
+include(FindPkgConfig)
 
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
@@ -13,6 +14,16 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 if(CMAKE_COMPILER_IS_GNUCC OR CMAKE_COMPILER_IS_GNUCXX)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -pedantic")
 endif()
+
+pkg_check_modules(QPDF libqpdf)
+if (DEFINED QPDF_VERSION)
+    string(REPLACE "." ";" QPDF_VERSION_LIST ${QPDF_VERSION})
+    list(GET QPDF_VERSION_LIST 0 QPDF_VERSION_MAJOR)
+else()
+    set(QPDF_VERSION_MAJOR 10)
+endif()
+configure_file(src/qpdf_version.h.in qpdf_version.h @ONLY)
+include_directories(${CMAKE_CURRENT_BINARY_DIR})
 
 file(GLOB TS_FILES
      LIST_DIRECTORIES false

@@ -1,5 +1,13 @@
 <h1>Changelog</h1>
 
+<h2>Version 1.0.2</h2>
+
+<p><strong>Release date:</strong> 2021-06-19</p>
+
+<ul>
+    <li>Improve compatibility with stable distros and multiarch distros</li>
+</ul>
+
 <h2>Version 1.0.1</h2>
 
 <p><strong>Release date:</strong> 2021-06-13</p>

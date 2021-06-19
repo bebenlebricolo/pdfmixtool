@@ -66,6 +66,13 @@
   <content_rating type="oars-1.0" />
 
   <releases>
+    <release version="1.0.2" date="2021-06-19">
+      <description>
+        <ul>
+          <li>Improve compatibility with stable distros and multiarch distros</li>
+        </ul>
+      </description>
+    </release>
     <release version="1.0.1" date="2021-06-13">
       <description>
         <ul>

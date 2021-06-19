@@ -38,7 +38,7 @@ guides, building instructions and all other information.
 To build PDF Mix Tool you need the following libraries and tools:
 
 - **Qt** (base, svg and tools) >= **5.11**
-- **qpdf** >= **10.0.0**
+- **qpdf** (version >= **10.0.0** recommended)
 - **CMake** >= **3.6**
 
 Run the following commands inside the git repository directory:

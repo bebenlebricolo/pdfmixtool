@@ -1,17 +1,5 @@
 # ![PDF Mix Tool logo](https://scarpetta.eu/pdfmixtool/icon.svg) PDF Mix Tool
 
-<a href='https://flathub.org/apps/details/eu.scarpetta.PDFMixTool'>
-    <img height='56' alt='Download on Flathub' src='https://flathub.org/assets/badges/flathub-badge-en.png'/>
-</a>
-<a href="https://snapcraft.io/pdfmixtool">
-    <img alt="Get it from the Snap Store" src="https://snapcraft.io/static/images/badges/en/snap-store-black.svg" />
-</a>
-<p>
-    <a href="https://hosted.weblate.org/engage/pdf-mix-tool/?utm_source=widget">
-        <img src="https://hosted.weblate.org/widgets/pdf-mix-tool/-/svg-badge.svg" alt="Translations status" />
-    </a>
-</p>
-
 PDF Mix Tool is a simple and lightweight application that allows you to
 perform common editing operations on PDF files.
 
@@ -33,6 +21,26 @@ from a PDF file, edit the PDF document information.
 
 [Website](https://scarpetta.eu/pdfmixtool/): here you can find usage
 guides, building instructions and all other information.
+
+Help translating on Weblate: <a href="https://hosted.weblate.org/engage/pdf-mix-tool/?utm_source=widget">
+    <img src="https://hosted.weblate.org/widgets/pdf-mix-tool/-/svg-badge.svg" alt="Translations status" />
+</a>
+
+## Installation
+### Packaging status
+Here you can check if PDF Mix Tool is available in your distribution:
+
+[![Packaging status](https://repology.org/badge/vertical-allrepos/pdfmixtool.svg)](https://repology.org/project/pdfmixtool/versions)
+
+### Flatpak
+<a href='https://flathub.org/apps/details/eu.scarpetta.PDFMixTool'>
+    <img height='56' alt='Download on Flathub' src='https://flathub.org/assets/badges/flathub-badge-en.png'/>
+</a>
+
+### Snap Store
+<a href="https://snapcraft.io/pdfmixtool">
+    <img alt="Get it from the Snap Store" src="https://snapcraft.io/static/images/badges/en/snap-store-black.svg" />
+</a>
 
 ## Building
 To build PDF Mix Tool you need the following libraries and tools:

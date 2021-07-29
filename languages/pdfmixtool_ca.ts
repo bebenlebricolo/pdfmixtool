@@ -127,7 +127,7 @@
     <message>
         <location filename="../src/operations/add_empty_pages.cpp" line="55"/>
         <source>Same as document</source>
-        <translation>Igual que la del document</translation>
+        <translation>Igual que el document</translation>
     </message>
     <message>
         <location filename="../src/operations/add_empty_pages.cpp" line="59"/>
@@ -702,7 +702,7 @@
         <location filename="../src/widgets/multipage_editor.cpp" line="67"/>
         <location filename="../src/widgets/multipage_editor.cpp" line="202"/>
         <source>Left</source>
-        <translation>Esquerra</translation>
+        <translation>Esquerre</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="68"/>
@@ -714,7 +714,7 @@
         <location filename="../src/widgets/multipage_editor.cpp" line="69"/>
         <location filename="../src/widgets/multipage_editor.cpp" line="205"/>
         <source>Right</source>
-        <translation>Dreta</translation>
+        <translation>Dret</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="71"/>

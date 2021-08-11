@@ -47,7 +47,7 @@ QWidget *InputPdfFileDelegate::build_widget(
     QWidget *main_widget = new QWidget();
     main_widget->setFixedSize(width, height);
     main_widget->setLayout(new QHBoxLayout());
-    main_widget->layout()->setContentsMargins(2, 2, 2, 2);
+    main_widget->layout()->setContentsMargins(MARGIN, MARGIN, MARGIN, MARGIN);
 
     OutputPreview *output_preview = new OutputPreview(main_widget);
     main_widget->layout()->addWidget(output_preview);
@@ -93,7 +93,7 @@ QWidget *InputPdfFileDelegate::build_widget(
 
         if (height > 0)
         {
-            double size = height - 4;
+            double size = height - MARGIN * 2;
             output_preview->setFixedSize(size, size);
             output_preview->set_page_size(page_width, page_height);
         }
@@ -151,7 +151,7 @@ QWidget *InputPdfFileDelegate::build_widget(
 
         if (height > 0)
         {
-            double size = height - 4;
+            double size = height - MARGIN * 2;
             output_preview->setFixedSize(size, size);
             output_preview->set_page_size(page_width, page_height);
             output_preview->set_rotation(rotation);
@@ -175,42 +175,46 @@ void InputPdfFileDelegate::paint(
         const QStyleOptionViewItem &option,
         const QModelIndex &index) const
 {
-    // Draw border
-    QPen pen;
+    // draw on a pixmap first, as a workaround for QTBUG-26694
+    QPixmap pixmap(option.rect.width(), option.rect.height());
+    QPainter tmp_painter(&pixmap);
 
-    if (option.state & QStyle::State_MouseOver)
-        pen.setBrush(option.palette.highlight());
-    else
-        pen.setBrush(option.palette.mid());
-
-    painter->setPen(pen);
-
-    QRect border = option.rect - QMargins(0, 0, 1, 1);
-    painter->drawRect(border);
-
-    // Draw background
-    border -= QMargins(1, 1, 0, 0);
-
+    // draw background
     if (option.state & QStyle::State_Selected)
-        painter->fillRect(border, option.palette.highlight());
+        tmp_painter.fillRect(pixmap.rect(), option.palette.highlight());
     else if (option.state & QStyle::State_MouseOver)
-        painter->fillRect(border, option.palette.midlight());
+        tmp_painter.fillRect(pixmap.rect(), option.palette.alternateBase());
+    else
+        tmp_painter.fillRect(pixmap.rect(), option.palette.base());
 
+    // draw separator
+    if (index.row() != 0)
+    {
+        QPen pen;
+        pen.setBrush(option.palette.highlight());
+        tmp_painter.setPen(pen);
+        tmp_painter.drawLine(MARGIN, 0, pixmap.width() - MARGIN - 1, 0);
+    }
+
+    // draw item
     QWidget *widget = this->build_widget(index,
                                          option.rect.width(),
                                          option.rect.height());
+
     if (option.state & QStyle::State_Selected)
         widget->setBackgroundRole(QPalette::Highlight);
 
     widget->setFixedWidth(option.rect.width());
 
-    widget->render(painter,
-                   // QTBUG-26694
-                   painter->deviceTransform().map(option.rect.topLeft()),
+    widget->render(&tmp_painter,
+                   QPoint(),
                    QRegion(),
                    QWidget::DrawChildren);
 
     delete widget;
+
+    // draw the tmp pixmap onto the final paint device
+    painter->drawPixmap(option.rect, pixmap);
 }
 
 QSize InputPdfFileDelegate::sizeHint(

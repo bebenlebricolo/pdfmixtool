@@ -25,6 +25,8 @@
 
 #include "pdf_edit_lib/definitions.h"
 
+#define MARGIN 10
+
 #define TOOLTIP_STRING "%1 <br /><b>%2<?b>"
 
 #define FILE_PATH_ROLE Qt::UserRole + 1 // QString

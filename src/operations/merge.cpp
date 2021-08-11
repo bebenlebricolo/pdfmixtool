@@ -63,7 +63,6 @@ Merge::Merge(QWidget *parent) :
     m_files_list_view->setItemDelegate(m_delegate);
     m_files_list_view->setFocusPolicy(Qt::WheelFocus);
     m_files_list_view->setVerticalScrollMode(QAbstractItemView::ScrollPerPixel);
-    m_files_list_view->setSpacing(2);
     m_files_list_view->setTabKeyNavigation(true);
     m_files_list_view->viewport()->installEventFilter(this);
 

@@ -191,7 +191,10 @@ void InputPdfFileDelegate::paint(
     if (index.row() != 0)
     {
         QPen pen;
-        pen.setBrush(option.palette.highlight());
+        if (option.state & QStyle::State_Selected)
+            pen.setBrush(option.palette.base());
+        else
+            pen.setBrush(option.palette.highlight());
         tmp_painter.setPen(pen);
         tmp_painter.drawLine(MARGIN, 0, pixmap.width() - MARGIN - 1, 0);
     }

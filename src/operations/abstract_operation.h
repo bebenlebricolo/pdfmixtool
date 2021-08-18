@@ -36,7 +36,7 @@ public:
 
     const QString &name();
 
-    const QIcon &icon();
+    const QString &icon();
 
     virtual bool is_single_file_operation();
 
@@ -66,7 +66,7 @@ signals:
 
 protected:
     QString m_name;
-    QIcon m_icon;
+    QString m_icon;
     bool m_is_single_file_operation;
 
     bool m_active;

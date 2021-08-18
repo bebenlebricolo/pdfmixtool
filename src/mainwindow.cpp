@@ -126,17 +126,9 @@ MainWindow::MainWindow(QWidget *parent) :
     for (AbstractOperation *operation : m_operations)
     {
         QListWidgetItem *item = new QListWidgetItem();
-        QWidget *item_widget = new QWidget(this);
-        QVBoxLayout *item_widget_layout = new QVBoxLayout();
-        item_widget->setLayout(item_widget_layout);
-        QLabel *icon_label = new QLabel(item_widget);
-        icon_label->setPixmap(operation->icon().pixmap(128, 64));
-        item_widget_layout->addWidget(icon_label, 0, Qt::AlignCenter);
-        QLabel *item_label = new QLabel(operation->name(), item_widget);
-        item_widget_layout->addWidget(item_label, 0, Qt::AlignCenter);
+        item->setText(operation->name());
+        item->setData(Qt::UserRole, operation->icon());
         m_operations_list->addItem(item);
-        item->setSizeHint(item_widget->sizeHint());
-        m_operations_list->setItemWidget(item, item_widget);
         m_operations_widget.addWidget(operation);
         connect(operation, &AbstractOperation::write_started,
                 this, &MainWindow::write_started);
@@ -168,6 +160,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     m_active_operation = m_operations.first();
     m_active_operation->set_active(true);
+    m_operations_list->setItemDelegate(&m_operation_delegate);
     m_operations_list->setCurrentRow(0);
     m_operations_list->setFixedWidth(
                 m_operations_list->sizeHintForColumn(0) + 64);

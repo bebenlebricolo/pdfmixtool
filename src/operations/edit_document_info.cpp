@@ -12,7 +12,7 @@ EditDocumentInfo::EditDocumentInfo(QWidget *parent) :
     AbstractOperation(parent)
 {
     m_name = tr("Document information");
-    m_icon = QIcon(":/icons/edit_document_info.svg");
+    m_icon = ":/icons/edit_document_info.svg";
 
     QVBoxLayout *v_layout = new QVBoxLayout();
     this->setLayout(v_layout);

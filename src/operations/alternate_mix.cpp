@@ -24,7 +24,7 @@ AlternateMix::AlternateMix(QWidget *parent) :
     Merge(parent)
 {
     m_name = tr("Alternate mix");
-    m_icon = QIcon(":/icons/alternate_mix.svg");
+    m_icon = ":/icons/alternate_mix.svg";
     m_delegate->set_alternate_mix(true);
 }
 

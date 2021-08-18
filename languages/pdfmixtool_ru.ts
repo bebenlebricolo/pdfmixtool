@@ -14,62 +14,62 @@
         <translation>Закрыть</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="52"/>
+        <location filename="../src/aboutdialog.cpp" line="51"/>
         <source>Version %1</source>
         <translation>Версия %1</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="68"/>
+        <location filename="../src/aboutdialog.cpp" line="67"/>
         <source>Website</source>
         <translation>Вебсайт</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="75"/>
+        <location filename="../src/aboutdialog.cpp" line="74"/>
         <source>About</source>
         <translation>О программе</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="65"/>
+        <location filename="../src/aboutdialog.cpp" line="64"/>
         <source>An application to perform common editing operations on PDF files.</source>
         <translation>Приложение для выполнения основных операций редактирования PDF-файлов.</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="93"/>
+        <location filename="../src/aboutdialog.cpp" line="89"/>
         <source>Translators</source>
         <translation>Переводчики</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="102"/>
+        <location filename="../src/aboutdialog.cpp" line="98"/>
         <source>Credits</source>
         <translation>Участники</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="126"/>
+        <location filename="../src/aboutdialog.cpp" line="122"/>
         <source>License</source>
         <translation>Лицензия</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="139"/>
+        <location filename="../src/aboutdialog.cpp" line="135"/>
         <source>Submit a pull request</source>
         <translation>Отправить запрос на слияние кода</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="140"/>
+        <location filename="../src/aboutdialog.cpp" line="136"/>
         <source>Report a bug</source>
         <translation>Сообщить об ошибке</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="141"/>
+        <location filename="../src/aboutdialog.cpp" line="137"/>
         <source>Help translating</source>
         <translation>Помочь с переводом</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="148"/>
+        <location filename="../src/aboutdialog.cpp" line="144"/>
         <source>Contribute</source>
         <translation>Помочь проекту</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="165"/>
+        <location filename="../src/aboutdialog.cpp" line="160"/>
         <source>Changelog</source>
         <translation>Журнал изменений</translation>
     </message>
@@ -77,32 +77,32 @@
 <context>
     <name>AbstractOperation</name>
     <message>
-        <location filename="../src/operations/abstract_operation.cpp" line="44"/>
+        <location filename="../src/operations/abstract_operation.cpp" line="41"/>
         <source>Save</source>
         <translation>Сохранить</translation>
     </message>
     <message>
-        <location filename="../src/operations/abstract_operation.cpp" line="105"/>
+        <location filename="../src/operations/abstract_operation.cpp" line="102"/>
         <source>Overwrite File?</source>
         <translation>Заменить файл?</translation>
     </message>
     <message>
-        <location filename="../src/operations/abstract_operation.cpp" line="106"/>
+        <location filename="../src/operations/abstract_operation.cpp" line="103"/>
         <source>A file called «%1» already exists. Do you want to overwrite it?</source>
         <translation>Файл с именем «%1» уже существует. Хотите заменить его?</translation>
     </message>
     <message>
-        <location filename="../src/operations/abstract_operation.cpp" line="112"/>
+        <location filename="../src/operations/abstract_operation.cpp" line="109"/>
         <source>Always overwrite</source>
         <translation>Всегда заменять</translation>
     </message>
     <message>
-        <location filename="../src/operations/abstract_operation.cpp" line="130"/>
+        <location filename="../src/operations/abstract_operation.cpp" line="127"/>
         <source>Save PDF file</source>
         <translation>Сохранить PDF-файл</translation>
     </message>
     <message>
-        <location filename="../src/operations/abstract_operation.cpp" line="134"/>
+        <location filename="../src/operations/abstract_operation.cpp" line="131"/>
         <source>PDF files</source>
         <translation>PDF-файлы</translation>
     </message>
@@ -211,17 +211,22 @@
         <translation>Сделать последнюю страницу задней обложкой:</translation>
     </message>
     <message>
-        <location filename="../src/operations/booklet.cpp" line="51"/>
+        <location filename="../src/operations/booklet.cpp" line="46"/>
+        <source>Generate two booklets in one sheet:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/operations/booklet.cpp" line="54"/>
         <source>Generate booklet</source>
         <translation>Создать брошюру</translation>
     </message>
     <message>
-        <location filename="../src/operations/booklet.cpp" line="72"/>
+        <location filename="../src/operations/booklet.cpp" line="75"/>
         <source>Save booklet PDF file</source>
         <translation>Сохранение брошюры в PDF­-файл</translation>
     </message>
     <message>
-        <location filename="../src/operations/booklet.cpp" line="76"/>
+        <location filename="../src/operations/booklet.cpp" line="79"/>
         <source>PDF files</source>
         <translation>PDF-файлы</translation>
     </message>
@@ -495,62 +500,62 @@
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../src/mainwindow.cpp" line="99"/>
+        <location filename="../src/mainwindow.cpp" line="98"/>
         <source>About</source>
         <translation>О программе</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="89"/>
+        <location filename="../src/mainwindow.cpp" line="88"/>
         <source>Menu</source>
         <translation>Меню</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="94"/>
+        <location filename="../src/mainwindow.cpp" line="93"/>
         <source>Multipage profiles…</source>
         <translation>Многостраничные профили…</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="104"/>
+        <location filename="../src/mainwindow.cpp" line="103"/>
         <source>Exit</source>
         <translation>Выйти</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="186"/>
+        <location filename="../src/mainwindow.cpp" line="178"/>
         <source>Open PDF file…</source>
         <translation>Открыть PDF-файл…</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="300"/>
+        <location filename="../src/mainwindow.cpp" line="292"/>
         <source>PDF files</source>
         <translation>PDF-файлы</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="315"/>
+        <location filename="../src/mainwindow.cpp" line="307"/>
         <source>Error opening file</source>
         <translation>Ошибка открытия файла</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="340"/>
+        <location filename="../src/mainwindow.cpp" line="332"/>
         <source>Output pages: %1</source>
         <translation>Выходных страниц: %1</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="298"/>
+        <location filename="../src/mainwindow.cpp" line="290"/>
         <source>Select a PDF file</source>
         <translation>Выберите PDF-файл</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="370"/>
+        <location filename="../src/mainwindow.cpp" line="362"/>
         <source>Files saved in %1.</source>
         <translation>Файлы сохранены в %1.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="376"/>
+        <location filename="../src/mainwindow.cpp" line="368"/>
         <source>File %1 saved.</source>
         <translation>Файл %1 сохранён.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="386"/>
+        <location filename="../src/mainwindow.cpp" line="378"/>
         <source>Error generating the PDF</source>
         <translation>Ошибка создания PDF-файла</translation>
     </message>
@@ -563,110 +568,110 @@
         <translation>Объединение PDF-файлов</translation>
     </message>
     <message>
-        <location filename="../src/operations/merge.cpp" line="71"/>
+        <location filename="../src/operations/merge.cpp" line="70"/>
         <source>Edit</source>
         <translation>Правка</translation>
     </message>
     <message>
-        <location filename="../src/operations/merge.cpp" line="72"/>
+        <location filename="../src/operations/merge.cpp" line="71"/>
         <source>View</source>
         <translation>Просмотр</translation>
     </message>
     <message>
-        <location filename="../src/operations/merge.cpp" line="75"/>
+        <location filename="../src/operations/merge.cpp" line="74"/>
         <source>Main toolbar</source>
         <translation>Главная панель инструментов</translation>
     </message>
     <message>
-        <location filename="../src/operations/merge.cpp" line="82"/>
+        <location filename="../src/operations/merge.cpp" line="81"/>
         <source>Add PDF file</source>
         <translation>Добавить PDF-файл</translation>
     </message>
     <message>
-        <location filename="../src/operations/merge.cpp" line="87"/>
+        <location filename="../src/operations/merge.cpp" line="86"/>
         <source>Select one or more PDF files to open</source>
         <translation>Выберите один или несколько PDF-файлов для открытия</translation>
     </message>
     <message>
-        <location filename="../src/operations/merge.cpp" line="89"/>
-        <location filename="../src/operations/merge.cpp" line="590"/>
+        <location filename="../src/operations/merge.cpp" line="88"/>
+        <location filename="../src/operations/merge.cpp" line="589"/>
         <source>PDF files</source>
         <translation>PDF-файлы</translation>
     </message>
     <message>
-        <location filename="../src/operations/merge.cpp" line="94"/>
+        <location filename="../src/operations/merge.cpp" line="93"/>
         <source>Move up</source>
         <translation>Сдвинуть выше</translation>
     </message>
     <message>
-        <location filename="../src/operations/merge.cpp" line="99"/>
+        <location filename="../src/operations/merge.cpp" line="98"/>
         <source>Move down</source>
         <translation>Сдвинуть ниже</translation>
     </message>
     <message>
-        <location filename="../src/operations/merge.cpp" line="104"/>
+        <location filename="../src/operations/merge.cpp" line="103"/>
         <source>Remove file</source>
         <translation>Удалить файл</translation>
     </message>
     <message>
-        <location filename="../src/operations/merge.cpp" line="114"/>
+        <location filename="../src/operations/merge.cpp" line="113"/>
         <source>Load files list</source>
         <translation>Загрузить список файлов</translation>
     </message>
     <message>
-        <location filename="../src/operations/merge.cpp" line="119"/>
+        <location filename="../src/operations/merge.cpp" line="118"/>
         <source>Save files list</source>
         <translation>Сохранить список файлов</translation>
     </message>
     <message>
-        <location filename="../src/operations/merge.cpp" line="153"/>
-        <location filename="../src/operations/merge.cpp" line="157"/>
+        <location filename="../src/operations/merge.cpp" line="152"/>
+        <location filename="../src/operations/merge.cpp" line="156"/>
         <source>Generate PDF</source>
         <translation>Создать PDF</translation>
     </message>
     <message>
-        <location filename="../src/operations/merge.cpp" line="333"/>
+        <location filename="../src/operations/merge.cpp" line="332"/>
         <source>Select the JSON file containing the files list</source>
         <translation>Выберите JSON-файл со списком файлов</translation>
     </message>
     <message>
-        <location filename="../src/operations/merge.cpp" line="335"/>
-        <location filename="../src/operations/merge.cpp" line="353"/>
+        <location filename="../src/operations/merge.cpp" line="334"/>
+        <location filename="../src/operations/merge.cpp" line="352"/>
         <source>JSON files (*.json)</source>
         <translation>JSON-файлы (*.json)</translation>
     </message>
     <message>
-        <location filename="../src/operations/merge.cpp" line="341"/>
+        <location filename="../src/operations/merge.cpp" line="340"/>
         <source>Error while reading the JSON file!</source>
         <translation>Ошибка чтения JSON-файла!</translation>
     </message>
     <message>
-        <location filename="../src/operations/merge.cpp" line="342"/>
+        <location filename="../src/operations/merge.cpp" line="341"/>
         <source>An error occurred while reading the JSON file!</source>
         <translation>При чтении JSON-файла произошла ошибка!</translation>
     </message>
     <message>
-        <location filename="../src/operations/merge.cpp" line="349"/>
+        <location filename="../src/operations/merge.cpp" line="348"/>
         <source>Select a JSON file</source>
         <translation>Выберите JSON-файл</translation>
     </message>
     <message>
-        <location filename="../src/operations/merge.cpp" line="428"/>
+        <location filename="../src/operations/merge.cpp" line="427"/>
         <source>Error opening file</source>
         <translation>Ошибка открытия файла</translation>
     </message>
     <message>
-        <location filename="../src/operations/merge.cpp" line="562"/>
+        <location filename="../src/operations/merge.cpp" line="561"/>
         <source>&lt;p&gt;Output pages of file &lt;b&gt;%1&lt;/b&gt; are badly formatted. Please make sure you complied with the following rules:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;intervals of pages must be written indicating the first page and the last page separated by a dash (e.g. &quot;1-5&quot;);&lt;/li&gt;&lt;li&gt;single pages and intervals of pages must be separated by spaces, commas or both (e.g. &quot;1, 2, 3, 5-10&quot; or &quot;1 2 3 5-10&quot;);&lt;/li&gt;&lt;li&gt;all pages and intervals of pages must be between 1 and the number of pages of the PDF file;&lt;/li&gt;&lt;li&gt;only numbers, spaces, commas and dashes can be used. All other characters are not allowed.&lt;/li&gt;&lt;/ul&gt;</source>
         <translation>&lt;p&gt;Некорректно указаны номера выводимых страниц для файла &lt;b&gt;%1&lt;/b&gt;. Пожалуйста, проверьте соблюдение следующих правил: &lt;/p&gt;&lt;ul&gt;&lt;li&gt;диапазоны страниц должны быть написаны с указанием номеров первой и последней страниц, разделённых дефисом (например &quot;1-5&quot;);&lt;/li&gt;&lt;li&gt;отдельные страницы и диапазоны страниц должны быть разделены пробелами, запятыми или запятыми с пробелами (например «1, 2, 3, 5-10» или «1 2 3 5-10»);&lt;/li&gt;&lt;li&gt;номера страниц и границы диапазонов должны быть не меньше 1 и не больше количества страниц в PDF-файле;&lt;/li&gt;&lt;li&gt;допустимо использовать только цифры, пробелы, запятые и дефисы. Остальные символы запрещены.&lt;/li&gt;&lt;/ul&gt;</translation>
     </message>
     <message>
-        <location filename="../src/operations/merge.cpp" line="579"/>
+        <location filename="../src/operations/merge.cpp" line="578"/>
         <source>PDF generation error</source>
         <translation>Ошибка при создании PDF</translation>
     </message>
     <message>
-        <location filename="../src/operations/merge.cpp" line="586"/>
+        <location filename="../src/operations/merge.cpp" line="585"/>
         <source>Save PDF file</source>
         <translation>Сохранить PDF-файл</translation>
     </message>

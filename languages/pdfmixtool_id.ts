@@ -14,62 +14,62 @@
         <translation>Tutup</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="52"/>
+        <location filename="../src/aboutdialog.cpp" line="51"/>
         <source>Version %1</source>
         <translation>Version %1</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="68"/>
+        <location filename="../src/aboutdialog.cpp" line="67"/>
         <source>Website</source>
         <translation>Situs web</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="75"/>
+        <location filename="../src/aboutdialog.cpp" line="74"/>
         <source>About</source>
         <translation>Tentang</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="65"/>
+        <location filename="../src/aboutdialog.cpp" line="64"/>
         <source>An application to perform common editing operations on PDF files.</source>
         <translation>Sebuah aplikasi penyuntingan umum PDF.</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="93"/>
+        <location filename="../src/aboutdialog.cpp" line="89"/>
         <source>Translators</source>
         <translation>Penerjemah</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="102"/>
+        <location filename="../src/aboutdialog.cpp" line="98"/>
         <source>Credits</source>
         <translation>Kredit</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="126"/>
+        <location filename="../src/aboutdialog.cpp" line="122"/>
         <source>License</source>
         <translation>Lisensi</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="139"/>
+        <location filename="../src/aboutdialog.cpp" line="135"/>
         <source>Submit a pull request</source>
         <translation>Kirim pull request</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="140"/>
+        <location filename="../src/aboutdialog.cpp" line="136"/>
         <source>Report a bug</source>
         <translation>Laporkan bug</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="141"/>
+        <location filename="../src/aboutdialog.cpp" line="137"/>
         <source>Help translating</source>
         <translation>Bantu menerjemahkan</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="148"/>
+        <location filename="../src/aboutdialog.cpp" line="144"/>
         <source>Contribute</source>
         <translation>Berkontribusi</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="165"/>
+        <location filename="../src/aboutdialog.cpp" line="160"/>
         <source>Changelog</source>
         <translation>Catatan Perubahan</translation>
     </message>
@@ -77,32 +77,32 @@
 <context>
     <name>AbstractOperation</name>
     <message>
-        <location filename="../src/operations/abstract_operation.cpp" line="44"/>
+        <location filename="../src/operations/abstract_operation.cpp" line="41"/>
         <source>Save</source>
         <translation>Simpan</translation>
     </message>
     <message>
-        <location filename="../src/operations/abstract_operation.cpp" line="105"/>
+        <location filename="../src/operations/abstract_operation.cpp" line="102"/>
         <source>Overwrite File?</source>
         <translation>Timpa File?</translation>
     </message>
     <message>
-        <location filename="../src/operations/abstract_operation.cpp" line="106"/>
+        <location filename="../src/operations/abstract_operation.cpp" line="103"/>
         <source>A file called «%1» already exists. Do you want to overwrite it?</source>
         <translation>Sebuah file bernama «%1» sudah ada. Apakah anda ingin menimpa file ini?</translation>
     </message>
     <message>
-        <location filename="../src/operations/abstract_operation.cpp" line="112"/>
+        <location filename="../src/operations/abstract_operation.cpp" line="109"/>
         <source>Always overwrite</source>
         <translation>Selalu timpa</translation>
     </message>
     <message>
-        <location filename="../src/operations/abstract_operation.cpp" line="130"/>
+        <location filename="../src/operations/abstract_operation.cpp" line="127"/>
         <source>Save PDF file</source>
         <translation>Simpan berkas PDF</translation>
     </message>
     <message>
-        <location filename="../src/operations/abstract_operation.cpp" line="134"/>
+        <location filename="../src/operations/abstract_operation.cpp" line="131"/>
         <source>PDF files</source>
         <translation type="unfinished"></translation>
     </message>
@@ -211,17 +211,22 @@
         <translation>Gunakan halaman terakhir sebagai sampul belakang:</translation>
     </message>
     <message>
-        <location filename="../src/operations/booklet.cpp" line="51"/>
+        <location filename="../src/operations/booklet.cpp" line="46"/>
+        <source>Generate two booklets in one sheet:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/operations/booklet.cpp" line="54"/>
         <source>Generate booklet</source>
         <translation>Hasilkan buklet</translation>
     </message>
     <message>
-        <location filename="../src/operations/booklet.cpp" line="72"/>
+        <location filename="../src/operations/booklet.cpp" line="75"/>
         <source>Save booklet PDF file</source>
         <translation>Simpan file PDF buklet</translation>
     </message>
     <message>
-        <location filename="../src/operations/booklet.cpp" line="76"/>
+        <location filename="../src/operations/booklet.cpp" line="79"/>
         <source>PDF files</source>
         <translation type="unfinished"></translation>
     </message>
@@ -495,62 +500,62 @@
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../src/mainwindow.cpp" line="99"/>
+        <location filename="../src/mainwindow.cpp" line="98"/>
         <source>About</source>
         <translation>Tentang</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="89"/>
+        <location filename="../src/mainwindow.cpp" line="88"/>
         <source>Menu</source>
         <translation>Menu</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="94"/>
+        <location filename="../src/mainwindow.cpp" line="93"/>
         <source>Multipage profiles…</source>
         <translation>Profil multi halaman…</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="104"/>
+        <location filename="../src/mainwindow.cpp" line="103"/>
         <source>Exit</source>
         <translation>Keluar</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="186"/>
+        <location filename="../src/mainwindow.cpp" line="178"/>
         <source>Open PDF file…</source>
         <translation>Buka file PDF…</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="300"/>
+        <location filename="../src/mainwindow.cpp" line="292"/>
         <source>PDF files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="315"/>
+        <location filename="../src/mainwindow.cpp" line="307"/>
         <source>Error opening file</source>
         <translation>Galat ketika membuka file</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="340"/>
+        <location filename="../src/mainwindow.cpp" line="332"/>
         <source>Output pages: %1</source>
         <translation>Halaman keluaran: %1</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="298"/>
+        <location filename="../src/mainwindow.cpp" line="290"/>
         <source>Select a PDF file</source>
         <translation>Pilih sebuah file PDF</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="370"/>
+        <location filename="../src/mainwindow.cpp" line="362"/>
         <source>Files saved in %1.</source>
         <translation>File disimpan di %1.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="376"/>
+        <location filename="../src/mainwindow.cpp" line="368"/>
         <source>File %1 saved.</source>
         <translation>File %1 disimpan.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="386"/>
+        <location filename="../src/mainwindow.cpp" line="378"/>
         <source>Error generating the PDF</source>
         <translation>Terjadi kesalahan saat membuat PDF</translation>
     </message>
@@ -563,110 +568,110 @@
         <translation>Gabungkan file PDF</translation>
     </message>
     <message>
-        <location filename="../src/operations/merge.cpp" line="71"/>
+        <location filename="../src/operations/merge.cpp" line="70"/>
         <source>Edit</source>
         <translation>Sunting</translation>
     </message>
     <message>
-        <location filename="../src/operations/merge.cpp" line="72"/>
+        <location filename="../src/operations/merge.cpp" line="71"/>
         <source>View</source>
         <translation>Lihat</translation>
     </message>
     <message>
-        <location filename="../src/operations/merge.cpp" line="75"/>
+        <location filename="../src/operations/merge.cpp" line="74"/>
         <source>Main toolbar</source>
         <translation>Toolbar utama</translation>
     </message>
     <message>
-        <location filename="../src/operations/merge.cpp" line="82"/>
+        <location filename="../src/operations/merge.cpp" line="81"/>
         <source>Add PDF file</source>
         <translation>Tambah file PDF</translation>
     </message>
     <message>
-        <location filename="../src/operations/merge.cpp" line="87"/>
+        <location filename="../src/operations/merge.cpp" line="86"/>
         <source>Select one or more PDF files to open</source>
         <translation>Pilih satu atau lebih berkas PDF untuk dibuka</translation>
     </message>
     <message>
-        <location filename="../src/operations/merge.cpp" line="89"/>
-        <location filename="../src/operations/merge.cpp" line="590"/>
+        <location filename="../src/operations/merge.cpp" line="88"/>
+        <location filename="../src/operations/merge.cpp" line="589"/>
         <source>PDF files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/operations/merge.cpp" line="94"/>
+        <location filename="../src/operations/merge.cpp" line="93"/>
         <source>Move up</source>
         <translation>Pindah ke atas</translation>
     </message>
     <message>
-        <location filename="../src/operations/merge.cpp" line="99"/>
+        <location filename="../src/operations/merge.cpp" line="98"/>
         <source>Move down</source>
         <translation>Pindah ke bawah</translation>
     </message>
     <message>
-        <location filename="../src/operations/merge.cpp" line="104"/>
+        <location filename="../src/operations/merge.cpp" line="103"/>
         <source>Remove file</source>
         <translation>Hapus berkas</translation>
     </message>
     <message>
-        <location filename="../src/operations/merge.cpp" line="114"/>
+        <location filename="../src/operations/merge.cpp" line="113"/>
         <source>Load files list</source>
         <translation>Muat daftar file</translation>
     </message>
     <message>
-        <location filename="../src/operations/merge.cpp" line="119"/>
+        <location filename="../src/operations/merge.cpp" line="118"/>
         <source>Save files list</source>
         <translation>Simpan daftar file</translation>
     </message>
     <message>
-        <location filename="../src/operations/merge.cpp" line="153"/>
-        <location filename="../src/operations/merge.cpp" line="157"/>
+        <location filename="../src/operations/merge.cpp" line="152"/>
+        <location filename="../src/operations/merge.cpp" line="156"/>
         <source>Generate PDF</source>
         <translation>Buat PDF</translation>
     </message>
     <message>
-        <location filename="../src/operations/merge.cpp" line="333"/>
+        <location filename="../src/operations/merge.cpp" line="332"/>
         <source>Select the JSON file containing the files list</source>
         <translation>Pilih file JSON yang berisi daftar file</translation>
     </message>
     <message>
-        <location filename="../src/operations/merge.cpp" line="335"/>
-        <location filename="../src/operations/merge.cpp" line="353"/>
+        <location filename="../src/operations/merge.cpp" line="334"/>
+        <location filename="../src/operations/merge.cpp" line="352"/>
         <source>JSON files (*.json)</source>
         <translation>file JSON (*.json)</translation>
     </message>
     <message>
-        <location filename="../src/operations/merge.cpp" line="341"/>
+        <location filename="../src/operations/merge.cpp" line="340"/>
         <source>Error while reading the JSON file!</source>
         <translation>Galat ketika membaca file JSON!</translation>
     </message>
     <message>
-        <location filename="../src/operations/merge.cpp" line="342"/>
+        <location filename="../src/operations/merge.cpp" line="341"/>
         <source>An error occurred while reading the JSON file!</source>
         <translation>Sebuah galat terjadi ketika membaca file JSON!</translation>
     </message>
     <message>
-        <location filename="../src/operations/merge.cpp" line="349"/>
+        <location filename="../src/operations/merge.cpp" line="348"/>
         <source>Select a JSON file</source>
         <translation>Pilih file JSON</translation>
     </message>
     <message>
-        <location filename="../src/operations/merge.cpp" line="428"/>
+        <location filename="../src/operations/merge.cpp" line="427"/>
         <source>Error opening file</source>
         <translation>Galat ketika membuka file</translation>
     </message>
     <message>
-        <location filename="../src/operations/merge.cpp" line="562"/>
+        <location filename="../src/operations/merge.cpp" line="561"/>
         <source>&lt;p&gt;Output pages of file &lt;b&gt;%1&lt;/b&gt; are badly formatted. Please make sure you complied with the following rules:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;intervals of pages must be written indicating the first page and the last page separated by a dash (e.g. &quot;1-5&quot;);&lt;/li&gt;&lt;li&gt;single pages and intervals of pages must be separated by spaces, commas or both (e.g. &quot;1, 2, 3, 5-10&quot; or &quot;1 2 3 5-10&quot;);&lt;/li&gt;&lt;li&gt;all pages and intervals of pages must be between 1 and the number of pages of the PDF file;&lt;/li&gt;&lt;li&gt;only numbers, spaces, commas and dashes can be used. All other characters are not allowed.&lt;/li&gt;&lt;/ul&gt;</source>
         <translation>&lt;p&gt;Tampilan halaman dari file &lt;b&gt;%1&lt;/b&gt; berformat buruk. Tolong pastikan anda mengikuti aturan berikut:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;jarak antar halaman harus ditulis mengindikasikan halaman pertama dan halaman terakhir dipisahkan oleh sebuah strip (e.g. &quot;1-5&quot;);&lt;/li&gt;&lt;li&gt;satu halaman dan jarak antar halaman harus dipisahkan oleh spasi, koma atau keduanya (e.g. &quot;1, 2, 3, 5-10&quot; or &quot;1 2 3 5-10&quot;);&lt;/li&gt;&lt;li&gt;semua halaman dan jarak antar halaman harus diantara 1 dan jumlah halaman dari file PDF;&lt;/li&gt;&lt;li&gt;hanya bisa menggunakan angka, spasi, koma dan strip. Katarkter lain tidak diperbolehkan&lt;/li&gt;&lt;/ul&gt;</translation>
     </message>
     <message>
-        <location filename="../src/operations/merge.cpp" line="579"/>
+        <location filename="../src/operations/merge.cpp" line="578"/>
         <source>PDF generation error</source>
         <translation>gagal membuat PDF</translation>
     </message>
     <message>
-        <location filename="../src/operations/merge.cpp" line="586"/>
+        <location filename="../src/operations/merge.cpp" line="585"/>
         <source>Save PDF file</source>
         <translation>Simpan berkas PDF</translation>
     </message>

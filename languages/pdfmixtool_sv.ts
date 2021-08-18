@@ -213,7 +213,7 @@
     <message>
         <location filename="../src/operations/booklet.cpp" line="46"/>
         <source>Generate two booklets in one sheet:</source>
-        <translation type="unfinished"></translation>
+        <translation>Generera två häften i ett ark:</translation>
     </message>
     <message>
         <location filename="../src/operations/booklet.cpp" line="54"/>

@@ -14,62 +14,62 @@
         <translation>Schließen</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="52"/>
+        <location filename="../src/aboutdialog.cpp" line="51"/>
         <source>Version %1</source>
         <translation>Version %1</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="68"/>
+        <location filename="../src/aboutdialog.cpp" line="67"/>
         <source>Website</source>
         <translation>Webseite</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="75"/>
+        <location filename="../src/aboutdialog.cpp" line="74"/>
         <source>About</source>
         <translation>Über</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="65"/>
+        <location filename="../src/aboutdialog.cpp" line="64"/>
         <source>An application to perform common editing operations on PDF files.</source>
         <translation>Eine Anwendung zur Durchführung allgemeiner Bearbeitungsvorgänge an PDF-Dateien.</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="93"/>
+        <location filename="../src/aboutdialog.cpp" line="89"/>
         <source>Translators</source>
         <translation>Übersetzer</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="102"/>
+        <location filename="../src/aboutdialog.cpp" line="98"/>
         <source>Credits</source>
         <translation>Beiträge</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="126"/>
+        <location filename="../src/aboutdialog.cpp" line="122"/>
         <source>License</source>
         <translation>Lizenz</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="139"/>
+        <location filename="../src/aboutdialog.cpp" line="135"/>
         <source>Submit a pull request</source>
         <translation>Sende einen Pull-Request</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="140"/>
+        <location filename="../src/aboutdialog.cpp" line="136"/>
         <source>Report a bug</source>
         <translation>Melde einen Fehler</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="141"/>
+        <location filename="../src/aboutdialog.cpp" line="137"/>
         <source>Help translating</source>
         <translation>Beim Übersetzen helfen</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="148"/>
+        <location filename="../src/aboutdialog.cpp" line="144"/>
         <source>Contribute</source>
         <translation>Beitragen</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="165"/>
+        <location filename="../src/aboutdialog.cpp" line="160"/>
         <source>Changelog</source>
         <translation>Änderungsprotokoll</translation>
     </message>
@@ -77,32 +77,32 @@
 <context>
     <name>AbstractOperation</name>
     <message>
-        <location filename="../src/operations/abstract_operation.cpp" line="44"/>
+        <location filename="../src/operations/abstract_operation.cpp" line="41"/>
         <source>Save</source>
         <translation>Speichern</translation>
     </message>
     <message>
-        <location filename="../src/operations/abstract_operation.cpp" line="105"/>
+        <location filename="../src/operations/abstract_operation.cpp" line="102"/>
         <source>Overwrite File?</source>
         <translation>Datei überschreiben?</translation>
     </message>
     <message>
-        <location filename="../src/operations/abstract_operation.cpp" line="106"/>
+        <location filename="../src/operations/abstract_operation.cpp" line="103"/>
         <source>A file called «%1» already exists. Do you want to overwrite it?</source>
         <translation>Eine Datei namens «%1» existiert bereits. Wollen Sie diese überschreiben?</translation>
     </message>
     <message>
-        <location filename="../src/operations/abstract_operation.cpp" line="112"/>
+        <location filename="../src/operations/abstract_operation.cpp" line="109"/>
         <source>Always overwrite</source>
         <translation>Immer überschreiben</translation>
     </message>
     <message>
-        <location filename="../src/operations/abstract_operation.cpp" line="130"/>
+        <location filename="../src/operations/abstract_operation.cpp" line="127"/>
         <source>Save PDF file</source>
         <translation>PDF-Datei speichern</translation>
     </message>
     <message>
-        <location filename="../src/operations/abstract_operation.cpp" line="134"/>
+        <location filename="../src/operations/abstract_operation.cpp" line="131"/>
         <source>PDF files</source>
         <translation>PDF-Dateien</translation>
     </message>
@@ -211,17 +211,22 @@
         <translation>Verwenden Sie die letzte Seite als Rückseite:</translation>
     </message>
     <message>
-        <location filename="../src/operations/booklet.cpp" line="51"/>
+        <location filename="../src/operations/booklet.cpp" line="46"/>
+        <source>Generate two booklets in one sheet:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/operations/booklet.cpp" line="54"/>
         <source>Generate booklet</source>
         <translation>Broschüre generieren</translation>
     </message>
     <message>
-        <location filename="../src/operations/booklet.cpp" line="72"/>
+        <location filename="../src/operations/booklet.cpp" line="75"/>
         <source>Save booklet PDF file</source>
         <translation>Broschüre als PDF-Datei speichern</translation>
     </message>
     <message>
-        <location filename="../src/operations/booklet.cpp" line="76"/>
+        <location filename="../src/operations/booklet.cpp" line="79"/>
         <source>PDF files</source>
         <translation>PDF-Dateien</translation>
     </message>
@@ -495,62 +500,62 @@
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../src/mainwindow.cpp" line="99"/>
+        <location filename="../src/mainwindow.cpp" line="98"/>
         <source>About</source>
         <translation>Über</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="89"/>
+        <location filename="../src/mainwindow.cpp" line="88"/>
         <source>Menu</source>
         <translation>Menü</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="94"/>
+        <location filename="../src/mainwindow.cpp" line="93"/>
         <source>Multipage profiles…</source>
         <translation>Mehrseiten-Profile…</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="104"/>
+        <location filename="../src/mainwindow.cpp" line="103"/>
         <source>Exit</source>
         <translation>Beenden</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="186"/>
+        <location filename="../src/mainwindow.cpp" line="178"/>
         <source>Open PDF file…</source>
         <translation>PDF-Datei öffnen…</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="300"/>
+        <location filename="../src/mainwindow.cpp" line="292"/>
         <source>PDF files</source>
         <translation>PDF-Dateien</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="315"/>
+        <location filename="../src/mainwindow.cpp" line="307"/>
         <source>Error opening file</source>
         <translation>Fehler beim Öffnen der Datei</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="340"/>
+        <location filename="../src/mainwindow.cpp" line="332"/>
         <source>Output pages: %1</source>
         <translation>Ausgabe-Seiten: %1</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="298"/>
+        <location filename="../src/mainwindow.cpp" line="290"/>
         <source>Select a PDF file</source>
         <translation>Eine PDF-Datei auswählen</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="370"/>
+        <location filename="../src/mainwindow.cpp" line="362"/>
         <source>Files saved in %1.</source>
         <translation>Dateien gespeichert in %1.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="376"/>
+        <location filename="../src/mainwindow.cpp" line="368"/>
         <source>File %1 saved.</source>
         <translation>Datei %1 gespeichert.</translation>
     </message>
     <message>
-        <location filename="../src/mainwindow.cpp" line="386"/>
+        <location filename="../src/mainwindow.cpp" line="378"/>
         <source>Error generating the PDF</source>
         <translation>Fehler beim Erzeugen der PDF-Datei</translation>
     </message>
@@ -563,110 +568,110 @@
         <translation>PDF-Dateien zusammenführen</translation>
     </message>
     <message>
-        <location filename="../src/operations/merge.cpp" line="71"/>
+        <location filename="../src/operations/merge.cpp" line="70"/>
         <source>Edit</source>
         <translation>Bearbeiten</translation>
     </message>
     <message>
-        <location filename="../src/operations/merge.cpp" line="72"/>
+        <location filename="../src/operations/merge.cpp" line="71"/>
         <source>View</source>
         <translation>Ansicht</translation>
     </message>
     <message>
-        <location filename="../src/operations/merge.cpp" line="75"/>
+        <location filename="../src/operations/merge.cpp" line="74"/>
         <source>Main toolbar</source>
         <translation>Hauptwerkzeugleiste</translation>
     </message>
     <message>
-        <location filename="../src/operations/merge.cpp" line="82"/>
+        <location filename="../src/operations/merge.cpp" line="81"/>
         <source>Add PDF file</source>
         <translation>PDF-Datei hinzufügen</translation>
     </message>
     <message>
-        <location filename="../src/operations/merge.cpp" line="87"/>
+        <location filename="../src/operations/merge.cpp" line="86"/>
         <source>Select one or more PDF files to open</source>
         <translation>Wähle eine oder mehrere PDF-Dateien zum Öffnen</translation>
     </message>
     <message>
-        <location filename="../src/operations/merge.cpp" line="89"/>
-        <location filename="../src/operations/merge.cpp" line="590"/>
+        <location filename="../src/operations/merge.cpp" line="88"/>
+        <location filename="../src/operations/merge.cpp" line="589"/>
         <source>PDF files</source>
         <translation>PDF-Dateien</translation>
     </message>
     <message>
-        <location filename="../src/operations/merge.cpp" line="94"/>
+        <location filename="../src/operations/merge.cpp" line="93"/>
         <source>Move up</source>
         <translation>Nach oben</translation>
     </message>
     <message>
-        <location filename="../src/operations/merge.cpp" line="99"/>
+        <location filename="../src/operations/merge.cpp" line="98"/>
         <source>Move down</source>
         <translation>Nach unten</translation>
     </message>
     <message>
-        <location filename="../src/operations/merge.cpp" line="104"/>
+        <location filename="../src/operations/merge.cpp" line="103"/>
         <source>Remove file</source>
         <translation>Datei entfernen</translation>
     </message>
     <message>
-        <location filename="../src/operations/merge.cpp" line="114"/>
+        <location filename="../src/operations/merge.cpp" line="113"/>
         <source>Load files list</source>
         <translation>Dateiliste laden</translation>
     </message>
     <message>
-        <location filename="../src/operations/merge.cpp" line="119"/>
+        <location filename="../src/operations/merge.cpp" line="118"/>
         <source>Save files list</source>
         <translation>Dateiliste speichern</translation>
     </message>
     <message>
-        <location filename="../src/operations/merge.cpp" line="153"/>
-        <location filename="../src/operations/merge.cpp" line="157"/>
+        <location filename="../src/operations/merge.cpp" line="152"/>
+        <location filename="../src/operations/merge.cpp" line="156"/>
         <source>Generate PDF</source>
         <translation>PDF-Datei erzeugen</translation>
     </message>
     <message>
-        <location filename="../src/operations/merge.cpp" line="333"/>
+        <location filename="../src/operations/merge.cpp" line="332"/>
         <source>Select the JSON file containing the files list</source>
         <translation>Wähle die JSON-Datei, welche die Dateiliste enthält</translation>
     </message>
     <message>
-        <location filename="../src/operations/merge.cpp" line="335"/>
-        <location filename="../src/operations/merge.cpp" line="353"/>
+        <location filename="../src/operations/merge.cpp" line="334"/>
+        <location filename="../src/operations/merge.cpp" line="352"/>
         <source>JSON files (*.json)</source>
         <translation>JSON-Dateien (*.json)</translation>
     </message>
     <message>
-        <location filename="../src/operations/merge.cpp" line="341"/>
+        <location filename="../src/operations/merge.cpp" line="340"/>
         <source>Error while reading the JSON file!</source>
         <translation>Fehler beim Lesen der JSON-Datei!</translation>
     </message>
     <message>
-        <location filename="../src/operations/merge.cpp" line="342"/>
+        <location filename="../src/operations/merge.cpp" line="341"/>
         <source>An error occurred while reading the JSON file!</source>
         <translation>Beim Lesen der JSON-Datei ist ein Fehler aufgetreten!</translation>
     </message>
     <message>
-        <location filename="../src/operations/merge.cpp" line="349"/>
+        <location filename="../src/operations/merge.cpp" line="348"/>
         <source>Select a JSON file</source>
         <translation>Wähle eine JSON-Datei aus</translation>
     </message>
     <message>
-        <location filename="../src/operations/merge.cpp" line="428"/>
+        <location filename="../src/operations/merge.cpp" line="427"/>
         <source>Error opening file</source>
         <translation>Fehler beim Öffnen der Datei</translation>
     </message>
     <message>
-        <location filename="../src/operations/merge.cpp" line="562"/>
+        <location filename="../src/operations/merge.cpp" line="561"/>
         <source>&lt;p&gt;Output pages of file &lt;b&gt;%1&lt;/b&gt; are badly formatted. Please make sure you complied with the following rules:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;intervals of pages must be written indicating the first page and the last page separated by a dash (e.g. &quot;1-5&quot;);&lt;/li&gt;&lt;li&gt;single pages and intervals of pages must be separated by spaces, commas or both (e.g. &quot;1, 2, 3, 5-10&quot; or &quot;1 2 3 5-10&quot;);&lt;/li&gt;&lt;li&gt;all pages and intervals of pages must be between 1 and the number of pages of the PDF file;&lt;/li&gt;&lt;li&gt;only numbers, spaces, commas and dashes can be used. All other characters are not allowed.&lt;/li&gt;&lt;/ul&gt;</source>
         <translation>&lt;p&gt;Ausgabeseiten der Datei &lt;b&gt;%1&lt;/b&gt; sind schlecht formatiert. Bitte stellen Sie sicher, dass Sie die folgenden Regeln eingehalten haben:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Intervalle von Seiten müssen geschrieben werden, wobei die erste Seite und die letzte Seite durch einen Bindestrich getrennt sind (z.B. &quot;1-5&quot;);&lt;/li&gt;&lt;li&gt;Einzelseiten und Intervalle von Seiten müssen durch Leerzeichen, Kommas oder beides getrennt sein (z.B.g. &quot;1, 2, 3, 5-10&quot; oder &quot;1 2 3 5-10&quot;);&lt;/li&gt;&lt;li&gt;alle Seiten und Intervalle von Seiten müssen zwischen 1 und der Seitenzahl der PDF-Datei liegen;&lt;/li&gt;&lt;li&gt;nur Zahlen, Leerzeichen, Kommas und Bindestriche können verwendet werden. Alle anderen Zeichen sind nicht erlaubt.&lt;/li&gt;&lt;/ul&gt;</translation>
     </message>
     <message>
-        <location filename="../src/operations/merge.cpp" line="579"/>
+        <location filename="../src/operations/merge.cpp" line="578"/>
         <source>PDF generation error</source>
         <translation>Fehler beim Erzeugen der PDF</translation>
     </message>
     <message>
-        <location filename="../src/operations/merge.cpp" line="586"/>
+        <location filename="../src/operations/merge.cpp" line="585"/>
         <source>Save PDF file</source>
         <translation>PDF-Datei speichern</translation>
     </message>

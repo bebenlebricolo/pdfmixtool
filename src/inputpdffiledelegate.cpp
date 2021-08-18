@@ -176,7 +176,9 @@ void InputPdfFileDelegate::paint(
         const QModelIndex &index) const
 {
     // draw on a pixmap first, as a workaround for QTBUG-26694
-    QPixmap pixmap(option.rect.width(), option.rect.height());
+    qreal dpr = painter->device()->devicePixelRatioF();
+    QPixmap pixmap(option.rect.width() * dpr, option.rect.height() * dpr);
+    pixmap.setDevicePixelRatio(dpr);
     QPainter tmp_painter(&pixmap);
 
     // draw background

@@ -29,7 +29,7 @@ Booklet::Booklet(QWidget *parent) :
     AbstractOperation(parent)
 {
     m_name = tr("Booklet");
-    m_icon = QIcon(":/icons/booklet.svg");
+    m_icon = ":/icons/booklet.svg";
 
     QVBoxLayout *v_layout = new QVBoxLayout();
     QFormLayout *form_layout = new QFormLayout();

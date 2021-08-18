@@ -35,7 +35,7 @@ AbstractOperation::AbstractOperation(QWidget *parent) :
     m_is_single_file_operation{true},
     m_active{false}
 {
-    m_icon = QIcon(":/icons/icon.svg");
+    m_icon = ":/icons/icon.svg";
 
     m_save_button.setIcon(QIcon::fromTheme("document-save"));
     m_save_button.setText(tr("Save"));
@@ -51,7 +51,7 @@ const QString &AbstractOperation::name()
     return m_name;
 }
 
-const QIcon &AbstractOperation::icon()
+const QString &AbstractOperation::icon()
 {
     return m_icon;
 }

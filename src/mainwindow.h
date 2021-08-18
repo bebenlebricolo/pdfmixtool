@@ -35,6 +35,7 @@
 #include "inputpdffiledelegate.h"
 #include "pdf_edit_lib/definitions.h"
 #include "widgets/pdfinfolabel.h"
+#include "widgets/operation_item_delegate.h"
 
 #include "operations/add_empty_pages.h"
 #include "operations/alternate_mix.h"
@@ -86,6 +87,7 @@ private:
     QLabel m_saved_file;
 
     QListWidget *m_operations_list;
+    OperationItemDelegate m_operation_delegate;
     QStackedWidget m_operations_widget;
     QWidget m_open_pdf_widget;
     QPushButton *m_view_opened_pdf_button;

@@ -30,7 +30,7 @@ AddEmptyPages::AddEmptyPages(QWidget *parent) :
         AbstractOperation(parent)
 {
     m_name = tr("Add empty pages");
-    m_icon = QIcon(":/icons/add_empty_pages.svg");
+    m_icon = ":/icons/add_empty_pages.svg";
 
     QVBoxLayout *v_layout = new QVBoxLayout();
     QGridLayout *grid_layout = new QGridLayout();

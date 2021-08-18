@@ -43,6 +43,9 @@ Booklet::Booklet(QWidget *parent) :
     form_layout->addRow(tr("Binding:"), &m_binding);
     form_layout->addRow(tr("Use last page as back cover:"), &m_back_cover);
     form_layout->setAlignment(&m_back_cover, Qt::AlignVCenter);
+    form_layout->addRow(tr("Generate two booklets in one sheet:"),
+                        &m_twin_booklet);
+    form_layout->setAlignment(&m_twin_booklet, Qt::AlignVCenter);
 
     h_layout->addItem(new QSpacerItem(0, 0,
                                       QSizePolicy::Expanding,
@@ -88,7 +91,8 @@ void Booklet::generate_booklet()
         // define output pages layout
         PdfEditor::PageLayout *layout = new PdfEditor::PageLayout();
         layout->width = 2 * m_pdf_info.width() * cm;
-        layout->height = m_pdf_info.height() * cm;
+        layout->height = m_twin_booklet.isChecked() ?
+                    2 * m_pdf_info.height() * cm : m_pdf_info.height() * cm;
 
         PdfEditor::Page page1;
         page1.x = 0;
@@ -101,6 +105,16 @@ void Booklet::generate_booklet()
 
         layout->pages.push_back(page1);
         layout->pages.push_back(page2);
+
+        if (m_twin_booklet.isChecked())
+        {
+            PdfEditor::Page page3 = page1;
+            page3.y = m_pdf_info.height() * cm;
+            PdfEditor::Page page4 = page2;
+            page4.y = m_pdf_info.height() * cm;
+            layout->pages.push_back(page3);
+            layout->pages.push_back(page4);
+        }
 
         // compute vector of indices of pages in the output file
         int num_pages = m_pdf_info.n_pages() % 4 == 0 ?
@@ -119,6 +133,11 @@ void Booklet::generate_booklet()
 
             intervals.push_back(std::pair<int, int>(-1, -1));
             intervals.push_back(std::pair<int, int>(-1, -1));
+            if (m_twin_booklet.isChecked())
+            {
+                intervals.push_back(std::pair<int, int>(-1, -1));
+                intervals.push_back(std::pair<int, int>(-1, -1));
+            }
 
             for (int current_page : couple)
             {
@@ -137,9 +156,17 @@ void Booklet::generate_booklet()
                 }
 
                 if (is_right_page)
+                {
                     intervals.end()[-1] = {current_page, current_page};
+                    if (m_twin_booklet.isChecked())
+                        intervals.end()[-3] = {current_page, current_page};
+                }
                 else
+                {
                     intervals.end()[-2] = {current_page, current_page};
+                    if (m_twin_booklet.isChecked())
+                        intervals.end()[-4] = {current_page, current_page};
+                }
 
                 is_right_page = !is_right_page;
             }

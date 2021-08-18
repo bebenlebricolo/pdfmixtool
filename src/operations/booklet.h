@@ -37,6 +37,7 @@ private:
 
     QComboBox m_binding;
     QCheckBox m_back_cover;
+    QCheckBox m_twin_booklet;
 };
 
 #endif // BOOKLET_H

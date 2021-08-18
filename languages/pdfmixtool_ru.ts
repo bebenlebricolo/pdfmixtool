@@ -213,7 +213,7 @@
     <message>
         <location filename="../src/operations/booklet.cpp" line="46"/>
         <source>Generate two booklets in one sheet:</source>
-        <translation type="unfinished"></translation>
+        <translation>Создать две брошюры на одном листе:</translation>
     </message>
     <message>
         <location filename="../src/operations/booklet.cpp" line="54"/>

@@ -213,7 +213,7 @@
     <message>
         <location filename="../src/operations/booklet.cpp" line="46"/>
         <source>Generate two booklets in one sheet:</source>
-        <translation type="unfinished"></translation>
+        <translation>Bir sayfada iki kitapçık oluştur:</translation>
     </message>
     <message>
         <location filename="../src/operations/booklet.cpp" line="54"/>
@@ -895,6 +895,7 @@
         <location filename="../src/widgets/pdfinfolabel.cpp" line="63"/>
         <source>%n page(s)</source>
         <translation>
+            <numerusform>%n sayfa</numerusform>
             <numerusform>%n sayfa</numerusform>
         </translation>
     </message>

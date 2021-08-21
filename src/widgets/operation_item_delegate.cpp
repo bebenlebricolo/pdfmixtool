@@ -19,7 +19,9 @@
 #include "operation_item_delegate.h"
 
 #include <QPainter>
-#include <QGraphicsSvgItem>
+#include <QSvgRenderer>
+#include <QtXml/QDomDocument>
+#include <QFile>
 
 #include "../gui_utils.h"
 
@@ -44,32 +46,27 @@ void OperationItemDelegate::paint(QPainter *painter,
         painter->fillRect(option.rect, option.palette.base());
 
     // draw icon
-    QGraphicsSvgItem svg_item(index.data(Qt::UserRole).toString());
-    QStyleOptionGraphicsItem g_option;
+    QFile file(index.data(Qt::UserRole).toString());
+    file.open(QIODevice::ReadOnly);
+    QDomDocument doc;
+    doc.setContent(file.readAll());
+    QDomNodeList path_elements = doc.elementsByTagName("path");
+    for (int i = 0; i < path_elements.length(); ++i)
+    {
+        QDomElement element = path_elements.at(i).toElement();
+        if (element.attribute("id") == "colorize")
+        {
+            QColor color = option.state & QStyle::State_Selected ?
+                        option.palette.highlightedText().color() :
+                        option.palette.text().color();
+            element.setAttribute("style",
+                                 QString("fill:%1;").arg(color.name()));
+        }
+    }
+    QSvgRenderer svg_renderer(doc.toByteArray());
     int x = option.rect.x() + (option.rect.width() - m_icon_width) / 2;
     int y = option.rect.top() + MARGIN;
-    painter->translate(x, y);
-    svg_item.paint(painter, &g_option);
-
-    // draw colored elements
-    svg_item.setElementId("colorize");
-    QPixmap pixmap1(m_icon_width * painter->device()->devicePixelRatioF(),
-                    m_icon_height * painter->device()->devicePixelRatioF());
-    pixmap1.fill(Qt::transparent);
-    QPainter tmp_painter1(&pixmap1);
-    svg_item.paint(&tmp_painter1, &g_option);
-
-    QPixmap pixmap2(pixmap1.size());
-    if (option.state & QStyle::State_Selected)
-        pixmap2.fill(option.palette.highlightedText().color());
-    else
-        pixmap2.fill(option.palette.text().color());
-    QPainter tmp_painter2(&pixmap2);
-    tmp_painter2.setCompositionMode(QPainter::CompositionMode_DestinationIn);
-    tmp_painter2.drawPixmap(0, 0, pixmap1);
-
-    painter->drawPixmap(0, 0, pixmap2);
-    painter->translate(-x, -y);
+    svg_renderer.render(painter, QRectF(x, y, m_icon_width, m_icon_height));
 
     // draw text
     QPen pen;

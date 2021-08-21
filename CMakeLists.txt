@@ -31,12 +31,12 @@ file(GLOB TS_FILES
 )
 
 if(NOT(DEFINED QT_VERSION) OR QT_VERSION EQUAL 5)
-    find_package (Qt5 REQUIRED COMPONENTS Widgets Svg LinguistTools)
-    set(QT_LIBRARIES ${Qt5Widgets_LIBRARIES} ${Qt5Svg_LIBRARIES})
+    find_package (Qt5 REQUIRED COMPONENTS Widgets Svg Xml LinguistTools)
+    set(QT_LIBRARIES ${Qt5Widgets_LIBRARIES} ${Qt5Svg_LIBRARIES} ${Qt5Xml_LIBRARIES})
     qt5_add_translation(QM_FILES ${TS_FILES} resources/pdfmixtool_en.ts)
 elseif(QT_VERSION EQUAL 6)
-    find_package (Qt6 REQUIRED COMPONENTS Widgets SvgWidgets LinguistTools)
-    set(QT_LIBRARIES ${Qt6Widgets_LIBRARIES} ${Qt6SvgWidgets_LIBRARIES})
+    find_package (Qt6 REQUIRED COMPONENTS Widgets SvgWidgets Xml LinguistTools)
+    set(QT_LIBRARIES ${Qt6Widgets_LIBRARIES} ${Qt6SvgWidgets_LIBRARIES} ${Qt6Xml_LIBRARIES})
     qt6_add_translation(QM_FILES ${TS_FILES} resources/pdfmixtool_en.ts)
 endif()
 

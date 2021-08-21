@@ -162,23 +162,11 @@
          d="M 18.238541,314.85024 H 43.238547"
          id="path842-6"
          sodipodi:nodetypes="cc" />
-      <g
+      <path
+         style="fill:#1a1a1a;fill-opacity:1;stroke:none;stroke-width:0.664301;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 57.238541,301.35003 h 9 v -3.99998 l 7.000002,4.99997 -7.000002,5.00001 v -3.99998 h -9 z"
          id="colorize"
-         transform="matrix(3.7795275,0,0,3.7795281,2.1164944,-751.44538)">
-        <rect
-           style="fill:none;fill-opacity:1;stroke:none;stroke-width:0.798029;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke markers fill"
-           id="rect868"
-           width="51.058571"
-           height="25.544603"
-           x="3.3014166"
-           y="270.99231"
-           transform="matrix(0.66329055,0,0,0.6628928,-2.9512568,90.711134)" />
-        <path
-           style="fill:#1a1a1a;fill-opacity:1;stroke:none;stroke-width:0.175763;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-           d="m 14.584375,278.55208 h 2.38125 v -1.05833 l 1.852084,1.32291 -1.852084,1.32292 v -1.05833 h -2.38125 z"
-           id="path932"
-           sodipodi:nodetypes="cccccccc" />
-      </g>
+         sodipodi:nodetypes="cccccccc" />
     </g>
   </g>
 </svg>

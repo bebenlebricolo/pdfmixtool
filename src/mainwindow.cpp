@@ -119,6 +119,7 @@ MainWindow::MainWindow(QWidget *parent) :
     m_operations.push_back(new Rotate(this));
     m_operations.push_back(new EditPageLayout(this));
     m_operations.push_back(new EditDocumentInfo(this));
+    m_operations.push_back(new ExtractImages(this));
     m_operations.push_back(new AlternateMix(this));
     m_operations.push_back(new Booklet(this));
     m_operations.push_back(new AddEmptyPages(this));

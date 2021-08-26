@@ -15,7 +15,7 @@ if(CMAKE_COMPILER_IS_GNUCC OR CMAKE_COMPILER_IS_GNUCXX)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -pedantic")
 endif()
 
-pkg_check_modules(QPDF libqpdf)
+pkg_check_modules(QPDF REQUIRED libqpdf)
 if (DEFINED QPDF_VERSION)
     string(REPLACE "." ";" QPDF_VERSION_LIST ${QPDF_VERSION})
     list(GET QPDF_VERSION_LIST 0 QPDF_VERSION_MAJOR)
@@ -24,6 +24,8 @@ else()
 endif()
 configure_file(src/qpdf_version.h.in qpdf_version.h @ONLY)
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
+
+pkg_check_modules(MAGICK REQUIRED Magick++)
 
 file(GLOB TS_FILES
      LIST_DIRECTORIES false
@@ -87,10 +89,12 @@ set (
     src/operations/delete_pages.h
     src/operations/edit_document_info.cpp
     src/operations/edit_document_info.h
-    src/operations/extract_pages.cpp
-    src/operations/extract_pages.h
     src/operations/edit_page_layout.cpp
     src/operations/edit_page_layout.h
+    src/operations/extract_images.cpp
+    src/operations/extract_images.h
+    src/operations/extract_pages.cpp
+    src/operations/extract_pages.h
     src/operations/merge.cpp
     src/operations/merge.h
     src/operations/rotate.cpp
@@ -114,9 +118,16 @@ add_executable (
     ${TRANSLATIONS_QRC}
 )
 
+target_include_directories(
+    pdfmixtool
+    PUBLIC
+    ${MAGICK_INCLUDE_DIRS}
+)
+
 target_link_libraries (
     pdfmixtool
     qpdf
+    ${MAGICK_LIBRARIES}
     ${QT_LIBRARIES}
 )
 

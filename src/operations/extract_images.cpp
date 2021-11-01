@@ -22,6 +22,7 @@
 #include <QLabel>
 #include <QFileDialog>
 #include <qpdf/QPDF.hh>
+#include <Magick++/Blob.h>
 #include <Magick++/Image.h>
 #include <fstream>
 
@@ -143,8 +144,7 @@ void ExtractImages::extract()
 
                         QPDFObjectHandle obj_dict = obj.getDict();
 
-                        if (obj_dict.getKey("/BitsPerComponent").getIntValue() != 8)
-                            return;
+                        int depth = obj_dict.getKey("/BitsPerComponent").getIntValue();
 
                         QPDFObjectHandle cs = obj_dict.getKey("/ColorSpace");
                         std::string map;
@@ -168,13 +168,14 @@ void ExtractImages::extract()
                         try
                         {
                             PointerHolder<Buffer> buffer = obj.getStreamData(qpdf_dl_all);
-                            const char *buf = reinterpret_cast<const char *>(buffer->getBuffer());
 
+                            int w = obj_dict.getKey("/Width").getUIntValue();
+                            int h = obj_dict.getKey("/Height").getUIntValue();
+
+                            Magick::Blob blob{buffer->getBuffer(), buffer->getSize()};
                             Magick::Image img;
-                            img.read(obj_dict.getKey("/Width").getUIntValue(),
-                                     obj_dict.getKey("/Height").getUIntValue(),
-                                     map, Magick::StorageType::CharPixel, buf);
-
+                            img.read(blob, Magick::Geometry(w, h), depth, map);
+                            img.magick(m_image_format.currentText().toStdString());
                             img.write(dir.filePath(filename).toStdString());
                         }
                         catch (std::exception &e)

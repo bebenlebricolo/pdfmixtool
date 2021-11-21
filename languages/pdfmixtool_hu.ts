@@ -6,37 +6,37 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="33"/>
         <source>About PDF Mix Tool</source>
-        <translation type="unfinished"></translation>
+        <translation>PDF Mix Tool névjegye</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="41"/>
         <source>Close</source>
-        <translation type="unfinished"></translation>
+        <translation>Bezár</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="51"/>
         <source>Version %1</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 verzió</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="64"/>
         <source>An application to perform common editing operations on PDF files.</source>
-        <translation type="unfinished"></translation>
+        <translation>Egy alkalmazás gyakori, PDF fájl szerkesztések végrehajtására.</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="67"/>
         <source>Website</source>
-        <translation type="unfinished"></translation>
+        <translation>Honlap</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="74"/>
         <source>About</source>
-        <translation type="unfinished"></translation>
+        <translation>Névjegy</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="89"/>
         <source>Translators</source>
-        <translation type="unfinished"></translation>
+        <translation>Fordítók</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="98"/>
@@ -46,32 +46,32 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="122"/>
         <source>License</source>
-        <translation type="unfinished"></translation>
+        <translation>Licenc</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="135"/>
         <source>Submit a pull request</source>
-        <translation type="unfinished"></translation>
+        <translation>Pull request beküldése</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="136"/>
         <source>Report a bug</source>
-        <translation type="unfinished"></translation>
+        <translation>Hibajelentés</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="137"/>
         <source>Help translating</source>
-        <translation type="unfinished"></translation>
+        <translation>Segíts a fordításban</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="144"/>
         <source>Contribute</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Közreműködés</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="160"/>
         <source>Changelog</source>
-        <translation type="unfinished"></translation>
+        <translation>Változások</translation>
     </message>
 </context>
 <context>
@@ -79,32 +79,32 @@
     <message>
         <location filename="../src/operations/abstract_operation.cpp" line="41"/>
         <source>Save</source>
-        <translation type="unfinished"></translation>
+        <translation>Mentés</translation>
     </message>
     <message>
         <location filename="../src/operations/abstract_operation.cpp" line="102"/>
         <source>Overwrite File?</source>
-        <translation type="unfinished"></translation>
+        <translation>Felülírod a fájlt?</translation>
     </message>
     <message>
         <location filename="../src/operations/abstract_operation.cpp" line="103"/>
         <source>A file called «%1» already exists. Do you want to overwrite it?</source>
-        <translation type="unfinished"></translation>
+        <translation>Egy «%1» nevű fájl már létezik. Felül akarod azt írni?</translation>
     </message>
     <message>
         <location filename="../src/operations/abstract_operation.cpp" line="109"/>
         <source>Always overwrite</source>
-        <translation type="unfinished"></translation>
+        <translation>Mindig felülír</translation>
     </message>
     <message>
         <location filename="../src/operations/abstract_operation.cpp" line="127"/>
         <source>Save PDF file</source>
-        <translation type="unfinished"></translation>
+        <translation>PDF mentése</translation>
     </message>
     <message>
         <location filename="../src/operations/abstract_operation.cpp" line="131"/>
         <source>PDF files</source>
-        <translation type="unfinished"></translation>
+        <translation>PDF fájlok</translation>
     </message>
 </context>
 <context>
@@ -112,17 +112,17 @@
     <message>
         <location filename="../src/operations/add_empty_pages.cpp" line="32"/>
         <source>Add empty pages</source>
-        <translation type="unfinished"></translation>
+        <translation>Üres oldal hozzásadása</translation>
     </message>
     <message>
         <location filename="../src/operations/add_empty_pages.cpp" line="45"/>
         <source>Count:</source>
-        <translation type="unfinished"></translation>
+        <translation>Számláló:</translation>
     </message>
     <message>
         <location filename="../src/operations/add_empty_pages.cpp" line="52"/>
         <source>Page size</source>
-        <translation type="unfinished"></translation>
+        <translation>Oldalméret</translation>
     </message>
     <message>
         <location filename="../src/operations/add_empty_pages.cpp" line="55"/>
@@ -132,47 +132,47 @@
     <message>
         <location filename="../src/operations/add_empty_pages.cpp" line="59"/>
         <source>Custom:</source>
-        <translation type="unfinished"></translation>
+        <translation>Egyéni:</translation>
     </message>
     <message>
         <location filename="../src/operations/add_empty_pages.cpp" line="85"/>
         <source>Standard:</source>
-        <translation type="unfinished"></translation>
+        <translation>Standard:</translation>
     </message>
     <message>
         <location filename="../src/operations/add_empty_pages.cpp" line="95"/>
         <source>Portrait</source>
-        <translation type="unfinished"></translation>
+        <translation>Álló</translation>
     </message>
     <message>
         <location filename="../src/operations/add_empty_pages.cpp" line="97"/>
         <source>Landscape</source>
-        <translation type="unfinished"></translation>
+        <translation>Fekvő</translation>
     </message>
     <message>
         <location filename="../src/operations/add_empty_pages.cpp" line="100"/>
         <source>Location</source>
-        <translation type="unfinished"></translation>
+        <translation>Hely</translation>
     </message>
     <message>
         <location filename="../src/operations/add_empty_pages.cpp" line="103"/>
         <source>Before</source>
-        <translation type="unfinished"></translation>
+        <translation>Előtte</translation>
     </message>
     <message>
         <location filename="../src/operations/add_empty_pages.cpp" line="106"/>
         <source>After</source>
-        <translation type="unfinished"></translation>
+        <translation>Utána</translation>
     </message>
     <message>
         <location filename="../src/operations/add_empty_pages.cpp" line="110"/>
         <source>Page:</source>
-        <translation type="unfinished"></translation>
+        <translation>Oldal:</translation>
     </message>
     <message>
         <location filename="../src/operations/add_empty_pages.cpp" line="124"/>
         <source>Save as…</source>
-        <translation type="unfinished"></translation>
+        <translation>Mentés mint…</translation>
     </message>
 </context>
 <context>
@@ -188,47 +188,47 @@
     <message>
         <location filename="../src/operations/booklet.cpp" line="31"/>
         <source>Booklet</source>
-        <translation type="unfinished"></translation>
+        <translation>Füzet</translation>
     </message>
     <message>
         <location filename="../src/operations/booklet.cpp" line="41"/>
         <source>Left</source>
-        <translation type="unfinished"></translation>
+        <translation>Bal</translation>
     </message>
     <message>
         <location filename="../src/operations/booklet.cpp" line="42"/>
         <source>Right</source>
-        <translation type="unfinished"></translation>
+        <translation>Jobb</translation>
     </message>
     <message>
         <location filename="../src/operations/booklet.cpp" line="43"/>
         <source>Binding:</source>
-        <translation type="unfinished"></translation>
+        <translation>Kötés:</translation>
     </message>
     <message>
         <location filename="../src/operations/booklet.cpp" line="44"/>
         <source>Use last page as back cover:</source>
-        <translation type="unfinished"></translation>
+        <translation>Utolsó oldal használata hátsó borítóként:</translation>
     </message>
     <message>
         <location filename="../src/operations/booklet.cpp" line="46"/>
         <source>Generate two booklets in one sheet:</source>
-        <translation type="unfinished"></translation>
+        <translation>Két füzet létrehozása egy íven:</translation>
     </message>
     <message>
         <location filename="../src/operations/booklet.cpp" line="54"/>
         <source>Generate booklet</source>
-        <translation type="unfinished"></translation>
+        <translation>Füzet létrehozása</translation>
     </message>
     <message>
         <location filename="../src/operations/booklet.cpp" line="75"/>
         <source>Save booklet PDF file</source>
-        <translation type="unfinished"></translation>
+        <translation>Füzet PDF fájl mentése</translation>
     </message>
     <message>
         <location filename="../src/operations/booklet.cpp" line="79"/>
         <source>PDF files</source>
-        <translation type="unfinished"></translation>
+        <translation>PDF fájlok</translation>
     </message>
 </context>
 <context>
@@ -236,12 +236,12 @@
     <message>
         <location filename="../src/operations/delete_pages.cpp" line="32"/>
         <source>Delete pages</source>
-        <translation type="unfinished"></translation>
+        <translation>Oldalak törlése</translation>
     </message>
     <message>
         <location filename="../src/operations/delete_pages.cpp" line="56"/>
         <source>Save as…</source>
-        <translation type="unfinished"></translation>
+        <translation>Mentés mint…</translation>
     </message>
 </context>
 <context>
@@ -249,32 +249,32 @@
     <message>
         <location filename="../src/operations/edit_document_info.cpp" line="14"/>
         <source>Document information</source>
-        <translation type="unfinished"></translation>
+        <translation>Dokumentum információ</translation>
     </message>
     <message>
         <location filename="../src/operations/edit_document_info.cpp" line="24"/>
         <source>Title:</source>
-        <translation type="unfinished"></translation>
+        <translation>Cím:</translation>
     </message>
     <message>
         <location filename="../src/operations/edit_document_info.cpp" line="27"/>
         <source>Author:</source>
-        <translation type="unfinished"></translation>
+        <translation>Szerző:</translation>
     </message>
     <message>
         <location filename="../src/operations/edit_document_info.cpp" line="30"/>
         <source>Subject:</source>
-        <translation type="unfinished"></translation>
+        <translation>Téma:</translation>
     </message>
     <message>
         <location filename="../src/operations/edit_document_info.cpp" line="33"/>
         <source>Keywords:</source>
-        <translation type="unfinished"></translation>
+        <translation>Kulcsszavak:</translation>
     </message>
     <message>
         <location filename="../src/operations/edit_document_info.cpp" line="36"/>
         <source>Creator:</source>
-        <translation type="unfinished"></translation>
+        <translation>Létrehozta:</translation>
     </message>
     <message>
         <location filename="../src/operations/edit_document_info.cpp" line="39"/>
@@ -284,17 +284,17 @@
     <message>
         <location filename="../src/operations/edit_document_info.cpp" line="42"/>
         <source>Creation date:</source>
-        <translation type="unfinished"></translation>
+        <translation>Létrehozás dátuma:</translation>
     </message>
     <message>
         <location filename="../src/operations/edit_document_info.cpp" line="46"/>
         <source>Modification date:</source>
-        <translation type="unfinished"></translation>
+        <translation>Módosítás dátuma:</translation>
     </message>
     <message>
         <location filename="../src/operations/edit_document_info.cpp" line="75"/>
         <source>Save as…</source>
-        <translation type="unfinished"></translation>
+        <translation>Mentés mint…</translation>
     </message>
 </context>
 <context>
@@ -302,12 +302,12 @@
     <message>
         <location filename="../src/editmultipageprofiledialog.cpp" line="29"/>
         <source>Edit multipage profile</source>
-        <translation type="unfinished"></translation>
+        <translation>Többoldalas profil szerkeszése</translation>
     </message>
     <message>
         <location filename="../src/editmultipageprofiledialog.cpp" line="37"/>
         <source>Name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Név:</translation>
     </message>
 </context>
 <context>
@@ -315,17 +315,17 @@
     <message>
         <location filename="../src/operations/edit_page_layout.cpp" line="34"/>
         <source>Pages layout</source>
-        <translation type="unfinished"></translation>
+        <translation>Oldalak elrendezése</translation>
     </message>
     <message>
         <location filename="../src/operations/edit_page_layout.cpp" line="44"/>
         <source>Apply to:</source>
-        <translation type="unfinished"></translation>
+        <translation>Alkalmazás erre:</translation>
     </message>
     <message>
         <location filename="../src/operations/edit_page_layout.cpp" line="70"/>
         <source>Save as…</source>
-        <translation type="unfinished"></translation>
+        <translation>Mentés mint…</translation>
     </message>
 </context>
 <context>
@@ -348,12 +348,12 @@
     <message>
         <location filename="../src/editpdfentrydialog.cpp" line="90"/>
         <source>OK</source>
-        <translation type="unfinished"></translation>
+        <translation>OK</translation>
     </message>
     <message>
         <location filename="../src/editpdfentrydialog.cpp" line="96"/>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>Mégsem</translation>
     </message>
     <message>
         <location filename="../src/editpdfentrydialog.cpp" line="103"/>
@@ -910,7 +910,7 @@
     <message>
         <location filename="../src/operations/rotate.cpp" line="73"/>
         <source>Save as…</source>
-        <translation type="unfinished"></translation>
+        <translation>Mentés mint…</translation>
     </message>
 </context>
 </TS>

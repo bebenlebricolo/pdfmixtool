@@ -54,7 +54,7 @@ AboutDialog::AboutDialog(QWidget *parent) :
     application_name->setAlignment(Qt::AlignTop);
 
     QTabWidget *tab_widget = new QTabWidget(this);
-    QString style("background-color: white; padding: 10px");
+    QString style("padding: 10px");
 
     // Dialog informations tab
     QLabel *info_label = new QLabel();

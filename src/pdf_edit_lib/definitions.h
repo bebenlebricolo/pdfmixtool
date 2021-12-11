@@ -37,6 +37,7 @@ struct PaperSize {
 
 const PaperSize paper_sizes[] = {
     {21.6, 27.9, "US letter", true},
+    {21.6, 35.6, "US legal", true},
     {84.1, 118.9, "A0", true},
     {59.4, 84.1, "A1", true},
     {42.0, 59.4, "A2", true},

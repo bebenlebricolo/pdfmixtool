@@ -21,6 +21,7 @@
 #include <QLibraryInfo>
 #include "mainwindow.h"
 #include "mouseeventfilter.h"
+#include "libraries.h"
 
 int main(int argc, char *argv[])
 {
@@ -36,7 +37,7 @@ int main(int argc, char *argv[])
     app.setApplicationDisplayName("PDF Mix Tool");
     app.setOrganizationDomain("scarpetta.eu");
     app.setOrganizationName("PDFMixTool");
-    app.setApplicationVersion("1.0.2");
+    app.setApplicationVersion(PDFMIXTOOL_VERSION);
     app.setDesktopFileName("eu.scarpetta.PDFMixTool");
 
     // Set up translations

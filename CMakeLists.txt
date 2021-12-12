@@ -1,6 +1,6 @@
 cmake_minimum_required (VERSION 3.6)
 
-project (PDFMixTool)
+project (PDFMixTool VERSION 1.1)
 
 include(GNUInstallDirs)
 include(FindPkgConfig)
@@ -22,7 +22,7 @@ if (DEFINED QPDF_VERSION)
 else()
     set(QPDF_VERSION_MAJOR 10)
 endif()
-configure_file(src/qpdf_version.h.in qpdf_version.h @ONLY)
+configure_file(src/pdf_edit_lib/qpdf_version.h.in qpdf_version.h @ONLY)
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
 
 pkg_check_modules(MAGICK REQUIRED Magick++)
@@ -36,10 +36,12 @@ if(NOT(DEFINED QT_VERSION) OR QT_VERSION EQUAL 5)
     find_package (Qt5 REQUIRED COMPONENTS Widgets Svg Xml LinguistTools)
     set(QT_LIBRARIES ${Qt5Widgets_LIBRARIES} ${Qt5Svg_LIBRARIES} ${Qt5Xml_LIBRARIES})
     qt5_add_translation(QM_FILES ${TS_FILES} resources/pdfmixtool_en.ts)
+    set(QtWidgets_VERSION ${Qt5Widgets_VERSION})
 elseif(QT_VERSION EQUAL 6)
     find_package (Qt6 REQUIRED COMPONENTS Widgets SvgWidgets Xml LinguistTools)
     set(QT_LIBRARIES ${Qt6Widgets_LIBRARIES} ${Qt6SvgWidgets_LIBRARIES} ${Qt6Xml_LIBRARIES})
     qt6_add_translation(QM_FILES ${TS_FILES} resources/pdfmixtool_en.ts)
+    set(QtWidgets_VERSION ${Qt6Widgets_VERSION})
 endif()
 
 set(TRANSLATIONS_QRC "${CMAKE_CURRENT_BINARY_DIR}/tr.qrc")
@@ -49,6 +51,8 @@ foreach(QM_FILE ${QM_FILES})
     file(APPEND ${TRANSLATIONS_QRC} "<file>${QM_FILE_NAME}</file>")
 endforeach()
 file(APPEND ${TRANSLATIONS_QRC} "</qresource></RCC>")
+
+configure_file(src/libraries.h.in libraries.h @ONLY)
 
 set (
     SRCS
@@ -65,6 +69,7 @@ set (
     src/inputpdffiledelegate.h
     src/inputpdffilewidget.cpp
     src/inputpdffilewidget.h
+    src/libraries.h.in
     src/mainwindow.cpp
     src/mainwindow.h
     src/mouseeventfilter.cpp
@@ -77,6 +82,7 @@ set (
     src/pdf_edit_lib/pdf_editor.h
     src/pdf_edit_lib/pdf_info.cpp
     src/pdf_edit_lib/pdf_info.h
+    src/pdf_edit_lib/qpdf_version.h.in
     src/operations/abstract_operation.cpp
     src/operations/abstract_operation.h
     src/operations/add_empty_pages.cpp

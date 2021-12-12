@@ -1,0 +1,6 @@
+#ifndef QPDF_VERSION_H
+#define QPDF_VERSION_H
+
+#define QPDF_VERSION_MAJOR @QPDF_VERSION_MAJOR@
+
+#endif

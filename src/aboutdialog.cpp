@@ -25,6 +25,7 @@
 #include <QLabel>
 #include <QFile>
 #include <QScrollArea>
+#include "libraries.h"
 
 AboutDialog::AboutDialog(QWidget *parent) :
     QDialog(parent)
@@ -72,6 +73,23 @@ AboutDialog::AboutDialog(QWidget *parent) :
     info_label->setAlignment(Qt::AlignCenter);
 
     tab_widget->addTab(info_label, tr("About"));
+
+    // Dialog libraries tab
+    QLabel *libraries = new QLabel();
+    libraries->setText(
+                QString(
+                    "<p>%1</p>"
+                    "<ul>"
+                    "<li><b>Qt</b> %2</li>"
+                    "<li><b>QPDF</b> %3</li>"
+                    "<li><b>Magick++</b> %4</li>"
+                    "</ul>").arg(
+                    tr("PDF Mix Tool is using the following libraries:"),
+                    QtWidgets_VERSION, QPDF_VERSION, MAGICK_VERSION));
+    libraries->setTextInteractionFlags(Qt::TextBrowserInteraction);
+    libraries->setStyleSheet(style);
+
+    tab_widget->addTab(libraries, tr("Libraries"));
 
     // Dialog credits tab
     QScrollArea *scroll_area = new QScrollArea();

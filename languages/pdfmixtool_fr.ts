@@ -84,12 +84,12 @@
     <message>
         <location filename="../src/operations/abstract_operation.cpp" line="102"/>
         <source>Overwrite File?</source>
-        <translation>Remplacer le fichier&#x202f;?</translation>
+        <translation>Remplacer le fichier ?</translation>
     </message>
     <message>
         <location filename="../src/operations/abstract_operation.cpp" line="103"/>
         <source>A file called «%1» already exists. Do you want to overwrite it?</source>
-        <translation>Un fichier nommé «&#x202f;%1&#x202f;» existe déjà. Voulez-vous le remplacer&#xa0;?</translation>
+        <translation>Un fichier nommé « %1 » existe déjà. Voulez-vous le remplacer&#xa0;?</translation>
     </message>
     <message>
         <location filename="../src/operations/abstract_operation.cpp" line="109"/>
@@ -104,7 +104,7 @@
     <message>
         <location filename="../src/operations/abstract_operation.cpp" line="131"/>
         <source>PDF files</source>
-        <translation type="unfinished"></translation>
+        <translation>Fichiers PDF</translation>
     </message>
 </context>
 <context>
@@ -208,12 +208,12 @@
     <message>
         <location filename="../src/operations/booklet.cpp" line="44"/>
         <source>Use last page as back cover:</source>
-        <translation>Utilisez la dernière page comme couverture arrière&#x202f;:</translation>
+        <translation>Utilisez la dernière page comme couverture arrière :</translation>
     </message>
     <message>
         <location filename="../src/operations/booklet.cpp" line="46"/>
         <source>Generate two booklets in one sheet:</source>
-        <translation type="unfinished"></translation>
+        <translation>Générer deux livrets sur une seule page&#xa0;:</translation>
     </message>
     <message>
         <location filename="../src/operations/booklet.cpp" line="54"/>
@@ -228,7 +228,7 @@
     <message>
         <location filename="../src/operations/booklet.cpp" line="79"/>
         <source>PDF files</source>
-        <translation type="unfinished"></translation>
+        <translation>Fichier PDF</translation>
     </message>
 </context>
 <context>
@@ -249,52 +249,52 @@
     <message>
         <location filename="../src/operations/edit_document_info.cpp" line="14"/>
         <source>Document information</source>
-        <translation type="unfinished"></translation>
+        <translation>Informations du document</translation>
     </message>
     <message>
         <location filename="../src/operations/edit_document_info.cpp" line="24"/>
         <source>Title:</source>
-        <translation type="unfinished"></translation>
+        <translation>Titre&#xa0;:</translation>
     </message>
     <message>
         <location filename="../src/operations/edit_document_info.cpp" line="27"/>
         <source>Author:</source>
-        <translation type="unfinished"></translation>
+        <translation>Auteur&#xa0;:</translation>
     </message>
     <message>
         <location filename="../src/operations/edit_document_info.cpp" line="30"/>
         <source>Subject:</source>
-        <translation type="unfinished"></translation>
+        <translation>Sujet&#xa0;:</translation>
     </message>
     <message>
         <location filename="../src/operations/edit_document_info.cpp" line="33"/>
         <source>Keywords:</source>
-        <translation type="unfinished"></translation>
+        <translation>Mots clés&#xa0;:</translation>
     </message>
     <message>
         <location filename="../src/operations/edit_document_info.cpp" line="36"/>
         <source>Creator:</source>
-        <translation type="unfinished"></translation>
+        <translation>Créateur&#xa0;:</translation>
     </message>
     <message>
         <location filename="../src/operations/edit_document_info.cpp" line="39"/>
         <source>Producer:</source>
-        <translation type="unfinished"></translation>
+        <translation>Producteur&#xa0;:</translation>
     </message>
     <message>
         <location filename="../src/operations/edit_document_info.cpp" line="42"/>
         <source>Creation date:</source>
-        <translation type="unfinished"></translation>
+        <translation>Date de création&#xa0;:</translation>
     </message>
     <message>
         <location filename="../src/operations/edit_document_info.cpp" line="46"/>
         <source>Modification date:</source>
-        <translation type="unfinished"></translation>
+        <translation>Date de modification&#xa0;:</translation>
     </message>
     <message>
         <location filename="../src/operations/edit_document_info.cpp" line="75"/>
         <source>Save as…</source>
-        <translation type="unfinished">Enregistrer sous…</translation>
+        <translation>Enregistrer sous…</translation>
     </message>
 </context>
 <context>
@@ -307,7 +307,7 @@
     <message>
         <location filename="../src/editmultipageprofiledialog.cpp" line="37"/>
         <source>Name:</source>
-        <translation>Nom&#x202f;:</translation>
+        <translation>Nom :</translation>
     </message>
 </context>
 <context>
@@ -315,12 +315,12 @@
     <message>
         <location filename="../src/operations/edit_page_layout.cpp" line="34"/>
         <source>Pages layout</source>
-        <translation type="unfinished">Mise en page</translation>
+        <translation>Mise en page</translation>
     </message>
     <message>
         <location filename="../src/operations/edit_page_layout.cpp" line="44"/>
         <source>Apply to:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">S&apos;applique à&#xa0;:</translation>
     </message>
     <message>
         <location filename="../src/operations/edit_page_layout.cpp" line="70"/>
@@ -358,12 +358,12 @@
     <message>
         <location filename="../src/editpdfentrydialog.cpp" line="103"/>
         <source>Multipage:</source>
-        <translation>Multipage&#x202f;:</translation>
+        <translation>Multipage :</translation>
     </message>
     <message>
         <location filename="../src/editpdfentrydialog.cpp" line="105"/>
         <source>Rotation:</source>
-        <translation>Rotation&#x202f;:</translation>
+        <translation>Rotation :</translation>
     </message>
 </context>
 <context>
@@ -403,7 +403,7 @@
     <message>
         <location filename="../src/operations/extract_pages.cpp" line="178"/>
         <source>PDF files</source>
-        <translation type="unfinished"></translation>
+        <translation>Fichiers PDF</translation>
     </message>
 </context>
 <context>
@@ -416,7 +416,7 @@
     <message>
         <location filename="../src/inputpdffiledelegate.cpp" line="81"/>
         <source>Page order:</source>
-        <translation>Ordre des pages&#x202f;:</translation>
+        <translation>Ordre des pages :</translation>
     </message>
     <message>
         <location filename="../src/inputpdffiledelegate.cpp" line="84"/>
@@ -436,7 +436,7 @@
     <message>
         <location filename="../src/inputpdffiledelegate.cpp" line="125"/>
         <source>Multipage:</source>
-        <translation>Multipage&#x202f;:</translation>
+        <translation>Multipage :</translation>
     </message>
     <message>
         <location filename="../src/inputpdffiledelegate.cpp" line="130"/>
@@ -459,7 +459,7 @@
     <message>
         <location filename="../src/inputpdffilewidget.cpp" line="60"/>
         <source>Reverse page order:</source>
-        <translation>Inverser l&apos;ordre des pages&#x202f;:</translation>
+        <translation>Inverser l&apos;ordre des pages :</translation>
     </message>
     <message>
         <location filename="../src/inputpdffilewidget.cpp" line="74"/>
@@ -484,12 +484,12 @@
     <message>
         <location filename="../src/inputpdffilewidget.cpp" line="91"/>
         <source>Multipage:</source>
-        <translation>Multipage&#x202f;:</translation>
+        <translation>Multipage :</translation>
     </message>
     <message>
         <location filename="../src/inputpdffilewidget.cpp" line="93"/>
         <source>Rotation:</source>
-        <translation>Rotation&#x202f;:</translation>
+        <translation>Rotation :</translation>
     </message>
     <message>
         <location filename="../src/inputpdffilewidget.cpp" line="95"/>
@@ -527,7 +527,7 @@
     <message>
         <location filename="../src/mainwindow.cpp" line="292"/>
         <source>PDF files</source>
-        <translation type="unfinished"></translation>
+        <translation>Fichiers PDF</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="307"/>
@@ -557,7 +557,7 @@
     <message>
         <location filename="../src/mainwindow.cpp" line="378"/>
         <source>Error generating the PDF</source>
-        <translation type="unfinished"></translation>
+        <translation>Échec lors de la génération du PDF</translation>
     </message>
 </context>
 <context>
@@ -565,12 +565,12 @@
     <message>
         <location filename="../src/operations/merge.cpp" line="42"/>
         <source>Merge PDF files</source>
-        <translation type="unfinished"></translation>
+        <translation>Fusionner des fichiers PDF</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="70"/>
         <source>Edit</source>
-        <translation type="unfinished">Modifier</translation>
+        <translation>Modifier</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="71"/>
@@ -580,23 +580,23 @@
     <message>
         <location filename="../src/operations/merge.cpp" line="74"/>
         <source>Main toolbar</source>
-        <translation type="unfinished">Barre d&apos;outils principale</translation>
+        <translation>Barre d&apos;outils principale</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="81"/>
         <source>Add PDF file</source>
-        <translation type="unfinished">Ajouter un fichier PDF</translation>
+        <translation>Ajouter un fichier PDF</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="86"/>
         <source>Select one or more PDF files to open</source>
-        <translation type="unfinished">Sélectionnez un ou plusieurs fichiers PDF à ouvrir</translation>
+        <translation>Sélectionnez un ou plusieurs fichiers PDF à ouvrir</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="88"/>
         <location filename="../src/operations/merge.cpp" line="589"/>
         <source>PDF files</source>
-        <translation type="unfinished"></translation>
+        <translation>Fichiers PDF</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="93"/>
@@ -616,64 +616,64 @@
     <message>
         <location filename="../src/operations/merge.cpp" line="113"/>
         <source>Load files list</source>
-        <translation type="unfinished">Charger la liste des fichiers</translation>
+        <translation>Charger la liste des fichiers</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="118"/>
         <source>Save files list</source>
-        <translation type="unfinished">Enregistrer la liste des fichiers</translation>
+        <translation>Enregistrer la liste des fichiers</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="152"/>
         <location filename="../src/operations/merge.cpp" line="156"/>
         <source>Generate PDF</source>
-        <translation type="unfinished">Générer un PDF</translation>
+        <translation>Générer un PDF</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="332"/>
         <source>Select the JSON file containing the files list</source>
-        <translation type="unfinished">Sélectionnez le fichier JSON contenant la liste des fichiers</translation>
+        <translation>Sélectionnez le fichier JSON contenant la liste des fichiers</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="334"/>
         <location filename="../src/operations/merge.cpp" line="352"/>
         <source>JSON files (*.json)</source>
-        <translation type="unfinished">Fichiers JSON (*.json)</translation>
+        <translation>Fichiers JSON (*.json)</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="340"/>
         <source>Error while reading the JSON file!</source>
-        <translation type="unfinished">Erreur lors de la lecture du fichier JSON&#x202f;!</translation>
+        <translation>Erreur lors de la lecture du fichier JSON !</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="341"/>
         <source>An error occurred while reading the JSON file!</source>
-        <translation type="unfinished">Une erreur s&apos;est produite lors de la lecture du fichier JSON&#x202f;!</translation>
+        <translation>Une erreur s&apos;est produite lors de la lecture du fichier JSON !</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="348"/>
         <source>Select a JSON file</source>
-        <translation type="unfinished">Sélectionnez un fichier JSON</translation>
+        <translation>Sélectionnez un fichier JSON</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="427"/>
         <source>Error opening file</source>
-        <translation type="unfinished">Erreur lors de l&apos;ouverture du fichier</translation>
+        <translation>Erreur lors de l&apos;ouverture du fichier</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="561"/>
         <source>&lt;p&gt;Output pages of file &lt;b&gt;%1&lt;/b&gt; are badly formatted. Please make sure you complied with the following rules:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;intervals of pages must be written indicating the first page and the last page separated by a dash (e.g. &quot;1-5&quot;);&lt;/li&gt;&lt;li&gt;single pages and intervals of pages must be separated by spaces, commas or both (e.g. &quot;1, 2, 3, 5-10&quot; or &quot;1 2 3 5-10&quot;);&lt;/li&gt;&lt;li&gt;all pages and intervals of pages must be between 1 and the number of pages of the PDF file;&lt;/li&gt;&lt;li&gt;only numbers, spaces, commas and dashes can be used. All other characters are not allowed.&lt;/li&gt;&lt;/ul&gt;</source>
-        <translation type="unfinished">&lt;p&gt; Les pages de sortie du fichier &lt;b&gt;%1 &lt;/b&gt; sont mal formatées. Veuillez vous assurer que vous avez respecté les règles suivantes&#x202f;: &lt;/p&gt; &lt;ul&gt; &lt;li&gt; les intervalles de pages doivent être écrits en indiquant la première page et la dernière page séparées par un tiret (par exemple &quot;1-5&quot;)&#x202f;; &lt;/li &gt;&lt;li&gt; les pages simples et les intervalles de pages doivent être séparés par des espaces, des virgules ou les deux (par exemple &quot;1, 2, 3, 5-10&quot; ou &quot;1 2 3 5-10&quot;)&#x202f;; &lt;/li&gt; &lt;li&gt; toutes les pages et tous les intervalles de pages doivent être compris entre 1 et le nombre de pages du fichier PDF&#x202f;; &lt;/li&gt; &lt;li&gt; seuls les nombres, les espaces, les virgules et les tirets peuvent être utilisés. Tous les autres caractères ne sont pas autorisés. &lt;/li&gt; &lt;/ul&gt;</translation>
+        <translation type="unfinished">&lt;p&gt; Les pages de sortie du fichier &lt;b&gt;%1 &lt;/b&gt; sont mal formatées. Veuillez vous assurer que vous avez respecté les règles suivantes : &lt;/p&gt; &lt;ul&gt; &lt;li&gt; les intervalles de pages doivent être écrits en indiquant la première page et la dernière page séparées par un tiret (par exemple &quot;1-5&quot;) ; &lt;/li &gt;&lt;li&gt; les pages simples et les intervalles de pages doivent être séparés par des espaces, des virgules ou les deux (par exemple &quot;1, 2, 3, 5-10&quot; ou &quot;1 2 3 5-10&quot;) ; &lt;/li&gt; &lt;li&gt; toutes les pages et tous les intervalles de pages doivent être compris entre 1 et le nombre de pages du fichier PDF ; &lt;/li&gt; &lt;li&gt; seuls les nombres, les espaces, les virgules et les tirets peuvent être utilisés. Tous les autres caractères ne sont pas autorisés. &lt;/li&gt; &lt;/ul&gt;</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="578"/>
         <source>PDF generation error</source>
-        <translation type="unfinished">Erreur de génération de PDF</translation>
+        <translation>Erreur lors de la génération du PDF</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="585"/>
         <source>Save PDF file</source>
-        <translation type="unfinished">Enregistrer le fichier PDF</translation>
+        <translation>Enregistrer le fichier PDF</translation>
     </message>
 </context>
 <context>
@@ -681,117 +681,117 @@
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="34"/>
         <source>Standard size</source>
-        <translation type="unfinished"></translation>
+        <translation>Taille standard</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="35"/>
         <source>Custom size</source>
-        <translation type="unfinished"></translation>
+        <translation>Taille personnalisée</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="44"/>
         <source>Portrait</source>
-        <translation type="unfinished">Portrait</translation>
+        <translation>Portrait</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="45"/>
         <source>Landscape</source>
-        <translation type="unfinished">Paysage</translation>
+        <translation>Paysage</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="65"/>
         <source>Right-to-left</source>
-        <translation type="unfinished"></translation>
+        <translation>De droite à gauche</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="67"/>
         <location filename="../src/widgets/multipage_editor.cpp" line="202"/>
         <source>Left</source>
-        <translation type="unfinished">Gauche</translation>
+        <translation>Gauche</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="68"/>
         <location filename="../src/widgets/multipage_editor.cpp" line="72"/>
         <source>Center</source>
-        <translation type="unfinished">Centrer</translation>
+        <translation>Centre</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="69"/>
         <location filename="../src/widgets/multipage_editor.cpp" line="205"/>
         <source>Right</source>
-        <translation type="unfinished">Droite</translation>
+        <translation>Droite</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="71"/>
         <location filename="../src/widgets/multipage_editor.cpp" line="208"/>
         <source>Top</source>
-        <translation type="unfinished">Haut</translation>
+        <translation>Haut</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="73"/>
         <location filename="../src/widgets/multipage_editor.cpp" line="211"/>
         <source>Bottom</source>
-        <translation type="unfinished">Bas</translation>
+        <translation>Bas</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="106"/>
         <source>Page size</source>
-        <translation type="unfinished">Taille de la page</translation>
+        <translation>Taille de la page</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="125"/>
         <source>Orientation:</source>
-        <translation type="unfinished"></translation>
+        <translation>Orientation&#xa0;:</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="132"/>
         <source>Width:</source>
-        <translation type="unfinished">Largeur :</translation>
+        <translation>Largeur :</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="135"/>
         <source>Height:</source>
-        <translation type="unfinished">Hauteur :</translation>
+        <translation>Hauteur :</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="162"/>
         <source>Pages layout</source>
-        <translation type="unfinished">Mise en page</translation>
+        <translation>Mise en page</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="169"/>
         <source>Rows:</source>
-        <translation type="unfinished">Lignes&#x202f;:</translation>
+        <translation>Lignes :</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="172"/>
         <source>Columns:</source>
-        <translation type="unfinished">Colonnes&#x202f;:</translation>
+        <translation>Colonnes :</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="175"/>
         <source>Spacing:</source>
-        <translation type="unfinished">Écartement&#x202f;:</translation>
+        <translation>Écartement :</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="181"/>
         <source>Pages alignment</source>
-        <translation type="unfinished">Alignement des pages</translation>
+        <translation>Alignement des pages</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="188"/>
         <source>Horizontal:</source>
-        <translation type="unfinished">Horizontal&#x202f;:</translation>
+        <translation>Horizontal :</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="191"/>
         <source>Vertical:</source>
-        <translation type="unfinished">Vertical&#x202f;:</translation>
+        <translation>Vertical :</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="195"/>
         <source>Margins</source>
-        <translation type="unfinished">Marges</translation>
+        <translation>Marges</translation>
     </message>
 </context>
 <context>
@@ -871,7 +871,7 @@
     <message>
         <location filename="../src/widgets/pages_selector.cpp" line="125"/>
         <source>&lt;p&gt;Page intervals are badly formatted. Please make sure you complied with the following rules:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;intervals of pages must be written indicating the first page and the last page separated by a dash (e.g. &quot;1-5&quot;);&lt;/li&gt;&lt;li&gt;single pages and intervals of pages must be separated by spaces, commas or both (e.g. &quot;1, 2, 3, 5-10&quot; or &quot;1 2 3 5-10&quot;);&lt;/li&gt;&lt;li&gt;all pages and intervals of pages must be between 1 and the number of pages of the PDF file;&lt;/li&gt;&lt;li&gt;only numbers, spaces, commas and dashes can be used. All other characters are not allowed.&lt;/li&gt;&lt;/ul&gt;</source>
-        <translation>&lt;p&gt;Les intervalles de pages sont mal formatées. Veuillez vous assurer que vous avez respecté les règles suivantes&#x202f;: &lt;/p&gt; &lt;ul&gt; &lt;li&gt; les intervalles de pages doivent être écrits en indiquant la première page et la dernière page séparées par un tiret (par exemple &quot;1-5&quot;)&#x202f;; &lt;/li &gt;&lt;li&gt; les pages simples et les intervalles de pages doivent être séparés par des espaces, des virgules ou les deux (par exemple &quot;1, 2, 3, 5-10&quot; ou &quot;1 2 3 5-10&quot;)&#x202f;; &lt;/li&gt; &lt;li&gt; toutes les pages et tous les intervalles de pages doivent être compris entre 1 et le nombre de pages du fichier PDF&#x202f;; &lt;/li&gt; &lt;li&gt; seuls les nombres, les espaces, les virgules et les tirets peuvent être utilisés. Tous les autres caractères ne sont pas autorisés. &lt;/li&gt; &lt;/ul&gt;</translation>
+        <translation>&lt;p&gt;Les intervalles de pages sont mal formatées. Veuillez vous assurer que vous avez respecté les règles suivantes : &lt;/p&gt; &lt;ul&gt; &lt;li&gt; les intervalles de pages doivent être écrits en indiquant la première page et la dernière page séparées par un tiret (par exemple &quot;1-5&quot;) ; &lt;/li &gt;&lt;li&gt; les pages simples et les intervalles de pages doivent être séparés par des espaces, des virgules ou les deux (par exemple &quot;1, 2, 3, 5-10&quot; ou &quot;1 2 3 5-10&quot;) ; &lt;/li&gt; &lt;li&gt; toutes les pages et tous les intervalles de pages doivent être compris entre 1 et le nombre de pages du fichier PDF ; &lt;/li&gt; &lt;li&gt; seuls les nombres, les espaces, les virgules et les tirets peuvent être utilisés. Tous les autres caractères ne sont pas autorisés. &lt;/li&gt; &lt;/ul&gt;</translation>
     </message>
     <message>
         <location filename="../src/widgets/pages_selector.cpp" line="141"/>
@@ -905,12 +905,12 @@
     <message>
         <location filename="../src/operations/rotate.cpp" line="32"/>
         <source>Rotate</source>
-        <translation type="unfinished"></translation>
+        <translation>Pivoter</translation>
     </message>
     <message>
         <location filename="../src/operations/rotate.cpp" line="73"/>
         <source>Save as…</source>
-        <translation type="unfinished">Enregistrer sous…</translation>
+        <translation>Enregistrer sous…</translation>
     </message>
 </context>
 </TS>

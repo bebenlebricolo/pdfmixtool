@@ -320,7 +320,7 @@
     <message>
         <location filename="../src/operations/edit_page_layout.cpp" line="44"/>
         <source>Apply to:</source>
-        <translation type="unfinished">S&apos;applique à&#xa0;:</translation>
+        <translation>Appliquer à&#xa0;:</translation>
     </message>
     <message>
         <location filename="../src/operations/edit_page_layout.cpp" line="70"/>
@@ -601,17 +601,17 @@
     <message>
         <location filename="../src/operations/merge.cpp" line="93"/>
         <source>Move up</source>
-        <translation type="unfinished">Déplacer vers le haut</translation>
+        <translation>Vers le haut</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="98"/>
         <source>Move down</source>
-        <translation type="unfinished">Déplacer vers le bas</translation>
+        <translation>Vers le bas</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="103"/>
         <source>Remove file</source>
-        <translation type="unfinished">Effacer le fichier</translation>
+        <translation>Supprimer le fichier</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="113"/>

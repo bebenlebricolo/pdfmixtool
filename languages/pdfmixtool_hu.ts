@@ -112,7 +112,7 @@
     <message>
         <location filename="../src/operations/add_empty_pages.cpp" line="32"/>
         <source>Add empty pages</source>
-        <translation>Üres oldal hozzásadása</translation>
+        <translation>Üres oldal hozzáadása</translation>
     </message>
     <message>
         <location filename="../src/operations/add_empty_pages.cpp" line="45"/>

@@ -41,7 +41,7 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="98"/>
         <source>Credits</source>
-        <translation type="unfinished"></translation>
+        <translation>Szerzők</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="122"/>
@@ -707,91 +707,91 @@
         <location filename="../src/widgets/multipage_editor.cpp" line="67"/>
         <location filename="../src/widgets/multipage_editor.cpp" line="202"/>
         <source>Left</source>
-        <translation type="unfinished"></translation>
+        <translation>Bal</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="68"/>
         <location filename="../src/widgets/multipage_editor.cpp" line="72"/>
         <source>Center</source>
-        <translation type="unfinished"></translation>
+        <translation>Közép</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="69"/>
         <location filename="../src/widgets/multipage_editor.cpp" line="205"/>
         <source>Right</source>
-        <translation type="unfinished"></translation>
+        <translation>Jobb</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="71"/>
         <location filename="../src/widgets/multipage_editor.cpp" line="208"/>
         <source>Top</source>
-        <translation type="unfinished"></translation>
+        <translation>Felül</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="73"/>
         <location filename="../src/widgets/multipage_editor.cpp" line="211"/>
         <source>Bottom</source>
-        <translation type="unfinished"></translation>
+        <translation>Alul</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="106"/>
         <source>Page size</source>
-        <translation type="unfinished"></translation>
+        <translation>Oldalméret</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="125"/>
         <source>Orientation:</source>
-        <translation type="unfinished"></translation>
+        <translation>Tájolás:</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="132"/>
         <source>Width:</source>
-        <translation type="unfinished"></translation>
+        <translation>Szélesség:</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="135"/>
         <source>Height:</source>
-        <translation type="unfinished"></translation>
+        <translation>Magasság:</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="162"/>
         <source>Pages layout</source>
-        <translation type="unfinished"></translation>
+        <translation>Oldalak elrendezése</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="169"/>
         <source>Rows:</source>
-        <translation type="unfinished"></translation>
+        <translation>Sorok:</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="172"/>
         <source>Columns:</source>
-        <translation type="unfinished"></translation>
+        <translation>Oszlopok:</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="175"/>
         <source>Spacing:</source>
-        <translation type="unfinished"></translation>
+        <translation>Térköz:</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="181"/>
         <source>Pages alignment</source>
-        <translation type="unfinished"></translation>
+        <translation>Oldalak igazítása</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="188"/>
         <source>Horizontal:</source>
-        <translation type="unfinished"></translation>
+        <translation>Vízszintes:</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="191"/>
         <source>Vertical:</source>
-        <translation type="unfinished"></translation>
+        <translation>Függőleges:</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="195"/>
         <source>Margins</source>
-        <translation type="unfinished"></translation>
+        <translation>Margók</translation>
     </message>
 </context>
 <context>
@@ -799,51 +799,51 @@
     <message>
         <location filename="../src/multipageprofilesmanager.cpp" line="31"/>
         <source>New profile…</source>
-        <translation type="unfinished"></translation>
+        <translation>Új profil…</translation>
     </message>
     <message>
         <location filename="../src/multipageprofilesmanager.cpp" line="35"/>
         <source>Delete profile</source>
-        <translation type="unfinished"></translation>
+        <translation>Profil törlése</translation>
     </message>
     <message>
         <location filename="../src/multipageprofilesmanager.cpp" line="40"/>
         <source>Manage multipage profiles</source>
-        <translation type="unfinished"></translation>
+        <translation>Többoldalas profilok kezelése</translation>
     </message>
     <message>
         <location filename="../src/multipageprofilesmanager.cpp" line="72"/>
         <source>Edit profile</source>
-        <translation type="unfinished"></translation>
+        <translation>Profil szerkesztése</translation>
     </message>
     <message>
         <location filename="../src/multipageprofilesmanager.cpp" line="118"/>
         <location filename="../src/multipageprofilesmanager.cpp" line="120"/>
         <source>Custom profile</source>
-        <translation type="unfinished"></translation>
+        <translation>Egyedi profil</translation>
     </message>
     <message>
         <location filename="../src/multipageprofilesmanager.cpp" line="179"/>
         <location filename="../src/multipageprofilesmanager.cpp" line="188"/>
         <location filename="../src/multipageprofilesmanager.cpp" line="202"/>
         <source>Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Hiba</translation>
     </message>
     <message>
         <location filename="../src/multipageprofilesmanager.cpp" line="180"/>
         <source>Profile name can not be empty.</source>
-        <translation type="unfinished"></translation>
+        <translation>Profilnév nem lehet üres.</translation>
     </message>
     <message>
         <location filename="../src/multipageprofilesmanager.cpp" line="185"/>
         <source>Disabled</source>
-        <translation type="unfinished"></translation>
+        <translation>Letiltva</translation>
     </message>
     <message>
         <location filename="../src/multipageprofilesmanager.cpp" line="189"/>
         <location filename="../src/multipageprofilesmanager.cpp" line="203"/>
         <source>Profile name already exists.</source>
-        <translation type="unfinished"></translation>
+        <translation>A profilnév már létezik.</translation>
     </message>
 </context>
 <context>
@@ -851,22 +851,22 @@
     <message>
         <location filename="../src/widgets/pages_selector.cpp" line="46"/>
         <source>Pages:</source>
-        <translation type="unfinished"></translation>
+        <translation>Oldalak:</translation>
     </message>
     <message>
         <location filename="../src/widgets/pages_selector.cpp" line="47"/>
         <source>Even pages</source>
-        <translation type="unfinished"></translation>
+        <translation>Páros oldalak</translation>
     </message>
     <message>
         <location filename="../src/widgets/pages_selector.cpp" line="48"/>
         <source>Odd pages</source>
-        <translation type="unfinished"></translation>
+        <translation>Páratlan oldalak</translation>
     </message>
     <message>
         <location filename="../src/widgets/pages_selector.cpp" line="50"/>
         <source>All pages</source>
-        <translation type="unfinished"></translation>
+        <translation>Minden oldal</translation>
     </message>
     <message>
         <location filename="../src/widgets/pages_selector.cpp" line="125"/>
@@ -876,7 +876,7 @@
     <message>
         <location filename="../src/widgets/pages_selector.cpp" line="141"/>
         <source>Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Hiba</translation>
     </message>
 </context>
 <context>
@@ -884,19 +884,19 @@
     <message>
         <location filename="../src/widgets/pdfinfolabel.cpp" line="52"/>
         <source>portrait</source>
-        <translation type="unfinished"></translation>
+        <translation>álló</translation>
     </message>
     <message>
         <location filename="../src/widgets/pdfinfolabel.cpp" line="53"/>
         <source>landscape</source>
-        <translation type="unfinished"></translation>
+        <translation>fekvő</translation>
     </message>
     <message numerus="yes">
         <location filename="../src/widgets/pdfinfolabel.cpp" line="63"/>
         <source>%n page(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n oldal</numerusform>
+            <numerusform>%n oldal</numerusform>
         </translation>
     </message>
 </context>
@@ -905,7 +905,7 @@
     <message>
         <location filename="../src/operations/rotate.cpp" line="32"/>
         <source>Rotate</source>
-        <translation type="unfinished"></translation>
+        <translation>Elfordít</translation>
     </message>
     <message>
         <location filename="../src/operations/rotate.cpp" line="73"/>

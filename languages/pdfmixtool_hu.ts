@@ -66,7 +66,7 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="144"/>
         <source>Contribute</source>
-        <translation type="unfinished">Közreműködés</translation>
+        <translation>Hozzájárulás</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="160"/>

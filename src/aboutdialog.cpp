@@ -1,4 +1,4 @@
-/* Copyright (C) 2017-2021 Marco Scarpetta
+/* Copyright (C) 2017-2022 Marco Scarpetta
  *
  * This file is part of PDF Mix Tool.
  *
@@ -66,7 +66,7 @@ AboutDialog::AboutDialog(QWidget *parent) :
                        "PDF files.")) +
                 QString("<p><a href=\"https://scarpetta.eu/pdfmixtool/\">%1"
                         "</a></p>").arg(tr("Website")) +
-                "<p><small>Copyright © 2017-2021 Marco Scarpetta</small></p>");
+                "<p><small>Copyright © 2017-2022 Marco Scarpetta</small></p>");
     info_label->setTextInteractionFlags(Qt::TextBrowserInteraction);
     info_label->setStyleSheet(style);
     info_label->setOpenExternalLinks(true);

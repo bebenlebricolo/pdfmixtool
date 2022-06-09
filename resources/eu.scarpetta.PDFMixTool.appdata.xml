@@ -66,6 +66,15 @@
   <content_rating type="oars-1.0" />
 
   <releases>
+    <release version="1.1" date="2022-06-09">
+      <description>
+        <ul>
+          <li>Add "Extract images" operation</li>
+          <li>Improve GUI appearance and HiDPI support</li>
+          <li>Add options to generate two booklets in one sheet</li>
+        </ul>
+      </description>
+    </release>
     <release version="1.0.2" date="2021-06-19">
       <description>
         <ul>

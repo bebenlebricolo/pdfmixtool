@@ -1,5 +1,15 @@
 <h1>Changelog</h1>
 
+<h2>Version 1.1</h2>
+
+<p><strong>Release date:</strong> 2022-06-09</p>
+
+<ul>
+    <li>Add "Extract images" operation</li>
+    <li>Improve GUI appearance and HiDPI support</li>
+    <li>Add options to generate two booklets in one sheet</li>
+</ul>
+
 <h2>Version 1.0.2</h2>
 
 <p><strong>Release date:</strong> 2021-06-19</p>

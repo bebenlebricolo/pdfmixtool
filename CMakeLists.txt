@@ -1,6 +1,6 @@
 cmake_minimum_required (VERSION 3.6)
 
-project (PDFMixTool VERSION 1.1)
+project (PDFMixTool VERSION 1.1.1)
 
 include(GNUInstallDirs)
 include(FindPkgConfig)
@@ -22,10 +22,15 @@ if (DEFINED QPDF_VERSION)
 else()
     set(QPDF_VERSION_MAJOR 10)
 endif()
+
+if(USE_GRAPHICSMAGICK)
+    pkg_check_modules(MAGICK REQUIRED GraphicsMagick++)
+else()
+    pkg_check_modules(MAGICK REQUIRED Magick++)
+endif(USE_GRAPHICSMAGICK)
+
 configure_file(src/pdf_edit_lib/qpdf_version.h.in qpdf_version.h @ONLY)
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
-
-pkg_check_modules(MAGICK REQUIRED Magick++)
 
 file(GLOB TS_FILES
      LIST_DIRECTORIES false

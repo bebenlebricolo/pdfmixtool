@@ -19,6 +19,7 @@
 #include <QApplication>
 #include <QTranslator>
 #include <QLibraryInfo>
+#include <Magick++.h>
 #include "mainwindow.h"
 #include "mouseeventfilter.h"
 #include "libraries.h"
@@ -47,6 +48,11 @@ int main(int argc, char *argv[])
                 QString(":/tr/pdfmixtool_%1.qm").arg(QLocale::system().name()));
 
     if (ok) app.installTranslator(&translator);
+
+    // initialize GraphicsMagick
+#ifdef USE_GRAPHICSMAGICK
+    Magick::InitializeMagick(*argv);
+#endif
 
     // Create and show the main window
     MainWindow main_window{};

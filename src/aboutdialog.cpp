@@ -75,6 +75,13 @@ AboutDialog::AboutDialog(QWidget *parent) :
     tab_widget->addTab(info_label, tr("About"));
 
     // Dialog libraries tab
+    QString magick;
+#ifdef USE_GRAPHICSMAGICK
+    magick = "GraphicsMagick";
+#else
+    magick = "ImageMagick";
+#endif
+
     QLabel *libraries = new QLabel();
     libraries->setText(
                 QString(
@@ -82,10 +89,10 @@ AboutDialog::AboutDialog(QWidget *parent) :
                     "<ul>"
                     "<li><b>Qt</b> %2</li>"
                     "<li><b>QPDF</b> %3</li>"
-                    "<li><b>Magick++</b> %4</li>"
+                    "<li><b>%4</b> %5</li>"
                     "</ul>").arg(
                     tr("PDF Mix Tool is using the following libraries:"),
-                    QtWidgets_VERSION, QPDF_VERSION, MAGICK_VERSION));
+                    QtWidgets_VERSION, QPDF_VERSION, magick, MAGICK_VERSION));
     libraries->setTextInteractionFlags(Qt::TextBrowserInteraction);
     libraries->setStyleSheet(style);
 

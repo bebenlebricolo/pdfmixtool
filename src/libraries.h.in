@@ -4,6 +4,7 @@
 #define PDFMIXTOOL_VERSION "@PROJECT_VERSION@"
 #define QtWidgets_VERSION "@QtWidgets_VERSION@"
 #define QPDF_VERSION "@QPDF_VERSION@"
+#cmakedefine USE_GRAPHICSMAGICK
 #define MAGICK_VERSION "@MAGICK_VERSION@"
 
 #endif

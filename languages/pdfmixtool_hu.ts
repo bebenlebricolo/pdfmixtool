@@ -279,7 +279,7 @@
     <message>
         <location filename="../src/operations/edit_document_info.cpp" line="39"/>
         <source>Producer:</source>
-        <translation type="unfinished"></translation>
+        <translation>Szerző:</translation>
     </message>
     <message>
         <location filename="../src/operations/edit_document_info.cpp" line="42"/>
@@ -333,12 +333,12 @@
     <message>
         <location filename="../src/editpdfentrydialog.cpp" line="37"/>
         <source>Edit PDF files&apos; properties</source>
-        <translation type="unfinished"></translation>
+        <translation>PDF fájl tulajdonságainak szerkesztése</translation>
     </message>
     <message>
         <location filename="../src/editpdfentrydialog.cpp" line="40"/>
         <source>No rotation</source>
-        <translation type="unfinished"></translation>
+        <translation>Nincs elforgatás</translation>
     </message>
     <message>
         <location filename="../src/editpdfentrydialog.cpp" line="45"/>
@@ -358,12 +358,12 @@
     <message>
         <location filename="../src/editpdfentrydialog.cpp" line="103"/>
         <source>Multipage:</source>
-        <translation type="unfinished"></translation>
+        <translation>Több oldal:</translation>
     </message>
     <message>
         <location filename="../src/editpdfentrydialog.cpp" line="105"/>
         <source>Rotation:</source>
-        <translation type="unfinished"></translation>
+        <translation>Elforgatás:</translation>
     </message>
 </context>
 <context>
@@ -371,12 +371,12 @@
     <message>
         <location filename="../src/operations/extract_pages.cpp" line="35"/>
         <source>Extract pages</source>
-        <translation type="unfinished"></translation>
+        <translation>Oldalak eltávolítása</translation>
     </message>
     <message>
         <location filename="../src/operations/extract_pages.cpp" line="51"/>
         <source>Extract to individual PDF files</source>
-        <translation type="unfinished"></translation>
+        <translation>Külön PDF fájlokba kivonatol</translation>
     </message>
     <message>
         <location filename="../src/operations/extract_pages.cpp" line="55"/>
@@ -387,23 +387,23 @@
         <location filename="../src/operations/extract_pages.cpp" line="64"/>
         <location filename="../src/operations/extract_pages.cpp" line="79"/>
         <source>Extract…</source>
-        <translation type="unfinished"></translation>
+        <translation>Kivonatol…</translation>
     </message>
     <message>
         <location filename="../src/operations/extract_pages.cpp" line="74"/>
         <location filename="../src/operations/extract_pages.cpp" line="174"/>
         <source>Extract to single PDF</source>
-        <translation type="unfinished"></translation>
+        <translation>Egy PDF fájlba kivonatol</translation>
     </message>
     <message>
         <location filename="../src/operations/extract_pages.cpp" line="116"/>
         <source>Select save directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Mentés könyvtár kiválasztása</translation>
     </message>
     <message>
         <location filename="../src/operations/extract_pages.cpp" line="178"/>
         <source>PDF files</source>
-        <translation type="unfinished"></translation>
+        <translation>PDF fájlok</translation>
     </message>
 </context>
 <context>
@@ -411,27 +411,27 @@
     <message>
         <location filename="../src/inputpdffiledelegate.cpp" line="81"/>
         <source>Page order:</source>
-        <translation type="unfinished"></translation>
+        <translation>Oldal sorrend:</translation>
     </message>
     <message>
         <location filename="../src/inputpdffiledelegate.cpp" line="84"/>
         <source>reverse</source>
-        <translation type="unfinished"></translation>
+        <translation>fordított</translation>
     </message>
     <message>
         <location filename="../src/inputpdffiledelegate.cpp" line="86"/>
         <source>forward</source>
-        <translation type="unfinished"></translation>
+        <translation>előre</translation>
     </message>
     <message>
         <location filename="../src/inputpdffiledelegate.cpp" line="109"/>
         <source>All</source>
-        <translation type="unfinished"></translation>
+        <translation>Mind</translation>
     </message>
     <message>
         <location filename="../src/inputpdffiledelegate.cpp" line="122"/>
         <source>Pages:</source>
-        <translation type="unfinished"></translation>
+        <translation>Oldalak:</translation>
     </message>
     <message>
         <location filename="../src/inputpdffiledelegate.cpp" line="125"/>
@@ -441,12 +441,12 @@
     <message>
         <location filename="../src/inputpdffiledelegate.cpp" line="130"/>
         <source>Disabled</source>
-        <translation type="unfinished"></translation>
+        <translation>Tiltva</translation>
     </message>
     <message>
         <location filename="../src/inputpdffiledelegate.cpp" line="133"/>
         <source>Rotation:</source>
-        <translation type="unfinished"></translation>
+        <translation>Elforgatás:</translation>
     </message>
     <message>
         <location filename="../src/inputpdffiledelegate.cpp" line="136"/>
@@ -459,17 +459,17 @@
     <message>
         <location filename="../src/inputpdffilewidget.cpp" line="60"/>
         <source>Reverse page order:</source>
-        <translation type="unfinished"></translation>
+        <translation>Fordított oldal sorrend:</translation>
     </message>
     <message>
         <location filename="../src/inputpdffilewidget.cpp" line="74"/>
         <source>Disabled</source>
-        <translation type="unfinished"></translation>
+        <translation>Tiltva</translation>
     </message>
     <message>
         <location filename="../src/inputpdffilewidget.cpp" line="82"/>
         <source>New custom profile…</source>
-        <translation type="unfinished"></translation>
+        <translation>Új egyedi profil…</translation>
     </message>
     <message>
         <location filename="../src/inputpdffilewidget.cpp" line="84"/>
@@ -479,7 +479,7 @@
     <message>
         <location filename="../src/inputpdffilewidget.cpp" line="89"/>
         <source>Pages:</source>
-        <translation type="unfinished"></translation>
+        <translation>Oldalak:</translation>
     </message>
     <message>
         <location filename="../src/inputpdffilewidget.cpp" line="91"/>
@@ -512,42 +512,42 @@
     <message>
         <location filename="../src/mainwindow.cpp" line="98"/>
         <source>About</source>
-        <translation type="unfinished"></translation>
+        <translation>Névjegy</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="103"/>
         <source>Exit</source>
-        <translation type="unfinished"></translation>
+        <translation>Kilépés</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="378"/>
         <source>Error generating the PDF</source>
-        <translation type="unfinished"></translation>
+        <translation>Hiba a PDF generálása közben</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="178"/>
         <source>Open PDF file…</source>
-        <translation type="unfinished"></translation>
+        <translation>PDF fájl megnyitása…</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="292"/>
         <source>PDF files</source>
-        <translation type="unfinished"></translation>
+        <translation>PDF fájlok</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="307"/>
         <source>Error opening file</source>
-        <translation type="unfinished"></translation>
+        <translation>Hiba a fájl megnyitása közben</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="332"/>
         <source>Output pages: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Kimenő oldalak: %1</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="290"/>
         <source>Select a PDF file</source>
-        <translation type="unfinished"></translation>
+        <translation>Válassz ki egy PDF fájlt</translation>
     </message>
     <message>
         <location filename="../src/mainwindow.cpp" line="362"/>
@@ -565,85 +565,85 @@
     <message>
         <location filename="../src/operations/merge.cpp" line="42"/>
         <source>Merge PDF files</source>
-        <translation type="unfinished"></translation>
+        <translation>PDF fájlok egyesítése</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="70"/>
         <source>Edit</source>
-        <translation type="unfinished"></translation>
+        <translation>Szerkesztés</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="71"/>
         <source>View</source>
-        <translation type="unfinished"></translation>
+        <translation>Nézet</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="74"/>
         <source>Main toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation>Fő eszköztár</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="81"/>
         <source>Add PDF file</source>
-        <translation type="unfinished"></translation>
+        <translation>PDF fájl hozzáadása</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="86"/>
         <source>Select one or more PDF files to open</source>
-        <translation type="unfinished"></translation>
+        <translation>Egy vagy több PDF fájl kiválasztása megnyitásra</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="88"/>
         <location filename="../src/operations/merge.cpp" line="589"/>
         <source>PDF files</source>
-        <translation type="unfinished"></translation>
+        <translation>PDF fájlok</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="93"/>
         <source>Move up</source>
-        <translation type="unfinished"></translation>
+        <translation>Mozgatás fel</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="98"/>
         <source>Move down</source>
-        <translation type="unfinished"></translation>
+        <translation>Mozgatás le</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="103"/>
         <source>Remove file</source>
-        <translation type="unfinished"></translation>
+        <translation>Fájl eltávolítása</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="113"/>
         <source>Load files list</source>
-        <translation type="unfinished"></translation>
+        <translation>Fájllista betöltése</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="118"/>
         <source>Save files list</source>
-        <translation type="unfinished"></translation>
+        <translation>Fájllista mentése</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="152"/>
         <location filename="../src/operations/merge.cpp" line="156"/>
         <source>Generate PDF</source>
-        <translation type="unfinished"></translation>
+        <translation>PDF generálása</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="332"/>
         <source>Select the JSON file containing the files list</source>
-        <translation type="unfinished"></translation>
+        <translation>Fájllistát tartalmazó JSON fájl kiválasztása</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="334"/>
         <location filename="../src/operations/merge.cpp" line="352"/>
         <source>JSON files (*.json)</source>
-        <translation type="unfinished"></translation>
+        <translation>JSON fájlok (*.json)</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="340"/>
         <source>Error while reading the JSON file!</source>
-        <translation type="unfinished"></translation>
+        <translation>Hiba a JSON fájl olvasása közben!</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="341"/>

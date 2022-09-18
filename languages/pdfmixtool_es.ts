@@ -315,7 +315,7 @@
     <message>
         <location filename="../src/operations/edit_page_layout.cpp" line="34"/>
         <source>Pages layout</source>
-        <translation>Disposición de las páginas</translation>
+        <translation>Distribución de las páginas</translation>
     </message>
     <message>
         <location filename="../src/operations/edit_page_layout.cpp" line="44"/>
@@ -590,7 +590,7 @@
     <message>
         <location filename="../src/operations/merge.cpp" line="86"/>
         <source>Select one or more PDF files to open</source>
-        <translation>Seleccione uno o más archivos PDF para abrir</translation>
+        <translation>Seleccione uno o más archivos PDF para abrirlos</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="88"/>
@@ -632,7 +632,7 @@
     <message>
         <location filename="../src/operations/merge.cpp" line="332"/>
         <source>Select the JSON file containing the files list</source>
-        <translation>Seleccionar el archivo JSON que contiene la lista de archivos</translation>
+        <translation>Seleccione el archivo JSON que contiene la lista de archivos</translation>
     </message>
     <message>
         <location filename="../src/operations/merge.cpp" line="334"/>
@@ -707,7 +707,7 @@
         <location filename="../src/widgets/multipage_editor.cpp" line="67"/>
         <location filename="../src/widgets/multipage_editor.cpp" line="202"/>
         <source>Left</source>
-        <translation>Izquierdo</translation>
+        <translation>Izquierda</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="68"/>
@@ -719,19 +719,19 @@
         <location filename="../src/widgets/multipage_editor.cpp" line="69"/>
         <location filename="../src/widgets/multipage_editor.cpp" line="205"/>
         <source>Right</source>
-        <translation>Derecho</translation>
+        <translation>Derecha</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="71"/>
         <location filename="../src/widgets/multipage_editor.cpp" line="208"/>
         <source>Top</source>
-        <translation>Superior</translation>
+        <translation>Arriba</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="73"/>
         <location filename="../src/widgets/multipage_editor.cpp" line="211"/>
         <source>Bottom</source>
-        <translation>Inferior</translation>
+        <translation>Abajo</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="106"/>
@@ -756,7 +756,7 @@
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="162"/>
         <source>Pages layout</source>
-        <translation>Disposición de las páginas</translation>
+        <translation>Distribución de las páginas</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="169"/>

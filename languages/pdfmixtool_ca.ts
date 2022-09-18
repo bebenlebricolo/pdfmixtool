@@ -343,7 +343,7 @@
     <message>
         <location filename="../src/editpdfentrydialog.cpp" line="45"/>
         <source>Disabled</source>
-        <translation>Desactivat</translation>
+        <translation>Desactiva</translation>
     </message>
     <message>
         <location filename="../src/editpdfentrydialog.cpp" line="90"/>
@@ -441,7 +441,7 @@
     <message>
         <location filename="../src/inputpdffiledelegate.cpp" line="130"/>
         <source>Disabled</source>
-        <translation>Desactivat</translation>
+        <translation>Desactiva</translation>
     </message>
     <message>
         <location filename="../src/inputpdffiledelegate.cpp" line="133"/>
@@ -464,7 +464,7 @@
     <message>
         <location filename="../src/inputpdffilewidget.cpp" line="74"/>
         <source>Disabled</source>
-        <translation>Desactivat</translation>
+        <translation>Desactiva</translation>
     </message>
     <message>
         <location filename="../src/inputpdffilewidget.cpp" line="82"/>
@@ -707,7 +707,7 @@
         <location filename="../src/widgets/multipage_editor.cpp" line="67"/>
         <location filename="../src/widgets/multipage_editor.cpp" line="202"/>
         <source>Left</source>
-        <translation>Esquerre</translation>
+        <translation>Esquerra</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="68"/>
@@ -719,19 +719,19 @@
         <location filename="../src/widgets/multipage_editor.cpp" line="69"/>
         <location filename="../src/widgets/multipage_editor.cpp" line="205"/>
         <source>Right</source>
-        <translation>Dret</translation>
+        <translation>Dreta</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="71"/>
         <location filename="../src/widgets/multipage_editor.cpp" line="208"/>
         <source>Top</source>
-        <translation>Superior</translation>
+        <translation>Dalt</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="73"/>
         <location filename="../src/widgets/multipage_editor.cpp" line="211"/>
         <source>Bottom</source>
-        <translation>Inferior</translation>
+        <translation>Baix</translation>
     </message>
     <message>
         <location filename="../src/widgets/multipage_editor.cpp" line="106"/>
@@ -837,7 +837,7 @@
     <message>
         <location filename="../src/multipageprofilesmanager.cpp" line="185"/>
         <source>Disabled</source>
-        <translation>Desactivat</translation>
+        <translation>Desactiva</translation>
     </message>
     <message>
         <location filename="../src/multipageprofilesmanager.cpp" line="189"/>

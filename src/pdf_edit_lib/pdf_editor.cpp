@@ -28,10 +28,10 @@
 #include <qpdf/QPDFOutlineDocumentHelper.hh>
 #include "qpdf_version.h"
 
-QPDFOutlineDocumentHelper::~QPDFOutlineDocumentHelper()
-{
+//QPDFOutlineDocumentHelper::~QPDFOutlineDocumentHelper()
+//{
 
-}
+//}
 
 PdfEditor::PdfEditor() :
     m_old_locale{std::locale::global(std::locale::classic())},

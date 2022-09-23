@@ -19,6 +19,8 @@
 #ifndef PDFEDITOR_H
 #define PDFEDITOR_H
 
+#define POINTERHOLDER_TRANSITION 0
+
 #include <string>
 #include <vector>
 #include <cmath>

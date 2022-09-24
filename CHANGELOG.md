@@ -1,5 +1,14 @@
 <h1>Changelog</h1>
 
+<h2>Version 1.1.1</h2>
+
+<p><strong>Release date:</strong> 2022-09-24</p>
+
+<ul>
+    <li>Fix incompatibility with qpdf 11</li>
+    <li>Allow GraphicsMagick as an alternative to ImageMagick</li>
+</ul>
+
 <h2>Version 1.1</h2>
 
 <p><strong>Release date:</strong> 2022-06-09</p>

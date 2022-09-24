@@ -66,6 +66,14 @@
   <content_rating type="oars-1.0" />
 
   <releases>
+    <release version="1.1.1" date="2022-09-24">
+      <description>
+        <ul>
+          <li>Fix incompatibility with qpdf 11</li>
+          <li>Allow GraphicsMagick as an alternative to ImageMagick</li>
+        </ul>
+      </description>
+    </release>
     <release version="1.1" date="2022-06-09">
       <description>
         <ul>

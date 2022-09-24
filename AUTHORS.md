@@ -6,4 +6,5 @@
 <h2>Contributors</h2>
 <ul>
 <li>Florent Chapelle</li>
+<li>Gustavo Costa</li>
 </ul>

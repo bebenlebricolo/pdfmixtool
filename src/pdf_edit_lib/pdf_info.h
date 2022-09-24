@@ -19,6 +19,8 @@
 #ifndef PDF_INFO_H
 #define PDF_INFO_H
 
+#define POINTERHOLDER_TRANSITION 0
+
 #include <string>
 #include <ctime>
 #include <qpdf/QUtil.hh>
